@@ -1,0 +1,378 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.1.4
+    packID: Carbon_Black_Enterprise_Live_Response
+    packName: Carbon Black Enterprise Live Response
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: Download file from a sensor.
+id: Carbon Black Live Response - Download File
+inputs:
+- description: Sensor ID.
+  key: SensorId
+  playbookInputQuery: null
+  required: true
+  value: {}
+- description: File path to download.
+  key: Path
+  playbookInputQuery: null
+  required: true
+  value: {}
+name: Carbon Black Live Response - Download File
+outputs:
+- contextPath: File.Size
+  description: File size.
+  type: number
+- contextPath: File.SHA1
+  description: File SHA1.
+  type: string
+- contextPath: File.SHA256
+  description: File SHA256.
+  type: string
+- contextPath: File.Name
+  description: File name.
+  type: string
+- contextPath: File.SSDeep
+  description: File SSDeep.
+  type: string
+- contextPath: File.EntryID
+  description: File EntryID.
+  type: string
+- contextPath: File.Info
+  description: File info.
+  type: string
+- contextPath: File.Type
+  description: File type.
+  type: string
+- contextPath: File.MD5
+  description: File MD5.
+  type: string
+- contextPath: File.Extension
+  description: File extension.
+  type: string
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: aceb3dc4-8d87-42f2-8689-cef3a0bb831d
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: aceb3dc4-8d87-42f2-8689-cef3a0bb831d
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      sensor:
+        complex:
+          root: inputs.SensorId
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Create an active session.
+      id: 2634dc8a-846d-421d-886f-3ea11b43a821
+      iscommand: false
+      name: Carbon Black Live Response - Create active session
+      playbookId: Carbon Black Live Response - Create active session
+      type: playbook
+      version: -1
+    taskid: 2634dc8a-846d-421d-886f-3ea11b43a821
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 195
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      download:
+        simple: "false"
+      path:
+        complex:
+          root: inputs.Path
+      session:
+        complex:
+          accessor: CbSessionID
+          root: CbLiveResponse.Sessions
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Retrieve a file from a path on the endpoint.
+      id: cb1983f0-7129-476f-8ebb-be8b7888fc4d
+      iscommand: true
+      name: Start downloading file
+      script: '|||cb-get-file-from-endpoint'
+      type: regular
+      version: -1
+    taskid: cb1983f0-7129-476f-8ebb-be8b7888fc4d
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 370
+        }
+      }
+  "4":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      file-id:
+        complex:
+          accessor: FileID
+          root: CbLiveResponse.Commands
+      session:
+        complex:
+          accessor: CbSessionID
+          root: CbLiveResponse.Sessions
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Download a file from Cb server in a given session.
+      id: 5dd1b383-635b-4e6f-8834-475e898e27d4
+      iscommand: true
+      name: Download file
+      script: '|||cb-file-get'
+      type: regular
+      version: -1
+    taskid: 5dd1b383-635b-4e6f-8834-475e898e27d4
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 895
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 66449819-fe18-4c59-8e28-a85ee83920e0
+      iscommand: false
+      name: File downloaded successfully
+      type: title
+      version: -1
+    taskid: 66449819-fe18-4c59-8e28-a85ee83920e0
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 1245
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      session:
+        complex:
+          accessor: CbSessionID
+          root: CbLiveResponse.Sessions
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Close the given session.
+      id: 4767d80a-3861-4fd5-8d1e-a10db951c394
+      iscommand: true
+      name: Close session
+      script: '|||cb-session-close'
+      type: regular
+      version: -1
+    taskid: 4767d80a-3861-4fd5-8d1e-a10db951c394
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 1070
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "13"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      CommnadId:
+        complex:
+          accessor: CbCommandID
+          root: CbLiveResponse.Commands
+      SessionId:
+        complex:
+          accessor: CbSessionID
+          root: CbLiveResponse.Sessions
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Polling command status until finished with an error or complete.
+      id: 4d87be63-17a9-4b3a-848c-05f7ac469b53
+      iscommand: false
+      name: Carbon Black Live Response - Wait Until Command Complete
+      playbookId: Carbon Black Live Response - Wait Until Command Complete
+      type: playbook
+      version: -1
+    taskid: 4d87be63-17a9-4b3a-848c-05f7ac469b53
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 545
+        }
+      }
+  "13":
+    continueonerrortype: ""
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      command:
+        complex:
+          accessor: CbCommandID
+          root: CbLiveResponse.Commands
+      session:
+        complex:
+          accessor: CbSessionID
+          root: CbLiveResponse.Sessions
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Display information on command. Used for getting the file ID.
+      id: 85ff63bb-eeb6-410e-8e30-0dafed3c1231
+      iscommand: true
+      name: Get command info
+      script: '|||cb-command-info'
+      type: regular
+      version: -1
+    taskid: 85ff63bb-eeb6-410e-8e30-0dafed3c1231
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 720
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1260,
+        "width": 380,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
