@@ -1,0 +1,149 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "Maps Code42 Alert fields to Incident",
+	"feed": false,
+	"fromServerVersion": "6.5.0",
+	"id": "Code42 - Mapping",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "3.0.1",
+	"keyTypeMap": null,
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": {
+		"Code42 Security Alert": {
+			"dontMapEventToLabels": true,
+			"internalMapping": {
+				"Code42 Alert ID": {
+					"complex": {
+						"filters": [],
+						"root": "id",
+						"transformers": []
+					}
+				},
+				"Code42 Alert Risk Severity Summary": {
+					"complex": {
+						"filters": [],
+						"root": "risksummary",
+						"transformers": []
+					}
+				},
+				"Code42 Alert Type": {
+					"complex": {
+						"filters": [],
+						"root": "type",
+						"transformers": []
+					}
+				},
+				"Code42 Alert URL": {
+					"complex": {
+						"filters": [],
+						"root": "alertUrl",
+						"transformers": []
+					}
+				},
+				"Code42 File Events": {
+					"complex": {
+						"filters": [],
+						"root": "fileevents",
+						"transformers": [
+							{
+								"operator": "ConvertKeysToTableFieldFormat"
+							}
+						]
+					}
+				},
+				"Code42 SecurityAlert Description": {
+					"complex": {
+						"filters": [],
+						"root": "description",
+						"transformers": []
+					}
+				},
+				"Code42 SecurityAlert Name": {
+					"complex": {
+						"filters": [],
+						"root": "name",
+						"transformers": []
+					}
+				},
+				"Code42 SecurityAlert State": {
+					"complex": {
+						"filters": [],
+						"root": "state",
+						"transformers": []
+					}
+				},
+				"Code42 SecurityAlert Timestamp": {
+					"complex": {
+						"filters": [],
+						"root": "createdAt",
+						"transformers": []
+					}
+				},
+				"Code42 Severity": {
+					"complex": {
+						"filters": [],
+						"root": "riskSeverity",
+						"transformers": []
+					}
+				},
+				"Code42 Username": {
+					"complex": {
+						"filters": [],
+						"root": "actor",
+						"transformers": []
+					}
+				},
+				"name": {
+					"complex": {
+						"filters": [],
+						"root": "name",
+						"transformers": []
+					}
+				},
+				"severity": {
+					"complex": {
+						"filters": [],
+						"root": "riskSeverity",
+						"transformers": [
+							{
+								"args": {
+									"input_values": {
+										"value": {
+											"simple": "MODERATE"
+										}
+									},
+									"mapped_values": {
+										"value": {
+											"simple": "MEDIUM"
+										}
+									}
+								},
+								"operator": "MapValuesTransformer"
+							}
+						]
+					}
+				}
+			}
+		}
+	},
+	"name": "Code42 - Mapping",
+	"nameRaw": "Code42 - Mapping",
+	"packID": "Code42",
+	"packName": "Code42",
+	"packPropagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {},
+	"type": "mapping-incoming",
+	"unclassifiedCases": null,
+	"version": -1
+}
