@@ -1,0 +1,183 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Network Security"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Network Security",
+				"commands": [
+					{
+						"description": "Get all address objects from your firewall",
+						"name": "fortigate-get-addresses"
+					},
+					{
+						"description": "Get information about FortiGate service groups",
+						"name": "fortigate-get-service-groups"
+					},
+					{
+						"description": "Update a FortiGate service group",
+						"name": "fortigate-update-service-group"
+					},
+					{
+						"description": "Delete a service group from FortiGate",
+						"name": "fortigate-delete-service-group"
+					},
+					{
+						"description": "Get information about a service from FortiGate Firewall",
+						"name": "fortigate-get-firewall-service"
+					},
+					{
+						"description": "Create a service in FortiGate firewall",
+						"name": "fortigate-create-firewall-service"
+					},
+					{
+						"description": "Get information about a firewall policy on FortiGate",
+						"name": "fortigate-get-policy"
+					},
+					{
+						"description": "Update a firewall policy on FortiGate",
+						"name": "fortigate-update-policy"
+					},
+					{
+						"description": "Create a firewall policy (rule) on FortiGate",
+						"name": "fortigate-create-policy"
+					},
+					{
+						"description": "Move a firewall policy rule to a different position",
+						"name": "fortigate-move-policy"
+					},
+					{
+						"description": "Delete a policy from FortiGate firewall",
+						"name": "fortigate-delete-policy"
+					},
+					{
+						"description": "Get information about address groups from FortiGate",
+						"name": "fortigate-get-address-groups"
+					},
+					{
+						"description": "Update an address group on FortiGate firewall",
+						"name": "fortigate-update-address-group"
+					},
+					{
+						"description": "Create an address group in FortiGate firewall",
+						"name": "fortigate-create-address-group"
+					},
+					{
+						"description": "Delete an address group from FortiGate firewall",
+						"name": "fortigate-delete-address-group"
+					},
+					{
+						"description": "Adds IP addresses to the banned list.",
+						"name": "fortigate-ban-ip"
+					},
+					{
+						"description": "Clears a list of specific banned IP addresses.",
+						"name": "fortigate-unban-ip"
+					},
+					{
+						"description": "Returns a list of banned IP addresses.",
+						"name": "fortigate-get-banned-ips"
+					},
+					{
+						"description": "Creates a new address object.",
+						"name": "fortigate-create-address"
+					},
+					{
+						"description": "Deletes an address by name.",
+						"name": "fortigate-delete-address"
+					}
+				],
+				"description": "Manage FortiGate Firewall",
+				"id": "",
+				"name": "FortiGate"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-06-30T20:25:07Z",
+	"currentVersion": "1.0.17",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.44",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Manage FortiGate Firewall",
+	"disabledMonthly": false,
+	"downloads": 2617,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "FortiGate",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/FortiGate/FortiGate_image.png",
+			"name": "FortiGate"
+		}
+	],
+	"itemVersion": "1.0.17",
+	"keywords": [],
+	"legacy": true,
+	"name": "FortiGate",
+	"packID": "FortiGate",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "## Collect Events from Vendor\n\nIn order to use the collector, you can use one of the following options to collect events from the vendor:\n - [Broker VM](#broker-vm)\n\nIn either option, you will need to configure the vendor and product for this specific collector.\n### Broker VM\nYou will need to use the information described [here](https://docs.paloaltonetworks.com/cortex/cortex-xdr/cortex-xdr-pro-admin/broker-vm/set-up-broker-vm/configure-your-broker-vm).\\\nYou can configure the specific vendor and product for this instance.\n1. Navigate to **Settings** -\u003e **Configuration** -\u003e **Data Broker** -\u003e **Broker VMs**. \n2. Right-click, and select **Syslog Collector** -\u003e **Configure**.\n3. When configuring the Syslog Collector, set:\n   - vendor as vendor\u003c- Fortinet\n   - product as product\u003c- FortiGate\n\n\n\n",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-12-12T23:22:09Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4206093",
+	"videos": []
+}
