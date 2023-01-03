@@ -1,0 +1,405 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Endpoint"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"incidentfield",
+		"incidenttype",
+		"playbook",
+		"classifier"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": [
+			{
+				"description": "",
+				"id": "",
+				"name": "FireEye HX - Incoming Mapper"
+			},
+			{
+				"description": "",
+				"id": "",
+				"name": "FireEye HX Alert"
+			}
+		],
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": [
+			{
+				"description": "",
+				"name": "FireEye HX Agent Containment State",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "FireEye HX Event Info",
+				"type": "shortText"
+			}
+		],
+		"incidenttype": [
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "FireEye HX Alert",
+				"playbook": "",
+				"weeks": 0
+			}
+		],
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Endpoint",
+				"commands": [
+					{
+						"description": "Returns information on a host associated with an agent.",
+						"name": "fireeye-hx-get-host-information"
+					},
+					{
+						"description": "Returns information on all hosts.",
+						"name": "fireeye-hx-get-all-hosts-information"
+					},
+					{
+						"description": "Applies containment for a specific host, so that it no longer has access to other systems. If the user does not have the necessary permissions, the command will not approve the request. The permission required to approve the request is api_admin role.",
+						"name": "fireeye-hx-host-containment"
+					},
+					{
+						"description": "Releases a specific host from containment.",
+						"name": "fireeye-hx-cancel-containment"
+					},
+					{
+						"description": "Initiates a data acquisition process to collect artifacts from the system disk and memory.",
+						"name": "fireeye-hx-initiate-data-acquisition"
+					},
+					{
+						"description": "Returns a list of all host sets known to your HX Series appliance.",
+						"name": "fireeye-hx-get-host-set-information"
+					},
+					{
+						"description": "Returns a list of all policies.",
+						"name": "fireeye-hx-list-policy"
+					},
+					{
+						"description": "Returns a list of all policies for all host sets.",
+						"name": "fireeye-hx-list-host-set-policy"
+					},
+					{
+						"description": "Fetches all containment states across known hosts.",
+						"name": "fireeye-hx-list-containment"
+					},
+					{
+						"description": "Fetches all enterprise searches.",
+						"name": "fireeye-hx-search-list"
+					},
+					{
+						"description": "Stops a specific running search.",
+						"name": "fireeye-hx-search-stop"
+					},
+					{
+						"description": "Fetches the results for a specific enterprise search.",
+						"name": "fireeye-hx-search-result-get"
+					},
+					{
+						"description": "Searches endpoints to check all hosts or a subset of hosts for a specific file or indicator.",
+						"name": "fireeye-hx-search"
+					},
+					{
+						"description": "Get details of a specific alert.",
+						"name": "fireeye-hx-get-alert"
+					},
+					{
+						"description": "Suppresses an alert by ID.",
+						"name": "fireeye-hx-suppress-alert"
+					},
+					{
+						"description": "Get a list of indicators.",
+						"name": "fireeye-hx-get-indicators"
+					},
+					{
+						"description": "Get details of a specific indicator.",
+						"name": "fireeye-hx-get-indicator"
+					},
+					{
+						"description": "Add conditions to an indicator. Conditions can be MD5, hash values, domain names, and IP addresses.",
+						"name": "fireeye-hx-append-conditions"
+					},
+					{
+						"description": "Deletes the search by ID.",
+						"name": "fireeye-hx-search-delete"
+					},
+					{
+						"description": "Deletes the file acquisition by ID.",
+						"name": "fireeye-hx-delete-file-acquisition"
+					},
+					{
+						"description": "Approves pending containment requests made by other components or users. The required permission is api_admin role.",
+						"name": "fireeye-hx-approve-containment"
+					},
+					{
+						"description": "Inserts a new host set policy on your Endpoint Security server.",
+						"name": "fireeye-hx-assign-host-set-policy"
+					},
+					{
+						"description": "Collects artifacts from the system disk and memory for the given acquisition ID. The data is fetched as a MANS file.",
+						"name": "fireeye-hx-get-data-acquisition"
+					},
+					{
+						"description": "Start a data acquisition process to gather artifacts from the system disk and memory. The data is fetched as a MANS file.",
+						"name": "fireeye-hx-data-acquisition"
+					},
+					{
+						"description": "Returns a list of alerts. Use the different arguments to filter the results returned.",
+						"name": "fireeye-hx-get-alerts"
+					},
+					{
+						"description": "Acquires a specific file as a password protected zip file. The password for unlocking the zip file is 'unzip-me'.",
+						"name": "fireeye-hx-file-acquisition"
+					},
+					{
+						"description": "Create a new indicator.",
+						"name": "fireeye-hx-create-indicator"
+					},
+					{
+						"description": "Deletes a Host Set policy.",
+						"name": "fireeye-hx-delete-host-set-policy"
+					},
+					{
+						"description": "Deletes data acquisition.",
+						"name": "fireeye-hx-delete-data-acquisition"
+					},
+					{
+						"description": "Delete an indicator condition.",
+						"name": "fireeye-hx-delete-indicator-condition"
+					},
+					{
+						"description": "Lists the indicator categories.",
+						"name": "fireeye-hx-list-indicator-category"
+					},
+					{
+						"description": "Delete an indicator.",
+						"name": "fireeye-hx-delete-indicator"
+					},
+					{
+						"description": "Deletes a host set. To use this command you must have admin permissions.",
+						"name": "fireeye-hx-delete-host-set"
+					},
+					{
+						"description": "Creates a static host set. To use this command you must have admin permissions.",
+						"name": "fireeye-hx-create-host-set-static"
+					},
+					{
+						"description": "Creates a dynamic host set. To use this command you must have admin permissions.",
+						"name": "fireeye-hx-create-host-set-dynamic"
+					},
+					{
+						"description": "Updates a static host set. To use this command you must have admin permissions.",
+						"name": "fireeye-hx-update-host-set-static"
+					},
+					{
+						"description": "Updates dynamic host set. To use this command you must have admin permissions.",
+						"name": "fireeye-hx-update-host-set-dynamic"
+					}
+				],
+				"description": "FireEye Endpoint Security is an integrated solution that detects and protects endpoints against known and unknown threats. This integration provides access to information about endpoints, acquisitions, alerts, indicators, and containment. You can extract critical data and effectively operate the security operations automated playbook.",
+				"id": "",
+				"name": "FireEye Endpoint Security (HX) v2"
+			},
+			{
+				"category": "Endpoint",
+				"commands": [
+					{
+						"description": "Apply containment for a specific host, so that it no longer has access to other systems.",
+						"name": "fireeye-hx-host-containment"
+					},
+					{
+						"description": "Release a specific host from containment.",
+						"name": "fireeye-hx-cancel-containment"
+					},
+					{
+						"description": "Get a list of alerts, use the different arguments to filter the results returned.",
+						"name": "fireeye-hx-get-alerts"
+					},
+					{
+						"description": "Suppress alert by ID",
+						"name": "fireeye-hx-suppress-alert"
+					},
+					{
+						"description": "Get a list of indicators",
+						"name": "fireeye-hx-get-indicators"
+					},
+					{
+						"description": "Get a specific indicator details",
+						"name": "fireeye-hx-get-indicator"
+					},
+					{
+						"description": "Get information on a host associated with an agent.",
+						"name": "fireeye-hx-get-host-information"
+					},
+					{
+						"description": "Get details of a specific alert",
+						"name": "fireeye-hx-get-alert"
+					},
+					{
+						"description": "Aquire a specific file as a password protected zip file. The password for unlocking the zip file is 'unzip-me'.",
+						"name": "fireeye-hx-file-acquisition"
+					},
+					{
+						"description": "Delete the file acquisition, by ID.",
+						"name": "fireeye-hx-delete-file-acquisition"
+					},
+					{
+						"description": "Start a data acquisition process to gather artifacts from the system disk and memory. The data is fetched as mans file.",
+						"name": "fireeye-hx-data-acquisition"
+					},
+					{
+						"description": "Delete data acquisition.",
+						"name": "fireeye-hx-delete-data-acquisition"
+					},
+					{
+						"description": "Search endpoints to check all hosts or a subset of hosts for a specific file or indicator.",
+						"name": "fireeye-hx-search"
+					},
+					{
+						"description": "Get a list of all host sets known to your HX Series appliance",
+						"name": "fireeye-hx-get-host-set-information"
+					},
+					{
+						"description": "Create new indicator",
+						"name": "fireeye-hx-create-indicator"
+					},
+					{
+						"description": "Add conditions to an indicator. Conditions can be MD5, hash values, domain names and IP addresses.",
+						"name": "fireeye-hx-append-conditions"
+					},
+					{
+						"description": "Get information on all hosts",
+						"name": "fireeye-hx-get-all-hosts-information"
+					},
+					{
+						"description": "Initiate a data acquisition process to gather artifacts from the system disk and memory",
+						"name": "fireeye-hx-initiate-data-acquisition"
+					},
+					{
+						"description": "Gather artifacts from the system disk and memory for the given acquisition id. The data is fetched as mans file",
+						"name": "fireeye-hx-get-data-acquisition"
+					}
+				],
+				"description": "Deprecated. Use FireEyeHX v2 instead.",
+				"id": "",
+				"name": "FireEye HX (Deprecated)"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": [
+			{
+				"description": "This playbook unisolates endpoints according to the hostname/endpoint ID that is provided by the playbook input.",
+				"name": "FireEye HX - Unisolate Endpoint"
+			},
+			{
+				"description": "This playbook will auto isolate endpoints by the endpoint ID that was provided in the playbook.",
+				"name": "FireEye HX - Isolate Endpoint"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-06-30T20:31:21Z",
+	"currentVersion": "2.2.11",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.50",
+			"name": "Base"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.10.33",
+			"name": "Common Scripts"
+		},
+		"CommonTypes": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "3.3.39",
+			"name": "Common Types"
+		},
+		"FireEyeCommonFields": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.0.5",
+			"name": "FireEye Common Fields"
+		}
+	},
+	"deprecated": false,
+	"description": "FireEye Endpoint Security is an integrated solution that detects and protects endpoint against known and unknown threats. The FireEye HX Demisto integration provides access to information about endpoints, acquisitions, alerts, indicators, and containment. Customers can extract critical data and effectively operate security operations automated playbooks.",
+	"disabledMonthly": false,
+	"downloads": 3602,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "FireEyeHX",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/FireEyeHX/FireEyeHXv2_image.png",
+			"name": "FireEye Endpoint Security (HX) v2"
+		},
+		{
+			"imagePath": "content/packs/FireEyeHX/FireEyeHX_image.png",
+			"name": "FireEye HX (Deprecated)"
+		}
+	],
+	"itemVersion": "2.2.11",
+	"keywords": [],
+	"legacy": true,
+	"name": "FireEye HX",
+	"packID": "FireEyeHX",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [
+		"Data Source"
+	],
+	"toServerVersion": "",
+	"updated": "2022-12-28T00:19:35Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4290509",
+	"videos": []
+}
