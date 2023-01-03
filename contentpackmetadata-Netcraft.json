@@ -1,0 +1,122 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Utilities"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Network Security",
+				"commands": [
+					{
+						"description": "Reports an attack to Netcraft.",
+						"name": "netcraft-report-attack"
+					},
+					{
+						"description": "Returns information on existing takedowns. You can retrieve the takedown ID when you report the malicious URL and open the takedown, using the netcraft-report-attack command.",
+						"name": "netcraft-get-takedown-info"
+					},
+					{
+						"description": "Returns notes for takedowns.",
+						"name": "netcraft-get-takedown-notes"
+					},
+					{
+						"description": "Adds notes to an existing takedown.",
+						"name": "netcraft-add-notes-to-takedown"
+					},
+					{
+						"description": "Escalates a takedown.",
+						"name": "netcraft-escalate-takedown"
+					}
+				],
+				"description": "An integration for Netcraft, allowing you to open and handle takedown requests.",
+				"id": "",
+				"name": "Netcraft"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-11-09T18:43:57Z",
+	"currentVersion": "1.0.14",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.39",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "An integration for Netcraft, allowing you to open and handle takedown requests.",
+	"disabledMonthly": false,
+	"downloads": 1383,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "Netcraft",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/Netcraft/Netcraft_image.png",
+			"name": "Netcraft"
+		}
+	],
+	"itemVersion": "1.0.14",
+	"keywords": [],
+	"legacy": true,
+	"name": "Netcraft",
+	"packID": "Netcraft",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-11-25T00:07:53Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4098099",
+	"videos": []
+}
