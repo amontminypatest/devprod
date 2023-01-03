@@ -1,0 +1,51 @@
+comment: "Updates an XSOAR Production server if the Git content is not at the latest
+  version.   Used in Dev/Prod situations.\n\nBasically you can run this in a Job,
+  and it will install the latest content from Git if there is new content.\n\nUse
+  if you like to live dangerously. "
+commonfields:
+  id: 3413e571-49e3-46e6-882d-7acefde6a781
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dependson:
+  must:
+  - Demisto REST API|||demisto-api-post
+dockerimage: demisto/python3:3.9.2.17246
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: UpdateGitContent
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |-
+  # updates git content on a prod server
+
+  # check if there is new content
+  content = demisto.executeCommand("demisto-api-post", {"uri":"/content/checkNew","body":{}})[0].get("Contents", {}).get("response")
+
+  # check if the installed hash == the latest hash
+  installed = content.get("hashInstalled")
+  latest = content.get("hashLatest","not found")
+
+  if installed == latest:
+      demisto.results("No new content to install, on latest version in git.")
+  else:
+      # install new content
+      demisto.executeCommand("demisto-api-post", {"uri":"/content/install","body":content})
+      demisto.results(f"New content release installed: {content.get('release')}")
+scripttarget: 0
+subtype: python3
+tags:
+- Utilities
+- training
+type: python
