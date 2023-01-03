@@ -1,0 +1,255 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+description: This playbook uses the extend context technique when looking up an AD
+  user, putting only their Name and Email in their own context keys.
+id: 29648954-31af-40bb-824c-bc9cdb10de10
+inputs: []
+name: XSOAR Engineer Training - Extend Context - AD Get User
+outputs: []
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 6cb9b445-0ccf-406c-8541-6af5d7514c01
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 6cb9b445-0ccf-406c-8541-6af5d7514c01
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": -40
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      all:
+        simple: "yes"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Delete field from context
+      id: 6128e6f9-2fac-49cf-8254-995b31b0c769
+      iscommand: false
+      name: Delete Context
+      script: DeleteContext
+      type: regular
+      version: -1
+    taskid: 6128e6f9-2fac-49cf-8254-995b31b0c769
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 165
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      email:
+        simple: james.bond@demisto.local
+      extend-context:
+        simple: Name=attributes.name::Email=attributes.mail
+      ignore-outputs:
+        simple: "true"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Active Directory Query v2 (XSOAR Engineer Training)
+      description: Retrieves detailed information about a user account. The user can
+        be specified by name, email address, or as an Active Directory Distinguished
+        Name (DN). If no filter is specified, all users are returned.
+      id: eb9f5295-9e53-4bcd-8491-7c0ff283c48d
+      iscommand: true
+      name: Get User Name  & Mail (ad-get-user) with Extend Context
+      script: Active Directory Query v2 (XSOAR Engineer Training)|||ad-get-user
+      type: regular
+      version: -1
+    taskid: eb9f5295-9e53-4bcd-8491-7c0ff283c48d
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 545
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: true
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      extend-context:
+        simple: Name=attributes.name::Mail=attributes.mail
+      ignore-outputs:
+        simple: "true"
+      value:
+        simple: |
+          # Extending Content
+
+          To find attributes that can be used in extend Context, first run the command with raw-response=true to find the structure.
+
+          For example, the users name is stored under attributes.name, so we can use Extend Context to just put the users name in a context key.
+
+          To get the raw-response:
+          !ad-get-user email=james.bond@demisto.local raw-response=true
+
+          Using extend context in CLI, grabbing only the name from the response by adding ignore-outputs:
+          !ad-get-user email=james.bond@demisto.local extend-context=Name=attributes.name ignore-outputs=true
+
+          ## XSOAR Engineer Training - Extend Context - AD Get User
+
+          This playbook uses the extend context technique when looking up an AD user, putting only their Name and Email in their own context keys.
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: 186a4ebf-62e4-4a5a-8aa9-801e1d8f260a
+      iscommand: false
+      name: Print Instructions - Extending Context & Playbook Overview
+      script: Print
+      type: regular
+      version: -1
+    taskid: 186a4ebf-62e4-4a5a-8aa9-801e1d8f260a
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 370
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 10bf87af-e862-4080-84b5-42a508cc867f
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 10bf87af-e862-4080-84b5-42a508cc867f
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 895
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        complex:
+          root: Name
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: b3953367-3d7a-4e43-863b-95c2ba52a2cc
+      iscommand: false
+      name: Print the Name context key
+      script: Print
+      type: regular
+      version: -1
+    taskid: b3953367-3d7a-4e43-863b-95c2ba52a2cc
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 720
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1000,
+        "width": 380,
+        "x": 50,
+        "y": -40
+      }
+    }
+  }
