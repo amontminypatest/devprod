@@ -1,0 +1,401 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+description: "This playbook demonstrates how to do sub-playbook looping using the
+  Builtin method.  Basically looping over the embedded sub-playbook until results
+  are returned (or not). \n"
+id: 9909dae7-425b-4ee3-8bdf-83f84eb398ac
+inputs: []
+name: XSOAR Engineer Training - Builtin Loops (Parent)
+outputs: []
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: babecb96-4419-450d-8332-81de62b69d9c
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: babecb96-4419-450d-8332-81de62b69d9c
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      all:
+        simple: "yes"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Delete field from context
+      id: 78d0900c-19d8-40b9-8482-42e2ac599576
+      iscommand: false
+      name: 'Delete Context '
+      script: DeleteContext
+      type: regular
+      version: -1
+    taskid: 78d0900c-19d8-40b9-8482-42e2ac599576
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 195
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: "We are going to loop using our sub-playbook, checking to see if
+        we have results from splunk, and if not we back off and wait and then run
+        again.  The loop will exit when there are results returned OR 5 loops have
+        run. \n\nNote the loop setup, where we want to loop 5 times until data is
+        returned.  However if the condition is not satisfied the playbook will error.
+        \ We handle this by looping 6 times, and setting the condition on the 5th
+        loop if no results are returned.  This means on the 6th loop, the condition
+        will be checked at the beginning and our loop will exit gracefully. \n\n"
+      id: 1dcf97d7-97c7-495d-8749-07102f949752
+      iscommand: false
+      name: Pause to explain
+      type: regular
+      version: -1
+    taskid: 1dcf97d7-97c7-495d-8749-07102f949752
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 545
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      builtincondition:
+      - - left:
+            iscontext: true
+            value:
+              simple: Splunk.Result
+          operator: isNotEmpty
+          right:
+            value: {}
+      exitCondition: ""
+      iscommand: false
+      max: 6
+      wait: 2
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      query:
+        simple: 'laptop=crossiscoming* '
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: This sub-playbook runs a Splunk search, and also increments a counter
+        to track how many loops were performed while waiting for a search result.  Used
+        with the parent playbook to demonstrate the Builtin looping method.
+      id: 18b375c0-cd87-4017-8529-e89fde23ebe5
+      iscommand: false
+      name: XSOAR Engineer Training - Builtin Loops (Sub-Playbook)
+      playbookId: c29eec5d-e03f-4157-8106-637e33d8a425
+      type: playbook
+      version: -1
+    taskid: 18b375c0-cd87-4017-8529-e89fde23ebe5
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 730
+        }
+      }
+  "4":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: SIEM.Result
+          operator: isExists
+      - - left:
+            iscontext: true
+            value:
+              simple: SIEM.Result
+          operator: isNotEmpty
+      - - left:
+            iscontext: true
+            value:
+              simple: SIEM.Result
+          operator: notContainsGeneral
+          right:
+            value:
+              simple: NO RESULTS
+      label: "yes"
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "8"
+      "yes":
+      - "5"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 9a84f1bf-1276-47b9-8101-7c09a83e24d7
+      iscommand: false
+      name: Was there a SIEM Result?
+      type: condition
+      version: -1
+    taskid: 9a84f1bf-1276-47b9-8101-7c09a83e24d7
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 895
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        complex:
+          root: LoopCounter
+          transformers:
+          - operator: LastArrayElement
+          - operator: Stringify
+          - args:
+              prefix:
+                value:
+                  simple: 'Results returned after '
+              suffix:
+                value:
+                  simple: ' loops'
+            operator: concat
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: 266fbbff-8133-4ae4-851f-39bb704010e4
+      iscommand: false
+      name: SIEM search successful!
+      script: Print
+      type: regular
+      version: -1
+    taskid: 266fbbff-8133-4ae4-851f-39bb704010e4
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 1070
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 2f06f394-a05b-4611-8906-a8632557d152
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 2f06f394-a05b-4611-8906-a8632557d152
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 1245
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        complex:
+          root: LoopCounter
+          transformers:
+          - operator: LastArrayElement
+          - operator: Stringify
+          - args:
+              prefix:
+                value:
+                  simple: 'No results returned after '
+              suffix:
+                value:
+                  simple: ' loops'
+            operator: concat
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: 92a9cf12-bf7c-469d-825d-4dde0b53b998
+      iscommand: false
+      name: SIEM search did not return results
+      script: Print
+      type: regular
+      version: -1
+    taskid: 92a9cf12-bf7c-469d-825d-4dde0b53b998
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 1070
+        }
+      }
+  "9":
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: true
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: "## XSOAR Engineer Training - Builtin Loops (Parent)\n\nThis playbook
+          demonstrates how to do sub-playbook looping using the Builtin method.  Basically
+          looping over the embedded sub-playbook until results are returned (or not).
+          \n\nNote the setup, where we want to loop 5 times until data is returned.
+          \ However if the condition is not satisfied the playbook will error.  We
+          handle this by looping 6 times, and setting the condition on the 5th loop
+          if no results are returned.  This means on the 6th loop, the condition will
+          be checked at the beginning and our loop will exit gracefully. \n"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: e2310477-3c0d-4cc0-8bab-ac929ab5fe6d
+      iscommand: false
+      name: Print Playbook Overview
+      script: Print
+      type: regular
+      version: -1
+    taskid: e2310477-3c0d-4cc0-8bab-ac929ab5fe6d
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 370
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1260,
+        "width": 810,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
