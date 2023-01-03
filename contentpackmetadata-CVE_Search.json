@@ -1,0 +1,161 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"automation",
+		"playbook"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "Deprecated. No available replacement. Search vulnerability information based on CVE ID.",
+				"name": "cveSearch",
+				"tags": [
+					"cve",
+					"enhancement"
+				]
+			},
+			{
+				"description": "Deprecated. No available replacement. Displays the latest updated CVE entries.",
+				"name": "cveLatest",
+				"tags": [
+					"cve"
+				]
+			},
+			{
+				"description": "Provides severity of CVE based on CVSS score where available",
+				"name": "cveReputation",
+				"tags": [
+					"cve",
+					"reputation"
+				]
+			}
+		],
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Vulnerability Management",
+				"commands": [
+					{
+						"description": "Returns the latest updated CVEs.",
+						"name": "cve-latest"
+					},
+					{
+						"description": "Returns CVE information by CVE ID.",
+						"name": "cve"
+					}
+				],
+				"description": "Searches for CVE information using circl.lu.",
+				"id": "",
+				"name": "CVE Search v2"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": [
+			{
+				"description": "Deprecated. Use \"CVE Enrichment - Generic v2\" playbook instead. Enrich CVE using one or more integrations.",
+				"name": "CVE Enrichment - Generic"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-06-30T20:29:06Z",
+	"currentVersion": "1.0.12",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.39",
+			"name": "Base"
+		},
+		"XForceExchange": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.1.15",
+			"name": "IBM X-Force Exchange"
+		}
+	},
+	"deprecated": false,
+	"description": "Searches for CVE information using circl.lu.",
+	"disabledMonthly": false,
+	"downloads": 4816,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "CVESearch",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/CVESearch/CVESearchv2_image.png",
+			"name": "CVE Search v2"
+		},
+		{
+			"imagePath": "content/packs/XForceExchange/XFE_image.png",
+			"name": "IBM X-Force Exchange (Deprecated)"
+		},
+		{
+			"imagePath": "content/packs/XForceExchange/XFE_v2_image.png",
+			"name": "IBM X-Force Exchange v2"
+		}
+	],
+	"itemVersion": "1.0.12",
+	"keywords": [
+		"CVE"
+	],
+	"legacy": true,
+	"name": "CVE Search",
+	"packID": "CVESearch",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [
+		"Threat Intelligence Management",
+		"Getting Started"
+	],
+	"toServerVersion": "",
+	"updated": "2022-10-25T10:31:46Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4098099",
+	"videos": []
+}
