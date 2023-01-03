@@ -1,0 +1,1299 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.1.0
+    itemVersion: 1.0.1
+    packID: Change_Management
+    packName: Change Management
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: |-
+  If you are using PAN-OS/Panorama firewall and Jira as a ticketing system, this playbook will be a perfect match for your change management for firewall process.
+  This playbook is triggered by afetch from Jira and will help you manage and automate your change management process.
+id: Jira Change Management
+inputs:
+- description: Provide a summery for your firewall request.
+  key: TicketSummary
+  playbookInputQuery: null
+  required: false
+  value:
+    complex:
+      accessor: details
+      root: incident
+- description: The email of the security team that approves the firewall requests.
+  key: SecurityTeamEmail
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: 'Log type to query. Can be: traffic, threat, wildfire, url or data-filtering.'
+  key: log_type
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: traffic
+- description: The query string by which to match criteria for the logs. This is similar
+    to the query provided in the web interface under the Monitor tab when viewing
+    the logs.
+  key: query
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: Source address.
+  key: addr-src
+  playbookInputQuery: null
+  required: false
+  value:
+    complex:
+      accessor: sourceips
+      root: incident
+- description: Destination address.
+  key: addr-dst
+  playbookInputQuery: null
+  required: false
+  value:
+    complex:
+      accessor: destinationips
+      root: incident
+- description: Destination port.
+  key: port-dst
+  playbookInputQuery: null
+  required: false
+  value:
+    complex:
+      accessor: dstports
+      root: incident
+- description: By providing YES to this input, the requested firewall rule will be
+    tested in your test environment.
+  key: TestConfigurations
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "No"
+- description: Firewall source zone.
+  key: zone-src
+  playbookInputQuery: null
+  required: false
+  value:
+    complex:
+      accessor: sourcenetworks
+      root: incident
+- description: Firewall destination zone.
+  key: zone-dst
+  playbookInputQuery: null
+  required: false
+  value:
+    complex:
+      accessor: destinationnetworks
+      root: incident
+- description: The instance name of the firewall in the DEV environment for testing
+    the new rule.
+  key: TestInstance
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: The action for the change request.
+  key: Action
+  playbookInputQuery: null
+  required: false
+  value:
+    complex:
+      accessor: policyactions
+      root: incident
+- description: The IP protocol.
+  key: Protocol
+  playbookInputQuery: null
+  required: false
+  value:
+    complex:
+      accessor: protocol
+      root: incident
+- description: Log forwarding profile.
+  key: Log_forwarding
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: A profile setting group.
+  key: Profile_setting
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: A comma-separated list of service object names for the rule.
+  key: Service
+  playbookInputQuery: null
+  required: false
+  value:
+    complex:
+      accessor: protocolnames
+      root: incident
+- description: A comma-separated list of application object names for the rule to
+    create.
+  key: Application
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: Name of the rule to create.
+  key: Rulename
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: Set the description of the ticket.
+  key: Description
+  playbookInputQuery: null
+  required: false
+  value:
+    complex:
+      accessor: description
+      root: incident
+- description: 'The time the log was generated from the timestamp and prior to it.
+    For example: "2019/08/11 01:10:44".'
+  key: Time-generated
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: |-
+    Pre rule or Post rule (Panorama instances).
+    Possible options:
+    - post-rulebase
+    - pre-rulebase
+  key: Rule_position
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: The closing status in Jira is changing in the project templates. Please
+    provide the relevant closing status if the issue was rejected.
+  key: Closing_status_rejected
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: The closing status in Jira is changing in the project templates. Please
+    provide the relevant closing status if the issue was approved.
+  key: Closing_status_approved
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: Target number of the firewall. Use only for a Panorama instance.
+  key: Target
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: Target vsys of the firewall. Use only for a Panorama instance.
+  key: Vsys
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: "Maximum number of API requests that the \nPanoramaSecurityPolicyMatchWrapper
+    script will send.\nThe default is 500."
+  key: Limit
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: Jira Change Management
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "56"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: b923835b-ee25-4345-8cda-555821b0a698
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: b923835b-ee25-4345-8cda-555821b0a698
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 400,
+          "y": -3170
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 4f538fb2-94f8-4433-8ee7-21ba7656fdd2
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 4f538fb2-94f8-4433-8ee7-21ba7656fdd2
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 650,
+          "y": 1850
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "41"
+    note: true
+    quietmode: 0
+    scriptarguments:
+      action:
+        complex:
+          root: inputs.Action
+      application:
+        complex:
+          root: 'inputs.Application '
+      destination:
+        complex:
+          root: inputs.addr-dst
+      destination_zone:
+        complex:
+          root: inputs.zone-dst
+      log_forwarding:
+        complex:
+          root: inputs.Log_forwarding
+      profile_setting:
+        complex:
+          root: inputs.Profile_setting
+      rulename:
+        complex:
+          root: inputs.Rulename
+      service:
+        complex:
+          root: 'inputs.Service '
+      source:
+        complex:
+          root: inputs.addr-src
+      source_zone:
+        complex:
+          root: inputs.zone-src
+      using:
+        simple: ${inputs.TestInstance}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Deploy the configuration to the test environment.
+      id: 6849ceab-4527-40e0-8122-732088e461bf
+      iscommand: true
+      name: 'Deploy the configuration to test environment '
+      script: '|||pan-os-create-rule'
+      type: regular
+      version: -1
+    taskid: 6849ceab-4527-40e0-8122-732088e461bf
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 650,
+          "y": -800
+        }
+      }
+  "9":
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "53"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      action:
+        complex:
+          root: inputs.Action
+      addr-dst:
+        complex:
+          root: inputs.addr-dst
+      addr-src:
+        complex:
+          root: inputs.addr-src
+      log_type:
+        complex:
+          root: inputs.log_type
+      port-dst:
+        complex:
+          root: inputs.port-dst
+      query:
+        complex:
+          root: inputs.query
+      time-generated:
+        complex:
+          root: inputs.Time-generated
+      zone-dst:
+        complex:
+          root: inputs.zone-dst
+      zone-src:
+        complex:
+          root: inputs.zone-src
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: 'Query Panorama logs of types: traffic, threat, url, data-filtering
+        and wildfire.'
+      id: b046d585-1122-4204-8c9a-c0cdb8d28de5
+      iscommand: false
+      name: Panorama Query Logs
+      playbookId: Panorama Query Logs
+      type: playbook
+      version: -1
+    taskid: b046d585-1122-4204-8c9a-c0cdb8d28de5
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 400,
+          "y": -2845
+        }
+      }
+  "11":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.TestConfigurations
+          operator: isEqualString
+          right:
+            value:
+              simple: "Yes"
+      label: "yes"
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "38"
+      "yes":
+      - "5"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: This task checks whether to exam the change request in the DEV
+        environment first.
+      id: c352a37a-bc4e-45dd-80e1-46497f1d65b7
+      iscommand: false
+      name: Test configuration?
+      type: condition
+      version: -1
+    taskid: c352a37a-bc4e-45dd-80e1-46497f1d65b7
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 650,
+          "y": -1150
+        }
+      }
+  "16":
+    continueonerrortype: ""
+    id: "16"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "51"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      issueId:
+        simple: ${incident.labels.id}
+      status:
+        simple: ${inputs.Closing_status_rejected}
+    separatecontext: false
+    skipunavailable: true
+    task:
+      brand: ""
+      description: Close the issue in Jira with a rejection status.
+      id: 22470c84-b48a-44ec-8dd5-a290b3fab4d5
+      iscommand: true
+      name: Close Jira issue with a rejection
+      script: '|||jira-edit-issue'
+      type: regular
+      version: -1
+    taskid: 22470c84-b48a-44ec-8dd5-a290b3fab4d5
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 650,
+          "y": 1320
+        }
+      }
+  "25":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "25"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "35"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      csvArray:
+        complex:
+          accessor: Logs
+          root: Panorama.Monitor
+      fileName:
+        simple: FW logs
+      using:
+        simple: Attachments
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Export given array to a CSV file.
+      id: 8681dac6-aef5-4808-8154-f8127ae24055
+      iscommand: false
+      name: Export to CSV
+      script: ExportToCSV
+      type: regular
+      version: -1
+    taskid: 8681dac6-aef5-4808-8154-f8127ae24055
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 400,
+          "y": -2405
+        }
+      }
+  "35":
+    continueonerrortype: ""
+    id: "35"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "44"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      issueId:
+        complex:
+          accessor: id
+          root: incident.labels
+      upload:
+        complex:
+          accessor: EntryID
+          root: File
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Uploads a file attachment to an issue.
+      id: f1c1badb-9800-4470-88c9-32c727d9eb4f
+      iscommand: true
+      name: Upload logs to Jira
+      script: '|||jira-issue-upload-file'
+      type: regular
+      version: -1
+    taskid: f1c1badb-9800-4470-88c9-32c727d9eb4f
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 400,
+          "y": -2200
+        }
+      }
+  "38":
+    continueonerrortype: ""
+    id: "38"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "57"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      Action:
+        complex:
+          root: inputs.Action
+      'Application ':
+        complex:
+          root: inputs.Application
+      Destination:
+        complex:
+          root: inputs.addr-dst
+      Destination_port:
+        complex:
+          root: inputs.port-dst
+      Destination_zone:
+        complex:
+          root: inputs.zone-dst
+      Email:
+        complex:
+          root: inputs.SecurityTeamEmail
+      Limit:
+        complex:
+          root: inputs.Limit
+      Log_forwarding:
+        complex:
+          root: inputs.Log_forwarding
+      Profile_setting:
+        complex:
+          root: inputs.Profile_setting
+      'Protocol ':
+        complex:
+          root: inputs.Protocol
+      Rule_position:
+        complex:
+          root: inputs.Rule_position
+      Rulename:
+        complex:
+          root: inputs.Rulename
+      Service:
+        complex:
+          root: inputs.Service
+      Source:
+        complex:
+          root: inputs.addr-src
+      Source_zone:
+        complex:
+          root: inputs.zone-src
+      Target:
+        complex:
+          root: inputs.Target
+      Vsys:
+        complex:
+          root: inputs.Vsys
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        This playbook will automate the process of creating or editing a policy.
+        The first task in the playbook checks if there is a security policy that matches the playbook inputs. If there is no security policy that matches, a new policy is created. If there is a security policy that matches, the user will be able to modify the existing policy or create a new hardened policy.
+      id: d2e0d734-5c12-4350-8139-398dcd73e167
+      iscommand: false
+      name: PAN-OS create or edit policy
+      playbookId: PAN-OS create or edit policy
+      type: playbook
+      version: -1
+    taskid: d2e0d734-5c12-4350-8139-398dcd73e167
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 1590,
+          "y": 520
+        }
+      }
+  "40":
+    continueonerrortype: ""
+    form:
+      description: ""
+      expired: false
+      questions:
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "0"
+        label: ""
+        labelarg:
+          simple: Do you approve the firewall change request?
+        options: []
+        optionsarg:
+        - simple: Approve
+        - simple: Reject
+        placeholder: ""
+        readonly: false
+        required: false
+        tooltip: ""
+        type: multiSelect
+      sender: ""
+      title: FW change request
+      totalanswers: 0
+    id: "40"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    message:
+      bcc: null
+      body:
+        simple: |-
+          Please see the following FW change request and approve or reject accordingly:
+          ${inputs.TickedSummery}
+          SRC:${inputs.addr-src}
+          DST:${inputs.addr-dst}
+          Action:${inputs.Action}
+      cc: null
+      format: ""
+      methods:
+      - email
+      replyOptions:
+      - Approve
+      - Reject
+      subject:
+        simple: FW change request
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: false
+        retriescount: 2
+        retriesinterval: 360
+      to:
+        simple: ${inputs.SecurityTeamEmail}
+    nexttasks:
+      '#none#':
+      - "62"
+    note: true
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Ask for a firewall change request review.
+      id: c020c6e1-dfcb-40e9-8a76-47f83d18953e
+      iscommand: false
+      name: Ask for FW change request review
+      tags:
+      - comment
+      - verdict
+      type: collection
+      version: -1
+    taskid: c020c6e1-dfcb-40e9-8a76-47f83d18953e
+    timertriggers: []
+    type: collection
+    view: |-
+      {
+        "position": {
+          "x": 400,
+          "y": -1780
+        }
+      }
+  "41":
+    continueonerrortype: ""
+    form:
+      description: Approve or reject the configuration test.
+      expired: false
+      questions:
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "0"
+        label: ""
+        labelarg:
+          simple: Do you approve the change request?
+        options: []
+        optionsarg:
+        - simple: Approve
+        - simple: Reject
+        placeholder: ""
+        readonly: false
+        required: false
+        tooltip: ""
+        type: multiSelect
+      sender: Your SOC team
+      title: Review the configuration test in DEV environment
+      totalanswers: 0
+    id: "41"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    message:
+      bcc: null
+      body:
+        simple: Approve or reject the configuration test.
+      cc: null
+      format: ""
+      methods:
+      - email
+      replyOptions:
+      - Approve
+      - reject
+      subject:
+        simple: Please review the configuration test.
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: false
+        retriescount: 2
+        retriesinterval: 360
+      to:
+        complex:
+          root: inputs.SecurityTeamEmail
+    nexttasks:
+      '#none#':
+      - "63"
+    note: true
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Ask the security team to review the test results of the deployed
+        rule in the DEV environment.
+      id: 84220764-4fb2-448b-879e-292b476368ad
+      iscommand: false
+      name: Ask security team to review the test results
+      tags:
+      - comment
+      - verdict
+      type: collection
+      version: -1
+    taskid: 84220764-4fb2-448b-879e-292b476368ad
+    timertriggers: []
+    type: collection
+    view: |-
+      {
+        "position": {
+          "x": 650,
+          "y": -580
+        }
+      }
+  "44":
+    continueonerrortype: ""
+    id: "44"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "40"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      comment:
+        simple: |-
+          Link to XSOAR change request incident:
+          ${demistoUrls.investigation}
+      issueId:
+        simple: ${incident.labels.id}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Adds a link of the Cortex XSOAR incident to the Jira issue.
+      id: 66ce4e5d-8909-478e-8470-1cd72e360047
+      iscommand: true
+      name: Add XSOAR link to issue
+      script: '|||jira-issue-add-comment'
+      type: regular
+      version: -1
+    taskid: 66ce4e5d-8909-478e-8470-1cd72e360047
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 400,
+          "y": -1990
+        }
+      }
+  "51":
+    continueonerrortype: ""
+    id: "51"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: true
+    quietmode: 0
+    scriptarguments:
+      closeReason:
+        simple: Request was rejected.
+      id:
+        complex:
+          accessor: id
+          root: incident
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.close.inv
+      id: 43516e16-758a-4f61-8a72-738387983508
+      iscommand: true
+      name: Close XSOAR incident
+      script: Builtin|||closeInvestigation
+      type: regular
+      version: -1
+    taskid: 43516e16-758a-4f61-8a72-738387983508
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 650,
+          "y": 1650
+        }
+      }
+  "52":
+    continueonerrortype: ""
+    id: "52"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "61"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Request to the request owner to validate the change.
+      id: 2f199984-9350-4a95-8d8a-ec44099c8278
+      iscommand: false
+      name: Notify the request owner to validate the change
+      tags:
+      - comment
+      type: regular
+      version: -1
+    taskid: 2f199984-9350-4a95-8d8a-ec44099c8278
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1590,
+          "y": 930
+        }
+      }
+  "53":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: Panorama.Monitor.Logs
+          operator: isExists
+          right:
+            value: {}
+      label: "yes"
+    continueonerrortype: ""
+    id: "53"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "44"
+      "yes":
+      - "25"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: This task checks if there are logs as a result of the "Panorama
+        Query Logs" playbook.
+      id: 1dac7413-31bd-43b7-8456-8e519a544fac
+      iscommand: false
+      name: Are there logs?
+      type: condition
+      version: -1
+    taskid: 1dac7413-31bd-43b7-8456-8e519a544fac
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 400,
+          "y": -2640
+        }
+      }
+  "56":
+    continueonerrortype: ""
+    id: "56"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      state:
+        simple: 2 - Request Was Submitted
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Set the incident state to the layout.
+      id: 8aa716af-7052-4032-84bd-2b66e3b80beb
+      iscommand: true
+      name: Update incident state
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 8aa716af-7052-4032-84bd-2b66e3b80beb
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 400,
+          "y": -3020
+        }
+      }
+  "57":
+    continueonerrortype: ""
+    id: "57"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "52"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      state:
+        simple: 3 - Awaiting Request Owner Validation
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Change the properties of an incident.
+      id: 468b9fdf-f275-48a1-822c-c4006dccbcf4
+      iscommand: true
+      name: Update incident state
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 468b9fdf-f275-48a1-822c-c4006dccbcf4
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1590,
+          "y": 730
+        }
+      }
+  "58":
+    continueonerrortype: ""
+    id: "58"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "11"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      state:
+        simple: 1 - Request Was Approved
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Set the incident state to the layout.
+      id: e75fd689-d9bd-4224-8ab1-24ad38240fb9
+      iscommand: true
+      name: Update incident state
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: e75fd689-d9bd-4224-8ab1-24ad38240fb9
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 650,
+          "y": -1350
+        }
+      }
+  "59":
+    continueonerrortype: ""
+    id: "59"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "16"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      state:
+        simple: 5 - Request Was Rejected
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Set the incident state to the layout.
+      id: 6ad602b9-461e-493f-819f-15c2727890ec
+      iscommand: true
+      name: Update incident state
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 6ad602b9-461e-493f-819f-15c2727890ec
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 140,
+          "y": -1350
+        }
+      }
+  "60":
+    continueonerrortype: ""
+    id: "60"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "16"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      state:
+        simple: 5 - Request Was Rejected
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: 6b56989e-ce09-415d-81bf-157f1448132f
+      iscommand: true
+      name: Update incident state
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 6b56989e-ce09-415d-81bf-157f1448132f
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 650,
+          "y": 520
+        }
+      }
+  "61":
+    continueonerrortype: ""
+    id: "61"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "51"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      issueId:
+        simple: ${incident.labels.id}
+      status:
+        simple: ${inputs.Closing_status_approved}
+    separatecontext: false
+    skipunavailable: true
+    task:
+      brand: ""
+      description: Close the issue in Jira with an approval status.
+      id: 4102fc0c-618b-4497-8bf8-baa62b7caa7f
+      iscommand: true
+      name: Close Jira Issue with a approval
+      script: '|||jira-edit-issue'
+      type: regular
+      version: -1
+    taskid: 4102fc0c-618b-4497-8bf8-baa62b7caa7f
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1590,
+          "y": 1320
+        }
+      }
+  "62":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: FW change request.Answers.0
+          operator: isEqualString
+          right:
+            value:
+              simple: Approve
+      label: Approve
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: FW change request.Answers.0
+          operator: isEqualString
+          right:
+            value:
+              simple: Reject
+      label: Reject
+    continueonerrortype: ""
+    id: "62"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      Approve:
+      - "58"
+      Reject:
+      - "59"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Conditional task that check if the request for change was approved.
+        or rejected.
+      id: 4d67d4fb-0c70-47bd-85dc-7d9d2bff97d1
+      iscommand: false
+      name: Was the request approved?
+      type: condition
+      version: -1
+    taskid: 4d67d4fb-0c70-47bd-85dc-7d9d2bff97d1
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 400,
+          "y": -1570
+        }
+      }
+  "63":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: Please review the configuration test in DEV environment.Answers.0
+          operator: isEqualString
+          right:
+            value:
+              simple: Approve
+      label: Approve
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: Please review the configuration test in DEV environment.Answers.0
+          operator: isEqualString
+          right:
+            value:
+              simple: Reject
+      label: Reject
+    continueonerrortype: ""
+    id: "63"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      Approve:
+      - "38"
+      Reject:
+      - "60"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check whether the values provided in the arguments are equal. If
+        either of the arguments are missing, no is returned.
+      id: 6971ee47-07b0-43be-89e3-0d6f521ba544
+      iscommand: false
+      name: Did the test in DEV environment passed?
+      type: condition
+      version: -1
+    taskid: 6971ee47-07b0-43be-89e3-0d6f521ba544
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 650,
+          "y": -310
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "11_38_#default#": 0.34,
+      "11_5_yes": 0.59,
+      "53_25_yes": 0.5,
+      "63_38_Approve": 0.28,
+      "63_60_Reject": 0.36
+    },
+    "paper": {
+      "dimensions": {
+        "height": 5085,
+        "width": 1830,
+        "x": 140,
+        "y": -3170
+      }
+    }
+  }
