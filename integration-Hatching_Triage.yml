@@ -1,0 +1,1127 @@
+category: Forensics & Malware Analysis
+commonfields:
+  id: Hatching Triage
+  version: -1
+configuration:
+- additionalinfo: Private url is https://private.tria.ge/api/v0/
+  defaultvalue: https://api.tria.ge/v0/
+  display: API URL
+  name: base_url
+  required: true
+  type: 0
+- additionalinfo: The API Key to use for the connection.
+  display: API Key
+  name: API Key
+  required: true
+  type: 4
+- defaultvalue: "true"
+  display: Verify SSL
+  name: Verify SSL
+  required: false
+  type: 8
+- defaultvalue: "false"
+  display: Use system proxy settings
+  name: proxy
+  required: false
+  type: 8
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.5.0
+    itemVersion: 1.0.7
+    packID: HatchingTriage
+    packName: Hatching Triage
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: Submit a high volume of samples to run in a sandbox and view reports
+detaileddescription: |-
+  ### Partner Contributed Integration
+  #### Integration Author: Hatching
+  Support and maintenance for this integration are provided by the author. Please use the following contact details:
+  - **Email**: [support@hatching.io](mailto:support@hatching.io)
+  - **URL**: [https://hatching.io/](https://hatching.io/)
+  ***
+  ### Setup
+  - Requires a server URL, and an API key
+  - URL of the Hatching service will be either:
+      - Public Hatching: https://tria.ge/
+      - Private / Organization specific Hatching: https://private.tria.ge/
+  - The API key can be found by going to your Hatching UI, clicking your account name in the top right, and the API key will be listed in the left hand side under "API Key"
+
+
+
+  ---
+  [View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/hatching-triage)
+display: Hatching Triage (Partner Contribution)
+image: data:image/png;base64,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
+name: Hatching Triage
+script:
+  commands:
+  - arguments:
+    - auto: PREDEFINED
+      description: Get samples from either private or public reports
+      name: subset
+      predefined:
+      - owned
+      - public
+    description: Get a list of all samples either private or public
+    name: triage-query-samples
+    outputs:
+    - contextPath: Triage.submissions.completed
+      description: Date the sample analysis was completed
+      type: Date
+    - contextPath: Triage.submissions.filename
+      description: Name of the file submitted
+      type: String
+    - contextPath: Triage.submissions.id
+      description: Unique identifier of the submission
+      type: String
+    - contextPath: Triage.submissions.kind
+      description: Type of analysis
+      type: String
+    - contextPath: Triage.submissions.private
+      description: If the submissions is private or publically viewable
+      type: Boolean
+    - contextPath: Triage.submissions.status
+      description: Status of the submitted file
+      type: String
+    - contextPath: Triage.submissions.submitted
+      description: Date the sample was submitted
+      type: Date
+    - contextPath: Triage.submissions.tasks.id
+      description: Array of tasks that have been applied to the sample (static, behavioral,
+        etc)
+      type: String
+    - contextPath: Triage.submissions.tasks.status
+      description: Status of the task
+      type: String
+    - contextPath: Triage.submissions.tasks.target
+      description: Sample the task is being run on
+      type: String
+    - contextPath: Triage.submissions.url
+      description: URL that was submitted
+      type: String
+  - arguments:
+    - auto: PREDEFINED
+      description: Select if sample is a URL, file, or a file that should be fetched
+        from a URL
+      name: kind
+      predefined:
+      - url
+      - file
+      - fetch
+      required: true
+    - auto: PREDEFINED
+      defaultValue: "false"
+      description: Choose if the sample should be interacted with in the GUI glovebox
+      name: interactive
+      predefined:
+      - "false"
+      - "true"
+    - description: Select what profile to run the sample with. Requires the user to
+        be registered with a company
+      name: profiles
+    - description: Data to submit for analysis. For URLs give the URL. For files,
+        give the entry-id of the file
+      name: data
+      required: true
+    description: Submits a file or url for analysis
+    name: triage-submit-sample
+    outputs:
+    - contextPath: Triage.submissions.filename
+      description: Name of the submitted file
+      type: String
+    - contextPath: Triage.submissions.id
+      description: Unique identifier of the submission
+      type: String
+    - contextPath: Triage.submissions.kind
+      description: Type of sample to analyze
+      type: String
+    - contextPath: Triage.submissions.private
+      description: If the file is private or publicly viewable
+      type: Boolean
+    - contextPath: Triage.submissions.status
+      description: Status of the analysis of the submission
+      type: String
+    - contextPath: Triage.submissions.submitted
+      description: Date that the sample was submitted on
+      type: Date
+  - arguments:
+    - description: Sample's unique identifier, can be found using the query samples
+        command
+      name: sample_id
+      required: true
+    description: Pulls back basic information about the sample id given
+    name: triage-get-sample
+    outputs:
+    - contextPath: Triage.samples.completed
+      description: Date the sample analysis was completed
+      type: Date
+    - contextPath: Triage.samples.filename
+      description: Name of the submitted sample
+      type: String
+    - contextPath: Triage.samples.id
+      description: Unique identifier of the sample
+      type: String
+    - contextPath: Triage.samples.kind
+      description: Type of sample submitted
+      type: String
+    - contextPath: Triage.samples.private
+      description: State of the visibility of the sample
+      type: Boolean
+    - contextPath: Triage.samples.status
+      description: Current status of the sample analysis
+      type: String
+    - contextPath: Triage.samples.submitted
+      description: Date the sample was submitted
+      type: Date
+    - contextPath: Triage.samples.tasks.id
+      description: Task name that was applied to the sample
+      type: String
+    - contextPath: Triage.samples.tasks.status
+      description: Status of the task
+      type: String
+    - contextPath: Triage.samples.tasks.target
+      description: Target of the task, e.g. filename for file submissions
+      type: String
+  - arguments:
+    - description: Sample's unique identifier, can be found using the query samples
+        command
+      name: sample_id
+      required: true
+    description: Gets a summary report of the sample id provided
+    name: triage-get-sample-summary
+    outputs:
+    - contextPath: Triage.sample-summaries.completed
+      description: Date the sample analysis was completed
+      type: Date
+    - contextPath: Triage.sample-summaries.created
+      description: Date the analysis report was created
+      type: Date
+    - contextPath: Triage.sample-summaries.custom
+      description: ""
+      type: String
+    - contextPath: Triage.sample-summaries.owner
+      description: ""
+      type: String
+    - contextPath: Triage.sample-summaries.sample
+      description: Unique identifier of the sample
+      type: String
+    - contextPath: Triage.sample-summaries.score
+      description: Score of the sample on a scale of 0 to 10
+      type: Number
+    - contextPath: Triage.sample-summaries.sha256
+      description: SHA256 of the sample
+      type: String
+    - contextPath: Triage.sample-summaries.status
+      description: Status of the analysis
+      type: String
+    - contextPath: Triage.sample-summaries.target
+      description: Target for analysis
+      type: String
+    - contextPath: Triage.sample-summaries.tasks
+      description: Tasks performed in the analysis
+      type: String
+  - arguments:
+    - description: Sample's unique identifier, can be found using the query samples
+        command
+      name: sample_id
+      required: true
+    description: Deletes a sample from the sandbox
+    name: triage-delete-sample
+  - arguments:
+    - description: Sample's unique identifier, can be found using the query samples
+        command
+      name: sample_id
+      required: true
+    - auto: PREDEFINED
+      description: Let Triage automatically select a profile, default is True
+      name: auto
+      predefined:
+      - "true"
+      - "false"
+    - description: If submitting an archive file, select which files to analyze. Multiple
+        files can be specified with a comma seperator.Format is archive_file_name/sample_file.exe,archive_file_name/sample_file2.exe
+      name: pick
+    - description: Profile ID to use
+      name: profiles
+    description: When a sample is in the static_analysis status, a profile should
+      be selected in order to continue.
+    name: triage-set-sample-profile
+  - arguments:
+    - description: Sample's unique identifier, can be found using the query samples
+        command
+      name: sample_id
+      required: true
+    description: Get the static analysis of a sample
+    name: triage-get-static-report
+    outputs:
+    - contextPath: Triage.sample.reports.static.analysis.reported
+      description: Date the sample was submitted
+      type: Unknown
+    - contextPath: DBotScore.Indicator
+      description: Triage analysis target
+      type: String
+    - contextPath: DBotScore.Type
+      description: The indicator type - File or URL
+      type: String
+    - contextPath: DBotScore.Vendor
+      description: The integration used to generate the indicator
+      type: String
+    - contextPath: DBotScore.Score
+      description: Analysis verdict as score from 1 to 10
+      type: Number
+    - contextPath: File.Name
+      description: The full file name (including file extension).
+      type: String
+    - contextPath: File.MD5
+      description: The MD5 hash of the file.
+      type: String
+    - contextPath: File.SHA1
+      description: The SHA1 hash of the file.
+      type: String
+    - contextPath: File.SHA256
+      description: The SHA1 hash of the file.
+      type: String
+    - contextPath: URL.Data
+      description: The URL
+      type: String
+  - arguments:
+    - description: Sample's unique identifier, can be found using the query samples
+        command
+      name: sample_id
+      required: true
+    - description: Name of a behavioral task part of the sample analysis (e.g. behavioral1,
+        behavioral2)
+      name: task_id
+      required: true
+    description: Retrieves the generated Triage behavioral report for a single task
+    name: triage-get-report-triage
+    outputs:
+    - contextPath: Triage.sample.reports.triage
+      description: Triage report of the submitted sample
+      type: Unknown
+    - contextPath: DBotScore.Indicator
+      description: Triage analysis target
+      type: String
+    - contextPath: DBotScore.Type
+      description: The indicator type - File or URL
+      type: String
+    - contextPath: DBotScore.Vendor
+      description: The integration used to generate the indicator
+      type: String
+    - contextPath: DBotScore.Score
+      description: Analysis verdict as score from 1 to 10
+      type: Number
+    - contextPath: File.Name
+      description: The full file name (including file extension).
+      type: String
+    - contextPath: File.MD5
+      description: The MD5 hash of the file.
+      type: String
+    - contextPath: File.SHA1
+      description: The SHA1 hash of the file.
+      type: String
+    - contextPath: File.SHA256
+      description: The SHA1 hash of the file.
+      type: String
+    - contextPath: URL.Data
+      description: The URL
+      type: String
+  - arguments:
+    - description: Sample's unique identifier, can be found using the query samples
+        command
+      name: sample_id
+      required: true
+    - description: Name of a behavioral task part of the sample analysis (e.g. behavioral1,
+        behavioral2)
+      name: task_id
+      required: true
+    description: Retrieves the output of the kernel monitor
+    name: triage-get-kernel-monitor
+  - arguments:
+    - description: Sample's unique identifier, can be found using the query samples
+        command
+      name: sample_id
+      required: true
+    - description: Name of a behavioral task part of the sample analysis (e.g. behavioral1,
+        behavioral2)
+      name: task_id
+      required: true
+    description: Retrieves the PCAP of the analysis for further manual analysis
+    name: triage-get-pcap
+  - arguments:
+    - description: Sample's unique identifier, can be found using the query samples
+        command
+      name: sample_id
+      required: true
+    - description: Name of the task for the sample (e.g. behavioral1, static1, etc)
+      name: task_id
+      required: true
+    - description: Name of the dumped file
+      name: file_name
+      required: true
+    description: Retrieves files dumped by the sample. The names can be found under
+      the "dumped" section from the triage report output
+    name: triage-get-dumped-file
+  - arguments:
+    - description: Unique identifier of the user. Leave blank to query for all users
+      name: userID
+    description: Return all users within the company as a paginated list. Returns
+      a single user if a userID is provided
+    name: triage-get-users
+    outputs:
+    - contextPath: Triage.users.company_id
+      description: Company unique identifier
+      type: String
+    - contextPath: Triage.users.created_at
+      description: Date users account was created
+      type: Date
+    - contextPath: Triage.users.email
+      description: Users email
+      type: String
+    - contextPath: Triage.users.email_confirmed_at
+      description: Date user confirmed their email/account
+      type: Date
+    - contextPath: Triage.users.first_name
+      description: Users first name
+      type: String
+    - contextPath: Triage.users.id
+      description: Users unique identifier
+      type: String
+    - contextPath: Triage.users.last_name
+      description: Users last name
+      type: String
+    - contextPath: Triage.users.permissions
+      description: Users permissions
+      type: String
+  - arguments:
+    - description: Users username, usually their email
+      name: username
+      required: true
+    - description: Users first name
+      name: firstName
+      required: true
+    - description: Users last name
+      name: lastName
+      required: true
+    - description: Users password
+      name: password
+      required: true
+      secret: true
+    - auto: PREDEFINED
+      description: Users permissions
+      name: permissions
+      predefined:
+      - view_samples
+      - submit_samples
+      - delete_samples
+      - edit_profiles
+      - access_api
+      - manage_machines
+      - manage_company
+      required: true
+    description: Creates a new user and returns it. The user will become a member
+      of the company the requesting user is a member of
+    name: triage-create-user
+    outputs:
+    - contextPath: Triage.users.company_id
+      description: Company unique identifier
+      type: String
+    - contextPath: Triage.users.created_at
+      description: Date users account was created
+      type: Date
+    - contextPath: Triage.users.email
+      description: Users email
+      type: String
+    - contextPath: Triage.users.email_confirmed_at
+      description: Date user confirmed their email/account
+      type: Date
+    - contextPath: Triage.users.first_name
+      description: Users first name
+      type: String
+    - contextPath: Triage.users.id
+      description: Users unique identifier
+      type: String
+    - contextPath: Triage.users.last_name
+      description: Users last name
+      type: String
+    - contextPath: Triage.users.permissions
+      description: Users permissions
+      type: String
+  - arguments:
+    - description: Users unique identifier, can be found by querying for all users
+      name: userID
+      required: true
+    description: Delete a user and all associated data, invalidating any sessions
+      and removing their API keys. Any samples submitted by this user are kept
+    name: triage-delete-user
+  - arguments:
+    - description: Users unique identifier, can be found by querying for all users
+      name: userID
+      required: true
+    - defaultValue: Created from XSOAR
+      description: Name of the API key
+      name: name
+    description: Creates a new key can be used to make API calls on behalf of the
+      specified user. The user should have been granted the access_api permission
+      beforehand
+    name: triage-create-api-key
+    outputs:
+    - contextPath: Triage.apikey.key
+      description: API Key
+      type: String
+    - contextPath: Triage.apikey.name
+      description: Name of the API Key
+      type: String
+  - arguments:
+    - description: Users unique identifier, can be found by querying for all users
+      name: userID
+      required: true
+    description: Lists all API keys that the user has.
+    name: triage-get-api-key
+    outputs:
+    - contextPath: Triage.apikey.key
+      description: API Key
+      type: String
+    - contextPath: Triage.apikey.name
+      description: Name of the API Key
+      type: String
+  - arguments:
+    - description: Users unique identifier, can be found by querying for all users
+      name: userID
+      required: true
+    - description: Name of the API key to delete
+      name: name
+      required: true
+    description: Delete the user's API key with the specified name
+    name: triage-delete-api-key
+  - arguments:
+    - description: Unique identifier of the profile, can be found by querying for
+        all profiles
+      name: profileID
+    description: List all profiles that your company has
+    name: triage-get-profiles
+    outputs:
+    - contextPath: Triage.profiles..id
+      description: Unique identifier of the profile
+      type: String
+    - contextPath: Triage.profiles..name
+      description: Name of the profile
+      type: String
+    - contextPath: Triage.profiles..network
+      description: Network configuration
+      type: String
+    - contextPath: Triage.profiles..options.browser
+      description: Browser options
+      type: String
+    - contextPath: Triage.profiles..tags
+      description: Applied tags
+      type: String
+    - contextPath: Triage.profiles..timeout
+      description: Max run time of the profile
+      type: Number
+  - arguments:
+    - description: Name of the profile to create
+      name: name
+      required: true
+    - description: Tags to apply to the profile
+      name: tags
+      required: true
+    - description: Length of time the profile should run for
+      name: timeout
+    - auto: PREDEFINED
+      description: Network configuration the profile should use
+      name: network
+      predefined:
+      - drop
+      - internet
+      - proxy
+    description: Create a new profile
+    name: triage-create-profile
+    outputs:
+    - contextPath: Triage.profiles.id
+      description: Profile unique identifier
+      type: String
+    - contextPath: Triage.profiles.name
+      description: Profile name
+      type: String
+    - contextPath: Triage.profiles.network
+      description: Profile network configuration
+      type: String
+    - contextPath: Triage.profiles.options
+      description: Profile options
+      type: Unknown
+    - contextPath: Triage.profiles.tags
+      description: Profile tags
+      type: String
+    - contextPath: Triage.profiles.timeout
+      description: Profile max run time
+      type: Number
+  - arguments:
+    - description: Unique identifier of the profile to update
+      name: profileID
+      required: true
+    - description: Name of the profile
+      name: name
+      required: true
+    - description: Tags to apply to the profile
+      name: tags
+      required: true
+    - description: Length of time the profile should run for
+      name: timeout
+    description: Update an existing profile
+    name: triage-update-profile
+  - arguments:
+    - description: The search query for Triage
+      name: query
+      required: true
+    description: Get a list of private and public samples matching the search query
+    name: triage-query-search
+    outputs:
+    - contextPath: Triage.samples.completed
+      description: Date the sample analysis was completed
+      type: date
+    - contextPath: Triage.samples.filename
+      description: Name of the file submitted
+      type: string
+    - contextPath: Triage.samples.id
+      description: Unique identifier of the submission
+      type: string
+    - contextPath: Triage.samples.kind
+      description: Type of analysis
+      type: string
+    - contextPath: Triage.samples.private
+      description: If the submissions is private or publically viewable
+      type: boolean
+    - contextPath: Triage.samples.status
+      description: Status of the submitted file
+      type: string
+    - contextPath: Triage.samples.submitted
+      description: Date the sample was submitted
+      type: date
+    - contextPath: Triage.samples.tasks.id
+      description: Array of tasks that have been applied to the sample (static, behavioral,
+        etc)
+      type: string
+    - contextPath: Triage.samples.tasks.status
+      description: Status of the task
+      type: string
+    - contextPath: Triage.samples.tasks.target
+      description: Sample the task is being run on
+      type: string
+    - contextPath: Triage.samples.url
+      description: URL that was submitted
+      type: string
+  - arguments:
+    - description: Unique identifier of the profile to delete
+      name: profileID
+      required: true
+    description: Update the profile with the specified ID or name. The stored profile
+      is overwritten, so it is important that the submitted profile has all fields,
+      with the exception of the ID
+    name: triage-delete-profile
+  dockerimage: demisto/python3:3.10.8.36650
+  runonce: false
+  script: |
+    register_module_line('Hatching Triage', 'start', __line__())
+
+
+
+
+    import json
+
+
+    class IncorrectUsageError(Exception):
+        pass
+
+
+    class Client(BaseClient):
+        def __init__(self, base_url, *args, **kwarg):
+            super().__init__(base_url, *args, **kwarg)
+
+
+    def _get_behavioral_task_id(value):
+        if str(value).startswith("behavioral"):
+            return value
+
+        raise IncorrectUsageError(
+            "Task ID must be 'behavioral' followed by a number. "
+            "E.G: 'behavioral1'"
+        )
+
+
+    def test_module(client: Client) -> str:
+        r = client._http_request(
+            "GET", "me", resp_type="response", ok_codes=(200, 401, 404)
+        )
+        if r.status_code == 404:
+            r = client._http_request(
+                "GET", "users", resp_type="response", ok_codes=(200, 401, 404)
+            )
+
+        if r.status_code == 404:
+            return "Page not found, possibly wrong base_url"
+        if r.status_code == 401:
+            return "Bad API Key"
+
+        return "ok"
+
+
+    def map_scores_to_dbot(score):
+        if 0 <= score <= 4:
+            return 1
+        elif 5 <= score <= 7:
+            return 2
+        elif 8 <= score <= 10:
+            return 3
+
+
+    def query_samples(client, **args) -> CommandResults:
+        params = {"subset": args.get("subset")}
+
+        r = client._http_request("GET", "samples", params=params)
+
+        return CommandResults(
+            outputs_prefix="Triage.samples", outputs_key_field="id",
+            outputs=r["data"]
+        )
+
+
+    def submit_sample(client: Client, **args) -> CommandResults:
+        data = {"kind": args.get("kind"), "interactive": False}
+
+        if args.get("profiles", []):
+            profiles_data = []
+            for i in args.get("profiles", "").split(","):
+                profiles_data.append({"profile": i, "pick": "sample"})
+            data["profiles"] = profiles_data
+
+        if data["kind"] in ("url", "fetch"):
+            data.update({"url": args.get("data")})
+            r = client._http_request("POST", "samples", json_data=data)
+        elif data["kind"] == "file":
+            file_id = args.get("data")
+            demisto_file = demisto.getFilePath(file_id)
+            # Use original filename if available. File id is a fallback.
+            filename = demisto_file.get("name") or file_id
+            with open(demisto_file.get("path"), "rb") as f:
+                files = {"file": (filename, f)}
+                r = client._http_request(
+                    "POST", "samples",
+                    data={"_json": json.dumps(data)}, files=files
+                )
+        else:
+            raise IncorrectUsageError(
+                f'Type of sample needs to be selected, either "file" or "url", '
+                f'the selected type was: {data["kind"]}'
+            )
+
+        return CommandResults(
+            outputs_prefix="Triage.submissions", outputs_key_field="id", outputs=r
+        )
+
+
+    def get_sample(client: Client, **args) -> CommandResults:
+        sample_id = args.get("sample_id")
+        r = client._http_request("GET", f"samples/{sample_id}")
+
+        return CommandResults(
+            outputs_prefix="Triage.samples", outputs_key_field="id", outputs=r
+        )
+
+
+    def get_sample_summary(client: Client, **args) -> CommandResults:
+        sample_id = args.get("sample_id")
+        r = client._http_request("GET", f"samples/{sample_id}/summary")
+
+        return CommandResults(
+            outputs_prefix="Triage.sample-summaries", outputs_key_field="sample",
+            outputs=r
+        )
+
+
+    def delete_sample(client: Client, **args) -> str:
+        sample_id = args.get("sample_id")
+        client._http_request("DELETE", f"samples/{sample_id}")
+
+        return f"Sample {sample_id} successfully deleted"
+
+
+    def set_sample_profile(client: Client, **args) -> str:
+        """
+        Used to move a submitted sample from static analysis to behavioural by giving it a profile to run under
+        """
+        sample_id = args.get("sample_id")
+
+        data = {
+            "auto": argToBoolean(args.get("auto", True)),
+            "pick": argToList(args.get("pick", [])),
+        }
+        if args.get("profiles"):
+            data.update({"profiles": [{"profile": args.get("profiles", "")}]})
+
+        client._http_request(
+            "POST", f"samples/{sample_id}/profile", data=json.dumps(data)
+        )
+
+        return f"Profile successfully set for sample {sample_id}"
+
+
+    def get_static_report(client: Client, **args) -> CommandResults:
+        """
+        Get's the static analysis report from a given sample
+        """
+        sample_id = args.get("sample_id")
+
+        r = client._http_request("GET", f"samples/{sample_id}/reports/static")
+
+        score = 0
+        if 'analysis' in r:
+            if 'score' in r['analysis']:
+                score = map_scores_to_dbot(r['analysis']['score'])
+
+        indicator: Any
+        if 'sample' in r:
+            target = r['sample']['target']
+            if r['sample']['kind'] == "file":
+                # Static can include data on multiple files e.g. in case of .zip upload.
+                # sample.target identifies the actual analysis subject so only get
+                # the results for that file
+                for file in r['files']:
+                    if file['filename'] == target:
+                        dbot_score = Common.DBotScore(
+                            indicator=file['sha256'],
+                            indicator_type=DBotScoreType.FILE,
+                            integration_name="Hatching Triage",
+                            score=score
+                        )
+                        indicator = Common.File(
+                            name=r['sample']['target'],
+                            sha256=file['sha256'],
+                            md5=file['md5'],
+                            sha1=file['sha1'],
+                            dbot_score=dbot_score
+                        )
+            else:
+                # Static often doesn't include scores for URL analyses so only
+                # include results which do, rather than potentially reporting
+                # false-negatives to DBot
+                if 'score' in r['analysis']:
+                    dbot_score = Common.DBotScore(
+                        indicator=target,
+                        indicator_type=DBotScoreType.URL,
+                        integration_name="Hatching Triage",
+                        score=score
+                    )
+                    indicator = Common.URL(
+                        url=target,
+                        dbot_score=dbot_score
+                    )
+        results = CommandResults(
+            outputs_prefix="Triage.sample.reports.static",
+            outputs_key_field="sample.sample",
+            outputs=r,
+            indicator=indicator
+        )
+
+        return results
+
+
+    def get_report_triage(client: Client, **args) -> CommandResults:
+        """
+        Outputs a score, should map to a DBot score
+        """
+        sample_id = args.get("sample_id")
+        task_id = _get_behavioral_task_id(args.get("task_id"))
+
+        r = client._http_request("GET", f"samples/{sample_id}/{task_id}/report_triage.json")
+        score = 0
+        indicator: Any
+        if 'sample' in r:
+            if 'score' in r['sample']:
+                score = map_scores_to_dbot(r['sample']['score'])
+
+        target = r['sample']['target']
+        if "sha256" not in r['sample']:
+            dbot_score = Common.DBotScore(
+                indicator=target,
+                indicator_type=DBotScoreType.URL,
+                integration_name="Hatching Triage",
+                score=score
+            )
+            indicator = Common.URL(
+                url=target,
+                dbot_score=dbot_score
+            )
+        else:
+            dbot_score = Common.DBotScore(
+                indicator=r['sample']['sha256'],
+                indicator_type=DBotScoreType.FILE,
+                integration_name="Hatching Triage",
+                score=score
+            )
+            indicator = Common.File(
+                name=target,
+                sha256=r['sample']['sha256'],
+                md5=r['sample']['md5'],
+                sha1=r['sample']['sha1'],
+                dbot_score=dbot_score
+            )
+
+        return CommandResults(
+            outputs_prefix="Triage.sample.reports.triage",
+            outputs_key_field="sample.id",
+            outputs=r,
+            indicator=indicator
+        )
+
+
+    def get_kernel_monitor(client: Client, **args) -> dict:
+        sample_id = args.get("sample_id")
+        task_id = _get_behavioral_task_id(args.get("task_id"))
+
+        r = client._http_request(
+            "GET", f"samples/{sample_id}/{task_id}/logs/onemon.json", resp_type="text"
+        )
+
+        return_results("Kernel monitor results:")
+        results = fileResult(f"{sample_id}-{task_id}-kernel-monitor.json", r)
+
+        return results
+
+
+    def get_pcap(client: Client, **args) -> dict:
+        sample_id = args.get("sample_id")
+        task_id = _get_behavioral_task_id(args.get("task_id"))
+
+        r = client._http_request(
+            "GET", f"samples/{sample_id}/{task_id}/dump.pcap", resp_type="response"
+        )
+
+        filename = f"{sample_id}.pcap"
+        file_content = r.content
+
+        return_results("PCAP results:")
+        return fileResult(filename, file_content)
+
+
+    def get_dumped_files(client: Client, **args) -> dict:
+        sample_id = args.get("sample_id")
+        task_id = args.get("task_id")
+        file_name = args.get("file_name")
+
+        r = client._http_request(
+            "GET", f"samples/{sample_id}/{task_id}/{file_name}", resp_type="content"
+        )
+
+        return fileResult(f"{file_name}", r)
+
+
+    def get_users(client: Client, **args) -> CommandResults:
+        if args.get("userID"):
+            url_suffix = f'users/{args.get("userID")}'
+        else:
+            url_suffix = "users"
+
+        r = client._http_request("GET", url_suffix)
+
+        # Depending on the api endpoint used, the results are either in the 'data' key or not
+        if r.get("data"):
+            r = r["data"]
+
+        return CommandResults(
+            outputs_prefix="Triage.users", outputs_key_field="id", outputs=r
+        )
+
+
+    def create_user(client: Client, **args) -> CommandResults:
+        data = {
+            "username": args.get("username"),
+            "first_name": args.get("firstName"),
+            "last_name": args.get("lastName"),
+            "password": args.get("password"),
+            "permissions": argToList(args.get("permissions")),
+        }
+
+        data = json.dumps(data)
+
+        r = client._http_request("POST", "users", data=data)
+
+        return CommandResults(
+            outputs_prefix="Triage.users", outputs_key_field="id", outputs=r
+        )
+
+
+    def delete_user(client: Client, **args) -> str:
+        userID = args.get("userID")
+
+        client._http_request("DELETE", f"users/{userID}")
+
+        results = "User successfully deleted"
+
+        return results
+
+
+    def create_apikey(client: Client, **args) -> CommandResults:
+        userID = args.get("userID")
+        name = args.get("name")
+
+        data = json.dumps({"name": name})
+
+        r = client._http_request("POST", f"users/{userID}/apikeys", data=data)
+
+        return CommandResults(
+            outputs_prefix="Triage.apikey", outputs_key_field="key", outputs=r
+        )
+
+
+    def get_apikey(client: Client, **args) -> CommandResults:
+        userID = args.get("userID")
+        r = client._http_request("GET", f"users/{userID}/apikeys")
+
+        return CommandResults(
+            outputs_prefix="Triage.apikey", outputs_key_field="key", outputs=r.get("data")
+        )
+
+
+    def delete_apikey(client: Client, **args) -> str:
+        userID = args.get("userID")
+        apiKeyName = args.get("name")
+
+        client._http_request("DELETE", f"users/{userID}/apikeys/{apiKeyName}")
+
+        return f"API key {apiKeyName} was successfully deleted"
+
+
+    def get_profile(client: Client, **args) -> CommandResults:
+        profileID = args.get("profileID")
+
+        if profileID:
+            url_suffix = f"profiles/{profileID}"
+        else:
+            url_suffix = "profiles"
+
+        r = client._http_request("GET", url_suffix)
+
+        if not profileID and r.get("data"):
+            r = r["data"]
+
+        return CommandResults(
+            outputs_prefix="Triage.profiles", outputs_key_field="id", outputs=r
+        )
+
+
+    def create_profile(client: Client, **args) -> CommandResults:
+        data = json.dumps(
+            {
+                "name": args.get("name"),
+                "tags": argToList(args.get("tags")),
+                "timeout": int(args.get("timeout", 120)),
+                "network": args.get("network"),
+                "browser": args.get("browser"),
+            }
+        )
+
+        r = client._http_request("POST", "profiles", data=data)
+
+        return CommandResults(
+            outputs_prefix="Triage.profiles", outputs_key_field="id", outputs=r
+        )
+
+
+    def update_profile(client: Client, **args) -> str:
+        profileID = args.get("profileID")
+
+        data = {}
+
+        for arg in args:
+            if arg == "timeout":
+                data[arg] = int(args.get(arg, 60))
+            if arg == "tags":
+                data[arg] = argToList(args.get(arg))
+            if arg == "timeout":
+                data[arg] = args.get(arg, None)
+
+        client._http_request("PUT", f"profiles/{profileID}", data=json.dumps(data))
+
+        return "Profile updated successfully"
+
+
+    def delete_profile(client: Client, **args) -> str:
+        profileID = args.get("profileID")
+
+        client._http_request("DELETE", f"profiles/{profileID}")
+
+        return f"Profile {profileID} successfully deleted"
+
+
+    def query_search(client, **args) -> CommandResults:
+        params = {"query": args.get("query")}
+
+        r = client._http_request("GET", "search", params=params)
+
+        return CommandResults(
+            outputs_prefix="Triage.samples", outputs_key_field="id",
+            outputs=r["data"]
+        )
+
+
+    def main():
+        params = demisto.params()
+        args = demisto.args()
+        client = Client(
+            params.get("base_url"),
+            verify=params.get("Verify SSL"),
+            headers={"Authorization": f'Bearer {params.get("API Key")}'},
+            proxy=params.get("proxy", False)
+        )
+
+        commands = {
+            "test-module": test_module,
+            "triage-query-samples": query_samples,
+            "triage-query-search": query_search,
+            "triage-submit-sample": submit_sample,
+            "triage-get-sample": get_sample,
+            "triage-get-sample-summary": get_sample_summary,
+            "triage-delete-sample": delete_sample,
+            "triage-set-sample-profile": set_sample_profile,
+            "triage-get-static-report": get_static_report,
+            "triage-get-report-triage": get_report_triage,
+            "triage-get-kernel-monitor": get_kernel_monitor,
+            "triage-get-pcap": get_pcap,
+            "triage-get-dumped-file": get_dumped_files,
+            "triage-get-users": get_users,
+            "triage-create-user": create_user,
+            "triage-delete-user": delete_user,
+            "triage-create-api-key": create_apikey,
+            "triage-get-api-key": get_apikey,
+            "triage-delete-api-key": delete_apikey,
+            "triage-get-profiles": get_profile,
+            "triage-create-profile": create_profile,
+            "triage-update-profile": update_profile,
+            "triage-delete-profile": delete_profile,
+        }
+
+        command = demisto.command()
+        try:
+            if command not in commands:
+                raise IncorrectUsageError(
+                    f"Command '{command}' is not available in this integration"
+                )
+
+            return_results(commands[command](client, **args))  # type: ignore
+        except Exception as e:
+            return_error(str(e))
+
+
+    if __name__ in ["__main__", "__builtin__", "builtins"]:
+        main()
+
+    register_module_line('Hatching Triage', 'end', __line__())
+  subtype: python3
+  type: python
+system: true
