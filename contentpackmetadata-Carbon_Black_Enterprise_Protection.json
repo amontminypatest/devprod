@@ -1,0 +1,265 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Endpoint"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"automation",
+		"playbook"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "Find a computer in CBEP/Bit9.",
+				"name": "CBPFindComputer",
+				"tags": [
+					"carbon-black-protection",
+					"bit9"
+				]
+			},
+			{
+				"description": "Find the rule state for a hash value in CBEP/Bit9.",
+				"name": "CBPFindRule",
+				"tags": [
+					"carbon-black-protection",
+					"bit9",
+					"enhancement"
+				]
+			},
+			{
+				"description": "Deprecated. Use the cbp-fileRule-createOrUpdate command instead.",
+				"name": "CBPApproveHash",
+				"tags": [
+					"carbon-black-protection",
+					"bit9"
+				]
+			},
+			{
+				"description": "Deprecated. Use the cbp-fileRule-createOrUpdate command instead.",
+				"name": "CBPBanHash",
+				"tags": [
+					"carbon-black-protection",
+					"bit9"
+				]
+			},
+			{
+				"description": "Search the CBP/Bit9 file catalog for an md5 hash.",
+				"name": "CBPCatalogFindHash",
+				"tags": [
+					"carbon-black-protection",
+					"bit9",
+					"enhancement"
+				]
+			}
+		],
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Endpoint",
+				"commands": [
+					{
+						"description": "Search for file catalogs. See more: https://developer.carbonblack.com/reference/enterprise-protection/8.0/rest-api/#filecatalog",
+						"name": "cbp-fileCatalog-search"
+					},
+					{
+						"description": "Search for computers. For more information, see the Carbon Black documentation: https://developer.carbonblack.com/reference/enterprise-protection/8.0/rest-api/#computer",
+						"name": "cbp-computer-search"
+					},
+					{
+						"description": "Updates computer objects. Note that some computer properties can be changed only if specific boolean parameters are set. For more information, see the Carbon Black documentation: https://developer.carbonblack.com/reference/enterprise-protection/8.0/rest-api/#computer",
+						"name": "cbp-computer-update"
+					},
+					{
+						"description": "Returns information for a computer. For more information, see the Carbon Black documentation: https://developer.carbonblack.com/reference/enterprise-protection/8.0/rest-api/#computer",
+						"name": "cbp-computer-get"
+					},
+					{
+						"description": "Search for file instances. For more information, see the Carbon Black documentation: https://developer.carbonblack.com/reference/enterprise-protection/8.0/rest-api/#fileinstance",
+						"name": "cbp-fileInstance-search"
+					},
+					{
+						"description": "Search for events. For more information, see the Carbon Black documentation: https://developer.carbonblack.com/reference/enterprise-protection/8.0/rest-api/#event",
+						"name": "cbp-event-search"
+					},
+					{
+						"description": "Search for approval requests. For more information, see the Carbon Black documentation: https://developer.carbonblack.com/reference/enterprise-protection/8.0/rest-api/#approvalrequest",
+						"name": "cbp-approvalRequest-search"
+					},
+					{
+						"description": "Search for file rules. For more information, see the Carbon Black documentation: https://developer.carbonblack.com/reference/enterprise-protection/8.0/rest-api/#filerule",
+						"name": "cbp-fileRule-search"
+					},
+					{
+						"description": "Gets the file rule. For more information, see the Carbon Black documentation: https://developer.carbonblack.com/reference/enterprise-protection/8.0/rest-api/#filerule",
+						"name": "cbp-fileRule-get"
+					},
+					{
+						"description": "Deletes the file rule. For more information, see the Carbon Black documentation: https://developer.carbonblack.com/reference/enterprise-protection/8.0/rest-api/#filerule",
+						"name": "cbp-fileRule-delete"
+					},
+					{
+						"description": "Search for policies. For more information, see the Carbon Black documentation: https://developer.carbonblack.com/reference/enterprise-protection/8.0/rest-api/#policy",
+						"name": "cbp-policy-search"
+					},
+					{
+						"description": "Search in server configurations. For more information, see the Carbon Black documentation: https://developer.carbonblack.com/reference/enterprise-protection/8.0/rest-api/#serverconfig.",
+						"name": "cbp-serverConfig-search"
+					},
+					{
+						"description": "Search for publishers. For more information, see the Carbon Black documentation: https://developer.carbonblack.com/reference/enterprise-protection/8.0/rest-api/#publisher.",
+						"name": "cbp-publisher-search"
+					},
+					{
+						"description": "Returns the object instance of this class.",
+						"name": "cbp-fileAnalysis-get"
+					},
+					{
+						"description": "Creates or updates a file analysis request.",
+						"name": "cbp-fileAnalysis-createOrUpdate"
+					},
+					{
+						"description": "Returns objects that match the specified criteria.",
+						"name": "cbp-fileAnalysis-search"
+					},
+					{
+						"description": "Returns the object instance of this class.",
+						"name": "cbp-fileUpload-get"
+					},
+					{
+						"description": "Returns the bject instance of this class.",
+						"name": "cbp-fileUpload-download"
+					},
+					{
+						"description": "Creates or updates a file upload request.",
+						"name": "cbp-fileUpload-createOrUpdate"
+					},
+					{
+						"description": "Returns objects that match the specified criteria.",
+						"name": "cbp-fileUpload-search"
+					},
+					{
+						"description": "Returns the object instance of this class.",
+						"name": "cbp-connector-get"
+					},
+					{
+						"description": "Returns objects that match the specified criteria.",
+						"name": "cbp-connector-search"
+					},
+					{
+						"description": "Resolves a file approval request.",
+						"name": "cbp-approvalRequest-resolve"
+					},
+					{
+						"description": "Creates or updates file rule. See more: https://developer.carbonblack.com/reference/enterprise-protection/8.0/rest-api/#filerule",
+						"name": "cbp-fileRule-update"
+					},
+					{
+						"description": "Creates or updates a file rule. For more information, see the Carbon Black documentation: https://developer.carbonblack.com/reference/enterprise-protection/8.0/rest-api/#filerule",
+						"name": "cbp-fileRule-createOrUpdate"
+					}
+				],
+				"description": "VMware Carbon Black App Control (formerly known as Carbon Black Enterprise Protection) is a next-generation endpoint threat prevention solution to deliver a portfolio of protection policies, real-time visibility across environments, and comprehensive compliance rule sets in a single platform. This integration only supports Carbon Black on-premise APIs.",
+				"id": "",
+				"name": "VMware Carbon Black App Control v2"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": [
+			{
+				"description": "Hunt for endpoint activity involving hash and domain IOCs, using Carbon black Protection (Bit9).",
+				"name": "Carbon black Protection Rapid IOC Hunting"
+			},
+			{
+				"description": "Hunt for endpoint activity involving hash IOCs, using Carbon Black Protection.",
+				"name": "Search Endpoints By Hash - Carbon Black Protection"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-12-29T23:44:32Z",
+	"currentVersion": "1.0.29",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.39",
+			"name": "Base"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.10.7",
+			"name": "Common Scripts"
+		}
+	},
+	"deprecated": false,
+	"description": "Carbon Black Enterprise Protection is a next-generation endpoint threat prevention solution to deliver a portfolio of protection policies, real-time visibility across environments, and comprehensive compliance rule sets in a single platform.",
+	"disabledMonthly": false,
+	"downloads": 4021,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "CarbonBlackProtect",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/CarbonBlackProtect/CarbonBlackProtectionV2_image.png",
+			"name": "VMware Carbon Black App Control v2"
+		}
+	],
+	"itemVersion": "1.0.29",
+	"keywords": [],
+	"legacy": true,
+	"name": "Carbon Black Enterprise Protection",
+	"packID": "CarbonBlackProtect",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [
+		"Data Source"
+	],
+	"toServerVersion": "",
+	"updated": "2022-12-19T23:24:01Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4098099",
+	"videos": []
+}
