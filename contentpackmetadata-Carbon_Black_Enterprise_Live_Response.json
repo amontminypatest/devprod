@@ -1,0 +1,276 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Endpoint"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"automation",
+		"playbook"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "Deprecated. No available replacement.",
+				"name": "CBLiveProcessList",
+				"tags": [
+					"carbon-black",
+					"endpoint"
+				]
+			}
+		],
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Endpoint",
+				"commands": [
+					{
+						"description": "Archive the given session (If the session has no content it will fail)",
+						"name": "cb-archive"
+					},
+					{
+						"description": "Cancel the given command. Only pending commands can be canceled.",
+						"name": "cb-command-cancel"
+					},
+					{
+						"description": "Display information on command",
+						"name": "cb-command-info"
+					},
+					{
+						"description": "Delete a given file in the session from Cb server.",
+						"name": "cb-file-delete"
+					},
+					{
+						"description": "Download a file from Cb server in a given session.",
+						"name": "cb-file-get"
+					},
+					{
+						"description": "Get file info for a given file in a session",
+						"name": "cb-file-info"
+					},
+					{
+						"description": "Uploads the file to the Cb server. Use cb-push-file-to-endpoint instead.",
+						"name": "cb-file-upload"
+					},
+					{
+						"description": "Keep the session alive to avoid closing due to timeout",
+						"name": "cb-keepalive"
+					},
+					{
+						"description": "List the CarbonBlack existing commands for a given session",
+						"name": "cb-list-commands"
+					},
+					{
+						"description": "List files in a given session",
+						"name": "cb-list-files"
+					},
+					{
+						"description": "List the CarbonBlack sessions",
+						"name": "cb-list-sessions"
+					},
+					{
+						"description": "Close the given session",
+						"name": "cb-session-close"
+					},
+					{
+						"description": "Create a new CarbonBlack session for a given sensor",
+						"name": "cb-session-create"
+					},
+					{
+						"description": "Create a new CarbonBlack session for a given sensor and wait for it to be active",
+						"name": "cb-session-create-and-wait"
+					},
+					{
+						"description": "Display session info",
+						"name": "cb-session-info"
+					},
+					{
+						"description": "Terminates a process at the sensor/endpoint",
+						"name": "cb-process-kill"
+					},
+					{
+						"description": "List directories on the endpoint.",
+						"name": "cb-directory-listing"
+					},
+					{
+						"description": "Run executable on the endpoint.",
+						"name": "cb-process-execute"
+					},
+					{
+						"description": "Deprecated - use cb-memdump instead.",
+						"name": "cb-memdeump"
+					},
+					{
+						"description": "Create a live response command. Use cb-session-create instead.",
+						"name": "cb-command-create"
+					},
+					{
+						"description": "Create a live response command and wait for it to finish executing",
+						"name": "cb-command-create-and-wait"
+					},
+					{
+						"description": "Terminates a process at the sensor/endpoint",
+						"name": "cb-terminate-process"
+					},
+					{
+						"description": "Delete a file from the endpoint.",
+						"name": "cb-file-delete-from-endpoint"
+					},
+					{
+						"description": "Enumerate registry values",
+						"name": "cb-registry-get-values"
+					},
+					{
+						"description": "Query for registry value.",
+						"name": "cb-registry-query-value"
+					},
+					{
+						"description": "Create a new registry key.",
+						"name": "cb-registry-create-key"
+					},
+					{
+						"description": "Delete registry key.",
+						"name": "cb-registry-delete-key"
+					},
+					{
+						"description": "Delete registry value.",
+						"name": "cb-registry-delete-value"
+					},
+					{
+						"description": "Set registry value.",
+						"name": "cb-registry-set-value"
+					},
+					{
+						"description": "List processes running on the endpoint. ",
+						"name": "cb-process-list"
+					},
+					{
+						"description": "Retrieves a file from a path on the endpoint.\nFor large files, set the \"download\" argument to \"false\". Verify that the command completed by using the !cb-command-info command.\nAfter the command completes, download the file using the !cb-file-get command.\n",
+						"name": "cb-get-file-from-endpoint"
+					},
+					{
+						"description": "Save a file to a specific path on the endpoint.",
+						"name": "cb-push-file-to-endpoint"
+					},
+					{
+						"description": "Executes an endpoint memory dump.",
+						"name": "cb-memdump"
+					}
+				],
+				"description": "Collect information and take action on remote endpoints in real time with VMware Carbon Black EDR (Live Response API) (formerly known as Carbon Black Enterprise Live Response).",
+				"id": "",
+				"name": "VMware Carbon Black EDR (Live Response API)"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": [
+			{
+				"description": "Creates an active session.",
+				"name": "Carbon Black Live Response - Create active session"
+			},
+			{
+				"description": "This playbook retrieves a file from a path on an endpoint using VMware Carbon Black EDR (Live Response API).\nMake sure to provide the Carbon Black sensor ID of the endpoint from which you want to retrieve the file.",
+				"name": "Get File Sample From Path - VMware Carbon Black EDR - Live Response API"
+			},
+			{
+				"description": "Polling command status until finished with an error or complete.",
+				"name": "Carbon Black Live Response - Wait Until Command Complete"
+			},
+			{
+				"description": "Download file from a sensor.",
+				"name": "Carbon Black Live Response - Download File"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-11-09T18:44:15Z",
+	"currentVersion": "1.1.4",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.39",
+			"name": "Base"
+		},
+		"CommonPlaybooks": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "2.3.13",
+			"name": "Common Playbooks"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.10.7",
+			"name": "Common Scripts"
+		}
+	},
+	"deprecated": false,
+	"description": "Collect information and take action on remote endpoints in real time with Carbon Black Enterprise Live Response.",
+	"disabledMonthly": false,
+	"downloads": 2246,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "Carbon_Black_Enterprise_Live_Response",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/Carbon_Black_Enterprise_Live_Response/carbonblackliveresponse_image.png",
+			"name": "VMware Carbon Black EDR (Live Response API)"
+		}
+	],
+	"itemVersion": "1.1.4",
+	"keywords": [],
+	"legacy": true,
+	"name": "Carbon Black Enterprise Live Response",
+	"packID": "Carbon_Black_Enterprise_Live_Response",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-06-29T23:03:38Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4098099",
+	"videos": []
+}
