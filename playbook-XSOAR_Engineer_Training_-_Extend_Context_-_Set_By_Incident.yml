@@ -1,0 +1,424 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+description: "Example Playbook which queries for Status from one incident, and then
+  does a set by incident on it if it's not closed.   The use case is to update the
+  original open Incident with additional information (such as another reporting user
+  for a phishing email), so we can keep track, and deduplicate.\n\nEach step in the
+  playbook may have some additional details in the details tab to explain what we
+  are doing. "
+id: 66deeaf5-ffd0-428a-87b2-48d4a58860a1
+inputs: []
+name: XSOAR Engineer Training - Extend Context - Set By Incident
+outputs: []
+sourceplaybookid: 014c0ba2-9eac-4a9f-882c-29c6c8c0c306
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 3da1a528-37ba-4cdd-8487-ac1dfa912805
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 3da1a528-37ba-4cdd-8487-ac1dfa912805
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": -120
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    form:
+      description: Enter the Incident number to query
+      expired: false
+      questions:
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "0"
+        label: ""
+        labelarg:
+          simple: What Incident?
+        options: []
+        optionsarg: []
+        placeholder: ""
+        readonly: false
+        required: true
+        tooltip: Incident number
+        type: number
+      sender: ""
+      title: Incident
+      totalanswers: 0
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    message:
+      bcc: null
+      body:
+        simple: What Incident should we query?
+      cc: null
+      format: ""
+      methods: []
+      subject: null
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: false
+        retriescount: 2
+        retriesinterval: 360
+      to: null
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Data collection task, to grab the Incident we want to query for
+        status.
+      id: 48c9c336-e9c3-4435-83b7-58463eb53b2c
+      iscommand: false
+      name: What Incident should we query?
+      type: collection
+      version: -1
+    taskid: 48c9c336-e9c3-4435-83b7-58463eb53b2c
+    timertriggers: []
+    type: collection
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 370
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      extend-context:
+        simple: OtherIncidentStatus=Contents.data.status::OtherIncidentID=Contents.data.id
+      id:
+        complex:
+          accessor: "0"
+          root: Incident.Answers
+          transformers:
+          - operator: Stringify
+      ignore-outputs:
+        simple: "false"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: "For this we will use the search incidents automation to get the
+        details of the other Incident.   \n\nhttps://xsoar.pan.dev/docs/reference/scripts/search-incidents-v2\n\nWe
+        then use extend-context to put the Status of the other Incident into a context
+        key to make it easier for us to use.   This can be used to put custom fields
+        into context as well where the path would be Content.data.CustomFields.customfieldmachinename.\n\nhttps://xsoar.pan.dev/docs/playbooks/playbooks-extend-context#extending-context\n\nYou
+        can use the argument raw-response=true on the CLI to see where we grab item
+        for extend context."
+      id: c40560eb-8ac7-4443-89d7-0f505781533f
+      iscommand: false
+      name: Search Incidents - Put the Status in Context using extend context (SEE
+        DETAILS TAB FOR INFO)
+      script: SearchIncidentsV2
+      type: regular
+      version: -1
+    taskid: c40560eb-8ac7-4443-89d7-0f505781533f
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 545
+        }
+      }
+  "3":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: OtherIncidentStatus
+                transformers:
+                - args:
+                    index:
+                      value:
+                        simple: "0"
+                  operator: atIndex
+          operator: isEqualNumber
+          right:
+            value:
+              simple: "2"
+      label: "yes"
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "5"
+      "yes":
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check if the other Incident is closed, based on the key we put
+        into Context.
+      id: c205e023-89bc-45ef-841a-db6852766e43
+      iscommand: false
+      name: Is the other Incident Closed?
+      type: condition
+      version: -1
+    taskid: c205e023-89bc-45ef-841a-db6852766e43
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 720
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "8"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: 'Other Incident Status: ${OtherIncidentStatus}'
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Prints text to war room (Markdown supported)
+      id: ceb5823e-4251-4b50-8d68-b8d40a896c94
+      iscommand: false
+      name: Yes - Other Incident is Closed
+      script: Print
+      type: regular
+      version: -1
+    taskid: ceb5823e-4251-4b50-8d68-b8d40a896c94
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 895
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "8"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      append:
+        simple: "true"
+      id:
+        complex:
+          accessor: "0"
+          root: Incident.Answers
+      key:
+        simple: PersonWhoAnswered
+      value:
+        complex:
+          accessor: name
+          root: Incident.Answers
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Works the same as the 'Set' command, but can work across incidents by specifying 'id' as an argument. Sets a value into the context with the given context key. Doesn't append by default.
+
+        Mike - For this we'll take the person who answered and add them to a key in context of the other open Incident before closing this one.  This could be adapted to send the reporter of an email for example to the other open Incident, closing the duplicate submission.  Then when the first Incident is closed, you just adapt the task that notifies the reporters about the type of email they submitted.
+      id: a48ff1bf-87cb-4e87-8c52-99be7bd3cbce
+      iscommand: false
+      name: Use SetByIncident to update the other Incident with the person who answered
+        the question
+      script: SetByIncidentId
+      type: regular
+      version: -1
+    taskid: a48ff1bf-87cb-4e87-8c52-99be7bd3cbce
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 895
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      all:
+        simple: "yes"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Delete field from context, used so we can re-run the playbook for
+        developing them..
+      id: 1997355f-5574-49a0-89f3-4c729acf787c
+      iscommand: false
+      name: Delete Context
+      script: DeleteContext
+      type: regular
+      version: -1
+    taskid: 1997355f-5574-49a0-89f3-4c729acf787c
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 15
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: eb9bf4e0-4ff1-45b2-80fa-989a1a3eca04
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: eb9bf4e0-4ff1-45b2-80fa-989a1a3eca04
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 1070
+        }
+      }
+  "9":
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: true
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: "## XSOAR Engineer Training - Extend Context - Set By Incident\n\nExample
+          Playbook which queries for Status from one incident, and then does a set
+          by incident on it if it's not closed.   The use case is to update the original
+          open Incident with additional information (such as another reporting user
+          for a phishing email), so we can keep track, and deduplicate.\n\nEach step
+          in the playbook may have some additional details in the details tab to explain
+          what we are doing. "
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: 4a131112-dde1-4226-8e23-16f62392aeb9
+      iscommand: false
+      name: Print Playbook Overview
+      script: Print
+      type: regular
+      version: -1
+    taskid: 4a131112-dde1-4226-8e23-16f62392aeb9
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 190
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1255,
+        "width": 810,
+        "x": 50,
+        "y": -120
+      }
+    }
+  }
