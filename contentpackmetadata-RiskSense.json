@@ -1,0 +1,179 @@
+{
+	"author": "RiskSense",
+	"authorImage": "content/packs/RiskSense/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Vulnerability Management"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"automation",
+		"playbook"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "Display bar chart based on cves count and trending cves count with the different colors. ",
+				"name": "DisplayCVEChartScript",
+				"tags": [
+					"RiskSense"
+				]
+			},
+			{
+				"description": "This script is a helper script of Ransomware Exposure - RiskSense playbook and retrieve information of cves and trending cves from host finding details.",
+				"name": "RiskSenseGetRansomewareCVEScript",
+				"tags": [
+					"RiskSense"
+				]
+			}
+		],
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Vulnerability Management",
+				"commands": [
+					{
+						"description": "Gets details of the supplied host. The host details can be searched based on input parameters like fieldname (Host Name, IP Address, Criticality, etc), operator (EXACT, IN, LIKE, BETWEEN), page, size, sort by and sort direction.",
+						"name": "risksense-get-hosts"
+					},
+					{
+						"description": "Gets in-depth details of a single host. This command accepts either hostname or host ID as an argument.",
+						"name": "risksense-get-host-detail"
+					},
+					{
+						"description": "Looks up vulnerability details for the supplied host finding with its base score.",
+						"name": "risksense-get-unique-cves"
+					},
+					{
+						"description": "Finds unique open host findings.The open findings can be searched based on input parameters like fieldname (Severity, Title, Source etc), operator (EXACT, IN, LIKE, BETWEEN), page and size.",
+						"name": "risksense-get-unique-open-findings"
+					},
+					{
+						"description": "A detailed host finding view with the severity level. Displays vulnerability information like CVE, Threats associated with current findings and origin of findings.",
+						"name": "risksense-get-host-findings"
+					},
+					{
+						"description": "Looks up the application details. The application details can be searched based on input parameters like fieldname (Name, Network, Address), operator (EXACT, IN, LIKE, BETWEEN), page, size, sort by and sort direction.",
+						"name": "risksense-get-apps"
+					},
+					{
+						"description": "Gets in-depth details of a single host finding. The command accepts the host finding ID as an argument.",
+						"name": "risksense-get-host-finding-detail"
+					},
+					{
+						"description": "Gets in-depth details of a single application. The command accepts an application ID as an argument.",
+						"name": "risksense-get-app-detail"
+					},
+					{
+						"description": "Apply the new or existing tag to the asset, creates a new tag if it does not exist in RiskSense.",
+						"name": "risksense-apply-tag"
+					}
+				],
+				"description": "RiskSense is a cloud-based platform that provides vulnerability management and prioritization to measure and control cybersecurity risk.",
+				"id": "",
+				"name": "RiskSense (Partner Contribution)"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": [
+			{
+				"description": "The ransomware exposure playbook reveals an organization's exposure to the specific vulnerabilities that are being exploited to launch ransomware attacks.",
+				"name": "Ransomware Exposure - RiskSense"
+			},
+			{
+				"description": "Block IPs and apply the tag to assets that are vulnerable to the specified CVE.",
+				"name": "CVE Exposure - RiskSense"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-07-22T13:01:34Z",
+	"currentVersion": "1.0.10",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.39",
+			"name": "Base"
+		},
+		"CommonPlaybooks": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "2.3.13",
+			"name": "Common Playbooks"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.10.7",
+			"name": "Common Scripts"
+		}
+	},
+	"deprecated": false,
+	"description": "RiskSense is a cloud-based platform that provides vulnerability management and prioritization to measure and control cybersecurity risk.",
+	"disabledMonthly": false,
+	"downloads": 1410,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByPartner",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "RiskSense",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/RiskSense/RiskSense_image.png",
+			"name": "RiskSense"
+		}
+	],
+	"itemVersion": "1.0.10",
+	"keywords": [],
+	"legacy": true,
+	"name": "RiskSense",
+	"packID": "RiskSense",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "### Overview \n\nRiskSense provides vulnerability management, assessment, and response to changes in the environment while prioritizing risk across vulnerabilities, configurations, and controls. \n\nOur objective is to integrate with Cortex XSOAR and address use-cases such as:\n\n**Aggregation** - make RiskSense a source for data ingestion especially as a threat intelligence source in context of a customer’s infrastructure.\n\n**Enrichment** - be able to enrich security and threat centric data for an incident or during data collection and processing.\n\n**Orchestration and Automation** - provide functions and capabilities to allow for RiskSense data to be used in creating playbooks for vulnerability management either as a standalone data source or in conjunction with other software and solutions.\n\n### Use-Cases\n\n#### Automated Vulnerability Enrichment and Context Addition\nWith the Cortex XSOAR-RiskSense integration, security orchestration playbooks can benefit from ingesting and enriching host vulnerability information along with other custom fields such as a host risk score and vulnerability risk rating to help security operations prioritize and remediate vulnerabilities. RiskSense integration can provide all necessary data to security analyst to help make their decision based on actual risk.\n\n#### Information Enrichment for Incidents and Threats\nSecurity analysts can benefit by using RiskSense commands to debug and respond to incidents and threats. For example, analysts can look up host details for the host that shows up in a alert and quickly gauge the risk that host presents based on its risk score and vulnerabilities that exist on the host.\n\n\n### RiskSense Commands on Cortex XSOAR\n\n|   Command     | Description|\n| ---    | ---  |\n| risksense-get-hosts                  | Get all hosts info from RiskSense  |\n| risksense-get-apps                   | Get information about an application|\n|risksense-get-host-detail             | Get host information in detail for a particular host with finding distribution count and RS3 info |\n|risksense-get-app-detail              | Get application information in detail for a particular application with finding distribution count |\n|risksense-get-host-finding-detail     | Get host finding information with detail projection for particular host finding ID|\n|risksense-get-open-host-finding       | Get basic information of open host finding based on various filter like hostname, \u003cbr /\u003e criticality, severity etc. Return total number                                          of open findings on a particular host broken down as CHMLI|\n|risksense-get-closed-host-finding     | Get basic information of close host finding based on various filter like hostname, \u003cbr /\u003e criticality, severity etc. Return total number of closed findings on a particular host broken down as CHMLI |\n|risksense-get-unique-cves             | Returns all CVE exposure on a host based on its findings |\n\n\n",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "partner",
+	"supportDetails": {
+		"email": "support@risksense.com",
+		"url": "https://risksense.com/support/"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-04-28T21:25:11Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4098099",
+	"videos": []
+}
