@@ -1,0 +1,5109 @@
+category: Network Security
+commonfields:
+  id: sophos_firewall
+  version: -1
+configuration:
+- additionalinfo: Server URL used to enter the Sophos XG Firewall web console. e.g.,
+    https://ip:port/
+  display: Server URL
+  name: server_url
+  required: true
+  type: 0
+- display: User Credentials
+  name: credentials
+  required: true
+  type: 9
+- display: Trust any certificate (not secure)
+  name: insecure
+  required: false
+  type: 8
+- display: Use system proxy settings
+  name: proxy
+  required: false
+  type: 8
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.1.3
+    packID: SophosXGFirewall
+    packName: Sophos XG Firewall
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: On-premise firewall by Sophos enables you to manage your firewall, respond
+  to threats, and monitor what’s happening on your network.
+detaileddescription: " \n\n---\n[View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/sophos-firewall)"
+display: Sophos Firewall
+image: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAADKCAYAAABUv66zAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3FpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQyIDc5LjE2MDkyNCwgMjAxNy8wNy8xMy0wMTowNjozOSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDoyZDdhNzU5My04NjMwLTljNDktYjE5ZC01N2Y1ZGI2ZTBkYzYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MTlBQzAyNkREQTkzMTFFN0FCRUZFRjlGQzQ4OTg2RTgiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MTlBQzAyNkNEQTkzMTFFN0FCRUZFRjlGQzQ4OTg2RTgiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjJkN2E3NTkzLTg2MzAtOWM0OS1iMTlkLTU3ZjVkYjZlMGRjNiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoyZDdhNzU5My04NjMwLTljNDktYjE5ZC01N2Y1ZGI2ZTBkYzYiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6IK0ENAAAOlUlEQVR42uydCbAcVRWG+z0SNkliZJctrAkKhLCjomHVYo1AsRVCgDIEBSlFEdHSBAURxASRYrGgCJQGSCI7CEKJiATCIqjs20tkCYsBE5YkEJ7nd26qhqmZObd7+vV03nxf1alOXt/pvn379N93O7e7ent7EwCANHRTBACAcAAAwgEACAcAIBwAgHAAACAcAIBwAADCAQAIBwAgHAAACAcAIBwAgHAAAMIBAAgHAADCAQAIBwAgHACAcAAAwgEACAcAAMIBAAgHACAcAIBwAADCAQCAcAAAwgEACAcAIBwAgHAAACAcAIBwAADCAQAIBwAgHAAACAcAIBwAgHAAAMIBAAgHACAcAAAIBwAgHACAcAAAwgEACAcAAMIBAAgHACAcAIBwAADCAQCAcAAAwgEACAcAIBwAgHAAACAcAIBwAADCAQAIBwAgHACAcAAAIBwAgHAAAMIBAAgHACAcAAAIBwAgHACAcAAAwgEACAcAAMIBAAgHACAcAIBwAADCAQCAcAAAwgEACAcAlJAB7ThpV1dX3b/vcPjFG9lmD7PhZmuZDTFbJefTHzZr6vi5aX9keVOmR5qNNtvGbHOzdc1WN1suJFti9rbZS2Yvmj1oNtPsXjvnBxnOOdY2Y3O67vfNFpktMHvL7HmzB8xmWd4+isjLabb5SoPd79gx9s1wfSfa5uBG++2Yo7NcqB13Jdt83uyLZluZbRr86VNVyRaGcugxeyaUxT12zsfzcjTLx/DgLyPM1gz+/Imc/Xlfy/M7vb29/V846hSwbvKZZl8q4HQrpszbOrY5wewos/Wc5BKQVYNJZMaEv79lx5lm2/PtJj+R4vTDCiiTly1v59j2QsvbkibpRjTJy38znnuTPK/PrmMn25xkdkDEAyo/WDvYzmZHh2M8bZspZhdZebydMR+6prPMPtdfn+HuEojGj6T0BYlGmnytaHZ2eDP/MEI0mjHUbJzZ43bMqWZrlehSJYznm91h+RqyLFabLd8bm90SandHtPhWHx4e+pfsmKeaDUiZl4m2ubsg0ejMPg4rZD2QPy1bX4vla0PbPGT2fbMV8m4qmT1p59izZL6wm9kfQzV/WRKNA23zqNneOR9a4vMLs/vsHGtH5mWCbX7cCX0c3W284V+wzRkldET1s/zV7LN9eJpPhof04JJdvqr6Fy9DonG4bdQEXKUPT7O92YN2rvWcvOhF8JOkQ+hu0w1XR+OkEtY09Ja5PlTfiyj739k5dyiZTxxledp7GRANPdBXFORD6wShX7lBXpSHyUkH0a7OUXWGbheRTiMR6qzqSSojFguDtcI7TfapmrllZL5uMLvJ7DGzV8LfBieVHnz11xxptqFznOXNppjjbTlr6vgPM1zLVLPFEenUaTso5E2jQV1OenVU31pi0RgQRGP5iORvmP3e7M6kMnryevi7+pm2SCojRYdF9It8xkz9F9+rs2+vsN9jcZU/f5STPy/uJOE4LCLN5WanZO3ZzuCMw2zz7Yik6oQ70fLVU2ef8jrH7C47npph3zH7ufNW1GjFcWaXZMj2N9KWj+VLTbBrnKbY1mpK2rHvLal2jIt4UPWiUf/ZOXYd7ze4V0+ZTbdrPd22vzXb3znmSZb2AjvenAz+fKHZD+y3C2iqZGdnZ786Jr9elGgsdQqzgU4aPdz7NRCNj6EahJmGOQ8x8wbZTy7qIsM8hf0i3nT7lbS20R0h8Kq9HWjXOrGBaNSWiWohGjqf4iRVR/n4Bn1DzVCf2Un9RTTaKRybOfunxUxKytEZVZUf6yTTBKFvWr56Uz6oM2zzGyfZ5mEOQlHioclp051kZR1OVDNwEyfNBLvGG1OWSW8QhWedpGODeKXx52vS+g3CUR+vF/ylgvOzS/LxWYX1+K4zQaoZara856TZv+Brnuns37SkPnuAs/9Vs3MzCqpqYd7IiIZmt6t66WjuS1fJ/LnfCofHpws+nzenoqeV9r799k3bzHCS7VHwNb/u7B9cUt/4srP/aivvVjoMVROb56TZvaZZVDZ/7rfC4SnwkXWqg33Jts7+O3M4x83OfnVIrlDgNQ919i8um7OG4fLhfXmvQkzR7U6yHavSv5tUOlo9f+5COFrn785+xXlcWuAsxpGePxVwzQMj2sp54k1we6uE/rpFRLPgwQLuVe2Q/cNOevUXTVIYQ38RjnYNx2pI0+u11xDlQVbYUv/ZSSW6U8FUjTqZ5od+BNm/zZ4JbwPvLaa3vBc78mIO1/xCUpnrMdDpV/hnAW/u7ojyfzKNH9kxR2fIyrop0w9z9itK940ciuhpZ/8Gdr0DqyKeb6lpvtTj5FDzuD3450KnprLUn+XDc4I/v9/pwnF1UokD8IKqNDX70IznWGI3SW8CzVm4VKHHDdLFzBKd3eoFq2PV8iOH2ahJsjULKv8TnHyINH06akL8uYB8e0IzJ6fz9Dj7NQq3WlLpiBVXJZU5I94kMkVNH5ExTx+a/6jme63ZZU38uf82VeyiVXM4s49Po5ur6dznqcbQJC4kphPwg5zy5I3jr96HtYzBmqZtpolIF0T8ZEZSPgY5+xfldJ75EWlWr/JndX6f28fXPiA0eTS1/Tm7j/u280a0cz2OXyWV6b67FXAuvR2mWWFrEk7tnIqYDsm3CxKOtG1grfPRF+V1t5XT0yUUjpVyeOBjiHmb1/qNZgjvlRQz/0U10xvs3o+z+3RZx9Q4llbdbaOQ6HsKPO35ISo3jTPmKbDeJKCVS/BwKo+nJ+XEE/nlCrpPSW2zJAwBKzhwZoHP7iXmz9t2lHBUNVnUqXRK4s8ryOt6f1nzt5jVq/IK2/aaRWWYkjzZ7svMkgqHVz6DcjpPzHHmN/Dn0UF4/1NAeSxXx5/7v3CEwlZMh5ot65vtE9qK6nlWTMXs8GA3sncznHLHmund70X8ZkhBDrmozbdD0b6nJuXFa0IMLlA4Fjfw58VmaraoI1cjV+pj09wSLRk5x/Hn9zLkdbT58xad1MdRW+B6aG5NUoZzW6EptFrTxbUoraImD4r4mTqW7g//fjUi/QZJJXw+MyEexhvBeaWdNQ2JRsbwfj3Qu2T4nULU04wyvObsX1ch9xmvoZr1I9K84vizhltvTvyJf7V+skLw51FmxydxoQjy5391pHC0IDhS/rnBtG7mt5LKGppNVbrq9/PtN/OS5rEqCuG+scWsbhTRRu8puPiWivXZVg6tTHJbYr9/NIOYpp1z8byzX3NkNk78eRgeXsj+ArveeX3kz4vCy0x2awj5PzPCn89GOFor+F9bYWt9hGah+1vV/P8f1WJSh1E5ZG3riDRpl+aXU6WZFKQ+goVhqzklTwRHXVaIKZ9ROQjHqJzvUyuo2XNoHZ+tZmTRN6LfCUdguiMcg0xcVqmaRDPTEY49VYVs8SHbx6tt2PFfS3nMiwpes6TdL4V5dh+0+M4Ip9p+dQtNStVa9nKS3V/gNfdanqY7wlH4qvn99UtuMVXgatG8zUk7NLLvpJEzqhnkLUx8ZwIxePfqQCvv1Vo4vu7Tqk6aPxV8za+X7Sb0V+GIWaG8emjvvsSP2D2j0WK1EUxI/OnIM9CEKLzahOblZFo9PwShTXSSaRj2roKv2etzWYRwtIjd/DVsc6yTbHb1ojzh35c6v1Gn2yVpw/0t/Vdtc6KXH2oc0VV3deI+4iQ7wcr9kJT3SVG3FyX+AkZXFtkvZPnSsO7RTrJnEY7WClnTfTUT1Yv5qDfBScORbzq/08rl1wVx8vLSbaa1MRVk54WCn5fDEGInEfP9kqmxX2KzNGqaKHhsrJNU92hSgf68q23+kvjziGYVfQMGtPEh15oGx7V4GE34UWeWOod0vNjo0uvrvMkWWJ60KvmVzm81rr67pVVEpMboFQb/qkKsQ1+G1sPcNTjhiIi8KHz9YrQgVa3jZitr3cMxzktREdjHW1qtmK/o3ee0MHGYUyNfUYejpokflcRN8tOs2hca+LMCKo9o8dKG1PjzGpG/u65jhCNU/U9uw3nnNipoc4qrwroSXlNH/RXjk6oVrzMGmynq9tgsX7KH/9+jLYMfNUPzZ37W4n1aKvATnX6Idviz1oq5reiTdnegw53mrEmptSpuKigv4y0v96MBmWodWqFM0dWzCzidmrBj2r0GRgNObWERbYQjkmutkKc4DilRUdSu4mf6akl71TCOsXNdjgS0JB7PJZWvAvblh6MkTLvYuZ4pYRFMsXxNb8eJO0k4/mD2tUiHVOCdInb1DY9Hc86HViXbyY5/BY9+LuLxcrhPaibkGZGql4bu0Sg7x1MlvHQNS49r18k7QTg0eUbDoQenXTbf0usLXNsklW95qDMu68rf+rjUXaEms70d9xEe+VzF4yOFGiSVNUk1kvVQC4fTPA3VBEfaMY8JTaIyoeA6feXw8BY/A9ES7ewcVRjxYzkeT+1PDZfpRmvqtjqN/mb2QCudj+ELXApwuzF8fEdRoFoMSKHM6njTNzMGVYmwbqYClHqSSkyDhn7vCJ8ZTMtcp4yKbNvOaZKXrOuIvJynD4Q+CA2rTw7fAlZNREP0m4V7NTT5eMj8gvAgqhmi6FINfd6dcZ7GvJz9eUG4v/OCP2s0Ry+yh8vQmd7V29uvvkwHADRVAADhAACEAwAQDgAAhAMAEA4AQDgAAOEAAIQDAADhAACEAwAQDgBAOAAA4QAAQDgAAOEAAIQDABAOAEA4AADhAABAOAAA4QAAhAMAEA4AQDgAABAOAEA4AADhAACEAwAQDgAAhAMAEA4AQDgAAOEAAIQDAADhAACEAwAQDgBAOAAA4QAAhAMAAOEAAIQDABAOAEA4AADhAABAOAAA4QAAhAMAEA4AQDgAABAOAEA4AADhAACEAwAQDgAAhAMAEA4AQDgAAOEAAIQDABAOAACEAwAQDgBAOAAA4QAAhAMAAOEAAIQDABAOAEA4AADhAABAOAAA4QAAhAMAEA4AQDgAABAOAEA4AADhAACEAwAQDgDoUP4nwAAa0cBoRpI1WgAAAABJRU5ErkJggg==
+name: sophos_firewall
+script:
+  commands:
+  - arguments:
+    - defaultValue: "0"
+      description: 'The start index for the rules to list, e.g: 5. Default is "0".'
+      name: start
+    - defaultValue: "50"
+      description: 'The end index for the rules to list, e.g: 20. Default is "50".'
+      name: end
+    description: 'Lists all firewall rules. IMPORTANT: The list starts at 0 (not 1)!'
+    name: sophos-firewall-rule-list
+    outputs:
+    - contextPath: SophosFirewall.SecurityPolicy.Name
+      description: Name of the rule.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicy.Description
+      description: Description of the rule.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicy.Status
+      description: Status of the rule.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicy.PolicyType
+      description: Policy type of the rule.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicy.IPFamily
+      description: IP family of the security policy. Either IPv4 or IPv6.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicy.AttachIdentity
+      description: Rule attach identity status.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicy.Action
+      description: Current rule action.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicy.LogTraffic
+      description: Rule traffic logging code.
+      type: Number
+  - arguments:
+    - description: Name of the rule to get.
+      name: name
+      required: true
+    description: Gets a single firewall rule by name.
+    name: sophos-firewall-rule-get
+    outputs:
+    - contextPath: SophosFirewall.SecurityPolicy.Name
+      description: Name of the rule.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicy.Description
+      description: Description of the rule.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicy.Status
+      description: Status of the rule.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicy.PolicyType
+      description: Policy type of the rule.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicy.IPFamily
+      description: IP family of the security policy. Either IPv4 or IPv6.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicy.AttachIdentity
+      description: Rule attach identity status.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicy.Action
+      description: Current rule action.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicy.LogTraffic
+      description: Rule traffic logging code.
+      type: Number
+  - arguments:
+    - description: Name of the new rule.
+      name: name
+      required: true
+    - description: Description of the new rule.
+      name: description
+    - auto: PREDEFINED
+      defaultValue: Enable
+      description: 'Whether to enable the new rule. Possible values: "Enable" and
+        "Disable". Default is "Enable".'
+      name: status
+      predefined:
+      - Enable
+      - Disable
+    - auto: PREDEFINED
+      defaultValue: IPv4
+      description: 'The IP family. Possible values: "IPv4" and "IPv6". Default is
+        "IPv4".'
+      name: ip_family
+      predefined:
+      - IPv4
+      - IPv6
+    - auto: PREDEFINED
+      description: 'The position of the new rule in the list. Possible values: "top",
+        "bottom", "before", and "after". If "before" or "after" is selected, you must
+        provide a value for the position_policy_name argument.'
+      name: position
+      predefined:
+      - top
+      - bottom
+      - after
+      - before
+      required: true
+    - description: The name of the policy that the rule should be created before or
+        after. This argument is required when the value of the position argument is
+        "before" or "after".
+      name: position_policy_name
+    - auto: PREDEFINED
+      description: 'Policy type of the new rule. Possible values: "User" and "Network".'
+      name: policy_type
+      predefined:
+      - User
+      - Network
+      required: true
+    - auto: PREDEFINED
+      description: 'Source zones to add to the rule. Possible values: "Any", "LAN".
+        "WAN", "VPN", "DMZ", and "WiFi".'
+      isArray: true
+      name: source_zones
+      predefined:
+      - Any
+      - LAN
+      - WAN
+      - VPN
+      - DMZ
+      - WiFi
+    - description: Source networks to add to the rule.
+      isArray: true
+      name: source_networks
+    - auto: PREDEFINED
+      description: 'Destination zones to add to the rule. Possible values: "Any",
+        "LAN". "WAN", "VPN", "DMZ", and "WiFi".'
+      isArray: true
+      name: destination_zones
+      predefined:
+      - Any
+      - LAN
+      - WAN
+      - VPN
+      - DMZ
+      - WiFi
+    - description: Destination networks to add to the rule.
+      isArray: true
+      name: destination_networks
+    - description: Destination services to add to the rule.
+      isArray: true
+      name: services
+    - auto: PREDEFINED
+      description: 'The schedule for the rule. Possible values: "All the time", "Work
+        hours (5 Day week)", "Work hours (6 Day week)", "All Time on Weekdays", "All
+        Time on Weekends", "All Time on Sunday", "All Days 10:00 to 19:00". IMPORTANT:
+        Creating a new schedule is available from the web console.'
+      name: schedule
+      predefined:
+      - All the time
+      - Work hours (5 Day week)
+      - Work hours (6 Day week)
+      - All Time on Weekdays
+      - All Time on Weekends
+      - All Time on Sunday
+      - All Days 10:00 to 19:00
+    - auto: PREDEFINED
+      defaultValue: Disable
+      description: 'Whether to enable traffic logging for the policy. Possible values:
+        "Enable" and "Disable". Default is "Disable".'
+      name: log_traffic
+      predefined:
+      - Enable
+      - Disable
+    - auto: PREDEFINED
+      defaultValue: Disable
+      description: 'Whether to check if the specified user/user group from the\ \
+        selected zone is allowed to access the selected service. Possible values:
+        "Enable" and "Disable". Default is "Disable". When enabling match_identity,
+        the members argument is required.'
+      name: match_identity
+      predefined:
+      - Enable
+      - Disable
+    - auto: PREDEFINED
+      defaultValue: Disable
+      description: 'Whether to accept traffic from unknown users. The captive portal
+        page\ \ is displayed to the user where the user can log in to access the Internet.\
+        \ Possible values: "Enable" and "Disable". Default is "Disable". To enable
+        this argument, the match_identity argument must be enabled and the value of
+        the policy_type is "User".'
+      name: show_captive_portal
+      predefined:
+      - Enable
+      - Disable
+    - description: An existing user(s) or group(s) to add to the rule. This argument
+        is required when match_identity is enabled.
+      isArray: true
+      name: members
+    - auto: PREDEFINED
+      defaultValue: Drop
+      description: 'Action for the rule traffic. Possible values: "Accept", "Reject",
+        and "Drop". Default is "Drop".'
+      name: action
+      predefined:
+      - Accept
+      - Reject
+      - Drop
+    - description: The DSCP marking level to classify the flow of packets based on
+        the Traffic Shaping policy.
+      name: dscp_marking
+    - description: The primary gateway. Applicable only in case of multiple gateways.
+      name: primary_gateway
+    - description: The backup gateway. Applicable only in case of multiple gateways.
+      name: backup_gateway
+    - defaultValue: Allow All
+      description: The Application Filter policy for the rule. Default is "Allow All".
+      name: application_control
+    - auto: PREDEFINED
+      defaultValue: Revoke
+      description: 'Whether to limit the bandwidth for the applications categorized\
+        \ under the Application category. This tag is only applicable when\ \ an application_control
+        is selected. Possible values: "Apply" and "Revoke". Default is "Revoke".'
+      name: application_based_qos_policy
+      predefined:
+      - Apply
+      - Revoke
+    - defaultValue: Allow All
+      description: The Web Filter policy for the rule. Default is "Allow All".
+      name: web_filter
+    - auto: PREDEFINED
+      defaultValue: Revoke
+      description: 'Whether to limit the bandwidth for the URLs categorized under
+        the Web\ \ category. This tag is only applicable when a web_filter is defined."
+        Possible values: "Apply" and "Revoke". Default is "Revoke".'
+      name: web_category_base_qos_policy
+      predefined:
+      - Apply
+      - Revoke
+    - defaultValue: None
+      description: The Traffic Shaping policy for the rule. Default is "None".
+      name: traffic_shaping_policy
+    - auto: PREDEFINED
+      defaultValue: Disable
+      description: 'Whether to enable virus and spam scanning for the HTTP protocol.
+        Possible values: "Enable" and "Disable". Default is "Disable".'
+      name: scan_http
+      predefined:
+      - Enable
+      - Disable
+    - auto: PREDEFINED
+      defaultValue: Disable
+      description: 'Whether to enable virus and spam scanning for the HTTPS protocol.
+        Possible values: "Enable" and "Disable". Default is "Disable".'
+      name: scan_https
+      predefined:
+      - Enable
+      - Disable
+    - auto: PREDEFINED
+      defaultValue: Disable
+      description: 'Whether to enable sandstorm analysis. Possible values: "Enable"
+        and "Disable". Default is "Disable".'
+      name: sandstorm
+      predefined:
+      - Enable
+      - Disable
+    - auto: PREDEFINED
+      defaultValue: Disable
+      description: 'Whether to enable Google websites to use HTTP/s instead of QUICK
+        QUIC. Possible values: "Enable" and "Disable". Default is "Disable".'
+      name: block_quick_quic
+      predefined:
+      - Enable
+      - Disable
+    - auto: PREDEFINED
+      defaultValue: Disable
+      description: 'Whether to enable scanning of FTP traffic. Possible values: "Enable"
+        and "Disable". Default is "Disable".'
+      name: scan_ftp
+      predefined:
+      - Enable
+      - Disable
+    - auto: PREDEFINED
+      defaultValue: Disable
+      description: 'Whether to exclude a user''s network traffic from data accounting.
+        This option is available only if the match_identity argument is enabled. Possible
+        values: "Enable" and "Disable". Default is "Disable".'
+      name: data_accounting
+      predefined:
+      - Enable
+      - Disable
+    - auto: PREDEFINED
+      defaultValue: Enable
+      description: 'Whether to enable the NAT policy. Possible values: "Enable" and
+        "Disable". Default is "Enable".'
+      name: rewrite_source_address
+      predefined:
+      - Enable
+      - Disable
+    - auto: PREDEFINED
+      defaultValue: Disable
+      description: 'Whether to enable the Internet scheme to apply the user-based
+        Web Filter policy for the rule. Possible values: "Enable" and "Disable". Default
+        is "Disable".'
+      name: web_filter_internet_scheme
+      predefined:
+      - Enable
+      - Disable
+    - auto: PREDEFINED
+      defaultValue: Disable
+      description: 'Whether to enable the Internet scheme to apply user-based Application
+        Filter policy for the rule. Possible values: "Enable" and "Disable". Default
+        is "Disable".'
+      name: application_control_internet_scheme
+      predefined:
+      - Enable
+      - Disable
+    - auto: PREDEFINED
+      defaultValue: Disable
+      description: 'Whether to override the gateway of the default NAT policy. Possible
+        values: "Enable" and "Disable". Default is "Disable".'
+      name: override_gateway_default_nat_policy
+      predefined:
+      - Enable
+      - Disable
+    - auto: PREDEFINED
+      defaultValue: Disable
+      description: 'Whether to enable the source security heartbeat. Possible values:
+        "Enable" and "Disable". Default is "Disable".'
+      name: source_security_heartbeat
+      predefined:
+      - Enable
+      - Disable
+    - auto: PREDEFINED
+      defaultValue: Disable
+      description: 'Whether to enable the destination security heartbeat. Possible
+        values: "Enable" and "Disable". Default is "Disable".'
+      name: destination_security_heartbeat
+      predefined:
+      - Enable
+      - Disable
+    - defaultValue: MASQ
+      description: The NAT policy to apply. Default is "MASQ".
+      name: outbound_address
+    - defaultValue: No Restriction
+      description: The minimum source health status permitted. Default is "No Restriction".
+      name: minimum_source_hb_permitted
+    - defaultValue: No Restriction
+      description: The minimum destination health status permitted. Default is "No
+        Restriction".
+      name: minimum_destination_hb_permitted
+    - defaultValue: generalpolicy
+      description: The IPS policy for the rule. Default is "generalpolicy".
+      name: intrusion_prevention
+    description: Adds a new firewall rule.
+    name: sophos-firewall-rule-add
+    outputs:
+    - contextPath: SophosFirewall.SecurityPolicy.Name
+      description: Name of the rule.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicy.Description
+      description: Description of the rule.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicy.Status
+      description: Status of the rule.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicy.PolicyType
+      description: Policy type of the rule.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicy.IPFamily
+      description: IP family of the security policy. Either IPv4 or IPv6.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicy.AttachIdentity
+      description: Rule attach identity status.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicy.Action
+      description: Current rule action.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicy.LogTraffic
+      description: Rule traffic logging code.
+      type: Number
+  - arguments:
+    - description: Name of the new rule.
+      name: name
+      required: true
+    - description: Description of the new rule.
+      name: description
+    - auto: PREDEFINED
+      defaultValue: Enable
+      description: 'Whether the rule is enabled. Possible values: "Enable" and "Disable".
+        Default is "Enable".'
+      name: status
+      predefined:
+      - Enable
+      - Disable
+    - auto: PREDEFINED
+      defaultValue: IPv4
+      description: 'The IP family. Possible values: "IPv4" and "IPv6". Default is
+        "IPv4".'
+      name: ip_family
+      predefined:
+      - IPv4
+      - IPv6
+    - auto: PREDEFINED
+      description: 'The position of the new rule in the list. Possible values: "top",
+        "bottom", "before", and "after". If "before" or "after" is selected, you must
+        provide a value for the position_policy_name argument.'
+      name: position
+      predefined:
+      - top
+      - bottom
+      - after
+      - before
+    - description: The name of the policy that the rule should be created before or
+        after. This argument is required when the value of the position argument is
+        "before" or "after".
+      name: position_policy_name
+    - auto: PREDEFINED
+      description: 'Policy type of the new rule. Possible values: "User" and "Network".'
+      name: policy_type
+      predefined:
+      - User
+      - Network
+    - auto: PREDEFINED
+      description: 'Source zones to add to the rule. Possible values: "Any", "LAN".
+        "WAN", "VPN", "DMZ", and "WiFi".'
+      isArray: true
+      name: source_zones
+      predefined:
+      - Any
+      - LAN
+      - WAN
+      - VPN
+      - DMZ
+      - WiFi
+    - description: Source networks to add to the rule.
+      isArray: true
+      name: source_networks
+    - auto: PREDEFINED
+      description: 'Destination zones to add to the rule. Possible values: "Any",
+        "LAN". "WAN", "VPN", "DMZ", and "WiFi".'
+      isArray: true
+      name: destination_zones
+      predefined:
+      - Any
+      - LAN
+      - WAN
+      - VPN
+      - DMZ
+      - WiFi
+    - description: Destination networks to add to the rule.
+      isArray: true
+      name: destination_networks
+    - description: Destination services to add to the rule.
+      isArray: true
+      name: services
+    - auto: PREDEFINED
+      description: 'The schedule for the rule. Possible values: "All the time", "Work
+        hours (5 Day week)", "Work hours (6 Day week)", "All Time on Weekdays", "All
+        Time on Weekends", "All Time on Sunday", "All Days 10:00 to 19:00". IMPORTANT:
+        Creating a new schedule is available in the web console.'
+      name: schedule
+      predefined:
+      - All the time
+      - Work hours (5 Day week)
+      - Work hours (6 Day week)
+      - All Time on Weekdays
+      - All Time on Weekends
+      - All Time on Sunday
+      - All Days 10:00 to 19:00
+    - auto: PREDEFINED
+      defaultValue: Disable
+      description: 'Whether to enable traffic logging for the policy. Possible values:
+        "Enable" and "Disable". Default is "Disable".'
+      name: log_traffic
+      predefined:
+      - Enable
+      - Disable
+    - auto: PREDEFINED
+      defaultValue: Disable
+      description: 'Whether to check if the specified user/user group from the\ \
+        selected zone is allowed to access the selected service. Possible values:
+        "Enable" and "Disable". Default is "Disable". IMPORTANT: When enabling match_identity,
+        the members argument is required.'
+      name: match_identity
+      predefined:
+      - Enable
+      - Disable
+    - auto: PREDEFINED
+      defaultValue: Disable
+      description: 'Whether to accept traffic from unknown users. The captive portal
+        page\ \ is displayed to the user where the user can log in to access the Internet.\
+        \ Possible values: "Enable" and "Disable". Default is "Disable". To enable
+        this argument, the match_identity argument must be enabled and the value of
+        the policy_type is "User".'
+      name: show_captive_portal
+      predefined:
+      - Enable
+      - Disable
+    - description: An existing user(s) or group(s) to add to the rule. This argument
+        is required  when match_identity is enabled.
+      isArray: true
+      name: members
+    - auto: PREDEFINED
+      defaultValue: Drop
+      description: 'Action for the rule traffic. Possible values: "Accept", "Reject",
+        and "Drop". Default is "Drop".'
+      name: action
+      predefined:
+      - Accept
+      - Reject
+      - Drop
+    - description: The DSCP marking level to classify the flow of packets based on
+        the Traffic Shaping policy.
+      name: dscp_marking
+    - description: The primary gateway. Applicable only in case of multiple gateways.
+      name: primary_gateway
+    - description: The backup gateway. Applicable only in case of multiple gateways.
+      name: backup_gateway
+    - defaultValue: Allow All
+      description: The Application Filter policy for the rule. Default is "Allow All".
+      name: application_control
+    - auto: PREDEFINED
+      defaultValue: Revoke
+      description: 'Whether to limit the bandwidth for the applications categorized\
+        \ under the Application category. This tag is only applicable when\ \ an application_control
+        is selected. Possible values: "Apply" and "Revoke". Default is "Revoke".'
+      name: application_based_qos_policy
+      predefined:
+      - Apply
+      - Revoke
+    - defaultValue: Allow All
+      description: The Web Filter policy for the rule. Default is "Allow All".
+      name: web_filter
+    - auto: PREDEFINED
+      defaultValue: Revoke
+      description: 'Whether to limit the bandwidth for the URLs categorized under
+        the Web\ \ category. This tag is only applicable when a web_filter is defined."
+        Possible values: "Apply" and "Revoke". Default is "Revoke".'
+      name: web_category_base_qos_policy
+      predefined:
+      - Apply
+      - Revoke
+    - defaultValue: None
+      description: The Traffic Shaping policy for the rule. Default is "None".
+      name: traffic_shaping_policy
+    - auto: PREDEFINED
+      defaultValue: Disable
+      description: 'Whether to enable virus and spam scanning for HTTP protocol. Possible
+        values: "Enable" and "Disable". Default is "Disable".'
+      name: scan_http
+      predefined:
+      - Enable
+      - Disable
+    - auto: PREDEFINED
+      defaultValue: Disable
+      description: 'Whether to enable virus and spam scanning for HTTPS protocol.
+        Possible values: "Enable" and "Disable". Default is "Disable".'
+      name: scan_https
+      predefined:
+      - Enable
+      - Disable
+    - auto: PREDEFINED
+      defaultValue: Disable
+      description: 'Whether to enable sandstorm analysis. Possible values: "Enable"
+        and "Disable". Default is "Disable".'
+      name: sandstorm
+      predefined:
+      - Enable
+      - Disable
+    - auto: PREDEFINED
+      defaultValue: Disable
+      description: 'Whether to enable Google websites to use HTTP/s instead of QUICK
+        QUIC. Possible values: "Enable" and "Disable". Default is "Disable".'
+      name: block_quick_quic
+      predefined:
+      - Enable
+      - Disable
+    - auto: PREDEFINED
+      defaultValue: Disable
+      description: 'Whether to enable scanning of FTP traffic. Possible values: "Enable"
+        and "Disable". Default is "Disable".'
+      name: scan_ftp
+      predefined:
+      - Enable
+      - Disable
+    - auto: PREDEFINED
+      defaultValue: Disable
+      description: 'Whether to exclude a user''s network traffic from data accounting.
+        This option is available only if the match_identity argument is enabled. Possible
+        values: "Enable" and "Disable". Default is "Disable".'
+      name: data_accounting
+      predefined:
+      - Enable
+      - Disable
+    - auto: PREDEFINED
+      defaultValue: Enable
+      description: 'Whether to enable the NAT policy. Possible values: "Enable" and
+        "Disable". Default is "Enable".'
+      name: rewrite_source_address
+      predefined:
+      - Enable
+      - Disable
+    - auto: PREDEFINED
+      defaultValue: Disable
+      description: 'Whether to enable the Internet scheme to apply the user-based
+        Web Filter policy for the rule. Possible values: "Enable" and "Disable". Default
+        is "Disable".'
+      name: web_filter_internet_scheme
+      predefined:
+      - Enable
+      - Disable
+    - auto: PREDEFINED
+      defaultValue: Disable
+      description: 'Whether to enable the Internet scheme to apply user-based Application
+        Filter Policy for the rule. Possible values: "Enable" and "Disable". Default
+        is "Disable".'
+      name: application_control_internet_scheme
+      predefined:
+      - Enable
+      - Disable
+    - auto: PREDEFINED
+      defaultValue: Disable
+      description: 'Whether to override the gateway of the default NAT policy. Possible
+        values: "Enable" and "Disable". Default is "Disable".'
+      name: override_gateway_default_nat_policy
+      predefined:
+      - Enable
+      - Disable
+    - auto: PREDEFINED
+      defaultValue: Disable
+      description: 'Whether to enable the source security heartbeat. Possible values:
+        "Enable" and "Disable". Default is "Disable".'
+      name: source_security_heartbeat
+      predefined:
+      - Enable
+      - Disable
+    - auto: PREDEFINED
+      defaultValue: Disable
+      description: 'Whether to enable the destination security heartbeat. Possible
+        values: "Enable" and "Disable". Default is "Disable".'
+      name: destination_security_heartbeat
+      predefined:
+      - Enable
+      - Disable
+    - defaultValue: MASQ
+      description: The NAT policy to be applied. Default is "MASQ".
+      name: outbound_address
+    - defaultValue: No Restriction
+      description: The minimum source health status permitted. Default is "No Restriction".
+      name: minimum_source_hb_permitted
+    - defaultValue: No Restriction
+      description: The minimum destination health status permitted. Default is "No
+        Restriction".
+      name: minimum_destination_hb_permitted
+    - defaultValue: generalpolicy
+      description: The IPS policy for the rule. Default is "generalpolicy".
+      name: intrusion_prevention
+    description: Updates an existing firewall rule.
+    name: sophos-firewall-rule-update
+    outputs:
+    - contextPath: SophosFirewall.SecurityPolicy.Name
+      description: Name of the rule.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicy.Description
+      description: Description of the rule.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicy.Status
+      description: Status of the rule.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicy.PolicyType
+      description: Policy type of the rule.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicy.IPFamily
+      description: IP family of the security policy. Either IPv4 or IPv6.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicy.AttachIdentity
+      description: Rule attach identity status.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicy.Action
+      description: Current rule action.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicy.LogTraffic
+      description: Rule traffic logging code.
+      type: Number
+  - arguments:
+    - description: Name of the rule.
+      name: name
+      required: true
+    description: Deletes an existing firewall rule.
+    name: sophos-firewall-rule-delete
+    outputs:
+    - contextPath: SophosFirewall.SecurityPolicy.Name
+      description: Name of the rule.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicy.IsDeleted
+      description: Whether the rule is deleted.
+      type: Bool
+  - arguments:
+    - defaultValue: "0"
+      description: 'The start index for the rules to list, e.g: 5. Default is "0".'
+      name: start
+    - defaultValue: "50"
+      description: 'The end index for the rules to list, e.g: 20. Default is "50".'
+      name: end
+    description: 'Lists all firewall rule groups. IMPORTANT: The list starts at 0
+      (not 1)!'
+    name: sophos-firewall-rule-group-list
+    outputs:
+    - contextPath: SophosFirewall.SecurityPolicyGroup.Name
+      description: Name of the group.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicyGroup.Description
+      description: Description of the group.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicyGroup.SecurityPolicyList.SecurityPolicy
+      description: Rules contained inside the group.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicyGroup.SourceZones.Zone
+      description: Source zone in the group.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicyGroup.DestinationZones.Zone
+      description: Destination zone in the group.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicyGroup.PolicyType
+      description: Type of the rules in the group.
+      type: Number
+  - arguments:
+    - description: Name of the firewall rule group.
+      name: name
+    description: Gets a single firewall rule group by name.
+    name: sophos-firewall-rule-group-get
+    outputs:
+    - contextPath: SophosFirewall.SecurityPolicyGroup.Name
+      description: Name of the group.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicyGroup.Description
+      description: Description of the group.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicyGroup.SecurityPolicyList.SecurityPolicy
+      description: Rules contained inside the group.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicyGroup.SourceZones.Zone
+      description: Source zone in the group.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicyGroup.DestinationZones.Zone
+      description: Destination zone in the group.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicyGroup.PolicyType
+      description: Type of the rules in the group.
+      type: Number
+  - arguments:
+    - description: Name of the rule group.
+      name: name
+      required: true
+    - description: Description of the rule group.
+      name: description
+    - auto: PREDEFINED
+      description: 'Type of the rules (policies) inside the group. Possible values:
+        "Any", "User/network rule", "User rule", and "Business application rule".'
+      name: policy_type
+      predefined:
+      - Any
+      - User/network rule
+      - Network rule
+      - User rule
+      - Business application rule
+    - description: Rules contained in the group.
+      isArray: true
+      name: rules
+    - auto: PREDEFINED
+      description: 'Source zones contained in the group. Possible values: "Any", "LAN",
+        "WAN", "VPN", "DMZ", and "WiFi.'
+      isArray: true
+      name: source_zones
+      predefined:
+      - Any
+      - LAN
+      - WAN
+      - VPN
+      - DMZ
+      - WiFi
+    - auto: PREDEFINED
+      description: 'Destination zones contained in the group. Possible values: "Any",
+        "LAN", "WAN", "VPN", "DMZ", and "WiFi.'
+      isArray: true
+      name: destination_zones
+      predefined:
+      - Any
+      - LAN
+      - WAN
+      - VPN
+      - DMZ
+      - WiFi
+    description: Adds a new firewall rule group.
+    name: sophos-firewall-rule-group-add
+    outputs:
+    - contextPath: SophosFirewall.SecurityPolicyGroup.Name
+      description: Name of the group.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicyGroup.Description
+      description: Description of the group.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicyGroup.SecurityPolicyList.SecurityPolicy
+      description: Rules contained in the group.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicyGroup.SourceZones.Zone
+      description: Source zone in the group.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicyGroup.DestinationZones.Zone
+      description: Destination zone in the group.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicyGroup.PolicyType
+      description: Type of the rules in the group.
+      type: Number
+  - arguments:
+    - description: Name of the rule group.
+      name: name
+      required: true
+    - description: Description of the rule group.
+      name: description
+    - auto: PREDEFINED
+      description: 'Type of the rules (policies) inside the group. Possible values:
+        "Any", "User/network rule", "User rule", and "Business application rule".'
+      name: policy_type
+      predefined:
+      - Any
+      - User/network rule
+      - Network rule
+      - User rule
+      - Business application rule
+    - description: Rules contained in the group.
+      isArray: true
+      name: rules
+    - auto: PREDEFINED
+      description: 'Source zones contained in the group. Possible values: "Any", "LAN",
+        "WAN", "VPN", "DMZ", and "WiFi.'
+      isArray: true
+      name: source_zones
+      predefined:
+      - Any
+      - LAN
+      - WAN
+      - VPN
+      - DMZ
+      - WiFi
+    - auto: PREDEFINED
+      description: 'Destination zones contained in the group. Possible values: "Any",
+        "LAN", "WAN", "VPN", "DMZ", and "WiFi.'
+      isArray: true
+      name: destination_zones
+      predefined:
+      - Any
+      - LAN
+      - WAN
+      - VPN
+      - DMZ
+      - WiFi
+    description: Updates an existing firewall rule group.
+    name: sophos-firewall-rule-group-update
+    outputs:
+    - contextPath: SophosFirewall.SecurityPolicyGroup.Name
+      description: Name of the group.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicyGroup.Description
+      description: Description of the group.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicyGroup.SecurityPolicyList.SecurityPolicy
+      description: Rules contained in the group.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicyGroup.SourceZones.Zone
+      description: Source zone in the group.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicyGroup.DestinationZones.Zone
+      description: Destination zone in the group.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicyGroup.PolicyType
+      description: Type of the rules in the group.
+      type: Number
+  - arguments:
+    - description: Name of the group.
+      name: name
+      required: true
+    description: Deletes an existing firewall group.
+    name: sophos-firewall-rule-group-delete
+    outputs:
+    - contextPath: SophosFirewall.SecurityPolicyGroup.Name
+      description: Name of the group.
+      type: String
+    - contextPath: SophosFirewall.SecurityPolicyGroup.IsDeleted
+      description: Whether the group is deleted.
+      type: Bool
+  - arguments:
+    - defaultValue: "0"
+      description: 'The start index for the rules to list, e.g: 5. Default is "0".'
+      name: start
+    - defaultValue: "50"
+      description: 'The end index for the rules to list, e.g: 20. Default is "50".'
+      name: end
+    description: 'Lists all URL groups. IMPORTANT: The list starts at 0 (not 1)!'
+    name: sophos-firewall-url-group-list
+    outputs:
+    - contextPath: SophosFirewall.WebFilterURLGroup.Name
+      description: Name of the URL group.
+      type: String
+    - contextPath: SophosFirewall.WebFilterURLGroup.Description
+      description: Description of the URL group.
+      type: String
+    - contextPath: SophosFirewall.WebFilterURLGroup.URLlist.URL
+      description: URL contained in the group.
+      type: String
+  - arguments:
+    - description: Name of the group.
+      isArray: true
+      name: name
+      required: true
+    description: Gets a single URL group by name.
+    name: sophos-firewall-url-group-get
+    outputs:
+    - contextPath: SophosFirewall.WebFilterURLGroup.Name
+      description: Name of the URL group.
+      type: String
+    - contextPath: SophosFirewall.WebFilterURLGroup.Description
+      description: Description of the URL group.
+      type: String
+    - contextPath: SophosFirewall.WebFilterURLGroup.URLlist.URL
+      description: URL contained in the group.
+      type: String
+  - arguments:
+    - description: Name of the group.
+      isArray: true
+      name: name
+      required: true
+    - description: Description of the group.
+      name: description
+    - description: Comma-separated list of URLs to add to the group.
+      isArray: true
+      name: urls
+      required: true
+    description: Adds new URLs to the group.
+    name: sophos-firewall-url-group-add
+    outputs:
+    - contextPath: SophosFirewall.WebFilterURLGroup.Name
+      description: Name of the URL group.
+      type: String
+    - contextPath: SophosFirewall.WebFilterURLGroup.Description
+      description: Description of the URL group.
+      type: String
+    - contextPath: SophosFirewall.WebFilterURLGroup.URLlist.URL
+      description: URL contained in the group.
+      type: String
+  - arguments:
+    - description: Name of the group.
+      isArray: true
+      name: name
+      required: true
+    - description: Description of the group.
+      name: description
+    - description: Comma-separated list of URLs to add to the group.
+      isArray: true
+      name: urls
+    description: Updates an existing URL group.
+    name: sophos-firewall-url-group-update
+    outputs:
+    - contextPath: SophosFirewall.WebFilterURLGroup.Name
+      description: Name of the URL group.
+      type: String
+    - contextPath: SophosFirewall.WebFilterURLGroup.Description
+      description: Description of the URL group.
+      type: String
+    - contextPath: SophosFirewall.WebFilterURLGroup.URLlist.URL
+      description: URL contained in the group.
+      type: String
+  - arguments:
+    - description: Name of the group(s).
+      isArray: true
+      name: name
+      required: true
+    description: Deletes an existing URL group or groups.
+    name: sophos-firewall-url-group-delete
+    outputs:
+    - contextPath: SophosFirewall.WebFilterURLGroup.Name
+      description: Name of the URL group.
+      type: String
+    - contextPath: SophosFirewall.WebFilterURLGroup.IsDeleted
+      description: Whether the URL group is deleted.
+      type: Bool
+  - arguments:
+    - defaultValue: "0"
+      description: 'The start index for the rules to list, e.g: 5. Default is "0".'
+      name: start
+    - defaultValue: "50"
+      description: 'The end index for the rules to list, e.g: 20. Default is "50".'
+      name: end
+    description: 'Lists all IP hosts. IMPORTANT: The list starts at 0 (not 1)!'
+    name: sophos-firewall-ip-host-list
+    outputs:
+    - contextPath: SophosFirewall.IPHost.Name
+      description: Name of the IP host.
+      type: String
+    - contextPath: SophosFirewall.IPHost.IPFamily
+      description: IP family of the host group. Either IPv4 or IPv6.
+      type: String
+    - contextPath: SophosFirewall.IPHost.HostType
+      description: Type of the host.
+      type: String
+  - arguments:
+    - description: Name of the IP host.
+      name: name
+      required: true
+    description: Gets a single IP host by name.
+    name: sophos-firewall-ip-host-get
+    outputs:
+    - contextPath: SophosFirewall.IPHost.Name
+      description: Name of the IP host.
+      type: String
+    - contextPath: SophosFirewall.IPHost.IPFamily
+      description: IP family of the host group. Either IPv4 or IPv6.
+      type: String
+    - contextPath: SophosFirewall.IPHost.HostType
+      description: Type of the host.
+      type: String
+  - arguments:
+    - description: Name of the IP host.
+      name: name
+      required: true
+    - auto: PREDEFINED
+      description: 'Type of the host. Possible values: "IP", "Network", "IPRange",
+        and "IPList".'
+      name: host_type
+      predefined:
+      - IP
+      - Network
+      - IPRange
+      - IPList
+      required: true
+    - auto: PREDEFINED
+      defaultValue: IPv4
+      description: 'The IP family. Possible values: "IPv4" and "IPv6". Default is
+        "IPv4".'
+      name: ip_family
+      predefined:
+      - IPv4
+      - IPv6
+    - description: IP address if IP or Network was the chosen host_type.
+      name: ip_address
+    - description: Subnet mask if Network was the chosen host_type.
+      name: subnet_mask
+    - description: Start of the IP range if IPRange was the chosen host_type.
+      name: start_ip
+    - description: End of the IP range if IPRange was the chosen host_type.
+      name: end_ip
+    - description: List of IP addresses if IPList was the chosen host_type.
+      isArray: true
+      name: ip_addresses
+    - description: Select the host group to which the host belongs.
+      isArray: true
+      name: host_group
+    description: Adds a new IP host.
+    name: sophos-firewall-ip-host-add
+    outputs:
+    - contextPath: SophosFirewall.IPHost.Name
+      description: Name of the IP host.
+      type: String
+    - contextPath: SophosFirewall.IPHost.IPFamily
+      description: IP family of the host group. Either IPv4 or IPv6.
+      type: String
+    - contextPath: SophosFirewall.IPHost.HostType
+      description: Type of the host.
+      type: String
+  - arguments:
+    - description: Name of the IP host.
+      name: name
+      required: true
+    - auto: PREDEFINED
+      description: 'Type of the host. Possible values: "IP", "Network", "IPRange",
+        and "IPList".'
+      name: host_type
+      predefined:
+      - IP
+      - Network
+      - IPRange
+      - IPList
+    - auto: PREDEFINED
+      defaultValue: IPv4
+      description: 'The IP family. Possible values: "IPv4" and "IPv6". Default is
+        "IPv4".'
+      name: ip_family
+      predefined:
+      - IPv4
+      - IPv6
+    - description: IP address if IP or Network was the chosen host_type.
+      name: ip_address
+    - description: Subnet mask if Network was the chosen host_type.
+      name: subnet_mask
+    - description: Start of the IP range if IPRange was the chosen host_type.
+      name: start_ip
+    - description: End of the IP range if IPRange was the chosen host_type.
+      name: end_ip
+    - description: List of IP addresses if IPList was the chosen host_type.
+      isArray: true
+      name: ip_addresses
+    - description: Select the host group to which the host belongs.
+      isArray: true
+      name: host_group
+    description: Updates an existing IP host.
+    name: sophos-firewall-ip-host-update
+    outputs:
+    - contextPath: SophosFirewall.IPHost.Name
+      description: Name of the IP host.
+      type: String
+    - contextPath: SophosFirewall.IPHost.IPFamily
+      description: IP family of the host group. Either IPv4 or IPv6.
+      type: String
+    - contextPath: SophosFirewall.IPHost.HostType
+      description: Type of the host.
+      type: String
+  - arguments:
+    - description: Name of the host.
+      name: name
+      required: true
+    description: Deletes an existing IP host.
+    name: sophos-firewall-ip-host-delete
+    outputs:
+    - contextPath: SophosFirewall.IPHost.Name
+      description: Name of the IP host.
+      type: String
+    - contextPath: SophosFirewall.IPHost.IsDeleted
+      description: Whether the IP host is deleted.
+      type: Bool
+  - arguments:
+    - defaultValue: "0"
+      description: 'The start index for the rules to list, e.g: 5. Default is "0".'
+      name: start
+    - defaultValue: "50"
+      description: 'The end index for the rules to list, e.g: 20. Default is "50".'
+      name: end
+    description: 'Lists all IP host groups. IMPORTANT: The list starts at 0 (not 1)!'
+    name: sophos-firewall-ip-host-group-list
+    outputs:
+    - contextPath: SophosFirewall.IPHostGroup.Name
+      description: Name of the IP host group.
+      type: String
+    - contextPath: SophosFirewall.IPHostGroup.description
+      description: Description of the IP host group.
+      type: String
+    - contextPath: SophosFirewall.IPHostGroup.HostList.Host
+      description: Host contained in the host group.
+      type: String
+    - contextPath: SophosFirewall.IPHostGroup.IPFamily
+      description: IP family of the host group. Either IPv4 or IPv6.
+      type: String
+  - arguments:
+    - description: Name of the IP host group.
+      name: name
+      required: true
+    description: Gets a single IP host group by name.
+    name: sophos-firewall-ip-host-group-get
+    outputs:
+    - contextPath: SophosFirewall.IPHostGroup.Name
+      description: Name of the IP host group.
+      type: String
+    - contextPath: SophosFirewall.IPHostGroup.description
+      description: Description of the IP host group.
+      type: String
+    - contextPath: SophosFirewall.IPHostGroup.HostList.Host
+      description: Host contained inside the host group.
+      type: String
+    - contextPath: SophosFirewall.IPHostGroup.IPFamily
+      description: IP family of the host group. Either IPv4 or IPv6.
+      type: String
+  - arguments:
+    - description: Name of the IP host group.
+      name: name
+      required: true
+    - description: Description of the IP host group.
+      name: description
+    - auto: PREDEFINED
+      description: 'The IP family. Possible values: "IPv4" and "IPv6".'
+      name: ip_family
+      predefined:
+      - IPv4
+      - IPv6
+    - description: IP hosts contained in the group. Must be hosts that exist in the
+        system.
+      isArray: true
+      name: hosts
+    description: Adds a new IP host group.
+    name: sophos-firewall-ip-host-group-add
+    outputs:
+    - contextPath: SophosFirewall.IPHostGroup.Name
+      description: Name of the IP host group.
+      type: String
+    - contextPath: SophosFirewall.IPHostGroup.description
+      description: Description of the IP host group.
+      type: String
+    - contextPath: SophosFirewall.IPHostGroup.HostList.Host
+      description: Host contained in the host group.
+      type: String
+    - contextPath: SophosFirewall.IPHostGroup.IPFamily
+      description: IP family of the host group. Either IPv4 or IPv6.
+      type: String
+  - arguments:
+    - description: Name of the IP host group.
+      name: name
+      required: true
+    - description: Description of the IP host group.
+      name: description
+    - auto: PREDEFINED
+      description: 'The IP family. Possible values: "IPv4" and "IPv6".'
+      name: ip_family
+      predefined:
+      - IPv4
+      - IPv6
+    - description: IP hosts contained in the group. Must be hosts that exist in the
+        system.
+      isArray: true
+      name: hosts
+    description: Updates an existing IP host group.
+    name: sophos-firewall-ip-host-group-update
+    outputs:
+    - contextPath: SophosFirewall.IPHostGroup.Name
+      description: Name of the IP host group.
+      type: String
+    - contextPath: SophosFirewall.IPHostGroup.description
+      description: Description of the IP host group.
+      type: String
+    - contextPath: SophosFirewall.IPHostGroup.HostList.Host
+      description: Host contained inside the host group.
+      type: String
+    - contextPath: SophosFirewall.IPHostGroup.IPFamily
+      description: IP family of the host group. Either IPv4 or IPv6.
+      type: String
+  - arguments:
+    - description: Name of the group.
+      name: name
+      required: true
+    description: Deletes an existing IP host group.
+    name: sophos-firewall-ip-host-group-delete
+    outputs:
+    - contextPath: SophosFirewall.IPHostGroup.Name
+      description: Name of the IP host group.
+      type: String
+    - contextPath: SophosFirewall.IPHostGroup.IsDeleted
+      description: Whether the IP host group is deleted.
+      type: Bool
+  - arguments:
+    - defaultValue: "0"
+      description: 'The start index for the rules to list, e.g: 5. Default is "0".'
+      name: start
+    - defaultValue: "50"
+      description: 'The end index for the rules to list, e.g: 20. Default is "50".'
+      name: end
+    description: 'Lists all firewall services. IMPORTANT: The list starts at 0 (not
+      1)!'
+    name: sophos-firewall-services-list
+    outputs:
+    - contextPath: SophosFirewall.Services.Name
+      description: Name of the firewall service.
+      type: String
+    - contextPath: SophosFirewall.Services.Type
+      description: Type of the firewall service.
+      type: String
+    - contextPath: SophosFirewall.Services.ServiceDetails.ServiceDetail
+      description: Details about the service.
+      type: String
+  - arguments:
+    - description: Name of the firewall service.
+      name: name
+      required: true
+    description: Gets a single service by name.
+    name: sophos-firewall-services-get
+    outputs:
+    - contextPath: SophosFirewall.Services.Name
+      description: Name of the firewall service.
+      type: String
+    - contextPath: SophosFirewall.Services.Type
+      description: Type of the firewall service.
+      type: String
+    - contextPath: SophosFirewall.Services.ServiceDetails.ServiceDetail
+      description: Details about the service.
+      type: String
+  - arguments:
+    - description: Name of the firewall service.
+      name: name
+      required: true
+    - auto: PREDEFINED
+      description: 'Type of service. Possible values: "TCPorUDP", "IP", "ICMP", and
+        "ICMPv6".'
+      name: service_type
+      predefined:
+      - TCPorUDP
+      - IP
+      - ICMP
+      - ICMPv6
+      required: true
+    - auto: PREDEFINED
+      description: 'The protocol for the service if service_type is TCPorUDP. Possible
+        values: "TCP" and "UDP".'
+      name: protocol
+      predefined:
+      - TCP
+      - UDP
+    - description: Source port if service_type is TCPorUDP.
+      name: source_port
+    - description: Destination port if service_type is TCPorUDP.
+      name: destination_port
+    - auto: PREDEFINED
+      description: Protocol name if service_type is IP.
+      name: protocol_name
+      predefined:
+      - HOPOPT
+      - ICMP
+      - IGMPGGP
+      - IP
+      - ST
+      - TCP
+      - CBT
+      - EGP
+      - IGP
+      - BBN-RCC-MON
+      - NVP-II
+      - PUP
+      - ARGUS
+      - EMCON
+      - XNET
+      - CHAOS
+      - UDP
+      - MUX
+      - DCN-MEAS
+      - HMP
+      - PRM
+      - XNS-IDP
+      - TRUNK-1
+      - TRUNK-2
+      - LEAF-1
+      - LEAF-2
+      - RDP
+      - IRTP
+      - ISO-TP4
+      - NETBLT
+      - MFE-NSP
+      - MERIT-INP
+      - DCCP
+      - 3PC
+      - IDPRXTP
+      - DDP
+      - IDPR-CMTP
+      - TP++
+      - IL
+      - IPv6
+      - SDRP
+      - IPv6-Route
+      - IPv6-Frag
+      - IDRP
+      - RSVP
+      - GRE
+      - DSR
+      - BNA
+      - ESP
+      - AH
+      - I-NLSP
+      - SWIPE
+      - NARP
+      - MOBILE
+      - TLSP
+      - SKIP
+      - IPv6-ICMP
+      - IPv6-NoNxt
+      - IPv6-Opts
+      - IPProto61
+      - CFTP
+      - IPProto63
+      - SAT-EXPAK
+      - KRYPTOLAN
+      - RVD
+      - IPPC
+      - IPProto68
+      - SAT-MON
+      - VISA
+      - IPCV
+      - CPNX
+      - CPHB
+      - WSN
+      - PVP
+      - BR-SAT-MON
+      - SUN-ND
+      - WB-MON
+      - WB-EXPAK
+      - ISO-IP
+      - VMTP
+      - SECURE-VMTP
+      - VINES
+      - TTP
+      - NSFNET-IGP
+      - DGP
+      - TCF
+      - EIGRP
+      - OSPFIGP
+      - Sprite-RPC
+      - LARP
+      - MTP
+      - "25"
+      - IPIP
+      - MICP
+      - SCC-SP
+      - ETHERIP
+      - ENCAP
+      - IPProto99
+      - GMTP
+      - IFMP
+      - PNNI
+      - PIM
+      - ARIS
+      - SCPS
+      - QNX
+      - A
+      - "N"
+      - IPComp
+      - SNP
+      - Compaq-Peer
+      - IPX-in-IP
+      - VRRP
+      - PGM
+      - IPProto114
+      - L2TP
+      - DDX
+      - IATP
+      - STP
+      - SRP
+      - UTI
+      - SMP
+      - SM
+      - PTP
+      - ISIS
+      - FIRE
+      - CRTP
+      - CRUDP
+      - SSCOPMCE
+      - IPLT
+      - SPS
+      - PIPE
+      - SCTP
+      - FC
+      - RSVP-E2E-IGNORE
+      - IPProto135
+      - UDPLite
+      - MPLS-in-IP
+      - manet
+      - HIP
+      - Shim6
+      - WESP
+      - ROHC
+      - IPProto143
+      - IPProto144
+      - IPProto145
+      - IPProto146
+      - IPProto147
+      - IPProto148
+      - IPProto149
+      - IPProto150
+      - IPProto151
+      - IPProto152
+      - IPProto153
+      - IPProto154
+      - IPProto155
+      - IPProto156
+      - IPProto157
+      - IPProto158
+      - IPProto159
+      - IPProto160
+      - IPProto161
+      - IPProto162
+      - IPProto163
+      - IPProto164
+      - IPProto165
+      - IPProto166
+      - IPProto167
+      - IPProto168
+      - IPProto169
+      - IPProto170
+      - IPProto171
+      - IPProto172
+      - IPProto173
+      - IPProto174
+      - IPProto175
+      - IPProto176
+      - IPProto177
+      - IPProto178
+      - IPProto179
+      - IPProto180
+      - IPProto181
+      - IPProto182
+      - IPProto183
+      - IPProto184
+      - IPProto185
+      - IPProto186
+      - IPProto187
+      - IPProto188
+      - IPProto189
+      - IPProto190
+      - IPProto191
+      - IPProto192
+      - IPProto193
+      - IPProto194
+      - IPProto195
+      - IPProto196
+      - IPProto197
+      - IPProto198
+      - IPProto199
+      - IPProto200
+      - IPProto201
+      - IPProto202
+      - IPProto203
+      - IPProto204
+      - IPProto205
+      - IPProto206
+      - IPProto207
+      - IPProto208
+      - IPProto209
+      - IPProto210
+      - IPProto211
+      - IPProto212
+      - IPProto213
+      - IPProto214
+      - IPProto215
+      - IPProto216
+      - IPProto217
+      - IPProto218
+      - IPProto219
+      - IPProto220
+      - IPProto221
+      - IPProto222
+      - IPProto223
+      - IPProto224
+      - IPProto225
+      - IPProto226
+      - IPProto227
+      - IPProto228
+      - IPProto229
+      - IPProto230
+      - IPProto231
+      - IPProto232
+      - IPProto233
+      - IPProto234
+      - IPProto235
+      - IPProto236
+      - IPProto237
+      - IPProto238
+      - IPProto239
+      - IPProto240
+      - IPProto241
+      - IPProto242
+      - IPProto243
+      - IPProto244
+      - IPProto245
+      - IPProto246
+      - IPProto247
+      - IPProto248
+      - IPProto249
+      - IPProto250
+      - IPProto251
+      - IPProto252
+      - IPProto253
+      - IPProto254
+      - IPProto255
+    - auto: PREDEFINED
+      description: ICMP type if service_type is ICMP.
+      name: icmp_type
+      predefined:
+      - Echo Reply
+      - Destination Unreachable
+      - Source Quench
+      - Redirect
+      - Alternate Host Address
+      - Echo
+      - Router Advertisement
+      - Router Selection
+      - Time Exceeded
+      - Parameter Problem
+      - Timestamp
+      - Timestamp Reply
+      - Information Request
+      - Information Reply
+      - Address Mask Request
+      - Address Mask Reply
+      - Traceroute
+      - Datagram Conversion Error
+      - Mobile Host Redirect
+      - IPv6 Where-Are-You
+      - IPv6 I-Am-Here
+      - Mobile Registration Request
+      - Mobile Registration Reply
+      - Domain Name Request
+      - Domain Name Reply
+      - SKIP
+      - Photuris
+      - Any Type
+    - auto: PREDEFINED
+      description: ICMP code if service_type is ICMP.
+      name: icmp_code
+      predefined:
+      - "0"
+      - "-1"
+      - "1"
+      - "2"
+      - "3"
+      - "4"
+      - "5"
+      - "6"
+      - "7"
+      - "8"
+      - "9"
+      - "10"
+      - "11"
+      - "12"
+      - "13"
+      - "14"
+      - "15"
+    - auto: PREDEFINED
+      description: ICMPv6 type if service_type is ICMPv6.
+      name: icmp_v6_type
+      predefined:
+      - Destination Unreachable
+      - Packet Too Big
+      - Time Exceeded
+      - Parameter Problem
+      - Private experimentation
+      - Private experimentation
+      - Echo Request
+      - Echo Reply
+      - Multicast Listener Query
+      - Multicast Listener Report
+      - Multicast Listener Done
+      - Router Solicitation
+      - Router Advertisement
+      - Neighbor Solicitation
+      - Neighbor Advertisement
+      - Redirect Message
+      - Router Renumbering
+      - ICMP Node Information Query
+      - ICMP Node Information Response
+      - Inverse Neighbor Discovery Solicitation Message
+      - Inverse Neighbor Discovery Advertisement Message
+      - Version 2 Multicast Listener Report
+      - Home Agent Address Discovery Request Message
+      - Home Agent Address Discovery Reply Message
+      - Mobile Prefix Solicitation
+      - Mobile Prefix Advertisement
+      - Certification Path Solicitation Message
+      - Certification Path Advertisement Message
+      - ICMP messages utilized by experimental mobility protocols such as Seamoby
+      - Multicast Router Advertisement
+      - Multicast Router Solicitation
+      - Multicast Router Termination
+      - FMIPv6 Messages
+      - RPL Control Message
+      - ILNPv6 Locator Update Message
+      - Duplicate Address Request
+      - Duplicate Address Confirmation
+      - Private experimentation
+      - Private experimentation
+      - Any Type
+    - auto: PREDEFINED
+      description: ICMPv6 code if service_type is ICMPv6.
+      name: icmp_v6_code
+      predefined:
+      - "0"
+      - "-1"
+      - "1"
+      - "2"
+      - "3"
+      - "4"
+      - "5"
+      - "6"
+      - "7"
+      - "8"
+      - "9"
+      - "10"
+      - "11"
+      - "12"
+      - "13"
+      - "14"
+      - "15"
+    description: Adds a new firewall service.
+    name: sophos-firewall-services-add
+    outputs:
+    - contextPath: SophosFirewall.Services.Name
+      description: Name of the firewall service.
+      type: String
+    - contextPath: SophosFirewall.Services.Type
+      description: Type of the firewall service.
+      type: String
+    - contextPath: SophosFirewall.Services.ServiceDetails.ServiceDetail
+      description: Details about the service.
+      type: String
+  - arguments:
+    - description: Name of the firewall service.
+      name: name
+      required: true
+    - auto: PREDEFINED
+      description: 'Type of service. Possible values: "TCPorUDP", "IP", "ICMP", and
+        "ICMPv6".'
+      name: service_type
+      predefined:
+      - TCPorUDP
+      - IP
+      - ICMP
+      - ICMPv6
+    - auto: PREDEFINED
+      description: 'The protocol for the service if service_type is TCPorUDP. Possible
+        values: "TCP" and "UDP".'
+      name: protocol
+      predefined:
+      - TCP
+      - UDP
+    - description: Source port if service_type is TCPorUDP.
+      name: source_port
+    - description: Destination port if service_type is TCPorUDP.
+      name: destination_port
+    - auto: PREDEFINED
+      description: Protocol name if service_type is IP.
+      name: protocol_name
+      predefined:
+      - HOPOPT
+      - ICMP
+      - IGMPGGP
+      - IP
+      - ST
+      - TCP
+      - CBT
+      - EGP
+      - IGP
+      - BBN-RCC-MON
+      - NVP-II
+      - PUP
+      - ARGUS
+      - EMCON
+      - XNET
+      - CHAOS
+      - UDP
+      - MUX
+      - DCN-MEAS
+      - HMP
+      - PRM
+      - XNS-IDP
+      - TRUNK-1
+      - TRUNK-2
+      - LEAF-1
+      - LEAF-2
+      - RDP
+      - IRTP
+      - ISO-TP4
+      - NETBLT
+      - MFE-NSP
+      - MERIT-INP
+      - DCCP
+      - 3PC
+      - IDPRXTP
+      - DDP
+      - IDPR-CMTP
+      - TP++
+      - IL
+      - IPv6
+      - SDRP
+      - IPv6-Route
+      - IPv6-Frag
+      - IDRP
+      - RSVP
+      - GRE
+      - DSR
+      - BNA
+      - ESP
+      - AH
+      - I-NLSP
+      - SWIPE
+      - NARP
+      - MOBILE
+      - TLSP
+      - SKIP
+      - IPv6-ICMP
+      - IPv6-NoNxt
+      - IPv6-Opts
+      - IPProto61
+      - CFTP
+      - IPProto63
+      - SAT-EXPAK
+      - KRYPTOLAN
+      - RVD
+      - IPPC
+      - IPProto68
+      - SAT-MON
+      - VISA
+      - IPCV
+      - CPNX
+      - CPHB
+      - WSN
+      - PVP
+      - BR-SAT-MON
+      - SUN-ND
+      - WB-MON
+      - WB-EXPAK
+      - ISO-IP
+      - VMTP
+      - SECURE-VMTP
+      - VINES
+      - TTP
+      - NSFNET-IGP
+      - DGP
+      - TCF
+      - EIGRP
+      - OSPFIGP
+      - Sprite-RPC
+      - LARP
+      - MTP
+      - "25"
+      - IPIP
+      - MICP
+      - SCC-SP
+      - ETHERIP
+      - ENCAP
+      - IPProto99
+      - GMTP
+      - IFMP
+      - PNNI
+      - PIM
+      - ARIS
+      - SCPS
+      - QNX
+      - A
+      - "N"
+      - IPComp
+      - SNP
+      - Compaq-Peer
+      - IPX-in-IP
+      - VRRP
+      - PGM
+      - IPProto114
+      - L2TP
+      - DDX
+      - IATP
+      - STP
+      - SRP
+      - UTI
+      - SMP
+      - SM
+      - PTP
+      - ISIS
+      - FIRE
+      - CRTP
+      - CRUDP
+      - SSCOPMCE
+      - IPLT
+      - SPS
+      - PIPE
+      - SCTP
+      - FC
+      - RSVP-E2E-IGNORE
+      - IPProto135
+      - UDPLite
+      - MPLS-in-IP
+      - manet
+      - HIP
+      - Shim6
+      - WESP
+      - ROHC
+      - IPProto143
+      - IPProto144
+      - IPProto145
+      - IPProto146
+      - IPProto147
+      - IPProto148
+      - IPProto149
+      - IPProto150
+      - IPProto151
+      - IPProto152
+      - IPProto153
+      - IPProto154
+      - IPProto155
+      - IPProto156
+      - IPProto157
+      - IPProto158
+      - IPProto159
+      - IPProto160
+      - IPProto161
+      - IPProto162
+      - IPProto163
+      - IPProto164
+      - IPProto165
+      - IPProto166
+      - IPProto167
+      - IPProto168
+      - IPProto169
+      - IPProto170
+      - IPProto171
+      - IPProto172
+      - IPProto173
+      - IPProto174
+      - IPProto175
+      - IPProto176
+      - IPProto177
+      - IPProto178
+      - IPProto179
+      - IPProto180
+      - IPProto181
+      - IPProto182
+      - IPProto183
+      - IPProto184
+      - IPProto185
+      - IPProto186
+      - IPProto187
+      - IPProto188
+      - IPProto189
+      - IPProto190
+      - IPProto191
+      - IPProto192
+      - IPProto193
+      - IPProto194
+      - IPProto195
+      - IPProto196
+      - IPProto197
+      - IPProto198
+      - IPProto199
+      - IPProto200
+      - IPProto201
+      - IPProto202
+      - IPProto203
+      - IPProto204
+      - IPProto205
+      - IPProto206
+      - IPProto207
+      - IPProto208
+      - IPProto209
+      - IPProto210
+      - IPProto211
+      - IPProto212
+      - IPProto213
+      - IPProto214
+      - IPProto215
+      - IPProto216
+      - IPProto217
+      - IPProto218
+      - IPProto219
+      - IPProto220
+      - IPProto221
+      - IPProto222
+      - IPProto223
+      - IPProto224
+      - IPProto225
+      - IPProto226
+      - IPProto227
+      - IPProto228
+      - IPProto229
+      - IPProto230
+      - IPProto231
+      - IPProto232
+      - IPProto233
+      - IPProto234
+      - IPProto235
+      - IPProto236
+      - IPProto237
+      - IPProto238
+      - IPProto239
+      - IPProto240
+      - IPProto241
+      - IPProto242
+      - IPProto243
+      - IPProto244
+      - IPProto245
+      - IPProto246
+      - IPProto247
+      - IPProto248
+      - IPProto249
+      - IPProto250
+      - IPProto251
+      - IPProto252
+      - IPProto253
+      - IPProto254
+      - IPProto255
+    - auto: PREDEFINED
+      description: ICMP type if service_type is ICMP.
+      name: icmp_type
+      predefined:
+      - Echo Reply
+      - Destination Unreachable
+      - Source Quench
+      - Redirect
+      - Alternate Host Address
+      - Echo
+      - Router Advertisement
+      - Router Selection
+      - Time Exceeded
+      - Parameter Problem
+      - Timestamp
+      - Timestamp Reply
+      - Information Request
+      - Information Reply
+      - Address Mask Request
+      - Address Mask Reply
+      - Traceroute
+      - Datagram Conversion Error
+      - Mobile Host Redirect
+      - IPv6 Where-Are-You
+      - IPv6 I-Am-Here
+      - Mobile Registration Request
+      - Mobile Registration Reply
+      - Domain Name Request
+      - Domain Name Reply
+      - SKIP
+      - Photuris
+      - Any Type
+    - auto: PREDEFINED
+      description: ICMP code if service_type is ICMP.
+      name: icmp_code
+      predefined:
+      - "0"
+      - "-1"
+      - "1"
+      - "2"
+      - "3"
+      - "4"
+      - "5"
+      - "6"
+      - "7"
+      - "8"
+      - "9"
+      - "10"
+      - "11"
+      - "12"
+      - "13"
+      - "14"
+      - "15"
+    - auto: PREDEFINED
+      description: ICMPv6 type if service_type is ICMPv6.
+      name: icmp_v6_type
+      predefined:
+      - Destination Unreachable
+      - Packet Too Big
+      - Time Exceeded
+      - Parameter Problem
+      - Private experimentation
+      - Private experimentation
+      - Echo Request
+      - Echo Reply
+      - Multicast Listener Query
+      - Multicast Listener Report
+      - Multicast Listener Done
+      - Router Solicitation
+      - Router Advertisement
+      - Neighbor Solicitation
+      - Neighbor Advertisement
+      - Redirect Message
+      - Router Renumbering
+      - ICMP Node Information Query
+      - ICMP Node Information Response
+      - Inverse Neighbor Discovery Solicitation Message
+      - Inverse Neighbor Discovery Advertisement Message
+      - Version 2 Multicast Listener Report
+      - Home Agent Address Discovery Request Message
+      - Home Agent Address Discovery Reply Message
+      - Mobile Prefix Solicitation
+      - Mobile Prefix Advertisement
+      - Certification Path Solicitation Message
+      - Certification Path Advertisement Message
+      - ICMP messages utilized by experimental mobility protocols such as Seamoby
+      - Multicast Router Advertisement
+      - Multicast Router Solicitation
+      - Multicast Router Termination
+      - FMIPv6 Messages
+      - RPL Control Message
+      - ILNPv6 Locator Update Message
+      - Duplicate Address Request
+      - Duplicate Address Confirmation
+      - Private experimentation
+      - Private experimentation
+      - Any Type
+    - auto: PREDEFINED
+      description: ICMPv6 code if service_type is ICMPv6.
+      name: icmp_v6_code
+      predefined:
+      - "0"
+      - "-1"
+      - "1"
+      - "2"
+      - "3"
+      - "4"
+      - "5"
+      - "6"
+      - "7"
+      - "8"
+      - "9"
+      - "10"
+      - "11"
+      - "12"
+      - "13"
+      - "14"
+      - "15"
+    description: Updates an existing firewall service.
+    name: sophos-firewall-services-update
+    outputs:
+    - contextPath: SophosFirewall.Services.Name
+      description: Name of the firewall service.
+      type: String
+    - contextPath: SophosFirewall.Services.Type
+      description: Type of the firewall service.
+      type: String
+    - contextPath: SophosFirewall.Services.ServiceDetails.ServiceDetail
+      description: Details about the service.
+      type: String
+  - arguments:
+    - description: Name of the service.
+      name: name
+      required: true
+    description: Deletes an existing firewall service.
+    name: sophos-firewall-services-delete
+    outputs:
+    - contextPath: SophosFirewall.Services.Name
+      description: Name of the firewall service.
+      type: String
+    - contextPath: SophosFirewall.Services.IsDeleted
+      description: Whether the firewall service is deleted.
+      type: Bool
+  - arguments:
+    - defaultValue: "0"
+      description: 'The start index for the rules to list, e.g: 5. Default is "0".'
+      name: start
+    - defaultValue: "50"
+      description: 'The end index for the rules to list, e.g: 20. Default is "50".'
+      name: end
+    description: 'Lists all users. IMPORTANT: The list starts at 0 (not 1)!'
+    name: sophos-firewall-user-list
+    outputs:
+    - contextPath: SophosFirewall.User.Name
+      description: Name of the user.
+      type: String
+    - contextPath: SophosFirewall.User.Username
+      description: Username of the user.
+      type: String
+    - contextPath: SophosFirewall.User.Description
+      description: Description of the user.
+      type: String
+    - contextPath: SophosFirewall.User.EmailList.EmailID
+      description: Email of the user.
+      type: String
+    - contextPath: SophosFirewall.User.Group
+      description: Group of the user.
+      type: String
+    - contextPath: SophosFirewall.User.UserType
+      description: User type of the user.
+      type: String
+    - contextPath: SophosFirewall.User.Status
+      description: Status of the user.
+      type: String
+  - arguments:
+    - description: Name of the user.
+      name: name
+      required: true
+    description: Gets a single user by name.
+    name: sophos-firewall-user-get
+    outputs:
+    - contextPath: SophosFirewall.User.Name
+      description: Name of the user.
+      type: String
+    - contextPath: SophosFirewall.User.Username
+      description: Username of the user.
+      type: String
+    - contextPath: SophosFirewall.User.Description
+      description: Description of the user.
+      type: String
+    - contextPath: SophosFirewall.User.EmailList.EmailID
+      description: Email of the user.
+      type: String
+    - contextPath: SophosFirewall.User.Group
+      description: Group of the user.
+      type: String
+    - contextPath: SophosFirewall.User.UserType
+      description: User type of the user.
+      type: String
+    - contextPath: SophosFirewall.User.Status
+      description: Status of the user.
+      type: String
+  - arguments:
+    - description: Username of the user.
+      name: username
+      required: true
+    - description: Name of the user.
+      name: name
+      required: true
+    - description: Description of the user.
+      name: description
+    - description: Email of the user.
+      name: email
+      required: true
+    - defaultValue: Guest Group
+      description: Group of the user. Default is "Guest Group".
+      name: group
+    - description: The password of the user.
+      name: password
+      required: true
+      secret: true
+    - auto: PREDEFINED
+      defaultValue: User
+      description: 'The type of the user. Possible values: "Administrator" and "User".
+        Default is "User".'
+      name: user_type
+      predefined:
+      - Administrator
+      - User
+    - auto: PREDEFINED
+      description: 'Profile of the administrator if user_type is Administrator. Possible
+        values: "Administrator", "Crypto Admin", "Security Admin", "Audit Admin",
+        and "HAProfile". IMPORTANT: You can add more types in the web console.'
+      name: profile
+      predefined:
+      - Administrator
+      - Crypto Admin
+      - Security Admin
+      - Audit Admin
+      - HAProfile
+    - defaultValue: Unlimited Internet Access
+      description: The Surfing Quota policy. Default is "Unlimited Internet Access".
+      name: surfing_quota_policy
+    - defaultValue: Allowed all the time
+      description: The Access Time policy. Default is "Allowed all the time".
+      name: access_time_policy
+    - defaultValue: No Policy Applied
+      description: The SSL VPN policy. Default is "No Policy Applied".
+      name: ssl_vpn_policy
+    - defaultValue: No Policy Applied
+      description: The clientless policy. Default is "No Policy Applied".
+      name: clientless_policy
+    - defaultValue: 100 MB Total Data Transfer policy
+      description: 'The Data Transfer policy. Default is: "100 MB Total Data Transfer
+        policy".'
+      name: data_transfer_policy
+    - auto: PREDEFINED
+      defaultValue: Enable
+      description: 'Whether to enable simultaneous logins global. Possible values:
+        "Enable" and "Disable". Default is "Enable".'
+      name: simultaneous_logins_global
+      predefined:
+      - Enable
+      - Disable
+    - defaultValue: All The Time
+      description: 'The schedule for appliance access. Default is "All The Time".
+        IMPORTANT: This option\ \ is available only for Administrators.'
+      name: schedule_for_appliance_access
+    - defaultValue: High Guarantee User
+      description: The QoS policy. Default is "High Guarantee User".
+      name: qos_policy
+    - auto: PREDEFINED
+      defaultValue: UserGroupNode
+      description: 'The login restriction option. Possible values: "AnyNode" and "UserGroupNode".
+        Default is "UserGroupNode".'
+      name: login_restriction
+      predefined:
+      - AnyNode
+      - UserGroupNode
+    description: Adds a new user.
+    name: sophos-firewall-user-add
+    outputs:
+    - contextPath: SophosFirewall.User.Name
+      description: Name of the user.
+      type: String
+    - contextPath: SophosFirewall.User.Username
+      description: Username of the user.
+      type: String
+    - contextPath: SophosFirewall.User.Description
+      description: Description of the user.
+      type: String
+    - contextPath: SophosFirewall.User.EmailList.EmailID
+      description: Email of the user.
+      type: String
+    - contextPath: SophosFirewall.User.Group
+      description: Group of the user.
+      type: String
+    - contextPath: SophosFirewall.User.UserType
+      description: User type of the user.
+      type: String
+    - contextPath: SophosFirewall.User.Status
+      description: Status of the user.
+      type: String
+  - arguments:
+    - description: Username of the user.
+      name: username
+      required: true
+    - description: Name of the user.
+      name: name
+      required: true
+    - description: Description of the user.
+      name: description
+    - description: Email of the user.
+      name: email
+    - defaultValue: Guest Group
+      description: Group of the user. Default is "Guest Group".
+      name: group
+    - description: The password of the user.
+      name: password
+      secret: true
+    - auto: PREDEFINED
+      defaultValue: User
+      description: 'The type of the user. Possible values: "Administrator" and "User".
+        Default is "User".'
+      name: user_type
+      predefined:
+      - Administrator
+      - User
+    - auto: PREDEFINED
+      description: 'Profile of the administrator if user_type is Administrator. Possible
+        values: "Administrator", "Crypto Admin", "Security Admin", "Audit Admin",
+        and "HAProfile". IMPORTANT: You can add more types in the web console.'
+      name: profile
+      predefined:
+      - Administrator
+      - Crypto Admin
+      - Security Admin
+      - Audit Admin
+      - HAProfile
+    - defaultValue: Unlimited Internet Access
+      description: The Surfing Quota policy. Default is "Unlimited Internet Access".
+      name: surfing_quota_policy
+    - defaultValue: Allowed all the time
+      description: The Access Time policy. Default is "Allowed all the time".
+      name: access_time_policy
+    - defaultValue: No Policy Applied
+      description: The SSL VPN policy. Default is "No Policy Applied".
+      name: ssl_vpn_policy
+    - defaultValue: No Policy Applied
+      description: The clientless policy. Default is "No Policy Applied".
+      name: clientless_policy
+    - defaultValue: 100 MB Total Data Transfer policy
+      description: 'The Data Transfer policy. Default is: "100 MB Total Data Transfer
+        policy".'
+      name: data_transfer_policy
+    - auto: PREDEFINED
+      defaultValue: Enable
+      description: 'Whether to enable simultaneous logins global. Possible values:
+        "Enable" and "Disable". Default is "Enable".'
+      name: simultaneous_logins_global
+      predefined:
+      - Enable
+      - Disable
+    - defaultValue: All The Time
+      description: 'The schedule for appliance access. Default is "All The Time".IMPORTANT:
+        This option\ \ is available only for Administrators.'
+      name: schedule_for_appliance_access
+    - defaultValue: High Guarantee User
+      description: The QoS policy. Default is "High Guarantee User".
+      name: qos_policy
+    - auto: PREDEFINED
+      defaultValue: UserGroupNode
+      description: 'The login restriction option. Possible values: "AnyNode" and "UserGroupNode".
+        Default is "UserGroupNode".'
+      name: login_restriction
+      predefined:
+      - AnyNode
+      - UserGroupNode
+    description: Updates a user.
+    name: sophos-firewall-user-update
+    outputs:
+    - contextPath: SophosFirewall.User.Name
+      description: Name of the user.
+      type: String
+    - contextPath: SophosFirewall.User.Username
+      description: Username of the user.
+      type: String
+    - contextPath: SophosFirewall.User.Description
+      description: Description of the user.
+      type: String
+    - contextPath: SophosFirewall.User.EmailList.EmailID
+      description: Email of the user.
+      type: String
+    - contextPath: SophosFirewall.User.Group
+      description: Group of the user.
+      type: String
+    - contextPath: SophosFirewall.User.UserType
+      description: User type of the user.
+      type: String
+    - contextPath: SophosFirewall.User.Status
+      description: Status of the user.
+      type: String
+  - arguments:
+    - description: Name of the user.
+      name: name
+      required: true
+    description: Deletes an existing user.
+    name: sophos-firewall-user-delete
+    outputs:
+    - contextPath: SophosFirewall.User.Name
+      description: Name of the user.
+      type: String
+    - contextPath: SophosFirewall.User.IsDeleted
+      description: Whether the user is deleted.
+      type: Bool
+  - arguments:
+    - defaultValue: "0"
+      description: 'The start index for the rules to list, e.g: 5. Default is "0".'
+      name: start
+    - defaultValue: "50"
+      description: 'The end index for the rules to list, e.g: 20. Default is "50".'
+      name: end
+    description: 'Lists all app policies. IMPORTANT: The list starst at 0 (not 1)!'
+    name: sophos-firewall-app-policy-list
+    outputs:
+    - contextPath: SophosFirewall.ApplicationFilterPolicy.Name
+      description: Name of the firewall app policy.
+      type: String
+    - contextPath: SophosFirewall.ApplicationFilterPolicy.Description
+      description: Description of the firewall app policy.
+      type: String
+    - contextPath: SophosFirewall.ApplicationFilterPolicy.MicroAppSupport
+      description: Whether the policy support microapps.
+      type: String
+    - contextPath: SophosFirewall.ApplicationFilterPolicy.DefaultAction
+      description: Default action the policy executes.
+      type: String
+    - contextPath: SophosFirewall.ApplicationFilterPolicy.RuleList.Rule
+      description: Details of the rule.
+      type: String
+  - arguments:
+    - description: Name of the policy.
+      name: name
+      required: true
+    description: Gets a single app policy by name.
+    name: sophos-firewall-app-policy-get
+    outputs:
+    - contextPath: SophosFirewall.ApplicationFilterPolicy.Name
+      description: Name of the firewall app policy.
+      type: String
+    - contextPath: SophosFirewall.ApplicationFilterPolicy.Description
+      description: Description of the firewall app policy.
+      type: String
+    - contextPath: SophosFirewall.ApplicationFilterPolicy.MicroAppSupport
+      description: Whether the policy supports microapps.
+      type: String
+    - contextPath: SophosFirewall.ApplicationFilterPolicy.DefaultAction
+      description: Default action the policy executes.
+      type: String
+    - contextPath: SophosFirewall.ApplicationFilterPolicy.RuleList.Rule
+      description: Details of the rule.
+      type: String
+  - arguments:
+    - description: Name of the policy.
+      name: name
+      required: true
+    - description: Description of the policy.
+      name: description
+    - auto: PREDEFINED
+      description: 'Whether microapp support is enabled. Possible values: "true" and
+        "false".'
+      name: micro_app_support
+      predefined:
+      - "true"
+      - "false"
+    - auto: PREDEFINED
+      description: 'Default action for the policy. Possible values: "Allow" and "Deny".'
+      name: default_action
+      predefined:
+      - Allow
+      - Deny
+    - auto: PREDEFINED
+      description: 'Whether to enable the select all rule. Possible values: "Enable"
+        and "Disable".'
+      name: select_all
+      predefined:
+      - Enable
+      - Disable
+    - description: Categories to add to the rule.
+      isArray: true
+      name: categories
+    - description: Risks to add to the rule.
+      isArray: true
+      name: risks
+    - description: Applications to add to the rule.
+      isArray: true
+      name: applications
+    - description: Characteristics to add to the rule.
+      isArray: true
+      name: characteristics
+    - description: Technologies to add to the rule.
+      isArray: true
+      name: technologies
+    - description: Classifications to add to the rule.
+      isArray: true
+      name: classifications
+    - auto: PREDEFINED
+      description: 'Action for the rule. Possible values: "Allow" and "Deny".'
+      name: action
+      predefined:
+      - Allow
+      - Deny
+    - auto: PREDEFINED
+      description: 'The schedule for the rule. Possible values: "All the time", "Work
+        hours (5 Day week)", "Work hours (6 Day week)", "All Time on Weekdays", "All
+        Time on Weekends", "All Time on Sunday", "All Days 10:00 to 19:00". IMPORTANT:
+        Creating a new schedule is available in the web console.'
+      name: schedule
+      predefined:
+      - All the time
+      - Work hours (5 Day week)
+      - Work hours (6 Day week)
+      - All Time on Weekdays
+      - All Time on Weekends
+      - All Time on Sunday
+      - All Days 10:00 to 19:00
+    description: Adds a new app policy.
+    name: sophos-firewall-app-policy-add
+    outputs:
+    - contextPath: SophosFirewall.ApplicationFilterPolicy.Name
+      description: Name of the firewall app policy.
+      type: String
+    - contextPath: SophosFirewall.ApplicationFilterPolicy.Description
+      description: Description of the firewall app policy.
+      type: String
+    - contextPath: SophosFirewall.ApplicationFilterPolicy.MicroAppSupport
+      description: Whether the policy supports microapps.
+      type: String
+    - contextPath: SophosFirewall.ApplicationFilterPolicy.DefaultAction
+      description: Default action the policy executes.
+      type: String
+    - contextPath: SophosFirewall.ApplicationFilterPolicy.RuleList.Rule
+      description: Details of the rule.
+      type: String
+  - arguments:
+    - description: Name of the policy.
+      name: name
+      required: true
+    - description: Description of the policy.
+      name: description
+    - auto: PREDEFINED
+      description: 'Whether microapp support is enabled. Possible values: "true" and
+        "false".'
+      name: micro_app_support
+      predefined:
+      - "true"
+      - "false"
+    - auto: PREDEFINED
+      description: 'Default action for the policy. Possible values: "Allow" and "Deny".'
+      name: default_action
+      predefined:
+      - Allow
+      - Deny
+    - auto: PREDEFINED
+      description: 'Whether to enable the select all rule. Possible values: "Enable"
+        and "Disable".'
+      name: select_all
+      predefined:
+      - Enable
+      - Disable
+    - description: Categories to add to the rule.
+      isArray: true
+      name: categories
+    - description: Risks to add to the rule.
+      isArray: true
+      name: risks
+    - description: Applications to add to the rule.
+      isArray: true
+      name: applications
+    - description: Characteristics to add to the rule.
+      isArray: true
+      name: characteristics
+    - description: Technologies to add to the rule.
+      isArray: true
+      name: technologies
+    - description: Classifications to add to the rule.
+      isArray: true
+      name: classifications
+    - auto: PREDEFINED
+      description: 'Action for the rule. Possible values: "Allow" and "Deny".'
+      name: action
+      predefined:
+      - Allow
+      - Deny
+    - auto: PREDEFINED
+      description: 'The schedule for the rule. Possible values: "All the time", "Work
+        hours (5 Day week)", "Work hours (6 Day week)", "All Time on Weekdays", "All
+        Time on Weekends", "All Time on Sunday", "All Days 10:00 to 19:00". IMPORTANT:
+        Creating a new schedule is available in the web console.'
+      name: schedule
+      predefined:
+      - All the time
+      - Work hours (5 Day week)
+      - Work hours (6 Day week)
+      - All Time on Weekdays
+      - All Time on Weekends
+      - All Time on Sunday
+      - All Days 10:00 to 19:00
+    description: Updates an existing app policy.
+    name: sophos-firewall-app-policy-update
+    outputs:
+    - contextPath: SophosFirewall.ApplicationFilterPolicy.Name
+      description: Name of the firewall app policy.
+      type: String
+    - contextPath: SophosFirewall.ApplicationFilterPolicy.Description
+      description: Description of the firewall app policy.
+      type: String
+    - contextPath: SophosFirewall.ApplicationFilterPolicy.MicroAppSupport
+      description: Whether the policy supports microapps.
+      type: String
+    - contextPath: SophosFirewall.ApplicationFilterPolicy.DefaultAction
+      description: Default action the policy executes.
+      type: String
+    - contextPath: SophosFirewall.ApplicationFilterPolicy.RuleList.Rule
+      description: Details of the rule.
+      type: String
+  - arguments:
+    - description: Name of the policy.
+      name: name
+      required: true
+    description: Deletes an existing app policy.
+    name: sophos-firewall-app-policy-delete
+    outputs:
+    - contextPath: SophosFirewall.ApplicationFilterPolicy.Name
+      description: Name of the firewall app policy.
+      type: String
+    - contextPath: SophosFirewall.ApplicationFilterPolicy.IsDeleted
+      description: Whether the firewall app policy is deleted.
+      type: Bool
+  - arguments:
+    - defaultValue: "0"
+      description: 'The start index for the rules to list, e.g: 5. Default is "0".'
+      name: start
+    - defaultValue: "50"
+      description: 'The end index for the rules to list, e.g: 20. Default is "50".'
+      name: end
+    description: 'Lists all app filter categories. IMPORTANT: The list starts at 0
+      (not 1)!'
+    name: sophos-firewall-app-category-list
+    outputs:
+    - contextPath: SophosFirewall.ApplicationFilterCategory.Name
+      description: Name of the app category.
+      type: String
+    - contextPath: SophosFirewall.ApplicationFilterCategory.Description
+      description: Description of the app category.
+      type: String
+    - contextPath: SophosFirewall.ApplicationFilterCategory.QoSPolicy
+      description: QoS policy of the category.
+      type: String
+    - contextPath: SophosFirewall.ApplicationFilterCategory.BandwidthUsageType
+      description: Bandwidth usage type of the category.
+      type: String
+  - arguments:
+    - description: Name of the app category.
+      name: name
+      required: true
+    description: Gets a single app filter category by name.
+    name: sophos-firewall-app-category-get
+    outputs:
+    - contextPath: SophosFirewall.ApplicationFilterCategory.Name
+      description: Name of the app category.
+      type: String
+    - contextPath: SophosFirewall.ApplicationFilterCategory.Description
+      description: Description of the app category.
+      type: String
+    - contextPath: SophosFirewall.ApplicationFilterCategory.QoSPolicy
+      description: QoS policy of the category.
+      type: String
+    - contextPath: SophosFirewall.ApplicationFilterCategory.BandwidthUsageType
+      description: Bandwidth usage type of the category.
+      type: String
+  - arguments:
+    - description: Name of the app category.
+      name: name
+      required: true
+    - description: The description of the category.
+      name: description
+    - description: QoS policy of the category.
+      name: qos_policy
+    description: Updates an existing app filter category.
+    name: sophos-firewall-app-category-update
+    outputs:
+    - contextPath: SophosFirewall.ApplicationFilterCategory.Name
+      description: Name of the app category.
+      type: String
+    - contextPath: SophosFirewall.ApplicationFilterCategory.Description
+      description: Description of the app category.
+      type: String
+    - contextPath: SophosFirewall.ApplicationFilterCategory.QoSPolicy
+      description: QoS policy of the category.
+      type: String
+    - contextPath: SophosFirewall.ApplicationFilterCategory.BandwidthUsageType
+      description: Bandwidth usage type of the category.
+      type: String
+  - arguments:
+    - defaultValue: "0"
+      description: 'The start index for the rules to list, e.g: 5. Default is "0".'
+      name: start
+    - defaultValue: "50"
+      description: 'The end index for the rules to list, e.g: 20. Default is "50".'
+      name: end
+    description: 'Lists all web filter policies. IMPORTANT: The list starts at 0 (not
+      1)!'
+    name: sophos-firewall-web-filter-list
+    outputs:
+    - contextPath: SophosFirewall.WebFilterPolicy.Name
+      description: Name of the policy.
+      type: String
+    - contextPath: SophosFirewall.WebFilterPolicy.DefaultAction
+      description: Default action for the web filter policy.
+      type: String
+    - contextPath: SophosFirewall.WebFilterPolicy.Description
+      description: Description of the rule.
+      type: String
+    - contextPath: SophosFirewall.WebFilterPolicy.EnableReporting
+      description: Whether the policy reports events.
+      type: String
+    - contextPath: SophosFirewall.WebFilterPolicy.DownloadFileSizeRestriction
+      description: Maximum file size that can be downloaded.
+      type: Number
+    - contextPath: SophosFirewall.WebFilterPolicy.DownloadFileSizeRestrictionEnabled
+      description: Whether the file size restriction is active.
+      type: String
+    - contextPath: SophosFirewall.WebFilterPolicy.RuleList.Rule
+      description: Rule list information.
+      type: String
+  - arguments:
+    - description: Name of the policy.
+      name: name
+      required: true
+    description: Gets a single web filter policy by name.
+    name: sophos-firewall-web-filter-get
+    outputs:
+    - contextPath: SophosFirewall.WebFilterPolicy.Name
+      description: Name of the policy.
+      type: String
+    - contextPath: SophosFirewall.WebFilterPolicy.DefaultAction
+      description: Default action for the web filter policy.
+      type: String
+    - contextPath: SophosFirewall.WebFilterPolicy.Description
+      description: Description of the rule.
+      type: String
+    - contextPath: SophosFirewall.WebFilterPolicy.EnableReporting
+      description: Whether the policy reports events.
+      type: String
+    - contextPath: SophosFirewall.WebFilterPolicy.DownloadFileSizeRestriction
+      description: Maximum file size that can be downloaded.
+      type: Number
+    - contextPath: SophosFirewall.WebFilterPolicy.DownloadFileSizeRestrictionEnabled
+      description: Whether the file size restriction is active.
+      type: String
+    - contextPath: SophosFirewall.WebFilterPolicy.RuleList.Rule
+      description: Rule list information.
+      type: String
+  - arguments:
+    - description: Name of the policy
+      name: name
+      required: true
+    - description: Description of the policy.
+      name: description
+    - auto: PREDEFINED
+      description: 'Default action for the policy. Possible values: "Allow" and "Deny".'
+      name: default_action
+      predefined:
+      - Allow
+      - Deny
+      required: true
+    - auto: PREDEFINED
+      description: 'Whether the max download file size is enabled. Possible values:
+        "0" and "1".'
+      name: download_file_size_restriction_enabled
+      predefined:
+      - "0"
+      - "1"
+    - description: Maximum file size to enable downloading in MB.
+      name: download_file_size_restriction
+    - auto: PREDEFINED
+      description: 'Enable to specify domains allowed to access the Google service.
+        Possible values: "0" and "1".'
+      name: goog_app_domain_list_enabled
+      predefined:
+      - "0"
+      - "1"
+    - description: The domains allowed to access the Google service.
+      name: goog_app_domain_list
+    - auto: PREDEFINED
+      description: 'Whether to enable YouTube Restricted Mode to restrict the content
+        that is accessible. Possible values: "0" and "1".'
+      name: youtube_filter_enabled
+      predefined:
+      - "0"
+      - "1"
+    - auto: PREDEFINED
+      description: 'Whether to adjust the policy used for YouTube Restricted Mode.
+        Possible values: "0" and "1".'
+      name: youtube_filter_is_strict
+      predefined:
+      - "0"
+      - "1"
+    - auto: PREDEFINED
+      description: 'Enable to block websites containing pornography and explicit sexual
+        content from appearing in the search results of Google, Yahoo, and Bing search
+        results. Possible values: "0" and "1".'
+      name: enforce_safe_search
+      predefined:
+      - "0"
+      - "1"
+    - auto: PREDEFINED
+      description: 'Whether to further limit inappropriate content by enforcing search
+        engine filters for Creative Commons licensed images. Possible values: "0"
+        and "1".'
+      name: enforce_image_licensing
+      predefined:
+      - "0"
+      - "1"
+    - description: Comma-separted list of URL groups to block, allow, warn, or log.
+      name: url_group_names
+    - auto: PREDEFINED
+      description: 'The HTTP action. Possible values: "Deny", "Allow", "Warn", and
+        "Log".'
+      name: http_action
+      predefined:
+      - Deny
+      - Allow
+      - Warn
+      - Log
+    - auto: PREDEFINED
+      description: 'The HTTPs action. Possible values: "Deny", "Allow", "Warn", and
+        "Log".'
+      name: https_action
+      predefined:
+      - Deny
+      - Allow
+      - Warn
+      - Log
+    - auto: PREDEFINED
+      description: 'The schedule for the rule. Possible values: "All the time", "Work
+        hours (5 Day week)", "Work hours (6 Day week)", "All Time on Weekdays", "All
+        Time on Weekends", "All Time on Sunday", "All Days 10:00 to 19:00". IMPORTANT:
+        Creating a new schedule is available in the web console.'
+      name: schedule
+      predefined:
+      - All the time
+      - Work hours (5 Day week)
+      - Work hours (6 Day week)
+      - All Time on Weekdays
+      - All Time on Weekends
+      - All Time on Sunday
+      - All Days 10:00 to 19:00
+    - auto: PREDEFINED
+      description: 'Whether to enable the policy rule. Possible values: "1" and "0".'
+      name: policy_rule_enabled
+      predefined:
+      - "1"
+      - "0"
+    - description: A comma-separated list of users who this rule will apply to.
+      name: user_names
+    - description: A comma-separated list of CCL names. This argument is required
+        When ccl_rule_enabled is ON.
+      name: ccl_names
+    - auto: PREDEFINED
+      description: 'Whether to enable the CCL rule. Possible values: "0" and "1".
+        If enabled, ccl_name is required.'
+      name: ccl_rule_enabled
+      predefined:
+      - "1"
+      - "0"
+    - auto: PREDEFINED
+      description: 'Whether to enable the HTTP action. Possible values: "0" and "1".'
+      name: follow_http_action
+      predefined:
+      - "1"
+      - "0"
+    - auto: PREDEFINED
+      defaultValue: Enable
+      description: 'Whether to enable reporting of the policy. Possible values: "Enable"
+        and "Disable". Default is "Enable".'
+      name: enable_reporting
+      predefined:
+      - Enable
+      - Disable
+    description: Adds a new web filter policy.
+    name: sophos-firewall-web-filter-add
+    outputs:
+    - contextPath: SophosFirewall.WebFilterPolicy.Name
+      description: Name of the policy.
+      type: String
+    - contextPath: SophosFirewall.WebFilterPolicy.DefaultAction
+      description: Default action for the web filter policy.
+      type: String
+    - contextPath: SophosFirewall.WebFilterPolicy.Description
+      description: Description of the rule.
+      type: String
+    - contextPath: SophosFirewall.WebFilterPolicy.EnableReporting
+      description: Whether the policy reports events.
+      type: String
+    - contextPath: SophosFirewall.WebFilterPolicy.DownloadFileSizeRestriction
+      description: Maximum file size that can be downloaded.
+      type: Number
+    - contextPath: SophosFirewall.WebFilterPolicy.DownloadFileSizeRestrictionEnabled
+      description: Whether the file size restriction is active.
+      type: String
+    - contextPath: SophosFirewall.WebFilterPolicy.RuleList.Rule
+      description: Rule list information.
+      type: String
+  - arguments:
+    - description: Name of the policy.
+      name: name
+      required: true
+    - description: Description of the policy.
+      name: description
+    - auto: PREDEFINED
+      description: 'Default action for the policy. Possible values: "Allow" and "Deny".'
+      name: default_action
+      predefined:
+      - Allow
+      - Deny
+      required: true
+    - auto: PREDEFINED
+      description: 'Whether the maximum download file size is enabled. Possible values:
+        "0" and "1".'
+      name: download_file_size_restriction_enabled
+      predefined:
+      - "0"
+      - "1"
+    - description: The maximum file size to enable downloading in MB.
+      name: download_file_size_restriction
+    - auto: PREDEFINED
+      description: 'Whether to enable specifying domains allowed to access the Google
+        service. Possible values: "0" and "1".'
+      name: goog_app_domain_list_enabled
+      predefined:
+      - "0"
+      - "1"
+    - description: Comma-separated list of domains allowed to access the Google service.
+      name: goog_app_domain_list
+    - auto: PREDEFINED
+      description: 'Whether to enable YouTube Restricted Mode to restrict the content
+        that is accessible. Possible values: "0" and "1".'
+      name: youtube_filter_enabled
+      predefined:
+      - "0"
+      - "1"
+    - auto: PREDEFINED
+      description: 'Whether to adjust the policy used for YouTube Restricted Mode.
+        Possible values: "0" and "1".'
+      name: youtube_filter_is_strict
+      predefined:
+      - "0"
+      - "1"
+    - auto: PREDEFINED
+      description: 'Whether to enable blocking websites containing pornography and
+        explicit sexual content from appearing in the search results of Google, Yahoo,
+        and Bing search results. Possible values: "0" and "1".'
+      name: enforce_safe_search
+      predefined:
+      - "0"
+      - "1"
+    - auto: PREDEFINED
+      description: 'Whether to further limit inappropriate content by enforcing search
+        engine filters for Creative Commons licensed images. Possible values: "0"
+        and "1".'
+      name: enforce_image_licensing
+      predefined:
+      - "0"
+      - "1"
+    - description: Comma-separated list of URL groups to block, allow, warn, or log.
+      name: url_group_names
+    - auto: PREDEFINED
+      description: 'The HTTP action. Possible values: "Deny", "Allow", "Warn", and
+        "Log".'
+      name: http_action
+      predefined:
+      - Deny
+      - Allow
+      - Warn
+      - Log
+    - auto: PREDEFINED
+      description: 'The HTTPs action. Possible values: "Deny", "Allow", "Warn", and
+        "Log".'
+      name: https_action
+      predefined:
+      - Deny
+      - Allow
+      - Warn
+      - Log
+    - auto: PREDEFINED
+      description: 'The schedule for the rule. Possible values: "All the time", "Work
+        hours (5 Day week)", "Work hours (6 Day week)", "All Time on Weekdays", "All
+        Time on Weekends", "All Time on Sunday", "All Days 10:00 to 19:00". IMPORTANT:
+        Creating a new schedule is available in the web console.'
+      name: schedule
+      predefined:
+      - All the time
+      - Work hours (5 Day week)
+      - Work hours (6 Day week)
+      - All Time on Weekdays
+      - All Time on Weekends
+      - All Time on Sunday
+      - All Days 10:00 to 19:00
+    - auto: PREDEFINED
+      description: 'Whether to enable the policy rule. Possible values: "1" and "0".'
+      name: policy_rule_enabled
+      predefined:
+      - "1"
+      - "0"
+    - description: A comma-separated list of users who this rule will apply to.
+      name: user_names
+    - description: 'A comma-separated list of CCL names. REQUIRED: when ccl_rule_enabled
+        is ON'
+      name: ccl_names
+    - auto: PREDEFINED
+      description: 'Whether to enable the CCL rule. Possible values: "0" and "1".
+        IMPORTANT: If enabled, ccl_name is required.'
+      name: ccl_rule_enabled
+      predefined:
+      - "1"
+      - "0"
+    - auto: PREDEFINED
+      description: 'Whether to enable the HTTP action. Possible values: "0" and "1".'
+      name: follow_http_action
+      predefined:
+      - "1"
+      - "0"
+    - auto: PREDEFINED
+      defaultValue: Enable
+      description: 'Whether to enable reporting of the policy. Possible values: "Enable"
+        and "Disable". Default is "Enable".'
+      name: enable_reporting
+      predefined:
+      - Enable
+      - Disable
+    description: Updates an existing web filter policy.
+    name: sophos-firewall-web-filter-update
+    outputs:
+    - contextPath: SophosFirewall.WebFilterPolicy.Name
+      description: Name of the policy.
+      type: String
+    - contextPath: SophosFirewall.WebFilterPolicy.DefaultAction
+      description: Default action for the web filter policy.
+      type: String
+    - contextPath: SophosFirewall.WebFilterPolicy.Description
+      description: Description of the rule.
+      type: String
+    - contextPath: SophosFirewall.WebFilterPolicy.EnableReporting
+      description: Whether the policy reports events.
+      type: String
+    - contextPath: SophosFirewall.WebFilterPolicy.DownloadFileSizeRestriction
+      description: Maximum file size that can be downloaded.
+      type: Number
+    - contextPath: SophosFirewall.WebFilterPolicy.DownloadFileSizeRestrictionEnabled
+      description: Whether the file size restriction is active.
+      type: String
+    - contextPath: SophosFirewall.WebFilterPolicy.RuleList.Rule
+      description: Rule list information.
+      type: String
+  - arguments:
+    - description: Name of the policy.
+      name: name
+      required: true
+    description: Deletes an existing web filter policy.
+    name: sophos-firewall-web-filter-delete
+    outputs:
+    - contextPath: SophosFirewall.WebFilterPolicy.Name
+      description: Name of the policy.
+      type: String
+    - contextPath: SophosFirewall.WebFilterPolicy.IsDeleted
+      description: Whether the policy is deleted.
+      type: Bool
+  dockerimage: demisto/python3:3.10.5.31928
+  runonce: false
+  script: |
+    register_module_line('sophos_firewall', 'start', __line__())
+
+
+
+
+    import urllib3
+    from typing import Callable
+
+    # Disable insecure warnings
+    urllib3.disable_warnings()
+
+    DATE_FORMAT = '%Y-%m-%dT%H:%M:%SZ'
+    API_VERSION = '1702.1'
+
+    RULE = {
+        'endpoint_tag': 'SecurityPolicy',
+        'table_headers': ['Name', 'Description', 'Status', 'PolicyType', 'IPFamily', 'AttachIdentity',
+                          'Action', 'LogTraffic']
+    }
+
+    RULE_GROUP = {
+        'endpoint_tag': 'SecurityPolicyGroup',
+        'table_headers': ['Name', 'Description', 'SecurityPolicyList', 'SourceZones',
+                          'DestinationZones', 'PolicyType']
+    }
+
+    URL_GROUP = {
+        'endpoint_tag': 'WebFilterURLGroup',
+        'table_headers': ['Name', 'Description', 'URLlist']
+    }
+
+    IP_HOST = {
+        'endpoint_tag': 'IPHost',
+        'table_headers': ['Name', 'IPFamily', 'HostType']
+    }
+
+    IP_HOST_GROUP = {
+        'endpoint_tag': 'IPHostGroup',
+        'table_headers': ['Name', 'Description', 'IPFamily', 'HostList']
+    }
+
+    SERVICE = {
+        'endpoint_tag': 'Services',
+        'table_headers': ['Name', 'Type', 'ServiceDetails']
+    }
+
+    APP_POLICY = {
+        'endpoint_tag': 'ApplicationFilterPolicy',
+        'table_headers': ['Name', 'Description', 'MicroAppSupport', 'DefaultAction', 'RuleList']
+    }
+
+    APP_CATEGORY = {
+        'endpoint_tag': 'ApplicationFilterCategory',
+        'table_headers': ['Name', 'Description', 'QoSPolicy', 'ApplicationSettings',
+                          'BandwidthUsageType']
+    }
+
+    WEB_FILTER = {
+        'endpoint_tag': 'WebFilterPolicy',
+        'table_headers': ['Name', 'Description', 'DefaultAction', 'EnableReporting',
+                          'DownloadFileSizeRestrictionEnabled', 'DownloadFileSizeRestriction',
+                          'RuleList']
+    }
+
+    USER = {
+        'endpoint_tag': 'User',
+        'table_headers': ['Username', 'Name', 'Description', 'EmailList', 'Group', 'UserType', 'Status']
+    }
+
+
+    class Client(BaseClient):
+        """Sophos XG Firewall Client"""
+
+        def __init__(self, base_url: str, auth: tuple, verify: bool, proxy: bool):
+            super().__init__(base_url=base_url, auth=auth, verify=verify, proxy=proxy)
+
+        def request(self, data: tuple, request_method: str, xml_method: str,
+                    operation: str = None) -> requests.Response:
+            response = self._http_request(method=request_method,
+                                          url_suffix='/webconsole/APIController',
+                                          params=self.request_builder(self._auth, xml_method, data,
+                                                                      operation),  # type: ignore
+                                          resp_type='Response')
+            return response
+
+        def get_request(self, data: tuple) -> requests.Response:
+            return self.request(data, 'GET', 'get')
+
+        def set_request(self, data: tuple, operation: str) -> requests.Response:
+            return self.request(data, 'POST', 'set', operation)
+
+        def delete_request(self, data: tuple) -> requests.Response:
+            return self.request(data, 'POST', 'remove')
+
+        def get_item_by_name(self, endpoint_tag: str, name: str) -> requests.Response:
+            data = (endpoint_tag, self.request_one_item_builder(name))
+            return self.request(data, 'GET', 'get')
+
+        def validate(self, data: tuple = (None, None)) -> requests.Response:
+            return self.request(data, 'GET', 'get')
+
+        @staticmethod
+        def request_builder(auth: tuple, method: str, data: tuple, operation: str) -> dict:
+            """The builder of the basic xml request
+
+            Args:
+                auth (tuple): authentication tuple -> (username, password)
+                method (str): Get/Set/Remove
+                data (tuple): request body
+                operation (str): operation for Get method -> add/update
+
+            Returns:
+                dict: returned built dictionary
+            """
+            request_data = {
+                'Request': {
+                    '@APIVersion': API_VERSION,
+                    'Login': {
+                        'Username': auth[0],
+                        'Password': auth[1]
+                    },
+                    f'{method.title()}': {
+                        '@operation': operation if operation else '',
+                        data[0]: data[1]
+                    }
+                }
+            }
+            return {'reqxml': json2xml(json.dumps(request_data))}
+
+        @staticmethod
+        def request_one_item_builder(name: str) -> dict:
+            """Build a single filter request
+
+            Args:
+                name (str): The name of the object to find with the filter
+
+            Returns:
+                dict: returned built dictionary
+            """
+            request_data = {
+                'Filter': {
+                    'key': {
+                        '@name': 'Name',
+                        '@criteria': '=',
+                        '#text': name
+                    }
+                }
+            }
+            return request_data
+
+
+    def sophos_firewall_rule_list_command(client: Client, start: int, end: int) -> CommandResults:
+        """List all the firewall rules.
+        Limited by start and end
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            start (int): low limit of returned objects, starts with 0
+            end (int): high limit of returned objects
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_list(client, start, end, **RULE)  # type: ignore
+
+
+    def sophos_firewall_rule_get_command(client: Client, name: str) -> CommandResults:
+        """Retrieve firewall rule by name.
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            name (str): Name of the rule to get
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_get(client, name, **RULE)  # type: ignore
+
+
+    def sophos_firewall_rule_add_command(client: Client, params: dict) -> CommandResults:
+        """Add firewall rule
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            params (dict): Params for the creation of the firewall rule
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_save_and_get(client, RULE['endpoint_tag'],  # type: ignore
+                                    params, rule_builder, RULE['table_headers'])  # type: ignore
+
+
+    def sophos_firewall_rule_update_command(client: Client, params: dict) -> CommandResults:
+        """Update an existing firewall rule
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            params (dict): Params for updating the firewall rule
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_save_and_get(client, RULE['endpoint_tag'], params, rule_builder,  # type: ignore
+                                    RULE['table_headers'], True)  # type: ignore
+
+
+    def sophos_firewall_rule_delete_command(client: Client, name: str) -> CommandResults:
+        """Delete firewall rule
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            name (str): Name of the rule to delete
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_delete(client, name, RULE['endpoint_tag'])  # type: ignore
+
+
+    def sophos_firewall_rule_group_list_command(client: Client, start: int, end: int) -> CommandResults:
+        """List firewall rule groups with limitation
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            start (int): low limit of returned objects, starts with 0
+            end (int): high limit of returned objects
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_list(client, start, end, **RULE_GROUP)  # type: ignore
+
+
+    def sophos_firewall_rule_group_get_command(client: Client, name: str) -> CommandResults:
+        """Retrieve firewall rule group by name
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            name (str): Name of the rule group to get_request
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_get(client, name, **RULE_GROUP)  # type: ignore
+
+
+    def sophos_firewall_rule_group_add_command(client: Client, params: dict) -> CommandResults:
+        """Add rule group
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            params (dict): params for the creation of the rule group
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_save_and_get(client, RULE_GROUP['endpoint_tag'], params, rule_group_builder,  # type: ignore
+                                    RULE_GROUP['table_headers'])  # type: ignore
+
+
+    def sophos_firewall_rule_group_update_command(client: Client, params: dict) -> CommandResults:
+        """Update firewall rule
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            params (dict): Params for updating the rule group
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_save_and_get(client, RULE_GROUP['endpoint_tag'], params, rule_group_builder,  # type: ignore
+                                    RULE_GROUP['table_headers'], True)  # type: ignore
+
+
+    def sophos_firewall_rule_group_delete_command(client: Client, name: str) -> CommandResults:
+        """Delete a rule group by name
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            name (str): Name of the rule group to delete
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_delete(client, name, RULE_GROUP['endpoint_tag'])  # type: ignore
+
+
+    def sophos_firewall_url_group_list_command(client: Client, start: int, end: int) -> CommandResults:
+        """List a URL group with limitations
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            start (int): low limit of returned objects, starts with 0
+            end (int): high limit of returned objects
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_list(client, start, end, **URL_GROUP)  # type: ignore
+
+
+    def sophos_firewall_url_group_get_command(client: Client, name: str) -> CommandResults:
+        """Retrieve URL group by name
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            name (str): Name of the URL group to get
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_get(client, name, **URL_GROUP)  # type: ignore
+
+
+    def sophos_firewall_url_group_add_command(client: Client, params: dict) -> CommandResults:
+        """Add URL group
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            params (dict): params for the creation of the URL group
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_save_and_get(client, URL_GROUP['endpoint_tag'], params, url_group_builder,  # type: ignore
+                                    URL_GROUP['table_headers'])  # type: ignore
+
+
+    def sophos_firewall_url_group_update_command(client: Client, params: dict) -> CommandResults:
+        """Update a URL group
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            params (dict): params for the update
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_save_and_get(client, URL_GROUP['endpoint_tag'], params, url_group_builder,  # type: ignore
+                                    URL_GROUP['table_headers'], True)  # type: ignore
+
+
+    def sophos_firewall_url_group_delete_command(client: Client, name: str) -> CommandResults:
+        """Delete a URL group by name
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            name (str): Name of the rule to delete
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_delete(client, name, URL_GROUP['endpoint_tag'])  # type: ignore
+
+
+    def sophos_firewall_ip_host_list_command(client: Client, start: int, end: int) -> CommandResults:
+        """List IP host objects
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            start (int): low limit of returned objects, starts with 0
+            end (int): high limit of returned objects
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_list(client, start, end, **IP_HOST)  # type: ignore
+
+
+    def sophos_firewall_ip_host_get_command(client: Client, name: str) -> CommandResults:
+        """Retrieve IP host by name
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            name (str): Name of the IP host to get
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_get(client, name, **IP_HOST)  # type: ignore
+
+
+    def sophos_firewall_ip_host_add_command(client: Client, params: dict) -> CommandResults:
+        """Add IP host
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            params (dict): params for the creation of the IP host
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_save_and_get(client, IP_HOST['endpoint_tag'], params, ip_host_builder,  # type: ignore
+                                    IP_HOST['table_headers'])  # type: ignore
+
+
+    def sophos_firewall_ip_host_update_command(client: Client, params: dict) -> CommandResults:
+        """Update IP host
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            params (dict): params for the updating of the IP host
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_save_and_get(client, IP_HOST['endpoint_tag'], params, ip_host_builder,  # type: ignore
+                                    IP_HOST['table_headers'], True)  # type: ignore
+
+
+    def sophos_firewall_ip_host_delete_command(client: Client, name: str) -> CommandResults:
+        """Delete IP host by name
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            name (str): Name of the object to delete
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_delete(client, name, IP_HOST['endpoint_tag'])  # type: ignore
+
+
+    def sophos_firewall_ip_host_group_list_command(client: Client, start: int,
+                                                   end: int) -> CommandResults:
+        """List IP host group objects
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            start (int): low limit of returned objects, starts with 0
+            end (int): high limit of returned objects
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_list(client, start, end, **IP_HOST_GROUP)  # type: ignore
+
+
+    def sophos_firewall_ip_host_group_get_command(client: Client, name: str) -> CommandResults:
+        """Retrieve an IP host group object by name
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            name (str): Name of the object to get
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_get(client, name, **IP_HOST_GROUP)  # type: ignore
+
+
+    def sophos_firewall_ip_host_group_add_command(client: Client, params: dict) -> CommandResults:
+        """Add IP host group
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            params (dict): params to create the object with
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_save_and_get(client, IP_HOST_GROUP['endpoint_tag'], params, ip_host_group_builder,  # type: ignore
+                                    IP_HOST_GROUP['table_headers'])  # type: ignore
+
+
+    def sophos_firewall_ip_host_group_update_command(client: Client, params: dict) -> CommandResults:
+        """Update an existing IP host group object
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            params (dict): params to update the object with
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_save_and_get(client, IP_HOST_GROUP['endpoint_tag'], params, ip_host_group_builder,  # type: ignore
+                                    IP_HOST_GROUP['table_headers'], True)  # type: ignore
+
+
+    def sophos_firewall_ip_host_group_delete_command(client: Client, name: str) -> CommandResults:
+        """Delete object by name
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            name (str): Name of the object to delete
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_delete(client, name, IP_HOST_GROUP['endpoint_tag'])  # type: ignore
+
+
+    def sophos_firewall_services_list_command(client: Client, start: int, end: int) -> CommandResults:
+        """List services
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            start (int): low limit of returned objects, starts with 0
+            end (int): high limit of returned objects
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_list(client, start, end, **SERVICE)  # type: ignore
+
+
+    def sophos_firewall_services_get_command(client: Client, name: str) -> CommandResults:
+        """Retrieve an service object by name
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            name (str): Name of the object to get
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_get(client, name, **SERVICE)  # type: ignore
+
+
+    def sophos_firewall_services_add_command(client: Client, params: dict) -> CommandResults:
+        """Add service object
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            params (dict): params to create the object with
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_save_and_get(client, SERVICE['endpoint_tag'], params, service_builder,  # type: ignore
+                                    SERVICE['table_headers'])  # type: ignore
+
+
+    def sophos_firewall_services_update_command(client: Client, params: dict) -> CommandResults:
+        """Update an existing object
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            params (dict): params to update the object with
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_save_and_get(client, SERVICE['endpoint_tag'], params, service_builder,  # type: ignore
+                                    SERVICE['table_headers'], True)  # type: ignore
+
+
+    def sophos_firewall_services_delete_command(client: Client, name: str) -> CommandResults:
+        """Delete object by name
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            name (str): Name of the object to delete
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_delete(client, name, SERVICE['endpoint_tag'])  # type: ignore
+
+
+    def sophos_firewall_app_policy_list_command(client: Client, start: int, end: int) -> CommandResults:
+        """List app policy objects
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            start (int): low limit of returned objects, starts with 0
+            end (int): high limit of returned objects
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_list(client, start, end, **APP_POLICY)  # type: ignore
+
+
+    def sophos_firewall_app_policy_get_command(client: Client, name: str) -> CommandResults:
+        """Retrieve an app policy object by name
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            name (str): Name of the object to get
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_get(client, name, **APP_POLICY)  # type: ignore
+
+
+    def sophos_firewall_app_policy_add_command(client: Client, params: dict) -> CommandResults:
+        """Add app policy object
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            params (dict): params to create the object with
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_save_and_get(client, APP_POLICY['endpoint_tag'], params, app_policy_builder,  # type: ignore
+                                    APP_POLICY['table_headers'])  # type: ignore
+
+
+    def sophos_firewall_app_policy_update_command(client: Client, params: dict) -> CommandResults:
+        """Update an existing object
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            params (dict): params to update the object with
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_save_and_get(client, APP_POLICY['endpoint_tag'], params, app_policy_builder,  # type: ignore
+                                    APP_POLICY['table_headers'], True)  # type: ignore
+
+
+    def sophos_firewall_app_policy_delete_command(client: Client, name: str) -> CommandResults:
+        """Delete object by name
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            name (str): Name of the object to delete
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_delete(client, name, APP_POLICY['endpoint_tag'])  # type: ignore
+
+
+    def sophos_firewall_app_category_list_command(client: Client, start: int,
+                                                  end: int) -> CommandResults:
+        """List app category objects
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            start (int): low limit of returned objects, starts with 0
+            end (int): high limit of returned objects
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_list(client, start, end, **APP_CATEGORY)  # type: ignore
+
+
+    def sophos_firewall_app_category_get_command(client: Client, name: str) -> CommandResults:
+        """Retrieve an app category object by name
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            name (str): Name of the object to get
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_get(client, name, **APP_CATEGORY)  # type: ignore
+
+
+    def sophos_firewall_app_category_update_command(client: Client, params: dict) -> CommandResults:
+        """Update an existing object
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            params (dict): params to update the object with
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_save_and_get(client, APP_CATEGORY['endpoint_tag'], params, app_category_builder,  # type: ignore
+                                    APP_CATEGORY['table_headers'])  # type: ignore
+
+
+    def sophos_firewall_web_filter_list_command(client: Client, start: int, end: int) -> CommandResults:
+        """List web filter objects
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            start (int): low limit of returned objects, starts with 0
+            end (int): high limit of returned objects
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_list(client, start, end, **WEB_FILTER)  # type: ignore
+
+
+    def sophos_firewall_web_filter_get_command(client: Client, name: str) -> CommandResults:
+        """Retrieve an web filter object by name
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            name (str): Name of the object to get
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_get(client, name, **WEB_FILTER)  # type: ignore
+
+
+    def sophos_firewall_web_filter_add_command(client: Client, params: dict) -> CommandResults:
+        """Add web filter object
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            params (dict): params to create the object with
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_save_and_get(client, WEB_FILTER['endpoint_tag'], params, web_filter_builder,  # type: ignore
+                                    WEB_FILTER['table_headers'])  # type: ignore
+
+
+    def sophos_firewall_web_filter_update_command(client: Client, params: dict) -> CommandResults:
+        """Update an existing object
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            params (dict): params to update the object with
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_save_and_get(client, WEB_FILTER['endpoint_tag'], params, web_filter_builder,  # type: ignore
+                                    WEB_FILTER['table_headers'], True)  # type: ignore
+
+
+    def sophos_firewall_web_filter_delete_command(client: Client, name: str) -> CommandResults:
+        """Delete object by name
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            name (str): Name of the object to delete
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_delete(client, name, WEB_FILTER['endpoint_tag'])  # type: ignore
+
+
+    def sophos_firewall_user_list_command(client: Client, start: int, end: int) -> CommandResults:
+        """Retrieve a list of users
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            start (int): low limit of returned objects, starts with 0
+            end (int): high limit of returned objects
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_list(client, start, end, **USER)  # type: ignore
+
+
+    def sophos_firewall_user_get_command(client: Client, name: str) -> CommandResults:
+        """Retrieve an user object by name
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            name (str): Name of the object to get
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_get(client, name, **USER)  # type: ignore
+
+
+    def sophos_firewall_user_add_command(client: Client, params: dict) -> CommandResults:
+        """Add user object
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            params (dict): params to create the object with
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_save_and_get(client, USER['endpoint_tag'], params, user_builder,  # type: ignore
+                                    USER['table_headers'])  # type: ignore
+
+
+    def sophos_firewall_user_update_command(client: Client, params: dict) -> CommandResults:
+        """Update an existing object
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            params (dict): params to update the object with
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_save_and_get(client, USER['endpoint_tag'], params, user_builder,  # type: ignore
+                                    USER['table_headers'], True)  # type: ignore
+
+
+    def sophos_firewall_user_delete_command(client: Client, name: str) -> CommandResults:
+        """Delete object by name
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            name (str): Name of the object to delete
+
+        Returns:
+            CommandResults: Command results object
+        """
+        return generic_delete(client, name, USER['endpoint_tag'])  # type: ignore
+
+
+    def test_module(client):
+        """
+        Returning 'ok' indicates that the integration works like it is supposed to.
+
+        Args:
+            client: Sophos XG Firewall client
+
+        Returns:
+            'ok' if test passed, anything else will fail the test.
+        """
+        try:
+            result = client.validate()
+            json_result = json.loads(xml2json(result.text))
+
+            status_message = retrieve_dict_item_recursively(json_result, 'status')
+            message = ''
+
+            if status_message and 'Successful' in status_message:  # type: ignore
+                message = 'ok'
+            elif status_message and 'Authentication Failure' in status_message:  # type: ignore
+                message = 'Please check your credentials'
+
+            status_code = dict_safe_get(json_result, ['Response', 'Status', '@code'], 0)
+            if status_code and int(status_code) >= 500:
+                status_message = retrieve_dict_item_recursively(json_result, '#text')
+                if status_message and 'enable the API Configuration' in status_message:  # type: ignore
+                    message = 'Please enable API configuration from the webconsole ' \
+                              '(in Backup & firmware)'
+                else:
+                    message = status_message
+            return message
+
+        except DemistoException as error:
+            return error.message
+
+
+    def generic_delete(client: Client, name: str, endpoint_tag: str) -> CommandResults:
+        """A generic deleting object function
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            name (str): Name of the object to delete
+            endpoint_tag (str): Tag of the object to delete
+
+        Returns:
+            CommandResults: Command results object
+        """
+        response = client.delete_request((endpoint_tag, {'Name': name}))
+        response = json.loads(xml2json(response.text))
+
+        check_error_on_response(response)  # type: ignore
+
+        delete_status = retrieve_dict_item_recursively(response, '#text')
+
+        old_context = demisto.dt(demisto.context(), f'SophosFirewall.{endpoint_tag}'
+                                                    f'(val.Name == \'{name}\')')
+        if old_context:
+            if isinstance(old_context, list):
+                old_context = old_context[0]
+
+        outputs = {
+            'Name': name,
+            'IsDeleted': False
+        }
+
+        # check if there is a previous data about an object that has been deleted before,
+        # and if not, update the IsDeleted field by the message that returns from the API
+        if delete_status:
+            if old_context and old_context.get('IsDeleted'):
+                is_deleted = old_context['IsDeleted']
+            else:
+                is_deleted = True if 'successfully' in delete_status else False  # type: ignore
+            outputs['IsDeleted'] = is_deleted
+
+        readable_output = tableToMarkdown(f'Deleting {endpoint_tag} Objects Results', outputs,
+                                          ['Name', 'IsDeleted'])
+
+        return CommandResults(
+            outputs_prefix=f'SophosFirewall.{endpoint_tag}',
+            outputs_key_field='Name',
+            outputs=outputs,
+            raw_response=response,
+            readable_output=readable_output
+        )
+
+
+    def merge_for_update(client: Client, name: str, data: dict, keys_for_update: dict,
+                         endpoint_tag: str) -> dict:
+        """This function used when update is needed.
+        The steps for updating the object is as the following:
+        1. Retrieve the object from the API
+        2. Add the specified params in keys_for_update to the new object
+        3. return the object with the previous and the new data merged.
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            name (str): Name of the object we want to get data from
+            data (dict): the new object data
+            keys_for_update (dict): keys for update
+            endpoint_tag (str): The endpoint_tag of the object we want to get data from
+
+        Returns:
+            dict: returned built dictionary
+        """
+        previous_object = client.get_item_by_name(endpoint_tag, name)
+        previous_object = json.loads(xml2json(previous_object.text))
+
+        check_error_on_response(previous_object)  # type: ignore
+
+        previous_object = retrieve_dict_item_recursively(previous_object, endpoint_tag)
+
+        # find the related field by keys_for_update and adding it to data
+        for key in keys_for_update:
+            info = dict_safe_get(previous_object, keys_for_update[key], [])
+            if isinstance(info, str):
+                data[key].append(info)
+            else:
+                data[key].extend(info)  # if the previous info is list we extent the current
+
+        # remove duplications
+        for item in data:
+            data[item] = list(set(data[item]))
+
+        # if there is nothing, makes sure its None so it'll get removed in the end
+        for item in data:
+            data[item] = None if not data[item] else data[item]
+
+        return data
+
+
+    def prepare_builder_params(client: Client, keys: dict, is_for_update: bool, name: str,
+                               endpoint_tag: str, locals_copy: dict) -> dict:
+        """prepare the list of objects for the builder - get the params for locals(),
+        split it into list, and return the params after the merge with the new
+        object was done (if the is_for_update flag is True)
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            keys (dict): field to update
+            is_for_update (bool): True if this is an update request
+            name (str): name of the object we want to update if is_for_update is True
+            endpoint_tag (str): The endpoint_tag of the object we want to get data from
+            locals_copy (dict): the locals() object copy in order to extract the params
+
+        Returns:
+            dict: returned built dictionary
+        """
+        params = {}
+        # creates a dict with the variables names from keys, and add the current data that insides
+        # the locals() in the function that called this function.
+        for key in keys:
+            params[key] = locals_copy.get(key)
+
+        # making the params a list
+        params = {key: argToList(item) for key, item in params.items()}
+
+        # update the params with the previous information of the object if the desired action is update
+        if is_for_update:
+            params = merge_for_update(client, name, params, keys, endpoint_tag)
+
+        return params
+
+
+    def update_dict_from_params_using_path(keys_to_update: dict, params: dict, data: dict) -> dict:
+        """Update a dictionary using a path given in a list [nest1, nest2] and update it.
+             For example: some_dict[nest1][nest2] = some_value
+        Args:
+            keys_to_update (dict): The keys names with the path to update it into
+            params (dict): params with the data of the keys name
+            data (dict): data of the object to update
+
+        Returns:
+            dict: returned built dictionary
+        """
+        for key in keys_to_update:
+            path = keys_to_update[key]
+            # check that there is at least 2 fields for adding the data
+            if len(path) >= 2:
+                data[f'{path[0]}'] = {
+                    f'{path[1]}': params.get(key)
+                }
+        return data
+
+
+    def rule_builder(client: Client, is_for_update: bool, endpoint_tag: str, name: str,
+                     policy_type: str = None,
+                     position: str = None, description: str = None, status: str = None,
+                     ip_family: str = None, position_policy_name: str = None,
+                     source_zones: str = None, source_networks: str = None,  # pylint: disable=unused-argument
+                     destination_zones: str = None, destination_networks: str = None,  # pylint: disable=unused-argument
+                     services: str = None, members: str = None,  # pylint: disable=unused-argument
+                     log_traffic: str = None, match_identity: str = None,
+                     show_captive_portal: str = None, schedule: str = None,
+                     action: str = None, dscp_marking: str = None,
+                     application_control: str = None, application_based_qos_policy: str = None,
+                     web_filter: str = None, web_category_base_qos_policy: str = None,
+                     intrusion_prevention: str = None, traffic_shapping_policy: str = None,
+                     apply_nat: str = None, override_gateway_default_nat_policy: str = None,
+                     scan_http: str = None, scan_https: str = None, sandstorm: str = None,
+                     block_quick_quic: str = None, scan_ftp: str = None,
+                     source_security_heartbeat: str = None, minimum_source_hb_permitted: str = None,
+                     destination_security_heartbeat: str = None, rewrite_source_address: str = None,
+                     minimum_destination_hb_permitted: str = None, data_accounting: str = None,
+                     application_control_internet_scheme: str = None,
+                     web_filter_internet_scheme: str = None, outbound_address: str = None,
+                     backup_gateway: str = None, primary_gateway: str = None) -> dict:
+        """The builder of the rule object - build the body of the request
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            is_for_update (bool): True if the rule should be updated
+            endpoint_tag (str): The endpoint_tag of the object we want to get data from
+            name (str): The name of the object we want to create/update
+            policy_type (str, optional): Policy Type information of the rule
+            position (str, optional): Position information of the rule
+            description (str, optional): Description information of the rule
+            status (str, optional): Status information of the rule
+            ip_family (str, optional): Ip Family information of the rule
+            position_policy_name (str, optional): Position Policy Name information of the rule
+            source_zones (str, optional): Source Zones information of the rule
+            source_networks (str, optional): Source Networks information of the rule
+            destination_zones (str, optional): Destination Zones information of the rule
+            destination_networks (str, optional): Destination Networks information of the rule
+            services (str, optional): Services information of the rule
+            schedule (str, optional): Schedule information of the rule
+            log_traffic (str, optional): Log Traffic information of the rule
+            match_identity (str, optional): Match Identity information of the rule
+            show_captive_portal (str, optional): Show Captive Portal information of the rule
+            members (str, optional): Members information of the rule
+            action (str, optional): Action information of the rule
+            dscp_marking (str, optional): Dscp Marking information of the rule
+            application_control (str, optional): Application Control information of the rule
+            application_based_qos_policy (str, optional): Application Based Qos Policy information of
+            the rule
+            web_filter (str, optional): Web Filter information of the rule
+            web_category_base_qos_policy (str, optional): Web Category Base Qos Policy information of
+            the rule
+            intrusion_prevention (str, optional): Intrusion Prevention information of the rule
+            traffic_shapping_policy (str, optional): Traffic Shapping Policy information of the rule
+            apply_nat (str, optional): Apply Nat information of the rule
+            override_gateway_default_nat_policy (str, optional): Override Gateway Default Nat Policy
+            information of the rule
+            scan_http (str, optional): Scan Http information of the rule
+            scan_https (str, optional): Scan Https information of the rule
+            sandstorm (str, optional): Sandstorm information of the rule
+            block_quick_quic (str, optional): Block Quick Quic information of the rule
+            scan_ftp (str, optional): Scan Ftp information of the rule
+            source_security_heartbeat (str, optional): Source Security Heartbeat information of the rule
+            minimum_source_hb_permitted (str, optional): Minimum Source Hb Permitted information
+            of the rule
+            destination_security_heartbeat (str, optional): Destination Security Heartbeat information
+            of the rule
+            rewrite_source_address (str, optional): Rewrite Source Address information of the rule
+            minimum_destination_hb_permitted (str, optional): Minimum Destination Hb Permitted
+            information of the rule
+            data_accounting (str, optional): Data Accounting information of the rule
+            application_control_internet_scheme (str, optional): Application Control Internet Scheme
+            information of the rule
+            web_filter_internet_scheme (str, optional): Web Filter Internet Scheme information
+            of the rule
+            outbound_address (str, optional): Outbound Address information of the rule
+            backup_gateway (str, optional): Backup Gateway information of the rule
+            primary_gateway (str, optional): Primary Gateway information of the rule
+
+        Raises:
+            Exception: if there is an error with getting the previous rule
+
+        Returns:
+            dict: returned built dictionary
+        """
+        keys_for_update = {
+            'members': ['Identity', 'Member'],
+            'source_zones': ['SourceZones', 'Zone'],
+            'source_networks': ['SourceNetworks', 'Network'],
+            'destination_zones': ['DestinationZones', 'Zone'],
+            'destination_networks': ['DestinationNetworks', 'Network'],
+            'services': ['Services', 'Service'],
+        }
+
+        params = prepare_builder_params(client, keys_for_update, is_for_update, name,
+                                        endpoint_tag, locals())
+        if is_for_update:
+            response = client.get_item_by_name(endpoint_tag, name)
+            response = json.loads(xml2json(response.text))
+            check_error_on_response(response)  # type: ignore
+            policy_type = retrieve_dict_item_recursively(response, 'PolicyType')
+
+        json_data = {
+            'Name': name,
+            'Description': description,
+            'Status': status,
+            'IPFamily': ip_family,
+            'PolicyType': policy_type,
+            'Position': position,
+            'Schedule': schedule,
+            'MatchIdentity': match_identity,
+            'ShowCaptivePortal': show_captive_portal,
+            'Action': action,
+            'DSCPMarking': dscp_marking,
+            'LogTraffic': log_traffic,
+            'ApplyNAT': apply_nat,
+            'ScanHTTP': scan_http,
+            'ScanHTTPS': scan_https,
+            'Sandstorm': sandstorm,
+            'BlockQuickQuic': block_quick_quic,
+            'ScanFTP': scan_ftp,
+            'DataAccounting': data_accounting,
+            'PrimaryGateway': primary_gateway,
+            'RewriteSourceAddress': rewrite_source_address,
+            'ApplicationControl': application_control,
+            'ApplicationControlInternetScheme': application_control_internet_scheme,
+            'ApplicationBaseQoSPolicy': application_based_qos_policy,
+            'WebFilter': web_filter,
+            'WebFilterInternetScheme': web_filter_internet_scheme,
+            'WebCategoryBaseQoSPolicy': web_category_base_qos_policy,
+            'IntrusionPrevention': intrusion_prevention,
+            'TrafficShappingPolicy': traffic_shapping_policy,
+            'OverrideGatewayDefaultNATPolicy': override_gateway_default_nat_policy,
+            'SourceSecurityHeartbeat': source_security_heartbeat,
+            'MinimumSourceHBPermitted': minimum_source_hb_permitted,
+            'DestSecurityHeartbeat': destination_security_heartbeat,
+            'MinimumDestinationHBPermitted': minimum_destination_hb_permitted,
+            'OutboundAddress': outbound_address,
+            'BackupGateway': backup_gateway
+        }
+        if (position == 'after' or position == 'before') and not position_policy_name:
+            raise Exception('please provide position_policy_name')
+
+        if position == 'after':
+            json_data['After'] = {'Name': position_policy_name}  # type: ignore
+
+        elif position == 'before':
+            json_data['Before'] = {'Name': position_policy_name}  # type: ignore
+
+        json_data = update_dict_from_params_using_path(keys_for_update, params, json_data)
+        return remove_empty_elements(json_data)
+
+
+    def rule_group_builder(client: Client, is_for_update: bool, endpoint_tag: str, name: str,
+                           destination_zones: str = None, source_zones: str = None,
+                           rules: str = None,  # pylint: disable=unused-argument
+                           policy_type: str = None, description: str = None) -> dict:
+        """Rule group object builder.
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            is_for_update (bool): True if the object should be updated
+            endpoint_tag (str): The endpoint_tag of the object we want to get data from
+            name (str): The name of the object we want to add/update
+            description (str, optional): Description information of the rule group
+            policy_type (str, optional): Policy Type information of the rule group
+            rules (str, optional): Rules information of the rule group
+            source_zones (str, optional): Source Zones information of the rule group
+            destination_zones (str, optional): Destination Zones information of the rule group
+
+        Returns:
+            dict: returned built dictionary
+        """
+        keys_for_update = {
+            'rules': ['SecurityPolicyList', 'SecurityPolicy'],
+            'source_zones': ['SourceZones', 'Zone'],
+            'destination_zones': ['DestinationZones', 'Zone'],
+        }
+
+        params = prepare_builder_params(client, keys_for_update, is_for_update, name,
+                                        endpoint_tag, locals())
+
+        json_data = {
+            'Name': name,
+            'Description': description,
+            'PolicyType': policy_type
+        }
+
+        json_data = update_dict_from_params_using_path(keys_for_update, params, json_data)
+        return remove_empty_elements(json_data)
+
+
+    def ip_host_builder(client: Client, is_for_update: bool, endpoint_tag: str,
+                        name: str, host_type: str = None, ip_address: str = None, start_ip: str = None,
+                        end_ip: str = None, ip_addresses: str = None, subnet_mask: str = None,
+                        ip_family: str = None, host_group: str = None) -> dict:  # pylint: disable=unused-argument
+        """Builder for the IP host object - build the body of the request
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            is_for_update (bool): True if the object should be updated
+            endpoint_tag (str): The endpoint_tag of the object we want to get data from
+            name (str): The name of the object we want to add/update
+            host_type (str, optional): Host Type information of the IP host
+            ip_address (str, optional): Ip Address information of the IP host
+            start_ip (str, optional): Start Ip information of the IP host
+            end_ip (str, optional): End Ip information of the IP host
+            ip_addresses (str, optional): Ip Addresses information of the IP host
+            subnet_mask (str, optional): Subnet Mask information of the IP host
+            ip_family (str, optional): Ip Family information of the IP host
+            host_group (str, optional): Host Group information of the IP host
+
+        Raises:
+            Exception: Missing IP address
+            Exception: Missing IP address and subnet mask
+            Exception: Missing start IP and end IP
+            Exception: Missing IP addresses
+
+        Returns:
+            dict: returned built dictionary
+        """
+        keys_for_update = {
+            'host_group': ['HostGroupList', 'HostGroup'],
+        }
+
+        params = prepare_builder_params(client, keys_for_update, is_for_update, name,
+                                        endpoint_tag, locals())
+        if is_for_update:
+            response = client.get_item_by_name(endpoint_tag, name)
+            response = json.loads(xml2json(response.text))
+            check_error_on_response(response)  # type: ignore
+            host_type = retrieve_dict_item_recursively(response, 'HostType')
+
+        json_data = {
+            'Name': name,
+            'IPFamily': ip_family,
+            'HostType': host_type,
+        }
+
+        if host_type == 'IP':
+            if not ip_address:
+                raise Exception('Please provide an IP address')
+            json_data['IPAddress'] = ip_address
+
+        elif host_type == 'Network':
+            if not (ip_address and subnet_mask):
+                raise Exception('Please provide an IP address and subnet mask')
+            json_data['IPAddress'] = ip_address
+            json_data['Subnet'] = subnet_mask
+
+        elif host_type == 'IPRange':
+            if not (start_ip and end_ip):
+                raise Exception('Please provide start IP and end ip')
+            json_data['StartIPAddress'] = start_ip
+            json_data['EndIPAddress'] = end_ip
+
+        else:  # host_type == 'IPList'
+            if not ip_addresses:
+                raise Exception('Please provide an ip_addresses')
+            json_data['ListOfIPAddresses'] = ip_addresses
+
+        json_data = update_dict_from_params_using_path(keys_for_update, params, json_data)
+        return remove_empty_elements(json_data)
+
+
+    def url_group_builder(client: Client, is_for_update: bool, endpoint_tag: str, name: str,
+                          description: str = None, urls: str = None) -> dict:  # pylint: disable=unused-argument
+        """Builder for the URL group object - build the body of the request
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            is_for_update (bool): True if the object should be updated
+            endpoint_tag (str): The endpoint_tag of the object we want to get data from
+            name (str): The name of the object we want to add/update
+            description (str, optional): Description information of the URL group
+            urls (str, optional): URLs information of the URL group
+
+        Returns:
+            dict: returned built dictionary
+        """
+        keys_for_update = {
+            'urls': ['URLlist', 'URL'],
+        }
+
+        params = prepare_builder_params(client, keys_for_update, is_for_update, name,
+                                        endpoint_tag, locals())
+
+        json_data = {
+            'Name': name,
+            'Description': description,
+        }
+
+        json_data = update_dict_from_params_using_path(keys_for_update, params, json_data)
+        return remove_empty_elements(json_data)
+
+
+    def ip_host_group_builder(client: Client, is_for_update: bool, endpoint_tag: str,
+                              name: str, description: str = None, ip_family: str = None,
+                              hosts: str = None) -> dict:  # pylint: disable=unused-argument
+        """Builder for the IP host group - build the body of the request
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            is_for_update (bool): True if the object should be updated
+            endpoint_tag (str): The endpoint_tag of the object we want to get data from
+            name (str): The name of the object we want to add/update
+            description (str, optional): Description information of the IP host group
+            ip_family (str, optional): Ip Family information of the IP host group
+            hosts (str, optional): Hosts information of the IP host group
+
+        Returns:
+            dict: returned built dictionary
+        """
+        keys_for_update = {
+            'hosts': ['HostList', 'Host'],
+        }
+
+        params = prepare_builder_params(client, keys_for_update, is_for_update, name,
+                                        endpoint_tag, locals())
+
+        json_data = {
+            'Name': name,
+            'IPFamily': ip_family,
+            'Description': description,
+        }
+
+        json_data = update_dict_from_params_using_path(keys_for_update, params, json_data)
+        return remove_empty_elements(json_data)
+
+
+    def service_builder(client: Client, is_for_update: bool, endpoint_tag: str,
+                        name: str, service_type: str, protocol: str = None, source_port: int = None,
+                        destination_port: int = None, protocol_name: str = None,
+                        icmp_type: str = None, icmp_code: str = None,
+                        icmp_v6_type: str = None, icmp_v6_code: str = None) -> dict:
+        """Builder for the service object - build the body of the request
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            is_for_update (bool): True if the object should be updated
+            endpoint_tag (str): The endpoint_tag of the object we want to get data from
+            name (str): The name of the object we want to add/update
+            service_type (str, optional): Service Type information of the service
+            protocol (str, optional): Protocol information of the service
+            source_port (str, optional): Source Port information of the service
+            destination_port (str, optional): Destination Port information of the service
+            protocol_name (str, optional): Protocol Name information of the service
+            icmp_type (str, optional): ICMP Type information of the service
+            icmp_code (str, optional): ICMP Code information of the service
+            icmp_v6_type (str, optional): ICMP V6 Type information of the service
+            icmp_v6_code (str, optional): ICMP V6 Code information of the service
+
+        Raises:
+            Exception: Missing protocol, source port and destination port
+            Exception: Missing protocol name
+            Exception: Missing icmp_type and icmp_code
+            Exception: Missing icmp_v6_type and icmp_v6_code
+
+        Returns:
+            dict: returned dictionary
+        """
+        previous_service_details = []  # type: ignore
+        # if the object need to be updated, merge between old and new information will happen
+        if is_for_update:
+            previous_object = client.get_item_by_name(endpoint_tag, name)
+            previous_object = json.loads(xml2json(previous_object.text))
+
+            check_error_on_response(previous_object)  # type: ignore
+            service_type = retrieve_dict_item_recursively(previous_object, 'Type')
+
+            previous_service_details = retrieve_dict_item_recursively(previous_object, 'ServiceDetail')
+            if not previous_service_details:
+                previous_service_details = []
+            elif not isinstance(previous_service_details, list):
+                previous_service_details = [previous_service_details]
+
+        json_data = {
+            'Name': name,
+            'Type': service_type,
+        }
+
+        if service_type == 'TCPorUDP':
+            if not (protocol and source_port and destination_port):
+                raise Exception('Please provide protocol, source_port and destination_port')
+            service_details = {
+                'Protocol': protocol,
+                'SourcePort': source_port,
+                'DestinationPort': destination_port
+            }
+
+        elif service_type == 'IP':
+            if not protocol_name:
+                raise Exception('Please provide protocol_name')
+            service_details = {
+                'ProtocolName': protocol_name
+            }
+
+        elif service_type == 'ICMP':
+            if not (icmp_type and icmp_code):
+                raise Exception('Please provide icmp_type and icmp_code')
+            service_details = {
+                'ICMPType': icmp_type,
+                'ICMPCode': icmp_code
+            }
+
+        else:  # type == 'ICMPv6'
+            if not (icmp_v6_type and icmp_v6_code):
+                raise Exception('Please provide icmp_v6_type and icmp_v6_code')
+            service_details = {
+                'ICMPv6Type': icmp_v6_type,
+                'ICMPv6Code': icmp_v6_code
+            }
+
+        previous_service_details.append(service_details)
+        json_data.update({
+            'ServiceDetails': {  # type: ignore
+                'ServiceDetail': previous_service_details
+            }
+        })
+        return remove_empty_elements(json_data)
+
+
+    def web_filter_builder(client: Client, is_for_update: bool, endpoint_tag: str,
+                           name: str, default_action: str = None, description: str = None,
+                           download_file_size_restriction_enabled: str = None,
+                           download_file_size_restriction: int = None, enable_reporting: str = None,
+                           goog_app_domain_list_enabled: str = None, goog_app_domain_list: str = None,
+                           youtube_filter_enabled: str = None, youtube_filter_is_strict: str = None,
+                           enforce_safe_search: str = None, enforce_image_licensing: str = None,
+                           url_group_names: str = None, http_action: str = None,
+                           https_action: str = None, schedule: str = None,
+                           policy_rule_enabled: str = None, user_names: str = None,
+                           ccl_names: str = None, ccl_rule_enabled: str = None,
+                           follow_http_action: str = None) -> dict:
+        """Builder for web filter object
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            is_for_update (bool): True if the object should be updated
+            endpoint_tag (str): The endpoint_tag of the object we want to get data from
+            name (str): The name of the object we want to add/update
+            default_action (str, optional): Default Action information of the web filter
+            description (str, optional): Description information of the web filter
+            download_file_size_restriction_enabled (str, optional): Download File Size Restriction
+            Enabled information of the web filter
+            download_file_size_restriction (str, optional): Download File Size Restriction information
+            of the web filter
+            enable_reporting (str, optional): Enable Reporting information of the web filter
+            goog_app_domain_list_enabled (str, optional): Goog App Domain List Enabled information of
+            the web filter
+            goog_app_domain_list (str, optional): Goog App Domain List information of the web filter
+            youtube_filter_enabled (str, optional): Youtube Filter Enabled information of the web filter
+            youtube_filter_is_strict (str, optional): Youtube Filter Is Strict information
+            of the web filter
+            enforce_safe_search (str, optional): Enforce Safe Search information of the web filter
+            enforce_image_licensing (str, optional): Enforce Image Licensing information
+            of the web filter
+            url_group_names (str, optional): Url Group Names information of the web filter
+            http_action (str, optional): Http Action information of the web filter
+            https_action (str, optional): Https Action information of the web filter
+            schedule (str, optional): Schedule information of the web filter
+            policy_rule_enabled (str, optional): Policy Rule Enabled information of the web filter
+            user_names (str, optional): User Names information of the web filter
+            ccl_names (str, optional): Ccl Names information of the web filter
+            ccl_rule_enabled (str, optional): Ccl Rule Enabled information of the web filter
+            follow_http_action (str, optional): Follow Http Action information of the web filter
+
+        Returns:
+            dict: returned built dictionary
+        """
+        previous_rules_details = []  # type: ignore
+        # if the object need to be updated, merge between old and new information will happen
+        if is_for_update:
+            previous_object = client.get_item_by_name(endpoint_tag, name)
+            previous_object = json.loads(xml2json(previous_object.text))
+            check_error_on_response(previous_object)  # type: ignore
+
+            previous_rules_details = retrieve_dict_item_recursively(previous_object, 'Rule')
+            if not previous_rules_details:
+                previous_rules_details = []
+            elif not isinstance(previous_rules_details, list):
+                previous_rules_details = [previous_rules_details]
+        json_data = {
+            'Name': name,
+            'Description': description,
+            'DefaultAction': default_action,
+            'EnableReporting': enable_reporting,
+            'DownloadFileSizeRestriction': download_file_size_restriction,
+            'DownloadFileSizeRestrictionEnabled': download_file_size_restriction_enabled,
+            'GoogAppDomainListEnabled': goog_app_domain_list_enabled,
+            'GoogAppDomainList': argToList(goog_app_domain_list),
+            'YoutubeFilterEnabled': youtube_filter_enabled,
+            'YoutubeFilterIsStrict': youtube_filter_is_strict,
+            'EnforceSafeSearch': enforce_safe_search,
+            'EnforceImageLicensing': enforce_image_licensing,
+        }
+
+        categories = [{'ID': name, 'type': 'URLGroup'} for name in argToList(url_group_names)]
+        rule_details = {
+            'PolicyRuleEnabled': policy_rule_enabled,
+            'CCLRuleEnabled': ccl_rule_enabled,
+            'FollowHTTPAction': follow_http_action,
+            'CategoryList': {
+                'Category': categories
+            },
+            'HTTPAction': http_action,
+            'HTTPSAction': https_action,
+            'Schedule': schedule,
+            'UserList': {
+                'User': argToList(user_names)
+            },
+            'CCLList': {
+                'CCL': argToList(ccl_names)
+            }
+        }
+
+        previous_rules_details.append(rule_details)
+        json_data.update({
+            'RuleList': {  # type: ignore
+                'Rule': previous_rules_details
+            }
+        })
+        return remove_empty_elements(json_data)
+
+
+    def app_category_builder(name: str, description: str = None, qos_policy: str = None) -> dict:
+        """Builder for app category object
+
+        Args:
+            name (str): The name of the object we want to add/update
+            description (str, optional): Description information of the app category
+            qos_policy (str, optional): Qos Policy information of the app category
+
+        Returns:
+            dict: returned built dictionary
+        """
+        json_data = {
+            'Name': name,
+            'Description': description,
+            'QoSPolicy': qos_policy,
+        }
+        return remove_empty_elements(json_data)
+
+
+    def app_policy_builder(client: Client, is_for_update: bool, endpoint_tag: str,
+                           name: str, description: str = None, micro_app_support: str = None,
+                           default_action: str = None, select_all: str = None, categories: str = None,
+                           risks: str = None, applications: str = None, characteristics: str = None,
+                           technologies: str = None, classifications: str = None,
+                           action: str = None, schedule: str = None) -> dict:
+        """Builder for the app policy object - build the body of the request
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            is_for_update (bool): True if the object should be updated
+            endpoint_tag (str): The endpoint_tag of the object we want to get data from
+            name (str): The name of the object we want to add/update
+            description (str, optional): Description information of the app policy
+            micro_app_support (str, optional): Micro App Support information of the app policy
+            default_action (str, optional): Default Action information of the app policy
+            select_all (str, optional): Select All information of the app policy
+            categories (str, optional): Categories information of the app policy
+            risks (str, optional): Risks information of the app policy
+            applications (str, optional): Applications information of the app policy
+            characteristics (str, optional): Characteristics information of the app policy
+            technologies (str, optional): Technologies information of the app policy
+            classifications (str, optional): Classifications information of the app policy
+            action (str, optional): Action information of the app policy
+            schedule (str, optional): Schedule information of the app policy
+
+        Returns:
+            dict: returned built dictionary
+        """
+        previous_rules_details = []  # type: ignore
+        # if the object need to be updated, merge between old and new information will happen
+        if is_for_update:
+            previous_object = client.get_item_by_name(endpoint_tag, name)
+            previous_object = json.loads(xml2json(previous_object.text))
+            check_error_on_response(previous_object)  # type: ignore
+
+            previous_rules_details = retrieve_dict_item_recursively(previous_object, 'Rule')
+            if not previous_rules_details:
+                previous_rules_details = []
+            elif not isinstance(previous_rules_details, list):
+                previous_rules_details = [previous_rules_details]
+        json_data = {
+            'Name': name,
+            'Description': description,
+            'MicroAppSupport': micro_app_support,
+            'DefaultAction': default_action,
+        }
+
+        rule_details = {
+            'SelectAllRule': select_all,
+            'CategoryList': {
+                'Category': argToList(categories)
+            },
+            'RiskList': {
+                'Risk': argToList(risks)
+            },
+            'CharacteristicsList': {
+                'Characteristics': argToList(characteristics)
+            },
+            'TechnologyList': {
+                'Technology': argToList(technologies)
+            },
+            'ClassificationList': {
+                'Classification': argToList(classifications)
+            },
+            'ApplicationList': {
+                'Application': argToList(applications)
+            },
+            'Action': action,
+            'Schedule': schedule,
+        }
+
+        previous_rules_details.append(rule_details)
+        json_data.update({
+            'RuleList': {  # type: ignore
+                'Rule': previous_rules_details
+            }
+        })
+        return remove_empty_elements(json_data)
+
+
+    def user_builder(name: str, username: str, email: str = None, password: str = None,
+                     description: str = None, group: str = None, user_type: str = None,
+                     profile: str = None, surfing_quota_policy: str = None,
+                     access_time_policy: str = None, ssl_vpn_policy: str = None,
+                     clientless_policy: str = None, data_transfer_policy: str = None,
+                     simultaneous_logins_global: str = None, schedule_for_appliance_access: str = None,
+                     qos_policy: str = None, login_restriction: str = None) -> dict:
+        """Builder for the user object - build the body of the request
+
+        Args:
+            name (str): The name of the object we want to add/update
+            username (str, optional): Username information of the user
+            email (str, optional): Email information of the user
+            password (str, optional): Password information of the user
+            description (str, optional): Description information of the user
+            group (str, optional): Group information of the user
+            user_type (str, optional): User Type information of the user
+            profile (str, optional): Profile information of the user
+            surfing_quota_policy (str, optional): Surfing Quota Policy information of the user
+            access_time_policy (str, optional): Access Time Policy information of the user
+            ssl_vpn_policy (str, optional): Ssl Vpn Policy information of the user
+            clientless_policy (str, optional): Clientless Policy information of the user
+            data_transfer_policy (str, optional): Data Transfer Policy information of the user
+            simultaneous_logins_global (str, optional): Simultaneous Logins Global information
+            of the user
+            schedule_for_appliance_access (str, optional): Schedule For Appliance Access information
+            of the user
+            qos_policy (str, optional): Qos Policy information of the user
+            login_restriction (str, optional): Login Restriction information of the user
+
+        Raises:
+            Exception: if Administrator type was selected and profile was not provided
+
+        Returns:
+            dict: returned built dictionary
+        """
+        if user_type == 'Administrator' and not profile:
+            raise Exception('Administrator type was selected. Please provide profile.')
+        json_data = {
+            'Username': username,
+            'Name': name,
+            'Password': password,
+            'UserType': user_type,
+            'Profile': profile,
+            'EmailList': {
+                'EmailID': email
+            },
+            'Group': group,
+            'Description': description,
+            'SurfingQuotaPolicy': surfing_quota_policy,
+            'AccessTimePolicy': access_time_policy,
+            'SSLVPNPolicy': ssl_vpn_policy,
+            'ClientlessPolicy': clientless_policy,
+            'DataTransferPolicy': data_transfer_policy,
+            'SimultaneousLoginsGlobal': simultaneous_logins_global,
+            'ScheduleForApplianceAccess': schedule_for_appliance_access,
+            'QoSPolicy': qos_policy,
+            'LoginRestriction': login_restriction,
+        }
+        return remove_empty_elements(json_data)
+
+
+    def check_error_on_response(response: dict) -> None:
+        """Check if there is an error on the response
+
+        Args:
+            response (dict): the object to check the error on
+
+        Raises:
+            Exception: if there if an error in the response
+            Exception: if there are no records on list or get
+        """
+        response_message = retrieve_dict_item_recursively(response, '#text')
+        response_code = retrieve_dict_item_recursively(response, '@code')
+        response_status = retrieve_dict_item_recursively(response, 'Status')
+
+        if response_message and 'successful' not in response_message:  # type: ignore
+            if response_code and int(response_code) > 299:
+                raise Exception(f'{response_message} (error code: {response_code})')
+        if response_status and 'No. of records Zero.' in response_status:  # type: ignore
+            raise Exception(response_status)
+
+
+    def generic_save_and_get(client: Client, endpoint_tag: str, params: dict, builder: Callable,
+                             table_headers: list, to_update: bool = False) -> CommandResults:
+        """Generic function for add/update
+
+        Args:
+            to_update (bool): True if the object should be updated
+            client (Client): Sophos XG Firewall Client
+            params (dict): params for the builder
+            builder (Callable): the builder to build the object
+            endpoint_tag (str): The endpoint_tag of the object
+            table_headers (list): table_headers for readable outputs
+
+        Returns:
+            CommandResults: Command results object
+        """
+        funcs_without_extra_args = [user_builder, app_category_builder]
+        if builder in funcs_without_extra_args:
+            data = builder(**params)
+        else:
+            data = builder(client, to_update, endpoint_tag, **params)
+        operation = 'update' if to_update else 'add'
+        response = client.set_request((endpoint_tag, data), operation)
+        response = json.loads(xml2json(response.text))
+
+        check_error_on_response(response)  # type: ignore
+        return generic_get(client, params.get('name'), endpoint_tag, table_headers)  # type: ignore
+
+
+    def generic_get(client: Client, name: str, endpoint_tag: str,
+                    table_headers: list) -> CommandResults:
+        """Generic get, returns an object based on the endpoint tag and the name
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            name (str): The name of the object to get
+            endpoint_tag (str): The endpoint tag of the object
+            table_headers (list): table headers for readable outputs
+
+        Returns:
+            CommandResults: Command results object
+        """
+        response = client.get_item_by_name(endpoint_tag, name)
+        response = json.loads(xml2json(response.text))
+
+        check_error_on_response(response)  # type: ignore
+
+        outputs = retrieve_dict_item_recursively(response, endpoint_tag)
+        if outputs:
+            outputs.pop('@transactionid')  # type: ignore
+            outputs['IsDeleted'] = False  # type: ignore
+
+        table_title = f'{endpoint_tag} Object details'
+
+        readable_output = tableToMarkdown(table_title, outputs, table_headers, removeNull=True)
+        return CommandResults(
+            outputs_prefix=f'SophosFirewall.{endpoint_tag}',
+            outputs_key_field='Name',
+            raw_response=outputs,
+            outputs=outputs,
+            readable_output=readable_output
+        )
+
+
+    def generic_list(client: Client, start: int, end: int, endpoint_tag: str,
+                     table_headers: str) -> CommandResults:
+        """Generic function for listing objects
+
+        Args:
+            client (Client): Sophos XG Firewall Client
+            start (int): low limit of returned objects, starts with 0
+            end (int): high limit of returned objects
+            endpoint_tag (str): The endpoint tag of the objects
+            table_headers (list): table headers for readable outputs
+
+        Returns:
+            CommandResults: Command results object
+        """
+        response = client.get_request((endpoint_tag, None))
+        response = json.loads(xml2json(response.text))
+
+        outputs = dict_safe_get(response, ['Response', endpoint_tag])
+
+        check_error_on_response(response)  # type: ignore
+
+        outputs = outputs if isinstance(outputs, list) else [outputs]
+        for output in outputs:
+            output.pop('@transactionid')
+            output['IsDeleted'] = False
+
+        start, end = int(start), int(end)
+        len_outputs = len(outputs)
+        if end > len_outputs:
+            end = len_outputs
+        outputs = outputs[start:end]
+
+        table_title = f'Showing {start} to {end} {endpoint_tag} objects out of {len_outputs}'
+
+        readable_output = tableToMarkdown(table_title, outputs, table_headers, removeNull=True)
+        return CommandResults(
+            outputs_prefix=f'SophosFirewall.{endpoint_tag}',
+            outputs_key_field='Name',
+            raw_response=outputs,
+            outputs=outputs,
+            readable_output=readable_output
+        )
+
+
+    def retrieve_dict_item_recursively(obj, key) -> any:  # type: ignore
+        """Find items in given dictionary by the key
+
+        Args:
+            obj (dict): the dict to search in
+            key (str): the key to search for
+
+        Returns:
+            The item if found
+        """
+        if key in obj:
+            return obj[key]
+        for _, value in obj.items():
+            if isinstance(value, dict):
+                item = retrieve_dict_item_recursively(value, key)
+                if item:
+                    return item
+        return None
+
+
+    def main():
+        """
+            PARSE AND VALIDATE INTEGRATION PARAMS
+        """
+        params = demisto.params()
+        command = demisto.command()
+        args = demisto.args()
+
+        username = params.get('credentials').get('identifier')
+        password = params.get('credentials').get('password')
+
+        server_url = params.get('server_url')
+
+        verify_certificate = not params.get('insecure', False)
+
+        proxy = params.get('proxy', False)
+
+        demisto.debug(f'Command being called is {command}')
+        try:
+            client = Client(
+                base_url=server_url,
+                verify=verify_certificate,
+                auth=(username, password),
+                proxy=proxy
+            )
+
+            if command == 'test-module':
+                # This is the call made when pressing the integration Test button.
+                return_results(test_module(client))
+
+            elif command == 'sophos-firewall-rule-list':
+                return_results(sophos_firewall_rule_list_command(client, **args))
+
+            elif command == 'sophos-firewall-rule-get':
+                return_results(sophos_firewall_rule_get_command(client, **args))
+
+            elif command == 'sophos-firewall-rule-add':
+                return_results(sophos_firewall_rule_add_command(client, args))
+
+            elif command == 'sophos-firewall-rule-update':
+                return_results(sophos_firewall_rule_update_command(client, args))
+
+            elif command == 'sophos-firewall-rule-delete':
+                return_results(sophos_firewall_rule_delete_command(client, **args))
+
+            elif command == 'sophos-firewall-rule-group-list':
+                return_results(sophos_firewall_rule_group_list_command(client, **args))
+
+            elif command == 'sophos-firewall-rule-group-get':
+                return_results(sophos_firewall_rule_group_get_command(client, **args))
+
+            elif command == 'sophos-firewall-rule-group-add':
+                return_results(sophos_firewall_rule_group_add_command(client, args))
+
+            elif command == 'sophos-firewall-rule-group-update':
+                return_results(sophos_firewall_rule_group_update_command(client, args))
+
+            elif command == 'sophos-firewall-rule-group-delete':
+                return_results(sophos_firewall_rule_group_delete_command(client, **args))
+
+            elif command == 'sophos-firewall-url-group-list':
+                return_results(sophos_firewall_url_group_list_command(client, **args))
+
+            elif command == 'sophos-firewall-url-group-get':
+                return_results(sophos_firewall_url_group_get_command(client, **args))
+
+            elif command == 'sophos-firewall-url-group-add':
+                return_results(sophos_firewall_url_group_add_command(client, args))
+
+            elif command == 'sophos-firewall-url-group-update':
+                return_results(sophos_firewall_url_group_update_command(client, args))
+
+            elif command == 'sophos-firewall-url-group-delete':
+                return_results(sophos_firewall_url_group_delete_command(client, **args))
+
+            elif command == 'sophos-firewall-ip-host-list':
+                return_results(sophos_firewall_ip_host_list_command(client, **args))
+
+            elif command == 'sophos-firewall-ip-host-get':
+                return_results(sophos_firewall_ip_host_get_command(client, **args))
+
+            elif command == 'sophos-firewall-ip-host-add':
+                return_results(sophos_firewall_ip_host_add_command(client, args))
+
+            elif command == 'sophos-firewall-ip-host-update':
+                return_results(sophos_firewall_ip_host_update_command(client, args))
+
+            elif command == 'sophos-firewall-ip-host-delete':
+                return_results(sophos_firewall_ip_host_delete_command(client, **args))
+
+            elif command == 'sophos-firewall-ip-host-group-list':
+                return_results(sophos_firewall_ip_host_group_list_command(client, **args))
+
+            elif command == 'sophos-firewall-ip-host-group-get':
+                return_results(sophos_firewall_ip_host_group_get_command(client, **args))
+
+            elif command == 'sophos-firewall-ip-host-group-add':
+                return_results(sophos_firewall_ip_host_group_add_command(client, args))
+
+            elif command == 'sophos-firewall-ip-host-group-update':
+                return_results(sophos_firewall_ip_host_group_update_command(client, args))
+
+            elif command == 'sophos-firewall-ip-host-group-delete':
+                return_results(sophos_firewall_ip_host_group_delete_command(client, **args))
+
+            elif command == 'sophos-firewall-services-list':
+                return_results(sophos_firewall_services_list_command(client, **args))
+
+            elif command == 'sophos-firewall-services-get':
+                return_results(sophos_firewall_services_get_command(client, **args))
+
+            elif command == 'sophos-firewall-services-add':
+                return_results(sophos_firewall_services_add_command(client, args))
+
+            elif command == 'sophos-firewall-services-update':
+                return_results(sophos_firewall_services_update_command(client, args))
+
+            elif command == 'sophos-firewall-services-delete':
+                return_results(sophos_firewall_services_delete_command(client, **args))
+
+            elif command == 'sophos-firewall-app-policy-list':
+                return_results(sophos_firewall_app_policy_list_command(client, **args))
+
+            elif command == 'sophos-firewall-app-policy-get':
+                return_results(sophos_firewall_app_policy_get_command(client, **args))
+
+            elif command == 'sophos-firewall-app-policy-add':
+                return_results(sophos_firewall_app_policy_add_command(client, args))
+
+            elif command == 'sophos-firewall-app-policy-update':
+                return_results(sophos_firewall_app_policy_update_command(client, args))
+
+            elif command == 'sophos-firewall-app-policy-delete':
+                return_results(sophos_firewall_app_policy_delete_command(client, **args))
+
+            elif command == 'sophos-firewall-app-category-list':
+                return_results(sophos_firewall_app_category_list_command(client, **args))
+
+            elif command == 'sophos-firewall-app-category-get':
+                return_results(sophos_firewall_app_category_get_command(client, **args))
+
+            elif command == 'sophos-firewall-app-category-update':
+                return_results(
+                    sophos_firewall_app_category_update_command(client, args))
+
+            elif command == 'sophos-firewall-web-filter-list':
+                return_results(sophos_firewall_web_filter_list_command(client, **args))
+
+            elif command == 'sophos-firewall-web-filter-get':
+                return_results(sophos_firewall_web_filter_get_command(client, **args))
+
+            elif command == 'sophos-firewall-web-filter-add':
+                return_results(sophos_firewall_web_filter_add_command(client, args))
+
+            elif command == 'sophos-firewall-web-filter-update':
+                return_results(sophos_firewall_web_filter_update_command(client, args))
+
+            elif command == 'sophos-firewall-web-filter-delete':
+                return_results(sophos_firewall_web_filter_delete_command(client, **args))
+
+            elif command == 'sophos-firewall-user-list':
+                return_results(sophos_firewall_user_list_command(client, **args))
+
+            elif command == 'sophos-firewall-user-get':
+                return_results(sophos_firewall_user_get_command(client, **args))
+
+            elif command == 'sophos-firewall-user-add':
+                return_results(sophos_firewall_user_add_command(client, args))
+
+            elif command == 'sophos-firewall-user-update':
+                return_results(sophos_firewall_user_update_command(client, args))
+
+            elif command == 'sophos-firewall-user-delete':
+                return_results(sophos_firewall_user_delete_command(client, **args))
+
+        # Log exceptions
+        except Exception as error:
+            message = f'Failed to execute {command} command. Error: {str(error)}'
+            return_error(message)
+
+
+    if __name__ in ('__main__', '__builtin__', 'builtins'):
+        main()
+
+    register_module_line('sophos_firewall', 'end', __line__())
+  subtype: python3
+  type: python
+system: true
