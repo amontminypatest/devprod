@@ -1,0 +1,312 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 2.1.25
+    packID: Carbon_Black_Enterprise_Response
+    packName: Carbon Black Enterprise Response
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: Hunt for malicious indicators using Carbon Black
+id: Search Endpoints By Hash - Carbon Black Response V2
+inputs:
+- description: MD5 Hash
+  key: Hash
+  playbookInputQuery: null
+  required: false
+  value:
+    complex:
+      accessor: MD5
+      root: File
+name: Search Endpoints By Hash - Carbon Black Response V2
+outputs:
+- contextPath: Endpoint.Hostname
+  description: The device hostname
+  type: string
+- contextPath: Endpoint
+  description: The endpoint
+  type: unknown
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Playbook start point
+      id: edc8b672-13e8-48fa-87c9-594118876ac4
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: edc8b672-13e8-48fa-87c9-594118876ac4
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      md5:
+        complex:
+          accessor: Hash
+          root: inputs
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Query processes based on given parameters
+      id: 71c8642a-2af7-4af6-8015-5a2f89fd40d2
+      iscommand: true
+      name: Hunt MD5 Hash
+      script: '|||cb-get-processes'
+      type: regular
+      version: -1
+    taskid: 71c8642a-2af7-4af6-8015-5a2f89fd40d2
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 500,
+          "y": 680
+        }
+      }
+  "2":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: brand
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: carbonblack-v2
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.state
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: active
+                root: modules
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "7"
+      "yes":
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: ${modules(val.brand == 'carbonblack' && val.state == 'active')}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Is Carbon Black enabled?
+      id: a43ea7bf-d5e3-4c0b-8da7-5ce65cc1aae3
+      iscommand: false
+      name: Is Carbon Black enabled?
+      type: condition
+      version: -1
+    taskid: a43ea7bf-d5e3-4c0b-8da7-5ce65cc1aae3
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 195
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Done
+      id: 108ba97d-b9da-4162-808d-025b5f6b7986
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 108ba97d-b9da-4162-808d-025b5f6b7986
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 865
+        }
+      }
+  "5":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.Hash
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "7"
+      "yes":
+      - "6"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks if there is an MD5 hash to hunt.
+      id: 00c09fd8-6352-4b6c-8e7a-5a2459544fc7
+      iscommand: false
+      name: Is there an MD5 hash to hunt?
+      type: condition
+      version: -1
+    taskid: 00c09fd8-6352-4b6c-8e7a-5a2459544fc7
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 290,
+          "y": 370
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 4fd8eec7-f7ec-4f53-8473-932db46cc0ec
+      iscommand: false
+      name: Hunt MD5
+      type: title
+      version: -1
+    taskid: 4fd8eec7-f7ec-4f53-8473-932db46cc0ec
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 500,
+          "y": 540
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 863da4aa-ab0b-416b-8072-1f36602773aa
+      iscommand: false
+      name: No Integration \ No Hash
+      type: title
+      version: -1
+    taskid: 863da4aa-ab0b-416b-8072-1f36602773aa
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 540
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "2_5_yes": 0.41,
+      "2_7_#default#": 0.42,
+      "5_6_yes": 0.47,
+      "5_7_#default#": 0.41
+    },
+    "paper": {
+      "dimensions": {
+        "height": 880,
+        "width": 830,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
