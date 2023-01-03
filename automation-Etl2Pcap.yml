@@ -1,0 +1,87 @@
+args:
+- description: The file entry ID of the ETL File.
+  name: EntryID
+  required: true
+comment: Receives an ETL file and converts it to a PCAP file.
+commonfields:
+  id: Etl2Pcap
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.0.0
+    itemVersion: 1.0.2
+    packID: WindowsForensics
+    packName: Windows Forensics
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+dockerimage: demisto/etl2pcap:1.0.0.19032
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: Etl2Pcap
+outputs:
+- contextPath: EtlToPcap.NewFileName
+  description: The output filename.
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('Etl2Pcap', 'start', __line__())
+  import subprocess
+  import uuid
+
+
+
+
+
+  def etl_to_pcap(etl_file_path, output_file_path):
+      etl_file_path = os.path.abspath("./" + etl_file_path)
+      output_file_path = os.path.abspath("./" + output_file_path)
+      cmd = ["python", "/var/opt/etl/etl2pcap.py", etl_file_path, output_file_path]
+      p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+      p.communicate()
+
+
+  def get_file_name(entry_id):
+      ctx = demisto.context()
+      res = demisto.dt(ctx, "File(val['EntryID'] == '%s')" % entry_id)
+      if res:
+          if type(res) is list:
+              res = res[0]
+          return os.path.splitext(res.get('Name', ''))[0]
+
+
+  def main():
+      entry_id = demisto.args().get('EntryID')
+      res = demisto.getFilePath(entry_id)
+      if not res or res.get('path') is None:
+          return_error("Cannot find file path for entry ID: " + entry_id)
+      etl_file_path = res.get('path')
+      output_file_name = get_file_name(entry_id)
+      if output_file_name is None:
+          output_file_name = str(uuid.uuid4())
+      output_file_path = output_file_name + '.pcap'
+      etl_to_pcap(etl_file_path, output_file_path)
+      with open(output_file_path, 'rb') as f:
+          entry = fileResult(output_file_path, f.read())
+          entry['EntryContext'] = {
+              'EtlToPcap': {
+                  'NewFileName': output_file_path,
+              }
+          }
+          demisto.results(entry)
+
+
+  if __name__ in ['__main__', '__builtin__', 'builtins']:
+      main()
+
+  register_module_line('Etl2Pcap', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags: []
+type: python
