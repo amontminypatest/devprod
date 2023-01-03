@@ -1,0 +1,279 @@
+{
+	"author": "Cybereason",
+	"authorImage": "content/packs/Cybereason/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Endpoint"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"automation",
+		"playbook"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "Preprocessing script to run when fetching Cybereason malops.\nWill check if malop was already fetched, and will then update the existing incident, otherwise will create a new incident.",
+				"name": "CybereasonPreProcessingExample",
+				"tags": [
+					"preProcessing",
+					"Cybereason",
+					"example"
+				]
+			}
+		],
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Endpoint",
+				"commands": [
+					{
+						"description": "Archives a Sensor.",
+						"name": "cybereason-archive-sensor"
+					},
+					{
+						"description": "Unarchives a Sensor.",
+						"name": "cybereason-unarchive-sensor"
+					},
+					{
+						"description": "Deletes a Sensor.",
+						"name": "cybereason-delete-sensor"
+					},
+					{
+						"description": "Searches for processes with various filters.",
+						"name": "cybereason-query-processes"
+					},
+					{
+						"description": "Checks if the machine is currently connected to the Cybereason server",
+						"name": "cybereason-is-probe-connected"
+					},
+					{
+						"description": "Searches for connections.",
+						"name": "cybereason-query-connections"
+					},
+					{
+						"description": "Isolates a machine that has been infected from the rest of the network",
+						"name": "cybereason-isolate-machine"
+					},
+					{
+						"description": "Stops isolation of a machine",
+						"name": "cybereason-unisolate-machine"
+					},
+					{
+						"description": "Returns a list of all Malops and details on the Malops.",
+						"name": "cybereason-query-malops"
+					},
+					{
+						"description": "Returns a list of malops",
+						"name": "cybereason-malop-processes"
+					},
+					{
+						"description": "Add new comment to malop",
+						"name": "cybereason-add-comment"
+					},
+					{
+						"description": "Updates malop status",
+						"name": "cybereason-update-malop-status"
+					},
+					{
+						"description": "Prevent malop process file",
+						"name": "cybereason-prevent-file"
+					},
+					{
+						"description": "Unprevent malop process file",
+						"name": "cybereason-unprevent-file"
+					},
+					{
+						"description": "Query files as part of investigation",
+						"name": "cybereason-query-file"
+					},
+					{
+						"description": "Query domains as part of investigation",
+						"name": "cybereason-query-domain"
+					},
+					{
+						"description": "Query users as part of investigation",
+						"name": "cybereason-query-user"
+					},
+					{
+						"description": "Start fetching the file to download",
+						"name": "cybereason-start-fetchfile"
+					},
+					{
+						"description": "Return a batch id for files waiting for download",
+						"name": "cybereason-fetchfile-progress"
+					},
+					{
+						"description": "Downloads the actual file to the machine",
+						"name": "cybereason-download-file"
+					},
+					{
+						"description": "Aborts a file download operation that is in progress",
+						"name": "cybereason-close-file-batch-id"
+					},
+					{
+						"description": "Get all remediation action details whatever available for that malop",
+						"name": "cybereason-available-remediation-actions"
+					},
+					{
+						"description": "Kill a processes for the malicious file. (User will get inputs by executing the 'cybereason-available-remediation-actions' command if this remediation action is available for that Malop)",
+						"name": "cybereason-kill-process"
+					},
+					{
+						"description": "Quarantine the detected malicious file in a secure location. (User will get inputs by executing the 'cybereason-available-remediation-actions' command if this remediation action is available for that Malop)",
+						"name": "cybereason-quarantine-file"
+					},
+					{
+						"description": "Unquarantine the detected malicious file in a secure location. (User will get inputs by executing the 'cybereason-available-remediation-actions' command if this remediation action is available for that Malop)",
+						"name": "cybereason-unquarantine-file"
+					},
+					{
+						"description": "Block a file only in particular machine. (User will get inputs by executing the 'cybereason-available-remediation-actions' command if this remediation action is available for that Malop)",
+						"name": "cybereason-block-file"
+					},
+					{
+						"description": "Delete a registry entry associated with a malicious process. (User will get inputs by executing the 'cybereason-available-remediation-actions' command if this remediation action is available for that Malop)",
+						"name": "cybereason-delete-registry-key"
+					},
+					{
+						"description": "Prevent detected ransomware from running on the machine. (User will get inputs by executing the 'cybereason-available-remediation-actions' command if this remediation action is available for that Malop)",
+						"name": "cybereason-kill-prevent-unsuspend"
+					},
+					{
+						"description": "Prevent a file associated with ransomware. (User will get inputs by executing the 'cybereason-available-remediation-actions' command if this remediation action is available for that Malop)",
+						"name": "cybereason-unsuspend-process"
+					},
+					{
+						"description": "Malware query with options and values to filter",
+						"name": "cybereason-malware-query"
+					},
+					{
+						"description": "Start or stop a full or quick scan for a host.",
+						"name": "cybereason-start-host-scan"
+					},
+					{
+						"description": "Get the results for host scanning.",
+						"name": "cybereason-fetch-scan-status"
+					},
+					{
+						"description": "Get the Sensor ID of a machine.",
+						"name": "cybereason-get-sensor-id"
+					}
+				],
+				"description": "Endpoint detection and response to manage and query malops, connections and processes.",
+				"id": "",
+				"name": "Cybereason (Partner Contribution)"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": [
+			{
+				"description": "This playbook aborts a file download operation which is in progress based on the Malop ID and username provided.",
+				"name": "Cybereason - Download Close File"
+			},
+			{
+				"description": "This playbook unisolates a machine based on the hostname provided.",
+				"name": "Unisolate Endpoint - Cybereason"
+			},
+			{
+				"description": "Hunt for endpoint activity involving hash, using Cybereason.",
+				"name": "Search Endpoints By Hash - Cybereason"
+			},
+			{
+				"description": "This playbook isolates a machine based on the hostname provided.",
+				"name": "Isolate Endpoint - Cybereason"
+			},
+			{
+				"description": "This playbook downloads a file from Cybereason platform, based on the Malop ID and username provided.",
+				"name": "Cybereason - Download File"
+			},
+			{
+				"description": "This playbook accepts an MD5 hash and blocks the file using the Cybereason integration.",
+				"name": "Block File - Cybereason"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-06-30T20:23:49Z",
+	"currentVersion": "2.0.0",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.39",
+			"name": "Base"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.10.7",
+			"name": "Common Scripts"
+		}
+	},
+	"deprecated": false,
+	"description": "Endpoint detection and response to manage and query malops, connections and processes.",
+	"disabledMonthly": false,
+	"downloads": 3500,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByPartner",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "Cybereason",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/Cybereason/Cybereason_image.png",
+			"name": "Cybereason"
+		}
+	],
+	"itemVersion": "2.0.0",
+	"keywords": [],
+	"legacy": true,
+	"name": "Cybereason",
+	"packID": "Cybereason",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "Note: Support for this Pack moved to the partner on November, 3, 2022.\n\nPlease contact the partner directly via the support link on the right.",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "partner",
+	"supportDetails": {
+		"email": "support@cybereason.com",
+		"url": "https://nest.cybereason.com/"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-11-09T11:39:25Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4098099",
+	"videos": []
+}
