@@ -1,0 +1,80 @@
+args:
+- description: The query for the Indicators that you want to export. (e.g. type:IP
+    and reputation:Bad and expirationStatus:active). You can and should generate the
+    query from the Indicators search screen.
+  name: query
+  required: true
+- defaultValue: "7"
+  description: Indicator last seen days  (default is 7).  Needs to be a number.
+  name: seenDays
+- description: 'Comma separated list of columns (fields) for the CSV.  (Default is:
+    id,indicator_type,value,source,score,relatedIncCount,setBy,sourceBrands,modified)'
+  name: columns
+comment: This automation uses the Demisto REST API Integration to batch export Indicators
+  to CSV and return the resulting CSV file to the war room.
+commonfields:
+  id: cfb1db8d-3629-47c4-85dc-aa43a5f78442
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dependson:
+  must:
+  - Demisto REST API|||demisto-api-post
+  - Demisto REST API|||demisto-api-get
+dockerimage: demisto/python3:3.9.1.15759
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: ExportIndicatorsToCSV
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |+
+  indicator_query = demisto.args().get("query")
+  indicator_seen_days = int(demisto.args().get("seenDays"))
+
+  if demisto.args().get("columns"):
+      indicator_columns = [x.strip() for x in demisto.args().get("columns").split(",")]
+  else:
+      indicator_columns = ["id", "indicator_type", "value", "score", "timestamp", "relatedIncCount", "sourceBrands", "expirationStatus", "expiration", "modified"]
+
+  # body for the indicator request
+  indicator_body = {
+      "all": True,
+      "filter": {
+          "query": indicator_query,
+          "sort": [{
+              "field": "calculatedTime",
+              "asc": False
+          }],
+          "period": {
+              "by": "day",
+              "fromValue": indicator_seen_days
+          }
+      },
+      "columns": indicator_columns
+  }
+
+  # generate the file
+  res = demisto.executeCommand("demisto-api-post", {"uri":"/indicators/batch/exportToCsv","body":indicator_body})[0]["Contents"]["response"]
+
+
+  # download the file and return to the war room
+  file = demisto.executeCommand("demisto-api-get", {"uri":f"/indicators/csv/{res}"})[0]["Contents"]["response"]
+  demisto.results(fileResult(res, file))
+
+scripttarget: 0
+subtype: python3
+tags:
+- Utility
+- training
+type: python
