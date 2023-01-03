@@ -1,0 +1,1292 @@
+category: Identity and Access Management
+commonfields:
+  id: SailPointIdentityIQ
+  version: -1
+configuration:
+- additionalinfo: The FQDN/IP of the IdentityIQ server to connect
+  display: IdentityIQ Server URL (e.g. https://identityiq-server.com/identityiq)
+  name: identityiq_url
+  required: true
+  type: 12
+- additionalinfo: Client Id for OAuth 2.0
+  display: Client Id (for OAuth 2.0)
+  name: client_id
+  required: true
+  type: 4
+- additionalinfo: Client Secret for OAuth 2.0
+  display: Client Secret (for OAuth 2.0)
+  name: client_secret
+  required: true
+  type: 4
+- display: Fetch incidents
+  name: isFetch
+  required: false
+  type: 8
+- display: Trust any certificate (not secure)
+  name: insecure
+  required: false
+  type: 8
+- display: Use system proxy settings
+  name: proxy
+  required: false
+  type: 8
+- display: Incident type
+  name: incidentType
+  required: false
+  type: 13
+- defaultvalue: "50"
+  display: Maximum number of incidents per fetch
+  name: max_fetch
+  required: false
+  type: 0
+- defaultvalue: 3 days
+  display: First fetch time
+  name: first_fetch
+  required: false
+  type: 0
+- defaultvalue: "1"
+  display: Incidents Fetch Interval
+  name: incidentFetchInterval
+  required: false
+  type: 19
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.0.0
+    itemVersion: 1.0.7
+    packID: SailPointIdentityIQ
+    packName: SailPoint IdentityIQ
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: SailPoint IdentityIQ context pack enables XSOAR customers to utilize
+  the deep, enriched contextual data in the SailPoint predictive identity platform
+  to better drive identity-aware security practices.
+detaileddescription: |-
+  ### Partner Contributed Integration
+  #### Integration Author: SailPoint
+  Support and maintenance for this integration are provided by the author. Please use the following contact details:
+  - **Email**: [support.idplusa@sailpoint.com](mailto:support.idplusa@sailpoint.com)
+  - **URL**: [https://support.sailpoint.com/hc/en-us/requests/new](https://support.sailpoint.com/hc/en-us/requests/new)
+  ***
+  [View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/sail-point-identity-iq)
+display: SailPoint IdentityIQ (Partner Contribution)
+image: data:image/png;base64,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
+name: SailPointIdentityIQ
+script:
+  commands:
+  - arguments:
+    - description: Internal id of the identity being requested.
+      name: id
+    - description: Email address of the identity being requested.
+      name: email
+    - defaultValue: "true"
+      description: Determines whether search will return only active identities.
+      name: active
+    - description: Numeric value of baseline risk score, users above this will be
+        returned.
+      name: risk
+    description: Search identities by search/filter parameters (id, email, risk &
+      active) using IdentityIQ SCIM API's.
+    name: identityiq-search-identities
+    outputs:
+    - contextPath: IdentityIQ.Identity.userName
+      description: The IdentityIQ username (primary id).
+      type: String
+    - contextPath: IdentityIQ.Identity.id
+      description: The IdentityIQ internal id (uuid).
+      type: String
+    - contextPath: IdentityIQ.Identity.name.formatted
+      description: The display name of the identity.
+      type: String
+    - contextPath: IdentityIQ.Identity.name.familyName
+      description: The last name of the identity.
+      type: String
+    - contextPath: IdentityIQ.Identity.name.givenName
+      description: The first name of the identity.
+      type: String
+    - contextPath: IdentityIQ.Identity.active
+      description: Indicates whether the id is active or inactive in IdentityIQ.
+      type: Boolean
+    - contextPath: IdentityIQ.Identity.manager.userName
+      description: The IdentityIQ username (primary id) of the identities manager.
+      type: String
+    - contextPath: IdentityIQ.Identity.lastModified
+      description: Timestamp of when the identity was last modified.
+      type: Date
+    - contextPath: IdentityIQ.Identity.displayName
+      description: The display name of the identity.
+      type: String
+    - contextPath: IdentityIQ.Identity.emails
+      description: Array of email objects.
+      type: Unknown
+    - contextPath: IdentityIQ.Identity.emails.type
+      description: Type of the email being returned.
+      type: String
+    - contextPath: IdentityIQ.Identity.emails.value
+      description: The email address of the identity.
+      type: String
+    - contextPath: IdentityIQ.Identity.emails.primary
+      description: Indicates if this email address is the identities primary email.
+      type: Boolean
+    - contextPath: IdentityIQ.Identity.entitlements
+      description: Array of entitlements objects that the identity has.
+      type: Unknown
+    - contextPath: IdentityIQ.Identity.roles
+      description: Array of role objects that the identity has.
+      type: Unknown
+    - contextPath: IdentityIQ.Identity.capabilities
+      description: Array of string representations of the IdentityIQ capabilities
+        assigned to this identity.
+      type: Unknown
+  - arguments:
+    - description: Internal id of the policy violation being requested.
+      name: id
+    description: Fetch policy violation by id or all policy violations using IdentityIQ
+      SCIM API's.
+    name: identityiq-get-policyviolations
+    outputs:
+    - contextPath: IdentityIQ.PolicyViolation.policyName
+      description: Name of the policy that was violated.
+      type: String
+    - contextPath: IdentityIQ.PolicyViolation.constraintName
+      description: Name of the constraint being violated.
+      type: String
+    - contextPath: IdentityIQ.PolicyViolation.status
+      description: Status of the violation (open/closed).
+      type: String
+    - contextPath: IdentityIQ.PolicyViolation.description
+      description: Description of the policy/conflict.
+      type: String
+    - contextPath: IdentityIQ.PolicyViolation.identity.value
+      description: Internal id of the IdentityIQ identity in violation.
+      type: Unknown
+    - contextPath: IdentityIQ.PolicyViolation.identity.displayName
+      description: Display name of the IdentityIQ identity in violation.
+      type: String
+    - contextPath: IdentityIQ.PolicyViolation.id
+      description: Internal id of the task result.
+      type: String
+  - arguments:
+    - description: Internal id of the task result being requested.
+      name: id
+    description: Fetch task result by id or all task results using IdentityIQ SCIM
+      API's.
+    name: identityiq-get-taskresults
+    outputs:
+    - contextPath: IdentityIQ.TaskResult.id
+      description: Internal id of the task result.
+      type: String
+    - contextPath: IdentityIQ.TaskResult.progress
+      description: String representation of the status of the task.
+      type: String
+    - contextPath: IdentityIQ.TaskResult.launched
+      description: Date representation of when the task was launched in IdentityIQ.
+      type: Date
+    - contextPath: IdentityIQ.TaskResult.taskDefinition
+      description: Name of the task template that this task result is an instantiation
+        of.
+      type: String
+    - contextPath: IdentityIQ.TaskResult.host
+      description: Host name of the IdentityIQ application server that is executing
+        this task.
+      type: String
+    - contextPath: IdentityIQ.TaskResult.type
+      description: Type of the task being executed.
+      type: String
+    - contextPath: IdentityIQ.TaskResult.pendingSignoffs
+      description: Number of signoffs on the task result that have not been done.
+      type: Number
+    - contextPath: IdentityIQ.TaskResult.completionStatus
+      description: Status of task 'success', 'termianted', 'failure', etc.
+      type: String
+    - contextPath: IdentityIQ.TaskResult.launcher
+      description: Name of the IdentityIQ identity who launched the task.
+      type: String
+    - contextPath: IdentityIQ.TaskResult.name
+      description: Unique name of the task that was launched.
+      type: String
+    - contextPath: IdentityIQ.TaskResult.completed
+      description: Timestamp of when the task was completed (if not currently executed).
+      type: Date
+  - arguments:
+    - description: Internal id of the account to be returned.
+      name: id
+    - description: displayName of the account to be returned.
+      name: display_name
+    - description: |-
+        Timestamp of the last time the account(s) were refreshed from the target system.
+        [format : yyyy-MM-dd'T'HH:mm:ss or yyyy-MM-dd]
+      name: last_refresh
+    - description: Unique identifier of the account on the target system.
+      name: native_identity
+    - description: |-
+        Timestamp of the last targeted aggregation of the account from the target system.
+        [format : yyyy-MM-dd'T'HH:mm:ss or yyyy-MM-dd]
+      name: last_target_agg
+    - description: Unique name of the identity for which all accounts will be returned.
+      name: identity_name
+    - description: Unique name of the application for which all accounts will be returned.
+      name: application_name
+    description: Fetch accounts by search/filter parameters (id, display_name, last_refresh,
+      native_identity, last_target_agg, identity_name & application_name) using IdentityIQ
+      SCIM API's.
+    name: identityiq-get-accounts
+    outputs:
+    - contextPath: IdentityIQ.Account.id
+      description: Internal id of the account.
+      type: String
+    - contextPath: IdentityIQ.Account.identity.value
+      description: Internal id of the identity that this account belongs to.
+      type: String
+    - contextPath: IdentityIQ.Account.identity.displayName
+      description: Display name of the identity that this account belongs to.
+      type: String
+    - contextPath: IdentityIQ.Account.hasEntitlements
+      description: True if the account has access entitlements assigned to it, else
+        false.
+      type: Boolean
+    - contextPath: IdentityIQ.Account.application.value
+      description: Internal id of the application that this account is on.
+      type: Unknown
+    - contextPath: IdentityIQ.Account.application.displayName
+      description: Display name of the application that this account is on.
+      type: String
+    - contextPath: IdentityIQ.Account.nativeIdentity
+      description: The name of the account as it exists on the application.
+      type: String
+    - contextPath: IdentityIQ.Account.lastRefreshed
+      description: Timestamp of when this account was last refreshed in IdentityIQ.
+      type: Date
+  - arguments:
+    - description: Internal id of the specific account to be disabled.
+      name: id
+      required: true
+    description: Disable account's active status by id using IdentityIQ SCIM API's.
+    name: identityiq-disable-account
+    outputs:
+    - contextPath: IdentityIQ.AccountDisable.active
+      description: Indicates the status of account (should be false after request
+        is successfully completed).
+      type: Boolean
+  - arguments:
+    - description: Internal id of the specific account to be enabled.
+      name: id
+      required: true
+    description: Enable account's active status by id using IdentityIQ SCIM API's.
+    name: identityiq-enable-account
+    outputs:
+    - contextPath: IdentityIQ.AccountDisable.active
+      description: Indicates the status of account (should be true after request is
+        successfully completed).
+      type: Boolean
+  - arguments:
+    - description: Internal id of the specific account to be deleted.
+      name: id
+      required: true
+    description: Delete account by id using IdentityIQ SCIM API's.
+    execution: true
+    name: identityiq-delete-account
+  - arguments:
+    - description: Internal id of the specific launched workflow being requested.
+      name: id
+    description: Fetch launched workflow by id or all launched workflows using IdentityIQ
+      SCIM API's.
+    name: identitytiq-get-launched-workflows
+    outputs:
+    - contextPath: IdentityIQ.Workflow.workflowName
+      description: Name of the workflow that was launched.
+      type: String
+    - contextPath: IdentityIQ.Workflow.identityRequestId
+      description: Unique id of the identity request that launched this workflow (if
+        exists).
+      type: String
+    - contextPath: IdentityIQ.Workflow.workflowCaseId
+      description: Internal id of the workflowcase for this workflow.
+      type: String
+    - contextPath: IdentityIQ.Workflow.launched
+      description: Timestamp of when this workflow was launched.
+      type: Date
+    - contextPath: IdentityIQ.Workflow.targetClass
+      description: Type of object targeted by the workflow, usually identity.
+      type: String
+    - contextPath: IdentityIQ.Workflow.targetName
+      description: Unique name of the object (username in the case of identity).
+      type: String
+    - contextPath: IdentityIQ.Workflow.type
+      description: The type of workflow.
+      type: String
+    - contextPath: IdentityIQ.Workflow.id
+      description: Internal id of the workflow.
+      type: String
+    - contextPath: IdentityIQ.Workflow.completionStatus
+      description: Status of workflow – 'success', 'failure', 'pending' etc.
+      type: String
+    - contextPath: IdentityIQ.Workflow.launcher
+      description: Name of the identity that launched the workflow.
+      type: String
+    - contextPath: IdentityIQ.Workflow.terminated
+      description: Indicates whether this workflow was terminated due to error or
+        intentionally stopped.
+      type: Boolean
+    - contextPath: IdentityIQ.Workflow.name
+      description: Name of the workflow that was launched.
+      type: String
+    - contextPath: IdentityIQ.Workflow.attributes
+      description: Array of key/value pairs that are the inputs and their values to
+        the workflow.
+      type: Unknown
+    - contextPath: IdentityIQ.Workflow.output
+      description: Array of key/type/value objects that list the output of the workflow.
+      type: Unknown
+  - arguments:
+    - description: Internal id of the specific role being requested.
+      name: id
+    description: Fetch role by id or all roles using IdentityIQ SCIM API's.
+    name: identityiq-get-roles
+    outputs:
+    - contextPath: IdentityIQ.Role.name
+      description: Unique name of the role object in IdentityIQ.
+      type: String
+    - contextPath: IdentityIQ.Role.owner.value
+      description: Internal id of the role owner identity.
+      type: String
+    - contextPath: IdentityIQ.Role.owner.displayName
+      description: Displayname of the owner of the role.
+      type: String
+    - contextPath: IdentityIQ.Role.active
+      description: Indicates whether the role is active in IdentityIQ.
+      type: Boolean
+    - contextPath: IdentityIQ.Role.displayableName
+      description: Display name of the role in IdentityIQ.
+      type: String
+    - contextPath: IdentityIQ.Role.permits
+      description: Array of roles that this role permits in IdentityIQ.
+      type: Unknown
+    - contextPath: IdentityIQ.Role.type.name
+      description: Template role on which this role is based.
+      type: String
+    - contextPath: IdentityIQ.Role.type.autoAssignment
+      description: Indicates whether this type of role can be auto-assigned to identities.
+      type: Boolean
+    - contextPath: IdentityIQ.Role.type.displayName
+      description: Display name of the template role on which this role was based.
+      type: String
+    - contextPath: IdentityIQ.Role.type.manualAssignment
+      description: Indicates whether this role type can be manually assigned.
+      type: String
+    - contextPath: IdentityIQ.Role.descriptions.value
+      description: Description of the role shown in the UI.
+      type: String
+  - arguments:
+    - description: Internal id of the specific entitlement being requested.
+      name: id
+    description: Fetch entitlement by id or all entitlements using IdentityIQ SCIM
+      API's.
+    name: identityiq-get-entitlements
+    outputs:
+    - contextPath: IdentityIQ.Entitlement.application.value
+      description: Internal id of the application that this entitlement resides on.
+      type: String
+    - contextPath: IdentityIQ.Entitlement.application.displayName
+      description: Display name of the application that this entitlement resides on.
+      type: String
+    - contextPath: IdentityIQ.Entitlement.attribute
+      description: String representing the attribute on the application that this
+        entitlement represents.
+      type: String
+    - contextPath: IdentityIQ.Entitlement.type
+      description: String representing the type of attribute on the application that
+        this entitlement represents.
+      type: String
+    - contextPath: IdentityIQ.Entitlement.descriptions
+      description: Array of description objects that contain a locale, and a value.
+      type: Unknown
+    - contextPath: IdentityIQ.Entitlement.id
+      description: Internal id of the entitlement object in IdentityIQ.
+      type: String
+    - contextPath: IdentityIQ.Entitlement.requestable
+      description: Boolean indicates whether this entitlement is directly requestable
+        in the IdentityIQ UI.
+      type: Boolean
+    - contextPath: IdentityIQ.Entitlement.owner.value
+      description: Internal id of the owner of the entitlement in IdentityIQ.
+      type: String
+    - contextPath: IdentityIQ.Entitlement.owner.displayName
+      description: Display name of the owner of the entitlement in IdentityIQ.
+      type: String
+    - contextPath: IdentityIQ.Entitlement.aggregated
+      description: Indicates whether this entitlement was aggregated from the source
+        system or not.
+      type: String
+    - contextPath: IdentityIQ.Entitlement.created
+      description: Timestamp indicates when the entitlement was created in IdentityIQ.
+      type: Date
+  - arguments:
+    - description: Internal id of the specific alert being requested.
+      name: id
+    description: Fetch alert by id or all alerts using IdentityIQ SCIM API's.
+    name: identityiq-get-alerts
+    outputs:
+    - contextPath: IdentityIQ.Alert.id
+      description: Internal id of the Alert in IdentityIQ.
+      type: String
+    - contextPath: IdentityIQ.Alert.lastProcessed
+      description: Timestamp of when this alert was processed by IdentityIQ for match.
+      type: Date
+    - contextPath: IdentityIQ.Alert.displayName
+      description: Display name of the alert in IdentityIQ.
+      type: String
+    - contextPath: IdentityIQ.Alert.meta.created
+      description: Timestamp of when this alert was created in IdentityIQ
+      type: Date
+    - contextPath: IdentityIQ.Alert.name
+      description: Name of the alert in IdentityIQ
+      type: String
+    - contextPath: IdentityIQ.Alert.attributes
+      description: Array of attributes associated with this alert.
+      type: Unknown
+    - contextPath: IdentityIQ.Alert.actions
+      description: Array of actions taken on this alert after processing.
+      type: Unknown
+    - contextPath: IdentityIQ.Alert.application
+      description: List of applications that are related to this alert.
+      type: String
+  - arguments:
+    - description: Display name of the alert.
+      name: display_name
+      required: true
+    - description: |-
+        List of JSON objects with the following structure.
+        {
+            'key': '',
+            'value': '',
+            'type': ''
+        }
+      name: attributes
+    description: Create an alert using IdentityIQ SCIM API's.
+    name: identityiq-create-alert
+    outputs:
+    - contextPath: IdentityIQ.Alert.id
+      description: Internal id of the Alert in IdentityIQ.
+      type: String
+    - contextPath: IdentityIQ.Alert.lastProcessed
+      description: Timestamp of when this alert was processed by IdentityIQ for match.
+      type: Date
+    - contextPath: IdentityIQ.Alert.displayName
+      description: Display name of the alert in IdentityIQ.
+      type: String
+    - contextPath: IdentityIQ.Alert.meta.created
+      description: Timestamp of when this alert.
+      type: Date
+    - contextPath: IdentityIQ.Alert.name
+      description: Unique name of the alert in IdentityIQ.
+      type: String
+    - contextPath: IdentityIQ.Alert.attributes
+      description: Array of attributes associated with this alert.
+      type: Unknown
+    - contextPath: IdentityIQ.Alert.actions
+      description: Array of actions taken on this alert after processing.
+      type: Unknown
+    - contextPath: IdentityIQ.Alert.application
+      description: List of applications that are related to this alert.
+      type: String
+  dockerimage: demisto/python3:3.10.8.37233
+  isfetch: true
+  runonce: false
+  script: |
+    register_module_line('SailPointIdentityIQ', 'start', __line__())
+
+
+
+    ''' IMPORTS '''
+
+    import base64
+    import datetime as dt
+    import json
+    import traceback
+
+    import dateparser
+    import requests
+    import urllib3
+
+    # Disable insecure warnings
+    urllib3.disable_warnings()
+
+    ''' CONSTANTS '''
+
+    # IdentityIQ OAuth token endpoint
+    IIQ_OAUTH_EXT = '/oauth2/token'
+    IIQ_SCIM_PREFIX = '/scim/v2'
+
+    # SCIM core endpoints
+    IIQ_SCIM_SERVICE_PROVIDER_CONFIG_EXT = f'{IIQ_SCIM_PREFIX}/ServiceProviderConfig'
+    IIQ_SCIM_RESOURCE_TYPES_EXT = f'{IIQ_SCIM_PREFIX}/ResourceTypes'
+    IIQ_SCIM_SCHEMAS_EXT = f'{IIQ_SCIM_PREFIX}/Schemas'
+
+    # SCIM resource endpoints
+    IIQ_SCIM_USERS_EXT = f'{IIQ_SCIM_PREFIX}/Users'
+    IIQ_SCIM_ACCOUNTS_EXT = f'{IIQ_SCIM_PREFIX}/Accounts'
+    IIQ_SCIM_ENTITLEMENTS_EXT = f'{IIQ_SCIM_PREFIX}/Entitlements'
+    IIQ_SCIM_ROLES_EXT = f'{IIQ_SCIM_PREFIX}/Roles'
+    IIQ_SCIM_POLICY_VIOLATIONS_EXT = f'{IIQ_SCIM_PREFIX}/PolicyViolations'
+    IIQ_SCIM_LAUNCHED_WORKFLOWS_EXT = f'{IIQ_SCIM_PREFIX}/LaunchedWorkflows'
+    IIQ_SCIM_TASK_RESULTS_EXT = f'{IIQ_SCIM_PREFIX}/TaskResults'
+    IIQ_SCIM_ALERTS_EXT = f'{IIQ_SCIM_PREFIX}/Alerts'
+
+    # From ServiceProviderConfig (filter.maxResults) for IdentityIQ SCIM API
+    MAX_INCIDENTS_TO_FETCH = 1000
+    DATE_FORMAT = '%Y-%m-%dT%H:%M:%S'
+
+    ''' CLIENT CLASS '''
+
+
+    class Client(BaseClient):
+        """
+        Client class to interact with API request.
+        """
+
+        def __init__(self, base_url: str, verify: bool, proxy: bool, headers: dict, max_results: int, request_timeout: int):
+            super().__init__(base_url=base_url, verify=verify, proxy=proxy, headers=headers)
+            self.max_results = max_results
+            self.request_timeout = request_timeout
+
+        def send_request(self, url_suffix: str, method: str, params=None, json_data=None):
+            """
+            Perform a HTTP request to IdentityIQ SCIM API.
+
+            :type url_suffix: ``str``
+            :param url_suffix: IdentityIQ SCIM API endpoint ext suffix.
+
+            :type method: ``str``
+            :param method: HTTP method, e.g. 'GET', 'POST', 'PUT', 'DELETE'.
+
+            :type params: ``JSON``
+            :param params: URL parameters to specify the query.
+
+            :type json_data: ``JSON``
+            :param json_data: Data to be sent as part of 'POST' or 'PUT' request.
+
+            :return: Response after fulfilling the request successfully, else None.
+            """
+            if url_suffix is None or method is None:
+                return None
+            return self._http_request(url_suffix=url_suffix, method=method, json_data=json_data, params=params,
+                                      timeout=self.request_timeout, resp_type='response',
+                                      ok_codes=(200, 201, 202, 204, 400, 401, 404, 409, 500), proxies=handle_proxy())
+
+
+    ''' HELPER/UTILITY FUNCTIONS '''
+
+
+    def get_headers(base_url: str, client_id: str, client_secret: str, grant_type: str, verify: bool):
+        """
+        Create header with OAuth 2.0 authentication information.
+
+        :type base_url: ``str``
+        :param base_url: Base URL of the IdentityIQ tenant.
+
+        :type client_id: ``str``
+        :param client_id: Client Id for OAuth 2.0.
+
+        :type client_secret: ``str``
+        :param client_secret: Client Secret for OAuth 2.0.
+
+        :type grant_type: ``str``
+        :param grant_type: Grant Type for OAuth 2.0. Defaulted to 'client_credentials' if not provided.
+
+        :return: Header with OAuth 2.0 information if client_id & client_secret are provided, else None.
+        This will return None if the client_id & client_secret were not valid (authorized).
+        """
+        if base_url is None or client_id is None or client_secret is None:
+            return None
+
+        if grant_type is None:
+            grant_type = 'client_credentials'
+
+        auth_cred = client_id + ':' + client_secret
+        iiq_oauth_body = f'grant_type={grant_type}'
+        iiq_oauth_headers = {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization': 'Basic %s' % base64.b64encode(auth_cred.encode()).decode()
+        }
+        oauth_response = requests.request("POST", url=f'{base_url}{IIQ_OAUTH_EXT}', data=iiq_oauth_body,
+                                          headers=iiq_oauth_headers, verify=verify)
+        if oauth_response is not None and 200 <= oauth_response.status_code < 300:
+            return {
+                'Authorization': 'Bearer %s' % oauth_response.json().get('access_token', None),
+                'Content-Type': 'application/json'
+            }
+        else:
+            err_msg = 'Failed to get response'
+            if oauth_response is not None:
+                err_msg += f' {oauth_response.status_code}'
+            raise DemistoException(err_msg)
+
+
+    def transform_object_list(object_type: str, object_list=None):
+        """
+        Transform list objects, i.e. - replace the scim uri to a compressed object name.
+        This is done as PAN XSOAR is unable to process json keys with symbols like - '.' or ':'.
+
+        :type object_type: ``str``
+        :param object_type: Type of IdentityIQ object.
+
+        :type object_list: ``list``
+        :param object_list: List of Identity resources objects.
+
+        :return: Transformed list object.
+        """
+        if not isinstance(object_list, list):
+            return None
+
+        transformed_list = []
+        for object in object_list:
+            transformed_list.append(transform_object(object_type, object))
+        return transformed_list
+
+
+    def transform_object(object_type: str, object=None):
+        """
+        Transform objects, i.e. - replace the scim uri to a compressed object name.
+        This is done as PAN XSOAR is unable to process json keys with symbols like - '.' or ':'.
+
+        :type object_type: ``str``
+        :param object_type: Type of IdentityIQ object.
+
+        :type object: ``JSON``
+        :param object: Identity resources object.
+
+        :return: Transformed object.
+        """
+        if not isinstance(object, dict):
+            return None
+
+        if object_type == 'IdentityIQ.Identity':
+            if 'urn:ietf:params:scim:schemas:sailpoint:1.0:User' in object:
+                object['sailpointUser'] = object.pop('urn:ietf:params:scim:schemas:sailpoint:1.0:User')
+            if 'urn:ietf:params:scim:schemas:extension:enterprise:2.0:User' in object:
+                object['extendedUser'] = object.pop('urn:ietf:params:scim:schemas:extension:enterprise:2.0:User')
+        elif object_type == 'IdentityIQ.Workflow':
+            if 'urn:ietf:params:scim:schemas:sailpoint:1.0:LaunchedWorkflow' in object:
+                object['launchedWorkflow'] = object.pop('urn:ietf:params:scim:schemas:sailpoint:1.0:LaunchedWorkflow')
+        elif object_type == 'IdentityIQ.Alert':
+            if 'urn:ietf:params:scim:schemas:sailpoint:1.0:AlertInput' in object:
+                object['alertInput'] = object.pop('urn:ietf:params:scim:schemas:sailpoint:1.0:AlertInput')
+        return object
+
+
+    def get_markdown(object_type: str, objects=None):
+        """
+        Getting markdown for object type to display the results in human readable format.
+
+        :type object_type: ``str``
+        :param object_type: Type of IdentityIQ object.
+
+        :type objects: ``dict`` or ``list``
+        :param objects: Single or list of Identity resources object/s.
+
+        :return: Markdown for each object type.
+        """
+        markdown = ''
+        if object_type == 'IdentityIQ.Identity':
+            headers = ['id', 'userName', 'displayName', 'name', 'emails', 'sailpointUser', 'extendedUser', 'entitlements',
+                       'roles', 'capabilities', 'active']
+            markdown = tableToMarkdown('Identity(Identities)', objects, headers=headers)
+        elif object_type == 'IdentityIQ.PolicyViolation':
+            headers = ['id', 'policyName', 'constraintName', 'status', 'description', 'identity', 'owner']
+            markdown = tableToMarkdown('PolicyViolation(s)', objects, headers=headers)
+        elif object_type == 'IdentityIQ.TaskResult':
+            headers = ['id', 'name', 'type', 'host', 'progress', 'completionStatus', 'launched', 'taskDefinition',
+                       'pendingSignoffs', 'launcher', 'completed', 'taskSchedule', 'partitioned', 'terminated', 'messages',
+                       'attributes']
+            markdown = tableToMarkdown('TaskResult(s)', objects, headers=headers)
+        elif object_type == 'IdentityIQ.Account':
+            headers = ['id', 'displayName', 'identity', 'hasEntitlements', 'application', 'nativeIdentity', 'active',
+                       'lastRefresh', 'manuallyCorrelated', 'application', 'locked']
+            markdown = tableToMarkdown('Account(s)', objects, headers=headers)
+        elif object_type == 'IdentityIQ.Workflow':
+            headers = ['id', 'name', 'workflowName', 'identityRequestId', 'workflowCaseId', 'launched', 'targetClass',
+                       'targetName', 'type', 'completionStatus', 'launcher', 'terminated', 'attributes', 'partitioned',
+                       'completed', 'pendingSignoffs', 'taskDefinition', 'launchedWorkflow']
+            markdown = tableToMarkdown('Workflow(s)', objects, headers=headers)
+        elif object_type == 'IdentityIQ.Role':
+            headers = ['id', 'name', 'owner', 'active', 'displayableName', 'permits', 'type', 'descriptions',
+                       'requirements']
+            markdown = tableToMarkdown('Role(s)', objects, headers=headers)
+        elif object_type == 'IdentityIQ.Entitlement':
+            headers = ['id', 'displayableName', 'type', 'attribute', 'value', 'owner', 'application', 'descriptions',
+                       'requestable', 'aggregated', 'created']
+            markdown = tableToMarkdown('Entitlement(s)', objects, headers=headers)
+        elif object_type == 'IdentityIQ.Alert':
+            headers = ['id', 'name', 'displayName', 'type', 'targetId', 'targetDisplayName', 'targetType', 'alertInput',
+                       'actions', 'application', 'attributes', 'lastProcessed']
+            markdown = tableToMarkdown('Alert(s)', objects, headers=headers)
+        return markdown
+
+
+    def build_results(prefix: str, key_field: str, response=None):
+        """
+        Build results.
+
+        :type prefix: ``str``
+        :param prefix: Prefix for CommandResults as part of the results.
+
+        :type key_field: ``str``
+        :param key_field: Key field for CommandResults as part of the results.
+
+        :type response: ``response``
+        :param response: Response object from IdentityIQ API call.
+
+        :return: CommandResults in case of a successful response else message describing the error status.
+        """
+        if response is not None and 200 <= response.status_code < 300:
+            data = response.json()
+            if 'Resources' in data:
+                outputs = transform_object_list(prefix, data.get('Resources'))
+                markdown = '### Results:\nTotal: ' + str(data.get('totalResults')) + '\n'
+            else:
+                outputs = transform_object(prefix, data)
+                markdown = '### Results:\n'
+            markdown += get_markdown(prefix, outputs)
+
+            return CommandResults(
+                readable_output=markdown,
+                outputs_prefix=prefix,
+                outputs_key_field=key_field,
+                outputs=outputs
+            )
+        else:
+            if 'status' in response.json() and 'detail' in response.json():
+                return ''.join((response.json().get('status'), ' : ', response.json().get('detail')))
+            elif 'status' in response.json():
+                return response.json().get('status')
+        return None
+
+
+    ''' COMMAND FUNCTIONS '''
+
+
+    def test_connection(client: Client):
+        """
+        Test connectivity to IdentityIQ (pings SCIM's ResourceTypes API).
+
+        :type client: ``Client``
+        :param client: SailPoint client
+
+        :return: HTTP connectivity status for test connection.
+        """
+        # Service provider config url may not be behind any auth, hence test resource types URL
+        response = client.send_request(IIQ_SCIM_RESOURCE_TYPES_EXT, "GET", None)
+        if response is not None and 200 <= response.status_code < 300:
+            return 'ok'
+        else:
+            return 'Unable to connect to IdentityIQ!'
+
+
+    def fetch_incidents(client: Client, last_run, first_fetch_str):
+        """
+        Fetch incidents [IdentityIQ Alerts]
+
+        :type client: ``Client``
+        :param client: SailPoint client
+
+        :type last_run: ``[Dict[str, str]]``
+        :param last_run:
+            A dict with a key containing the latest incident created time we got
+            from last fetch.
+
+        :type first_fetch_str: ``str``
+        :param first_fetch_str: First fetch time ("3 days", "1 month", etc).
+
+        :return:
+            A tuple containing two elements:
+                next_run (``Dict[str, int]``): Contains the timestamp that will be
+                        used in ``last_run`` on the next fetch.
+                incidents (``List[dict]``): List of incidents that will be created in XSOAR
+        """
+        first_fetch_date = dateparser.parse(first_fetch_str)
+        assert first_fetch_date is not None, f'could not parse {first_fetch_str}'
+        first_fetch = first_fetch_date.strftime(DATE_FORMAT)
+        last_processed = last_run.get('last_fetch', first_fetch)
+        now = dt.datetime.now().strftime(DATE_FORMAT)
+
+        incidents = []
+        filter_string = ''.join(
+            ('(lastProcessed gt "', last_processed, '" and lastProcessed le "', now, '")'))
+        params = {'filter': filter_string}
+        response = client.send_request(IIQ_SCIM_ALERTS_EXT, "GET", params, None)
+        if response is not None and 200 <= response.status_code < 300:
+            alerts = transform_object_list('IdentityIQ.Alert', response.json().get('Resources'))
+            for alert in alerts:
+                if 'displayName' in alert:
+                    incident_name = alert.get('displayName', None)
+                else:
+                    incident_name = alert.get('name', None)
+                incident = {
+                    'name': incident_name,
+                    'details': alert.get('name', None),
+                    'occurred': alert.get('meta', {}).get('created', None),
+                    'rawJSON': json.dumps(alert)
+                }
+                incidents.append(incident)
+        next_run = {'last_fetch': now}
+        return next_run, incidents
+
+
+    def search_identities(client: Client, id: str, email: str, risk: int, active: bool):
+        """
+        Search identities by search/filter parameters (id, email, risk & active) using IdentityIQ SCIM API's.
+        Command: identityiq-search-identities
+
+        :type client: ``Client``
+        :param client: SailPoint client
+
+        :type id: ``str``
+        :param id:  Internal Id of the user being requested.
+
+        :type email: ``str``
+        :param email: Email address of the user being requested.
+
+        :type risk: ``int``
+        :param risk: Numeric value of baseline risk score, users above this will be returned.
+
+        :type active: ``bool``
+        :param active: Determines whether search will return only active users.
+
+        :return: Identity object (JSON) corresponding to the id or list of identity objects matching search/filter
+        parameters. All Identities if the search parameters are None. Empty JSON if the identity was not found in
+        IdentityIQ.
+        """
+        params = None
+        if id is not None:
+            url = ''.join((IIQ_SCIM_USERS_EXT, '/', id))
+        else:
+            url = IIQ_SCIM_USERS_EXT
+            filter_list = []
+            if email is not None:
+                filter_list.append(''.join(('emails.value eq "', email, '"')))
+            if risk is not None:
+                filter_list.append(''.join(('urn:ietf:params:scim:schemas:sailpoint:1.0:User:riskScore ge ', str(risk))))
+            if active is not None:
+                filter_list.append(''.join(('active eq ', str(active).lower())))
+            # Combine the filters
+            if filter_list is not None and len(filter_list) > 0:
+                filter_string = ' and '.join(filter_list)
+                params = {'filter': filter_string}
+        return client.send_request(url, "GET", params, None)
+
+
+    def get_policy_violations(client: Client, id: str):
+        """
+        Get policy violation by id or all policy violations using IdentityIQ SCIM API's.
+        Command: identityiq-get-policyviolations
+
+        :type client: ``Client``
+        :param client: SailPoint client
+
+        :type id: ``str``
+        :param id: Internal Id of the policy violation being requested.
+
+        :return: Policy violation object (JSON) corresponding to the id or list of policy violation objects if id was None.
+        """
+        if id is not None:
+            url = ''.join((IIQ_SCIM_POLICY_VIOLATIONS_EXT, '/', id))
+        else:
+            url = IIQ_SCIM_POLICY_VIOLATIONS_EXT
+        return client.send_request(url, "GET", None, None)
+
+
+    def get_task_results(client: Client, id: str):
+        """
+        Get task result by id or all task results using IdentityIQ SCIM API's.
+        Command: identityiq-get-taskresults
+
+        :type client: ``Client``
+        :param client: SailPoint client
+
+        :type id: ``str``
+        :param id: Internal Id of the task result being requested.
+
+        :return: Task result object (JSON) corresponding to the id or list of task result objects if id was None.
+        """
+        if id is not None:
+            url = ''.join((IIQ_SCIM_TASK_RESULTS_EXT, '/', id))
+        else:
+            url = IIQ_SCIM_TASK_RESULTS_EXT
+        return client.send_request(url, "GET", None, None)
+
+
+    def get_accounts(client: Client, id: str, display_name: str, last_refresh: str, native_identity: str,
+                     last_target_agg: str,
+                     identity_name: str, application_name: str):
+        """
+        Get accounts by search/filter parameters (id, display_name, last_refresh, native_identity,
+        last_target_agg, identity_name & application_name) using IdentityIQ SCIM API's.
+        Command: identityiq-get-accounts
+
+        :type client: ``Client``
+        :param client: SailPoint client
+
+        :type id: ``str``
+        :param id: Internal Id of the account to be returned.
+
+        :type display_name: ``str``
+        :param display_name: Display name of the account to be returned.
+
+        :type last_refresh: ``str``
+        :param last_refresh: Timestamp of the last time the account(s) were refreshed from the target system.
+
+        :type native_identity: ``str``
+        :param native_identity: Unique identifier of the account on the target system.
+
+        :type last_target_agg: ``str``
+        :param last_target_agg: Timestamp of the last targeted aggregation of the account from the target system.
+
+        :type identity_name: ``str``
+        :param identity_name: Unique name of the identity for which all accounts will be returned.
+
+        :type application_name: ``str``
+        :param application_name: Unique name of the application for which all accounts will be returned.
+
+        :return: Account object (JSON) corresponding to the id or list of identity objects matching search/filter
+        parameters. All account if the search parameters are None. Empty JSON if the account was not found in IdentityIQ.
+        """
+        params = None
+        if id is not None:
+            url = ''.join((IIQ_SCIM_ACCOUNTS_EXT, '/', id))
+        else:
+            url = IIQ_SCIM_ACCOUNTS_EXT
+            filter_list = []
+            if display_name is not None:
+                filter_list.append(''.join(('displayName eq "', display_name, '"')))
+            if last_refresh is not None:
+                filter_list.append(''.join(('lastRefresh ge "', last_refresh, '"')))
+            if native_identity is not None:
+                filter_list.append(''.join(('nativeIdentity eq "', native_identity, '"')))
+            if last_target_agg is not None:
+                filter_list.append(''.join(('lastTargetAggregation ge "', last_target_agg, '"')))
+            if identity_name is not None:
+                filter_list.append(''.join(
+                    ('(identity.userName eq "', identity_name, '"', ' or identity.displayName eq "', identity_name, '")')))
+            if application_name is not None:
+                filter_list.append(''.join(('application.displayName eq "', application_name, '"')))
+            # Combine the filters
+            if filter_list is not None and len(filter_list) > 0:
+                filter_string = ' and '.join(filter_list)
+                params = {'filter': filter_string}
+        return client.send_request(url, "GET", params, None)
+
+
+    def change_account_status(client: Client, id: str, status: bool):
+        """
+        Enable/disable account's active status by id using IdentityIQ SCIM API's.
+        Command: identityiq-disable-account, identityiq-enable-account
+
+        :type client: ``Client``
+        :param client: SailPoint client
+
+        :type id: ``str``
+        :param id: (str) Internal Id of the specific account to be enabled/disabled.
+
+        :type status: ``bool``
+        :param status: True (enable) or False (disable).
+
+        :return: Account object with active flag changed (JSON). None if the request was unsuccessful.
+        """
+        if id is None or status is None or type(status) is not bool:
+            return None
+
+        # Get the user account (we need several fields to update as this is not a PATCH HTTP call).
+        url = ''.join((IIQ_SCIM_ACCOUNTS_EXT, '/', id))
+        response = client.send_request(url, "GET", None)
+        if response is not None and 200 <= response.status_code < 300:
+            data = response.json()
+            data['active'] = str(status).lower()
+            return client.send_request(url, "PUT", None, data)
+        else:
+            return response.json()
+
+
+    def delete_account(client: Client, id: str):
+        """
+        Delete account by id using IdentityIQ SCIM API's.
+        Command: identityiq-delete-account
+
+        :type client: ``Client``
+        :param client: SailPoint client
+
+        :type id: ``str``
+        :param id: Internal Id of the specific account to be deleted.
+
+        :return: Empty HTTP 204 response. None if the request was unsuccessful.
+        """
+        if id is None:
+            return None
+        url = ''.join((IIQ_SCIM_ACCOUNTS_EXT, '/', id))
+        response = client.send_request(url, "DELETE", None, None)
+        if response is not None and 200 <= response.status_code < 300:
+            return 'Account deleted successfully!'
+        else:
+            if 'status' in response.json() and 'detail' in response.json():
+                return ''.join((response.json().get('status'), ' : ', response.json().get('detail')))
+            elif 'status' in response.json():
+                return response.json().get('status')
+        return None
+
+
+    def get_launched_workflows(client: Client, id: str):
+        """
+        Get launched workflow by id or all launched workflows using IdentityIQ SCIM API's.
+        Command: identitytiq-get-launched-workflows
+
+        :type client: ``Client``
+        :param client: SailPoint client
+
+        :type id: ``str``
+        :param id: Internal Id of the specific launched workflow being requested.
+
+        :return: Launched workflow object (JSON) corresponding to the id or list of launched workflows objects if id was None.
+        """
+        if id is not None:
+            url = ''.join((IIQ_SCIM_LAUNCHED_WORKFLOWS_EXT, '/', id))
+        else:
+            url = IIQ_SCIM_LAUNCHED_WORKFLOWS_EXT
+        return client.send_request(url, "GET", None, None)
+
+
+    def get_roles(client: Client, id: str):
+        """
+        Get role by id or all roles using IdentityIQ SCIM API's.
+        Command: identityiq-get-roles
+
+        :type client: ``Client``
+        :param client: SailPoint client
+
+        :type id: ``str``
+        :param id: Internal Id of the specific role being requested.
+
+        :return: Role object (JSON) corresponding to the id or list of role objects if id was None.
+        """
+        if id is not None:
+            url = ''.join((IIQ_SCIM_ROLES_EXT, '/', id))
+        else:
+            url = IIQ_SCIM_ROLES_EXT
+        return client.send_request(url, "GET", None, None)
+
+
+    def get_entitlements(client: Client, id: str):
+        """
+        Get entitlement by id or all entitlements using IdentityIQ SCIM API's.
+        Command: identityiq-get-entitlements
+
+        :type client: ``Client``
+        :param client: SailPoint client
+
+        :type id: ``str``
+        :param id: Internal Id of the specific entitlement being requested.
+
+        :return: Entitlement object (JSON) corresponding to the id or list of entitlement objects if id was None.
+        """
+        if id is not None:
+            url = ''.join((IIQ_SCIM_ENTITLEMENTS_EXT, '/', id))
+        else:
+            url = IIQ_SCIM_ENTITLEMENTS_EXT
+        return client.send_request(url, "GET", None, None)
+
+
+    def get_alerts(client: Client, id: str):
+        """
+        Get alert by id or all alerts using IdentityIQ SCIM API's.
+        Command: identityiq-get-alerts
+
+        :type client: ``Client``
+        :param client: SailPoint client
+
+        :type id: ``str``
+        :param id: Internal Id of the specific alert being requested.
+
+        :return: Alert object (JSON) corresponding to the id or list of alert objects if id was None.
+        """
+        if id is not None:
+            url = ''.join((IIQ_SCIM_ALERTS_EXT, '/', id))
+        else:
+            url = IIQ_SCIM_ALERTS_EXT
+        return client.send_request(url, "GET", None, None)
+
+
+    def create_alert(client: Client, display_name: str, attributes=None):
+        """
+        Create an alert using IdentityIQ SCIM API's.
+        Command: identityiq-create-alert
+
+        :type client: ``Client``
+        :param client: SailPoint client
+
+        :type display_name: ``str``
+        :param display_name: Display name of the alert.
+
+        :type attributes: ``list``
+        :param attributes: List of JSON objects with the following structure.
+            [
+                {
+                    'key': '',
+                    'value': '',
+                    'type': ''
+                }
+            ]
+
+        :return: Newly created alert object (JSON).
+        """
+        if display_name is None:
+            return None
+
+        if attributes is None:
+            attributes = []
+
+        data = {
+            'displayName': display_name,
+            'type': 'PAN XSOAR',
+            'attributes': attributes
+        }
+        return client.send_request(IIQ_SCIM_ALERTS_EXT, "POST", None, data)
+
+
+    ''' MAIN FUNCTION '''
+
+
+    def main():
+        """
+        Intercept and execute commands.
+        """
+
+        # IdentityIQ Base URL (https://identityiq-server.com/identityiq)
+        base_url = demisto.params().get('identityiq_url')
+
+        # OAuth 2.0 Credentials
+        client_id = demisto.params().get('client_id')
+        client_secret = demisto.params().get('client_secret')
+        grant_type = 'client_credentials'
+
+        # Convert the argument to an int or set to MAX_INCIDENTS_TO_FETCH
+        max_results = int(demisto.params().get('max_fetch'))
+        if not max_results or max_results > MAX_INCIDENTS_TO_FETCH:
+            max_results = MAX_INCIDENTS_TO_FETCH
+
+        first_fetch_str = demisto.params().get('first_fetch', '3 days')
+
+        # Other configs
+        verify_certificate = not demisto.params().get('insecure', False)
+        proxy = handle_proxy()
+        request_timeout = 10
+
+        demisto.debug(f'Command being called is {demisto.command()}')
+        try:
+            headers = get_headers(base_url, client_id, client_secret, grant_type, verify_certificate)
+            client = Client(
+                base_url=base_url,
+                verify=verify_certificate,
+                proxy=proxy,
+                headers=headers,
+                max_results=max_results,
+                request_timeout=request_timeout)
+            results = None
+            if demisto.command() == 'test-module':
+                # This is the call made when pressing the integration Test button.
+                results = test_connection(client)
+
+            elif demisto.command() == 'fetch-incidents':
+                next_run, incidents = fetch_incidents(client, demisto.getLastRun(), first_fetch_str)
+                demisto.setLastRun(next_run)
+                demisto.incidents(incidents)
+
+            elif demisto.command() == 'identityiq-search-identities':
+                id = demisto.args().get('id', None)
+                email = demisto.args().get('email', None)
+                risk = demisto.args().get('risk', 0)
+                active = demisto.args().get('active', True)
+                response = search_identities(client, id, email, risk, active)
+                results = build_results('IdentityIQ.Identity', 'id', response)
+
+            elif demisto.command() == 'identityiq-get-policyviolations':
+                id = demisto.args().get('id', None)
+                response = get_policy_violations(client, id)
+                results = build_results('IdentityIQ.PolicyViolation', 'policyName', response)
+
+            elif demisto.command() == 'identityiq-get-taskresults':
+                id = demisto.args().get('id', None)
+                response = get_task_results(client, id)
+                results = build_results('IdentityIQ.TaskResult', 'id', response)
+
+            elif demisto.command() == 'identityiq-get-accounts':
+                id = demisto.args().get('id', None)
+                display_name = demisto.args().get('display_name', None)
+                last_refresh = demisto.args().get('last_refresh', None)
+                native_identity = demisto.args().get('native_identity', None)
+                last_target_agg = demisto.args().get('last_target_agg')
+                identity_name = demisto.args().get('identity_name', None)
+                application_name = demisto.args().get('application_name', None)
+                response = get_accounts(client, id, display_name, last_refresh, native_identity, last_target_agg,
+                                        identity_name,
+                                        application_name)
+                results = build_results('IdentityIQ.Account', 'id', response)
+
+            elif demisto.command() == 'identityiq-disable-account':
+                id = demisto.args().get('id', None)
+                response = change_account_status(client, id, False)
+                results = build_results('IdentityIQ.Account', 'id', response)
+
+            elif demisto.command() == 'identityiq-enable-account':
+                id = demisto.args().get('id', None)
+                response = change_account_status(client, id, True)
+                results = build_results('IdentityIQ.Account', 'id', response)
+
+            elif demisto.command() == 'identityiq-delete-account':
+                id = demisto.args().get('id', None)
+                results = delete_account(client, id)
+
+            elif demisto.command() == 'identitytiq-get-launched-workflows':
+                id = demisto.args().get('id', None)
+                response = get_launched_workflows(client, id)
+                results = build_results('IdentityIQ.Workflow', 'id', response)
+
+            elif demisto.command() == 'identityiq-get-roles':
+                id = demisto.args().get('id', None)
+                response = get_roles(client, id)
+                results = build_results('IdentityIQ.Role', 'name', response)
+
+            elif demisto.command() == 'identityiq-get-entitlements':
+                id = demisto.args().get('id', None)
+                response = get_entitlements(client, id)
+                results = build_results('IdentityIQ.Entitlement', 'id', response)
+
+            elif demisto.command() == 'identityiq-get-alerts':
+                id = demisto.args().get('id', None)
+                response = get_alerts(client, id)
+                results = build_results('IdentityIQ.Alert', 'id', response)
+
+            elif demisto.command() == 'identityiq-create-alert':
+                display_name = demisto.args().get('display_name', None)
+                attribute = demisto.args().get('attribute', None)
+                response = create_alert(client, display_name, attribute)
+                results = build_results('IdentityIQ.Alert', 'id', response)
+
+            return_results(results)
+
+        # Log exceptions and return errors
+        except Exception as e:
+            demisto.error(traceback.format_exc())
+            return_error(f'Failed to execute {demisto.command()} command.\nError:\n{str(e)}')
+
+
+    ''' ENTRY POINT '''
+
+    if __name__ in ('__main__', '__builtin__', 'builtins'):
+        main()
+
+    register_module_line('SailPointIdentityIQ', 'end', __line__())
+  subtype: python3
+  type: python
+system: true
