@@ -1,0 +1,114 @@
+category: Analytics & SIEM
+commonfields:
+  id: SIEM (XSOAR Engineer Training)
+  version: -1
+configuration: []
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+description: 'SIEM for XSOAR Engineer Training, returns events based on queries for
+  username, ip, email. '
+detaileddescription: 68% of all stats are made up, but only 24% of people know that.
+display: SIEM (XSOAR Engineer Training)
+image: data:image/png;base64,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
+name: SIEM (XSOAR Engineer Training)
+script:
+  commands:
+  - arguments:
+    - default: true
+      description: The query to execute against the SIEM.
+      name: query
+      required: true
+    - auto: PREDEFINED
+      description: Type of result to return for this siem integration.
+      name: result_type
+      predefined:
+      - email
+      - hosts
+    description: Searches the SIEM for events.
+    name: siem-search
+    outputs:
+    - contextPath: SIEM.Result
+      description: The results of the SIEM search. The results are a JSON array, in
+        which each item is a SIEM event.
+      type: Unknown
+  dockerimage: demisto/python3:3.9.1.14969
+  runonce: false
+  script: |
+    # Sometimes... maybe.
+    from random import randint
+
+    def main():
+
+        # The command demisto.command() holds the command sent from the user.
+        if demisto.command() == 'test-module':
+            demisto.results('ok')
+        if demisto.command() == 'siem-search':
+            query = demisto.args().get('query')
+            result_type = demisto.args().get('result_type')
+            number = randint(1,10)
+
+            # return results for demo of siem search in example playbook.
+            if result_type == "email" or query.startswith("email"):
+                result = [
+                    {
+                        "Username":"demisto007",
+                        "Email":"james.bond@demisto.local"
+                    },
+                    {
+                        "Username":"demisto001",
+                        "Email":"m@demisto.local"
+                    }
+                    ]
+            # return some data if the number is right. Demonstrate Built-in looping in a sub-playbook.
+            elif number >= 7 or result_type == "hosts" or query.startswith("username"):
+                result = [
+                    {
+                        "Host":"crossiscoming01",
+                        "Online":"Yes"
+                    },
+                    {
+                        "Host":"crossiscoming02",
+                        "Online":"No"
+                    }
+                    ]
+            # return some data if the number is right. Demonstrate Built-in looping in a sub-playbook.
+            elif query.startswith("ip"):
+                result = [
+                    {
+                        "Host":"crossiscoming01",
+                        "Online":"Yes"
+                    }
+                    ]
+            else:
+                result = []
+
+            # return results
+            entry = {
+                    'ContentsFormat': formats['json'],
+                    'Type': entryTypes['note'],
+                    'Contents': result,
+                    'ReadableContentsFormat': formats['markdown'],
+                    'HumanReadable': tableToMarkdown(f"SIEM Search results for query: {query}", result),
+                    'EntryContext': {
+                    'SIEM.Result': result
+                    }
+                }
+            demisto.results(entry)
+        else:
+            demisto.results('ok')
+
+
+    if __name__ in ['__main__', '__builtin__', 'builtins']:
+        main()
+  subtype: python3
+  type: python
+sourcemoduleid: SplunkPy
