@@ -1,0 +1,322 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Network Security"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"playbook"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Network Security",
+				"commands": [
+					{
+						"description": "Returns a list of all network lists available for an authenticated user who belongs to a group.",
+						"name": "akamai-get-network-lists"
+					},
+					{
+						"description": "Gets a network list by the network list ID.",
+						"name": "akamai-get-network-list-by-id"
+					},
+					{
+						"description": "Creates a new network list. Supports TXT file upload for elements.",
+						"name": "akamai-create-network-list"
+					},
+					{
+						"description": "Deletes the specified network list.",
+						"name": "akamai-delete-network-list"
+					},
+					{
+						"description": "Activates a network list on the specified environment.",
+						"name": "akamai-activate-network-list"
+					},
+					{
+						"description": "Adds elements to the specified network list.",
+						"name": "akamai-add-elements-to-network-list"
+					},
+					{
+						"description": "Removes elements from the specified network list.",
+						"name": "akamai-remove-element-from-network-list"
+					},
+					{
+						"description": "Gets the activation status of the specified network list.",
+						"name": "akamai-get-network-list-activation-status"
+					},
+					{
+						"description": "Updates list elements of a network list.",
+						"name": "akamai-update-network-list-elements"
+					},
+					{
+						"description": "Check an existing group within the context of your account.",
+						"name": "akamai-check-group"
+					},
+					{
+						"description": "Create a new group under a parent GID.",
+						"name": "akamai-create-group"
+					},
+					{
+						"description": "Create a new enrollment.",
+						"name": "akamai-create-enrollment"
+					},
+					{
+						"description": "List enrollments of a specific contract.",
+						"name": "akamai-list-enrollments"
+					},
+					{
+						"description": "Create a domain with properties and domain controller (DC).",
+						"name": "akamai-create-domain"
+					},
+					{
+						"description": "Update a property for a specific domain.",
+						"name": "akamai-update-property"
+					},
+					{
+						"description": "Get the CPS code.",
+						"name": "akamai-get-change"
+					},
+					{
+						"description": "Update the certs and trust chains.",
+						"name": "akamai-update-change"
+					},
+					{
+						"description": "Get enrollment by common name.",
+						"name": "akamai-get-enrollment-by-cn"
+					},
+					{
+						"description": "Lists groups of Akamai.",
+						"name": "akamai-list-groups"
+					},
+					{
+						"description": "Get group.",
+						"name": "akamai-get-group"
+					},
+					{
+						"description": "Get Google Tag Manager (GTM) domains.",
+						"name": "akamai-get-domains"
+					},
+					{
+						"description": "Get a specific GTM domain.",
+						"name": "akamai-get-domain"
+					},
+					{
+						"description": "Create a data center.",
+						"name": "akamai-create-datacenter"
+					},
+					{
+						"description": "Clone a new PAPI property.",
+						"name": "akamai-clone-papi-property"
+					},
+					{
+						"description": "Add hostnames to the PAPI property.",
+						"name": "akamai-add-papi-property-hostname"
+					},
+					{
+						"description": "Add a PAPI edge hostname.",
+						"name": "akamai-new-papi-edgehostname"
+					},
+					{
+						"description": "Get cps certificate enrollment ID by common name.",
+						"name": "akamai-get-cps-enrollmentid-by-cnname"
+					},
+					{
+						"description": "Create a new PAPI CP code.",
+						"name": "akamai-new-papi-cpcode"
+					},
+					{
+						"description": "Patch PAPI property default rule with a CP code.",
+						"name": "akamai-patch-papi-property-rule-cpcode"
+					},
+					{
+						"description": "Patch PAPI property default rule with an origin.",
+						"name": "akamai-patch-papi-property-rule-origin"
+					},
+					{
+						"description": "Activate a PAPI property.",
+						"name": "akamai-activate-papi-property"
+					},
+					{
+						"description": "AppSec clone security policy.",
+						"name": "akamai-clone-security-policy"
+					},
+					{
+						"description": "AppSec create match target.",
+						"name": "akamai-new-match-target"
+					},
+					{
+						"description": "AppSec activate appsec configuration version.",
+						"name": "akamai-activate-appsec-config-version"
+					},
+					{
+						"description": "AppSec get appsec config activation status.",
+						"name": "akamai-get-appsec-config-activation-status"
+					},
+					{
+						"description": "AppSec get appsec config latest version.",
+						"name": "akamai-get-appsec-config-latest-version"
+					},
+					{
+						"description": "AppSec get security policy ID by name.",
+						"name": "akamai-get-security-policy-id-by-name"
+					},
+					{
+						"description": "AppSec_clone appsec config version",
+						"name": "akamai-clone-appsec-config-version"
+					},
+					{
+						"description": "Patch PAPI property rule HTTP methods.",
+						"name": "akamai-patch-papi-property-rule-httpmethods"
+					},
+					{
+						"description": "Get PAPI property activation status until it is active.",
+						"name": "akamai-get-papi-property-activation-status-command"
+					},
+					{
+						"description": "Get PAPI edgehostname creation status command until it is created.",
+						"name": "akamai-get-papi-edgehostname-creation-status-command"
+					},
+					{
+						"description": "Acknowledge the warning message for uploading the certs and trust chains of enrollments.",
+						"name": "akamai-acknowledge-warning-command"
+					},
+					{
+						"description": "Update the list of selected hostnames for a configuration version.",
+						"name": "akamai-modify-appsec-config-selected-hosts"
+					},
+					{
+						"description": "Get Production Deployment",
+						"name": "akamai-get-production-deployment"
+					},
+					{
+						"description": "Get change history",
+						"name": "akamai-get-change-history"
+					},
+					{
+						"description": "Patch papi property default rule siteshield",
+						"name": "akamai-patch-papi-property-rule-siteshield"
+					},
+					{
+						"description": "Update application secuirty configuration version notes command",
+						"name": "akamai-update-appsec-config-version-notes"
+					},
+					{
+						"description": "New match target if no existing found otherwise update the existing match target hostnames. If there are multiple match targets found, the first one in the list will be updated",
+						"name": "akamai-new-or-renew-match-target"
+					},
+					{
+						"description": "Generic JSON patch command for Papi Property Default Rule",
+						"name": "akamai-patch-papi-property-rule-generic"
+					},
+					{
+						"description": "get papi property rule json and dump into string",
+						"name": "akamai-get-papi-property-rule"
+					}
+				],
+				"description": "Use the Akamai WAF integration to manage common sets of lists used by various Akamai security products and features.\n\nThis is the modified version where a new command \"akamai-update-network-list-elements\" was added by the SA.",
+				"id": "",
+				"name": "Akamai WAF"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": [
+			{
+				"description": "Activates network lists in Staging or Production on Akamai WAF. The playbook finishes running when the network list is active on the requested enviorment.",
+				"name": "Akamai WAF - Activate Network Lists"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-11-09T18:50:49Z",
+	"currentVersion": "2.0.2",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.39",
+			"name": "Base"
+		},
+		"CommonPlaybooks": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "2.3.18",
+			"name": "Common Playbooks"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.10.16",
+			"name": "Common Scripts"
+		}
+	},
+	"deprecated": false,
+	"description": "Use the Akamai WAF integration to manage common sets of lists used by various Akamai security products and features.",
+	"disabledMonthly": false,
+	"downloads": 918,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "Akamai_WAF",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/Akamai_WAF/AkamaiWAF_image.png",
+			"name": "Akamai WAF"
+		}
+	],
+	"itemVersion": "2.0.2",
+	"keywords": [],
+	"legacy": true,
+	"name": "Akamai WAF",
+	"packID": "Akamai_WAF",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-12-02T00:04:13Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4137548",
+	"videos": []
+}
