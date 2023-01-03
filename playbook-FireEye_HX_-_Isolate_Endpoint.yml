@@ -1,0 +1,301 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.5.0
+    itemVersion: 2.2.11
+    packID: FireEyeHX
+    packName: FireEye HX
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: This playbook will auto isolate endpoints by the endpoint ID that was
+  provided in the playbook.
+id: FireEye HX - Isolate Endpoint
+inputs:
+- description: The endpoint ID or device ID to isolate.
+  key: Endpoint_id
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: The hostname to isolate.
+  key: Hostname
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: FireEye HX - Isolate Endpoint
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 66ce18d3-a5eb-40c8-8424-597028d068df
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 66ce18d3-a5eb-40c8-8424-597028d068df
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 140
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "2"
+      "yes":
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      brandname:
+        simple: FireEye HX
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Returns 'yes' if integration brand is available. Otherwise returns
+        'no'
+      id: d399bde9-dd8a-4de5-8fa9-bc2c30202e48
+      iscommand: false
+      name: Is FireEye HX enabled?
+      script: IsIntegrationAvailable
+      type: condition
+      version: -1
+    taskid: d399bde9-dd8a-4de5-8fa9-bc2c30202e48
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 320
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: e71526df-a0d8-4667-81a8-f3140088de36
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: e71526df-a0d8-4667-81a8-f3140088de36
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 1850
+        }
+      }
+  "3":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.Endpoint_id
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "2"
+      "yes":
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 3c7daaa3-17db-40e9-8891-d9aee3a469a8
+      iscommand: false
+      name: Is there endpoint id?
+      type: condition
+      version: -1
+    taskid: 3c7daaa3-17db-40e9-8891-d9aee3a469a8
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 760,
+          "y": 520
+        }
+      }
+  "4":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      agentId:
+        simple: ${inputs.Endpoint_id}
+      hostName:
+        simple: ${inputs.Hostname}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Get information on a host associated with an agent.
+      id: feb290f6-36ae-4e17-84d6-fd9a9a70eef9
+      iscommand: true
+      name: Get host info
+      script: '|||fireeye-hx-get-host-information'
+      type: regular
+      version: -1
+    taskid: feb290f6-36ae-4e17-84d6-fd9a9a70eef9
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1060,
+          "y": 780
+        }
+      }
+  "5":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: FireEyeHX.Hosts.containment_state
+          operator: isEqualString
+          right:
+            value:
+              simple: normal
+      label: "yes"
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "2"
+      "yes":
+      - "6"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: e853fa70-3ac6-4fcc-8f16-6b193e304208
+      iscommand: false
+      name: Is the device ready for isolation?
+      type: condition
+      version: -1
+    taskid: e853fa70-3ac6-4fcc-8f16-6b193e304208
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1060,
+          "y": 970
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      agentId:
+        simple: ${inputs.Endpoint_id}
+      hostName:
+        simple: ${inputs.Hostname}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Apply containment for a specific host, so that it no longer has
+        access to other systems.
+      id: cfbb7f4b-51db-4496-8011-08fd13e943f3
+      iscommand: true
+      name: Isolate endpoint
+      script: '|||fireeye-hx-host-containment'
+      type: regular
+      version: -1
+    taskid: cfbb7f4b-51db-4496-8011-08fd13e943f3
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1060,
+          "y": 1370
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "1_2_no": 0.73,
+      "3_2_#default#": 0.22,
+      "5_2_#default#": 0.39
+    },
+    "paper": {
+      "dimensions": {
+        "height": 1775,
+        "width": 990,
+        "x": 450,
+        "y": 140
+      }
+    }
+  }
