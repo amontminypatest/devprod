@@ -1,0 +1,115 @@
+{
+	"author": "Guillermo Serrano",
+	"authorImage": "",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "",
+	"contentItemTypes": [
+		"integration"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Gets indicators from the feed.",
+						"name": "talos-get-indicators"
+					}
+				],
+				"description": "Use the Talos Feed integration to get indicators from the feed.",
+				"id": "",
+				"name": "Talos Feed (Community Contribution)"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-09-22T12:39:33Z",
+	"currentVersion": "1.0.5",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.40",
+			"name": "Base"
+		},
+		"CommonTypes": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "3.3.34",
+			"name": "Common Types"
+		}
+	},
+	"deprecated": false,
+	"description": "Talos Threat Intelligence IPv4 Feed",
+	"disabledMonthly": false,
+	"downloads": 1264,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.5.0",
+	"general": [
+		"generalFieldFree"
+	],
+	"id": "FeedTalos",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/FeedTalos/TalosFeed_image.png",
+			"name": "Talos Feed"
+		}
+	],
+	"itemVersion": "1.0.5",
+	"keywords": [
+		"Talos",
+		"Feed"
+	],
+	"legacy": true,
+	"name": "Talos Feed",
+	"packID": "FeedTalos",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 0,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.5.0",
+	"support": "community",
+	"supportDetails": {
+		"email": "",
+		"url": ""
+	},
+	"tags": [
+		"TIM"
+	],
+	"toServerVersion": "",
+	"updated": "2021-12-21T22:27:25Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4148222",
+	"videos": []
+}
