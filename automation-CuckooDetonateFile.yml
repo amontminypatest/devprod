@@ -1,0 +1,81 @@
+args:
+- default: true
+  description: ID of the entry containing the file to detonate.
+  name: entryID
+  required: true
+- description: (optional) Label of the machine to use for analysis
+  name: machine
+- description: (optional) analysis package to be used for the analysis
+  name: package
+- description: (optional) analysis timeout (in seconds)
+  name: timeout
+- description: (optional) enable to enforce the execution for the full timeout value
+  name: enforce_timeout
+- description: (optional) - name of the platform to select the analysis machine from
+    (e.g. “windows”)
+  name: platform
+- description: (optional) - define machine to start by tags. Platform must be set
+    to use that. Tags are comma separated
+  name: tags
+- description: (optional) - enable the creation of a full memory dump of the analysis
+    machine
+  name: memory
+- description: (optional) - options to pass to the analysis package
+  name: options
+comment: Deprecated. Use the 'cuckoo-create-task-from-file' command instead.
+commonfields:
+  id: CuckooDetonateFile
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.1.2
+    packID: CuckooSandbox
+    packName: Cuckoo Sandbox
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+dependson:
+  must:
+  - cuckoo-create-task-from-file
+deprecated: true
+dockerimage: demisto/python3:3.10.6.33415
+engineinfo: {}
+mainengineinfo: {}
+name: CuckooDetonateFile
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('CuckooDetonateFile', 'start', __line__())
+
+
+
+
+  def main():
+      res = demisto.executeCommand("cuckoo-create-task-from-file", demisto.args())
+      if isError(res[0]):
+          demisto.results(res)
+      else:
+          taskid = demisto.get(res[0], 'Contents.task_id')
+          if taskid:
+              demisto.setContext('CuckooTaskID', str(taskid))
+              demisto.results('Task #' + str(taskid) + " added.")
+          else:
+              demisto.results(res + [{"Type": entryTypes["error"],
+                              "ContentsFormat": formats["text"], "Contents": 'No taskID returned.'}])
+
+
+  if __name__ in ('__main__', '__builtin__', 'builtins'):
+      main()
+
+  register_module_line('CuckooDetonateFile', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags:
+- cuckoo
+type: python
