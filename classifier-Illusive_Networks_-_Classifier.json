@@ -1,0 +1,46 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "Illusive Networks Incident",
+	"definitionId": "",
+	"description": "Classifies Illusive Networks incidents.",
+	"feed": false,
+	"fromServerVersion": "6.0.0",
+	"id": "Illusive Networks",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "1.0.21",
+	"keyTypeMap": {
+		"DECEPTION": "Illusive Networks Incident",
+		"DECOY_SUSPICIOUS_ACTIVITY": "Illusive Networks Incident",
+		"EXTERNAL": "Illusive Networks Incident",
+		"FAILED_UI_LOGIN": "Illusive Networks Incident",
+		"MALICIOUS_DNS": "Illusive Networks Incident",
+		"MALICIOUS_PROCESS": "Illusive Networks Incident",
+		"TRAP_FAILED_LOGIN": "Illusive Networks Incident"
+	},
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": null,
+	"name": "Illusive Networks - Classifier",
+	"nameRaw": "Illusive Networks - Classifier",
+	"packID": "IllusiveNetworks",
+	"packName": "Illusive Networks",
+	"packPropagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {
+		"complex": {
+			"filters": [],
+			"root": "incidentTypes",
+			"transformers": []
+		}
+	},
+	"type": "classification",
+	"unclassifiedCases": null,
+	"version": -1
+}
