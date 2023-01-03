@@ -1,0 +1,50 @@
+args:
+- description: The old value of the changed field
+  name: old
+- description: The new value of the changed field
+  name: new
+comment: Example Field Change trigger script which can be added to the DBot Status
+  field, and will trigger if an Incident is reopened.
+commonfields:
+  id: 8b83635c-27f7-494b-8854-bb1d3eca89fa
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.8.6.12176
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: FieldChangeReOpen
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  # Field Change trigger script can take an "old" and "new" and then act accordingly.
+  # Can be used on fields like severity, or owner to do different actions such as escalation or notification.
+
+  # get the old and new values of the field
+  old = demisto.args().get("old").lower()
+  new = demisto.args().get("new").lower()
+
+  # get the incident ID, need to use investigationId in field change scripts
+  incident = demisto.incident().get('investigationId')
+
+  if old == "closed" and new != "closed":
+      demisto.results(f"Incident {incident} status was changed from {old} to {new}")
+      # could do something else like send a slack:
+      # demisto.executeCommand("send-notification", {"message":"Incident {incident} reopened", "channel":"xsoar"})
+scripttarget: 0
+subtype: python3
+tags:
+- field-change-triggered
+- training
+type: python
