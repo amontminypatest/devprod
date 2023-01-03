@@ -1,0 +1,2833 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "",
+	"feed": false,
+	"fromServerVersion": "6.0.0",
+	"id": "5d3f7d5a-ebfb-4dbe-83c6-d7e3b6220e00",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "1.0.21",
+	"keyTypeMap": null,
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": {
+		"F5 Silverline": {
+			"dontMapEventToLabels": true,
+			"internalMapping": {}
+		},
+		"F5 Silverline L7 DDoS Events": {
+			"dontMapEventToLabels": false,
+			"internalMapping": {
+				"F5 Silverline Action": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "action=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Action Reason ": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "reason=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Alert Type": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "type="
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": ","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline DOS Attack Latency": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "DOS Attack Latency=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline DOS Attack TPS": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "DOS Attack TPS=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline DOS Baseline Latency": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "DOS Baseline Latency=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline DOS Baseline TPS": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "DOS Baseline TPS=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline DOS Detection Threshold": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "logs.dos_detection_threshold=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Geo Location Source IP": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "client_ip_geo_location=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Message Number": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "errdefs_msgno=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Mitigate Threshold": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "logs.dos_mitigate_to_threshold=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Raw Message": {
+					"simple": "message"
+				},
+				"F5 Silverline Request Status": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "request_status=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Security Severity": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "severity=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Targeted URI": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "client_request_uri=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline support ID": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "support_id=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"Source IP": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "client_ip=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"severity": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "severity=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				}
+			}
+		},
+		"F5 Silverline Threat Intelligence Events": {
+			"dontMapEventToLabels": false,
+			"internalMapping": {
+				" F5 Silverline Alert Generated Timestamp": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "date_time=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							},
+							{
+								"args": {
+									"add_utc_timezone": {},
+									"dayfirst": {
+										"value": {
+											"simple": "false"
+										}
+									},
+									"fuzzy": {},
+									"yearfirst": {
+										"value": {
+											"simple": "true"
+										}
+									}
+								},
+								"operator": "DateStringToISOFormat"
+							}
+						]
+					}
+				},
+				"Destination IP": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "dest_ip=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"Destination Port": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "dest_port=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Action": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "action=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Alert Type": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "type="
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": ","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Attack Type": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "attack_type=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Context Name": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "context_name=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Flow ID": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "flow_id=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline IP Intelligence Event": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "errdefs_msg_name=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline IP Intelligence Policy Name": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "ip_intelligence_policy_name=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Message Number": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "errdefs_msgno=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Message Originator Source IP ": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "bigip_mgmt_ip=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Raw Message": {
+					"simple": "message"
+				},
+				"F5 Silverline Route Domain": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "route_domain=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline SA Translation Pool": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "sa_translation_pool=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline SA Translation Type": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "sa_translation_type=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Security Severity": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "severity=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Threat identifier": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "ip_intelligence_threat_name=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "]\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Translated Dest IP": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "translated_dest_ip=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Translated Dest Port": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "translated_dest_port=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Translated IP Protocol": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "translated_ip_protocol=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Translated Route Domain": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "translated_route_domain=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Translated Source IP": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "translated_source_ip=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Translated Source Port": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "translated_source_port=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Translated Vlan": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "translated_vlan=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"Protocol": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "ip_protocol=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"Source IP": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "source_ip=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"Source Port": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "source_port=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"severity": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "severity=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				}
+			}
+		},
+		"F5 Silverline WAF Events": {
+			"dontMapEventToLabels": false,
+			"internalMapping": {
+				"Destination IP": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "dest_ip=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"Destination Port": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "dest_port=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silveline Security Policy Name": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "policy_name=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Alert Type": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "type="
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": ","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Attack Signature ID": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "sig_ids=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Attack Signature Name": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "sig_names=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Attack Type": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "attack_type=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Client IP": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "ip_client=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Detected Usernames": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "username=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Geo Location Source IP": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "geo_location=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline HTTP Class Name": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "http_class_name=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline HTTP Method": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "method=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline HTTP Strings Detected": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "query_string=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Raw Message": {
+					"simple": "message"
+				},
+				"F5 Silverline Request Status": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "request_status=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Response Code": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "response_code=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Security Policy update timestamp": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "policy_apply_date=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							},
+							{
+								"args": {
+									"add_utc_timezone": {},
+									"dayfirst": {
+										"value": {
+											"simple": "false"
+										}
+									},
+									"fuzzy": {},
+									"yearfirst": {
+										"value": {
+											"simple": "true"
+										}
+									}
+								},
+								"operator": "DateStringToISOFormat"
+							}
+						]
+					}
+				},
+				"F5 Silverline Security Severity": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "severity=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Staged Signature IDs": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "staged_sig_ids=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Staged Signature Names": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "staged_sig_names=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Sub Violations": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "sub_violations=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Targeted URI": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "uri=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Violation Security Support ID": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "support_id=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Violation Timestamp": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "date_time=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							},
+							{
+								"args": {
+									"add_utc_timezone": {},
+									"dayfirst": {
+										"value": {
+											"simple": "false"
+										}
+									},
+									"fuzzy": {},
+									"yearfirst": {
+										"value": {
+											"simple": "true"
+										}
+									}
+								},
+								"operator": "DateStringToISOFormat"
+							}
+						]
+					}
+				},
+				"F5 Silverline Violations Details": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "violation_details=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							}
+						]
+					}
+				},
+				"F5 Silverline Violations Types": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "violations=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Web Application Name": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "web_application_name=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline X-Forwarded": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "x_forwarded_for_header_value=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"Protocol": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "protocol=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"Source Port": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "src_port=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"name": {
+					"simple": "hostname"
+				},
+				"severity": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "severity=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				}
+			}
+		},
+		"F5 Silverline iRule Events": {
+			"dontMapEventToLabels": false,
+			"internalMapping": {
+				"F5 Silverline Alert Type": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "type="
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": ","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Backend Server IP": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "server_ip=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Backend Server Port": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "server_port=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Client IP": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "client_ip=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Client Port": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "client_port=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Data": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "data=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "}\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline IRule Log Level": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "loglevel=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline IRule Log Type": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "log_type=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline IRule Name": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "irule=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline IRule Version": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "irule-version=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Message Type": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "msg_type=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Proxy ID": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "proxy_id=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Raw Message": {
+					"simple": "message"
+				},
+				"F5 Silverline Request Side": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "request_side=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline SNAT IP": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "snat_ip=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline SNAT Port": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "snat_port=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Security Severity": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "severity=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Service ID": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "service_id=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline TMM Unit": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "tmm_unit=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Virtual Server IP": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "vs_ip=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Virtual Server Name": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "virtualserver=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"F5 Silverline Virtual Server Port": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "vs_port=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				},
+				"severity": {
+					"complex": {
+						"filters": [],
+						"root": "message",
+						"transformers": [
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "severity=\""
+										}
+									}
+								},
+								"operator": "substringFrom"
+							},
+							{
+								"args": {
+									"to": {
+										"value": {
+											"simple": "\","
+										}
+									}
+								},
+								"operator": "substringTo"
+							}
+						]
+					}
+				}
+			}
+		},
+		"dbot_classification_incident_type_all": {
+			"dontMapEventToLabels": true,
+			"internalMapping": {}
+		}
+	},
+	"name": "F5 Silverline mapper",
+	"nameRaw": "F5 Silverline mapper",
+	"packID": "F5Silverline",
+	"packName": "F5 Silverline",
+	"packPropagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {},
+	"type": "mapping-incoming",
+	"unclassifiedCases": null,
+	"version": -1
+}
