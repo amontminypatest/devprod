@@ -1,0 +1,86 @@
+args:
+- defaultValue: "8.0"
+  description: The threshold for the CVSS score to be greater than or equal to, default
+    is 8.0
+  name: cvss_threshold
+- defaultValue: type:CVE
+  description: The query for the CVE indicators, default is (type:CVE)
+  name: query
+- defaultValue: "100"
+  description: 'Number of CVE indicators to return, default is 100. '
+  name: size
+comment: "Searches CVE Indicators, and returns a list of ones where the CVSS score
+  is bigger than a certain float. \n\nThe CVSS is actually a string, so shows how
+  to search and convert etc. "
+commonfields:
+  id: 04885e21-37ac-4caf-8fef-d16b6d7423b4
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.9.7.24076
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: FindCVEbyCVSS
+outputs:
+- contextPath: FoundCVE.value
+  description: The CVE ID
+- contextPath: FoundCVE.id
+  description: ID of the CVE Indicator in the XSOAR database
+- contextPath: FoundCVE.cvss
+  description: The CVSS Score
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  query = demisto.args().get("query")
+  size = demisto.args().get("size")
+
+  try:
+      cvss_threshold = float(demisto.args().get("cvss_threshold"))
+  except:
+      return_error(f'cvss_threshold needs to be an int or a float, you passed in a {type(demisto.args().get("cvss_threshold"))}')
+
+  cve = demisto.executeCommand("findIndicators", {"query":query, "size":size})[0]["Contents"]
+  cve_with_cvss = [ x for x in cve if x.get("CustomFields").get("cvss")]
+
+  found = []
+  for c in cve:
+      if c.get("CustomFields").get("cvss"):
+          try:
+              cvss = float(c.get("CustomFields").get("cvss"))
+              if cvss >= cvss_threshold:
+                  result = {
+                      "cve": c.get("value"),
+                      "id": c.get("id"),
+                      "cvss": float(c.get("CustomFields").get("cvss")),
+                      "description": c.get("CustomFields").get("cvedescription","n/a")
+                  }
+                  found.append(result)
+          except:
+              continue
+  if found:
+      readable = tableToMarkdown(f"CVE Indicators with CVSS >= {cvss_threshold}", found, headers=["cve","cvss"])
+      results = CommandResults(outputs_prefix="FoundCVE",
+                              outputs_key_field="value",
+                              outputs=found,
+                              readable_output=readable,
+                              ignore_auto_extract=True)
+      return_results(results)
+  else:
+      return_results("No CVE Indicators found matching the threshold")
+scripttarget: 0
+subtype: python3
+tags:
+- training
+- Utility
+type: python
