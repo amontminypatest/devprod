@@ -1,0 +1,584 @@
+category: Authentication
+commonfields:
+  id: Mock Data Generation - Employee
+  version: -1
+configuration:
+- display: Fetch incidents
+  name: isFetch
+  required: false
+  type: 8
+- display: Incident type
+  name: incidentType
+  required: false
+  type: 13
+- defaultvalue: "1"
+  display: Incidents Fetch Interval
+  name: incidentFetchInterval
+  required: false
+  type: 19
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+description: "This integration will generate an organization tree to be used for testing
+  playbooks and training.\n\nRun MDG-generateNewOrg to begin generation of all data.\n\nTo
+  Do \nOrg Proxy Logs\nOrg User Sessions"
+display: Mock Data Generator
+image: data:image/png;base64,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
+name: Mock Data Generation - Employee
+script:
+  commands:
+  - arguments:
+    - description: '"EmailCompany" will be used as default.'
+      name: OrganizationName
+    - defaultValue: "10"
+      description: The number of employees to generate
+      name: NumberOfEmployees
+    name: MDG-Organization-GenerateNew
+  - arguments: []
+    name: MDG-PackageTest
+  - arguments: []
+    name: MDG-Employee-GenerateNew
+  - arguments:
+    - name: OrganizationName
+      required: true
+    - auto: PREDEFINED
+      name: DeleteEmployees
+      predefined:
+      - "yes"
+      - ' no'
+    - auto: PREDEFINED
+      name: DeleteAssets
+      predefined:
+      - "yes"
+      - ' no'
+    name: MDG-Organization-Delete
+  - arguments: []
+    name: MDG-Organization-ShowAvailable
+  - arguments:
+    - auto: PREDEFINED
+      defaultValue: "no"
+      name: ShowEmployees
+      predefined:
+      - "yes"
+      - "no"
+    - auto: PREDEFINED
+      defaultValue: "no"
+      name: ShowAssets
+      predefined:
+      - "yes"
+      - "no"
+    name: MDG-Mgmt-DisplaySavedData
+  - arguments: []
+    name: MDG-Mgmt-ClearAllData
+  - arguments:
+    - description: |-
+        Attributes of employees to search for. Example query vip=true&isActive=true&organization=ExampleCompany
+
+        This command only handles the 'and' logical expression
+      name: Query
+      required: true
+    name: MDG-Employee-Search
+  - arguments: []
+    name: MDG-Asset-GenerateNew
+  - arguments: []
+    name: MDG-Generate-Incident
+  - arguments:
+    - description: Attributes of asset to search for. Example query vip=true&isActive=true&organization=ExampleCompany.
+        This command only handles the 'and' logical expression
+      name: Query
+      required: true
+    - auto: PREDEFINED
+      defaultValue: "yes"
+      name: BasicResults
+      predefined:
+      - "yes"
+      - "no"
+    name: MDG-Asset-Search
+  dockerimage: faker:latest
+  isfetch: true
+  runonce: false
+  script: |-
+    """ IMPORTS """
+    import urllib3
+    import json
+    import dateparser
+    import datetime
+    import random
+    import copy
+    from faker import Faker
+    from faker.providers import job
+    from faker.providers import phone_number
+    from faker.providers import date_time
+    from faker.providers import profile
+    from faker.providers import misc
+    from faker.providers import internet
+    from faker.providers import file
+    from faker.providers import geo
+
+    # Disable insecure warnings
+    urllib3.disable_warnings()
+
+    DataGenerator = Faker()
+    DataGenerator.add_provider(job)
+    '''
+    CONTEXT DATA FORMATS
+    Context Data
+        organization
+            Name
+            Employees
+            Assets
+    '''
+
+    def getHashReputation(data=None):
+
+        strippedData = ''
+        for char in data:
+            if char.isnumeric():
+                strippedData+=char
+
+        Faker.seed(int(strippedData))
+        chance = DataGenerator.random_digit()
+        if chance >= 9:
+            return "Malicious"
+        else:
+            return "Benign"
+
+    def processPathGenerator():
+        process = {}
+        process['extension']=random.choice(['bat','bin','exe','jar','msi','py','wsf'])
+        process["file_path"]= DataGenerator.file_path(depth=random.randint(1,5),extension=process['extension'])
+        process['md5'] = DataGenerator.md5()
+        process['sha1'] = DataGenerator.sha1()
+        process['sha256'] = DataGenerator.sha256()
+        process['file_size'] = str(random.randint(1,256)) + "." + random.choice(['kb','mb'])
+        return process
+
+    def assetGenerator(seed=0,owner=None,locations=None,machineType=None):
+        asset = {}
+        Faker.seed(seed)
+
+        # Type of machine
+        if machineType:
+            val = None
+        else:
+            val = random.randint(1,100)
+        if locations and type(locations) == list:
+            index = random.randint(0,len(locations))
+
+        machine = ""
+
+        if machineType == "Workstation" or (type(val) != None and machineType==None and val <= 70):
+            machine = 'Workstation'
+            asset['hostname'] = "pc-" + str(random.randint(1000,9999))
+            asset['crown_jewel'] = True if random.randint(1,100) >= 97 else False
+            if locations and type(locations) == list:
+                asset['physical_location'] = locations[index]
+        elif machineType == "Server" or (type(val) != None and machineType==None and (71 <= val and val <=85)):
+            # web, login, data,
+            serverType = random.randint(1,10)
+            if 1 <= serverType and serverType <= 3:
+                asset['hostname'] = "srv-web-" + str(random.randint(1000,9999))
+            elif 4 <= serverType and serverType <= 5:
+                asset['hostname'] = "srv-login-" + str(random.randint(1000,9999))
+            else:
+                asset['hostname'] = "srv-data" + str(random.randint(1000,9999))
+            machine = 'Server'
+            asset['hostname'] = "srv-" + str(random.randint(1000,9999))
+            if locations and type(locations) == list:
+                asset['physical_location'] = locations[index] + " Datacenter"
+            asset['crown_jewel'] = True if random.randint(1,100) >= 70 else False
+        elif machineType == "Network" or (type(val) != None and machineType==None and 85 <= val):
+            machine = 'Network'
+            asset['hostname'] = "net-" + str(random.randint(1000,9999))
+            asset['crown_jewel'] = True if random.randint(1,100) >= 40 else False
+            val = random.randint(1,100)
+            if locations and type(locations) == list:
+                if val < 33:
+                    asset['physical_location'] = locations[index] + "'s Datacenter"
+                elif 31 <=val and val< 66:
+                    asset['physical_location'] = locations[index] + "'s Cloud"
+                elif val == 66:
+                    asset['physical_location'] = locations[index] + "'s Server Closet. Literally on the floor. "
+                else:
+                    floor = random.randint(1,3)
+                    asset['physical_location'] = locations[index] + "'s Server Closet on floor " +str(floor)
+
+        # IPv4
+        asset['ipv4'] = DataGenerator.ipv4_private()
+
+        # IPv6
+        asset['ipv6'] = DataGenerator.ipv6()
+
+        # mac
+        asset['mac'] = DataGenerator.mac_address()
+
+        # threat score
+        i = random.randint(0,100)
+        if i < 85 and machine == 'Workstation':
+            asset['threat_score'] = random.randint(0,25)
+        elif i >= 85 and machine == 'Workstation':
+            asset['threat_score'] = random.randint(25,100)
+        elif i < 95 and machine == 'Server':
+            asset['threat_score'] = random.randint(0,15)
+        elif i >= 95 and machine == 'Server':
+            asset['threat_score'] = random.randint(15,100)
+        else:
+            asset['threat_score'] = 0
+
+        # username of owner
+        if owner:
+            asset['owner'] = owner
+        else:
+            asset['owner'] = None
+
+        # running services
+        asset['processes'] = []
+        for i in range(0,random.randint(5,20)):
+            asset['processes'].append(processPathGenerator())
+
+        return asset
+
+    def employeeGenerator(seed=0):
+        organization_name = demisto.args().get("organizationName", "ExampleCompany")
+        employee = {}
+        Faker.seed(seed)
+
+        # generate new employee and remove unnessesary data
+        newemp = DataGenerator.profile()
+        newemp.pop("current_location")
+        newemp.pop('mail')
+        newemp.pop("website")
+        newemp.pop("blood_group")
+        newemp.pop("username")
+        newemp.pop("residence")
+        # Reformat faker data to strings
+        for key in newemp.keys():
+            newemp[key] = str((newemp[key]))
+
+        # EmployeeID Generation
+        newemp['employee_id'] = str(random.randint(int(1000), int(10000)))
+
+        # Is Active Generation
+        newemp['is_active'] = True if random.randint(int(0), int(100)) < 90 else False
+
+        # Company
+        newemp['company'] = organization_name
+
+        # Email
+        newemp['email'] = newemp['name'].replace(" ",".")+"@"+organization_name+".com"
+
+        # Phone
+        newemp['phone_number'] = DataGenerator.phone_number()
+
+        # Start Date
+        newemp['start_date'] = str(DataGenerator.past_datetime(start_date='-365d',))
+
+        # VIP
+        newemp['vip'] = True if random.randint(int(0), int(100)) < 90 else False
+
+        # -- Manager Generation --
+        Faker.seed(seed + 1)
+        newemp['manager_name'] = DataGenerator.name()
+        newemp['manager_email'] = newemp['manager_name'].replace(" ", ".") + "@" + organization_name + ".com"
+
+        assets = assetGenerator(seed=seed,owner=newemp['employee_id'], machineType = "Workstation")
+
+        return newemp, assets
+
+
+    def generateOrganization(initseed=None):
+
+        employee_count = int(demisto.args().get("NumberOfEmployees", 1))
+        # Set Generator seed
+        if not initseed:
+            random.seed(datetime.time(0))
+        else:
+            random.seed(initseed)
+
+        # Begin following Org Structure
+        employees = []
+        assets = []
+        for employee in range(employee_count):
+
+            # seed generation
+            seed = random.randint(0, 10000)
+            employee,asset = employeeGenerator(seed=seed)
+            employees.append(employee)
+            assets.append(asset)
+
+
+        # generate other assets
+        for i in range(random.randint(5,20)):
+            if random.randint(0,1):
+                asset = assetGenerator(seed=seed,machineType='Server')
+                assets.append(asset)
+            else:
+                asset = assetGenerator(seed=seed,machineType='Network')
+                assets.append(asset)
+
+        return employees,assets
+
+
+
+    def employeeSearch():
+        if demisto.args().get("Query", None):
+
+            query_variables = demisto.args()["Query"].split("&")
+            context=demisto.getIntegrationContext()
+
+            returned_employees = []
+
+            for employee in context['Organization']['Employees']:
+
+                # Default return unless proven otherwise
+                return_emp=True
+                for variable in query_variables:
+                    v_pair = variable.split("=")
+                    if len(v_pair)==2:
+                        try:
+                            if v_pair[1] == "*":
+                                continue
+                            elif employee[v_pair[0]] != v_pair[1]:
+                                return_emp=False
+                        except Exception as e:
+                            return_error("Potential key error: "+v_pair[0])
+
+                    else:
+                        return_error("Invalid query format")
+
+                if return_emp:
+                    returned_employees.append(employee)
+
+            if returned_employees == []:
+                return("No employees found")
+            return returned_employees
+        else:
+            return_error("How did you error on a mandatory field?")
+
+    def assetSearch(everything=None,query=None):
+
+        if everything:
+            demisto.getIntegrationContext()['organization']['Assets']
+        if demisto.args().get("Query", None) or query != None:
+
+            if query:
+                query_variables=query.split("&")
+            else:
+                query_variables = demisto.args()["Query"].split("&")
+
+            context=demisto.getIntegrationContext()
+
+            returned_assets = {"MGD":{"AssetSearch":[]}}
+            for asset in context['organization']['Assets']:
+
+                # Default return unless proven otherwise
+                return_ast=True
+                for variable in query_variables:
+                    v_pair = variable.split("=")
+                    if len(v_pair)==2:
+                        try:
+                            if v_pair[1] == "*":
+                                continue
+                            if asset[v_pair[0]] != v_pair[1]:
+                                return_ast=False
+                        except Exception as e:
+                            return_error("Potential key error: "+v_pair[0])
+
+                    else:
+                        return_error("Invalid query format")
+
+                if return_ast:
+                    assetCopy = copy.deepcopy(asset)
+                    if demisto.args().get('BasicResults', None) == 'yes':
+                        assetCopy.pop('processes')
+                    returned_assets["MGD"]["AssetSearch"].append(assetCopy)
+
+            if returned_assets == []:
+                return("No assets found")
+
+            return returned_assets
+        else:
+            return_error("How did you error on a mandatory field?")
+
+
+
+    def generate_incident():
+
+
+        random.seed(datetime.time(0))
+        numberOfIncidents = random.randint(1, 7)
+
+        incidents = []
+
+        for i in range(numberOfIncidents):
+            incidentType = random.choice([1,2])
+
+            incident = {}
+
+            #Malware
+            if incidentType == 1:
+
+                foundMalicious = False
+                file = None
+                for i in range(1,50):
+                    file = processPathGenerator()
+                    if getHashReputation(file['sha256'])=="Malicious":
+                        foundMalicious = True
+                        break
+                if not foundMalicious:
+                    break
+
+                validDevices = []
+                j = random.randint(0,100)
+
+                context = demisto.getIntegrationContext()
+                for k in context['organization']['Assets']:
+                    if 0<=j and j<=95:
+                        if k['hostname'][0:2] == "pc":
+                            validDevices.append(k)
+                    else:
+                        if k['hostname'][0:3] == "srv":
+                            validDevices.append(k)
+
+                asset=random.choice(validDevices)
+
+                incident['event_id']= "Malware - " + str(random.randint(10000,50000))
+                incident['verdict']=getHashReputation(file['sha256'])
+                incident['event_timestamp']=str(DataGenerator.date_time_between(start_date="-1d").isoformat())+".000Z"
+                incident['device_hostname']=asset['hostname']
+                incident['device_theatscore']=asset['threat_score']
+                incident['file_path']=file['file_path']
+                incident['file_type']=file["extension"]
+                incident['file_size']=file['file_size']
+                incident['SHA256']=file['sha256']
+                incident['severity']=random.choice([1,2,3,4])
+
+                asset['processes'].append(file)
+                demisto.setIntegrationContext(context)
+                incidentP = {
+                    'name': incident['event_id'],
+                    'occurred': str(datetime.datetime.now().replace(microsecond=0).isoformat())+"Z",
+                    'rawJSON': json.dumps(incident),
+                    'severity': incident.get('severity', 0),
+                }
+                incidents.append(incidentP)
+
+
+            #DLP
+            if incidentType == 2:
+
+                # generate file
+                file = processPathGenerator()
+
+                context = demisto.getIntegrationContext()
+
+                # select user
+                incident['event_id']= "DLP - " + str(random.randint(10000,50000))
+                incident['event_timestamp']=str(DataGenerator.date_time_between(start_date="-1d").isoformat())+".000Z"
+                incident['user']=random.choice(context['organization']['Employees'])
+                incident['file_path']=file['file_path']
+                incident['file_type']=file["extension"]
+                incident['file_size']=file['file_size']
+                incident['user_manager']=incident['user']['manager_email']
+                try:
+                    incident['device_source']=assetSearch(query="owner="+incident['user']['employee_id'])['MGD']['AssetSearch'][0]["hostname"]
+                except:
+                    incident['device_source']=None
+                incident['user']=incident['user']['employee_id']
+                incident['severity']=random.choice([1,2,3,4])
+
+                incidentP = {
+                    'name': incident['event_id'],
+                    'occurred': str(datetime.datetime.now().replace(microsecond=0).isoformat())+"Z",
+                    'rawJSON': json.dumps(incident),
+                    'severity': incident.get('severity', 0),
+                }
+
+                incidents.append(incidentP)
+
+        return incidents
+
+
+    def main():
+
+        LOG(f'Command being called is {demisto.command()}')
+        try:
+
+            if demisto.command() == 'test-module':
+                # This is the call made when pressing the integration Test button.
+                demisto.results('ok')
+
+            if demisto.command() == "MDG-Functionality-Reputation-Hash":
+                if demisto.args().get("Hash",None):
+                    return(getHashReputation(demisto.args()['Hash']))
+                else:
+                    return_error("Hash not provided")
+
+            if demisto.command() == 'MDG-Organization-GenerateNew':
+                # check if org already exists
+                context=demisto.getIntegrationContext()
+                try:
+                    x = context['organization']
+                    return_error("Organization already exists, delete organization with MDG-DeleteOrganization")
+                except:
+                    employees,assets = generateOrganization()
+                    # save Organization Data
+                    context = demisto.getIntegrationContext()
+                    try:
+                        context['organization']={"Name": demisto.args()["OrganizationName"], "Employees": employees,"Assets":assets}
+                    except:
+                        return_error("Unable to create organization")
+
+                    demisto.setIntegrationContext(context)
+                    return_results('Done')
+
+            if demisto.command() == "MDG-Organization-Delete":
+                context = demisto.getIntegrationContext()
+                context.pop('organization')
+                demisto.setIntegrationContext(context)
+
+            if demisto.command() == "MDG-Employee-GenerateNew":
+                return_results(employeeGenerator())
+
+            if demisto.command() == "MDG-Employee-Search":
+                return_results(employeeSearch())
+
+            if demisto.command() == "MDG-Asset-Search":
+                return_results(assetSearch())
+
+            if demisto.command() == 'MDG-Mgmt-DisplaySavedData':
+                return_results(demisto.getIntegrationContext())
+
+            if demisto.command() == "MDG-PackageTest":
+                return_results(x)
+
+            if demisto.command() == "MDG-Mgmt-ClearAllData":
+                demisto.setIntegrationContext({})
+                return_results("Done")
+
+            if demisto.command() == 'fetch-incidents':
+                demisto.incidents(generate_incident())
+
+            if demisto.command() == "MDG-Generate-Incident":
+                return_results(generate_incident())
+
+            if demisto.command() == 'MDG-Update-Employee-Sessions':
+                return_results(updateEmployeeSessions())
+
+        # Log exceptions
+        except Exception as e:
+            return_error(f'Failed to execute {demisto.command()} command. Error: {str(e)}')
+
+
+    if __name__ in ('__main__', '__builtin__', 'builtins'):
+        main()
+  subtype: python3
+  type: python
