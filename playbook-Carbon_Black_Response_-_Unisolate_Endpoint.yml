@@ -1,0 +1,331 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.5.0
+    itemVersion: 2.1.25
+    packID: Carbon_Black_Enterprise_Response
+    packName: Carbon Black Enterprise Response
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: This playbook unisolates sensors according to the sensor ID that is provided
+  in the playbook input.
+id: Carbon Black Response - Unisolate Endpoint
+inputs:
+- description: 'The sensor id that you want to unisolate. '
+  key: Endpoint_ID
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: Carbon Black Response - Unisolate Endpoint
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 9d721bc0-6ac0-46e4-807d-465bcd327db3
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 9d721bc0-6ac0-46e4-807d-465bcd327db3
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "2"
+      "yes":
+      - "7"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      brandname:
+        simple: carbonblack-v2
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Returns 'yes' if integration brand is available. Otherwise returns
+        'no'.
+      id: fc08bfe1-08dd-4d22-8147-85aced6e6a9d
+      iscommand: false
+      name: Is Carbon Black Enterprise Response enabled?
+      script: IsIntegrationAvailable
+      type: condition
+      version: -1
+    taskid: fc08bfe1-08dd-4d22-8147-85aced6e6a9d
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 250
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: ebe4096d-92b3-4dc9-82dd-13f433174e51
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: ebe4096d-92b3-4dc9-82dd-13f433174e51
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 1550
+        }
+      }
+  "3":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.Endpoint_ID
+          operator: isNotEmpty
+      - - left:
+            iscontext: true
+            value:
+              simple: Endpoint.CbSensorID
+          operator: containsGeneral
+          right:
+            iscontext: true
+            value:
+              simple: inputs.Endpoint_ID
+      label: "yes"
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "2"
+      "yes":
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: a331ff25-42fc-4e76-8d62-532d284c752b
+      iscommand: false
+      name: Is there sensor id?
+      type: condition
+      version: -1
+    taskid: a331ff25-42fc-4e76-8d62-532d284c752b
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 700,
+          "y": 580
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      sensor:
+        simple: ${inputs.Endpoint_ID}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: carbonblack-v2
+      description: Display information about the given sensor.
+      id: d308391d-bca5-4895-8ca3-7212016b1112
+      iscommand: true
+      name: Get host information from Carbon Black Enterprise Response
+      script: carbonblack-v2|||cb-sensor-info
+      type: regular
+      version: -1
+    taskid: d308391d-bca5-4895-8ca3-7212016b1112
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1060,
+          "y": 860
+        }
+      }
+  "5":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: CbResponse.Sensors.Isolated
+          operator: isEqualString
+          right:
+            value:
+              simple: "true"
+      label: "yes"
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "2"
+      "yes":
+      - "6"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 0ad47e84-28ee-43d8-8c9b-06cc056927ac
+      iscommand: false
+      name: Is the sensor isolated?
+      type: condition
+      version: -1
+    taskid: 0ad47e84-28ee-43d8-8c9b-06cc056927ac
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1060,
+          "y": 1020
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      sensor:
+        simple: ${inputs.Endpoint_ID}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: carbonblack-v2
+      description: Unquarantine the endpoint.
+      id: 6e64eb8f-6046-41a9-8f7c-d9210545d742
+      iscommand: true
+      name: Unisolate the sensor
+      script: carbonblack-v2|||cb-unquarantine-device
+      type: regular
+      version: -1
+    taskid: 6e64eb8f-6046-41a9-8f7c-d9210545d742
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1060,
+          "y": 1320
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: List the CarbonBlack sensors.
+      id: f9b56018-29bb-4a84-8c72-fc5bcaf10745
+      iscommand: true
+      name: Get CB sensor list
+      script: '|||cb-list-sensors'
+      type: regular
+      version: -1
+    taskid: f9b56018-29bb-4a84-8c72-fc5bcaf10745
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 700,
+          "y": 430
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "1_2_no": 0.6,
+      "3_2_#default#": 0.23,
+      "5_2_#default#": 0.45
+    },
+    "paper": {
+      "dimensions": {
+        "height": 1565,
+        "width": 990,
+        "x": 450,
+        "y": 50
+      }
+    }
+  }
