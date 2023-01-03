@@ -1,0 +1,211 @@
+{
+	"author": "Hatching",
+	"authorImage": "content/packs/HatchingTriage/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Forensics \u0026 Malware Analysis"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"playbook"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Forensics \u0026 Malware Analysis",
+				"commands": [
+					{
+						"description": "Get a list of all samples either private or public",
+						"name": "triage-query-samples"
+					},
+					{
+						"description": "Submits a file or url for analysis",
+						"name": "triage-submit-sample"
+					},
+					{
+						"description": "Pulls back basic information about the sample id given",
+						"name": "triage-get-sample"
+					},
+					{
+						"description": "Gets a summary report of the sample id provided",
+						"name": "triage-get-sample-summary"
+					},
+					{
+						"description": "Deletes a sample from the sandbox",
+						"name": "triage-delete-sample"
+					},
+					{
+						"description": "When a sample is in the static_analysis status, a profile should be selected in order to continue.",
+						"name": "triage-set-sample-profile"
+					},
+					{
+						"description": "Get the static analysis of a sample",
+						"name": "triage-get-static-report"
+					},
+					{
+						"description": "Retrieves the generated Triage behavioral report for a single task",
+						"name": "triage-get-report-triage"
+					},
+					{
+						"description": "Retrieves the output of the kernel monitor",
+						"name": "triage-get-kernel-monitor"
+					},
+					{
+						"description": "Retrieves the PCAP of the analysis for further manual analysis",
+						"name": "triage-get-pcap"
+					},
+					{
+						"description": "Retrieves files dumped by the sample. The names can be found under the \"dumped\" section from the triage report output",
+						"name": "triage-get-dumped-file"
+					},
+					{
+						"description": "Return all users within the company as a paginated list. Returns a single user if a userID is provided",
+						"name": "triage-get-users"
+					},
+					{
+						"description": "Creates a new user and returns it. The user will become a member of the company the requesting user is a member of",
+						"name": "triage-create-user"
+					},
+					{
+						"description": "Delete a user and all associated data, invalidating any sessions and removing their API keys. Any samples submitted by this user are kept",
+						"name": "triage-delete-user"
+					},
+					{
+						"description": "Creates a new key can be used to make API calls on behalf of the specified user. The user should have been granted the access_api permission beforehand",
+						"name": "triage-create-api-key"
+					},
+					{
+						"description": "Lists all API keys that the user has.",
+						"name": "triage-get-api-key"
+					},
+					{
+						"description": "Delete the user's API key with the specified name",
+						"name": "triage-delete-api-key"
+					},
+					{
+						"description": "List all profiles that your company has",
+						"name": "triage-get-profiles"
+					},
+					{
+						"description": "Create a new profile",
+						"name": "triage-create-profile"
+					},
+					{
+						"description": "Update an existing profile",
+						"name": "triage-update-profile"
+					},
+					{
+						"description": "Get a list of private and public samples matching the search query",
+						"name": "triage-query-search"
+					},
+					{
+						"description": "Update the profile with the specified ID or name. The stored profile is overwritten, so it is important that the submitted profile has all fields, with the exception of the ID",
+						"name": "triage-delete-profile"
+					}
+				],
+				"description": "Submit a high volume of samples to run in a sandbox and view reports",
+				"id": "",
+				"name": "Hatching Triage (Partner Contribution)"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": [
+			{
+				"description": "Detonating URL with Hatching Triage.",
+				"name": "Detonate URL - Hatching Triage"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2021-01-09T23:27:13Z",
+	"currentVersion": "1.0.7",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.39",
+			"name": "Base"
+		},
+		"CommonPlaybooks": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "2.3.13",
+			"name": "Common Playbooks"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.10.7",
+			"name": "Common Scripts"
+		}
+	},
+	"deprecated": false,
+	"description": "Scalable malware sandbox",
+	"disabledMonthly": false,
+	"downloads": 1156,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.5.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByPartner",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "HatchingTriage",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/HatchingTriage/HatchingTriage_image.png",
+			"name": "Hatching Triage"
+		}
+	],
+	"itemVersion": "1.0.7",
+	"keywords": [],
+	"legacy": true,
+	"name": "Hatching Triage",
+	"packID": "HatchingTriage",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "### Hatching Triage\n===============\n\nHatching (https://hatching.io/) Triage (https://tria.ge/) is a highly scalable\nautomated malware analysis sandbox supporting Windows, Android, Linux, and\nmacOS analysis.\n\nSign up for free at https://tria.ge/ or reach out to us at support@hatching.io\nfor more information!\n\nAlso make sure to read our blog over at https://hatching.io/blog and to follow\nus on twitter for the latest malware insights https://twitter.com/hatching_io.\n",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.5.0",
+	"support": "partner",
+	"supportDetails": {
+		"email": "support@hatching.io",
+		"url": "https://hatching.io/"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-10-26T11:32:52Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4098099",
+	"videos": []
+}
