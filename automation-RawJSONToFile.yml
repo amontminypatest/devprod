@@ -1,0 +1,42 @@
+args:
+- defaultValue: file
+  description: 'Name of the File '
+  name: fileName
+- description: The raw json
+  name: rawjson
+  required: true
+comment: Dumps the sample raw json to a file.
+commonfields:
+  id: d0a05ba0-730b-4dbf-81de-e95732b4c6b9
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.8.2.6981
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: RawJSONToFile
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |-
+  import json
+
+  rawjson = demisto.args().get('rawjson')
+  file_name = f"{demisto.args().get('fileName')}.json"
+  demisto.results(fileResult(file_name, rawjson))
+scripttarget: 0
+subtype: python3
+tags:
+- training
+- Utility
+type: python
