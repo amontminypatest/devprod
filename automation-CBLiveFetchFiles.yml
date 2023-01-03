@@ -1,0 +1,53 @@
+args:
+- default: true
+  description: 'specially formatted json with [md5: (path,hostname)]'
+  name: filelocations
+  required: true
+comment: Deprecated. Use CBLiveGetFile_V2 instead. Live.
+commonfields:
+  id: CBLiveFetchFiles
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 2.1.25
+    packID: Carbon_Black_Enterprise_Response
+    packName: Carbon Black Enterprise Response
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+dependson:
+  must:
+  - CBLiveGetFile_V2
+deprecated: true
+dockerimage: demisto/python:2.7.18.27799
+engineinfo: {}
+mainengineinfo: {}
+name: CBLiveFetchFiles
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('CBLiveFetchFiles', 'start', __line__())
+  import json
+
+
+
+
+  res = []
+  fileLocations = json.loads(demisto.args()['filelocations'])
+  for md5 in fileLocations:
+      res += demisto.executeCommand('CBLiveGetFile_V2', {'path': fileLocations[md5][0], 'endpoint': fileLocations[md5][1]})
+  demisto.results(res)
+
+  register_module_line('CBLiveFetchFiles', 'end', __line__())
+scripttarget: 0
+subtype: python2
+system: true
+tags:
+- carbon-black
+- endpoint
+type: python
