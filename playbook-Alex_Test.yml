@@ -1,0 +1,194 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: cdd39cb3-58e1-4993-82f2-8fd6c20f98b6
+inputs: []
+name: Alex Test
+outputs: []
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: c4405146-6df1-45bb-861a-455bfa737aac
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: c4405146-6df1-45bb-861a-455bfa737aac
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      ip:
+        simple: 8.8.8.8
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: VirusTotal (API v3)
+      description: Checks the reputation of an IP address.
+      id: 176ef32d-8318-411f-8e90-2c95c8e5b745
+      iscommand: true
+      name: Enrich IP
+      script: VirusTotal (API v3)|||ip
+      type: regular
+      version: -1
+    taskid: 176ef32d-8318-411f-8e90-2c95c8e5b745
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 230
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      text:
+        simple: |-
+          "https://www.google.com,
+          123 example@cortex.com,
+          192.156.78.1 hello"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Extract all indicators according to server indicators configuration
+      id: 76b2b4aa-5a3a-429f-8c6b-e9268c067061
+      iscommand: true
+      name: extractIndicators
+      script: Builtin|||extractIndicators
+      type: regular
+      version: -1
+    taskid: 76b2b4aa-5a3a-429f-8c6b-e9268c067061
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 410
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      address:
+        simple: paloaltonetworks.com
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Pings an IP or url address, to verify it's up
+      id: 279a458a-72b8-4b14-8a67-c9a7752fe835
+      iscommand: false
+      name: Ping paloaltonetworks.com
+      script: Ping
+      type: regular
+      version: -1
+    taskid: 279a458a-72b8-4b14-8a67-c9a7752fe835
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 590
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 6cc745d9-9409-4077-81f6-6bca1623fc3e
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 6cc745d9-9409-4077-81f6-6bca1623fc3e
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 800
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 815,
+        "width": 380,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
