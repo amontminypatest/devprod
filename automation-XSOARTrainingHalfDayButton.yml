@@ -1,0 +1,37 @@
+comment: "This automation sets the playbook on the current Incident to the XSOAR Engineer
+  Training - BYOI Take a Half Day playbook.  Because we needed a button for half days.
+  \n"
+commonfields:
+  id: 70d97e52-d265-488f-8471-d8d6a0a6ef8d
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.9.1.14969
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: XSOARTrainingHalfDayButton
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |+
+  # This automation sets the playbook on the current Incident to the XSOAR Engineer Training - BYOI Take a Half Day playbook.  Because we needed a button for half days.
+
+  demisto.results(demisto.executeCommand("setPlaybook", {"name":"XSOAR Engineer Training - BYOI Take a Half Day"}))
+
+
+scripttarget: 0
+subtype: python3
+tags:
+- training
+- incident-action-button
+type: python
