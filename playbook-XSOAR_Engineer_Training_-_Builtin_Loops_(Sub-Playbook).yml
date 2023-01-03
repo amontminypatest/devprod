@@ -1,0 +1,314 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+description: This sub-playbook runs a SIEM search, and also increments a counter to
+  track how many loops were performed while waiting for a search result.  Used with
+  the parent playbook to demonstrate the Builtin looping method.
+id: c29eec5d-e03f-4157-8106-637e33d8a425
+inputs:
+- description: The query to run on the SIEM
+  key: query
+  playbookInputQuery: null
+  required: true
+  value: {}
+name: XSOAR Engineer Training - Builtin Loops (Sub-Playbook)
+outputs:
+- contextPath: SIEM.Result
+  description: The results of the SIEM search. The results are a JSON array, in which
+    each item is a SIEM event.
+- contextPath: LoopCounter
+  description: 'The number of loops that the sub-playbook went through. '
+  type: unknown
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 470e435e-ff4a-4d3c-81ba-02f79b5dec1d
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 470e435e-ff4a-4d3c-81ba-02f79b5dec1d
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 162.5,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      query:
+        complex:
+          root: inputs.query
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: SIEM (XSOAR Engineer Training)
+      description: Searches the SIEM for events.
+      id: f5609837-ecad-4cfe-8da2-49608b473057
+      iscommand: true
+      name: Search SIEM for Results
+      script: SIEM (XSOAR Engineer Training)|||siem-search
+      type: regular
+      version: -1
+    taskid: f5609837-ecad-4cfe-8da2-49608b473057
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 162.5,
+          "y": 370
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 95b28277-c374-4489-84c4-020b3e02aa07
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 95b28277-c374-4489-84c4-020b3e02aa07
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 162.5,
+          "y": 1070
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      append:
+        simple: "false"
+      key:
+        simple: LoopCounter
+      value:
+        complex:
+          root: LoopCounter
+          transformers:
+          - args:
+              applyIfEmpty: {}
+              defaultValue:
+                value:
+                  simple: "0"
+            operator: SetIfEmpty
+          - args:
+              by:
+                value:
+                  simple: "1"
+            operator: addition
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: d563131f-13f3-4504-8e41-e224f70db5c6
+      iscommand: false
+      name: Set LoopCounter key to track how many loops
+      script: Set
+      type: regular
+      version: -1
+    taskid: d563131f-13f3-4504-8e41-e224f70db5c6
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 162.5,
+          "y": 545
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      key:
+        simple: SIEM
+      subplaybook:
+        simple: "yes"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Delete field from context
+      id: d5119a0c-d052-4293-83d3-641a9ada1279
+      iscommand: false
+      name: Delete SIEM Key from previous loop
+      script: DeleteContext
+      type: regular
+      version: -1
+    taskid: d5119a0c-d052-4293-83d3-641a9ada1279
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 162.5,
+          "y": 195
+        }
+      }
+  "5":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: LoopCounter
+          operator: isEqualNumber
+          right:
+            value:
+              simple: "5"
+      - - left:
+            iscontext: true
+            value:
+              simple: SIEM.Result
+          operator: isEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "2"
+      "yes":
+      - "6"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: "Check to see if we've looped the number of times we told it, and
+        if we still don't have Splunk Results. \n\n"
+      id: 6175cf5e-fc00-43e4-8d92-f2b322e949ff
+      iscommand: false
+      name: Is Loop Counter equal to 5 and no SIEM Results?
+      type: condition
+      version: -1
+    taskid: 6175cf5e-fc00-43e4-8d92-f2b322e949ff
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 162.5,
+          "y": 720
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      key:
+        simple: SIEM.Result
+      value:
+        simple: '["NO RESULTS"]'
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: 'Sets the result to No Results, we can check this in our parent,
+        and prevents the playbook from failing. '
+      id: 706e9211-9bf5-4058-840c-7ec1b2bec697
+      iscommand: false
+      name: Set SIEM Result for Output
+      script: Set
+      type: regular
+      version: -1
+    taskid: 706e9211-9bf5-4058-840c-7ec1b2bec697
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 895
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1085,
+        "width": 492.5,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
