@@ -1,0 +1,134 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Network Security"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Network Security",
+				"commands": [
+					{
+						"description": "Get info about a specific alert by its ID",
+						"name": "sw-show-alert"
+					},
+					{
+						"description": "Update an alert",
+						"name": "sw-update-alert"
+					},
+					{
+						"description": "Get the list of Stealthwatch alerts",
+						"name": "sw-list-alerts"
+					},
+					{
+						"description": "Add a domain or IP to the block list",
+						"name": "sw-block-domain-or-ip"
+					},
+					{
+						"description": "Remove a domain from the block list",
+						"name": "sw-unblock-domain"
+					},
+					{
+						"description": "Returns list of the blocked domains",
+						"name": "sw-list-blocked-domains"
+					},
+					{
+						"description": "Get observations by alert ID, observation ID, or free search",
+						"name": "sw-list-observations"
+					},
+					{
+						"description": "Get sessions by the session's occurrence time ( Time format: YYYY-MM-DDTHH:MM:SSZ)",
+						"name": "sw-list-sessions"
+					}
+				],
+				"description": "Protect your cloud assets and private network",
+				"id": "",
+				"name": "Cisco Secure Cloud Analytics (Stealthwatch Cloud)"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-06-30T20:30:47Z",
+	"currentVersion": "1.0.10",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.39",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Protect your cloud assets and private network",
+	"disabledMonthly": false,
+	"downloads": 1302,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "Stealthwatch_Cloud",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/Stealthwatch_Cloud/StealthwatchCloud_image.png",
+			"name": "Cisco Secure Cloud Analytics (Stealthwatch Cloud)"
+		}
+	],
+	"itemVersion": "1.0.10",
+	"keywords": [],
+	"legacy": true,
+	"name": "Cisco Secure Cloud Analytics (Stealthwatch Cloud)",
+	"packID": "Stealthwatch_Cloud",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-09-10T23:16:20Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4098099",
+	"videos": []
+}
