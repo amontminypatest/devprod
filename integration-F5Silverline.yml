@@ -1,0 +1,600 @@
+category: Network Security
+commonfields:
+  id: F5Silverline
+  version: -1
+configuration:
+- defaultvalue: https://portal.f5silverline.com
+  display: Your F5 Silverline server URL
+  name: url
+  required: true
+  type: 0
+- display: ""
+  displaypassword: The API key to use for the connection.
+  hiddenusername: true
+  name: token
+  required: true
+  type: 9
+- display: Trust any certificate (not secure)
+  name: insecure
+  required: false
+  type: 8
+- display: Use system proxy settings
+  name: proxy
+  required: false
+  type: 8
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.0.0
+    itemVersion: 1.0.21
+    packID: F5Silverline
+    packName: F5 Silverline
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: F5 Silverline Threat Intelligence is a cloud-based service incorporating
+  external IP reputation and reducing threat-based communications. By identifying
+  IP addresses and security categories associated with malicious activity, this managed
+  service integrates dynamic lists of threatening IP addresses with the Silverline
+  cloud-based platform, adding context-based security to policy decisions.
+detaileddescription: "## F5 Silverline\n\nTo configure an instance of F5 Silverline,
+  you need to obtain the following information.\n\n* Server URL\n* API Key\n\n## Get
+  your API Key\n1. In F5 Silverline portal, go to **Config** > **API Tokens** .\n2.
+  If you already have an API key you can find it there.\n3. If you do not have an
+  API Key, generate one by clicking **Add**.\n\n## Fetching F5 Silverline Alerts\n\nAs
+  the F5 Silverline API does not support fetch incidents for now, we retrieve alerts
+  via a log collector.   \nIn order to fetch alerts, follow the instructions [here](https://github.com/demisto/content/raw/master/Packs/F5Silverline/Integrations/F5Silverline/README.md#fetch-f5-silverline-alerts)\n\n---\n[View
+  Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/f5-silverline)"
+display: F5 Silverline
+image: data:image/png;base64,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
+name: F5Silverline
+script:
+  commands:
+  - arguments:
+    - auto: PREDEFINED
+      description: 'The dynamic list type of threatening IP addresses. The type can
+        be: "allowlist" or "denylist". Note: Allowlists are named DDOS IP Allowlists
+        in the F5 Silverline portal.'
+      name: list_type
+      predefined:
+      - allowlist
+      - denylist
+      required: true
+    - description: A comma-separated list of IP object IDs. If this argument is given,
+        only those IP objects will be displayed. Otherwise, all IP objects that match
+        the given list_type will be displayed. If you don't know the object ID, run
+        this command without the object_id argument to get all the IDs.
+      isArray: true
+      name: object_id
+    - description: Page number to return. The first page number is 1. When giving
+        the object_id, the page_number will be ignored.
+      name: page_number
+    - description: Number of results in a page. When giving the object_id, the page_size
+        will be ignored.
+      name: page_size
+    description: Gets a dynamic list of threatening IP addresses by the given list
+      type.
+    name: f5-silverline-ip-objects-list
+    outputs:
+    - contextPath: F5Silverline.IPObjectList.id
+      description: The ID of a particular threatening IP address object.
+      type: String
+    - contextPath: F5Silverline.IPObjectList.type
+      description: The type of a particular threatening IP address object.
+      type: String
+    - contextPath: F5Silverline.IPObjectList.attributes.ip
+      description: The IP address of a particular threatening IP address object.
+      type: String
+    - contextPath: F5Silverline.IPObjectList.attributes.mask
+      description: The mask of a particular threatening IP address object.
+      type: String
+    - contextPath: F5Silverline.IPObjectList.attributes.duration
+      description: The duration (in seconds) of a particular threatening IP address
+        object where list type is 'denylist'.
+      type: String
+    - contextPath: F5Silverline.IPObjectList.attributes.expires_at
+      description: The expiration date (timestamp) of a particular threatening IP
+        address object.
+      type: String
+    - contextPath: F5Silverline.IPObjectList.attributes.list_target
+      description: The list target of a particular threatening IP address object.
+      type: String
+    - contextPath: F5Silverline.IPObjectList.links.self
+      description: The F5 Silverline URL link of a particular threatening IP address
+        object.
+      type: String
+    - contextPath: F5Silverline.IPObjectList.meta.note
+      description: The note of a particular threatening IP address object.
+      type: String
+    - contextPath: F5Silverline.IPObjectList.meta.tags
+      description: The tags of a particular threatening IP address object.
+      type: Unknown
+    - contextPath: F5Silverline.IPObjectList.meta.created_at
+      description: The creation date (timestamp) of a particular threatening IP address
+        object.
+      type: String
+    - contextPath: F5Silverline.IPObjectList.meta.updated_at
+      description: The last update date (timestamp) of a particular threatening IP
+        address object.
+      type: String
+    - contextPath: F5Silverline.Paging.last_page_number
+      description: The last page number that exists.
+      type: Number
+    - contextPath: F5Silverline.Paging.current_page_size
+      description: The number of IP objects to be returned on each page.
+      type: Number
+    - contextPath: F5Silverline.Paging.current_page_number
+      description: The number of the requested page.
+      type: Number
+  - arguments:
+    - auto: PREDEFINED
+      description: 'The dynamic lists type of threatening IP addresses. The type can
+        be "allowlist" or "denylist". Note: Allowlists are named DDOS IP Allowlists
+        in the F5 Silverline portal.'
+      name: list_type
+      predefined:
+      - allowlist
+      - denylist
+      required: true
+    - auto: PREDEFINED
+      description: 'This argument can be supplied to target either the proxy or routed
+        denylist. If list_target is not specifiedm it will assume both proxy and routed
+        are requested (i.e., proxy-routed). Possible values are: "proxy", "routed",
+        or "proxy-routed". This argument limits the denylist type but is ignored for
+        allowlist.'
+      name: list_target
+      predefined:
+      - proxy
+      - routed
+      - proxy-routed
+    - description: The CIDR range of a potentially threatening IP address. object
+        (i.e IP address/ mask) in CSV format. For example, "1.2.3.4/32,2.3.4.5". In
+        case only IP address is given, the default mask is 32.
+      isArray: true
+      name: cidr_range
+      required: true
+    - description: The duration (in seconds) of a new particular threatening IP address
+        object where the list type is 'denylist'. Setting the duration to 0 (default)
+        means the new IP address object will never expire. This feature has been removed
+        for allowlist.
+      name: duration
+    - description: The note of a new particular threatening IP address object. Default
+        is empty.
+      name: note
+    - description: A comma-separated list of tags of a new particular threatening
+        IP address object.
+      isArray: true
+      name: tags
+    description: Adds a new particular threatening IP address object by its IP address.
+    name: f5-silverline-ip-object-add
+  - arguments:
+    - auto: PREDEFINED
+      description: 'The dynamic lists type of threatening IP addresses. The type can
+        be one of "allowlist" or "denylist". Note: Allowlists are named DDOS IP Allowlists
+        in the F5 Silverline portal.'
+      name: list_type
+      predefined:
+      - allowlist
+      - denylist
+      required: true
+    - description: The object ID of a particular threatening IP address object that
+        should be deleted.
+      name: object_id
+    - description: The IP address of an existing threatening IP address object that
+        should be deleted.
+      name: object_ip
+    description: Delete an existing particular threatening IP address object by its
+      object ID or by its IP address. If both id and ip are given, delete operation
+      will be done by the given object_id.
+    name: f5-silverline-ip-object-delete
+  dockerimage: demisto/python3:3.10.9.42476
+  runonce: false
+  script: |
+    register_module_line('F5Silverline', 'start', __line__())
+    import re
+
+
+
+
+
+    import urllib3
+    import traceback
+    from typing import Dict, Any
+
+    urllib3.disable_warnings()  # pylint: disable=no-member
+
+    BASE_URL = "/api/v1/ip_lists"
+    TABLE_HEADERS_GET_OBJECTS = ['ID', 'CIDR Range', 'Created At', 'Updated At']
+    PAGE_NUMBER_PATTERN = r"(?<=page\[number]=).*?(?=&)"
+
+
+    class Client(BaseClient):
+        def __init__(self, base_url: str, verify: bool, headers: dict, proxy: bool):
+            """
+            Client to use in the F5_Silverline integration. Overrides BaseClient.
+
+            Args:
+                base_url (str): URL to access when doing an http request.
+                verify (bool): Whether to check for SSL certificate validity.
+                headers (dict): Headers to set when when doing an http request.
+                proxy (bool): Whether the client should use proxies.
+            """
+            super().__init__(base_url=base_url, verify=verify, proxy=proxy)
+            self._headers = headers
+
+        def request_ip_objects(self, body: dict, method: str, url_suffix: str, params: dict, resp_type='json') -> Dict:
+            """
+            Makes an HTTP request to F5 Silverline API by the given arguments.
+            Args:
+                body (dict): The dictionary to send in a 'POST' request.
+                method (str): HTTP request method (GET/POST/DELETE).
+                url_suffix (str): The API endpoint.
+                params (dict): URL parameters to specify the query.
+                resp_type (str): Determines which data format to return from the HTTP request. The default is 'json'.
+            """
+            demisto.debug(f'current request is: method={method}, body={body}, url suffix={url_suffix},'
+                          f'params={params}, resp_type={resp_type}')
+
+            return self._http_request(method=method, json_data=body, url_suffix=url_suffix, params=params,
+                                      headers=self._headers, resp_type=resp_type)
+
+
+    def test_module(client: Client) -> str:
+        """
+        Tests API connectivity and authentication. Does a GET request for this purpose.
+        """
+        try:
+            client.request_ip_objects(body={}, method='GET', url_suffix='denylist/ip_objects', params={})
+            message = 'ok'
+        except DemistoException as e:
+            if 'Unauthorized' in str(e):
+                message = 'Authorization Error: make sure API Key is correctly set'
+            else:
+                raise e
+        return message
+
+
+    def paging_args_to_params(page_size, page_number):
+        """
+        Returns the parameters to the HTTP request when using paging.
+        """
+        try:
+            page_size = int(page_size)
+            page_number = int(page_number)
+        except ValueError:
+            raise ValueError("page_number and page_size should be numbers")
+
+        params = {'page[size]': page_size, 'page[number]': page_number}
+        return params
+
+
+    def get_ip_and_mask_from_cidr(cidr_range):
+        """
+        The input can be one of the following:
+        1. an IPv4 address (i.e the input does not include the separator '/'). In this case the default mask is 32 .
+        2. a CIDR range which seems like this: IPv4/mask. for example : 1.2.3.4/32 .
+        """
+        if '/' not in cidr_range:
+            ip_address = cidr_range
+            mask = '32'
+        else:
+            cidr_range = cidr_range.split('/')
+            ip_address = cidr_range[0]
+            mask = cidr_range[1]
+        return ip_address, mask
+
+
+    def add_ip_objects_command(client: Client, args: Dict[str, Any]):
+        """
+        Adds a new IP object to the requested list type (denylist or allowlist).
+        IP object includes an IP address (mandatory). Other fields are optional and have default values.
+        Note: Human readable appears only if the HTTP request did not fail.
+        API docs: https://portal.f5silverline.com/docs/api/v1/ip_objects.md (POST section)
+        """
+        list_type = args['list_type']
+        cidr_range = args['cidr_range']
+        list_target = args.get('list_target', 'proxy-routed')
+        duration = int(args.get('duration', 0))
+        note = args.get('note', "")
+        tags = argToList(args.get('tags', []))
+        url_suffix = f'{list_type}/ip_objects'
+
+        errors_list = []
+        success_list = []
+        for ip_address, mask in map(get_ip_and_mask_from_cidr, argToList(cidr_range)):
+            body = define_body_for_add_ip_command(list_target, mask, ip_address, duration, note, tags)
+
+            try:
+                client.request_ip_objects(body=body, method='POST', url_suffix=url_suffix, params={}, resp_type='content')
+            except Exception as error:
+                demisto.error(traceback.format_exc())
+                errors_list.append(f'could not add {ip_address}/{mask} to {list_type}. error: {error}')
+            success_list.append(f'| {ip_address}/{mask} |')
+
+        if success_list:
+
+            success_lines = '\n'.join(success_list)
+            human_readable = f"IP objects wehre added successfully into the {list_type}\n| IP |\n| - |\n{success_lines}"
+            return_results(CommandResults(readable_output=human_readable))
+        if errors_list:
+            return_error('\n'.join(errors_list))
+
+
+    def define_body_for_add_ip_command(list_target, mask, ip_address, duration, note, tags):
+        """
+        API docs: https://portal.f5silverline.com/docs/api/v1/ip_objects.md (POST section)
+        prepares the body of a POST request in order to add an IP
+        """
+        return \
+            {
+                "list_target": list_target,
+                "data":
+                    {
+                        "id": "",
+                        "type": "ip_objects",
+                        "attributes": {
+                            "mask": mask,
+                            "ip": ip_address,
+                            "duration": duration
+                        },
+                        "meta": {
+                            "note": note,
+                            "tags": tags
+                        }
+                    }
+            }
+
+
+    def is_object_id_exist(client, object_id_list, list_type):
+        try:
+            _, outputs = get_ip_objects_by_ids(client, object_id_list, list_type, {})
+            return True
+        except Exception:
+            demisto.debug(f"The following ids {object_id_list} were not found in {list_type} list.")
+            raise DemistoException("An object with the given identifier was not found. ")
+
+
+    def delete_ip_objects_command(client: Client, args: Dict[str, Any]):
+        """
+        Deletes an exist IP object from the requested list type (denylist or allowlist) by its object id or its ip.
+        Note: Human readable appears only if the HTTP request did not fail and the object id exists. In case the ID does not
+        exist, an error will be raised.
+        API docs: https://portal.f5silverline.com/docs/api/v1/ip_objects.md (DELETE section)
+        """
+        list_type = args['list_type']
+        object_id = args.get('object_id')
+        object_ip = args.get('object_ip')
+        object_id_list = []
+        if not object_id and not object_ip:
+            raise DemistoException("At least one of the following should be given: object_ip, object_id.")
+
+        if not object_id:
+            # we have got an ip, so we want to get all the matched ids for the given ip
+            object_id_list = get_object_id_by_ip(client, list_type, object_ip)
+        else:
+            # we have got a specific id to be deleted
+            object_id_list.append(object_id)
+
+        if is_object_id_exist(client, object_id_list, list_type):
+            human_readable = ""
+            for object_id in object_id_list:
+                url_suffix = f'{list_type}/ip_objects/{object_id}'
+                client.request_ip_objects(body={}, method='DELETE', url_suffix=url_suffix, params={}, resp_type='content')
+                human_readable += f"IP object with ID: {object_id} deleted successfully from the {list_type} list. \n"
+            return CommandResults(readable_output=human_readable)
+
+
+    def get_object_id_by_ip(client, list_type, object_ip):
+        url_suffix = f'{list_type}/ip_objects'
+        response = client.request_ip_objects(body={}, method='GET', url_suffix=url_suffix, params={})
+        all_objects = response.get('data')
+        all_match_ids = []
+        for obj in all_objects:
+            attributes = obj.get('attributes')
+            ip = attributes.get('ip', "")
+            if ip == object_ip:
+                all_match_ids.append(obj.get("id"))
+        if not all_match_ids:
+            raise DemistoException("An object with the given IP address was not found.")
+        return all_match_ids
+
+
+    def handle_paging(page_number, page_size):
+        """
+        * Returns whether the user wants to get the results by paging (page size and page number).
+        * Returns the parameters dict to the HTTP request when using paging, empty dict will be returned if paging was
+        not required.
+        """
+        is_paging_required = False
+        params = {}
+        if page_number and page_size:
+            params = paging_args_to_params(page_size, page_number)
+            is_paging_required = True
+        return is_paging_required, params
+
+
+    def add_paging_to_outputs(paging_dict, page_number):
+        """
+        As the API returns a dict of links, for example:
+        "links": {
+            "self": "https://f5silverline.com/api/v1/ip_lists/allowlist/ip_objects?page[number]=1&page[size]=1",
+            "first": "https://f5silverline.com/api/v1/ip_lists/allowlist/ip_objects?page[number]=1&page[size]=1",
+            "last": "https://f5silverline.com/api/v1/ip_lists/allowlist/ip_objects?page[number]=20&page[size]=1",
+            "next": "https://f5silverline.com/api/v1/ip_lists/allowlist/ip_objects?page[number]=2&page[size]=1"
+        }
+        we would like to get page numbers by regex filtering.
+        """
+        link_to_current_obj = paging_dict.get('self')
+        if not link_to_current_obj:
+            demisto.debug(f"The paging response seems to be broken {paging_dict}")
+            raise DemistoException("An error occurred when trying to parse paging response")
+
+        current_page_number = re.search(PAGE_NUMBER_PATTERN, link_to_current_obj)  # guardrails-disable-line
+        current_page_number = current_page_number.group(0) if current_page_number else page_number
+
+        link_to_last_obj = paging_dict.get('last')
+        last_page_number = current_page_number
+        if link_to_last_obj:
+            last_page_number = re.search(PAGE_NUMBER_PATTERN, link_to_last_obj)  # guardrails-disable-line
+            if last_page_number:
+                last_page_number = last_page_number.group(0)
+        return current_page_number, last_page_number
+
+
+    def paging_outputs_dict(current_page_number, last_page_number, page_size):
+        return {
+            'current_page_number': current_page_number,
+            'current_page_size': page_size,
+            'last_page_number': last_page_number
+        }
+
+
+    def paging_data_to_human_readable(current_page_number, last_page_number, page_size):
+        output = f"Current page number: {current_page_number}\n "
+        if not last_page_number:
+            # if the current page number is also the last page number
+            last_page_number = current_page_number
+        output += f"Last page number: {last_page_number}\n"
+        if page_size:
+            output += f"Current page size: {page_size}"
+        return output
+
+
+    def get_ip_objects_list_command(client: Client, args: Dict[str, Any]) -> CommandResults:
+        """
+        Gets a list of IP objects by the requested list type (denylist or allowlist).
+        If the object_id argument is given, only those IP objects will be displayed. Otherwise, all IP objects that match
+        the given list_type will be displayed.
+        API docs: https://portal.f5silverline.com/docs/api/v1/ip_objects.md (GET section)
+        """
+        list_type = args['list_type']
+        object_ids = argToList(args.get('object_id'))
+        page_number = args.get('page_number')
+        page_size = args.get('page_size')
+        url_suffix = f'{list_type}/ip_objects'
+        paging_data = []
+        paging_data_human_readable = ""
+        is_paging_required, params = handle_paging(page_number, page_size)
+
+        if not object_ids:
+            # in case the user wants to get all the IP objects and not specific ones
+            response = client.request_ip_objects(body={}, method='GET', url_suffix=url_suffix, params=params)
+            outputs = response.get('data')
+            human_results = parse_get_ip_object_list_results(response)
+            if is_paging_required and outputs:
+                to_page = response.get('links')
+                if list_type == "allowlist":
+                    current_page_number, last_page_number = add_paging_to_outputs(to_page, page_number)
+                else:
+                    to_page = to_page.get('links')  # type: ignore
+                    current_page_number, last_page_number = add_paging_to_outputs(to_page, page_number)
+                paging_data = paging_outputs_dict(current_page_number, last_page_number, page_size)
+                paging_data_human_readable = paging_data_to_human_readable(current_page_number, last_page_number, page_size)
+        else:
+            human_results, outputs = get_ip_objects_by_ids(client, object_ids, list_type, params)  # type: ignore
+
+        human_readable = tableToMarkdown(f'F5 Silverline {list_type} IP Objects', human_results, TABLE_HEADERS_GET_OBJECTS,
+                                         removeNull=True)
+        human_readable += paging_data_human_readable
+
+        if not human_results and is_paging_required:
+            human_readable = "No results were found. Please try to run the command without page_number and page_size to " \
+                             "get all existing IP objects."
+
+        return CommandResults(
+            readable_output=human_readable,
+            outputs_prefix='F5Silverline',
+            outputs_key_field='id',
+            outputs={"IPObjectList": outputs, "Paging": paging_data}
+        )
+
+
+    def get_ip_objects_by_ids(client: Client, object_ids: list, list_type: str, params: dict):
+        """
+        In case the user requests one or more specific IP objects (by their object_id). For each id we make a separate
+        HTTP request (the API does not support list of ids).
+        """
+        human_results = []
+        outputs = []
+        for object_id in object_ids:
+            url_suffix = f'{list_type}/ip_objects/{object_id}'
+            res = client.request_ip_objects(body={}, method='GET', url_suffix=url_suffix, params=params)
+            outputs.append(res.get('data'))
+            human_results.append(parse_get_ip_object_list_results(res)[0])
+        return human_results, outputs
+
+
+    def parse_get_ip_object_list_results(results: Dict):
+        """
+        Parsing the API response after requesting the IP object list. Parsing maps the important fields that will appear
+        as the human readable output.
+        An example for a response: https://portal.f5silverline.com/docs/api/v1/ip_objects.md.
+        Under the title "Success Response -> Body"
+        """
+        parsed_results = []
+        results_data = results.get('data')  # type: ignore
+        demisto.debug(f"response is {results_data}")
+        if isinstance(results_data, dict):
+            # in case the response consist only single ip object, the result is a dict and not a list, but we want to handle
+            # those cases in the same way
+            results_data = [results_data]
+        for ip_object in results_data:  # type: ignore
+            if ip_object:
+                ip_address = ip_object.get('attributes').get('ip')
+                mask = ip_object.get('attributes').get('mask')
+                cidr_range = f'{ip_address}/{mask}'
+                parsed_results.append({
+                    'ID': ip_object.get('id'),
+                    'CIDR Range': cidr_range,
+                    'Created At': ip_object.get('meta').get('created_at'),
+                    'Updated At': ip_object.get('meta').get('updated_at')
+                })
+        return parsed_results
+
+
+    def main() -> None:
+        params = demisto.params()
+        access_token = params.get('token').get('password')
+        base_url = urljoin(params.get('url'), BASE_URL)
+        verify_certificate = not params.get('insecure', False)
+        proxy = params.get('proxy', False)
+        demisto.debug(f'Command being called is {demisto.command()}')
+        try:
+            headers: Dict = {"X-Authorization-Token": access_token, "Content-Type": 'application/json'}
+
+            client = Client(
+                base_url=base_url,
+                verify=verify_certificate,
+                headers=headers,
+                proxy=proxy)
+
+            args = demisto.args()
+
+            if demisto.command() == 'test-module':
+                return_results(test_module(client))
+
+            elif demisto.command() == 'f5-silverline-ip-objects-list':
+                return_results(get_ip_objects_list_command(client, args))
+
+            elif demisto.command() == 'f5-silverline-ip-object-add':
+                add_ip_objects_command(client, args)
+
+            elif demisto.command() == 'f5-silverline-ip-object-delete':
+                return_results(delete_ip_objects_command(client, args))
+            else:
+                raise NotImplementedError(f'{demisto.command()} is not an existing F5 Silverline command')
+
+        except Exception as e:
+            demisto.error(traceback.format_exc())
+            return_error(f'Failed to execute {demisto.command()} command.\nError:\n{str(e)}')
+
+
+    if __name__ in ('__main__', '__builtin__', 'builtins'):
+        main()
+
+    register_module_line('F5Silverline', 'end', __line__())
+  subtype: python3
+  type: python
+system: true
