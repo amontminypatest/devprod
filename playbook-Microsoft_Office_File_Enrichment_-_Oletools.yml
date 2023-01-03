@@ -1,0 +1,795 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.5.0
+    itemVersion: 1.0.0
+    packID: Oletools
+    packName: Oletools
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: |-
+  Oletools is a tool for analyzing Microsoft OLE2 files, such as Microsoft Office documents or Outlook messages, mainly for malware analysis, forensics, and debugging.
+  This playbook will run run the "oleid" command on the files which are passed to to it as playbook inputs. In case any macros or external relationships were found, it will also run "olevba" and "oleobj" commands as well on the relevant files.
+  oleid - Analyze OLE files to detect specific characteristics usually found in malicious files.
+  oleobj - Extract embedded objects from OLE files.
+  olevba - Extract and analyze VBA Macro source code from MS Office documents (OLE and OpenXML).
+id: Microsoft Office File Enrichment - Oletools
+inputs:
+- description: A list of file objects. Default is "File" key.
+  key: FileObject
+  playbookInputQuery: null
+  required: true
+  value:
+    complex:
+      root: File
+- description: |-
+    Available values: "True" or "False". Default is "False"
+    When this is set to "True", in case a macro was found within the file, it will output all the obfuscated strings with their decoded content (Hex, Base64, StrReverse, Dridex, VBA).
+  key: Decode
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "False"
+- description: |-
+    Will be used to decrypt encrypted files. Encrypted files cannot be analyzed otherwise.
+    Please note that this input is "Non Secret" because it will be visible as plain text.
+  key: NonSecretPassword
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: Microsoft Office File Enrichment - Oletools
+outputs:
+- contextPath: Oletools.Oleid.ole_command_result
+  description: Indicator list from the oleid command.
+- contextPath: Oletools.Oleid.file_name
+  description: File name.
+- contextPath: Oletools.Oleid.sha256
+  description: SHA256 hash.
+- contextPath: Oletools.Oleid.ole_command_result.File_format
+  description: Indicator file format.
+- contextPath: Oletools.Oleid.ole_command_result.Container_format
+  description: Indicator container format.
+- contextPath: Oletools.Oleid.ole_command_result.Encrypted
+  description: Indicator encrypted.
+- contextPath: Oletools.Oleid.ole_command_result.VBA_Macros
+  description: Indicator VBA macros.
+- contextPath: Oletools.Oleid.ole_command_result.XLM_Macros
+  description: Indicator XLM macros.
+- contextPath: Oletools.Oleid.ole_command_result.External_Relationships
+  description: Indicator external relationships.
+- contextPath: Oletools.Oleid.ole_command_result.ObjectPool
+  description: Indicator object pool.
+- contextPath: Oletools.Oleid.ole_command_result.Flash_objects
+  description: Indicator flash objects.
+- contextPath: Oletools.Oleid.ole_command_result.File_format.Value
+  description: Indicator file format value.
+- contextPath: Oletools.Oleid.ole_command_result.File_format.Ole_Risk
+  description: Indicator file format OLE risk.
+- contextPath: Oletools.Oleid.ole_command_result.File_format.Description
+  description: Indicator file format description.
+- contextPath: Oletools.Oleid.ole_command_result.Container_format.Value
+  description: Indicator container format value.
+- contextPath: Oletools.Oleid.ole_command_result.Container_format.Ole_Risk
+  description: Indicator container format OLE risk.
+- contextPath: Oletools.Oleid.ole_command_result.Container_format.Description
+  description: Indicator container format description.
+- contextPath: Oletools.Oleid.ole_command_result.Encrypted.Value
+  description: Indicator encrypted value.
+- contextPath: Oletools.Oleid.ole_command_result.Encrypted.Ole_Risk
+  description: Indicator encrypted OLE risk.
+- contextPath: Oletools.Oleid.ole_command_result.Encrypted.Description
+  description: Indicator encrypted description.
+- contextPath: Oletools.Oleid.ole_command_result.VBA_Macros.Value
+  description: Indicator VBA macros value.
+- contextPath: Oletools.Oleid.ole_command_result.VBA_Macros.Ole_Risk
+  description: Indicator VBA macros OLE risk.
+- contextPath: Oletools.Oleid.ole_command_result.VBA_Macros.Description
+  description: Indicator VBA macros description.
+- contextPath: Oletools.Oleid.ole_command_result.XLM_Macros.Value
+  description: Indicator XLM macros value.
+- contextPath: Oletools.Oleid.ole_command_result.XLM_Macros.Ole_Risk
+  description: Indicator XLM macros OLE risk.
+- contextPath: Oletools.Oleid.ole_command_result.XLM_Macros.Description
+  description: Indicator XLM macros description.
+- contextPath: Oletools.Oleid.ole_command_result.External_Relationships.Value
+  description: Indicator XLM macros value.
+- contextPath: Oletools.Oleid.ole_command_result.External_Relationships.Ole_Risk
+  description: Indicator XLM macros OLE risk.
+- contextPath: Oletools.Oleid.ole_command_result.External_Relationships.Description
+  description: Indicator XLM macros description.
+- contextPath: Oletools.Oleid.ole_command_result.ObjectPool.Value
+  description: Indicator object pool value.
+- contextPath: Oletools.Oleid.ole_command_result.ObjectPool.Ole_Risk
+  description: Indicator object pool OLE risk.
+- contextPath: Oletools.Oleid.ole_command_result.ObjectPool.Description
+  description: Indicator object pool description.
+- contextPath: Oletools.Oleid.ole_command_result.Flash_objects.Value
+  description: Indicator Flash objects value.
+- contextPath: Oletools.Oleid.ole_command_result.Flash_objects.Ole_Risk
+  description: Indicator Flash objects OLE risk.
+- contextPath: Oletools.Oleid.ole_command_result.Flash_objects.Description
+  description: Indicator Flash objects description.
+- contextPath: Oletools.Oleobj.ole_command_result.hyperlinks
+  description: List of hyperlinks.
+- contextPath: Oletools.Oleobj.file_name
+  description: File name.
+- contextPath: Oletools.Oleobj.sha256
+  description: SHA256 hash.
+- contextPath: Oletools.Olevba.file_name
+  description: File name.
+- contextPath: Oletools.Olevba.sha256
+  description: SHA256 hash.
+- contextPath: Oletools.Olevba.ole_command_result.macro_analyze
+  description: Macro analyze.
+- contextPath: Oletools.Olevba.ole_command_result.macro_src_code
+  description: Macro source code.
+- contextPath: Oletools.Olevba.ole_command_result.macro_list
+  description: Macro list.
+- contextPath: DBotScore.Indicator
+  description: The indicator that was tested.
+- contextPath: DBotScore.Type
+  description: The indicator type.
+- contextPath: DBotScore.Vendor
+  description: The vendor used to calculate the score.
+- contextPath: DBotScore.Score
+  description: The actual score.
+quiet: true
+starttaskid: "0"
+system: true
+tags:
+- Malware
+- Virus
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 279d01f8-07d2-4503-86b0-fa793d14de5c
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 279d01f8-07d2-4503-86b0-fa793d14de5c
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 710,
+          "y": 40
+        }
+      }
+  "1":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: EntryID
+                root: inputs.FileObject
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "2"
+      "yes":
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: b9d87cca-35fe-47fa-8221-73bd349b290c
+      iscommand: false
+      name: Verify inputs
+      type: condition
+      version: -1
+    taskid: b9d87cca-35fe-47fa-8221-73bd349b290c
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 710,
+          "y": 190
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 2aeb1af9-1382-44c3-8f29-e1f9159ebaf0
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 2aeb1af9-1382-44c3-8f29-e1f9159ebaf0
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 710,
+          "y": 1540
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 2
+    reputationcalc: 2
+    scriptarguments:
+      decode:
+        complex:
+          root: inputs.Decode
+      entryID:
+        complex:
+          accessor: EntryID
+          root: inputs.FileObject
+      non_secret_password:
+        complex:
+          root: inputs.NonSecretPassword
+      ole_command:
+        simple: oleid
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: This is an automation to run oletools malware analysis for office
+        files. Oletools is a tool for analyzing Microsoft OLE2 files, such as Microsoft
+        Office documents or Outlook messages, mainly for malware analysis, forensics,
+        and debugging. This automation allows performing some basic oletools commands
+        from Cortex XSOAR. Note that oletools is open source code and is subject to
+        change.
+      id: 6daac695-a185-44b0-85a4-7407ca1b7558
+      iscommand: false
+      name: Run oleid command
+      script: Oletools
+      type: regular
+      version: -1
+    taskid: 6daac695-a185-44b0-85a4-7407ca1b7558
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 710,
+          "y": 460
+        }
+      }
+  "4":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: Oletools.Oleid.ole_command_result.Container_format.Value
+                    operator: isNotEqualString
+                    right:
+                      value:
+                        simple: Unknown Container
+                root: Oletools.Oleid.ole_command_result.Container_format.Value
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "2"
+      "yes":
+      - "5"
+      - "6"
+      - "13"
+      - "14"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 1b747427-8b46-4d3a-8ee2-f401ecb91506
+      iscommand: false
+      name: Were any supported files found?
+      type: condition
+      version: -1
+    taskid: 1b747427-8b46-4d3a-8ee2-f401ecb91506
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 710,
+          "y": 625
+        }
+      }
+  "5":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: Oletools.Oleid.ole_command_result.VBA_Macros.Value
+                    operator: containsString
+                    right:
+                      value:
+                        simple: "Yes"
+                  - left:
+                      iscontext: true
+                      value:
+                        simple: Oletools.Oleid.ole_command_result.XLM_Macros.Value
+                    operator: containsString
+                    right:
+                      value:
+                        simple: "Yes"
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: Oletools.Oleid.ole_command_result.Container_format.Value
+                    operator: isNotEqualString
+                    right:
+                      value:
+                        simple: Unknown Container
+                root: Oletools.Oleid.ole_command_result
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "2"
+      "yes":
+      - "9"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: d3a8ad0f-431e-45e2-885b-86b27b8d4320
+      iscommand: false
+      name: Any macros found?
+      type: condition
+      version: -1
+    taskid: d3a8ad0f-431e-45e2-885b-86b27b8d4320
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1010,
+          "y": 980
+        }
+      }
+  "6":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: Oletools.Oleid.ole_command_result.Container_format.Value
+                    operator: isNotEqualString
+                    right:
+                      value:
+                        simple: Unknown Container
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: Oletools.Oleid.ole_command_result.External_Relationships.Value
+                    operator: greaterThan
+                    right:
+                      value:
+                        simple: "0"
+                root: Oletools.Oleid.ole_command_result
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "2"
+      "yes":
+      - "11"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: c3b7b81c-b9ae-425d-85bb-53bc423af906
+      iscommand: false
+      name: Any external relationships found?
+      type: condition
+      version: -1
+    taskid: c3b7b81c-b9ae-425d-85bb-53bc423af906
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1490,
+          "y": 980
+        }
+      }
+  "9":
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "10"
+    note: false
+    quietmode: 2
+    scriptarguments:
+      key:
+        simple: olevba_sha256
+      value:
+        complex:
+          accessor: sha256
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: Oletools.Oleid.ole_command_result.VBA_Macros.Value
+              operator: containsString
+              right:
+                value:
+                  simple: "Yes"
+            - left:
+                iscontext: true
+                value:
+                  simple: Oletools.Oleid.ole_command_result.XLM_Macros.Value
+              operator: containsString
+              right:
+                value:
+                  simple: "Yes"
+          - - left:
+                iscontext: true
+                value:
+                  simple: Oletools.Oleid.ole_command_result.Container_format.Value
+              operator: isNotEqualString
+              right:
+                value:
+                  simple: Unknown Container
+          root: Oletools.Oleid
+          transformers:
+          - operator: uniq
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: cf9583c9-d9d6-4cc2-8eb8-7af437c5445a
+      iscommand: false
+      name: Set olevba_sha256
+      script: Set
+      type: regular
+      version: -1
+    taskid: cf9583c9-d9d6-4cc2-8eb8-7af437c5445a
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1010,
+          "y": 1170
+        }
+      }
+  "10":
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 2
+    reputationcalc: 2
+    scriptarguments:
+      decode:
+        complex:
+          root: inputs.Decode
+      entryID:
+        complex:
+          accessor: EntryID
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: inputs.FileObject.SHA256
+              operator: in
+              right:
+                iscontext: true
+                value:
+                  simple: olevba_sha256
+          root: inputs.FileObject
+      non_secret_password:
+        complex:
+          root: inputs.NonSecretPassword
+      ole_command:
+        simple: olevba
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: This is an automation to run oletools malware analysis for office
+        files. Oletools is a tool for analyzing Microsoft OLE2 files, such as Microsoft
+        Office documents or Outlook messages, mainly for malware analysis, forensics,
+        and debugging. This automation allows performing some basic oletools commands
+        from Cortex XSOAR. Note that oletools is open source code and is subject to
+        change.
+      id: 02461c55-1953-484f-8b70-1ca8b942b006
+      iscommand: false
+      name: Run olevba command
+      script: Oletools
+      type: regular
+      version: -1
+    taskid: 02461c55-1953-484f-8b70-1ca8b942b006
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1010,
+          "y": 1340
+        }
+      }
+  "11":
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "12"
+    note: false
+    quietmode: 2
+    scriptarguments:
+      key:
+        simple: oleobj_sha256
+      value:
+        complex:
+          accessor: sha256
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: Oletools.Oleid.ole_command_result.External_Relationships.Value
+              operator: isNotEqualString
+              right:
+                value:
+                  simple: "0"
+          - - left:
+                iscontext: true
+                value:
+                  simple: Oletools.Oleid.ole_command_result.Container_format.Value
+              operator: isNotEqualString
+              right:
+                value:
+                  simple: Unknown Container
+          root: Oletools.Oleid
+          transformers:
+          - operator: uniq
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: f920249a-48db-4d3e-832d-061f1af149d4
+      iscommand: false
+      name: Set oleobj_sha256
+      script: Set
+      type: regular
+      version: -1
+    taskid: f920249a-48db-4d3e-832d-061f1af149d4
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1490,
+          "y": 1170
+        }
+      }
+  "12":
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 2
+    reputationcalc: 2
+    scriptarguments:
+      decode:
+        complex:
+          root: inputs.Decode
+      entryID:
+        complex:
+          accessor: EntryID
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: inputs.FileObject.SHA256
+              operator: in
+              right:
+                iscontext: true
+                value:
+                  simple: oleobj_sha256
+          root: inputs.FileObject
+      non_secret_password:
+        complex:
+          root: inputs.NonSecretPassword
+      ole_command:
+        simple: oleobj
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: This is an automation to run oletools malware analysis for office
+        files. Oletools is a tool for analyzing Microsoft OLE2 files, such as Microsoft
+        Office documents or Outlook messages, mainly for malware analysis, forensics,
+        and debugging. This automation allows performing some basic oletools commands
+        from Cortex XSOAR. Note that oletools is open source code and is subject to
+        change.
+      id: 9ef9b19d-0b45-4d83-8a14-1594c12e53ef
+      iscommand: false
+      name: Run oleobj command
+      script: Oletools
+      type: regular
+      version: -1
+    taskid: 9ef9b19d-0b45-4d83-8a14-1594c12e53ef
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1490,
+          "y": 1340
+        }
+      }
+  "13":
+    continueonerrortype: ""
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: fb144323-1000-452b-8a6b-7e2ed2170400
+      iscommand: false
+      name: Check files and run olevba
+      type: title
+      version: -1
+    taskid: fb144323-1000-452b-8a6b-7e2ed2170400
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 1010,
+          "y": 810
+        }
+      }
+  "14":
+    continueonerrortype: ""
+    id: "14"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: f3a5dbd5-a0dd-415a-882d-00f09f459c8b
+      iscommand: false
+      name: Check files and run oleobj
+      type: title
+      version: -1
+    taskid: f3a5dbd5-a0dd-415a-882d-00f09f459c8b
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 1490,
+          "y": 810
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "1_2_#default#": 0.11,
+      "4_2_#default#": 0.13,
+      "5_2_#default#": 0.17,
+      "6_2_#default#": 0.18
+    },
+    "paper": {
+      "dimensions": {
+        "height": 1565,
+        "width": 1160,
+        "x": 710,
+        "y": 40
+      }
+    }
+  }
