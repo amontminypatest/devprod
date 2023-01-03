@@ -1,0 +1,399 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Network Security"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"automation",
+		"playbook"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "Deprecated. Use ssh command instead. Connect to a Check Point firewall appliance using SSH and trigger a task to create a configuration backup of the device. The user account being used to access the device must be set to use the SSH shell and not the built-in Check Point CLI. For more information, consult the CheckPoint documentation.",
+				"name": "CheckpointFWCreateBackup",
+				"tags": [
+					"checkpoint"
+				]
+			},
+			{
+				"description": "Deprecated. Use ssh command instead. Connect to a CheckPoint firewall appliance using SSH and retrieve the status for backup tasks. The user account being used to access the device must be set to use the SSH shell and not the built-in CheckPoint CLI. For more information, consult the CheckPoint documentation.",
+				"name": "CheckpointFWBackupStatus",
+				"tags": [
+					"checkpoint"
+				]
+			},
+			{
+				"description": "Downloads the Check Point policy backup to the Cortex XSOAR War Room.",
+				"name": "CheckPointDownloadBackup",
+				"tags": []
+			}
+		],
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Network Security",
+				"commands": [
+					{
+						"description": "Show items in an access rulebase configured in Checkpoint FW",
+						"name": "checkpoint-show-access-rule-base"
+					},
+					{
+						"description": "Set attributes of an access rule object configured in Checkpoint FW",
+						"name": "checkpoint-set-rule"
+					},
+					{
+						"description": "Shows status of a checkpoint task by task uuid",
+						"name": "checkpoint-task-status"
+					},
+					{
+						"description": "Show host objects configured in Checkpoint FW",
+						"name": "checkpoint-show-hosts"
+					},
+					{
+						"description": "Block one or more IP addresses using Checkpoint Firewall",
+						"name": "checkpoint-block-ip"
+					},
+					{
+						"description": "Use Check Point's Management API (requires management server R80 or later). Specifying 'command'=\u003cAPI command\u003e is mandatory",
+						"name": "checkpoint"
+					},
+					{
+						"description": "Delete rule from firewall",
+						"name": "checkpoint-delete-rule"
+					}
+				],
+				"description": "Deprecated. Use the Check Point Firewall v2 integration instead. Manage Check Point firewall via API",
+				"id": "",
+				"name": "Check Point Firewall (Deprecated)"
+			},
+			{
+				"category": "IT Services",
+				"commands": [
+					{
+						"description": "Returns all host objects.",
+						"name": "checkpoint-host-list"
+					},
+					{
+						"description": "Gets full data for the specified host.",
+						"name": "checkpoint-host-get"
+					},
+					{
+						"description": "Adds a new host.",
+						"name": "checkpoint-host-add"
+					},
+					{
+						"description": "Updates the specified host.",
+						"name": "checkpoint-host-update"
+					},
+					{
+						"description": "Deletes the specified host.",
+						"name": "checkpoint-host-delete"
+					},
+					{
+						"description": "Gets a list of all groups.",
+						"name": "checkpoint-group-list"
+					},
+					{
+						"description": "Gets full data for the specified group.",
+						"name": "checkpoint-group-get"
+					},
+					{
+						"description": "Adds a group.",
+						"name": "checkpoint-group-add"
+					},
+					{
+						"description": "Updates the specified group object.",
+						"name": "checkpoint-group-update"
+					},
+					{
+						"description": "Deletes the specified group object.",
+						"name": "checkpoint-group-delete"
+					},
+					{
+						"description": "Gets a list all address range objects.",
+						"name": "checkpoint-address-range-list"
+					},
+					{
+						"description": "Adds an address range object.",
+						"name": "checkpoint-address-range-add"
+					},
+					{
+						"description": "Updates the specified address range object.",
+						"name": "checkpoint-address-range-update"
+					},
+					{
+						"description": "Deletes the specified address range.",
+						"name": "checkpoint-address-range-delete"
+					},
+					{
+						"description": "Gets a list of all threat indicators.",
+						"name": "checkpoint-threat-indicator-list"
+					},
+					{
+						"description": "Gets data for the specified list indicator.",
+						"name": "checkpoint-threat-indicator-get"
+					},
+					{
+						"description": "Adds a threat indicator.",
+						"name": "checkpoint-threat-indicator-add"
+					},
+					{
+						"description": "Updates the specified indicator.",
+						"name": "checkpoint-threat-indicator-update"
+					},
+					{
+						"description": "Gets full data for the specified address range object.",
+						"name": "checkpoint-address-range-get"
+					},
+					{
+						"description": "Deletes the specified threat indicator.",
+						"name": "checkpoint-threat-indicator-delete"
+					},
+					{
+						"description": "Returns the entire Access Rules layer.",
+						"name": "checkpoint-access-rule-list"
+					},
+					{
+						"description": "Creates a new access rule.",
+						"name": "checkpoint-access-rule-add"
+					},
+					{
+						"description": "Modifies an existing access rule, using object name or UID.",
+						"name": "checkpoint-access-rule-update"
+					},
+					{
+						"description": "Deletes the specified access rule.",
+						"name": "checkpoint-access-rule-delete"
+					},
+					{
+						"description": "Retrieves all objects.",
+						"name": "checkpoint-application-site-list"
+					},
+					{
+						"description": "Adds an application site.",
+						"name": "checkpoint-application-site-add"
+					},
+					{
+						"description": "Edits an existing application using the object name or UID. \nIt's impossible to set 'application-signature' when the application was initialized with 'url-list' and vice-versa.",
+						"name": "checkpoint-application-site-update"
+					},
+					{
+						"description": "Deletes an existing application site object using the object name or UID.",
+						"name": "checkpoint-application-site-delete"
+					},
+					{
+						"description": "Publishes changes.",
+						"name": "checkpoint-publish"
+					},
+					{
+						"description": "Intsalls an Access Control policy.",
+						"name": "checkpoint-install-policy"
+					},
+					{
+						"description": "Verifies the policy of the selected package.",
+						"name": "checkpoint-verify-policy"
+					},
+					{
+						"description": "Show task progress and details.",
+						"name": "checkpoint-show-task"
+					},
+					{
+						"description": "Log in to CheckPoint and get the session ID.",
+						"name": "checkpoint-login-and-get-session-id"
+					},
+					{
+						"description": "Log out from a given session.",
+						"name": "checkpoint-logout"
+					},
+					{
+						"description": "List all packages.",
+						"name": "checkpoint-packages-list"
+					},
+					{
+						"description": "Retrieve all gateways and servers.",
+						"name": "checkpoint-gateways-list"
+					},
+					{
+						"description": "Retrieve all application site category.",
+						"name": "checkpoint-application-site-category-list"
+					},
+					{
+						"description": "Adds new application site category.",
+						"name": "checkpoint-application-site-category-add"
+					},
+					{
+						"description": "Retrieve application site category object using object name or UID.",
+						"name": "checkpoint-application-site-category-get"
+					},
+					{
+						"description": "Retrieve data about objects.",
+						"name": "checkpoint-show-objects"
+					},
+					{
+						"description": "Retrieve the details of Checkpoint packages.",
+						"name": "checkpoint-package-list"
+					},
+					{
+						"description": "Creates new objects in batch. To achieve optimum performance when adding more than one object, use this API. Note: Errors and warnings are ignored when using this API, operation will apply changes while ignoring errors. It is not possible to publish changes that contain validations errors.",
+						"name": "checkpoint-add-objects-batch"
+					},
+					{
+						"description": "Deletes existing objects in batch using object name or uid. To achieve optimum performance when deleting more than one object, use this API.",
+						"name": "checkpoint-delete-objects-batch"
+					},
+					{
+						"description": "Shows an existing threat protection using object name or uid",
+						"name": "checkpoint-show-threat-protection"
+					},
+					{
+						"description": "Shows existing threat protections using a filter",
+						"name": "checkpoint-show-threat-protections"
+					},
+					{
+						"description": "Edit existing object using object name or uid.",
+						"name": "checkpoint-set-threat-protection"
+					},
+					{
+						"description": "Add a new threat profile",
+						"name": "checkpoint-add-threat-profile"
+					},
+					{
+						"description": "Deletes threat protections.",
+						"name": "checkpoint-delete-threat-protections"
+					}
+				],
+				"description": "Use this integration to read information and send commands to the Check Point Firewall server.",
+				"id": "",
+				"name": "CheckPoint Firewall v2"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": [
+			{
+				"description": "This playbook blocks URLs using Check Point Firewall through Custom URL Categories.\nThe playbook checks whether the input URL category already exists, and if the URLs are a part of this category. Otherwise, it creates the category, blocks the URLs, and publishes the configuration.",
+				"name": "Checkpoint - Block URL"
+			},
+			{
+				"description": "The playbook receives malicious IP addresses as inputs, checks if the object group exists (if not, the object group is created), and  appends the related IPs to that object. If you have not assigned the appended group to a rule in your firewall policy, you can use `rule_name` and the playbook creates a new rule.",
+				"name": "Checkpoint - Block IP - Append Group"
+			},
+			{
+				"description": "This playbook blocks IP addresses using Custom Block Rules in Check Point Firewall.\nThe playbook receives malicious IP addresses as inputs, creates a custom bi-directional rule to block them, and publishes the configuration.",
+				"name": "Checkpoint - Block IP - Custom Block Rule"
+			},
+			{
+				"description": "Publish the Check Point Firewall configuration and install policy on all available gateways.",
+				"name": "Checkpoint - Publish\u0026Install configuration"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-09-23T17:55:03Z",
+	"currentVersion": "2.3.5",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.39",
+			"name": "Base"
+		},
+		"CommonPlaybooks": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "2.3.18",
+			"name": "Common Playbooks"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.10.15",
+			"name": "Common Scripts"
+		},
+		"RemoteAccess": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.0.9",
+			"name": "Remote Access"
+		}
+	},
+	"deprecated": false,
+	"description": "Manage Check Point firewall via API",
+	"disabledMonthly": false,
+	"downloads": 4495,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "CheckpointFirewall",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/CheckpointFirewall/CheckPoint_image.png",
+			"name": "Check Point Firewall (Deprecated)"
+		},
+		{
+			"imagePath": "content/packs/CheckpointFirewall/CheckPointFirewall_v2_image.png",
+			"name": "CheckPoint Firewall v2"
+		},
+		{
+			"imagePath": "content/packs/RemoteAccess/RemoteAccessv2_image.png",
+			"name": "RemoteAccess v2"
+		}
+	],
+	"itemVersion": "2.3.5",
+	"keywords": [],
+	"legacy": true,
+	"name": "Check Point Firewall",
+	"packID": "CheckpointFirewall",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "# Check Point Firewall\nThis pack includes Cortex XSIAM content. \n## Configuration on Server Side\nYou need to configure Check Point to forward Syslog messages in CEF format.\n\nGo to Checkpoint Log Export, and follow the instructions under \"Basic Deployment\" to set up the connection using the following guidelines:\n1. If you use version R77.30 or R80.10, follow the instructions to install a Log Exporter.\n2. Set the Syslog port to 514 or your agent port.\n3. Replace the \"name\" and \"\\\u003ctarget-server IP address\\\u003e\" in the CLI with the broker VM name and IP address.\nSet the format to CEF.\n## Collect Events from Vendor\n\nIn order to use the collector, use the [Broker VM](#broker-vm) option.\n\n### Broker VM\nTo create or configure the Broker VM, use the information described [here](https://docs.paloaltonetworks.com/cortex/cortex-xdr/cortex-xdr-pro-admin/broker-vm/set-up-broker-vm/configure-your-broker-vm).\n\nYou can configure the specific vendor and product for this instance.\n\n\n1. Navigate to **Settings** \u003e **Configuration** \u003e **Data Broker** \u003e **Broker VMs**. \n2. Right-click, and select **Syslog Collector** \u003e **Configure**.\n3. When configuring the Syslog Collector, set the following values:\n   - vendor as vendor - Checkpoint\n   - product as product - Firewall\n",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-12-01T23:19:31Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4137548",
+	"videos": []
+}
