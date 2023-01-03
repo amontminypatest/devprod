@@ -1,0 +1,82 @@
+args:
+- default: true
+  description: The hash value(s) to check.
+  name: hash
+  required: true
+comment: Find the rule state for a hash value in CBEP/Bit9.
+commonfields:
+  id: CBPFindRule
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.0.29
+    packID: CarbonBlackProtect
+    packName: Carbon Black Enterprise Protection
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+dependson:
+  must:
+  - cbp-fileRule-search
+dockerimage: demisto/python3:3.10.6.33415
+engineinfo: {}
+mainengineinfo: {}
+name: CBPFindRule
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('CBPFindRule', 'start', __line__())
+
+
+
+
+  def cbp_find_rule(args):
+      STATES = {1: "Unapproved", 2: "Approved", 3: "Banned"}
+      res = []
+      found = []
+      md = ''
+      t = []
+      hashes = argToList(args["hash"])
+      for h in hashes:
+          resSearch = demisto.executeCommand("cbp-fileRule-search", {"query": "hash:" + h})
+          for entry in resSearch:
+              if isError(entry):
+                  res.append(entry)
+              else:
+                  for rule in entry["Contents"]:
+                      t.append(rule)
+                      found.append(rule["hash"])
+                      md += "Hash " + rule["hash"] + " is in state **" + STATES[rule["fileState"]] + "**\n"
+      if found:
+          appendContext('found_hashes', ','.join(found), dedup=True)
+      res.append({"Type": entryTypes["note"], "ContentsFormat": formats["markdown"], "Contents": md})
+      res.append({"Type": entryTypes["note"], "ContentsFormat": formats["table"], "Contents": t})
+      demisto.results(res)
+
+
+  def main():  # pragma: no cover
+      args = demisto.args()
+      try:
+          cbp_find_rule(args)
+      except Exception as e:
+          err_msg = f'Encountered an error while running the script: [{e}]'
+          return_error(err_msg, error=e)
+
+
+  if __name__ in ('__main__', '__builtin__', 'builtins'):
+      main()
+
+  register_module_line('CBPFindRule', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags:
+- carbon-black-protection
+- bit9
+- enhancement
+type: python
