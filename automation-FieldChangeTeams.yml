@@ -1,0 +1,48 @@
+args:
+- description: The old value of the changed field
+  name: old
+- description: The new value of the changed field
+  name: new
+comment: Example Field Change trigger script.
+commonfields:
+  id: b750751c-114f-4044-8e16-edba6d5c0776
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.8.6.12176
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: FieldChangeTeams
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  # Field Change trigger script can take an "old" and "new" and then act accordingly.
+  # Can be used on fields like severity, or owner to do different actions such as escalation or notification.
+
+  old = demisto.args().get("old")
+  new = demisto.args().get("new")
+
+  if not old:
+      old = "unassigned"
+
+  if not new:
+      new = "unassigned"
+
+  demisto.results(f"Team was changed from {old} to {new}")
+scripttarget: 0
+subtype: python3
+tags:
+- field-change-triggered
+- training
+type: python
