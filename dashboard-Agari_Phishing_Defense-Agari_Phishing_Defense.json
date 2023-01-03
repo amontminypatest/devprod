@@ -1,0 +1,391 @@
+{
+	"cacheVersn": 0,
+	"definitionId": "",
+	"fromDate": "0001-01-01T00:00:00Z",
+	"fromDateLicense": "0001-01-01T00:00:00Z",
+	"fromServerVersion": "5.0.0",
+	"hidePivot": false,
+	"hideSearch": false,
+	"id": "Agari Phishing Defense",
+	"isCommon": true,
+	"itemVersion": "1.1.3",
+	"layout": [
+		{
+			"forceRange": false,
+			"h": 2,
+			"i": "06b7ef90-240b-11eb-900f-110957a0b338",
+			"id": "06b7ef90-240b-11eb-900f-110957a0b338",
+			"reflectDimensions": false,
+			"w": 6,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "incidents",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "5.0.0",
+				"id": "",
+				"isPredefined": false,
+				"itemVersion": "1.0.5",
+				"modified": "2020-10-19T09:22:55.435177916Z",
+				"name": "Attack Types",
+				"packID": "CommonWidgets",
+				"packName": "",
+				"packPropagationLabels": [
+					"all"
+				],
+				"params": {
+					"groupBy": [
+						"apdattacktypes.types"
+					],
+					"tableColumns": [
+						{
+							"isDefault": true,
+							"key": "id",
+							"position": 0,
+							"width": 110
+						},
+						{
+							"isDefault": true,
+							"key": "name",
+							"position": 2,
+							"width": 300
+						},
+						{
+							"isDefault": true,
+							"key": "type",
+							"position": 3,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "severity",
+							"position": 4,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "status",
+							"position": 5,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "owner",
+							"position": 6,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "roles",
+							"position": 7,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "playbookId",
+							"position": 8,
+							"width": 150
+						},
+						{
+							"isDefault": true,
+							"key": "occurred",
+							"position": 9,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "dueDate",
+							"position": 10,
+							"width": 200
+						}
+					]
+				},
+				"prevName": "Active Incidents - Pie chart",
+				"propagationLabels": [],
+				"query": " -status:Closed -category:job and type:\"Agari Phishing Defense Policy Event\"",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 0,
+				"widgetType": "pie"
+			},
+			"x": 6,
+			"y": 0
+		},
+		{
+			"forceRange": false,
+			"h": 2,
+			"i": "20dda1f0-240e-11eb-900f-110957a0b338",
+			"id": "20dda1f0-240e-11eb-900f-110957a0b338",
+			"reflectDimensions": false,
+			"w": 6,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "incidents",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 0,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "5.0.0",
+				"id": "",
+				"isPredefined": false,
+				"itemVersion": "1.0.5",
+				"modified": "2020-10-19T09:22:55.435177916Z",
+				"name": "Policy Hit by Policy Name",
+				"packID": "CommonWidgets",
+				"packName": "",
+				"packPropagationLabels": [
+					"all"
+				],
+				"params": {
+					"groupBy": [
+						"apdalertdefinitionname"
+					],
+					"tableColumns": [
+						{
+							"isDefault": true,
+							"key": "id",
+							"position": 0,
+							"width": 110
+						},
+						{
+							"isDefault": true,
+							"key": "name",
+							"position": 2,
+							"width": 300
+						},
+						{
+							"isDefault": true,
+							"key": "type",
+							"position": 3,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "severity",
+							"position": 4,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "status",
+							"position": 5,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "owner",
+							"position": 6,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "roles",
+							"position": 7,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "playbookId",
+							"position": 8,
+							"width": 150
+						},
+						{
+							"isDefault": true,
+							"key": "occurred",
+							"position": 9,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "dueDate",
+							"position": 10,
+							"width": 200
+						}
+					]
+				},
+				"prevName": "Active Incidents - Pie chart",
+				"propagationLabels": [],
+				"query": "-status:Closed -category:job and type:\"Agari Phishing Defense Policy Event\"",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 0,
+				"widgetType": "pie"
+			},
+			"x": 0,
+			"y": 0
+		},
+		{
+			"forceRange": false,
+			"h": 2,
+			"i": "0837c040-24a4-11eb-9c9e-cf3ece1eda3a",
+			"id": "0837c040-24a4-11eb-9c9e-cf3ece1eda3a",
+			"reflectDimensions": false,
+			"w": 12,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "incidents",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "5.0.0",
+				"id": "",
+				"isPredefined": false,
+				"itemVersion": "1.0.5",
+				"modified": "2020-10-19T09:22:55.434911275Z",
+				"name": "Targeted Users",
+				"packID": "CommonWidgets",
+				"packName": "",
+				"packPropagationLabels": [
+					"all"
+				],
+				"params": {
+					"groupBy": [
+						"apdmessageto"
+					],
+					"tableColumns": [
+						{
+							"isDefault": true,
+							"key": "id",
+							"position": 0,
+							"width": 110
+						},
+						{
+							"isDefault": true,
+							"key": "name",
+							"position": 2,
+							"width": 300
+						},
+						{
+							"isDefault": true,
+							"key": "type",
+							"position": 3,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "severity",
+							"position": 4,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "status",
+							"position": 5,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "owner",
+							"position": 6,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "roles",
+							"position": 7,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "playbookId",
+							"position": 8,
+							"width": 150
+						},
+						{
+							"isDefault": true,
+							"key": "occurred",
+							"position": 9,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "dueDate",
+							"position": 10,
+							"width": 200
+						}
+					]
+				},
+				"prevName": "Active Incidents by Role",
+				"propagationLabels": [],
+				"query": "-status:Closed -category:job and type:\"Agari Phishing Defense Policy Event\"",
+				"shouldCommit": false,
+				"size": 10,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 0,
+				"widgetType": "column"
+			},
+			"x": 0,
+			"y": 2
+		}
+	],
+	"locked": false,
+	"modulePage": false,
+	"name": "Agari Phishing Defense",
+	"owner": "",
+	"packID": "AgariPhishingDefense",
+	"packName": "Agari Phishing Defense",
+	"packPropagationLabels": [
+		"all"
+	],
+	"period": {
+		"by": "",
+		"byFrom": "days",
+		"byTo": "",
+		"field": "",
+		"fromValue": 0,
+		"toValue": null
+	},
+	"propagationLabels": [],
+	"system": true,
+	"toDate": "0001-01-01T00:00:00Z",
+	"toServerVersion": "",
+	"version": -1
+}
