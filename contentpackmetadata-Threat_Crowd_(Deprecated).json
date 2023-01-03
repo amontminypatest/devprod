@@ -1,0 +1,155 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Get a report of an IP address.",
+						"name": "ip"
+					},
+					{
+						"description": "Get a report of a domain.",
+						"name": "domain"
+					},
+					{
+						"description": "Get a report of an email address.",
+						"name": "email"
+					},
+					{
+						"description": "Get a report of an antivirus.",
+						"name": "threat-crowd-antivirus"
+					},
+					{
+						"description": "Get a report of a hash.",
+						"name": "file"
+					}
+				],
+				"description": "Deprecated. No available replacement.",
+				"id": "",
+				"name": "Threat Crowd v2 (Deprecated)"
+			},
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Get a report of an email address.",
+						"name": "threat-crowd-email"
+					},
+					{
+						"description": "Get a report of a domain.",
+						"name": "threat-crowd-domain"
+					},
+					{
+						"description": "Get a report of an IP.",
+						"name": "threat-crowd-ip"
+					},
+					{
+						"description": "Get a report of an antivirus.",
+						"name": "threat-crowd-antivirus"
+					},
+					{
+						"description": "Get a report of a file.",
+						"name": "threat-crowd-file"
+					}
+				],
+				"description": "Deprecated. Use Threat Crowd v2 instead.",
+				"id": "",
+				"name": "Threat Crowd (Deprecated)"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-11-09T18:45:22Z",
+	"currentVersion": "2.0.8",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.39",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Deprecated. No available replacement.",
+	"disabledMonthly": false,
+	"downloads": 2407,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "Threat_Crowd",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/Threat_Crowd/ThreatCrowd_image.png",
+			"name": "Threat Crowd (Deprecated)"
+		},
+		{
+			"imagePath": "content/packs/Threat_Crowd/ThreatCrowd_v2_image.png",
+			"name": "Threat Crowd v2 (Deprecated)"
+		}
+	],
+	"itemVersion": "2.0.8",
+	"keywords": [],
+	"legacy": true,
+	"name": "Threat Crowd (Deprecated)",
+	"packID": "Threat_Crowd",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "Use the integration in this content pack to query Threat Crowd for reports on:\n- IP addresses\n- Domains\n- Emails\n- Antiviruses\n- File hashes\n\nThe report indicates if the input (IP address, domain, etc.) is malicious, and includes additional information to aid in your mitigation of threats to your network. \n",
+	"searchRank": -40,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-11-08T12:22:01Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4098099",
+	"videos": []
+}
