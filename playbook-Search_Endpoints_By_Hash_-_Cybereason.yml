@@ -1,0 +1,426 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 2.0.0
+    packID: Cybereason
+    packName: Cybereason
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: Hunt for endpoint activity involving hash, using Cybereason.
+id: Search Endpoints By Hash - Cybereason
+inputs:
+- description: MD5 Hash
+  key: MD5Hash
+  playbookInputQuery: null
+  required: false
+  value:
+    complex:
+      accessor: MD5
+      root: File
+- description: SHA1 Hash
+  key: SHA1Hash
+  playbookInputQuery: null
+  required: false
+  value:
+    complex:
+      accessor: SHA1
+      root: File
+name: Search Endpoints By Hash - Cybereason
+outputs:
+- contextPath: Cybereason.File.Hostname
+  description: Device hostname
+  type: string
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "16"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 64d3d099-e3f0-45ae-8898-c4530cf996b9
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 64d3d099-e3f0-45ae-8898-c4530cf996b9
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 190,
+          "y": -30
+        }
+      }
+  "2":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.MD5Hash
+          operator: isNotEmpty
+      label: "yes"
+    continueonerror: true
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "19"
+      "yes":
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        complex:
+          accessor: MD5
+          root: File
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Are there MD5s to hunt?
+      id: e26bb151-69eb-4238-80a4-70ded4bc4eb2
+      iscommand: false
+      name: Are there MD5s to hunt?
+      type: condition
+      version: -1
+    taskid: e26bb151-69eb-4238-80a4-70ded4bc4eb2
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -20,
+          "y": 500
+        }
+      }
+  "3":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.SHA1Hash
+          operator: isNotEmpty
+      label: "yes"
+    continueonerror: true
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "19"
+      "yes":
+      - "20"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        complex:
+          accessor: SHA1
+          root: File
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Are there SHA1s to hunt?
+      id: 07721157-8d24-4612-8d7d-118bcf7d450e
+      iscommand: false
+      name: Are there SHA1s to hunt?
+      type: condition
+      version: -1
+    taskid: 07721157-8d24-4612-8d7d-118bcf7d450e
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 400,
+          "y": 500
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "15"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      file_hash:
+        complex:
+          root: inputs.MD5Hash
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks if the hash exists on the organization endpoints.
+      id: b597f784-7966-4eb9-889a-4176205b9b1a
+      iscommand: true
+      name: Hunt for devices running MD5
+      script: '|||cybereason-query-file'
+      type: regular
+      version: -1
+    taskid: b597f784-7966-4eb9-889a-4176205b9b1a
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -20,
+          "y": 725
+        }
+      }
+  "15":
+    continueonerrortype: ""
+    id: "15"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 0be18d12-04e5-4109-89ff-b8f917d9bc38
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 0be18d12-04e5-4109-89ff-b8f917d9bc38
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 190,
+          "y": 900
+        }
+      }
+  "16":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: brand
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: Cybereason
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.state
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: active
+                root: modules
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "16"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "19"
+      "yes":
+      - "17"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: modules.brand
+              operator: isEqualString
+              right:
+                value:
+                  simple: FalconHost
+          - - left:
+                iscontext: true
+                value:
+                  simple: modules.state
+              operator: isEqualString
+              right:
+                value:
+                  simple: active
+          root: modules
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Is Cybereason integration enabled?
+      id: 1a524ead-5f7f-4705-8412-d95441000400
+      iscommand: false
+      name: Is Cybereason integration enabled?
+      type: condition
+      version: -1
+    taskid: 1a524ead-5f7f-4705-8412-d95441000400
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 190,
+          "y": 125
+        }
+      }
+  "17":
+    continueonerrortype: ""
+    id: "17"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 78d65ffe-90ed-4323-83dd-76ac86842582
+      iscommand: false
+      name: Hunt for indicators
+      type: title
+      version: -1
+    taskid: 78d65ffe-90ed-4323-83dd-76ac86842582
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 190,
+          "y": 350
+        }
+      }
+  "19":
+    continueonerrortype: ""
+    id: "19"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "15"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: e430b92c-792d-491e-8752-a409d3c26172
+      iscommand: false
+      name: No Integration \ No Hash
+      type: title
+      version: -1
+    taskid: e430b92c-792d-491e-8752-a409d3c26172
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -500,
+          "y": 740
+        }
+      }
+  "20":
+    continueonerrortype: ""
+    id: "20"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "15"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      file_hash:
+        complex:
+          root: inputs.SHA1Hash
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks if the hash exists on the organization endpoints.
+      id: ead67021-31b1-468d-8bf2-930a38e067f2
+      iscommand: true
+      name: Hunt for devices running SHA1
+      script: '|||cybereason-query-file'
+      type: regular
+      version: -1
+    taskid: ead67021-31b1-468d-8bf2-930a38e067f2
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 400,
+          "y": 725
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "16_19_#default#": 0.1,
+      "2_19_#default#": 0.14,
+      "2_6_yes": 0.54,
+      "3_19_#default#": 0.1,
+      "3_20_yes": 0.7
+    },
+    "paper": {
+      "dimensions": {
+        "height": 995,
+        "width": 1280,
+        "x": -500,
+        "y": -30
+      }
+    }
+  }
