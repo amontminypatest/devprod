@@ -1,0 +1,177 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Forensics \u0026 Malware Analysis"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"automation",
+		"playbook"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "Detonate File or URL through McAfee ATD",
+				"name": "ATDDetonate",
+				"tags": [
+					"file",
+					"enhancement",
+					"atd"
+				]
+			}
+		],
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Forensics \u0026 Malware Analysis",
+				"commands": [
+					{
+						"description": "upload a file/web URL for dynamic analysis by using the provided Analyzer Profile. Only single file/web URL can be submitted at a time.",
+						"name": "atd-file-upload"
+					},
+					{
+						"description": "fetches the list of task id's associated with a job id",
+						"name": "atd-get-task-ids"
+					},
+					{
+						"description": "Download the analysis report files. The `Sample Download Access` permission is required.",
+						"name": "atd-get-report"
+					},
+					{
+						"description": "display the analyzer profiles. Only the analyzer profiles to which the user has access are displayed.",
+						"name": "atd-list-analyzer-profiles"
+					},
+					{
+						"description": "displays the user profile information present on the McAfee Advanced Threat Defense.",
+						"name": "atd-list-user"
+					},
+					{
+						"description": "Returns the current session details",
+						"name": "atd-login"
+					},
+					{
+						"description": "Deprecated, use detonate playbook instead.",
+						"name": "detonate-file"
+					},
+					{
+						"description": "Deprecated, use detonate playbook instead.",
+						"name": "detonate-url"
+					},
+					{
+						"description": "Checks the analysis status of up to 100 jobIDs/taskIDs",
+						"name": "atd-check-status"
+					}
+				],
+				"description": "Integrated advanced threat detection: Enhancing protection from network edge to endpoint",
+				"id": "",
+				"name": "McAfee Advanced Threat Defense"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": [
+			{
+				"description": "Detonates a URL using the McAfee Advanced Threat Defense sandbox integration.",
+				"name": "Detonate URL - McAfee ATD"
+			},
+			{
+				"description": "Detonates a File from a URL using the McAfee Advanced Threat Defense sandbox integration.",
+				"name": "Detonate Remote File from URL - McAfee ATD"
+			},
+			{
+				"description": "Detonates a File using the McAfee Advanced Threat Defense sandbox.\nAdvanced Threat Defense supports the following File Types:\n32-bit Portable Executables (PE)files; 64-bit PE+files\nexe, sys, dll, com, scr, cpl, ocx, cgi\nMicrosoft Office Suite documents\ndoc,dotm, docx, dotx, xls, ppam, xlsx, pps, xlsb, ppsx, xlsm, ppsm, ppt, ppt, pptx, pptm, rtf, shs, xltm, sldm, xltx, sldx, xlam, thmx, docm, xar\nJust Systems Ichitaro documents\njtd, jtdc\nAdobe\npdf, swf\nCompressed files\ngz, 7z, tgz, msi, zip, lzh, cab, lzma, rar\nAndroid application package\napk, Java, JAR, CLASS, Java Script, Java bin files\nImage files\njpeg, png, gif\nOther file types\ncmd, ace, bat, arj, vbs, chm, xml, lnk, url, mof, htm, ocx, html, potm, eml, potx, msg, ps1, vb, reg, vba, wsc, vbe, wsf, vbs, wsh",
+				"name": "ATD - Detonate File"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-06-30T20:30:09Z",
+	"currentVersion": "1.0.20",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.39",
+			"name": "Base"
+		},
+		"CommonPlaybooks": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "2.3.13",
+			"name": "Common Playbooks"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.10.7",
+			"name": "Common Scripts"
+		}
+	},
+	"deprecated": false,
+	"description": "Integrated advanced threat detection: Enhancing protection from network edge to endpoint",
+	"disabledMonthly": false,
+	"downloads": 3152,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "McAfee_Advanced_Threat_Defense",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/McAfee_Advanced_Threat_Defense/McAfeeAdvancedThreatDefense_image.png",
+			"name": "McAfee Advanced Threat Defense"
+		}
+	],
+	"itemVersion": "1.0.20",
+	"keywords": [],
+	"legacy": true,
+	"name": "McAfee Advanced Threat Defense",
+	"packID": "McAfee_Advanced_Threat_Defense",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-11-25T00:21:10Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4098099",
+	"videos": []
+}
