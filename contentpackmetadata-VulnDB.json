@@ -1,0 +1,146 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Vulnerability Management"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Vulnerability Management",
+				"commands": [
+					{
+						"description": "Returns full details about a specific vulnerability.",
+						"name": "vulndb-get-vuln-by-id"
+					},
+					{
+						"description": "Returns all, or specific, vendor details to include vendor name and ID.",
+						"name": "vulndb-get-vendor"
+					},
+					{
+						"description": "Returns a list of versions by product name or ID.",
+						"name": "vulndb-get-product"
+					},
+					{
+						"description": "Returns the version of the specified product.",
+						"name": "vulndb-get-version"
+					},
+					{
+						"description": "Returns recent vulnerabilities, by date or number of hours.",
+						"name": "vulndb-get-updates-by-dates-or-hours"
+					},
+					{
+						"description": "Returns full details about a specific vulnerability, by vendor name and product name.",
+						"name": "vulndb-get-vuln-by-vendor-and-product-name"
+					},
+					{
+						"description": "Returns full details about a specific vulnerability, by vendor ID and product ID.",
+						"name": "vulndb-get-vuln-by-vendor-and-product-id"
+					},
+					{
+						"description": "Returns full details about vulnerabilities, by vendor ID.",
+						"name": "vulndb-get-vuln-by-vendor-id"
+					},
+					{
+						"description": "Returns full details about vulnerabilities, by product ID.",
+						"name": "vulndb-get-vuln-by-product-id"
+					},
+					{
+						"description": "Returns full details about vulnerabilities, by CVE ID.",
+						"name": "vulndb-get-vuln-by-cve-id"
+					},
+					{
+						"description": "Returns CVE information by CVE ID.",
+						"name": "cve"
+					}
+				],
+				"description": "Lists all of the security vulnerabilities for various products (OS,Applications) etc)",
+				"id": "",
+				"name": "VulnDB"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2021-01-27T23:01:51Z",
+	"currentVersion": "1.0.5",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.39",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Lists all of the security vulnerabilities for various products (OS,Applications) etc)",
+	"disabledMonthly": false,
+	"downloads": 1758,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "VulnDB",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/VulnDB/VulnDB_image.png",
+			"name": "VulnDB"
+		}
+	],
+	"itemVersion": "1.0.5",
+	"keywords": [],
+	"legacy": true,
+	"name": "VulnDB",
+	"packID": "VulnDB",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2021-12-21T22:27:28Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4098099",
+	"videos": []
+}
