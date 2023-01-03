@@ -1,0 +1,172 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.5.0
+    itemVersion: 1.10.1
+    packID: CrowdStrikeFalcon
+    packName: CrowdStrike Falcon
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: |-
+  This playbook is part of the 'Malware Investigation And Response' pack. For more information, refer to https://xsoar.pan.dev/docs/reference/packs/malware-investigation-and-response.
+  This playbook extracts data from the host using RTR commands. For example, commands for getting a list of running processes and network connections.
+id: CrowdStrike Falcon - Get Endpoint Forensics Data
+inputs:
+- description: The ID of the host to use.
+  key: DeviceId
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: CrowdStrike Falcon - Get Endpoint Forensics Data
+outputs:
+- contextPath: CrowdStrike.Command
+  description: The results of the forensics commands.
+  type: string
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 91130fbd-2e6e-4816-825e-3d3eb630cea8
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 91130fbd-2e6e-4816-825e-3d3eb630cea8
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      host_id:
+        simple: ${inputs.DeviceId}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Executes a RTR active-responder ps command to get a list of active
+        processes across the given host.
+      id: 48450f6a-9b2d-481b-8844-e16ac557dfca
+      iscommand: true
+      name: List processes
+      script: '|||cs-falcon-rtr-list-processes'
+      type: regular
+      version: -1
+    taskid: 48450f6a-9b2d-481b-8844-e16ac557dfca
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 240,
+          "y": 190
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      host_id:
+        simple: ${inputs.DeviceId}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Executes a RTR active-responder netstat command to get a list of
+        network status and protocol statistics across the given host.
+      id: 36e343d9-fef3-4656-8c31-1d284c9e5476
+      iscommand: true
+      name: List network connections
+      script: '|||cs-falcon-rtr-list-network-stats'
+      type: regular
+      version: -1
+    taskid: 36e343d9-fef3-4656-8c31-1d284c9e5476
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 640,
+          "y": 190
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 0bd570e4-be9b-4078-85c3-b3327f53134d
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 0bd570e4-be9b-4078-85c3-b3327f53134d
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 360
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 375,
+        "width": 780,
+        "x": 240,
+        "y": 50
+      }
+    }
+  }
