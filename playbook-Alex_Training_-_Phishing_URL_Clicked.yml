@@ -1,0 +1,838 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: 94381553-8be2-413c-87e0-eef1b9dd89d6
+inputs: []
+name: Alex Training - Phishing URL Clicked
+outputs: []
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 459dda7c-1fb7-4edd-8c30-2b2866a95bd1
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 459dda7c-1fb7-4edd-8c30-2b2866a95bd1
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 60342f84-59cf-424c-8583-8225b2437317
+      iscommand: false
+      name: Triage
+      type: title
+      version: -1
+    taskid: 60342f84-59cf-424c-8583-8225b2437317
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 195
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      email:
+        simple: ${incident.emailto}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Active Directory Query v2 (XSOAR Engineer Training)
+      description: Retrieves detailed information about a user account. The user can
+        be specified by name, email address, or as an Active Directory Distinguished
+        Name (DN). If no filter is specified, all users are returned.
+      id: aab12173-4835-4b11-8d49-f8209733b15c
+      iscommand: true
+      name: Look up user in AD
+      script: Active Directory Query v2 (XSOAR Engineer Training)|||ad-get-user
+      type: regular
+      version: -1
+    taskid: aab12173-4835-4b11-8d49-f8209733b15c
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 340
+        }
+      }
+  "3":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: ActiveDirectory.Users.sAMAccountName
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "4"
+      "yes":
+      - "5"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 37b5c61c-bf3c-4b13-8794-e390742d832c
+      iscommand: false
+      name: Does user exist in AD?
+      type: condition
+      version: -1
+    taskid: 37b5c61c-bf3c-4b13-8794-e390742d832c
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 515
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      closeReason:
+        simple: False Positive
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.close.inv
+      id: ac581baa-643d-42af-8b6c-5e17f79fecfc
+      iscommand: true
+      name: Close Investigation as False Positive
+      script: Builtin|||closeInvestigation
+      type: regular
+      version: -1
+    taskid: ac581baa-643d-42af-8b6c-5e17f79fecfc
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 690
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      ip:
+        simple: ${incident.sourceip}
+      ipRanges:
+        simple: ${lists.Internal IP Ranges}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Returns yes if the IP is in one of the ranges provided, returns
+        no otherwise.
+      id: 8520aa74-3a99-415a-806b-639f45147462
+      iscommand: false
+      name: Check if Source IP is Internal
+      script: IsIPInRanges
+      type: regular
+      version: -1
+    taskid: 8520aa74-3a99-415a-806b-639f45147462
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 690
+        }
+      }
+  "6":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: IP.InRange
+          operator: isEqualString
+          right:
+            value:
+              simple: "yes"
+      label: "yes"
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "8"
+      "yes":
+      - "7"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 52d346f0-a2cb-4eab-8d92-af7f02e652f5
+      iscommand: false
+      name: Internal IP?
+      type: condition
+      version: -1
+    taskid: 52d346f0-a2cb-4eab-8d92-af7f02e652f5
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 865
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      detectedinternalips:
+        simple: ${incident.sourceip}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: 9dfbc880-352b-4870-83c9-3188bab997fd
+      iscommand: true
+      name: Set Internal IP Field
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 9dfbc880-352b-4870-83c9-3188bab997fd
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 695,
+          "y": 1040
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      detectedexternalips:
+        simple: ${incident.sourceip}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: 9100a83a-6d43-4cdd-8f0e-cece6a25b6e4
+      iscommand: true
+      name: Set External IP
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 9100a83a-6d43-4cdd-8f0e-cece6a25b6e4
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 1040
+        }
+      }
+  "9":
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "21"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      text:
+        simple: ${incident.emailurlclicked}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.extract.indicators
+      id: bfd46664-8cc4-46e5-84f2-ea3fd14feddf
+      iscommand: true
+      name: Extract Indicators
+      script: Builtin|||extractIndicators
+      type: regular
+      version: -1
+    taskid: bfd46664-8cc4-46e5-84f2-ea3fd14feddf
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 1215
+        }
+      }
+  "10":
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "11"
+      "yes":
+      - "13"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      includeManual:
+        simple: "yes"
+      includeSuspicious:
+        simple: "yes"
+      maliciousQueryOverride:
+        simple: type:URL and value:${incident.emailurlclicked}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks if the investigation found any malicious indicators (file,
+        URL, IP address, domain, or email). Returns "yes" if at least one malicious
+        indicator is found.
+      id: 9675ebd4-8df3-48fe-882f-f6102821c46f
+      iscommand: false
+      name: Malicious URLs?
+      script: IsMaliciousIndicatorFound
+      type: condition
+      version: -1
+    taskid: 9675ebd4-8df3-48fe-882f-f6102821c46f
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 1565
+        }
+      }
+  "11":
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "No":
+      - "12"
+      "Yes":
+      - "13"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: b171e1bf-54cc-4398-8f73-3113f19282c9
+      iscommand: false
+      name: Confirm no Malicious Indicators
+      type: condition
+      version: -1
+    taskid: b171e1bf-54cc-4398-8f73-3113f19282c9
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 275,
+          "y": 1740
+        }
+      }
+  "12":
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      closeReason:
+        simple: False Positive
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.close.inv
+      id: 55b917f1-1280-47a5-87e0-dae713e019e7
+      iscommand: true
+      name: Close Incident as False Positive
+      script: Builtin|||closeInvestigation
+      type: regular
+      version: -1
+    taskid: 55b917f1-1280-47a5-87e0-dae713e019e7
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 1915
+        }
+      }
+  "13":
+    continueonerrortype: ""
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "15"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: b69484a9-14e1-4ffb-8088-441aeeec8df5
+      iscommand: false
+      name: Remediation - Start Timer
+      type: title
+      version: -1
+    taskid: b69484a9-14e1-4ffb-8088-441aeeec8df5
+    timertriggers:
+    - action: start
+      fieldname: remediationsla
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 695,
+          "y": 1930
+        }
+      }
+  "14":
+    continueonerrortype: ""
+    form:
+      description: Check whether you exposed credentials.
+      expired: false
+      questions:
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "0"
+        label: ""
+        labelarg:
+          simple: Did you input credentials on that page?
+        options: []
+        optionsarg:
+        - simple: "Yes"
+        - simple: "No"
+        placeholder: ""
+        readonly: false
+        required: true
+        tooltip: ""
+        type: singleSelect
+      sender: ""
+      title: Malicious URL
+      totalanswers: 0
+    id: "14"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    message:
+      bcc: null
+      body:
+        simple: Please answer a few questions about the URL you clicked.
+      cc: null
+      format: ""
+      methods: []
+      subject: null
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: true
+        retriescount: 2
+        retriesinterval: 360
+      to: null
+    nexttasks:
+      '#none#':
+      - "16"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 3573eba1-79db-4b05-8dc9-08346b0f5665
+      iscommand: false
+      name: Check if user input credentials?
+      type: collection
+      version: -1
+    taskid: 3573eba1-79db-4b05-8dc9-08346b0f5665
+    timertriggers: []
+    type: collection
+    view: |-
+      {
+        "position": {
+          "x": 695,
+          "y": 2265
+        }
+      }
+  "15":
+    continueonerrortype: ""
+    id: "15"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "14"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      entryIDs:
+        simple: ${incident.emailurlclicked}
+      entryTags:
+        simple: EDLBlock
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.entriesTags.set
+      id: 76494a89-a8a3-4ccc-888f-563b34701ead
+      iscommand: true
+      name: Block URL in EDL
+      script: Builtin|||setEntriesTags
+      type: regular
+      version: -1
+    taskid: 76494a89-a8a3-4ccc-888f-563b34701ead
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 695,
+          "y": 2090
+        }
+      }
+  "16":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: Malicious URL.Answers.0
+          operator: isEqualString
+          right:
+            value:
+              simple: "Yes"
+      label: "yes"
+    continueonerrortype: ""
+    id: "16"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "17"
+      "yes":
+      - "19"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 3c02d8dd-c24d-44f4-8e8c-d86c6ffd9068
+      iscommand: false
+      name: Credentials Exposed?
+      type: condition
+      version: -1
+    taskid: 3c02d8dd-c24d-44f4-8e8c-d86c6ffd9068
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 695,
+          "y": 2440
+        }
+      }
+  "17":
+    continueonerrortype: ""
+    id: "17"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "18"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: d33ca7fb-119a-4812-8232-828a3270c52c
+      iscommand: false
+      name: Close Incident
+      type: title
+      version: -1
+    taskid: d33ca7fb-119a-4812-8232-828a3270c52c
+    timertriggers:
+    - action: stop
+      fieldname: remediationsla
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 695,
+          "y": 2965
+        }
+      }
+  "18":
+    continueonerrortype: ""
+    id: "18"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: d987dddd-6b6c-4c13-8446-77b18cd9ec86
+      iscommand: false
+      name: Close Incident
+      type: regular
+      version: -1
+    taskid: d987dddd-6b6c-4c13-8446-77b18cd9ec86
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 695,
+          "y": 3110
+        }
+      }
+  "19":
+    continueonerrortype: ""
+    id: "19"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "20"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      username:
+        simple: ${incident.emailto}
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 0cfc3796-c112-41cf-8004-0c950037fb7d
+      iscommand: false
+      name: Alex Training.- AD Password Reset
+      playbookId: ba55103e-b55d-4809-8ee3-67d7986f3781
+      type: playbook
+      version: -1
+    taskid: 0cfc3796-c112-41cf-8004-0c950037fb7d
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 807.5,
+          "y": 2615
+        }
+      }
+  "20":
+    continueonerrortype: ""
+    id: "20"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "17"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: ef6f0065-7a02-4371-823a-73991156e000
+      iscommand: false
+      name: Send New Password to User
+      type: regular
+      version: -1
+    taskid: ef6f0065-7a02-4371-823a-73991156e000
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 807.5,
+          "y": 2790
+        }
+      }
+  "21":
+    continueonerrortype: ""
+    id: "21"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "10"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      incidentId:
+        simple: ${incident.id}
+      indicatorsValues:
+        complex:
+          accessor: '[0]'
+          root: ExtractedIndicators.URL
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.associate.indicators
+      id: d38fd554-f3a0-4c9e-86d2-d2217b70ccfe
+      iscommand: true
+      name: Associate URL to Incident
+      script: Builtin|||associateIndicatorsToIncident
+      type: regular
+      version: -1
+    taskid: d38fd554-f3a0-4c9e-86d2-d2217b70ccfe
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 1390
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 3155,
+        "width": 1137.5,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
