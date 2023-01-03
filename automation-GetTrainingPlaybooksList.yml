@@ -1,0 +1,51 @@
+comment: Dynamic section which shows the playbooks from the Training Pack on the Training
+  layout.
+commonfields:
+  id: 75304136-1bee-4d0d-8fc5-5ffbe1d43932
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.9.1.15759
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: GetTrainingPlaybooksList
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |-
+  result = demisto.executeCommand("demisto-api-post", {"uri":"/playbook/search","body":{"query":"system:F"}})[0]["Contents"]["response"]
+  playbooks = [ {"Name":x.get("name",""),"Description":x.get("comment","")} for x in result["playbooks"] if "XSOAR Engineer Training" in x.get("name")]
+
+  # make the playbook clickable.
+  data = []
+  for playbook in playbooks:
+      name = playbook.get("Name")
+      fancy = {
+          'Command': f'%%%{{"message":"{name}", "action":"setPlaybook", "params": {{"name":"{name}"}}}}%%%',
+          'Description': playbook.get("Description")
+      }
+      data.append(fancy)
+
+  # return a MD entry for the dynamic section
+  entry = {
+      'Type': entryTypes['note'],
+      'Contents': tableToMarkdown('Training Playbooks', data, headers=["Command","Description"]),
+      'ContentsFormat': formats['markdown']
+  }
+  demisto.results(entry)
+scripttarget: 0
+subtype: python3
+tags:
+- training
+- dynamic-section
+type: python
