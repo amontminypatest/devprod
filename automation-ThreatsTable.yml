@@ -1,0 +1,51 @@
+comment: Dynamic display script to display the email alerts "threats" data on an Incident
+  layout
+commonfields:
+  id: facca945-7286-4d48-8a1b-98046484c5db
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.7.3.286
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: ThreatsTable
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |+
+  # displays the proofpoint threatsinfomap field on a layout.
+  # make sure you're grabbing the right custom field below, if you've mapped that to a specific field
+
+  import json
+  # Get current incident data
+  try:
+      threats = json.loads(demisto.get(demisto.incidents()[0], 'details'))
+  except:
+      threats = []
+
+  if not isinstance(threats, list):
+      threats = [threats]
+
+  entry = {
+      'Type': entryTypes['note'],
+      'Contents': tableToMarkdown('Email Threats', threats, ['classification', 'threatType', 'threat', 'threatTime']),
+      'ContentsFormat': formats['markdown']
+  }
+  demisto.results(entry)
+
+scripttarget: 0
+subtype: python3
+tags:
+- dynamic-section
+- training
+type: python
