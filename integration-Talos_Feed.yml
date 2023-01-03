@@ -1,0 +1,319 @@
+category: Data Enrichment & Threat Intelligence
+commonfields:
+  id: Talos Feed
+  version: -1
+configuration:
+- defaultvalue: "true"
+  display: Fetch indicators
+  name: feed
+  required: false
+  type: 8
+- defaultvalue: https://talosintelligence.com/documents/ip-blacklist
+  display: Talos Endpoint URL
+  name: url
+  required: true
+  type: 0
+- additionalinfo: Indicators from this integration instance will be marked with this
+    reputation
+  defaultvalue: Bad
+  display: Indicator Reputation
+  name: feedReputation
+  options:
+  - None
+  - Good
+  - Suspicious
+  - Bad
+  required: false
+  type: 18
+- additionalinfo: Reliability of the source providing the intelligence data
+  defaultvalue: B - Usually reliable
+  display: Source Reliability
+  name: feedReliability
+  options:
+  - A - Completely reliable
+  - B - Usually reliable
+  - C - Fairly reliable
+  - D - Not usually reliable
+  - E - Unreliable
+  - F - Reliability cannot be judged
+  required: true
+  type: 15
+- additionalinfo: The Traffic Light Protocol (TLP) designation to apply to indicators
+    fetched from the feed
+  display: Traffic Light Protocol Color
+  name: tlp_color
+  options:
+  - RED
+  - AMBER
+  - GREEN
+  - WHITE
+  required: false
+  type: 15
+- defaultvalue: suddenDeath
+  display: ""
+  name: feedExpirationPolicy
+  options:
+  - never
+  - interval
+  - indicatorType
+  - suddenDeath
+  required: false
+  type: 17
+- defaultvalue: "20160"
+  display: ""
+  name: feedExpirationInterval
+  required: false
+  type: 1
+- defaultvalue: "30"
+  display: Feed Fetch Interval
+  name: feedFetchInterval
+  required: false
+  type: 19
+- additionalinfo: Supports CSV values.
+  display: Tags
+  name: feedTags
+  required: false
+  type: 0
+- additionalinfo: When selected, the exclusion list is ignored for indicators from
+    this feed. This means that if an indicator from this feed is on the exclusion
+    list, the indicator might still be added to the system.
+  defaultvalue: "true"
+  display: Bypass exclusion list
+  name: feedBypassExclusionList
+  required: false
+  type: 8
+- display: Trust any certificate (not secure)
+  name: insecure
+  required: false
+  type: 8
+- display: Use system proxy settings
+  name: proxy
+  required: false
+  type: 8
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.5.0
+    itemVersion: 1.0.5
+    packID: FeedTalos
+    packName: Talos Feed
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: Use the Talos Feed integration to get indicators from the feed.
+detaileddescription: |-
+  ### Community Contributed Integration
+   #### Integration Author: Guillermo Serrano
+   No support or maintenance is provided by the author. Customers are encouraged to engage with the user community for questions and guidance at the [Cortex XSOAR Live Discussions](https://live.paloaltonetworks.com/t5/cortex-xsoar-discussions/bd-p/Cortex_XSOAR_Discussions).
+  ***
+  [View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/talos-feed)
+display: Talos Feed (Community Contribution)
+image: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEABAMAAACuXLVVAAAAG1BMVEVHcEwAbbgAbrcAbrgXb64AbrgAbLgAbrgAcr9CKk//AAAAB3RSTlMAx5LmN2IcY7UIvwAAA51JREFUeNrtmc1v2jAYh0OAwpF2q+BI10NzbA8THCuNThzTTttybKVp67Et6+zjCmudP3t24iT+agkhsEr7PReEsZ0nrx3befE8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8Lpobf4Spy/+Otm8wATDDF47OxOLj7z0u+DbZHK5cYF2bPHoeX7+ZbYvKx7tu5pf9HmVPVXzalz09LuMAbE45gsUy7/Fd2m9gPbsxkexqEIXYV7ix3pPy4nM61PR20D5fp8KkIXVNsg8C4PA7GkpmrJgLkqbzOwnIHRoNP1aVHqQo9BmZk/LuRqJyqKhGDZ2ki7eB7splJffyFszxqChXGwhd5Um993NCFeZjMEzEWuP+e3JCsaQjpUgHQdp4ykhv6o9DVz91vkDv0/qFGgwmgvM/Hgo74OG1QQazw7ZKO3TEhiQe2UmzZuXUsCrW0DOPlOgzai61YfjYxmn2gWm6ewzBTpkpg0hS5r3NyDQdQsEuoC89b5eukkBYgokA7U9AZ/pl4rS5aL/zLNUv0DTigB5TB6ZbQl0bYHbRGC+JYGIWENAao1A63AkFzm3QGBHgF6KOWBtWdUEdgb5TuMW6DsEwuRDHkbY7O06AspO2yW0hAAfAnHvHWU3jofVBXxlpy0fgaFxHnioLpAck+KYilCWE5ARqHAicgmIIyHbe5eyUgS8Vj87kZY9E7oE+CpDhsVjSEs8BVF+w2dnnxP4sfKpqkCknmvKP4anZo+PVQVGamfuCEwdETAOc6yyAG96u2wl7NgRmNUm0NBGzy3QsCMwr02gqV3LLdBmVgSeahPoagu6ew7weWJGoFebwLUh4DwRRfqrWmA+BOsITDWBqTsCDfOIaC68aw2BGs4gj8CNllhgfqiNyE19Ah3tWiSPwB+txZfgZ5rHEJwzcwTWWYi01zTxCioFZlq+pBX3ilyE424j07i8AN+M6XuZr7kgRQRIkTcRc+TAfof3/PzV+A0j1qi8KMAKAbEZUmVTSyKgJzIePD2LId8Td8ZUwpgUL50rUgS0nrMIXOtFQ/3YtEhH54deaaUU10ARUFMPhLIkAlpZlrTIyljoSjitMgfFBeaO5A+//vxD3DPyEXnnRpJKl2QrZgrO75SH/JBks/vk1PuULDn+WM3lSduLkUjT5QuIWmNR8XwOANgu//xfs3/+vyEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD4D/kLZGNeDddRI4oAAAAASUVORK5CYII=
+name: Talos Feed
+script:
+  commands:
+  - arguments:
+    - defaultValue: "10"
+      description: The maximum number of results to return. The default value is 10.
+      name: limit
+    description: Gets indicators from the feed.
+    name: talos-get-indicators
+  dockerimage: demisto/python3:3.9.8.24399
+  feed: true
+  runonce: false
+  script: |
+    register_module_line('Talos Feed', 'start', __line__())
+    from typing import Any, Callable, Dict, List, Tuple, Optional
+
+    import urllib3
+
+
+
+
+    # disable insecure warnings
+    urllib3.disable_warnings()
+
+    INTEGRATION_NAME = 'Talos Feed'
+
+
+    class Client(BaseClient):
+        """
+        Client to use in the Talos Feed integration. Overrides BaseClient.
+        """
+
+        def __init__(self, base_url: str, verify: bool = False, proxy: bool = False):
+            """
+            Implements class for Talos feeds.
+            :param url: the Talos endpoint URL
+            :verify: boolean, if *false* feed HTTPS server certificate is verified. Default: *false*
+            :param proxy: boolean, if *false* feed HTTPS server certificate will not use proxies. Default: *false*
+            """
+            super().__init__(base_url, verify=verify, proxy=proxy)
+
+        def build_iterator(self) -> List:
+            """Retrieves all entries from the feed.
+            Returns:
+                A list of objects, containing the indicators.
+            """
+
+            res = self._http_request('GET', url_suffix='', full_url=self._base_url, resp_type='text')
+
+            result = []
+
+            try:
+                indicators = res.split('\n')
+
+                for indicator in indicators:
+                    if auto_detect_indicator_type(indicator):
+                        result.append({
+                            'value': indicator,
+                            'type': auto_detect_indicator_type(indicator),
+                            'FeedURL': self._base_url
+                        })
+
+            except ValueError as err:
+                demisto.debug(str(err))
+                raise ValueError(f'Could not parse returned data to Json. \n\nError massage: {err}')
+
+            return result
+
+
+    def test_module(client: Client, *_) -> Tuple[str, Dict[Any, Any], Dict[Any, Any]]:
+        """Builds the iterator to check that the feed is accessible.
+        Args:
+            client: Client object.
+        Returns:
+            Outputs.
+        """
+
+        client.build_iterator()
+        return 'ok', {}, {}
+
+
+    def fetch_indicators(client: Client, feed_tags: List = [], tlp_color: Optional[str] = None, limit: int = -1) \
+            -> List[Dict]:
+        """Retrieves indicators from the feed
+        Args:
+            client (Client): Client object with request
+            feed_tags (list): tags to assign fetched indicators
+            tlp_color (str): Traffic Light Protocol color
+            limit (int): limit the results
+        Returns:
+            Indicators.
+        """
+        iterator = client.build_iterator()
+        indicators = []
+        if limit > 0:
+            iterator = iterator[:limit]
+        for item in iterator:
+            value = item.get('value')
+            type_ = item.get('type', FeedIndicatorType.IP)
+            raw_data = {
+                'value': value,
+                'type': type_,
+            }
+            for key, val in item.items():
+                raw_data.update({key: val})
+            indicator_obj = {
+                'value': value,
+                'type': type_,
+                'service': 'Talos Feed',
+                'fields': {},
+                'rawJSON': raw_data
+            }
+            if feed_tags:
+                indicator_obj['fields']['tags'] = feed_tags
+            if tlp_color:
+                indicator_obj['fields']['trafficlightprotocol'] = tlp_color
+
+            indicators.append(indicator_obj)
+        return indicators
+
+
+    def get_indicators_command(client: Client,
+                               params: Dict[str, str],
+                               args: Dict[str, str]
+                               ) -> Tuple[str, Dict[Any, Any], Dict[Any, Any]]:
+        """Wrapper for retrieving indicators from the feed to the war-room.
+        Args:
+            client: Client object with request
+            params: demisto.params()
+            args: demisto.args()
+        Returns:
+            Outputs.
+        """
+        feed_tags = argToList(params.get('feedTags', ''))
+        tlp_color = params.get('tlp_color')
+        limit = int(args.get('limit', '10'))
+        indicators = fetch_indicators(client, feed_tags, tlp_color, limit)
+        human_readable = tableToMarkdown('Indicators from Talos Feed:', indicators,
+                                         headers=['value', 'type'], removeNull=True)
+
+        return human_readable, {}, {'raw_response': indicators}
+
+
+    def fetch_indicators_command(client: Client, params: Dict[str, str]) -> List[Dict]:
+        """Wrapper for fetching indicators from the feed to the Indicators tab.
+        Args:
+            client: Client object with request
+            params: demisto.params()
+        Returns:
+            Indicators.
+        """
+        feed_tags = argToList(params.get('feedTags', ''))
+        tlp_color = params.get('tlp_color')
+        indicators = fetch_indicators(client, feed_tags, tlp_color)
+        return indicators
+
+
+    def main():
+        """
+        PARSE AND VALIDATE INTEGRATION PARAMS
+        """
+        params = demisto.params()
+        base_url = params.get('url')
+        insecure = not params.get('insecure', False)
+        proxy = params.get('proxy', False)
+
+        command = demisto.command()
+        demisto.info(f'Command being called is {command}')
+
+        try:
+            client = Client(
+                base_url=base_url,
+                verify=insecure,
+                proxy=proxy,
+            )
+
+            commands: Dict[
+                str, Callable[[Client, Dict[str, str], Dict[str, str]], Tuple[str, Dict[Any, Any], Dict[Any, Any]]]
+            ] = {
+                'test-module': test_module,
+                'talos-get-indicators': get_indicators_command
+            }
+            if command in commands:
+                return_outputs(*commands[command](client, demisto.params(), demisto.args()))
+
+            elif command == 'fetch-indicators':
+                indicators = fetch_indicators_command(client, demisto.params())
+                for iter_ in batch(indicators, batch_size=2000):
+                    demisto.createIndicators(iter_)
+
+            else:
+                raise NotImplementedError(f'Command {command} is not implemented.')
+
+        except Exception:
+            err_msg = (f'Error in {INTEGRATION_NAME} Integration.\n\n'
+                       'Verify that the server URL parameter is correct and that you have access to the server from your host.\n')
+            return_error(err_msg)
+
+
+    if __name__ in ['__main__', 'builtin', 'builtins']:
+        main()
+
+    register_module_line('Talos Feed', 'end', __line__())
+  subtype: python3
+  type: python
+system: true
