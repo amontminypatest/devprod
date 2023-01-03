@@ -1,0 +1,57 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "",
+	"feed": false,
+	"fromServerVersion": "",
+	"id": "2799e01b-e2a0-4452-8428-48f922fb7ef1",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "",
+	"keyTypeMap": {
+		"DLP": "Alex Training - Mock Data Loss Prevention",
+		"Malware": "Alex Training - Mock Malware"
+	},
+	"locked": false,
+	"logicalVersion": 2,
+	"mapping": null,
+	"name": "Alex Training - Mock Data",
+	"nameRaw": "Alex Training - Mock Data",
+	"packID": "",
+	"packName": "",
+	"propagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": false,
+	"toServerVersion": "",
+	"transformer": {
+		"complex": {
+			"filters": [],
+			"root": "event_id",
+			"transformers": [
+				{
+					"args": {
+						"error_if_no_match": {},
+						"ignore_case": {},
+						"multi_line": {},
+						"period_matches_newline": {},
+						"regex": {
+							"value": {
+								"simple": "^(.*?)\\s"
+							}
+						},
+						"unpack_matches": {}
+					},
+					"operator": "RegexExtractAll"
+				}
+			]
+		}
+	},
+	"type": "classification",
+	"unclassifiedCases": null,
+	"version": -1
+}
