@@ -1,0 +1,374 @@
+category: Utilities
+commonfields:
+  id: RandomThreatIntel (XSOAR Engineer Training)
+  version: -1
+configuration:
+- defaultvalue: Random Threat Intel
+  display: ""
+  name: name
+  required: false
+  type: 0
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+description: "This example integration randomly enriches file, ip, url, and domain
+  indictors.  Useful for demos, DO NOT use this in any production environment.\n\nBasically
+  any of these indicators types could come back as good, suspicious, or bad.   \n\nAlso
+  includes examples of how to leverage for custom indicators such as a host or private
+  IP. "
+detaileddescription: "# DO NOT USE IN PRODUCTION\n\n## Threat Intel By Mike\nThis
+  is an example integration that returns fake data against the following indicator
+  types in XSOAR, intended for demos, where you don't want to hit things like VirusTotal
+  etc.  This will generate good, suspicious, or bad indicators for the following:\n-
+  IP (ip command)\n- File (file command)\n- Domain (domain command)\n- URL (url command)\n\n###
+  Custom Indicator Types\nThis integration also demos how you could build a custom
+  reputation command into XSOAR to get indicator data for say an internal host.  In
+  this example you can create the following custom indicator after enabling this integration
+  (Settings -> Advanced -> Indicator Types)\n\nIndicator Type: CXHost\nRegex: ```(crossiscoming\\d{3,5})```\nReputation
+  Command: cxhost\n\nThis will mean whenever a host gets extracted matching that regex,
+  the command will return returning data about that hose.\n\n### Private IP Ranges\nThis
+  integration also does the same for a custom indicator type of 'Private IP'.   By
+  default, private IPs such as 10.10.10.10 would be extracted an run through VirusTotal.
+  \  In this case I'd rather reference an internal system for information about that
+  IP.  This can be done in either an integration, and/or through a user reputation
+  script. \n\nIndicator Type: Private IP\nRegex: ```(10(\\.(25[0-5]|2[0-4][0-9]|1[0-9]{1,2}|[0-9]{1,2})){3}|((172\\.(1[6-9]|2[0-9]|3[01]))|192\\.168)(\\.(25[0-5]|2[0-4][0-9]|1[0-9]{1,2}|[0-9]{1,2})){2})```\nReputation
+  Command: private-ip\n\n#### Exclusions: For this to work, exclude the following
+  CIDR ranges as type IP so they don't get auto-extracted as such: 10.0.0.0/8, 192.168.0.0/16,
+  172.16.0.0/12\n"
+display: RandomThreatIntel (XSOAR Engineer Training)
+image: data:image/jpeg;base64,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
+name: RandomThreatIntel (XSOAR Engineer Training)
+script:
+  commands:
+  - arguments:
+    - default: true
+      isArray: true
+      name: url
+      required: true
+    description: URL to check
+    name: url
+  - arguments:
+    - default: true
+      isArray: true
+      name: domain
+      required: true
+    description: 'Domain to check '
+    name: domain
+  - arguments:
+    - default: true
+      isArray: true
+      name: ip
+      required: true
+    description: IP to check
+    name: ip
+  - arguments:
+    - default: true
+      isArray: true
+      name: file
+      required: true
+    description: File to check
+    name: file
+  - arguments:
+    - default: true
+      description: CXHost to check
+      isArray: true
+      name: cxhost
+      required: true
+    description: CXHost to check
+    name: cxhost
+  - arguments:
+    - default: true
+      isArray: true
+      name: ip
+      required: true
+    description: Private IP to check
+    name: private-ip
+  dockerimage: demisto/python3:3.8.6.12176
+  runonce: false
+  script: |-
+    from random import randrange
+
+    # Utility functions
+
+    def random_threat_score():
+        """
+        Returns a random threat score and dbot score, it's anyones guess!
+        """
+        threatscore = randrange(1,100)
+
+        # set dbotscore based on score from threat score between 1 and 10.
+        if threatscore >= 98:
+            score = Common.DBotScore.BAD
+            description = True
+        elif threatscore >= 90:
+            score = Common.DBotScore.SUSPICIOUS
+            description = True
+        else:
+            score = Common.DBotScore.GOOD
+            description = False
+
+        return threatscore, score, description
+
+    def create_dbot_score(indicator,indicator_type,score,malicious_description=None):
+        """
+        Returns the dbot score object
+        """
+        if malicious_description:
+            dbot_score = Common.DBotScore(
+                indicator=indicator,
+                indicator_type=indicator_type,
+                integration_name='RandomThreatIntel',
+                malicious_description=f'This URL {indicator} is up to no good!',
+                score=score
+            )
+        else:
+            dbot_score = Common.DBotScore(
+                indicator=indicator,
+                indicator_type=indicator_type,
+                integration_name='RandomThreatIntel',
+                score=score
+            )
+        return dbot_score
+
+    def create_results(readable,prefix,key_field,outputs,indicator):
+        """
+        Return the results entry
+        """
+
+        results = CommandResults(
+            readable_output=readable,
+            outputs_prefix=f'RandomThreatIntel.{prefix}',
+            outputs_key_field=key_field,
+            outputs=outputs,
+            indicator=indicator
+        )
+
+        return results
+
+
+    # Command functions
+
+
+    def url_command(url_arg):
+        """
+        Return a random result for a given url
+        """
+
+        # get some fake data
+        threatscore, score, description = random_threat_score()
+
+        # fake raw response and readable output
+        url_raw_response = { 'url':url_arg,'threatscore':threatscore}
+        readable = tableToMarkdown('Random Threat Intel URL Reputation',url_raw_response, headers=['url','threatscore'])
+
+        # create dbotscore
+        dbot_score = create_dbot_score(indicator=url_arg,indicator_type=DBotScoreType.URL,score=score,malicious_description=description)
+
+        # create url context for response
+        url = Common.URL(
+            url=url_arg,
+            dbot_score=dbot_score
+        )
+
+        # generate and return results
+        results = create_results(readable,'URL','url',url_raw_response,url)
+
+        return results
+
+
+    def ip_command(ip_arg):
+        """
+        Return a random result for a given ip
+        """
+
+        # get some fake data
+        threatscore, score, description = random_threat_score()
+
+        # fake raw response and readable output
+        ip_raw_response = { 'ip': ip_arg, 'asn': '12345', 'threatscore': threatscore }
+        readable = tableToMarkdown('Random Threat Intel IP Reputation',ip_raw_response, headers=['ip','asn','threatscore'])
+
+        # create dbotscore
+        dbot_score = create_dbot_score(indicator=ip_arg,indicator_type=DBotScoreType.IP,score=score,malicious_description=description)
+
+        # create ip context for response
+        ip = Common.IP(
+            ip=ip_arg,
+            asn='12345',
+            dbot_score=dbot_score
+        )
+
+        # generate and return results
+        results = create_results(readable,'IP','ip',ip_raw_response,ip)
+
+        return results
+
+
+    def domain_command(domain_arg):
+        """
+        Return a random result for a given domain
+        """
+
+        # get some fake data
+        threatscore, score, description = random_threat_score()
+
+        # fake raw response and readable output
+        domain_raw_response = { 'domain': domain_arg, 'threatscore': threatscore }
+        readable = tableToMarkdown('Random Threat Intel Domain Reputation',domain_raw_response, headers=['domain','threatscore'])
+
+        # create dbotscore
+        dbot_score = create_dbot_score(indicator=domain_arg,indicator_type=DBotScoreType.DOMAIN,score=score,malicious_description=description)
+
+        # create domain context for response
+        domain = Common.Domain(
+            domain=domain_arg,
+            dbot_score=dbot_score
+        )
+
+        # generate and return results
+        results = create_results(readable,'Domain','domain',domain_raw_response,domain)
+
+        return results
+
+
+    def file_command(file_arg):
+        """
+        Return a random result for a given file hash, md5, sha256, sha1
+        """
+
+        # get some fake data
+        threatscore, score, description = random_threat_score()
+
+        # fake raw response and readable output
+        file_raw_response = { 'threatscore': threatscore }
+        if len(file_arg) == 32:
+            file_raw_response['md5'] = file_arg
+        if len(file_arg) == 40:
+            file_raw_response['sha1'] = file_arg
+        if len(file_arg) == 64:
+            file_raw_response['sha256'] = file_arg
+
+        readable = tableToMarkdown('Random Threat Intel File Reputation',file_raw_response)
+
+        # create dbotscore
+        dbot_score = create_dbot_score(indicator=file_arg,indicator_type=DBotScoreType.FILE,score=score,malicious_description=description)
+
+        # create domain context for response
+        file = Common.File(
+            md5=file_raw_response.get('md5',""),
+            sha1=file_raw_response.get('sha1',""),
+            sha256=file_raw_response.get('sha256',""),
+            dbot_score=dbot_score
+        )
+
+        # generate and return results
+        results = create_results(readable,'File','md5',file_raw_response,file)
+
+        return results
+
+
+    def private_ip_command(ip_arg):
+        """
+        Same as IP, but for private ip addresses.
+        Mocked to handle the Private IP custom indicator. Still returns IP results, but command can be used as the reputation command for a custom indicator.
+
+            Indicator Type: Private IP
+            Regex: (10(\.(25[0-5]|2[0-4][0-9]|1[0-9]{1,2}|[0-9]{1,2})){3}|((172\.(1[6-9]|2[0-9]|3[01]))|192\.168)(\.(25[0-5]|2[0-4][0-9]|1[0-9]{1,2}|[0-9]{1,2})){2})
+            Reputation Command: private-ip
+
+            Exclusions: For this to work, exclude the following CIDR ranges as type IP so they don't get auto-extracted as such: 10.0.0.0/8, 192.168.0.0/16, 172.16.0.0/12
+        """
+
+        threatscore, score, description = random_threat_score()
+
+        # fake raw response and readable output
+        ip_raw_response = { 'ip': ip_arg, 'asn': 'privateip', 'threatscore': threatscore, 'description':'Internal IP' }
+        readable = tableToMarkdown('Random Threat Intel IP Reputation',ip_raw_response, headers=['ip','asn','threatscore','description'])
+
+        # create dbotscore
+        dbot_score = create_dbot_score(indicator=ip_arg,indicator_type=DBotScoreType.IP,score=score,malicious_description=description)
+
+        # create ip context for response
+        ip = Common.IP(
+            ip=ip_arg,
+            asn='12345',
+            dbot_score=dbot_score
+        )
+
+        # generate and return results
+        results = create_results(readable,'IP','ip',ip_raw_response,ip)
+
+        return results
+
+    def cxhost_command(cxhost_arg):
+        """
+        This is and example of indicator enrichment on a custom indicator called CXHost, showing how you can set this up automatically run when extracted via regex
+        The response is rather picky, you need to return exactly as shown below, with your additions etc in teh raw response.
+            Indicator Type: CXHost
+            Regex: (crossiscoming\d{3,5}) (autoextract anything with crossiscoming and 3-5 digits)
+            Reputation Command: cxhost
+        """
+
+        # fake raw response and readable output
+        cxhost_raw_response = { 'cxhost':cxhost_arg, 'description':'cxhost custom indicator' }
+        readable = tableToMarkdown('Random Threat Intel CXHost Reputation',cxhost_raw_response,headers=['cxhost','description'])
+
+        # generate and return results for this indicator
+        results = {
+                    'Type': entryTypes['note'],
+                    'ContentsFormat': formats['json'],
+                    'Contents': cxhost_raw_response,
+                    'HumanReadable': readable,
+                    'EntryContext': {
+                        'DBotScore': {
+                            'Indicator': cxhost_arg,
+                            'Type': 'CXHost',
+                            'Vendor':'RandomThreatIntel',
+                            'Score': 1
+                            },
+                        'RandomThreatIntel.CXHost': cxhost_raw_response
+                    }
+                }
+
+        return results
+
+
+    # Command execution
+
+    if demisto.command() == 'test-module':
+        demisto.results('ok')
+
+    elif demisto.command() == 'url':
+        url_arg = demisto.args().get('url')
+        return_results(url_command(url_arg))
+
+    elif demisto.command() == 'ip':
+        ip_arg = demisto.args().get('ip')
+        return_results(ip_command(ip_arg))
+
+    elif demisto.command() == 'domain':
+        domain_arg = demisto.args().get('domain')
+        return_results(domain_command(domain_arg))
+
+    elif demisto.command() == 'file':
+        file_arg = demisto.args().get('file')
+        return_results(file_command(file_arg))
+
+    elif demisto.command() == 'private-ip':
+        ip_arg = demisto.args().get('ip')
+        return_results(private_ip_command(ip_arg))
+
+    elif demisto.command() == 'cxhost':
+        cxhost_arg = demisto.args().get('cxhost')
+        demisto.results(cxhost_command(cxhost_arg))
+  subtype: python3
+  type: python
+sourcemoduleid: MikeTestURL
