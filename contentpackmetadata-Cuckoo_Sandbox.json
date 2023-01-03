@@ -1,0 +1,242 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Forensics \u0026 Malware Analysis"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"automation",
+		"playbook"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "Display the contents of a Cuckoo report file from a war room entry.",
+				"name": "CuckooDisplayReport",
+				"tags": [
+					"cuckoo"
+				]
+			},
+			{
+				"description": "Deprecated. Use the 'cuckoo-create-task-from-file' command instead.",
+				"name": "CuckooDetonateFile",
+				"tags": [
+					"cuckoo"
+				]
+			},
+			{
+				"description": "Deprecated. Use 'cuckoo-create-task-from-url' instead.",
+				"name": "CuckooDetonateURL",
+				"tags": [
+					"cuckoo"
+				]
+			},
+			{
+				"description": "Deprecated. Use the 'cuckoo-get-task-report' command instead.",
+				"name": "CuckooGetReport",
+				"tags": [
+					"cuckoo"
+				]
+			},
+			{
+				"description": "Deprecated. Use 'cuckoo-task-screenshot' command instead.",
+				"name": "CuckooGetScreenshot",
+				"tags": [
+					"cuckoo"
+				]
+			},
+			{
+				"description": "Deprecated. Use the 'cuckoo-view-task' command instead.",
+				"name": "CuckooTaskStatus",
+				"tags": [
+					"cuckoo"
+				]
+			}
+		],
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Forensics \u0026 Malware Analysis",
+				"commands": [
+					{
+						"description": "commands.server.ckFile.description",
+						"name": "ck-file"
+					},
+					{
+						"description": "commands.server.ckFile.description",
+						"name": "cuckoo-create-task-from-file"
+					},
+					{
+						"description": "commands.server.ckReport.description",
+						"name": "ck-report"
+					},
+					{
+						"description": "commands.server.ckReport.description",
+						"name": "cuckoo-get-task-report"
+					},
+					{
+						"description": "commands.server.ckList.description",
+						"name": "ck-list"
+					},
+					{
+						"description": "commands.server.ckList.description",
+						"name": "cuckoo-list-tasks"
+					},
+					{
+						"description": "Submit a URL for analysis",
+						"name": "ck-url"
+					},
+					{
+						"description": "Submit a URL for analysis",
+						"name": "cuckoo-create-task-from-url"
+					},
+					{
+						"description": "commands.server.ckView.description",
+						"name": "ck-view"
+					},
+					{
+						"description": "commands.server.ckView.description",
+						"name": "cuckoo-view-task"
+					},
+					{
+						"description": "commands.server.ckDelete.description",
+						"name": "ck-del"
+					},
+					{
+						"description": "commands.server.ckDelete.description",
+						"name": "cuckoo-delete-task"
+					},
+					{
+						"description": "Retrieve screenshots taken during analysis. If the screenshot number argument is omitted, retrieves a zip file with all screenshots.",
+						"name": "ck-scrshot"
+					},
+					{
+						"description": "Retrieve screenshots taken during analysis. If the screenshot number argument is omitted, retrieves a zip file with all screenshots.",
+						"name": "cuckoo-task-screenshot"
+					},
+					{
+						"description": "Returns a list with details on the analysis machines available to Cuckoo.",
+						"name": "ck-machines-list"
+					},
+					{
+						"description": "Returns a list with details on the analysis machines available to Cuckoo.",
+						"name": "cuckoo-machines-list"
+					},
+					{
+						"description": "Returns details on the analysis machine associated with the given name.",
+						"name": "ck-machine-view"
+					},
+					{
+						"description": "Returns details on the analysis machine associated with the given name.",
+						"name": "cuckoo-machine-view"
+					}
+				],
+				"description": "Malware dynamic analysis sandboxing",
+				"id": "",
+				"name": "Cuckoo Sandbox"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": [
+			{
+				"description": "Detonating file with Cuckoo",
+				"name": "Detonate File - Cuckoo"
+			},
+			{
+				"description": "Detonating URL with Cuckoo",
+				"name": "Detonate URL - Cuckoo"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-11-09T18:41:46Z",
+	"currentVersion": "1.1.2",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.39",
+			"name": "Base"
+		},
+		"CommonPlaybooks": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "2.3.13",
+			"name": "Common Playbooks"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.10.7",
+			"name": "Common Scripts"
+		}
+	},
+	"deprecated": false,
+	"description": "Malware dynamic analysis sandboxing",
+	"disabledMonthly": false,
+	"downloads": 2435,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "CuckooSandbox",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/CuckooSandbox/CuckooSandbox_image.png",
+			"name": "Cuckoo Sandbox"
+		}
+	],
+	"itemVersion": "1.1.2",
+	"keywords": [],
+	"legacy": true,
+	"name": "Cuckoo Sandbox",
+	"packID": "CuckooSandbox",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-09-13T14:02:53Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4098099",
+	"videos": []
+}
