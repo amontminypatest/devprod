@@ -1,0 +1,171 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"playbook"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Retrieves the reputations for the specified hashes. Can be \"MD5\", \"SHA1\", or \"SHA256\".",
+						"name": "file"
+					},
+					{
+						"description": "Sets the “Enterprise” reputation (trust level, filename, and comment) of the specified hashes. Hashes that represent the same file can have a different \"Enterprise\" reputation if they are given different reputations. Permissions are required to invoke this method. See the 'How-to' in the instance instruction.",
+						"name": "tie-set-file-reputation"
+					},
+					{
+						"description": "Retrieves the set of systems which have referenced (typically executed) the specified hashes.",
+						"name": "tie-file-references"
+					}
+				],
+				"description": "Connect to McAfee TIE using the McAfee DXL client.",
+				"id": "",
+				"name": "McAfee Threat Intelligence Exchange v2"
+			},
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Retrieves the reputations for the specified hash. Can be \"MD5\", \"SHA1\", or \"SHA256\".",
+						"name": "file"
+					},
+					{
+						"description": "Sets the “Enterprise” reputation (trust level) of a specified file. Permissions are required to invoke this method. See the 'How-to' in instance instruction.",
+						"name": "tie-set-file-reputation"
+					},
+					{
+						"description": "Retrieves the set of systems which have referenced (typically executed) the specified file.",
+						"name": "tie-file-references"
+					}
+				],
+				"description": "Deprecated. Use McAfee Threat Intelligence Exchange V2 integration instead.",
+				"id": "",
+				"name": "McAfee Threat Intelligence Exchange (Deprecated)"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": [
+			{
+				"description": "Hunt for sightings of MD5, SHA1 and/or SHA256 hashes on endpoints, using McAfee TIE (requires ePO as well).\n\nInput:\n* Hash (default, takes all deferent hashes from context)\n\nOutput:\n* All agents that files with \"Hash\" has been executed on (TIE)\n* Enrich Agents info from ePO",
+				"name": "TIE - IOC Hunt"
+			},
+			{
+				"description": "Hunt for sightings of MD5, SHA1 and/or SHA256 hashes on endpoints, using McAfee TIE (requires ePO as well).\n\nInput:\n* Hash (default, takes all deferent hashes from context)\n\nOutput:\n* All agents that files with \"Hash\" has been executed on (TIE)\n* Enrich Agents info from ePO",
+				"name": "Search Endpoints By Hash - TIE"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-11-09T18:42:30Z",
+	"currentVersion": "2.0.2",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.40",
+			"name": "Base"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.10.17",
+			"name": "Common Scripts"
+		},
+		"epo": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "2.0.12",
+			"name": "McAfee ePO"
+		}
+	},
+	"deprecated": false,
+	"description": "Connect to McAfee TIE using the McAfee DXL client.",
+	"disabledMonthly": false,
+	"downloads": 2350,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "McAfee-TIE",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/McAfee-TIE/McAfeeThreatIntelligenceExchange_image.png",
+			"name": "McAfee Threat Intelligence Exchange (Deprecated)"
+		},
+		{
+			"imagePath": "content/packs/McAfee-TIE/McAfeeThreatIntelligenceExchangeV2_image.png",
+			"name": "McAfee Threat Intelligence Exchange v2"
+		},
+		{
+			"imagePath": "content/packs/epo/epo_image.png",
+			"name": "McAfee ePO (Deprecated)"
+		},
+		{
+			"imagePath": "content/packs/epo/McAfeeePOv2_image.png",
+			"name": "McAfee ePO v2"
+		}
+	],
+	"itemVersion": "2.0.2",
+	"keywords": [],
+	"legacy": true,
+	"name": "McAfee Threat Intelligence Exchange",
+	"packID": "McAfee-TIE",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "\nUse the McAfee Threat Intelligence Exchange (TIE) integration to get file reputations and the systems that reference the files.\n\n## What does this content pack do?\n- Retrieves threat intelligence data about files from global, and local sources.\n- Determine which and when local systems have executed files.\n- Manages threat intelligence data locally, giving the user the opportunity to set specific data about files.\n\n## Authentication\n1. McAfee Threat Intelligence uses the McAfee Data Exchange Layer (DXL) to be able to connect and retrieve data from multiple products and endpoints.\n2. The connection is done by creating certificates and configuring them in the ePO (McAfee ePolicy Orchestrator) server.\n",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-12-05T00:14:57Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4152557",
+	"videos": []
+}
