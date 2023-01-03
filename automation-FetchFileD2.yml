@@ -1,0 +1,35 @@
+args:
+- default: true
+  description: Name of system to use
+  name: using
+- description: Local filepath on the endpoint
+  name: filepath
+  required: true
+comment: Get a File from using a D2 agent
+commonfields:
+  id: FetchFileD2
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.0.7
+    packID: D2
+    packName: D2 (Deprecated)
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+engineinfo: {}
+mainengineinfo: {}
+name: FetchFileD2
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  return executeCommand('D2GetFile', args);
+scripttarget: 0
+system: true
+tags: []
+type: javascript
