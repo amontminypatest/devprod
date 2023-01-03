@@ -1,0 +1,40 @@
+{
+	"autorun": false,
+	"cacheVersn": 0,
+	"closureScript": "",
+	"color": "#F8C89A",
+	"days": 0,
+	"daysR": 0,
+	"default": false,
+	"definitionId": "",
+	"detached": false,
+	"disabled": false,
+	"extractSettings": {
+		"fieldCliNameToExtractSettings": {},
+		"mode": "All"
+	},
+	"fromServerVersion": "5.5.0",
+	"hours": 0,
+	"hoursR": 0,
+	"id": "Carbon Black EDR",
+	"itemVersion": "2.1.25",
+	"layout": "Carbon Black EDR Incidents",
+	"locked": false,
+	"name": "Carbon Black EDR",
+	"onChangeRepAlg": 1,
+	"packID": "Carbon_Black_Enterprise_Response",
+	"packName": "Carbon Black Enterprise Response",
+	"packPropagationLabels": [
+		"all"
+	],
+	"playbookId": "Carbon Black EDR - Enrich Process",
+	"preProcessingScript": "",
+	"propagationLabels": [],
+	"readonly": false,
+	"reputationCalc": 0,
+	"system": true,
+	"toServerVersion": "",
+	"version": -1,
+	"weeks": 0,
+	"weeksR": 0
+}
