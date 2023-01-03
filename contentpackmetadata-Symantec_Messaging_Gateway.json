@@ -1,0 +1,152 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Network Security"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"playbook"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Network Security",
+				"commands": [
+					{
+						"description": "Adds email address to the Local Bad Sender Domains.",
+						"name": "smg-block-email"
+					},
+					{
+						"description": "Removes email address from the Local Bad Sender Domains.",
+						"name": "smg-unblock-email"
+					},
+					{
+						"description": "Adds domain to the Local Bad Sender Domains group.",
+						"name": "smg-block-domain"
+					},
+					{
+						"description": "Adds IP address to the Local Bad Sender IPs  group.",
+						"name": "smg-block-ip"
+					},
+					{
+						"description": "Removes IP address from the Local Bad Sender IPs  group.",
+						"name": "smg-unblock-ip"
+					},
+					{
+						"description": "Removes domain from the Local Bad Sender Domains group.",
+						"name": "smg-unblock-domain"
+					},
+					{
+						"description": "Returns a list of all blocked email addresses.",
+						"name": "smg-get-blocked-domains"
+					},
+					{
+						"description": "Returns a list of all blocked IP addresses.",
+						"name": "smg-get-blocked-ips"
+					}
+				],
+				"description": "Symantec Messaging Gateway protects against spam, malware, targeted attacks and provides advanced content filtering, data loss prevention, and email encryption.",
+				"id": "Symantec Messaging Gateway",
+				"name": "Symantec Messaging Gateway"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": [
+			{
+				"description": "This playbook blocks domains using Symantec Messaging Gateway.\nThe playbook checks whether the Symantec Messaging Gateway integration is enabled, whether the Domain input has been provided and if so, blocks the domain.",
+				"name": "Block Domain - Symantec Messaging Gateway"
+			},
+			{
+				"description": "This playbook will block email address at your email gateway.",
+				"name": "Symantec block Email"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-11-09T18:45:20Z",
+	"currentVersion": "1.0.9",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.51",
+			"name": "Base"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.10.34",
+			"name": "Common Scripts"
+		}
+	},
+	"deprecated": false,
+	"description": "Symantec Messaging Gateway protects against spam, malware, and targeted attacks and provides advanced content filtering, data loss prevention, and email encryption.",
+	"disabledMonthly": false,
+	"downloads": 1498,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "Symantec_Messaging_Gateway",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/Symantec_Messaging_Gateway/SymantecMessagingGateway_image.png",
+			"name": "Symantec Messaging Gateway"
+		}
+	],
+	"itemVersion": "1.0.9",
+	"keywords": [],
+	"legacy": true,
+	"name": "Symantec Messaging Gateway",
+	"packID": "Symantec_Messaging_Gateway",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "Symantec Messaging Gateway protects against spam, malware, and targeted attacks, and provides advanced content filtering, data loss prevention, and email encryption.\n",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2023-01-01T11:57:25Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4314430",
+	"videos": []
+}
