@@ -1,0 +1,39 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "Carbon Black EDR",
+	"definitionId": "",
+	"description": "Classifies Carbon Black EDR's alerts",
+	"feed": false,
+	"fromServerVersion": "6.0.0",
+	"id": "Carbon Black EDR Classifier",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "2.1.25",
+	"keyTypeMap": {
+		"Carbon Black Process Blocking": "Carbon Black EDR"
+	},
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": null,
+	"name": "Carbon Black EDR Classifier",
+	"nameRaw": "Carbon Black EDR Classifier",
+	"packID": "Carbon_Black_Enterprise_Response",
+	"packName": "Carbon Black Enterprise Response",
+	"packPropagationLabels": [
+		"all"
+	],
+	"propagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {
+		"simple": "description"
+	},
+	"type": "classification",
+	"unclassifiedCases": null,
+	"version": -1
+}
