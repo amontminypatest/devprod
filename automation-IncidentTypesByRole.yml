@@ -1,0 +1,57 @@
+comment: "Restricts the Incident Types a user can create manually, based on their
+  Roles. \n\nRequirements - Create an XSOAR List called IncidentTypeRBAC with the
+  following structure:\n\n{\n\"Default\":[\"DefaultIncidentTypeforAllUsers\"]\n\"Role\":[\"IncidentType1\",\"IncidentType2\"]\n}"
+commonfields:
+  id: 7f6a399b-95d7-479e-8c33-abc7b34ac3db
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.9.7.24076
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: IncidentTypesByRole
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |-
+  # Create an XSOAR list called "IncidentTypeRBAC" to hold the Role to Incident Type mapping, for example:
+  # {
+  #     "Default":["Unclassified"],
+  #     "Administrator":["Case", "Phishing", "Malware"],
+  #     "Analyst":["Case"]
+  # }
+
+  # get the users roles
+  roles = demisto.executeCommand("getUsers", {"current":"true"})[0].get("Contents")[0].get("allRoles")
+
+  # get the XSOAR list
+  role_list = json.loads(demisto.executeCommand("getList", {"listName":"IncidentTypeRBAC"})[0]["Contents"])
+
+  # set default Incident types for all roles
+  allowedTypes = role_list["Default"]
+
+  # for each role the user has, add their types
+  for role in roles:
+      allowedTypes.extend(role_list[role])
+
+  # make the list unique
+  allowedTypes = list(set(allowedTypes))
+
+  # magic
+  demisto.results({'hidden': False, 'options': allowedTypes})
+scripttarget: 0
+subtype: python3
+tags:
+- field-display
+- training
+type: python
