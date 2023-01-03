@@ -1,0 +1,1090 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.1.0
+    itemVersion: 1.0.1
+    packID: Change_Management
+    packName: Change Management
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: |-
+  This playbook will automate the process of creating or editing a policy.
+  The first task in the playbook checks if there is a security policy that matches the playbook inputs. If there is no security policy that matches, a new policy will be created. If there is a security policy that matches, the user will be able to modify the existing policy or create a new hardened policy.
+id: PAN-OS create or edit policy
+inputs:
+- description: ""
+  key: Destination
+  playbookInputQuery: null
+  required: false
+  value:
+    complex:
+      accessor: destinationips
+      root: incident
+- description: ""
+  key: Source
+  playbookInputQuery: null
+  required: false
+  value:
+    complex:
+      accessor: sourceips
+      root: incident
+- description: The IP protocol number
+  key: Protocol
+  playbookInputQuery: null
+  required: false
+  value:
+    complex:
+      accessor: protocol
+      root: incident
+- description: Action for the rule (allow, deny, drop)
+  key: Action
+  playbookInputQuery: null
+  required: false
+  value:
+    complex:
+      accessor: policyactions
+      root: incident
+- description: A comma-separated list of application object names for the rule to
+    create.
+  key: 'Application '
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: A comma-separated list of destination zones.
+  key: Destination_zone
+  playbookInputQuery: null
+  required: false
+  value:
+    complex:
+      accessor: destinationnetworks
+      root: incident
+- description: Log forwarding profile.
+  key: Log_forwarding
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: A profile setting group.
+  key: Profile_setting
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: Name of the rule to create.
+  key: Rulename
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: A comma-separated list of service object names for the rule.
+  key: Service
+  playbookInputQuery: null
+  required: false
+  value:
+    complex:
+      accessor: policyactions
+      root: incident
+- description: A comma-separated list of source zones.
+  key: Source_zone
+  playbookInputQuery: null
+  required: false
+  value:
+    complex:
+      accessor: sourcenetworks
+      root: incident
+- description: The email of the network/security team.
+  key: Email
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: |-
+    Pre rule or Post rule (Panorama instances).
+    Possible options:
+    - post-rulebase
+    - pre-rulebase
+  key: Rule_position
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: ""
+  key: Destination_port
+  playbookInputQuery: null
+  required: false
+  value:
+    complex:
+      accessor: dstports
+      root: incident
+- description: Target number of the firewall. Use only for a Panorama instance.
+  key: Target
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: Target vsys of the firewall. Use only for a Panorama instance.
+  key: Vsys
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: "Maximum number of API requests that the \nPanoramaSecurityPolicyMatchWrapper
+    script will send.\nThe default is 500."
+  key: Limit
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: PAN-OS create or edit policy
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 9efb7cb0-9894-4aaf-8b35-4b3701f29f8b
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 9efb7cb0-9894-4aaf-8b35-4b3701f29f8b
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 380,
+          "y": -545
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: true
+    quietmode: 0
+    scriptarguments:
+      application:
+        complex:
+          root: inputs.Application
+      destination:
+        complex:
+          root: inputs.Destination
+      destination_port:
+        complex:
+          root: inputs.Destination_port
+      execution-timeout:
+        simple: "1000"
+      from:
+        complex:
+          root: inputs.Source_zone
+      limit:
+        complex:
+          root: inputs.Limit
+      protocol:
+        complex:
+          root: inputs.Protocol
+      source:
+        complex:
+          root: inputs.Source
+      target:
+        complex:
+          root: inputs.Target
+      to:
+        complex:
+          root: inputs.Destination_zone
+      vsys:
+        complex:
+          root: inputs.Vsys
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: A wrapper script for the panorama-security-policy-match command
+        that receives multiple values (array) in the DST, SRC, and port arguments
+        and performs the policy match for each combination of the inputs.
+      id: 9b462c6e-8e91-4e39-8275-92c1b75e7155
+      iscommand: false
+      name: Search for matching security policy?
+      script: PanoramaSecurityPolicyMatchWrapper
+      tags:
+      - comment
+      - comments
+      type: regular
+      version: -1
+    taskid: 9b462c6e-8e91-4e39-8275-92c1b75e7155
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 380,
+          "y": -390
+        }
+      }
+  "2":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: Panorama.SecurityPolicyMatch.Rules.Name
+          operator: isExists
+          right:
+            value: {}
+      label: "yes"
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "6"
+      "yes":
+      - "15"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check if there is a matching security policy.
+      id: edbe7b28-b59d-41f8-895b-12310bf802ac
+      iscommand: false
+      name: Is there matching security policy?
+      type: condition
+      version: -1
+    taskid: edbe7b28-b59d-41f8-895b-12310bf802ac
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 380,
+          "y": -190
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    form:
+      description: Choose which rule to edit.
+      expired: false
+      questions:
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "0"
+        label: ""
+        labelarg:
+          simple: Which policy rule would you edit?
+        options: []
+        optionsarg:
+        - simple: ${Panorama.SecurityPolicyMatch.Rules.Name}
+        placeholder: ""
+        readonly: false
+        required: false
+        tooltip: ""
+        type: multiSelect
+      sender: ""
+      title: Edit existing rule source
+      totalanswers: 0
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    message:
+      bcc: null
+      body:
+        simple: Edit existing rule source
+      cc: null
+      format: ""
+      methods:
+      - email
+      subject:
+        simple: Edit existing rule source
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: false
+        retriescount: 2
+        retriesinterval: 360
+      to:
+        simple: ${inputs.Email}
+    nexttasks:
+      '#none#':
+      - "21"
+    note: true
+    quietmode: 0
+    scriptarguments:
+      behaviour:
+        simple: add
+      element_to_change:
+        simple: source
+      element_value:
+        complex:
+          root: inputs.Source
+      rulename:
+        complex:
+          accessor: Name
+          root: Panorama.SecurityPolicyMatch.Rules
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Edits a policy rule.
+      id: 98fc4b51-65cb-41a4-83d8-e29181344100
+      iscommand: false
+      name: Edit existing rule
+      tags:
+      - comment
+      - comments
+      type: collection
+      version: -1
+    taskid: 98fc4b51-65cb-41a4-83d8-e29181344100
+    timertriggers: []
+    type: collection
+    view: |-
+      {
+        "position": {
+          "x": 1170,
+          "y": 1060
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "10"
+    note: true
+    quietmode: 0
+    scriptarguments:
+      action:
+        complex:
+          root: inputs.Action
+      application:
+        complex:
+          root: inputs.Application
+      destination:
+        complex:
+          root: inputs.Destination
+      destination_zone:
+        complex:
+          root: inputs.Destination_zone
+      log_forwarding:
+        complex:
+          root: inputs.Log_forwarding
+      pre_post:
+        complex:
+          root: inputs.Rule_position
+      profile_setting:
+        complex:
+          root: inputs.Profile_setting
+      rulename:
+        complex:
+          root: inputs.Rulename
+      service:
+        complex:
+          root: inputs.Service
+      source:
+        complex:
+          root: inputs.Source
+      source_zone:
+        complex:
+          root: inputs.Source_zone
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Creates a policy rule.
+      id: 138e8fde-74c5-4735-8672-6df6b5690263
+      iscommand: true
+      name: 'Create new rule '
+      script: '|||pan-os-create-rule'
+      tags:
+      - comment
+      - comments
+      - work_notes
+      type: regular
+      version: -1
+    taskid: 138e8fde-74c5-4735-8672-6df6b5690263
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -180,
+          "y": 400
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: c5ee5c3a-8c06-4541-81f2-11fe7a7b1ae5
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: c5ee5c3a-8c06-4541-81f2-11fe7a7b1ae5
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 380,
+          "y": 2070
+        }
+      }
+  "9":
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    message:
+      bcc: null
+      body:
+        simple: |-
+          Matching policy rule was found:
+          ${Panorama.SecurityPolicyMatch.Rules.Name}
+          Do you wish to harden/modify your existing policy with the new values that you provided?
+      cc: null
+      format: ""
+      methods:
+      - email
+      replyOptions:
+      - 'Don''t modify  '
+      - 'Modify  '
+      subject:
+        simple: Matching policy rule
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: false
+        retriescount: 2
+        retriesinterval: 360
+      to:
+        simple: ${inputs.Email}
+    nexttasks:
+      'Don''t modify  ':
+      - "8"
+      'Modify  ':
+      - "11"
+    note: true
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Asking Whether to modify the current policy.
+      id: e02947f3-e874-46b5-8f27-34043e3c5e6e
+      iscommand: false
+      name: Ask if harden/modify the existing policy?
+      tags:
+      - comment
+      - comments
+      type: condition
+      version: -1
+    taskid: e02947f3-e874-46b5-8f27-34043e3c5e6e
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 380,
+          "y": 400
+        }
+      }
+  "10":
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "19"
+    note: false
+    quietmode: 0
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Commit the PAN-OS/Panorama firewall configuration.\nIf specified
+        as Panorama, it also pushes the policies to the specified device group in
+        the instance.
+      id: 83a0a814-32d4-42fe-8fff-1680a8f9f261
+      iscommand: false
+      name: PAN-OS Commit Configuration
+      playbookId: PAN-OS Commit Configuration
+      type: playbook
+      version: -1
+    taskid: 83a0a814-32d4-42fe-8fff-1680a8f9f261
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": -180,
+          "y": 700
+        }
+      }
+  "11":
+    continueonerrortype: ""
+    form:
+      description: Choose one of the following actions.
+      expired: false
+      questions:
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "0"
+        label: ""
+        labelarg:
+          simple: Add rule or modify existing rule?
+        options: []
+        optionsarg:
+        - simple: Edit
+        - simple: Create
+        - simple: Manually review
+        placeholder: ""
+        readonly: false
+        required: false
+        tooltip: ""
+        type: multiSelect
+      sender: ""
+      title: Which action would you like to perform?
+      totalanswers: 0
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    message:
+      bcc: null
+      body:
+        simple: Do you want to create a new rule or edit an existing rule?
+      cc: null
+      format: ""
+      methods:
+      - email
+      replyOptions:
+      - Create
+      - Edit
+      - Manually review the rule
+      subject:
+        simple: Which action would you like to perform?
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: false
+        retriescount: 2
+        retriesinterval: 360
+      to:
+        simple: ${inputs.Email}
+    nexttasks:
+      '#none#':
+      - "22"
+    note: true
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 5e1a775e-4a08-41fa-8554-200b99205450
+      iscommand: false
+      name: Create new rule or edit existing?
+      tags:
+      - comment
+      - comments
+      type: collection
+      version: -1
+    taskid: 5e1a775e-4a08-41fa-8554-200b99205450
+    timertriggers: []
+    type: collection
+    view: |-
+      {
+        "position": {
+          "x": 1170,
+          "y": 580
+        }
+      }
+  "12":
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "13"
+    note: true
+    quietmode: 0
+    scriptarguments:
+      action:
+        simple: ${inputs.Action}
+      application:
+        complex:
+          root: inputs.Application
+      destination:
+        complex:
+          root: inputs.Destination
+      destination_zone:
+        complex:
+          root: inputs.Destination_zone
+      log_forwarding:
+        complex:
+          root: inputs.Log_forwarding
+      pre_post:
+        simple: ${inputs.Rule_position}
+      profile_setting:
+        complex:
+          root: inputs.Profile_setting
+      rulename:
+        complex:
+          root: inputs.Rulename
+      service:
+        complex:
+          root: inputs.Service
+      source:
+        complex:
+          root: inputs.Source
+      source_zone:
+        complex:
+          root: inputs.Source_zone
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Creates a policy rule.
+      id: ff31debe-9458-4cdd-8177-23e53e0486ed
+      iscommand: true
+      name: Create a new harden rule
+      script: '|||pan-os-create-rule'
+      tags:
+      - comment
+      - comments
+      type: regular
+      version: -1
+    taskid: ff31debe-9458-4cdd-8177-23e53e0486ed
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1610,
+          "y": 1060
+        }
+      }
+  "13":
+    continueonerrortype: ""
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "18"
+    note: false
+    quietmode: 0
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 492abddf-ecbf-46b1-83a2-93fd2b381bcc
+      iscommand: false
+      name: PAN-OS Commit Configuration
+      playbookId: PAN-OS Commit Configuration
+      type: playbook
+      version: -1
+    taskid: 492abddf-ecbf-46b1-83a2-93fd2b381bcc
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 1610,
+          "y": 1500
+        }
+      }
+  "14":
+    continueonerrortype: ""
+    id: "14"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "8"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Manually review the relevant rule in the firewall interface.
+      id: f88b18a8-85a1-448d-87eb-ba939766420d
+      iscommand: false
+      name: Manually review the relevant rule
+      tags:
+      - comment
+      - comments
+      type: regular
+      version: -1
+    taskid: f88b18a8-85a1-448d-87eb-ba939766420d
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 730,
+          "y": 1060
+        }
+      }
+  "15":
+    continueonerrortype: ""
+    id: "15"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      columns:
+        simple: Name,Category,DeviceSerial,DeviceVsys,Destination,From,Source,To,Action
+      context_path:
+        simple: Panorama.SecurityPolicyMatch.Rules
+      grid_id:
+        simple: securitypolicymatch
+      keys:
+        simple: Name,Category,DeviceSerial,DeviceVsys,Destination,From,Source,To,Action
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Creates a grid table from items or key-value pairs.
+      id: 7b5978e9-c78e-4308-8778-7657133f3cdf
+      iscommand: false
+      name: Set security policy match to layout
+      script: SetGridField
+      type: regular
+      version: -1
+    taskid: 7b5978e9-c78e-4308-8778-7657133f3cdf
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 380,
+          "y": 135
+        }
+      }
+  "16":
+    continueonerrortype: ""
+    id: "16"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "17"
+    note: false
+    quietmode: 0
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Commit the PAN-OS/Panorama firewall configuration.\nIf specified
+        as Panorama, it also pushes the policies to the specified device group in
+        the instance.
+      id: 7f0fc9bf-2a76-4a98-8e43-3af4992dc6ed
+      iscommand: false
+      name: PAN-OS Commit Configuration
+      playbookId: PAN-OS Commit Configuration
+      type: playbook
+      version: -1
+    taskid: 7f0fc9bf-2a76-4a98-8e43-3af4992dc6ed
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 1170,
+          "y": 1500
+        }
+      }
+  "17":
+    continueonerrortype: ""
+    id: "17"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "8"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      state:
+        simple: 4 - FW Policy Was Updated
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Set the incident state in the layout.
+      id: e2ea7ec3-f0ca-4b1e-896c-fde413faa909
+      iscommand: true
+      name: Update incident state
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: e2ea7ec3-f0ca-4b1e-896c-fde413faa909
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1170,
+          "y": 1680
+        }
+      }
+  "18":
+    continueonerrortype: ""
+    id: "18"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "8"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      state:
+        simple: 4 - FW Policy Was Updated
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Set the incident state in the layout.
+      id: c2935a67-b605-4686-85ca-8dee3378f0c7
+      iscommand: true
+      name: Update incident state
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: c2935a67-b605-4686-85ca-8dee3378f0c7
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1610,
+          "y": 1680
+        }
+      }
+  "19":
+    continueonerrortype: ""
+    id: "19"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "8"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      state:
+        simple: 4 - FW Policy Was Updated
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Set the incident state to the layout
+      id: b2f637e5-ee39-4ba5-845d-601d3a9eab21
+      iscommand: true
+      name: Update incident state
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: b2f637e5-ee39-4ba5-845d-601d3a9eab21
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -180,
+          "y": 975
+        }
+      }
+  "21":
+    continueonerrortype: ""
+    id: "21"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      forEach: true
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "16"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      SecurityTeamEmail:
+        complex:
+          root: inputs.Email
+      rulename:
+        complex:
+          accessor: '[0]'
+          root: Edit existing rule source.Answers.0
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: This playbook will guide the user in the process of editing an
+        existing policy. The playbook will send a data collection form that will retrieve
+        the relevant parameters for editing the existing rule.
+      id: 44cfc485-17c2-4c51-8f0b-6f3092abafb9
+      iscommand: false
+      name: PAN-OS edit policy
+      playbookId: PAN-OS edit policy
+      type: playbook
+      version: -1
+    taskid: 44cfc485-17c2-4c51-8f0b-6f3092abafb9
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 1170,
+          "y": 1270
+        }
+      }
+  "22":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: Which action would you like to perform?.Answers.0
+          operator: isEqualString
+          right:
+            value:
+              simple: Edit
+      label: Edit
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: Which action would you like to perform?.Answers.0
+          operator: isEqualString
+          right:
+            value:
+              simple: Create
+      label: Create
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: Which action would you like to perform?.Answers.0
+          operator: isEqualString
+          right:
+            value:
+              simple: Manually review
+      label: Manually review
+    continueonerrortype: ""
+    id: "22"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      Create:
+      - "12"
+      Edit:
+      - "3"
+      Manually review:
+      - "14"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: caab7b2f-7b00-4b13-81ef-407e21c4c29c
+      iscommand: false
+      name: Which action was selected?
+      tags:
+      - comment
+      - comments
+      type: condition
+      version: -1
+    taskid: caab7b2f-7b00-4b13-81ef-407e21c4c29c
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1170,
+          "y": 780
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "22_3_Edit": 0.63,
+      "9_11_Modify  ": 0.44,
+      "9_8_Don't modify  ": 0.4
+    },
+    "paper": {
+      "dimensions": {
+        "height": 2680,
+        "width": 2170,
+        "x": -180,
+        "y": -545
+      }
+    }
+  }
