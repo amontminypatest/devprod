@@ -1,0 +1,40 @@
+{
+	"autorun": true,
+	"cacheVersn": 0,
+	"closureScript": "",
+	"color": "#F50057",
+	"days": 0,
+	"daysR": 0,
+	"default": false,
+	"definitionId": "",
+	"detached": false,
+	"disabled": false,
+	"extractSettings": {
+		"fieldCliNameToExtractSettings": {},
+		"mode": "All"
+	},
+	"fromServerVersion": "5.5.0",
+	"hours": 0,
+	"hoursR": 0,
+	"id": "Data Loss Prevention",
+	"itemVersion": "1.2.1",
+	"layout": "Palo Alto Networks Enterprise DLP Incident Layout",
+	"locked": false,
+	"name": "Data Loss Prevention",
+	"onChangeRepAlg": 0,
+	"packID": "Palo_Alto_Networks_Enterprise_DLP",
+	"packName": "Enterprise DLP by Palo Alto Networks",
+	"packPropagationLabels": [
+		"all"
+	],
+	"playbookId": "DLP Incident Feedback Loop",
+	"preProcessingScript": "",
+	"propagationLabels": [],
+	"readonly": false,
+	"reputationCalc": 0,
+	"system": true,
+	"toServerVersion": "",
+	"version": -1,
+	"weeks": 0,
+	"weeksR": 0
+}
