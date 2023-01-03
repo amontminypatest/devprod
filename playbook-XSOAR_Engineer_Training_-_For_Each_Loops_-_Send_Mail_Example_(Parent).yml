@@ -1,0 +1,346 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+description: 'This playbook demonstrates a for each loop with a sub-playbook to send
+  each user an individual email. '
+id: df7380ac-1363-44e5-885e-20770f17a01e
+inputs: []
+name: XSOAR Engineer Training - For Each Loops - Send Mail Example (Parent)
+outputs: []
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 9492b5a1-95a2-4036-8683-305afa1fcb3c
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 9492b5a1-95a2-4036-8683-305afa1fcb3c
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": -240
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      key:
+        simple: Mail
+      value:
+        complex:
+          accessor: "0"
+          root: You've got mail (soon).Answers
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: 55f47ddb-8299-46cc-814d-147dd15fcc1e
+      iscommand: false
+      name: Set Mail
+      script: Set
+      type: regular
+      version: -1
+    taskid: 55f47ddb-8299-46cc-814d-147dd15fcc1e
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 545
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      forEach: true
+      iscommand: false
+      max: 100
+      wait: 3
+    nexttasks:
+      '#none#':
+      - "8"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      mailto:
+        complex:
+          root: Mail
+          transformers:
+          - args:
+              delimiter:
+                value:
+                  simple: ','
+            operator: split
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: "Playbook takes the email to send to as input and sends a quick
+        email message.  \n\nWhen used as a subplaybook you can add a loop to loop
+        over each inputted list of emails to send one email to each person. "
+      id: 6faebc70-054f-4c2f-8821-eb640ce28df4
+      iscommand: false
+      name: XSOAR Engineer Training - For Each Loops - Send Mail Sub-Playbook
+      playbookId: 12860c08-bbb6-4d98-810f-2c31da8e495b
+      type: playbook
+      version: -1
+    taskid: 6faebc70-054f-4c2f-8821-eb640ce28df4
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 865
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      all:
+        simple: "yes"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Delete field from context
+      id: 748ddc21-cb5d-4d2e-8bea-c72e4a7845c9
+      iscommand: false
+      name: DeleteContext
+      script: DeleteContext
+      type: regular
+      version: -1
+    taskid: 748ddc21-cb5d-4d2e-8bea-c72e4a7845c9
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": -55
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    form:
+      description: 'Please add the email addresses you want to send to in comma separated
+        format '
+      expired: false
+      questions:
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "0"
+        label: ""
+        labelarg:
+          simple: Emails
+        options: []
+        optionsarg: []
+        placeholder: ""
+        readonly: false
+        required: false
+        tooltip: Email addresses in comma separated format (e.g test@example.com,test2@example.com)
+        type: shortText
+      sender: ""
+      title: You've got mail (soon)
+      totalanswers: 0
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    message:
+      bcc: null
+      body:
+        simple: Email Addresses
+      cc: null
+      format: ""
+      methods: []
+      subject: null
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: false
+        retriescount: 2
+        retriesinterval: 360
+      to: null
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: a5089d11-e2cc-4d84-8aa5-234de4b6ed90
+      iscommand: false
+      name: Query User for Email Addresses
+      type: collection
+      version: -1
+    taskid: a5089d11-e2cc-4d84-8aa5-234de4b6ed90
+    timertriggers: []
+    type: collection
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 370
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: b1eaf690-5e04-43f9-8b75-fff635764801
+      iscommand: false
+      name: Loops (Note the Loop settings on the below Subplaybook)
+      type: title
+      version: -1
+    taskid: b1eaf690-5e04-43f9-8b75-fff635764801
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 720
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: bea5a4fe-637e-4d69-8f50-c53ab7d94b59
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: bea5a4fe-637e-4d69-8f50-c53ab7d94b59
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 1040
+        }
+      }
+  "9":
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: true
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: "## XSOAR Engineer Training - For Each Loops - Send Mail Example (Parent)\n\nThis
+          playbook demonstrates a for each loop with a sub-playbook to send each user
+          an individual email. "
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: 4c06fc7c-b2f9-4f9e-8899-f87ffbfc3811
+      iscommand: false
+      name: Print Playbook Overview
+      script: Print
+      type: regular
+      version: -1
+    taskid: 4c06fc7c-b2f9-4f9e-8899-f87ffbfc3811
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 150
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1345,
+        "width": 380,
+        "x": 50,
+        "y": -240
+      }
+    }
+  }
