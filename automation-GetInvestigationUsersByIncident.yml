@@ -1,0 +1,37 @@
+args:
+- description: 'Comma separated list of Incident IDs. '
+  name: incident_ids
+  required: true
+comment: 'Returns a list of users on given Incidents, where you can provide a CSV
+  of the Incident IDS. '
+commonfields:
+  id: 402e075b-b628-4951-816e-2cd93d6f067a
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.8.5.10845
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: GetInvestigationUsersByIncident
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |-
+  incidents = demisto.args().get('incident_ids')
+  demisto.results(demisto.executeCommand("executeCommandAt", { "command":"GetInvestigationUsers", "incidents": incidents}))
+scripttarget: 0
+subtype: python3
+tags:
+- training
+- Utility
+type: python
