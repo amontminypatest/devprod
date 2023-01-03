@@ -1,0 +1,260 @@
+{
+	"author": "ExtraHop",
+	"authorImage": "content/packs/ExtraHop/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Network Security"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"automation",
+		"incidentfield",
+		"incidenttype",
+		"playbook",
+		"layoutscontainer"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "Links an incident investigation back to the ExtraHop Detection that created it.",
+				"name": "ExtraHopTrackIncidents",
+				"tags": [
+					"incidents",
+					"ExtraHop",
+					"field-change-triggered"
+				]
+			}
+		],
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": [
+			{
+				"description": "Raw list of participant objects associated with the ExtraHop Reveal(x) detection",
+				"name": "Raw Participants",
+				"type": "longText"
+			},
+			{
+				"description": "Hostname of the ExtraHop Reveal(x) that created the detection",
+				"name": "ExtraHop Hostname",
+				"type": "shortText"
+			},
+			{
+				"description": "Appliance ID of the ExtraHop Reveal(x) that created the detection",
+				"name": "ExtraHop Appliance ID",
+				"type": "number"
+			},
+			{
+				"description": "Whether the incident is tracked to the corresponding detection in ExtraHop Reveal(x)",
+				"name": "Detection Ticketed",
+				"type": "boolean"
+			},
+			{
+				"description": "List of participant objects associated with the ExtraHop Reveal(x) detection",
+				"name": "Participants",
+				"type": "grid"
+			}
+		],
+		"incidenttype": [
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "ExtraHop Detection",
+				"playbook": "ExtraHop - Default",
+				"weeks": 0
+			}
+		],
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Network Security",
+				"commands": [
+					{
+						"description": "Get all alert rules from Reveal(x).",
+						"name": "extrahop-get-alerts"
+					},
+					{
+						"description": "Get all alert rules from Reveal(x).",
+						"name": "extrahop-get-alert-rules"
+					},
+					{
+						"description": "Query records from Reveal(x).",
+						"name": "extrahop-query-records"
+					},
+					{
+						"description": "Search for devices in Reveal(x).",
+						"name": "extrahop-device-search"
+					},
+					{
+						"description": "Add or remove devices from the watchlist in Reveal(x).",
+						"name": "extrahop-edit-watchlist"
+					},
+					{
+						"description": "Get all devices on the watchlist in Reveal(x).",
+						"name": "extrahop-get-watchlist"
+					},
+					{
+						"description": "Create a new alert rule in Reveal(x).",
+						"name": "extrahop-create-alert"
+					},
+					{
+						"description": "Create a new alert rule in Reveal(x).",
+						"name": "extrahop-create-alert-rule"
+					},
+					{
+						"description": "Modify an alert rule in Reveal(x).",
+						"name": "extrahop-edit-alert"
+					},
+					{
+						"description": "Modify an alert rule in Reveal(x).",
+						"name": "extrahop-edit-alert-rule"
+					},
+					{
+						"description": "Link a Reveal(x) detection to a Demisto Investigation.",
+						"name": "extrahop-track-ticket"
+					},
+					{
+						"description": "Get all peers for a device from Reveal(x).",
+						"name": "extrahop-get-peers"
+					},
+					{
+						"description": "Get all active network protocols for a device from Reveal(x).",
+						"name": "extrahop-get-protocols"
+					},
+					{
+						"description": "Add or remove a tag from devices in Reveal(x).",
+						"name": "extrahop-tag-devices"
+					},
+					{
+						"description": "Get a link to a live activity map in Reveal(x).",
+						"name": "extrahop-get-activity-map"
+					},
+					{
+						"description": "Search for specific packets in Reveal(x).",
+						"name": "extrahop-search-packets"
+					}
+				],
+				"description": "Network detection and response. Complete visibility of network communications at enterprise scale, real-time threat detections backed by machine learning, and guided investigation workflows that simplify response.",
+				"id": "",
+				"name": "ExtraHop Reveal(x) v2 (Partner Contribution)"
+			}
+		],
+		"layoutscontainer": [
+			{
+				"description": "",
+				"name": "ExtraHop Detection"
+			}
+		],
+		"list": null,
+		"playbook": [
+			{
+				"description": "Given a host, the playbook will retrieve the peer network devices that communicated with that host in a given time range.  In addition to a list of peers and protocols (sorted by bytes) the playbook returns a link to the ExtraHop Live Activity Map to visualize the peer relationships.",
+				"name": "ExtraHop - Get Peers by Host"
+			},
+			{
+				"description": "Default playbook to run for all ExtraHop Detection incidents.  This playbook handles ticket tracking as well as triggering specific playbooks based on the name of the ExtraHop Detection.",
+				"name": "ExtraHop - Default"
+			},
+			{
+				"description": "This server received a Remote Desktop Protocol (RDP) connection request that is consistent with a known vulnerability, also known as BlueKeep, in older versions of Microsoft Windows. This vulnerability allows an unauthenticated attacker to remotely run arbitrary code on an RDP server. The attacker can then tamper with data or install malware that could propagate to other Windows devices across the network. Investigate to determine if this server is hosting a version affected by CVE-2019-0708: Windows 7, Windows XP, Windows Vista, Windows Server 2003, and Windows Server 2008.\n\nMITIGATION OPTIONS\n- Disable Remote Desktop Services if they are not required\n- Implement Network Level Authentication (NLA) on systems running supported versions of Windows 7, Windows Server 2008, and Windows Server 2008 R2\n- Configure firewalls to block traffic on TCP port 3389",
+				"name": "ExtraHop - CVE-2019-0708 (BlueKeep)"
+			},
+			{
+				"description": "Links the Demisto incident back to the ExtraHop detection that created it for ticket tracking purposes.",
+				"name": "ExtraHop - Ticket Tracking v2"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-09-23T18:00:57Z",
+	"currentVersion": "1.0.13",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.39",
+			"name": "Base"
+		},
+		"CommonPlaybooks": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "2.3.13",
+			"name": "Common Playbooks"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.10.7",
+			"name": "Common Scripts"
+		},
+		"CommonTypes": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "3.3.30",
+			"name": "Common Types"
+		}
+	},
+	"deprecated": false,
+	"description": "Network detection and response. Complete visibility of network communications at enterprise scale, real-time threat detections backed by machine learning, and guided investigation workflows that simplify response.",
+	"disabledMonthly": false,
+	"downloads": 2344,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByPartner",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "ExtraHop",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/ExtraHop/ExtraHopv2_image.png",
+			"name": "ExtraHop Reveal(x) v2"
+		}
+	],
+	"itemVersion": "1.0.13",
+	"keywords": [],
+	"legacy": true,
+	"name": "ExtraHop Reveal(x)",
+	"packID": "ExtraHop",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "Network detection and response. Complete visibility of network communications at enterprise scale, real-time threat detections backed by machine learning, and guided investigation workflows that simplify response.\n\n##### What does this pack do?\nThis integration enables the following investigative tasks and workflows in Cortex XSOAR as an automated response to ExtraHop Reveal(x) detections:\n\n- Create a Cortex XSOAR incident in real-time when a Reveal(x) detection identifies malicious or non-compliant behavior on your network.\n- Leverage Reveal(x) playbooks to respond with thousands of security actions that accelerate automated investigation and remediation.\n- Send real-time queries to Reveal(x) through the ExtraHop REST API that enable you to search for specific devices, network peers, active protocols, records, and packets that are part of your investigation.\n- Track tickets in Reveal(x) that link detections to your Cortex XSOAR investigation.\n\nThe bundle for this integration includes a single trigger that formats Reveal(x) detections and sends a request to create Cortex XSOAR incidents through the Cortex XSOAR REST API. After an incident is created in Cortex XSOAR, the default ExtraHop playbook assigns an ExtraHop analyst role to the incident, sets up ticket tracking, and runs associated detection playbooks.\n\n**Note:** Incidents are pushed in via the Cortex XSOAR REST API by a trigger running on the ExtraHop Reveal(x) appliance, the Fetch Incidents command is not used.\n\n_For more information, visit our [Cortex XSOAR Developer Docs](https://xsoar.pan.dev/docs/reference/integrations/extra-hop-v2) and the [ExtraHop Installation Guide](https://www.extrahop.com/customers/community/bundles/extrahop/demisto-integration/)._\n\nThe following figures show an example of a Reveal(x) detection and the resulting incident and workflows in Cortex XSOAR.\n\n![ExtraHop detection card](https://storage.googleapis.com/marketplace-dist/content/packs/ExtraHop/readme_images/ExtraHop_Detection_CVE-2019-0708_BlueKeep.png)\n\n*Figure 1. Reveal(x) detection card for CVE-2019-0708 RDP Exploit Attempt*\n\n![Cortex XSOAR incident summary](https://storage.googleapis.com/marketplace-dist/content/packs/ExtraHop/readme_images/ExtraHop_Demisto_Incident_CVE-2019-0708_BlueKeep.png)\n\n*Figure 2. Cortex XSOAR incident summary for CVE-2019-0708 RDP Exploit Attempt*\n\n![Cortex XSOAR playbook: ExtraHop Default](https://storage.googleapis.com/marketplace-dist/content/packs/ExtraHop/readme_images/ExtraHop_Default.png)\n\n*Figure 3. Reveal(x) Default playbook to set up ticket tracking and run the BlueKeep playbook*\n\n![Cortex XSOAR playbook: ExtraHop CVE-2019-0708 BlueKeep](https://storage.googleapis.com/marketplace-dist/content/packs/ExtraHop/readme_images/ExtraHop_CVE-2019-0708_BlueKeep.png)\n\n*Figure 4. Reveal(x) CVE-2019-0708 BlueKeep playbook to automate detailed network investigation*",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "partner",
+	"supportDetails": {
+		"email": "support@extrahop.com",
+		"url": ""
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-02-03T22:18:43Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4098099",
+	"videos": []
+}
