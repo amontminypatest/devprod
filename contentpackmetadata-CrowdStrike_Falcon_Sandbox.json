@@ -1,0 +1,282 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Forensics \u0026 Malware Analysis"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"playbook"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Forensics \u0026 Malware Analysis",
+				"commands": [
+					{
+						"description": "Get summary information for a given MD5, SHA1 or SHA256 and all the reports generated for any environment ID",
+						"name": "vx-scan"
+					},
+					{
+						"description": "Get summary information for a given MD5, SHA1 or SHA256 and all the reports generated for any environment ID",
+						"name": "crowdstrike-scan"
+					},
+					{
+						"description": "Get a list of all available environments",
+						"name": "vx-get-environments"
+					},
+					{
+						"description": "Get a list of all available environments",
+						"name": "crowdstrike-get-environments"
+					},
+					{
+						"description": "Submit a file from investigation to analysis server",
+						"name": "vx-submit-sample"
+					},
+					{
+						"description": "Submit a file from investigation to analysis server",
+						"name": "crowdstrike-submit-sample"
+					},
+					{
+						"description": "Search the database using the Falcon Sandbox search syntax",
+						"name": "vx-search"
+					},
+					{
+						"description": "Search the database using the Falcon Sandbox search syntax",
+						"name": "crowdstrike-search"
+					},
+					{
+						"description": "Retrieve result data upon a file. NOTE - This command returns a file",
+						"name": "vx-result"
+					},
+					{
+						"description": "Retrieve result data upon a file. NOTE - This command returns a file",
+						"name": "crowdstrike-result"
+					},
+					{
+						"description": "(Deprecated - Please use CrowdStrike Falcon Sandbox - Detonate file playbook instead) Detonate file through Falcon Sandbox",
+						"name": "vx-detonate-file"
+					},
+					{
+						"description": "(Deprecated - Please use CrowdStrike Falcon Sandbox - Detonate file playbook instead) Detonate file through Falcon Sandbox",
+						"name": "crowdstrike-detonate-file"
+					},
+					{
+						"description": "Submit a URL for analysis (Supported only in v2)",
+						"name": "crowdstrike-submit-url"
+					},
+					{
+						"description": " Retrieves screenshots from a report (Supported only in v2)",
+						"name": "crowdstrike-get-screenshots"
+					},
+					{
+						"description": "(Deprecated - Please use CrowdStrike Falcon Sandbox - Detonate URL playbook instead) Detonates URL address through Falcon Sandbox (supported only in v2)",
+						"name": "crowdstrike-detonate-url"
+					},
+					{
+						"description": "Submit a file by URL for analysis (Supported only in v2).",
+						"name": "crowdstrike-submit-file-by-url"
+					}
+				],
+				"description": "Deprecated. Use CrowdStrike Falcon Sandbox V2 instead.",
+				"id": "",
+				"name": "CrowdStrike Falcon Sandbox (Deprecated)"
+			},
+			{
+				"category": "Forensics \u0026 Malware Analysis",
+				"commands": [
+					{
+						"description": "Gets summary information for a given MD5, SHA1, or SHA256 and all the reports generated for any environment ID.",
+						"name": "cs-falcon-sandbox-scan"
+					},
+					{
+						"description": "Deprecated. Use cs-falcon-sandbox-scan instead.",
+						"name": "crowdstrike-scan"
+					},
+					{
+						"description": "Gets a list of all available environments.",
+						"name": "cs-falcon-sandbox-get-environments"
+					},
+					{
+						"description": "Deprecated. Use cs-falcon-sandbox-get-environments instead.",
+						"name": "crowdstrike-get-environments"
+					},
+					{
+						"description": "Submits a file from the investigation to the analysis server.",
+						"name": "cs-falcon-sandbox-submit-sample"
+					},
+					{
+						"description": "Deprecated. Use cs-falcon-sandbox-submit-sample instead.",
+						"name": "crowdstrike-submit-sample"
+					},
+					{
+						"description": "Searches the database using the Falcon Sandbox search syntax.",
+						"name": "cs-falcon-sandbox-search"
+					},
+					{
+						"description": "Deprecated. Use cs-falcon-sandbox-search instead.",
+						"name": "crowdstrike-search"
+					},
+					{
+						"description": "Retrieves result data on a file. Note: This command returns a file.",
+						"name": "cs-falcon-sandbox-result"
+					},
+					{
+						"description": "Deprecated. Use cs-falcon-sandbox-result instead.",
+						"name": "crowdstrike-result"
+					},
+					{
+						"description": "Submits a URL for analysis.",
+						"name": "cs-falcon-sandbox-submit-url"
+					},
+					{
+						"description": "Deprecated. Use cs-falcon-sandbox-submit-url instead.",
+						"name": "crowdstrike-submit-url"
+					},
+					{
+						"description": "Retrieves screenshots from a report",
+						"name": "cs-falcon-sandbox-get-screenshots"
+					},
+					{
+						"description": "Deprecated. Use cs-falcon-sandbox-get-screenshots instead.",
+						"name": "crowdstrike-get-screenshots"
+					},
+					{
+						"description": "Gets the hash overview.",
+						"name": "cs-falcon-sandbox-analysis-overview"
+					},
+					{
+						"description": "Returns the hash overview.",
+						"name": "cs-falcon-sandbox-analysis-overview-summary"
+					},
+					{
+						"description": "Refreshes the overview and downloads fresh data from external services.",
+						"name": "cs-falcon-sandbox-analysis-overview-refresh"
+					},
+					{
+						"description": "Returns file information and reputation.",
+						"name": "file"
+					},
+					{
+						"description": "Downloads the sample file.",
+						"name": "cs-falcon-sandbox-sample-download"
+					},
+					{
+						"description": "Gets the report state for the given ID.",
+						"name": "cs-falcon-sandbox-report-state"
+					}
+				],
+				"description": "Fully automated malware analysis using Hybrid Analysis API.",
+				"id": "",
+				"name": "CrowdStrike Falcon Sandbox v2 (Hybrid-Analysis)"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": [
+			{
+				"description": "Deprecated. Use the cs-falcon-sandbox-submit-file command with polling=true instead.",
+				"name": "CrowdStrike Falcon Sandbox - Detonate file"
+			},
+			{
+				"description": "Deprecated. Use the cs-falcon-sandbox-submit-url command with polling=true instead.",
+				"name": "Detonate URL - CrowdStrike"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-09-23T17:52:01Z",
+	"currentVersion": "2.0.6",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.39",
+			"name": "Base"
+		},
+		"CommonPlaybooks": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "2.3.13",
+			"name": "Common Playbooks"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.10.7",
+			"name": "Common Scripts"
+		}
+	},
+	"deprecated": false,
+	"description": "Fully automated malware analysis (formerly Payload Security VxStream).",
+	"disabledMonthly": false,
+	"downloads": 2454,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "CrowdStrikeFalconSandbox",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/CrowdStrikeFalconSandbox/VxStream_image.png",
+			"name": "CrowdStrike Falcon Sandbox (Deprecated)"
+		},
+		{
+			"imagePath": "content/packs/CrowdStrikeFalconSandbox/CrowdStrikeFalconSandboxV2_image.png",
+			"name": "CrowdStrike Falcon Sandbox v2 (Hybrid-Analysis)"
+		}
+	],
+	"itemVersion": "2.0.6",
+	"keywords": [],
+	"legacy": true,
+	"name": "CrowdStrike Falcon Sandbox",
+	"packID": "CrowdStrikeFalconSandbox",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-08-09T16:10:26Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4098099",
+	"videos": []
+}
