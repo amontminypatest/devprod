@@ -1,0 +1,316 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+description: "This sub-playbook works with the parent, and will loop over the passed
+  in data, and IF there is a Base64 key, it will decode it, and return a new key called
+  LoopData with contained the original Base64 and the decoded base 64. \n\nMake sure
+  to check the Playbook Inputs/Outputs to see what to pass in, and what this playbook
+  will output to the parent. "
+id: ca869fea-3263-43f0-8c34-5fac1c6712df
+inputs:
+- description: 'The array of data to pass in. '
+  key: data
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: XSOAR Engineer Training - For Each Loops (Sub-Playbook)
+outputs:
+- contextPath: LoopData
+  description: The parsed data with decoded base64.
+  type: unknown
+sourceplaybookid: e8c368e5-f688-415f-8d79-0cb802d6457b
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 13193642-be9c-4a20-8fd4-dc2305e652f4
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 13193642-be9c-4a20-8fd4-dc2305e652f4
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      key:
+        simple: LoopData
+      stringify:
+        simple: "false"
+      value:
+        complex:
+          root: inputs.data
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Set a value in context under the key you entered.
+
+        We set a  new key with our input data
+      id: f2953bdb-ed8a-4018-89d4-56e05da69649
+      iscommand: false
+      name: Set Loop Data Key
+      script: Set
+      type: regular
+      version: -1
+    taskid: f2953bdb-ed8a-4018-89d4-56e05da69649
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 162.5,
+          "y": 545
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      all:
+        simple: "yes"
+      subplaybook:
+        simple: "yes"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Delete field from context
+
+        Here we delete the context from the sub-playbook only, as we want to keep outputting a new LoopData key.
+      id: 87e3d70e-1c44-4ed5-8fff-5a7ee5919ed8
+      iscommand: false
+      name: Delete Context
+      script: DeleteContext
+      type: regular
+      version: -1
+    taskid: 87e3d70e-1c44-4ed5-8fff-5a7ee5919ed8
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 195
+        }
+      }
+  "3":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: Base64
+                root: inputs.data
+          operator: isExists
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: Base64
+                root: inputs.data
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "6"
+      "yes":
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: 'Here we check if the data we are looping over has the key of Base64
+        that we want to decode. '
+      id: 87223e74-b8cd-434a-84f6-350ffe25021d
+      iscommand: false
+      name: Is there a Base64 Key to decode?
+      type: condition
+      version: -1
+    taskid: 87223e74-b8cd-434a-84f6-350ffe25021d
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 370
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        complex:
+          accessor: Base64
+          root: LoopData
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: "Decodes an input in Base64 format.\n\nDecode the Base64 key from
+        that. "
+      id: 88578913-aff4-4684-8350-93f0d48d3502
+      iscommand: false
+      name: Decode Base 64 Key
+      script: Base64Decode
+      type: regular
+      version: -1
+    taskid: 88578913-aff4-4684-8350-93f0d48d3502
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 162.5,
+          "y": 720
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      keys:
+        simple: DecodedBase64
+      parent:
+        simple: LoopData
+      values:
+        complex:
+          accessor: decoded
+          root: Base64
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: "Set multiple keys/values to the context.\n\nAnd then add the decoded
+        value back into LoopData, so now we have the original and decoded values. "
+      id: ea7b1a8f-bb0c-472a-8c4a-ce5004804cfc
+      iscommand: false
+      name: Update LoopData with decoded value
+      script: SetMultipleValues
+      type: regular
+      version: -1
+    taskid: ea7b1a8f-bb0c-472a-8c4a-ce5004804cfc
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 162.5,
+          "y": 895
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: cfa6a296-5cf6-4de7-834d-0abcb4eee95a
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: cfa6a296-5cf6-4de7-834d-0abcb4eee95a
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 1070
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "3_6_#default#": 0.23
+    },
+    "paper": {
+      "dimensions": {
+        "height": 1085,
+        "width": 492.5,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
