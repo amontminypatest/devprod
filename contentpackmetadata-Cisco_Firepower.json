@@ -1,0 +1,264 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Network Security"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"playbook"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Network Security",
+				"commands": [
+					{
+						"description": "Retrieves a list of all security zone objects.",
+						"name": "ciscofp-list-zones"
+					},
+					{
+						"description": "Retrieves list of all port objects.",
+						"name": "ciscofp-list-ports"
+					},
+					{
+						"description": "Retrieves a list of all URL category objects.",
+						"name": "ciscofp-list-url-categories"
+					},
+					{
+						"description": "Retrieves the network objects associated with the specified ID. If not supplied, retrieves a list of all network objects.",
+						"name": "ciscofp-get-network-object"
+					},
+					{
+						"description": "Creates a network object.",
+						"name": "ciscofp-create-network-object"
+					},
+					{
+						"description": "Updates the specified network object.",
+						"name": "ciscofp-update-network-object"
+					},
+					{
+						"description": "Retrieves the groups of network objects and addresses associated with the specified ID. If not supplied, retrieves a list of all network objects.",
+						"name": "ciscofp-get-network-groups-object"
+					},
+					{
+						"description": "Creates a group of network objects.",
+						"name": "ciscofp-create-network-groups-objects"
+					},
+					{
+						"description": "Updates a group of network objects.",
+						"name": "ciscofp-update-network-groups-objects"
+					},
+					{
+						"description": "Deletes a group of network objects.",
+						"name": "ciscofp-delete-network-groups-objects"
+					},
+					{
+						"description": "Retrieves the groups of host objects associated with the specified ID. If no ID is passed, the input ID retrieves a list of all network objects.",
+						"name": "ciscofp-get-host-object"
+					},
+					{
+						"description": "Creates a host object.",
+						"name": "ciscofp-create-host-object"
+					},
+					{
+						"description": "Updates the specified host object.",
+						"name": "ciscofp-update-host-object"
+					},
+					{
+						"description": "Deletes the specified network object.",
+						"name": "ciscofp-delete-network-object"
+					},
+					{
+						"description": "Deletes the specified host object.",
+						"name": "ciscofp-delete-host-object"
+					},
+					{
+						"description": "Retrieves the access control policy associated with the specified ID. If no access policy ID is passed, all access control policies are returned.",
+						"name": "ciscofp-get-access-policy"
+					},
+					{
+						"description": "Creates an access control policy.",
+						"name": "ciscofp-create-access-policy"
+					},
+					{
+						"description": "Updates the specified access control policy.",
+						"name": "ciscofp-update-access-policy"
+					},
+					{
+						"description": "Deletes the specified access control policy.",
+						"name": "ciscofp-delete-access-policy"
+					},
+					{
+						"description": "Retrieves a list of all custom security group tag objects.",
+						"name": "ciscofp-list-security-group-tags"
+					},
+					{
+						"description": "Retrieves a list of all ISE security group tag objects.",
+						"name": "ciscofp-list-ise-security-group-tag"
+					},
+					{
+						"description": "Retrieves a list of all vlantag objects.",
+						"name": "ciscofp-list-vlan-tags"
+					},
+					{
+						"description": "Retrieves a list of all vlan group tag objects.",
+						"name": "ciscofp-list-vlan-tags-group"
+					},
+					{
+						"description": "Retrieves a list of all application objects.",
+						"name": "ciscofp-list-applications"
+					},
+					{
+						"description": "Retrieves the access control rule associated with the specified policy ID and rule ID. If no rule ID is specified, retrieves a list of all access rules associated with the specified policy ID.",
+						"name": "ciscofp-get-access-rules"
+					},
+					{
+						"description": "Creates an access control rule.",
+						"name": "ciscofp-create-access-rules"
+					},
+					{
+						"description": "Updates the specified access control rule.",
+						"name": "ciscofp-update-access-rules"
+					},
+					{
+						"description": "Deletes the specified access control rule.",
+						"name": "ciscofp-delete-access-rules"
+					},
+					{
+						"description": "Retrieves a list of all policy assignments to target devices.",
+						"name": "ciscofp-list-policy-assignments"
+					},
+					{
+						"description": "Creates policy assignments to target devices.",
+						"name": "ciscofp-create-policy-assignments"
+					},
+					{
+						"description": "Updates the specified policy assignments to target devices.",
+						"name": "ciscofp-update-policy-assignments"
+					},
+					{
+						"description": "Retrieves a list of all devices with configuration changes that are ready to deploy.",
+						"name": "ciscofp-get-deployable-devices"
+					},
+					{
+						"description": "Retrieves list of all device records.",
+						"name": "ciscofp-get-device-records"
+					},
+					{
+						"description": "Creates a request for deploying configuration changes to devices.",
+						"name": "ciscofp-deploy-to-devices"
+					},
+					{
+						"description": "Retrieves information about a previously submitted pending job or task with the specified ID. Used for deploying.",
+						"name": "ciscofp-get-task-status"
+					},
+					{
+						"description": "Retrieves the groups of url objects and addresses associated with the specified ID. If not supplied, retrieves a list of all url objects.",
+						"name": "ciscofp-get-url-groups-object"
+					},
+					{
+						"description": "Updates the ID of a group of url objects.",
+						"name": "ciscofp-update-url-groups-objects"
+					}
+				],
+				"description": "Use the Cisco Firepower integration for unified management of firewalls, application control, intrusion prevention, URL filtering, and advanced malware protection.",
+				"id": "",
+				"name": "Cisco Firepower"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": [
+			{
+				"description": "This playbook will append a network group object with new elements (IPs or network objects).",
+				"name": "Cisco FirePower- Append network group object"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-11-09T18:49:27Z",
+	"currentVersion": "1.1.2",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.44",
+			"name": "Base"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.10.24",
+			"name": "Common Scripts"
+		}
+	},
+	"deprecated": false,
+	"description": "Use the CiscoFirepower integration for unified management of firewalls, application control",
+	"disabledMonthly": false,
+	"downloads": 1550,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "CiscoFirepower",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/CiscoFirepower/CiscoFirepower_image.png",
+			"name": "Cisco Firepower"
+		}
+	],
+	"itemVersion": "1.1.2",
+	"keywords": [],
+	"legacy": true,
+	"name": "Cisco Firepower",
+	"packID": "CiscoFirepower",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "##Cisco Firepower Pack\n\nUse the Cisco Firepower integration for unified management of firewalls, application control, intrusion prevention, URL filtering, and advanced malware protection.\n\n**What does this pack do?**\n- List zones, ports, and URL categories.\n- List security group tags, ise security group tags, vlan tags, vlan tags groups, and applications.\n- List, create, and update policy assignments.\n- Get, create, update, and delete network objects.\n- Get, create, update, and delete network group objects.\n- Get, create, update, and delete host objects.\n- Get, create, update, and delete access policies.\n- Get, create, update, and delete access rules.\n- Get deployable devices, device records, and task statuses.\n- Deploy to devices.\n\n\nThis pack contains:\n- An integration with Cisco Firepower.\n- A playbook for appending network objects in Cisco Firepower.\n",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-12-14T23:34:55Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4220433",
+	"videos": []
+}
