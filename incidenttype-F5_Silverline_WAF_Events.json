@@ -1,0 +1,50 @@
+{
+	"autorun": false,
+	"cacheVersn": 0,
+	"closureScript": "",
+	"color": "#536DFE",
+	"days": 0,
+	"daysR": 0,
+	"default": false,
+	"definitionId": "",
+	"detached": false,
+	"disabled": false,
+	"extractSettings": {
+		"fieldCliNameToExtractSettings": {
+			"f5silvelinesecuritypolicyname": {
+				"extractAsIsIndicatorTypeId": "",
+				"extractIndicatorTypesIDs": [],
+				"isExtractingAllIndicatorTypes": false
+			},
+			"f5silverlinealerttimestamp": {
+				"extractAsIsIndicatorTypeId": "",
+				"extractIndicatorTypesIDs": [],
+				"isExtractingAllIndicatorTypes": false
+			}
+		},
+		"mode": "Specific"
+	},
+	"fromServerVersion": "6.0.0",
+	"hours": 0,
+	"hoursR": 0,
+	"id": "F5 Silverline WAF Events",
+	"itemVersion": "1.0.21",
+	"layout": "F5 Silverline WAF Events Layout",
+	"locked": false,
+	"name": "F5 Silverline WAF Events",
+	"onChangeRepAlg": 0,
+	"packID": "F5Silverline",
+	"packName": "F5 Silverline",
+	"packPropagationLabels": [
+		"all"
+	],
+	"preProcessingScript": "",
+	"propagationLabels": [],
+	"readonly": false,
+	"reputationCalc": 0,
+	"system": true,
+	"toServerVersion": "",
+	"version": -1,
+	"weeks": 0,
+	"weeksR": 0
+}
