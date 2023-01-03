@@ -1,0 +1,67 @@
+comment: Preprocessing script that checks if an Incident exists with the incoming
+  Event ID, and drops it with only a war room entry.  Basically the same as drop and
+  update, but without incrementing the dropped count field
+commonfields:
+  id: 301359dd-db3c-44c7-8656-970345695f47
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.8.3.9324
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: PreProcessEventID
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |-
+  from datetime import datetime, timedelta
+
+  # Times
+  now = datetime.now()
+  end = now.strftime("%Y-%m-%dT%H:%M:%SZ")
+  start = datetime.strftime((now - timedelta(hours=3)), "%Y-%m-%dT%H:%M:%SZ")
+
+  # get incident data, and the event ID
+  incident = demisto.incident()
+  eventid = incident.get('CustomFields').get('eventid')
+  incident_type = incident.get('type')
+
+  #check to see if we have duplicates
+
+  ##Debugging - Run this script in an Incident war room to test
+  # LOG("STARTING SEARCH")
+  # LOG(f"QUERY IS: eventid:{eventid} fromdate:{start} todate:{end}")
+  # LOG.print_log(verbose=True)
+
+  # find Incident with the same eventid, from now to 3 hours back
+  sameIncidents = demisto.executeCommand("getIncidents",
+              {"query":f"type:{incident_type} and eventid:{eventid} and -category:job","fromdate":start,"todate":end})
+
+  # create Incident by default, if another Incident is found, we'll return False to not create it.
+  res = True
+  if not isError(sameIncidents[0]):
+      # if found sameIncidents found, add an entry to the war room, and drop this one
+      sameIncidentsCount = sameIncidents[0]['Contents']['total']
+      if sameIncidentsCount > 0:
+          res = False
+          otherIncidents = sameIncidents[0]['Contents']['data']
+          entries = [{"Contents": f"Duplicate {incident_type} incident dropped from preprocessing: {incident.get('name')}"}]
+          demisto.executeCommand("addEntries", {"id":otherIncidents[0]["id"],"entries":json.dumps(entries)})
+
+  demisto.results(res)
+scripttarget: 0
+subtype: python3
+tags:
+- preProcessing
+- training
+type: python
