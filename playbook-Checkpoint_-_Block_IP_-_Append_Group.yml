@@ -1,0 +1,1458 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.0.0
+    itemVersion: 2.3.5
+    packID: CheckpointFirewall
+    packName: Check Point Firewall
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: The playbook receives malicious IP addresses as inputs, checks if the
+  object group exists (if not, the object group is created), and  appends the related
+  IPs to that object. If you have not assigned the appended group to a rule in your
+  firewall policy, you can use `rule_name` and the playbook creates a new rule.
+id: Checkpoint - Block IP - Append Group
+inputs:
+- description: |-
+    An array of malicious IPs to block (Can be also provided as a context path. e.g. ${IP} ).
+    Example:     1.1.1.1,2.2.2.2
+  key: IP
+  playbookInputQuery: null
+  required: true
+  value: {}
+- description: Whether the playbook should continue install policy process for Check
+    Point Firewall.
+  key: install_policy
+  playbookInputQuery: null
+  required: true
+  value:
+    simple: "False"
+- description: The name of the policy package to be installed.
+  key: policy_package
+  playbookInputQuery: null
+  required: true
+  value:
+    simple: Standard
+- description: |-
+    If one of the actions for the block IP playbook fails due to issues on the Check Point Firewall, this input determines whether the playbook continues or stops for manual review. If the playbook continues, the session ID logs out and all Check Point changes are discarded.
+    Values are "Continue" or "Stop".
+    The default value is "Stop".
+  key: block_IP_error_handling
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: Stop
+- description: |-
+    If one of the actions for publish/install policy fails due to issues on the Check Point side, this input determines whether the playbook continues or stops for manual review. If the playbook continues, the session ID logs out and all Check Point changes are discarded.
+    Values are "Continue" or "Stop".
+    The default value is "Stop".
+  key: checkpoint_error_handling
+  playbookInputQuery: null
+  required: true
+  value:
+    simple: Stop
+- description: "Provide the group name to be appended with the provided IPs. \nThe
+    group is created if it does not already exist."
+  key: group_name
+  playbookInputQuery: null
+  required: true
+  value: {}
+- description: Creates a new blocking rule using this Check Point Firewall group.
+    Use this option if you have not assigned the appended group to a rule in your
+    firewall policy.
+  key: rule_name
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: |-
+    Determines which Check Point Firewall rule layer is used.
+    By default, the "Network" layer is used, but this can be changed.
+  key: rule_layer
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: Network
+- description: |-
+    Determines which Check Point Firewall rule position is used.
+    By default, the "top" position is used, but this can be changed.
+  key: rule_position
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: top
+name: Checkpoint - Block IP - Append Group
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 175f9378-f1cc-48b8-8c7e-72a87d6dbe5c
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 175f9378-f1cc-48b8-8c7e-72a87d6dbe5c
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 840,
+          "y": -900
+        }
+      }
+  "1":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: brand
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: inList
+                    right:
+                      value:
+                        simple: CheckPointFirewall,CheckPointFirewall_v2
+                root: modules
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "2"
+      "yes":
+      - "5"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Is Check Point Firewall enabled?
+      id: a5061a87-98a0-4a5d-87d2-c89d2974666c
+      iscommand: false
+      name: Is Check Point Firewall enabled?
+      type: condition
+      version: -1
+    taskid: a5061a87-98a0-4a5d-87d2-c89d2974666c
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 840,
+          "y": -760
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: f4e1af90-6b1e-4436-84b2-54ed3e44be8d
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: f4e1af90-6b1e-4436-84b2-54ed3e44be8d
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 840,
+          "y": 3850
+        }
+      }
+  "3":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: ipv4-address
+                root: CheckPoint.Objects
+          operator: isNotEmpty
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: ipv4-address
+                root: CheckPoint.Objects
+          operator: inList
+          right:
+            iscontext: true
+            value:
+              simple: inputs.IP
+      label: "yes"
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "4"
+      "yes":
+      - "27"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Validate if the IP object is already in Check Point.
+      id: f7d98ba6-c559-4ba1-800c-c74a8e2b6995
+      iscommand: false
+      name: Does the IP object already exist in Check Point?
+      type: condition
+      version: -1
+    taskid: f7d98ba6-c559-4ba1-800c-c74a8e2b6995
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 220,
+          "y": -70
+        }
+      }
+  "4":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "14"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      ip_address:
+        complex:
+          root: inputs.IP
+          transformers:
+          - args:
+              delimiter:
+                value:
+                  simple: ','
+            operator: split
+      name:
+        complex:
+          root: inputs.IP
+          transformers:
+          - args:
+              delimiter:
+                value:
+                  simple: ','
+            operator: split
+      session_id:
+        complex:
+          accessor: Login.session-id
+          root: CheckPoint
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Add host object to Check Point Firewall.
+      id: e045e3d4-2528-4d55-8f10-b2b13394a858
+      iscommand: true
+      name: Add a host to Check Point Firewall (from Inputs)
+      script: '|||checkpoint-host-add'
+      type: regular
+      version: -1
+    taskid: e045e3d4-2528-4d55-8f10-b2b13394a858
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -330,
+          "y": 140
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "16"
+      - "31"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Log in to Check Point to get unique session ID.
+      id: dc0c9f6f-469d-42fb-84c7-81288ef8ba3e
+      iscommand: true
+      name: Log in to Check Point and get session ID
+      script: '|||checkpoint-login-and-get-session-id'
+      type: regular
+      version: -1
+    taskid: dc0c9f6f-469d-42fb-84c7-81288ef8ba3e
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 220,
+          "y": -590
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 0
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "34"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      auto_logout:
+        simple: "False"
+      checkpoint_error_handling:
+        simple: ${inputs.checkpoint_error_handling}
+      discard_changes:
+        simple: ${inputs.discard_changes}
+      install_policy:
+        simple: ${inputs.install_policy}
+      policy_package:
+        simple: ${inputs.policy_package}
+      sid:
+        simple: ${CheckPoint.Login.session-id}
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Publish the Check Point Firewall configuration and install policy
+        on all available gateways.
+      id: f7944d23-cc81-4753-8c14-6c77e3ac41d6
+      iscommand: false
+      name: Checkpoint - Publish&Install configuration
+      playbookId: Checkpoint - Publish&Install configuration
+      type: playbook
+      version: -1
+    taskid: f7944d23-cc81-4753-8c14-6c77e3ac41d6
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 220,
+          "y": 1880
+        }
+      }
+  "9":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: CheckPoint.Group.members.member-ipv4-address
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "17"
+      "yes":
+      - "39"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check if the access rule was added correctly.
+      id: 5e20d3a5-7db5-4047-8779-01c514e3a1b3
+      iscommand: false
+      name: Was the access rule added successfully on Check Point?
+      type: condition
+      version: -1
+    taskid: 5e20d3a5-7db5-4047-8779-01c514e3a1b3
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 220,
+          "y": 2230
+        }
+      }
+  "11":
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      session_id:
+        simple: ${CheckPoint.Login.session-id}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Log ut with specific session ID from Check Point Firewall.
+      id: ea9ccc02-67ef-4924-8380-3e0ba3a03d6c
+      iscommand: true
+      name: Check Point logout
+      script: '|||checkpoint-logout'
+      type: regular
+      version: -1
+    taskid: ea9ccc02-67ef-4924-8380-3e0ba3a03d6c
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 220,
+          "y": 3670
+        }
+      }
+  "12":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "21"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: There was a problem appending the network object
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported).
+      id: 8a240505-8a06-4e3b-8560-a2eb16393129
+      iscommand: false
+      name: Print append error
+      script: Print
+      type: regular
+      version: -1
+    taskid: 8a240505-8a06-4e3b-8560-a2eb16393129
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -90,
+          "y": 1740
+        }
+      }
+  "13":
+    continueonerrortype: ""
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "8"
+      "yes":
+      - "12"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      entryId:
+        simple: ${lastCompletedTaskEntries}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check whether given entry/entries returned an error. Use ${lastCompletedTaskEntries}
+        to check the previous task entries. If array is provided, return yes if one
+        of the entries returns an error.
+      id: e525a6d4-a03b-403e-845a-72778ef4699e
+      iscommand: false
+      name: Was there an error when appending?
+      script: isError
+      type: condition
+      version: -1
+    taskid: e525a6d4-a03b-403e-845a-72778ef4699e
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 220,
+          "y": 1560
+        }
+      }
+  "14":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: Host
+                root: CheckPoint
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "14"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "15"
+      "yes":
+      - "18"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Validate host object added successfully.
+      id: 2f9bdcc5-cc5f-4449-8b1e-95a1805ff022
+      iscommand: false
+      name: Was the host object added successfully?
+      type: condition
+      version: -1
+    taskid: 2f9bdcc5-cc5f-4449-8b1e-95a1805ff022
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -330,
+          "y": 680
+        }
+      }
+  "15":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "15"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "21"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: There was problem adding object host.
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported).
+      id: 6eb870df-6055-46f3-8162-590b10fcc4a4
+      iscommand: false
+      name: Print host object added error
+      script: Print
+      type: regular
+      version: -1
+    taskid: 6eb870df-6055-46f3-8162-590b10fcc4a4
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -330,
+          "y": 1390
+        }
+      }
+  "16":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "16"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      filter_search:
+        complex:
+          root: inputs.IP
+          transformers:
+          - args:
+              delimiter:
+                value:
+                  simple: ','
+            operator: split
+      ip_only:
+        simple: "true"
+      session_id:
+        simple: ${CheckPoint.Login.session-id}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Get host object to check if IP already exist.
+      id: 1e54c248-daf5-4479-876d-cf71a9b99d88
+      iscommand: true
+      name: Check Point show object
+      script: '|||checkpoint-show-objects'
+      type: regular
+      version: -1
+    taskid: 1e54c248-daf5-4479-876d-cf71a9b99d88
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 220,
+          "y": -405
+        }
+      }
+  "17":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "17"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "21"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: There was a problem appending network object
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported).
+      id: 922d5167-f153-4c36-890a-2f38b58ed920
+      iscommand: false
+      name: Print append was not successfull
+      script: Print
+      type: regular
+      version: -1
+    taskid: 922d5167-f153-4c36-890a-2f38b58ed920
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -110,
+          "y": 2400
+        }
+      }
+  "18":
+    continueonerrortype: ""
+    id: "18"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 0
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "35"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      auto_logout:
+        simple: "False"
+      checkpoint_error_handling:
+        simple: ${inputs.checkpoint_error_handling}
+      discard_changes:
+        simple: ${inputs.discard_changes}
+      install_policy:
+        simple: ${inputs.install_policy}
+      policy_package:
+        simple: ${inputs.policy_package}
+      sid:
+        simple: ${CheckPoint.Login.session-id}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Publish the Check Point Firewall configuration and install policy
+        on all available gateways.
+      id: e418b023-1569-4098-883d-2644e655811f
+      iscommand: false
+      name: Checkpoint - Publish&Install configuration
+      playbookId: Checkpoint - Publish&Install configuration
+      type: playbook
+      version: -1
+    taskid: e418b023-1569-4098-883d-2644e655811f
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": -90,
+          "y": 855
+        }
+      }
+  "21":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.block_IP_error_handling
+          operator: isEqualString
+          right:
+            value:
+              simple: Stop
+        - ignorecase: true
+          left:
+            iscontext: true
+            value:
+              simple: inputs.checkpoint_error_handling
+          operator: isEqualString
+          right:
+            value:
+              simple: Stop
+      label: "yes"
+    continueonerrortype: ""
+    id: "21"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "11"
+      "yes":
+      - "25"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: If action manual handling is enabled, the playbook will pause and
+        wait for manual review.
+      id: fb571b4b-09de-44eb-8382-758633671f4c
+      iscommand: false
+      name: Is action manual handling enabled?
+      type: condition
+      version: -1
+    taskid: fb571b4b-09de-44eb-8382-758633671f4c
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -330,
+          "y": 3270
+        }
+      }
+  "25":
+    continueonerrortype: ""
+    id: "25"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "11"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: User manually publishes on Check Point Firwall console.
+      id: b2bfee2e-854f-4f48-8e56-dfe26e9ceea7
+      iscommand: false
+      name: Fix error and publish manually
+      type: regular
+      version: -1
+    taskid: b2bfee2e-854f-4f48-8e56-dfe26e9ceea7
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -330,
+          "y": 3500
+        }
+      }
+  "27":
+    continueonerrortype: ""
+    id: "27"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "28"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      left:
+        complex:
+          root: inputs.IP
+          transformers:
+          - args:
+              delimiter:
+                value:
+                  simple: ','
+            operator: split
+      right:
+        simple: ${CheckPoint.Objects.ipv4-address}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Compare two lists and put the differences in context.
+      id: a4e24f56-878c-4103-82c6-cfe996941475
+      iscommand: false
+      name: Compare between Input IPs and the returned Check Point objects
+      script: CompareLists
+      type: regular
+      version: -1
+    taskid: a4e24f56-878c-4103-82c6-cfe996941475
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 220,
+          "y": 140
+        }
+      }
+  "28":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: ListCompare.LeftOnly
+          operator: isEmpty
+      label: "No"
+    continueonerrortype: ""
+    id: "28"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "29"
+      "No":
+      - "35"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check if there is an IP without an object in the Firewall.
+      id: c856d307-d035-4a15-8e11-dcee37e6599b
+      iscommand: false
+      name: Are there any diffs?
+      type: condition
+      version: -1
+    taskid: c856d307-d035-4a15-8e11-dcee37e6599b
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 220,
+          "y": 330
+        }
+      }
+  "29":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "29"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "14"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      ip_address:
+        simple: ${ListCompare.LeftOnly}
+      name:
+        simple: ${ListCompare.LeftOnly}
+      session_id:
+        complex:
+          accessor: Login.session-id
+          root: CheckPoint
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Add host object to Check Point Firewall.
+      id: 0ccc3589-1788-4672-8c04-dabe9a6b1677
+      iscommand: true
+      name: Add a host to Check Point Firewall (from the diff)
+      script: '|||checkpoint-host-add'
+      type: regular
+      version: -1
+    taskid: 0ccc3589-1788-4672-8c04-dabe9a6b1677
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -90,
+          "y": 510
+        }
+      }
+  "30":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "30"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "13"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      identifier:
+        simple: ${inputs.group_name}
+      members:
+        complex:
+          accessor: name
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: CheckPoint.Objects.ipv4-address
+              operator: inList
+              right:
+                iscontext: true
+                value:
+                  simple: inputs.IP
+          root: CheckPoint.Objects
+          transformers:
+          - args:
+              item:
+                iscontext: true
+                value:
+                  simple: currentMembers
+            operator: append
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Updates the specified group object.
+      id: 6254b6c8-754e-4c75-88d3-28d6d486b5d5
+      iscommand: true
+      name: Append network object
+      script: '|||checkpoint-group-update'
+      type: regular
+      version: -1
+    taskid: 6254b6c8-754e-4c75-88d3-28d6d486b5d5
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 220,
+          "y": 1390
+        }
+      }
+  "31":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "31"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "32"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      identifier:
+        simple: ${inputs.group_name}
+      session_id:
+        simple: ${CheckPoint.Login.session-id}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Gets full data for the specified group.
+      id: 349f52ff-4284-48eb-8a65-56ecc408d9dd
+      iscommand: true
+      name: Get object group from Firewall
+      script: '|||checkpoint-group-get'
+      type: regular
+      version: -1
+    taskid: 349f52ff-4284-48eb-8a65-56ecc408d9dd
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 630,
+          "y": -405
+        }
+      }
+  "32":
+    continueonerrortype: ""
+    id: "32"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "3"
+      "yes":
+      - "33"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      entryId:
+        simple: ${lastCompletedTaskEntries}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check whether given entry/entries returned an error. Use ${lastCompletedTaskEntries}
+        to check the previous task entries. If array is provided, return yes if one
+        of the entries returns an error.
+      id: baea1d16-46fb-4af7-84b0-f6c6f5bb3bf8
+      iscommand: false
+      name: Check if the group was not found
+      script: isError
+      type: condition
+      version: -1
+    taskid: baea1d16-46fb-4af7-84b0-f6c6f5bb3bf8
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 630,
+          "y": -245
+        }
+      }
+  "33":
+    continueonerrortype: ""
+    id: "33"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "18"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      name:
+        simple: ${inputs.group_name}
+      session_id:
+        simple: ${CheckPoint.Login.session-id}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Adds a group.
+      id: 64783553-e7f4-4109-8271-5fb5bb6822e9
+      iscommand: true
+      name: Create object group in Firewall
+      script: '|||checkpoint-group-add'
+      type: regular
+      version: -1
+    taskid: 64783553-e7f4-4109-8271-5fb5bb6822e9
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 630,
+          "y": 680
+        }
+      }
+  "34":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "34"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      identifier:
+        simple: ${inputs.group_name}
+      session_id:
+        simple: ${CheckPoint.Login.session-id}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Gets full data for the specified group.
+      id: a23a1727-94a2-4a01-82ea-55e7c5f947f6
+      iscommand: true
+      name: Get object group from Firewall
+      script: '|||checkpoint-group-get'
+      type: regular
+      version: -1
+    taskid: a23a1727-94a2-4a01-82ea-55e7c5f947f6
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 220,
+          "y": 2050
+        }
+      }
+  "35":
+    continueonerrortype: ""
+    id: "35"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "36"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      key:
+        simple: currentMembers
+      value:
+        complex:
+          accessor: members.member-name
+          filters:
+          - - ignorecase: true
+              left:
+                iscontext: true
+                value:
+                  simple: CheckPoint.Group.name
+              operator: isEqualString
+              right:
+                iscontext: true
+                value:
+                  simple: inputs.group_name
+          root: CheckPoint.Group
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Sets a value in context under the key you entered. If no value is entered, nothing is done.
+
+        This automation runs using the default Limited User role, unless you explicitly change the permissions.
+        For more information, see the section about permissions here:
+        https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html
+      id: 6bdf7795-cd12-4ece-825f-701cc62b6457
+      iscommand: false
+      name: Get current group members
+      script: SetAndHandleEmpty
+      type: regular
+      version: -1
+    taskid: 6bdf7795-cd12-4ece-825f-701cc62b6457
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 220,
+          "y": 1040
+        }
+      }
+  "36":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "36"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "30"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      filter_search:
+        complex:
+          root: inputs.IP
+          transformers:
+          - args:
+              delimiter:
+                value:
+                  simple: ','
+            operator: split
+      ip_only:
+        simple: "true"
+      session_id:
+        simple: ${CheckPoint.Login.session-id}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Get host object to check if IP already exists.
+      id: a807ae25-6d0b-48df-851c-748ab0edefc6
+      iscommand: true
+      name: Check Point show object
+      script: '|||checkpoint-show-objects'
+      type: regular
+      version: -1
+    taskid: a807ae25-6d0b-48df-851c-748ab0edefc6
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 220,
+          "y": 1215
+        }
+      }
+  "37":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "37"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "38"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      destination:
+        simple: ${inputs.group_name}
+      layer:
+        simple: ${inputs.rule_layer}
+      name:
+        simple: ${inputs.rule_name}
+      position:
+        simple: ${inputs.rule_position}
+      session_id:
+        complex:
+          accessor: Login.session-id
+          root: CheckPoint
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Add access rule to Check Point firewall.
+      id: 14846fc4-2eec-45d2-8cb3-e96e09b197ca
+      iscommand: true
+      name: Add Check Point access rule
+      script: '|||checkpoint-access-rule-add'
+      type: regular
+      version: -1
+    taskid: 14846fc4-2eec-45d2-8cb3-e96e09b197ca
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -40,
+          "y": 2700
+        }
+      }
+  "38":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: CheckPoint.AccessRule
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "38"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "40"
+      "yes":
+      - "11"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Validate if access rule was added.
+      id: f3ce033e-4562-4224-8193-4459a023d9c8
+      iscommand: false
+      name: Was the access rule added?
+      type: condition
+      version: -1
+    taskid: f3ce033e-4562-4224-8193-4459a023d9c8
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -40,
+          "y": 2880
+        }
+      }
+  "39":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.rule_name
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "39"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "11"
+      "yes":
+      - "37"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check if rule name was defined in the inputs.
+      id: 13874ea2-f0ad-4734-86f9-34478083b464
+      iscommand: false
+      name: Is a rule name defined?
+      type: condition
+      version: -1
+    taskid: 13874ea2-f0ad-4734-86f9-34478083b464
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 220,
+          "y": 2530
+        }
+      }
+  "40":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "40"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "21"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: There was a problem creating a blocking rule with the defined group
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported).
+      id: 581e2e17-8f47-4668-8e30-8ca4cc0097ae
+      iscommand: false
+      name: Print append was not successful
+      script: Print
+      type: regular
+      version: -1
+    taskid: 581e2e17-8f47-4668-8e30-8ca4cc0097ae
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -40,
+          "y": 3090
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "38_11_yes": 0.16
+    },
+    "paper": {
+      "dimensions": {
+        "height": 4815,
+        "width": 1550,
+        "x": -330,
+        "y": -900
+      }
+    }
+  }
