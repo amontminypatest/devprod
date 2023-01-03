@@ -1,0 +1,165 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.1.4
+    packID: Carbon_Black_Enterprise_Live_Response
+    packName: Carbon Black Enterprise Live Response
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: Polling command status until finished with an error or complete.
+id: Carbon Black Live Response - Wait Until Command Complete
+inputs:
+- description: Command ID to poll until completed.
+  key: CommnadId
+  playbookInputQuery: null
+  required: true
+  value: {}
+- description: Session ID in which command executed.
+  key: SessionId
+  playbookInputQuery: null
+  required: true
+  value: {}
+name: Carbon Black Live Response - Wait Until Command Complete
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 01a8a99e-e5ac-43ed-8be7-3aec16f8aef2
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 01a8a99e-e5ac-43ed-8be7-3aec16f8aef2
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      AdditionalPollingCommandArgNames:
+        simple: session
+      AdditionalPollingCommandArgValues:
+        complex:
+          root: inputs.SessionId
+          transformers:
+          - operator: Stringify
+      Ids:
+        complex:
+          root: inputs.CommnadId
+      Interval:
+        simple: "1"
+      PollingCommandArgName:
+        simple: command
+      PollingCommandName:
+        simple: cb-command-info
+      Timeout:
+        simple: "10"
+      dt:
+        simple: CbLiveResponse.Commands(val.Status.toUpperCase() != 'COMPLETE'  &&
+          val.Status.toUpperCase() != 'ERROR').CbCommandID
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Use this playbook as a sub-playbook to block execution of the master playbook until a remote action is complete.
+        This playbook implements polling by continuously running the command in Step \#2 until the operation completes.
+        The remote action should have the following structure:
+
+        1. Initiate the operation.
+        2. Poll to check if the operation completed.
+        3. (optional) Get the results of the operation.
+      id: 160fb85a-14df-4a16-8599-68c5069fbc1c
+      iscommand: false
+      name: GenericPolling
+      playbookId: GenericPolling
+      type: playbook
+      version: -1
+    taskid: 160fb85a-14df-4a16-8599-68c5069fbc1c
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 230
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: bb32c1a2-3db9-41c0-888b-7df7ed1e5ebd
+      iscommand: false
+      name: Command completed
+      type: title
+      version: -1
+    taskid: bb32c1a2-3db9-41c0-888b-7df7ed1e5ebd
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 430
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 445,
+        "width": 380,
+        "x": 450,
+        "y": 50
+      }
+    }
+  }
