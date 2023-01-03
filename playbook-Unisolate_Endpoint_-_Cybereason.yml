@@ -1,0 +1,209 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.5.0
+    itemVersion: 2.0.0
+    packID: Cybereason
+    packName: Cybereason
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: This playbook unisolates a machine based on the hostname provided.
+id: Unisolate Endpoint - Cybereason
+inputs:
+- description: The hostname of the endpoint to unisolate using Cybereason.
+  key: Hostname
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: Unisolate Endpoint - Cybereason
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 8dab4dea-7c75-49b5-8752-3e11f6a071e5
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 8dab4dea-7c75-49b5-8752-3e11f6a071e5
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "2"
+      "yes":
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      brandname:
+        simple: Cybereason
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Returns 'yes' if integration brand is available. Otherwise returns
+        'no'.
+      id: 29f3ba5b-96f3-4885-8d29-39d1927feb35
+      iscommand: false
+      name: Is Cybereason integration enabled?
+      script: IsIntegrationAvailable
+      type: condition
+      version: -1
+    taskid: 29f3ba5b-96f3-4885-8d29-39d1927feb35
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 240
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 649ec0e2-13f5-4534-8e29-f052ece40603
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 649ec0e2-13f5-4534-8e29-f052ece40603
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 1030
+        }
+      }
+  "3":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.Hostname
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "2"
+      "yes":
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 409410a8-e855-455f-85fa-38ededec41d7
+      iscommand: false
+      name: Is there an endpoint to unisolate?
+      type: condition
+      version: -1
+    taskid: 409410a8-e855-455f-85fa-38ededec41d7
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 750,
+          "y": 420
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      machine:
+        simple: ${inputs.Hostname}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Stops isolation of a machine.
+      id: b7f22dfd-7f2f-4340-8246-767d4570afc8
+      iscommand: true
+      name: Unisolate endpoint
+      script: '|||cybereason-unisolate-machine'
+      type: regular
+      version: -1
+    taskid: b7f22dfd-7f2f-4340-8246-767d4570afc8
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1040,
+          "y": 600
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "3_2_#default#": 0.37
+    },
+    "paper": {
+      "dimensions": {
+        "height": 1045,
+        "width": 970,
+        "x": 450,
+        "y": 50
+      }
+    }
+  }
