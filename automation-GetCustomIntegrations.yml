@@ -1,0 +1,39 @@
+comment: Returns the list of custom integrations, this can be hit or miss.
+commonfields:
+  id: da31d80c-0274-4127-8a40-f990c7c1d833
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dependson:
+  must:
+  - Demisto REST API|||demisto-api-post
+dockerimage: demisto/python3:3.9.1.15759
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: GetCustomIntegrations
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |-
+  response = demisto.executeCommand("demisto-api-post", {"uri":"/settings/integration/search","body":{}})[0]["Contents"]["response"]
+  results = [ x for x in response["configurations"] if not x.get("system","") and not x.get("deprecated","") and x.get("integrationScript","")]
+  print(len(results))
+  readable = tableToMarkdown("Custom Integrations", [ x["display"] for x in results], headers=["display"])
+  result = CommandResults(readable_output=readable)
+  return_results(result)
+scripttarget: 0
+subtype: python3
+tags:
+- Utility
+- training
+type: python
