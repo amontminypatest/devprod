@@ -1,0 +1,59 @@
+comment: This preprocessing script routes emails to different Incident types based
+  on Subject
+commonfields:
+  id: 1478f5fe-b10a-458b-865d-512e3e2bc905
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.8.3.9324
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: PreProcessEmailMessages
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |-
+  # Preprocessing script for emails fetched from the soc inbox
+  # Return True to create the Incident
+  # Return False to drop it
+
+  from datetime import datetime
+
+  # get incident data
+  incident = demisto.incident()
+  custom_fields = incident.get('CustomFields')
+
+  # drop emails from a specific account or alternatively store the list in an XSOAR list for even quicker updating
+  ignore_senders = ["soc@demisto.local"]
+  if custom_fields.get("emailfrom", "") in ignore_senders:
+      demisto.results(False)
+
+  # route threat intel reports to different Incident type
+  elif custom_fields.get("emailfrom") == "tim@demisto.local":
+      demisto.executeCommand("setIncident", {"type":"Threat Intel Reports","name":f"Daily Threat Intel - {datetime.today().strftime('%Y-%m-%d')}","severity":.5})
+      demisto.results(True)
+
+  # For sensitive employee disable requests, add Tier 2 role, change type to Disable Account
+  elif "disable account" in custom_fields.get("emailsubject","No Subject").lower():
+      demisto.executeCommand("setIncident", {"type":"Disable Account Request", "name":f"Disable Account - {incident.get('details')}","roles":"Tier2","severity":2})
+      demisto.results(True)
+
+  # create regular Phishing Incident otherwise
+  else:
+      demisto.results(True)
+scripttarget: 0
+subtype: python3
+tags:
+- preProcessing
+- training
+type: python
