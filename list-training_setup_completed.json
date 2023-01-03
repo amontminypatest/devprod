@@ -1,0 +1,23 @@
+{
+	"cacheVersn": 0,
+	"data": "Ooooooohhhhh Canada....",
+	"definitionId": "",
+	"description": "",
+	"fromServerVersion": "",
+	"id": "training setup completed",
+	"itemVersion": "",
+	"locked": false,
+	"name": "training setup completed",
+	"nameLocked": false,
+	"packID": "",
+	"packName": "",
+	"propagationLabels": [
+		"all"
+	],
+	"system": false,
+	"tags": null,
+	"toServerVersion": "",
+	"truncated": false,
+	"type": "plain_text",
+	"version": -1
+}
