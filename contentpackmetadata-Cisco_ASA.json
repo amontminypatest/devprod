@@ -1,0 +1,139 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Network Security"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Network Security",
+				"commands": [
+					{
+						"description": "Gets a list all rules for the supplied interface.",
+						"name": "cisco-asa-list-rules"
+					},
+					{
+						"description": "Creates a backup of the current settings (i.e., the backup.cfg file).",
+						"name": "cisco-asa-backup"
+					},
+					{
+						"description": "Gets a specific rule by rule ID.",
+						"name": "cisco-asa-get-rule-by-id"
+					},
+					{
+						"description": "Creates a rule.",
+						"name": "cisco-asa-create-rule"
+					},
+					{
+						"description": "Deletes a rule.",
+						"name": "cisco-asa-delete-rule"
+					},
+					{
+						"description": "Updates an existing rule.",
+						"name": "cisco-asa-edit-rule"
+					},
+					{
+						"description": "Gets a list all configured network objects.",
+						"name": "cisco-asa-list-network-objects"
+					},
+					{
+						"description": "Creates a network object.",
+						"name": "cisco-asa-create-network-object"
+					},
+					{
+						"description": "Gets a list of all interfaces.",
+						"name": "cisco-asa-list-interfaces"
+					}
+				],
+				"description": "Use the Cisco Adaptive Security Appliance Software integration to manage interfaces, rules, and network objects.",
+				"id": "Cisco ASA",
+				"name": "Cisco ASA"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-11-09T18:46:51Z",
+	"currentVersion": "1.0.29",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.51",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Cisco Adaptive Security Appliance Software is the core operating system for the Cisco ASA Family. It delivers enterprise-class firewall capabilities for ASA devices.",
+	"disabledMonthly": false,
+	"downloads": 2680,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "CiscoASA",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/CiscoASA/CiscoASA_image.png",
+			"name": "Cisco ASA"
+		}
+	],
+	"itemVersion": "1.0.29",
+	"keywords": [],
+	"legacy": true,
+	"name": "Cisco ASA",
+	"packID": "CiscoASA",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "## Collect Events from Vendor\n\nIn order to use the collector, you can use one of the following options to collect events from the vendor:\n - [Broker VM](#broker-vm)\n\nIn either option, you will need to configure the vendor and product for this specific collector.\n### Broker VM\nYou will need to use the information described [here](https://docs.paloaltonetworks.com/cortex/cortex-xdr/cortex-xdr-pro-admin/broker-vm/set-up-broker-vm/configure-your-broker-vm).\\\nYou can configure the specific vendor and product for this instance.\n1. Navigate to **Settings** -\u003e **Configuration** -\u003e **Data Broker** -\u003e **Broker VMs**. \n2. Right-click, and select **Syslog Collector** -\u003e **Configure**.\n3. When configuring the Syslog Collector, set:\n   - vendor as vendor\u003c- Cisco\n   - product as product\u003c- ASA\n",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2023-01-01T11:32:04Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4314430",
+	"videos": []
+}
