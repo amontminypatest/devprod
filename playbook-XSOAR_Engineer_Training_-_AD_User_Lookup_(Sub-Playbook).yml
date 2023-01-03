@@ -1,0 +1,339 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+description: "This sub-playbook will check to see if the user exists in AD based on
+  the inputed email address.\n\nIf the user exists, it will add the user to a key
+  called Exists, if not add them to NotExists.  \n\nThese keys are outputs of this
+  sub-playbook which will be returned to the parent."
+id: 3200df18-5807-49a2-8e7d-ccd68adbe8ad
+inputs:
+- description: ""
+  key: Users
+  playbookInputQuery: null
+  required: true
+  value: {}
+name: XSOAR Engineer Training - AD User Lookup (Sub-Playbook)
+outputs:
+- contextPath: Exists
+  type: unknown
+- contextPath: NotExisted
+  type: unknown
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: a0ddabcd-e29d-411f-8e7e-2b7a4e1e5dc1
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: a0ddabcd-e29d-411f-8e7e-2b7a4e1e5dc1
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      email:
+        complex:
+          root: inputs.Users
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Active Directory Query v2 (XSOAR Engineer Training)
+      description: Retrieves detailed information about a user account. The user can
+        be specified by name, email address, or as an Active Directory Distinguished
+        Name (DN). If no filter is specified, all users are returned.
+      id: bcc3084c-305f-4d18-8125-cb29ea2c6d53
+      iscommand: true
+      name: ad-get-user
+      script: Active Directory Query v2 (XSOAR Engineer Training)|||ad-get-user
+      type: regular
+      version: -1
+    taskid: bcc3084c-305f-4d18-8125-cb29ea2c6d53
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 545
+        }
+      }
+  "2":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: mail
+                root: ActiveDirectory.Users
+          operator: isExists
+      - - ignorecase: true
+          left:
+            iscontext: true
+            value:
+              simple: ActiveDirectory.Users.mail
+          operator: isEqualString
+          right:
+            iscontext: true
+            value:
+              simple: inputs.Users
+      label: "yes"
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "4"
+      "yes":
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: f12a5db3-fbd0-4aa9-8a4a-bbee7ed1a693
+      iscommand: false
+      name: Does User Exist?
+      type: condition
+      version: -1
+    taskid: f12a5db3-fbd0-4aa9-8a4a-bbee7ed1a693
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 720
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      key:
+        simple: Exists
+      value:
+        complex:
+          accessor: mail
+          root: ActiveDirectory.Users
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: 945c73ea-45f5-42e6-807d-a82e2a679d99
+      iscommand: false
+      name: Set Exists
+      script: Set
+      type: regular
+      version: -1
+    taskid: 945c73ea-45f5-42e6-807d-a82e2a679d99
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 895
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      key:
+        simple: NotExisted
+      value:
+        simple: ${inputs.Users}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: f88dfb9b-9a61-47e3-8e2e-587768d0a0d0
+      iscommand: false
+      name: Set Doesn't Exists
+      script: Set
+      type: regular
+      version: -1
+    taskid: f88dfb9b-9a61-47e3-8e2e-587768d0a0d0
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 895
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 726e4723-1a51-4732-854a-62de837a5d7e
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 726e4723-1a51-4732-854a-62de837a5d7e
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 1070
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      all:
+        simple: "yes"
+      subplaybook:
+        simple: "yes"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Delete field from context
+      id: 80a9c7cf-1d37-441a-8f58-e3814a190a12
+      iscommand: false
+      name: Delete Context
+      script: DeleteContext
+      type: regular
+      version: -1
+    taskid: 80a9c7cf-1d37-441a-8f58-e3814a190a12
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 195
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      key:
+        simple: User
+      value:
+        simple: ${inputs.Users}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: 6d0d28bd-2e0e-491e-8818-b222ec573ae5
+      iscommand: false
+      name: Set User
+      script: Set
+      type: regular
+      version: -1
+    taskid: 6d0d28bd-2e0e-491e-8818-b222ec573ae5
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 370
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1085,
+        "width": 810,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
