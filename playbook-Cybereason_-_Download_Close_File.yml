@@ -1,0 +1,208 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.5.0
+    itemVersion: 2.0.0
+    packID: Cybereason
+    packName: Cybereason
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: This playbook aborts a file download operation which is in progress based
+  on the Malop ID and username provided.
+id: Cybereason - Download Close File
+inputs:
+- description: The unique ID assigned by the Cybereason platform for the Malop.
+  key: malopGUID
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: The complete Cybereason user name string for the user performing the
+    request.
+  key: Username
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: Cybereason - Download Close File
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 779e97cb-1b2c-42c2-86bd-88959bf6610e
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 779e97cb-1b2c-42c2-86bd-88959bf6610e
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 540,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      malopGUID:
+        simple: ${inputs.malopGUID}
+      userName:
+        simple: ${inputs.Username}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Cybereason
+      description: Start fetching the file to download
+      id: 296f099d-252f-4c13-8199-228130a32cd2
+      iscommand: true
+      name: cybereason-start-fetchfile
+      script: Cybereason|||cybereason-start-fetchfile
+      type: regular
+      version: -1
+    taskid: 296f099d-252f-4c13-8199-228130a32cd2
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 540,
+          "y": 230
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      malopGuid:
+        simple: ${inputs.malopGUID}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Cybereason
+      description: Return a batch id for files waiting for download
+      id: 2a8fa3f4-2891-43a4-8f90-c55f99eedb2a
+      iscommand: true
+      name: cybereason-progress
+      script: Cybereason|||cybereason-fetchfile-progress
+      type: regular
+      version: -1
+    taskid: 2a8fa3f4-2891-43a4-8f90-c55f99eedb2a
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 540,
+          "y": 410
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      batchID:
+        simple: ${Cybereason.Download.Progress.batchID}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Cybereason
+      description: Aborts a file download operation that is in progress
+      id: 72702a2f-9f78-499a-88b9-2b803626c452
+      iscommand: true
+      name: cybereason-close-fetchfile
+      script: Cybereason|||cybereason-close-file-batch-id
+      type: regular
+      version: -1
+    taskid: 72702a2f-9f78-499a-88b9-2b803626c452
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 540,
+          "y": 590
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: eeada645-264c-404e-8d7d-cd6ee0381737
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: eeada645-264c-404e-8d7d-cd6ee0381737
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 540,
+          "y": 780
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 635,
+        "width": 795,
+        "x": 540,
+        "y": 50
+      }
+    }
+  }
