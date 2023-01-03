@@ -1,0 +1,240 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Network Security"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"automation",
+		"incidentfield",
+		"incidenttype",
+		"playbook"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "IoT alert post processing script to resolve the alert in IoT security portal using API",
+				"name": "iot-security-alert-post-processing",
+				"tags": [
+					"iot",
+					"post-processing"
+				]
+			},
+			{
+				"description": "IoT vulnerability post processing script to resolve the vulnerability incident in IoT security portal using API",
+				"name": "iot-security-vuln-post-processing",
+				"tags": [
+					"iot",
+					"post-processing"
+				]
+			},
+			{
+				"description": "IoT RACI model script",
+				"name": "iot-security-get-raci",
+				"tags": [
+					"iot"
+				]
+			},
+			{
+				"description": "Close the XSOAR incident if the IoT ServiceNow ticket was closed. This command should be run in a Job.",
+				"name": "iot-security-check-servicenow",
+				"tags": [
+					"iot"
+				]
+			}
+		],
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": [
+			{
+				"description": "The url to Palo Alto Networks IoT incident",
+				"name": "IoT Incident URL",
+				"type": "url"
+			},
+			{
+				"description": "The ServiceNow record system ID",
+				"name": "ServiceNow Record ID",
+				"type": "shortText"
+			},
+			{
+				"description": "The name of the ServiceNow Table",
+				"name": "ServiceNow Table Name",
+				"type": "shortText"
+			}
+		],
+		"incidenttype": [
+			{
+				"closureScript": "iot-security-vuln-post-processing",
+				"days": 0,
+				"hours": 0,
+				"name": "IoT Vulnerability",
+				"playbook": "PANW IoT Incident Handling with ServiceNow",
+				"weeks": 0
+			},
+			{
+				"closureScript": "iot-security-alert-post-processing",
+				"days": 0,
+				"hours": 0,
+				"name": "IoT Alert",
+				"playbook": "PANW IoT Incident Handling with ServiceNow",
+				"weeks": 0
+			}
+		],
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Network Security",
+				"commands": [
+					{
+						"description": "IoT get device command - get a single device's details.",
+						"name": "iot-security-get-device"
+					},
+					{
+						"description": "IoT get device command - get a single device's details.",
+						"name": "iot-security-get-device-by-ip"
+					},
+					{
+						"description": "IoT list devices command",
+						"name": "iot-security-list-devices"
+					},
+					{
+						"description": "IoT list alerts.",
+						"name": "iot-security-list-alerts"
+					},
+					{
+						"description": "IoT list Vulnerabilities.",
+						"name": "iot-security-list-vulns"
+					},
+					{
+						"description": "Resolving an IoT alert.",
+						"name": "iot-security-resolve-alert"
+					},
+					{
+						"description": "Resolving an IoT vulnerability.",
+						"name": "iot-security-resolve-vuln"
+					}
+				],
+				"description": "This is the Palo Alto Networks IoT integration (previously Zingbox).",
+				"id": "",
+				"name": "Palo Alto Networks IoT"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": [
+			{
+				"description": "This playbook should be used in a recurring Job to check the ServiceNow ticket status for the Palo Alto Networks IoT (previously Zingbox) alerts or vulnerabilties.",
+				"name": "PANW IoT ServiceNow Tickets Check"
+			},
+			{
+				"description": "This playbook creates a ServiceNow ticket after the incident is enriched by Palo Alto Networks IoT security portal (previously Zingbox Cloud).",
+				"name": "PANW IoT Incident Handling with ServiceNow"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-11-09T18:49:01Z",
+	"currentVersion": "1.0.16",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.39",
+			"name": "Base"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.10.7",
+			"name": "Common Scripts"
+		},
+		"ServiceNow": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "2.4.1",
+			"name": "ServiceNow"
+		}
+	},
+	"deprecated": false,
+	"description": "Palo Alto Networks IoT",
+	"disabledMonthly": false,
+	"downloads": 4453,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "PaloAltoNetworks_IoT",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/PaloAltoNetworks_IoT/PaloAltoNetworksIoT_image.png",
+			"name": "Palo Alto Networks IoT"
+		},
+		{
+			"imagePath": "content/packs/ServiceNow/ServiceNow_image.png",
+			"name": "ServiceNow (Deprecated)"
+		},
+		{
+			"imagePath": "content/packs/ServiceNow/ServiceNowCMDB_image.png",
+			"name": "ServiceNow CMDB"
+		},
+		{
+			"imagePath": "content/packs/ServiceNow/ServiceNowIAM_image.png",
+			"name": "ServiceNow IAM"
+		},
+		{
+			"imagePath": "content/packs/ServiceNow/ServiceNowv2_image.png",
+			"name": "ServiceNow v2"
+		}
+	],
+	"itemVersion": "1.0.16",
+	"keywords": [],
+	"legacy": true,
+	"name": "IoT by Palo Alto Networks",
+	"packID": "PaloAltoNetworks_IoT",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "## Palo Alto Networks IoT Content Pack\nThis content pack enables XSOAR to integrate with Palo Alto Networks IoT solution. It includes one integration and four automation scripts.\n\n\n### Palo Alto Networks IoT Integration\nWrap around the IoT Security Portal APIs for\n - getting a device detail by an ID\n - listing devices\n - listing alerts and vulnerabilities\n - resolving alert and vulnerability\n\nThis integration can be used for the incident response purpose.\n\n### RACI model calculation\nBased on a mapping defined in the Settings \u003e Advanced \u003e Lists, the device attributes and the alert/vulnerability fields, this automation script can evalute the \"R\" and \"I\" in RACI (Responsible and Informed). This is useful when you have a requirement of assigning incidents to different departments in a large company.\n\n### ServiceNow ticket check\nThe way this pack works with ServiceNow is persisting the new ticket ID in a custom field \"ServiceNow Record ID\". This automation script is to loop all the opened IoT alerts and vulnerabilities in XSOAR, and query ServiceNow for the ticket status. If the status is \"CLOSED\", the corresponding XSOAR incident will be closed.\n\n### Alert and Vulnerability resolution post-processing script\nFor resolving the IoT security portal incidents in the post-processing XSOAR stage.\n",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [
+		"Palo Alto Networks Products"
+	],
+	"toServerVersion": "",
+	"updated": "2022-10-23T13:23:12Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4098099",
+	"videos": []
+}
