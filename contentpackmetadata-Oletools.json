@@ -1,0 +1,110 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Forensics \u0026 Malware Analysis"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"automation",
+		"playbook"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "This is an automation to run oletools malware analysis for office files. Oletools is a tool for analyzing Microsoft OLE2 files, such as Microsoft Office documents or Outlook messages, mainly for malware analysis, forensics, and debugging. This automation allows performing some basic oletools commands from Cortex XSOAR. Note that oletools is open source code and is subject to change.",
+				"name": "Oletools",
+				"tags": []
+			}
+		],
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": null,
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": [
+			{
+				"description": "Oletools is a tool for analyzing Microsoft OLE2 files, such as Microsoft Office documents or Outlook messages, mainly for malware analysis, forensics, and debugging.\nThis playbook will run run the \"oleid\" command on the files which are passed to to it as playbook inputs. In case any macros or external relationships were found, it will also run \"olevba\" and \"oleobj\" commands as well on the relevant files.\noleid - Analyze OLE files to detect specific characteristics usually found in malicious files.\noleobj - Extract embedded objects from OLE files.\nolevba - Extract and analyze VBA Macro source code from MS Office documents (OLE and OpenXML).",
+				"name": "Microsoft Office File Enrichment - Oletools"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2022-07-28T10:00:49Z",
+	"currentVersion": "1.0.0",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.39",
+			"name": "Base"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.10.7",
+			"name": "Common Scripts"
+		}
+	},
+	"deprecated": false,
+	"description": "Oletools pack allows performing some basic oletools commands from Cortex XSOAR. oletools is a tool to analyze Microsoft OLE2 files",
+	"disabledMonthly": false,
+	"downloads": 34,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "6.5.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "Oletools",
+	"installMessage": "",
+	"integrations": [],
+	"itemVersion": "1.0.0",
+	"keywords": [],
+	"legacy": true,
+	"name": "Oletools",
+	"packID": "Oletools",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "Oletools is a tool for analyzing Microsoft OLE2 files, \nsuch as Microsoft Office documents or Outlook messages, mainly for malware analysis, forensics, and debugging.\nThis Pack contains an automation to run oletools malware analysis for office files and a playbook to utilize it for analyzing supported files.\n\nNote that oletools is open source code and is subject to change.\nFor more details about this tool, you can visit the [oletools GitHub page](https://github.com/decalage2/oletools).\n\n![Microsoft Office File Enrichment - Oletools](https://storage.googleapis.com/marketplace-dist/content/packs/Oletools/readme_images/Microsoft_Office_File_Enrichment_-_Oletools.png)\n",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "6.5.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [
+		"Forensics"
+	],
+	"toServerVersion": "",
+	"updated": "2022-07-28T10:00:49Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4098099",
+	"videos": []
+}
