@@ -1,0 +1,61 @@
+args:
+- default: true
+  description: ID of the task to check.
+  name: taskID
+  required: true
+comment: Deprecated. Use the 'cuckoo-view-task' command instead.
+commonfields:
+  id: CuckooTaskStatus
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.1.2
+    packID: CuckooSandbox
+    packName: Cuckoo Sandbox
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+dependson:
+  must:
+  - cuckoo-view-task
+deprecated: true
+dockerimage: demisto/python3:3.10.6.33415
+engineinfo: {}
+mainengineinfo: {}
+name: CuckooTaskStatus
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('CuckooTaskStatus', 'start', __line__())
+
+
+
+
+  def main():
+      res = demisto.executeCommand("cuckoo-view-task", {"id": demisto.args()["taskID"]})
+      if isError(res[0]):
+          demisto.results(res)
+      else:
+          data = demisto.get(res[0], 'Contents.task')
+          if data:
+              data = {k: formatCell(data[k]) for k in data}
+              demisto.results({'ContentsFormat': formats['table'], 'Type': entryTypes['note'], 'Contents': data})
+          else:
+              demisto.results(res)
+
+
+  if __name__ in ('__main__', '__builtin__', 'builtins'):
+      main()
+
+  register_module_line('CuckooTaskStatus', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags:
+- cuckoo
+type: python
