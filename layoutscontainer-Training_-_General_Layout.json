@@ -1,0 +1,913 @@
+{
+	"cacheVersn": 0,
+	"close": {
+		"sections": [
+			{
+				"description": "Close forms are customizable, you can track specific information based on Incident Type, maybe even throw it on a pie chart for some sizzle.",
+				"fields": [
+					{
+						"fieldId": "incident_xsoartrainingpackuseful",
+						"isVisible": true
+					}
+				],
+				"isVisible": true,
+				"name": "XSOAR Training Feedback",
+				"query": null,
+				"queryType": "",
+				"readOnly": false,
+				"type": ""
+			},
+			{
+				"description": "",
+				"fields": [
+					{
+						"fieldId": "incident_closereason",
+						"isVisible": true
+					},
+					{
+						"fieldId": "incident_closenotes",
+						"isVisible": true
+					}
+				],
+				"isVisible": true,
+				"name": "Basic Information",
+				"query": null,
+				"queryType": "",
+				"readOnly": false,
+				"type": ""
+			}
+		]
+	},
+	"definitionId": "",
+	"description": "",
+	"detached": false,
+	"details": null,
+	"detailsV2": {
+		"TypeName": "",
+		"tabs": [
+			{
+				"id": "summary",
+				"name": "Legacy Summary",
+				"type": "summary"
+			},
+			{
+				"id": "caseinfoid",
+				"name": "Incident Info",
+				"sections": [
+					{
+						"displayType": "ROW",
+						"h": 2,
+						"i": "caseinfoid-field-changed-caseinfoid-tzrvq6dwsu-caseinfoid-fce71720-98b0-11e9-97d7-ed26ef9e46c8",
+						"isVisible": true,
+						"items": [
+							{
+								"endCol": 2,
+								"fieldId": "severity",
+								"height": 22,
+								"id": "incident-severity-field",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "type",
+								"height": 22,
+								"id": "incident-type-field",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"dropEffect": "move",
+								"endCol": 2,
+								"fieldId": "owner",
+								"height": 22,
+								"id": "incident-owner-field",
+								"index": 2,
+								"listId": "caseinfoid-fce71720-98b0-11e9-97d7-ed26ef9e46c8",
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "roles",
+								"height": 22,
+								"id": "73a95920-a6ae-11ea-ae9d-8553407179ff",
+								"index": 3,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"dropEffect": "move",
+								"endCol": 2,
+								"fieldId": "dbotcreated",
+								"height": 22,
+								"id": "incident-created-field",
+								"index": 4,
+								"listId": "caseinfoid-fce71720-98b0-11e9-97d7-ed26ef9e46c8",
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "dbotmodified",
+								"height": 22,
+								"id": "aae98040-6b2a-11eb-b6e3-958e174b52dc",
+								"index": 5,
+								"sectionItemType": "field",
+								"startCol": 0
+							}
+						],
+						"maxH": null,
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Case Details",
+						"static": false,
+						"w": 1,
+						"x": 0,
+						"y": 0
+					},
+					{
+						"h": 4,
+						"i": "caseinfoid-field-changed-caseinfoid-tzrvq6dwsu-caseinfoid-61263cc0-98b1-11e9-97d7-ed26ef9e46c8",
+						"maxH": null,
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Notes",
+						"static": false,
+						"type": "notes",
+						"w": 2,
+						"x": 1,
+						"y": 2
+					},
+					{
+						"displayType": "ROW",
+						"h": 4,
+						"i": "caseinfoid-field-changed-caseinfoid-tzrvq6dwsu-caseinfoid-6aabad20-98b1-11e9-97d7-ed26ef9e46c8",
+						"maxH": null,
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Work Plan",
+						"static": false,
+						"type": "workplan",
+						"w": 1,
+						"x": 0,
+						"y": 2
+					},
+					{
+						"displayType": "ROW",
+						"h": 2,
+						"i": "caseinfoid-field-changed-caseinfoid-tzrvq6dwsu-caseinfoid-7ce69dd0-a07f-11e9-936c-5395a1acf11e",
+						"maxH": null,
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Indicators",
+						"query": "",
+						"queryType": "input",
+						"static": false,
+						"type": "indicators",
+						"w": 2,
+						"x": 1,
+						"y": 6
+					},
+					{
+						"description": "### Select a Training Playbook\n\nSelect a playbook to run to demo the specific technique. Reference Links: [Cortex XSOAR Documentation](https://docs.paloaltonetworks.com/cortex/cortex-xsoar.html) or the [Cortex XSOAR Developer Guide](https://xsoar.pan.dev)\n",
+						"displayType": "ROW",
+						"h": 2,
+						"i": "caseinfoid-field-changed-caseinfoid-tzrvq6dwsu-caseinfoid-e54b1770-a0b1-11e9-b27f-13ae1773d289",
+						"isVisible": true,
+						"items": [
+							{
+								"args": {},
+								"buttonClass": "warning",
+								"dropEffect": "move",
+								"endCol": 4,
+								"fieldId": "",
+								"height": 44,
+								"id": "3415aa20-5aa9-11eb-8518-7914d11a41bc",
+								"index": 0,
+								"listId": "caseinfoid-e54b1770-a0b1-11e9-b27f-13ae1773d289",
+								"name": "Run XSOAR Training Playbook",
+								"scriptId": "3a2b5b4d-d61f-4978-87f6-00e99dad9560",
+								"sectionItemType": "button",
+								"startCol": 0
+							},
+							{
+								"args": {
+									"all": {
+										"simple": "yes"
+									}
+								},
+								"buttonClass": "error",
+								"dropEffect": "move",
+								"endCol": 4,
+								"fieldId": "",
+								"height": 44,
+								"id": "4fb7cab0-5aa9-11eb-8518-7914d11a41bc",
+								"index": 1,
+								"listId": "caseinfoid-e54b1770-a0b1-11e9-b27f-13ae1773d289",
+								"name": "Delete Context",
+								"scriptId": "DeleteContext",
+								"sectionItemType": "button",
+								"startCol": 0
+							}
+						],
+						"maxH": null,
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "XSOAR Training",
+						"static": false,
+						"w": 2,
+						"x": 1,
+						"y": 0
+					},
+					{
+						"h": 2,
+						"i": "caseinfoid-field-changed-caseinfoid-tzrvq6dwsu-caseinfoid-ecb3cfe0-5ce7-11eb-a634-51597a63b564",
+						"items": [],
+						"maxH": null,
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Team Members",
+						"static": false,
+						"type": "team",
+						"w": 1,
+						"x": 0,
+						"y": 6
+					}
+				],
+				"type": "custom"
+			},
+			{
+				"id": "workPlan",
+				"name": "Work Plan",
+				"type": "workPlan"
+			},
+			{
+				"id": "warRoom",
+				"name": "War Room",
+				"type": "warRoom"
+			},
+			{
+				"hidden": false,
+				"id": "8kkqzqrzxm",
+				"name": "Building a Use Case",
+				"sections": [
+					{
+						"description": "Do you want to build a use case?\n\nThis pack contains event generators for 2 different event types, which you can use to build out a use case.\n\n- XSOAR Event Generator (the OG), you can build out the below use case, everything you need is included.\n- XSOAR Event Generator v2 (the new kid), you can start from scratch, as no Incident Types, fields, classifiers, mappers, or layouts are included!\n\n\n# User falls for Phishing Email\n\nThis pack contains everything you should need to build the following use case: **Alert that a user has clicked a potentially malicious URL in a Phishing email.**\n\n\nTo accept this challenge, do the following:\n\n\n1. Configure the following integrations from this pack:\n    - Active Directory Query v2 (XSOAR Engineer Training)\n    - RandomThreatIntel\n    - XSOAR Engineer Training Event Generator\n    - Generic Export Indicators service (output malicious URLs for blocking)\n\n\n2. Setup Classification and Mapping for the events from the XSOAR Engineering Event Generator:\n    - Example Incident types are in this pack (Training - URL Clicks, Training - Email Alerts), but setup your own.\n    - Example Classifier and Mapper is included, again setup your own.\n    - Try to use OOTB fields if you can.\n\n\n3. Create Layouts for your Incident Types, using the mapped data.\n\n\n4. Fetch Events from the instance.\n\n\n5. Create a playbook to do the following:\n    - Lookup the user who clicked in AD.  (What happens if the user doesn't exist?)\n    - Validate if the Source IP of the click is from an internal IP range, and perhaps update this information to the reviewing Analyst\n    - Check to see if any malicious Indicators were flagged by Threat Intel, and if not ask for Analyst review and decide what to do about this alert.  \n    - Remediate by tagging the URL for blocking on the EDL.\n    - Create a sub-playbook to handle resetting the users password, so we can reuse this playbook in other playbooks.\n    - Run this playbook against the appropriate Incident Type.\n    - If you get stuck... reference the completed example playbook in this pack: XSOAR Engineer Training - URL Clicked Playbook (Completed)\n\n\n6. Now that you forgot to enable preprocessing and have several hundred or thousand of those fake alerts, create a preprocess rule to deal with them. \n\n## Fin.",
+						"displayType": "ROW",
+						"h": 7,
+						"hideName": false,
+						"i": "caseinfoid-8kkqzqrzxm-268eb090-5c1b-11eb-bd62-7d06b23b3b87",
+						"items": [],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Building a Use Case",
+						"static": false,
+						"w": 3,
+						"x": 0,
+						"y": 0
+					}
+				],
+				"type": "custom"
+			},
+			{
+				"hidden": false,
+				"id": "tzrvq6dwsu",
+				"name": "Automation Scripts",
+				"sections": [
+					{
+						"description": "This is a general purpose dynamic section.  Built using an automation script.  \n\nUseful for further customizing the layout to display information, or provide quick links for Analysts to utilize!",
+						"h": 7,
+						"i": "caseinfoid-tzrvq6dwsu-caseinfoid-tzrvq6dwsu-caseinfoid-tzrvq6dwsu-da8f8f10-5617-11eb-8ab9-cd65de8216f8",
+						"items": [],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Analyst Tools",
+						"query": "2c8d5c6c-4c26-4482-8004-cd617dc3516b",
+						"queryType": "script",
+						"static": false,
+						"type": "dynamic",
+						"w": 1,
+						"x": 0,
+						"y": 1
+					},
+					{
+						"description": "Incident or Indicator action buttons are automation scripts that are useful to help Analysts run ad-hoc commands to gather further information, take remediation action, pivot, tag indicators, you name it.  \n\nThe AD lookup button is an example of a custom automation, and Base64 is using an OOTB script. You can reference the AD lookup script as an example of how to build an automation script during live training.\n\nSample user: james.bond@demisto.local",
+						"displayType": "CARD",
+						"h": 3,
+						"hideItemTitleOnlyOne": true,
+						"hideName": false,
+						"i": "caseinfoid-tzrvq6dwsu-caseinfoid-tzrvq6dwsu-caseinfoid-tzrvq6dwsu-fd43fd20-5617-11eb-8ab9-cd65de8216f8",
+						"items": [
+							{
+								"args": {},
+								"buttonClass": "warning",
+								"endCol": 2,
+								"fieldId": "",
+								"height": 53,
+								"id": "af495d70-562d-11eb-881d-3791b0bfb3ac",
+								"index": 0,
+								"name": "Lookup Email in AD",
+								"scriptId": "03733133-8a19-42b5-8e51-0c841ec59bde",
+								"sectionItemType": "button",
+								"startCol": 0
+							},
+							{
+								"args": {},
+								"buttonClass": "success",
+								"dropEffect": "move",
+								"endCol": 4,
+								"fieldId": "",
+								"height": 53,
+								"id": "607fb000-a389-11eb-af3b-6193e9654740",
+								"index": 0,
+								"listId": "caseinfoid-tzrvq6dwsu-caseinfoid-tzrvq6dwsu-fd43fd20-5617-11eb-8ab9-cd65de8216f8",
+								"name": "Base64 Decode",
+								"scriptId": "Base64Decode",
+								"sectionItemType": "button",
+								"startCol": 2
+							},
+							{
+								"endCol": 4,
+								"fieldId": "trainingbase64",
+								"height": 22,
+								"id": "3bfd9bf0-a38b-11eb-af3b-6193e9654740",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 2
+							}
+						],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Analyst Actions",
+						"static": false,
+						"w": 2,
+						"x": 1,
+						"y": 1
+					},
+					{
+						"description": "This pack contains a number of automation scripts of various types which an be used for overview/training purposes.  \n\nAll automations can be found via the Automations section, search **tags:training** to find them.",
+						"displayType": "ROW",
+						"h": 1,
+						"hideName": false,
+						"i": "caseinfoid-tzrvq6dwsu-caseinfoid-tzrvq6dwsu-caseinfoid-tzrvq6dwsu-12ede670-5ce1-11eb-b8d7-8d7d12d67b37",
+						"items": [],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Automation Scripts",
+						"static": false,
+						"w": 3,
+						"x": 0,
+						"y": 0
+					},
+					{
+						"description": "The below automation scripts are part of this pack, you can find them in the automations menu.",
+						"h": 4,
+						"i": "caseinfoid-tzrvq6dwsu-caseinfoid-tzrvq6dwsu-caseinfoid-tzrvq6dwsu-4462fa00-6c9b-11eb-a34c-933e7c9667c5",
+						"items": [],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Training Automation Scripts",
+						"query": "224e202f-1c04-4796-8cdc-87aaa9b9ef1b",
+						"queryType": "script",
+						"static": false,
+						"type": "dynamic",
+						"w": 2,
+						"x": 1,
+						"y": 4
+					}
+				],
+				"type": "custom"
+			},
+			{
+				"hidden": false,
+				"id": "nqei0ehvuu",
+				"name": "Field Scripts",
+				"sections": [
+					{
+						"description": "There are 3 types of field scripts we can use on different XSOAR fields\n\n| Script Type | Functionality | Example Field |\n| --- | --- | --- |\n| Field Display Scripts | Can be used to change how a field displays to the user or even what the field displays to the user. | Training Multi Select |\n| Field Change Scripts | Can be used to execute when a field changes, say if Severity is set to Critical.... or uppercase text for fun. | Training Teams, Training Short Text, Training Grid Sort | \n| SLA Breach Scripts | SLA Breach Scripts can be used to run actions on an SLA Timer breach. | Training Example Timer | ",
+						"displayType": "CARD",
+						"h": 2,
+						"hideItemTitleOnlyOne": true,
+						"hideName": false,
+						"i": "caseinfoid-tzrvq6dwsu-caseinfoid-tzrvq6dwsu-caseinfoid-nqei0ehvuu-833fb440-59f2-11eb-a1d0-f1395a5add02",
+						"items": [],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Field Change / Field Display / SLA Scripts",
+						"static": false,
+						"w": 3,
+						"x": 0,
+						"y": 0
+					},
+					{
+						"description": "Don't see any fields here? Try clicking \"Show Empty Fields\" in the top right.  \n\nThe scripts attached to these fields can be found under the Automations menu.  To see the fields themselves, navigate to Settings -\u003e Advanced -\u003e Fields.",
+						"displayType": "CARD",
+						"h": 4,
+						"hideName": false,
+						"i": "caseinfoid-tzrvq6dwsu-caseinfoid-tzrvq6dwsu-caseinfoid-nqei0ehvuu-b54a79c0-5aa6-11eb-b686-1ba3704b290d",
+						"items": [
+							{
+								"endCol": 2,
+								"fieldId": "trainingmultiselect",
+								"height": 53,
+								"id": "9d6d0f20-59f2-11eb-a1d0-f1395a5add02",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"dropEffect": "move",
+								"endCol": 2,
+								"fieldId": "trainingshorttext",
+								"height": 53,
+								"id": "c580e050-6252-11eb-aa8f-9dd705a585f9",
+								"index": 1,
+								"listId": "caseinfoid-nqei0ehvuu-b54a79c0-5aa6-11eb-b686-1ba3704b290d",
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"dropEffect": "move",
+								"endCol": 2,
+								"fieldId": "trainingteams",
+								"height": 53,
+								"id": "f1407890-5aa5-11eb-b686-1ba3704b290d",
+								"index": 2,
+								"listId": "caseinfoid-nqei0ehvuu-b54a79c0-5aa6-11eb-b686-1ba3704b290d",
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"dropEffect": "move",
+								"endCol": 2,
+								"fieldId": "trainingoptionsfromlist",
+								"height": 53,
+								"id": "17fe8240-a387-11eb-af3b-6193e9654740",
+								"index": 3,
+								"listId": "caseinfoid-nqei0ehvuu-b54a79c0-5aa6-11eb-b686-1ba3704b290d",
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"dropEffect": "move",
+								"endCol": 2,
+								"fieldId": "trainingexampletimer",
+								"height": 53,
+								"id": "06586be0-6571-11eb-9660-f301a6efd5d9",
+								"index": 4,
+								"listId": "caseinfoid-nqei0ehvuu-b54a79c0-5aa6-11eb-b686-1ba3704b290d",
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"dropEffect": "move",
+								"endCol": 6,
+								"fieldId": "traininggridfieldsort",
+								"height": 106,
+								"id": "85c6b310-a2c9-11eb-bd6e-efcf75ea1a86",
+								"index": 0,
+								"listId": "caseinfoid-nqei0ehvuu-b54a79c0-5aa6-11eb-b686-1ba3704b290d",
+								"sectionItemType": "field",
+								"startCol": 2
+							},
+							{
+								"endCol": 6,
+								"fieldId": "traininggridsetgridfield",
+								"height": 106,
+								"id": "3035ae50-a2ca-11eb-bd6e-efcf75ea1a86",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 2
+							}
+						],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Field Automation Scripts",
+						"static": false,
+						"w": 3,
+						"x": 0,
+						"y": 2
+					}
+				],
+				"type": "custom"
+			},
+			{
+				"hidden": false,
+				"id": "jznuqqgfuy",
+				"name": "BYOI",
+				"sections": [
+					{
+						"description": "The following BYOI integrations are provided in this pack.\n\n# IP Info\n\nThere is an example integration for using IPInfo to check an IP.  Yes we have it in the marketplace, but it's also a good teaching tool. \n\n# OpenWeather API\n\nNeed to check and see if it's time for a half day?\n\nThis pack includes an example integration (OpenWeather), which can be configured to check the weather and determine if you're better off biking instead of working.\n\nYou can also use it to review writing a BYOI with a customer.  After the half day. \n\nReference Doc: [XSOAR BYOI Tutorial](https://xsoar.pan.dev/docs/tutorials/tut-integration-ui)",
+						"displayType": "ROW",
+						"h": 5,
+						"hideItemTitleOnlyOne": true,
+						"hideName": false,
+						"i": "caseinfoid-jznuqqgfuy-c5635d40-6573-11eb-9f12-afc7de3722e0",
+						"items": [
+							{
+								"args": {},
+								"buttonClass": "success",
+								"dropEffect": "move",
+								"endCol": 6,
+								"fieldId": "",
+								"height": 53,
+								"id": "73ac1ad0-6575-11eb-9f12-afc7de3722e0",
+								"index": 0,
+								"listId": "jznuqqgfuy-c5635d40-6573-11eb-9f12-afc7de3722e0",
+								"name": "Half Day?",
+								"scriptId": "70d97e52-d265-488f-8471-d8d6a0a6ef8d",
+								"sectionItemType": "button",
+								"startCol": 0
+							}
+						],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Bring Your Own Integration",
+						"static": false,
+						"w": 3,
+						"x": 0,
+						"y": 0
+					}
+				],
+				"type": "custom"
+			},
+			{
+				"hidden": false,
+				"id": "svhg30qtie",
+				"name": "Custom Indicators",
+				"sections": [
+					{
+						"h": 7,
+						"i": "caseinfoid-svhg30qtie-678c1780-6cca-11eb-bbcd-05bea5511333",
+						"items": [],
+						"maxH": null,
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Custom Indicators",
+						"query": "7de81f49-97f7-4d2a-887f-8d9240d30daa",
+						"queryType": "script",
+						"static": false,
+						"type": "dynamic",
+						"w": 2,
+						"x": 0,
+						"y": 0
+					},
+					{
+						"description": "You can use this button to quickly exclude the private IP ranges on your server.   ",
+						"displayType": "ROW",
+						"h": 2,
+						"hideName": false,
+						"i": "caseinfoid-svhg30qtie-914b31f0-6cca-11eb-bbcd-05bea5511333",
+						"items": [
+							{
+								"args": {},
+								"buttonClass": "warning",
+								"endCol": 2,
+								"fieldId": "",
+								"height": 44,
+								"id": "b7d0a530-6cca-11eb-bbcd-05bea5511333",
+								"index": 0,
+								"name": "Exclude Private IP CIDRs",
+								"scriptId": "e4a6e779-592f-4984-8274-6bc50335134a",
+								"sectionItemType": "button",
+								"startCol": 0
+							},
+							{
+								"args": {},
+								"buttonClass": "success",
+								"endCol": 2,
+								"fieldId": "",
+								"height": 22,
+								"id": "23bf9730-6cd3-11eb-834e-c120f224b911",
+								"index": 1,
+								"name": "Create Custom Indicator Types (Private IP/CXHost)",
+								"scriptId": "dd8a69d3-d040-49ab-8f81-bdaedbbe27c6",
+								"sectionItemType": "button",
+								"startCol": 0
+							}
+						],
+						"maxH": null,
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Quick Setup",
+						"static": false,
+						"w": 1,
+						"x": 2,
+						"y": 0
+					},
+					{
+						"description": "Example exclusions for Indicators:\n\nPrivate CIDR Ranges\n- Add the following CIDR exclusions to exclude internal IPs from extraction and enrichment. \n- Make sure to set the Indicator Type to \"IP\"\n- 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16\n\nDomain and URL Regex\n- To ignore domains or urls from extraction and enrichment.\n- Useful for internal tools, and known good sites.\n\nIndicator Type (Domain + URL)\nRegex: (?i)(?:https:\\/\\/www\\.paloaltonetworks\\.com/.*)\n\nDomain (ALL domains for example)\nRegex: (?i)(.*\\.)?paloaltonetworks\\.com\n",
+						"displayType": "ROW",
+						"h": 5,
+						"hideName": false,
+						"i": "caseinfoid-6dfa89d0-860f-11ec-98d8-bd59f15af601",
+						"items": [],
+						"maxH": null,
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Exclusions",
+						"static": false,
+						"w": 1,
+						"x": 2,
+						"y": 2
+					}
+				],
+				"type": "custom"
+			},
+			{
+				"hidden": false,
+				"id": "p2jsv8wjmm",
+				"name": "Playbooks",
+				"sections": [
+					{
+						"description": "The following playbooks are part of this pack, and can be used as references for the techniques demonstrated.",
+						"h": 25,
+						"i": "caseinfoid-p2jsv8wjmm-caseinfoid-56e99250-a2cf-11eb-9c8a-93150f77609d",
+						"items": [],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Playbooks",
+						"query": "75304136-1bee-4d0d-8fc5-5ffbe1d43932",
+						"queryType": "script",
+						"static": false,
+						"type": "dynamic",
+						"w": 3,
+						"x": 0,
+						"y": 0
+					}
+				],
+				"type": "custom"
+			},
+			{
+				"hidden": true,
+				"id": "evidenceBoard",
+				"name": "Evidence Board",
+				"type": "evidenceBoard"
+			},
+			{
+				"hidden": true,
+				"id": "relatedIncidents",
+				"name": "Related Incidents",
+				"type": "relatedIncidents"
+			},
+			{
+				"hidden": true,
+				"id": "canvas",
+				"name": "Canvas",
+				"type": "canvas"
+			}
+		]
+	},
+	"edit": {
+		"sections": [
+			{
+				"description": "### Setup\n\nIf this is your first time running this pack, please ensure to follow the instructions in the Setup playbook that kicks off. \n",
+				"isVisible": true,
+				"name": "XSOAR Training Pack",
+				"query": null,
+				"queryType": "",
+				"readOnly": false,
+				"type": ""
+			},
+			{
+				"description": "",
+				"fields": [
+					{
+						"fieldId": "incident_name",
+						"isVisible": true
+					},
+					{
+						"fieldId": "incident_type",
+						"isVisible": true
+					},
+					{
+						"fieldId": "incident_owner",
+						"isVisible": true
+					}
+				],
+				"isVisible": true,
+				"name": "Basic Information",
+				"query": null,
+				"queryType": "",
+				"readOnly": false,
+				"type": ""
+			},
+			{
+				"description": "These are the custom fields associated with this Incident Type.  They have field display or change scripts on them, for demo purposes.\n\nThis is probably a good place to mention you can update the New/Edit layout for an Incident type....",
+				"fields": [
+					{
+						"fieldId": "incident_trainingmultiselect",
+						"isVisible": true
+					},
+					{
+						"fieldId": "incident_trainingteams",
+						"isVisible": true
+					},
+					{
+						"fieldId": "incident_trainingshorttext",
+						"isVisible": true
+					}
+				],
+				"isVisible": true,
+				"name": "Training - Custom Fields",
+				"query": null,
+				"queryType": "",
+				"readOnly": false,
+				"type": ""
+			}
+		]
+	},
+	"fromServerVersion": "",
+	"group": "incident",
+	"id": "0d3331a2-6223-475c-8f1e-5faa2eef4d8e",
+	"indicatorsDetails": null,
+	"indicatorsQuickView": null,
+	"itemVersion": "1.1.1",
+	"locked": false,
+	"mobile": {
+		"sections": [
+			{
+				"description": "",
+				"fields": [
+					{
+						"fieldId": "incident_type",
+						"isVisible": true
+					},
+					{
+						"fieldId": "incident_name",
+						"isVisible": true
+					},
+					{
+						"fieldId": "incident_details",
+						"isVisible": true
+					},
+					{
+						"fieldId": "incident_severity",
+						"isVisible": true
+					},
+					{
+						"fieldId": "incident_dbotstatus",
+						"isVisible": true
+					},
+					{
+						"fieldId": "incident_owner",
+						"isVisible": true
+					},
+					{
+						"fieldId": "incident_roles",
+						"isVisible": true
+					},
+					{
+						"fieldId": "incident_playbookid",
+						"isVisible": true
+					}
+				],
+				"isVisible": true,
+				"name": "Basic Information",
+				"query": null,
+				"queryType": "",
+				"readOnly": false,
+				"type": ""
+			},
+			{
+				"description": "",
+				"fields": [
+					{
+						"fieldId": "incident_dbotcreated",
+						"isVisible": true
+					},
+					{
+						"fieldId": "incident_occurred",
+						"isVisible": true
+					},
+					{
+						"fieldId": "incident_dbotduedate",
+						"isVisible": true
+					},
+					{
+						"fieldId": "incident_dbotmodified",
+						"isVisible": true
+					},
+					{
+						"fieldId": "incident_dbottotaltime",
+						"isVisible": true
+					}
+				],
+				"isVisible": true,
+				"name": "Timeline Information",
+				"query": null,
+				"queryType": "",
+				"readOnly": false,
+				"type": ""
+			},
+			{
+				"description": "",
+				"fields": [
+					{
+						"fieldId": "incident_labels",
+						"isVisible": true
+					}
+				],
+				"isVisible": true,
+				"name": "Labels",
+				"query": null,
+				"queryType": "",
+				"readOnly": true,
+				"type": "labels"
+			}
+		]
+	},
+	"name": "Training - General Layout",
+	"packID": "",
+	"packName": "",
+	"propagationLabels": [
+		"all"
+	],
+	"quickView": {
+		"sections": [
+			{
+				"description": "",
+				"fields": [
+					{
+						"fieldId": "incident_name",
+						"isVisible": true
+					},
+					{
+						"fieldId": "incident_type",
+						"isVisible": true
+					},
+					{
+						"fieldId": "incident_owner",
+						"isVisible": true
+					},
+					{
+						"fieldId": "incident_playbookid",
+						"isVisible": true
+					}
+				],
+				"isVisible": true,
+				"name": "Basic Information",
+				"query": null,
+				"queryType": "",
+				"readOnly": false,
+				"type": ""
+			},
+			{
+				"description": "",
+				"fields": [
+					{
+						"fieldId": "incident_dbotcreated",
+						"isVisible": true
+					},
+					{
+						"fieldId": "incident_occurred",
+						"isVisible": true
+					},
+					{
+						"fieldId": "incident_dbotduedate",
+						"isVisible": true
+					},
+					{
+						"fieldId": "incident_dbotmodified",
+						"isVisible": true
+					},
+					{
+						"fieldId": "incident_dbottotaltime",
+						"isVisible": true
+					}
+				],
+				"isVisible": true,
+				"name": "Timeline Information",
+				"query": null,
+				"queryType": "",
+				"readOnly": false,
+				"type": ""
+			}
+		]
+	},
+	"quickViewV2": null,
+	"system": false,
+	"toServerVersion": "",
+	"version": -1
+}
