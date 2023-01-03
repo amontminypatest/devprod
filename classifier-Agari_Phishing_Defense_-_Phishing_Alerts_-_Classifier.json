@@ -1,0 +1,36 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "Agari Phishing Defense Policy Event",
+	"definitionId": "",
+	"description": "Classifies Agari Phishing Defense alerts as Phishing Alerts incident type.",
+	"feed": false,
+	"fromServerVersion": "6.0.0",
+	"id": "f2b5dfe0-6c36-4edc-86c2-1b23e0798c19",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "1.1.3",
+	"keyTypeMap": {
+		"Agari Phishing Defense Policy Event": "Phishing Alerts"
+	},
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": null,
+	"name": "Agari Phishing Defense - Phishing Alerts - Classifier",
+	"nameRaw": "Agari Phishing Defense - Phishing Alerts - Classifier",
+	"packID": "AgariPhishingDefense",
+	"packName": "Agari Phishing Defense",
+	"packPropagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {
+		"simple": ".=\"Agari Phishing Defense Policy Event\""
+	},
+	"type": "classification",
+	"unclassifiedCases": null,
+	"version": -1
+}
