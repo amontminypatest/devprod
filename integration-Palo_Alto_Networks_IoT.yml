@@ -1,0 +1,1056 @@
+category: Network Security
+commonfields:
+  id: Palo Alto Networks IoT
+  version: -1
+configuration:
+- defaultvalue: https://example.iot.paloaltonetworks.com
+  display: Palo Alto Networks IoT Security Portal URL (e.g. https://example.iot.paloaltonetworks.com)
+  name: url
+  required: true
+  type: 0
+- defaultvalue: paloaltonetworks
+  display: Tenant ID
+  name: tenant_id
+  required: true
+  type: 0
+- display: Access Key ID
+  name: access_key_id
+  required: true
+  type: 0
+- display: Secret Access Key
+  name: secret_access_key
+  required: true
+  type: 4
+- display: Trust any certificate (not secure)
+  name: insecure
+  required: false
+  type: 8
+- display: Use system proxy settings
+  name: proxy
+  required: false
+  type: 8
+- additionalinfo: 'The format: <number> <time unit>. e.g., 12 hours, 7 days, 2 seconds
+    etc.'
+  defaultvalue: 7 days
+  display: First fetch time
+  name: first_fetch
+  required: false
+  type: 0
+- additionalinfo: Maximal number of events is 100
+  defaultvalue: "10"
+  display: Maximum number of incidents per fetch
+  name: max_fetch
+  required: false
+  type: 0
+- additionalinfo: When selected, the integration fetches IoT alerts from the IoT Security
+    Portal.
+  defaultvalue: "true"
+  display: Fetch IoT Alerts
+  name: fetch_alerts
+  required: false
+  type: 8
+- additionalinfo: When selected, the integration fetches IoT vulnerabilities from
+    the IoT Security Portal.
+  defaultvalue: "true"
+  display: Fetch IoT Vulnerabilities
+  name: fetch_vulns
+  required: false
+  type: 8
+- defaultvalue: "60"
+  display: The timeout for querying APIs
+  name: api_timeout
+  required: false
+  type: 0
+- display: Incident type
+  name: incidentType
+  required: false
+  type: 13
+- display: Fetch incidents
+  name: isFetch
+  required: false
+  type: 8
+- defaultvalue: "1"
+  display: Incidents Fetch Interval
+  name: incidentFetchInterval
+  required: false
+  type: 19
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.0.16
+    packID: PaloAltoNetworks_IoT
+    packName: IoT by Palo Alto Networks
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: This is the Palo Alto Networks IoT integration (previously Zingbox).
+detaileddescription: |-
+  ## Get your Palo Alto Networks IoT Access Keys
+  This integration requires that API access be configured.
+
+  To obtain the **Access Key ID** and **Secret Access Key**, please refer to the official **Zingbox API User Guide**:
+  https://docs.paloaltonetworks.com/iot/iot-security-api-reference/iot-security-api-overview/get-started-with-the-iot-security-api.html
+
+
+  ---
+  [View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/palo-alto-networks-io-t)
+display: Palo Alto Networks IoT
+image: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAAyCAYAAACXpx/YAAAABGdBTUEAALGPC/xhBQAADNlJREFUeAHtWgtwVNUZPufefeUdoqBUYnY3m5CQClR8YalSh9aiYqCVzuALaJVqO/XB1KqjYzO2+ADro2MZtXUyPLRaRE1ttU61ZIoWBwkgIRaS3ewGH6Ahj40J2WT33tPvv8m53F13SQJi1d47k5zXf/7/nO87/zn/OQlj9mcjYCNgI2AjYCNgI2AjYCNgI2AjYCNgI2AjYCNgI2AjYCNgI2AjYCNgI2AjYCNgI2AjYCPwf4oAH828o5eW3ci5aM2vC76UTr5rfqBG5cpr+S80v5Gu/YtQF/D66oUQ5w+Nhb8Ragt/6/MaV8Dr3SEEmz5s+2+wfcnnZVsZyVBXdeBmnekP64w911MdmJcq310duJfp4learr/Ss6B8Vmq7Xc6MwNTS0gnlfv+sQIn/R+Xl5adkljz6liMSTOQyIR4k9Vj9rlSSiVzU32aYFyLXJnn0RJSXlM7tS2gfaZq+WTD9SX1AP3X0vUcv6cgkaiVXyhgkc06efBnIPtck97CAJHnuF3m7lsP9KqYBb+AcRdFzNJ07PTmerWkJTkeuBGPIk5VKwUWVrLOmXAgoF2WoG9V5XFbi/z50/dLQwVnDlYsX/3xd7ZrbGWdXIUCYiLOrEW2vFJ5YtLKhoSEubS1cuFDdsW3bRWj/AeqmYIsJQL6fcR7EfvPyJOZ9pD5SH5PyI6VlPt95QmfXwO5UwZiXCdaCuGMXE45Hg23BHdb+M2bMcPZ0dV0qNDEfspWMi1IueC9S2FbqCk4Y93vrWK19M+cTf0Sc8IlsF0ypCUVCf6cyMOcBv/8aYHsRxjWVMZ4PW42Qedvpca3cs2dPB8lVVVW54v39OboQczH2dxL9Cf+ngqwjkUtKOOe3F9YF7xMLq1zdgwPPwbp5LkMZbPJrC18MPkmyo/kCXv/1Quirh2X3Q/9mTOiHqX05Z1sUl+vS5ubmg3Re6QPxesFEIFVOljGWVkeW5yw5+UxBFpHV3dH5KOZxLfp+Cg/OeAKT/m0w0mocRZV+f9mgLl6DfMYtFUqaVI975t69ew3C0gVZtEVrTHtZjjc15Qq/KhgOr6/wVngTLPY0FvLMVBkqY3wHFaYsa24LvRAIBNwiLs5VmH6RzsU2h+IOJZ3BoyXXMPTn3XHOxIfSaCq5oma2I1pdWjvGwAseO0QuiB6UuimlCYLU+ygP4GBXqJQ3P86jmO0BWYZn+RP9A4/IcqY02tF1B5QvQ7tJrtU2FpEDC/DWMq//OtKRPW5cBImH8vJDx04sgo9lGbartMFBY6yybqQUNntIj/yB/EBNTY2SjlzImjsZxneixrWny73lFcFgcMDhYINc5fB8NYqRR0yCx0IubRnR+YHVAP0nNHAMKslzDXK3v/+0LtiSMQdenO9TFX52S7jVwxzqGdAdluBgMkuxSqdggoJx5Q9DhPI7XQr3hiLhwlAkMpFz5W4pj3bs5AuTF4LZyFiF318Ocu8wqzhvge3pZNvhUGfBtrmAMedVsD2etl54TS3G8B52q1u401EcbIucAPsnYUzmghK6WGTqHU1GqN8jPeZPOLxhfe3a66yeC7sbVbdrPHDJUzijBYdQCJ9gHp3FH6Ps3lDozebW1tdpe6fdziD4KMk1VnQmckHGQjIIAGXgNaorlKLw5c3h8FYiMRQKNQDEmww9Q78UpmnnUjY7P/d3npycEtwpV8RV9RCuG3PougGD50t5kOJqbGgoleXUNC7EbPJQWQ9yfwrb75BtAgq2jW2Z2iGXC9vnUF51O1dM8pb4Q+HwA+6EOxHw+b5b6vNdy5l+NrUPf+O+7vOdJAtHkwquz7H061I9rqVEGnlqSyTyOI6tZ2Q75jprtne2R5ZlqhxXcqWVMZCsulz1shulKG+ylrFgjOBO07R47NChGwIl3pCIJz7GdeMfdN3ARE2CqR8CjowgI2gZfnwwLOjOrKx/JdlS1VTb36D2oqKixAdtbbeVen1tMdG3H976Kgw9AW8zFoDUgX00o20pM0Jq2BuS4Q3yTJd9BOf1Mo9U/VDZd5qlbGQVuHBxaqUsYyUbARWVAZzclkfnuVKJmQoVW7bbLGbI5OTk9FubHA7HAMpC1mFvzqazKdbb9wpAXYUGv2wbDogo6h7lx3OkIOaawHaekGVKYTtpLIiQsykoa99/oF7Xxa8BihlooT+2btZk7X+seczHMj7cEFI+2Euq03XFlJeiSkFdcLnC+UOyQqafKbmc9XOuzit8sfl1qT9TGu2I4hpw+IvFYrQqMZehD5P+z1Nr1y5A6QJZh7NvpUNVzhz/tZPzscXfbtaPkIHH7ZIitJ0/VfvUZFmmVMTj06xlprDG6MGuqyB7lqzHNlmDc3gGnYucKffI+rGmqkPA15K/pPExcRo5mVWC6yxpfO4ctzkfKWcoTSX5f0UuDUqIxAp4STbl6Uzhmp4CmrITQpatix0qPGHcnXtbW7dt2bKlX9eSt2jSk+lTFbbV2iZ44n66S1Id0txEQr/b2o7D+m2M0LQNnNpbwuG7cSZup3NR5+w8q/yR8tzBeqztCEbN46LS5yuhNoQCh8cnmLfMV3qj7FNWUlYJe3S1Mz4wH2pqauqUZZmaAQaRHK0O0F74Md1zSeCYt+UxeK4cENILogc7mgMlvh3vi7bpCG4myTZM4t/BSLAed+dKjE5WZ3d3dNThoWITxluJn6tlw0gpAqrNuB/XoU81ySKdF+s71FJa4mvEEXA6qiaaOrjy+J7W1mbY/gCCRjXkx8Pu8wiw3oQ3Tcd16nJTfoSMxnlzkohg92Is38EoSnDPngYCq1w5rgdifX1LMdWTSRb6H8LYrsSu0amL+DdRbziC0cbVXyTpGy4kbQtEciZyDXlcfAEynYlMXoXMaHlYoZkcHbnUfT/gOwV6L7GSi+Uc5dz5MxJws6wXsFUfpLzxCTYXZ+JK4L4UcnhNGv3n4bjqWcE2zlVxMTQcJpfxBk9OlgEgIuhn4bmHX5wEmz8UC4grkvSMMAR4fDvm8JwUw2LJo4WGOZAn42Esvow8EngvsdoD8jMgh4VwmFy6nuFa9KLUZU2TCJYNUJAUUB2uZwra1kQXlF4dxT33OJDLnKpyIez9U9pEqmO+b6gu5+ktkZadVN8UaTqA6BAk8N1SDiAM4qR+xpOTfQbySduflEmX7g6HP+IOdSrO7hXo126VAbgf0l339LPOOBtg91IbItkwQJ4HMltMWc5i8Kpah9t1JkhLCtRMmTQZxe28nsac2gRdm6B/E9UHI5FXcb5PgdzzGE+fRVaHzC68eF0YirTeZKlPyqJP+g/b9YO4Ytyc2mpMQLAr4Mp4ohRXprZjIKMOqKhvylMlc3jcp9BLlfFEJxITmZM1YbWnJYwW4hS//1Sd8/GaojTSOUg6J0+enJc1kGU8cJSdWfbJhg0bNDpTnX1O40iK58QTkjCSt350d40J1efwOFrkM6e1XebJNuz4dF0vLCgowHV76J0cjyH5uYlcw3HmL5nfg4hft9rW8/X4rl27rESxGX5/QTfnAVXXE568vGBqu7RJt4d169b5US6YMGHCuxRzyLZMaUaCqUMqycOr8/LCvwQ3CBjr3r5+TRLJYySXbGQimNrs79gRMIOsdKpk4EWebCWXZDlWJkheDJJRgicfBbnpbH6Z6+hZFF6f39jY2AWvLdq9e3fXNDxv0pychYW9rKvLGefceAsoKi7ubG9vz0ef7o0bNxZUVFT0tLzdkrczsrN75syZWZ2dnQ562KCbRKf6Xj71xy5xiNoGBwd5Xkeevt+930ky9I8DRVpxT7q/nh3RgyXY3dVlqxDCbSXPlXUyJU+O7lj/GA76Z0dzz5X9ZPpV8mB6J2cJbQdi0fNwQD6Bs30Oynj8EC8Jpm7gTJuGAJLOy+1CUa7nutiM59Ef65r+DBzkCjzoL8Bz55+w+/8GVyQ8nKhr0QcPZewGtA8iRrhL6LyMK6IIwdgcnM3LWSKBgIt/G3oP4D18icRVpmmDLNko08K6llvSkUvt5MmIvJcdDbnUfxI7tZYe0OXPokWLDlD9l/YTYhvAX22OH09vuHu46I/vCJjuh0ftdHC+vLW1dR8a3tU0cStE3gKpt4BUPAQpF+DhaTXIxH/LDL9F45UI+hDwsxjpxd+tF+O3QMyxHXLbcV3qha6TKC4w7Q5njrhFpwofj/LwtmIMnPQjkDgeZj4XnW63u3dA1/+qcv4WHi4uy83NjfdGo1vwty9tsL9/NgbxPAjZ5lZVI8hSmLpGV/SLXar64GBCu8ednf06j/G3YnrfXbgnqW63Y1U8kRiPPg+jbzHH0ymPx/fBrW5lQimlP3LAQ4sRZMZBMv5BAZbsz0bARsBGwEbARsBGwEbARsBGwEbARsBGwEbARsBGwEbARsBGwEbARsBGwEbARuCzROC/A75cYaeLqTEAAAAASUVORK5CYII=
+name: Palo Alto Networks IoT
+script:
+  commands:
+  - arguments:
+    - description: The device uid (mac address)
+      name: id
+      required: true
+    description: IoT get device command - get a single device's details.
+    name: iot-security-get-device
+    outputs:
+    - contextPath: PaloAltoNetworksIoT.Device
+      description: Device details.
+      type: unknown
+    - contextPath: PaloAltoNetworksIoT.Device.hostname
+      description: The hostname of the device.
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.ip_address
+      description: The IP address of the device.
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.profile_type
+      description: 'The device profile type: Non_IoT vs IoT.'
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.profile_vertical
+      description: The device profile vertical.
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.category
+      description: The device category
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.profile
+      description: The device profile.
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.last_activity
+      description: The last activity timestamp of the device.
+      type: Date
+    - contextPath: PaloAltoNetworksIoT.Device.long_description
+      description: The long description of the device.
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.vlan
+      description: The device VLAN ID.
+      type: Number
+    - contextPath: PaloAltoNetworksIoT.Device.site_name
+      description: The site which the device is in.
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.risk_score
+      description: The device risk score.
+      type: Number
+    - contextPath: PaloAltoNetworksIoT.Device.risk_level
+      description: 'The device risk level: Low, Medium, High, Critical'
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.subnet
+      description: The device subnet.
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.first_seen_date
+      description: The first seen date of the device.
+      type: Date
+    - contextPath: PaloAltoNetworksIoT.Device.confidence_score
+      description: The device confidence score.
+      type: Number
+    - contextPath: PaloAltoNetworksIoT.Device.deviceid
+      description: The device ID.
+      type: Date
+    - contextPath: PaloAltoNetworksIoT.Device.location
+      description: The device location.
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.vendor
+      description: The device vendor.
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.model
+      description: The device model.
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.description
+      description: The device description.
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.asset_tag
+      description: The device asset tag (e.g. a sticky label at the bottom of the
+        device).
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.os_group
+      description: The device OS group.
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.Serial_Number
+      description: The device serial number.
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.DHCP
+      description: 'Whether the device is in DHCP model: Valid values are Yes or No.'
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.wire_or_wireless
+      description: Is the device wired or wireless.
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.department
+      description: The device department.
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.Switch_Port
+      description: The port of the switch this device is connected to.
+      type: Number
+    - contextPath: PaloAltoNetworksIoT.Device.Switch_Name
+      description: The name of the switch this device is connected to.
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.Switch_IP
+      description: The IP of the switch this device is connected to.
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.Access_Point_IP
+      description: The IP of the access point this device is connected to.
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.Access_Point_Name
+      description: The name of the access point this device is connected to.
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.SSID
+      description: The SSID of the wireless network this device is connected to.
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.MAC
+      description: The device MAC address.
+      type: Date
+    - contextPath: PaloAltoNetworksIoT.Device.display_tags
+      description: The user tags of the device.
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.mac_address
+      description: The device MAC address.
+      type: String
+  - arguments:
+    - description: The device ip (ip address)
+      name: ip
+      required: true
+    description: IoT get device command - get a single device's details.
+    name: iot-security-get-device-by-ip
+    outputs:
+    - contextPath: PaloAltoNetworksIoT.Device
+      description: Device details.
+      type: unknown
+    - contextPath: PaloAltoNetworksIoT.Device.hostname
+      description: The hostname of the device.
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.ip_address
+      description: The IP address of the device.
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.profile_type
+      description: 'The device profile type: Non_IoT vs IoT.'
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.profile_vertical
+      description: The device profile vertical.
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.category
+      description: The device category
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.profile
+      description: The device profile.
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.last_activity
+      description: The last activity timestamp of the device.
+      type: Date
+    - contextPath: PaloAltoNetworksIoT.Device.long_description
+      description: The long description of the device.
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.vlan
+      description: The device VLAN ID.
+      type: Number
+    - contextPath: PaloAltoNetworksIoT.Device.site_name
+      description: The site which the device is in.
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.risk_score
+      description: The device risk score.
+      type: Number
+    - contextPath: PaloAltoNetworksIoT.Device.risk_level
+      description: 'The device risk level: Low, Medium, High, Critical'
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.subnet
+      description: The device subnet.
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.first_seen_date
+      description: The first seen date of the device.
+      type: Date
+    - contextPath: PaloAltoNetworksIoT.Device.confidence_score
+      description: The device confidence score.
+      type: Number
+    - contextPath: PaloAltoNetworksIoT.Device.deviceid
+      description: The device ID.
+      type: Date
+    - contextPath: PaloAltoNetworksIoT.Device.location
+      description: The device location.
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.vendor
+      description: The device vendor.
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.model
+      description: The device model.
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.description
+      description: The device description.
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.asset_tag
+      description: The device asset tag (e.g. a sticky label at the bottom of the
+        device).
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.os_group
+      description: The device OS group.
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.Serial_Number
+      description: The device serial number.
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.DHCP
+      description: 'Whether the device is in DHCP model: Valid values are Yes or No.'
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.wire_or_wireless
+      description: Is the device wired or wireless.
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.department
+      description: The device department.
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.Switch_Port
+      description: The port of the switch this device is connected to.
+      type: Number
+    - contextPath: PaloAltoNetworksIoT.Device.Switch_Name
+      description: The name of the switch this device is connected to.
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.Switch_IP
+      description: The IP of the switch this device is connected to.
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.Access_Point_IP
+      description: The IP of the access point this device is connected to.
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.Access_Point_Name
+      description: The name of the access point this device is connected to.
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.SSID
+      description: The SSID of the wireless network this device is connected to.
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.MAC
+      description: The device MAC address.
+      type: Date
+    - contextPath: PaloAltoNetworksIoT.Device.display_tags
+      description: The user tags of the device.
+      type: String
+    - contextPath: PaloAltoNetworksIoT.Device.mac_address
+      description: The device MAC address.
+      type: String
+  - arguments:
+    - description: The offset in the pagination.
+      name: offset
+    - description: The maximum size of the list of the devices.
+      name: limit
+    description: IoT list devices command
+    name: iot-security-list-devices
+    outputs:
+    - contextPath: PaloAltoNetworksIoT.DeviceList
+      description: List of devices.
+      type: unknown
+  - arguments:
+    - description: The start time in the format of ISO 8601 in UTC, e.g. 2018-11-06T08:56:41Z.
+      name: start_time
+    - description: The offset in the pagination.
+      name: offset
+    - description: The maximum size of the list of the alerts.
+      name: limit
+    description: IoT list alerts.
+    name: iot-security-list-alerts
+    outputs:
+    - contextPath: PaloAltoNetworksIoT.Alerts
+      description: List of alerts.
+      type: unknown
+  - arguments:
+    - description: The start time in the format of ISO 8601 in UTC, e.g. 2018-11-06T08:56:41Z.
+      name: start_time
+    - description: The offset in the pagination.
+      name: offset
+    - description: The maximum size of the list of the vulnerabilities.
+      name: limit
+    description: IoT list Vulnerabilities.
+    name: iot-security-list-vulns
+    outputs:
+    - contextPath: PaloAltoNetworksIoT.Vulns
+      description: List of vulnerabilities.
+      type: unknown
+  - arguments:
+    - description: The alert ID
+      name: id
+      required: true
+    - description: The alert resolution reason.
+      name: reason
+    - description: The alert resolution reason type (No Action Needed, Issue Mitigated).
+      name: reason_type
+      predefined:
+      - No Action Needed
+      - Issue Mitigated
+    description: Resolving an IoT alert.
+    name: iot-security-resolve-alert
+  - arguments:
+    - description: The vulnerability ID.
+      name: id
+      required: true
+    - description: The vulnerability full name.
+      name: full_name
+      required: true
+    - description: The vulnerability resolution reason.
+      name: reason
+    description: Resolving an IoT vulnerability.
+    name: iot-security-resolve-vuln
+  dockerimage: demisto/python3:3.10.5.31928
+  isfetch: true
+  runonce: false
+  script: |
+    register_module_line('Palo Alto Networks IoT', 'start', __line__())
+    import dateparser
+    from datetime import datetime, timezone
+    import json
+    import time
+    from typing import Any, Optional
+
+
+    import requests
+
+
+
+    # IMPORTS
+
+
+    # Disable insecure warnings
+    requests.packages.urllib3.disable_warnings()
+
+    # CONSTANTS
+    # api list size limit
+    PAGELENGTH = 100
+
+
+    class Client(BaseClient):
+        """
+        Client will implement the service API, and should not contain any Demisto logic.
+        Should only do requests and return data.
+        """
+        def __init__(self, base_url, tenant_id, first_fetch='-1', max_fetch=10, api_timeout=60, verify=True, proxy=False,
+                     ok_codes=tuple(), headers=None):
+            super().__init__(base_url, verify=verify, proxy=proxy, ok_codes=ok_codes, headers=headers)
+            self.tenant_id = tenant_id
+            self.api_timeout = api_timeout
+            self.first_fetch = first_fetch
+            self.max_fetch = min(max_fetch, PAGELENGTH)
+
+        def _http_request(self, **kwargs):
+            try:
+                return super()._http_request(**kwargs)
+            except DemistoException as error:
+                error_message = error.args[0]
+                if '[404]' in error_message:
+                    ind = error_message.find('Not Found')
+                    new_message = error_message[:ind] + '\nValidate your server url address'
+                    raise DemistoException(new_message)
+                elif '[403]' in error_message:
+                    ind = error_message.find('Forbidden')
+                    new_message = error_message[:ind] + '\nValidate your Tenant ID, Access Key ID or Secret Access Key '
+                    raise DemistoException(new_message)
+                else:
+                    raise error
+
+        def get_device(self, id):
+            """
+            Get a device from IoT security portal by device ID
+            """
+            return self._http_request(
+                method='GET',
+                url_suffix='/device',
+                params={
+                    'customerid': self.tenant_id,
+                    'deviceid': id
+                },
+                timeout=self.api_timeout
+            )
+
+        def get_device_by_ip(self, ip):
+            """
+            Get a device from IoT security portal by ip
+            """
+            return self._http_request(
+                method='GET',
+                url_suffix='/device/ip',
+                params={
+                    'customerid': self.tenant_id,
+                    'ip': ip
+                },
+                timeout=self.api_timeout
+            )
+
+        def list_alerts(self, stime='-1', offset=0, pagelength=100, sortdirection='asc'):
+            """
+            returns alerts inventory list
+            """
+            data = self._http_request(
+                method='GET',
+                url_suffix='/alert/list',
+                params={
+                    'customerid': self.tenant_id,
+                    'offset': offset,
+                    'pagelength': pagelength,
+                    'stime': stime,
+                    'type': 'policy_alert',
+                    'resolved': 'no',
+                    'sortfield': 'date',
+                    'sortdirection': sortdirection
+                },
+                timeout=self.api_timeout
+            )
+            return data['items']
+
+        def list_vulns(self, stime='-1', offset=0, pagelength=100):
+            """
+            returns vulnerability instances
+            """
+            data = self._http_request(
+                method='GET',
+                url_suffix='/vulnerability/list',
+                params={
+                    'customerid': self.tenant_id,
+                    'offset': offset,
+                    'pagelength': pagelength,
+                    'stime': stime,
+                    'type': 'vulnerability',
+                    'status': 'Confirmed',
+                    'groupby': 'device'
+                },
+                timeout=self.api_timeout
+            )
+            return data['items']
+
+        def list_devices(self, offset, pagelength):
+            """
+            returns a list of devices
+            """
+            data = self._http_request(
+                method='GET',
+                url_suffix='/device/list',
+                params={
+                    'customerid': self.tenant_id,
+                    'filter_monitored': 'no',
+                    'offset': offset,
+                    'pagelength': pagelength,
+                    'stime': '%sZ' % datetime.utcfromtimestamp(int(time.time()) - 2592000).isoformat(),
+                    'detail': 'true',
+                    'sortfield': 'MAC',
+                    'sortdirection': 'asc'
+                },
+                timeout=self.api_timeout
+            )
+            return data['devices']
+
+        def resolve_alert(self, alert_id, reason, reason_type="No Action Needed"):
+            """
+            resolve an IoT alert
+            """
+            return self._http_request(
+                method='PUT',
+                url_suffix='/alert/update',
+                params={
+                    'customerid': self.tenant_id,
+                    'id': alert_id
+                },
+                json_data={
+                    'resolved': 'yes',
+                    'reason': reason,
+                    'reason_type': [reason_type]
+                },
+                timeout=self.api_timeout
+            )
+
+        def resolve_vuln(self, vuln_id, full_name, reason):
+            """
+            resolve an IoT vulnerability
+            """
+            return self._http_request(
+                method='PUT',
+                url_suffix='/vulnerability/update',
+                params={
+                    'customerid': self.tenant_id
+                },
+                json_data={
+                    'action': 'mitigate',
+                    'full_name': full_name,
+                    'reason': reason,
+                    'ticketIdList': [vuln_id]
+                },
+                timeout=self.api_timeout
+            )
+
+
+    def arg_to_timestamp(arg: Any, arg_name: str, required: bool = False) -> Optional[int]:
+        """Converts an XSOAR argument to a timestamp (seconds from epoch)
+
+        This function is used to quickly validate an argument provided to XSOAR
+        via ``demisto.args()`` into an ``int`` containing a timestamp (seconds
+        since epoch). It will throw a ValueError if the input is invalid.
+        If the input is None, it will throw a ValueError if required is ``True``,
+        or ``None`` if required is ``False.
+
+        :type arg: ``Any``
+        :param arg: argument to convert
+
+        :type arg_name: ``str``
+        :param arg_name: argument name
+
+        :type required: ``bool``
+        :param required:
+            throws exception if ``True`` and argument provided is None
+
+        :return:
+            returns an ``int`` containing a timestamp (seconds from epoch) if conversion works
+            returns ``None`` if arg is ``None`` and required is set to ``False``
+            otherwise throws an Exception
+        :rtype: ``Optional[int]``
+        """
+        if arg is None:
+            if required is True:
+                raise ValueError(f'Missing "{arg_name}"')
+            return None
+
+        if isinstance(arg, str) and arg.isdigit():
+            # timestamp is a str containing digits - we just convert it to int
+            return int(arg)
+        if isinstance(arg, str):
+            # we use dateparser to handle strings either in ISO8601 format, or
+            # relative time stamps.
+            # For example: format 2019-10-23T00:00:00 or "3 days", etc
+            date = dateparser.parse(arg, settings={'TIMEZONE': 'UTC'})
+            if date is None:
+                # if d is None it means dateparser failed to parse it
+                raise ValueError(f'Invalid date: {arg}')
+
+            return int(date.replace(tzinfo=timezone.utc).timestamp())
+        if isinstance(arg, (int, float)):
+            # Convert to int if the input is a float
+            return int(arg)
+        raise ValueError(f'Invalid date: "{arg}"')
+
+
+    def test_module(client):
+        """
+        Returning 'ok' indicates that the integration works like it is supposed to. Connection to the service is successful.
+
+        Args:
+            client: IoT client
+
+        Returns:
+            'ok' if test passed, anything else will fail the test.
+        """
+        if demisto.params().get('isFetch'):
+            fetch_incidents(client, last_run=demisto.getLastRun(), is_test=True)
+        else:
+            client.list_devices(0, 1)
+        return 'ok'
+
+
+    def iot_get_device(client, args):
+        """
+        Returns an IoT device
+
+        Args:
+            client (Client): IoT client.
+            args (dict): all command arguments.
+
+        Returns:
+            device
+
+            CommandResults
+        """
+        device_id = args.get('id')
+
+        result = client.get_device(device_id)
+
+        return CommandResults(
+            outputs_prefix='PaloAltoNetworksIoT.Device',
+            outputs_key_field='deviceid',
+            outputs=result
+        )
+
+
+    def iot_get_device_by_ip(client, args):
+        """
+        Returns an IoT device
+
+        Args:
+            client (Client): IoT client.
+            args (dict): all command arguments.
+
+        Returns:
+            device
+
+            CommandResults
+        """
+        device_ip = args.get('ip')
+
+        result = client.get_device_by_ip(device_ip)
+
+        return CommandResults(
+            outputs_prefix='PaloAltoNetworksIoT.Device',
+            outputs_key_field='devices',
+            outputs=result['devices']
+        )
+
+
+    def iot_list_devices(client, args):
+        """
+        Returns a list of IoT devices
+
+        Args:
+            client (Client): IoT client.
+            args (dict): all command arguments.
+
+        Returns:
+            List of devices
+
+            CommandResults
+        """
+        offset = args.get('offset', '0')
+        pagelength = args.get('limit', client.max_fetch)
+        result = client.list_devices(offset, pagelength)
+
+        if not result:
+            return CommandResults(
+                readable_output='### No devices found'
+            )
+
+        return CommandResults(
+            outputs_prefix="PaloAltoNetworksIoT.DeviceList",
+            outputs_key_field='deviceid',
+            outputs=result
+        )
+
+
+    def iot_list_alerts(client, args):
+        """
+        Returns a list of IoT alerts (max: 1000)
+
+        Args:
+            client (Client): IoT client.
+            args (dict): all command arguments.
+
+        Returns:
+            List of alerts
+
+            CommandResults
+        """
+        stime = args.get('start_time', '-1')
+        offset = args.get('offset', 0)
+        pagelength = min(int(args.get('limit', client.max_fetch)), PAGELENGTH)
+        result = client.list_alerts(stime, offset, pagelength, 'desc')
+
+        if not result:
+            return CommandResults(
+                readable_output='### No alerts found'
+            )
+
+        return CommandResults(
+            outputs_prefix="PaloAltoNetworksIoT.Alerts",
+            outputs_key_field="id",
+            outputs=result
+        )
+
+
+    def iot_list_vulns(client, args):
+        """
+        Returns a list of IoT vulnerabilties (max: 1000)
+
+        Args:
+            client (Client): IoT client.
+            args (dict): all command arguments.
+
+        Returns:
+            List of vulnerabilties
+
+            CommandResults
+        """
+        stime = args.get('start_time', '-1')
+        offset = args.get('offset', 0)
+        pagelength = min(int(args.get('limit', client.max_fetch)), PAGELENGTH)
+        result = client.list_vulns(stime, offset, pagelength)
+
+        if not result:
+            return CommandResults(
+                readable_output='### No vulnerabilities found'
+            )
+
+        return CommandResults(
+            outputs_prefix="PaloAltoNetworksIoT.Vulns",
+            outputs_key_field="zb_ticketid",
+            outputs=result
+        )
+
+
+    def iot_resolve_alert(client, args):
+        """
+        Resolve an IoT alert
+
+        Args:
+            client (Client): IoT client.
+            args (dict): all command arguments.
+
+        Returns:
+            None in CommandResults
+        """
+        alert_id = args.get('id')
+        reason = args.get('reason', 'resolved by XSOAR')
+        reason_type = args.get('reason_type', 'No Action Needed')
+
+        client.resolve_alert(alert_id, reason, reason_type)
+
+        return CommandResults(
+            readable_output=f'Alert {alert_id} was resolved successfully'
+        )
+
+
+    def iot_resolve_vuln(client, args):
+        """
+        Resolve an IoT vulnerability
+
+        Args:
+            client (Client): IoT client.
+            args (dict): all command arguments.
+
+        Returns:
+            None in CommandResults
+        """
+        vuln_id = args.get('id')
+        full_name = args.get('full_name')
+        reason = args.get('reason', 'resolved by XSOAR')
+
+        client.resolve_vuln(vuln_id, full_name, reason)
+
+        return CommandResults(
+            readable_output=f'Vulnerability {vuln_id} was resolved successfully'
+        )
+
+
+    def fetch_incidents(client, last_run, is_test=False):
+        """
+        This function will execute each interval (default is 1 minute).
+
+        Args:
+            client (Client): IoT client
+            last_run: last_run dict containing the timestamps of the latest incident we fetched from previous fetch
+
+        Returns:
+            next_run: This will be last_run in the next fetch-incidents
+            incidents: Incidents that will be created in Demisto
+        """
+        # Get the last fetch time, if exists
+        last_alerts_fetch = last_run.get('last_alerts_fetch')
+        last_vulns_fetch = last_run.get('last_vulns_fetch')
+        max_fetch = client.max_fetch
+
+        incidents = []
+
+        if demisto.params().get('fetch_alerts', True):
+            stime = client.first_fetch
+            if last_alerts_fetch is not None:
+                # need to add 1ms for the stime
+                stime = datetime.utcfromtimestamp(last_alerts_fetch + 0.001).isoformat() + "Z"
+
+            alerts = client.list_alerts(stime, pagelength=max_fetch)
+
+            # special handling for the case of having more than the pagelength
+            if len(alerts) == max_fetch:
+                # get the last date
+                last_date = alerts[-1]['date']
+                offset = 0
+                done = False
+                while not done:
+                    offset += max_fetch
+                    others = client.list_alerts(stime, offset, pagelength=max_fetch)
+                    for alert in others:
+                        if alert['date'] == last_date:
+                            alerts.append(alert)
+                        else:
+                            done = True
+                            break
+                    if len(others) != max_fetch:
+                        break
+
+            for alert in alerts:
+                alert_date_epoch = datetime.strptime(
+                    alert['date'], "%Y-%m-%dT%H:%M:%S.%fZ").replace(tzinfo=timezone.utc).timestamp()
+                alert_id = alert["zb_ticketid"].replace("alert-", "")
+                incident = {
+                    'name': alert['name'],
+                    "type": "IoT Alert",
+                    'occurred': alert['date'],
+                    'rawJSON': json.dumps(alert),
+                    'details': alert['description'] if 'description' in alert else '',
+                    'CustomFields': {
+                        'iotincidenturl': f'{demisto.params()["url"]}/guardian/policies/alert?id={alert_id}'
+                    }
+                }
+                incidents.append(incident)
+
+                # Update last run and add incident if the incident is newer than last fetch
+                if last_alerts_fetch is None or alert_date_epoch > last_alerts_fetch:
+                    last_alerts_fetch = alert_date_epoch
+
+        if demisto.params().get('fetch_vulns', True):
+            stime = client.first_fetch
+            if last_vulns_fetch is not None:
+                # need to add 1ms for the stime
+                stime = datetime.utcfromtimestamp(last_vulns_fetch + 0.001).isoformat() + "Z"
+
+            vulns = client.list_vulns(stime, pagelength=max_fetch)
+
+            # special handling for the case of having more than the pagelength
+            if len(vulns) == max_fetch:
+                # get the last date
+                last_date = vulns[-1]['detected_date']
+                offset = 0
+                done = False
+                while not done:
+                    offset += max_fetch
+                    others = client.list_vulns(stime, offset, pagelength=max_fetch)
+                    for vuln in others:
+                        if vuln['detected_date'] == last_date:
+                            vulns.append(vuln)
+                        else:
+                            done = True
+                            break
+                    if len(others) != max_fetch:
+                        break
+
+            for vuln in vulns:
+                vuln_date_epoch = datetime.strptime(
+                    vuln['detected_date'], "%Y-%m-%dT%H:%M:%S.%fZ").replace(tzinfo=timezone.utc).timestamp()
+                vuln_name_encoded = vuln['vulnerability_name'].replace(' ', '+')
+                incident = {
+                    'name': vuln['name'],
+                    "type": "IoT Vulnerability",
+                    'occurred': vuln['detected_date'],
+                    'rawJSON': json.dumps(vuln),
+                    'details': f'Device {vuln["name"]} at IP {vuln["ip"]}: {vuln["vulnerability_name"]}',
+                    'CustomFields': {
+                        'iotincidenturl': f'{demisto.params()["url"]}/guardian/monitor/inventory/device/'
+                                          f'{vuln["deviceid"]}?index=0&vuln=true&vulname={vuln_name_encoded}'
+                    }
+                }
+                incidents.append(incident)
+
+                if last_vulns_fetch is None or vuln_date_epoch > last_vulns_fetch:
+                    last_vulns_fetch = vuln_date_epoch
+
+        next_run = {
+            'last_alerts_fetch': last_alerts_fetch,
+            'last_vulns_fetch': last_vulns_fetch
+        }
+
+        if is_test:
+            return None, None
+
+        return next_run, incidents
+
+
+    def main():
+        """
+            PARSE AND VALIDATE INTEGRATION PARAMS
+        """
+        tenant_id = demisto.params()['tenant_id']
+        access_key_id = demisto.params()['access_key_id']
+        secret_access_key = demisto.params()['secret_access_key']
+
+        api_timeout = 60
+        try:
+            api_timeout = int(demisto.params().get('api_timeout', '60'))
+        except ValueError:
+            return_error('API timeout needs to be an integer')
+
+        first_fetch = '-1'
+        try:
+            ff = arg_to_timestamp(
+                arg=demisto.params().get('first_fetch'),
+                arg_name='First fetch time',
+                required=False
+            )
+            if ff:
+                first_fetch = datetime.fromtimestamp(ff).astimezone(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+        except ValueError as e:
+            return_error(f'First fetch time is in a wrong format. Error: {str(e)}')
+
+        max_fetch = 10
+        try:
+            max_fetch = int(demisto.params().get('max_fetch', '10'))
+        except ValueError:
+            return_error('Maximum number of incidents per fetch needs to be an integer')
+
+        # get the service API url
+        base_url = urljoin(demisto.params()['url'], '/pub/v4.0')
+
+        verify_certificate = not demisto.params().get('insecure', False)
+
+        proxy = demisto.params().get('proxy', False)
+
+        demisto.info(f'Command being called is {demisto.command()}')
+        try:
+            client = Client(
+                base_url=base_url,
+                tenant_id=tenant_id,
+                api_timeout=api_timeout,
+                first_fetch=first_fetch,
+                max_fetch=max_fetch,
+                verify=verify_certificate,
+                proxy=proxy,
+                ok_codes=(200,),
+                headers={
+                    'X-Key-Id': access_key_id,
+                    'X-Access-Key': secret_access_key
+                })
+
+            if demisto.command() == 'test-module':
+                # This is the call made when pressing the integration Test button.
+                result = test_module(client)
+                demisto.results(result)
+
+            elif demisto.command() == 'fetch-incidents':
+                # Set and define the fetch incidents command to run after activated via integration settings.
+                next_run, incidents = fetch_incidents(
+                    client=client,
+                    last_run=demisto.getLastRun())
+
+                if next_run is not None:
+                    demisto.setLastRun(next_run)
+
+                if incidents is not None:
+                    demisto.incidents(incidents)
+
+            elif demisto.command() == 'iot-security-get-device':
+                return_results(iot_get_device(client, demisto.args()))
+
+            elif demisto.command() == 'iot-security-get-device-by-ip':
+                return_results(iot_get_device_by_ip(client, demisto.args()))
+
+            elif demisto.command() == 'iot-security-list-devices':
+                return_results(iot_list_devices(client, demisto.args()))
+
+            elif demisto.command() == 'iot-security-list-alerts':
+                return_results(iot_list_alerts(client, demisto.args()))
+
+            elif demisto.command() == 'iot-security-list-vulns':
+                return_results(iot_list_vulns(client, demisto.args()))
+
+            elif demisto.command() == 'iot-security-resolve-alert':
+                return_results(iot_resolve_alert(client, demisto.args()))
+
+            elif demisto.command() == 'iot-security-resolve-vuln':
+                return_results(iot_resolve_vuln(client, demisto.args()))
+
+        # Log exceptions
+        except Exception as e:
+            return_error(f'Failed to execute {demisto.command()} command. Error: {str(e)}')
+
+
+    if __name__ in ('__main__', '__builtin__', 'builtins'):
+        main()
+
+    register_module_line('Palo Alto Networks IoT', 'end', __line__())
+  subtype: python3
+  type: python
+system: true
