@@ -1,0 +1,41 @@
+args:
+- description: The other Incident ID, which we'll be grabbing the file from
+  name: other_incident
+  required: true
+- description: The entry ID of the file in the other_incident
+  name: file_entry_id
+  required: true
+comment: Uploads a file from one XSOAR Incident, to another XSOAR Incident.
+commonfields:
+  id: 1d4bc48d-1b82-4111-8ae0-f6a23566d12d
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.7.3.286
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: DemistoUploadFromOtherIncidentToThisIncident
+pswd: ""
+runas: Administrator
+runonce: false
+script: |-
+  other_incident = demisto.args().get("other_incident")
+  current_incident = demisto.incident().get("id")
+  file_entry_id = demisto.args().get("file_entry_id")
+  demisto.results(demisto.executeCommand("executeCommandAt", {"command":"DemistoUploadFileV2", "incidents": other_incident, "arguments": { "entryID": file_entry_id, "incidentID": current_incident}}))
+scripttarget: 0
+subtype: python3
+tags:
+- training
+- Utility
+type: python
