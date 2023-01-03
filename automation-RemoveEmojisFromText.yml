@@ -1,0 +1,56 @@
+args:
+- description: text string to strip emojis from
+  name: value
+  required: true
+comment: 'Removes Emoji''s from a text string, replacing them with a '''' '
+commonfields:
+  id: c6af6bea-eb2b-4233-8f6e-826f1ce8e36e
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.8.5.10455
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: RemoveEmojisFromText
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |-
+  import re
+
+  text = demisto.args().get('value')
+
+  def remove_emojis(text):
+      regrex_pattern = re.compile(pattern = "["
+          u"\U0001F1E0-\U0001F1FF"  # flags (iOS)
+          u"\U0001F300-\U0001F5FF"  # symbols & pictographs
+          u"\U0001F600-\U0001F64F"  # emoticons
+          u"\U0001F680-\U0001F6FF"  # transport & map symbols
+          u"\U0001F700-\U0001F77F"  # alchemical symbols
+          u"\U0001F780-\U0001F7FF"  # Geometric Shapes Extended
+          u"\U0001F800-\U0001F8FF"  # Supplemental Arrows-C
+          u"\U0001F900-\U0001F9FF"  # Supplemental Symbols and Pictographs
+          u"\U0001FA00-\U0001FA6F"  # Chess Symbols
+          u"\U0001FA70-\U0001FAFF"  # Symbols and Pictographs Extended-A
+          u"\U00002702-\U000027B0"  # Dingbats
+          u"\U000024C2-\U0001F251"
+                             "]+", flags = re.UNICODE)
+      return regrex_pattern.sub(r'',text)
+
+  demisto.results(remove_emojis(text))
+scripttarget: 0
+subtype: python3
+tags:
+- transformer
+- training
+type: python
