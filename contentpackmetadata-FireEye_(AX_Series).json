@@ -1,0 +1,173 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Forensics \u0026 Malware Analysis"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"automation",
+		"playbook"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "Detonate File or URL through FireEye",
+				"name": "FireEyeDetonateFile",
+				"tags": [
+					"fireeye",
+					"file",
+					"enhancement"
+				]
+			}
+		],
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Forensics \u0026 Malware Analysis",
+				"commands": [
+					{
+						"description": "commands.server.feReport.description",
+						"name": "fe-report"
+					},
+					{
+						"description": "commands.server.feSubmitStatus.description",
+						"name": "fe-submit-status"
+					},
+					{
+						"description": "commands.server.feAlert.description",
+						"name": "fe-alert"
+					},
+					{
+						"description": "Results of the file submission",
+						"name": "fe-submit-result"
+					},
+					{
+						"description": "commands.server.feSubmit.description",
+						"name": "fe-submit"
+					},
+					{
+						"description": "commands.server.feConfig.description",
+						"name": "fe-config"
+					},
+					{
+						"description": "Submit a url for analysis by FireEye",
+						"name": "fe-submit-url"
+					},
+					{
+						"description": "Get a status for a url submitted to FireEye analysis",
+						"name": "fe-submit-url-status"
+					},
+					{
+						"description": "Results of the URL submission",
+						"name": "fe-submit-url-result"
+					}
+				],
+				"description": "Perform malware dynamic analysis",
+				"id": "",
+				"name": "FireEye (AX Series)"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": [
+			{
+				"description": "Detonate one or more files using the FireEye AX integration. This playbook returns relevant reports to the War Room and file reputations to the context data. The detonation supports the following file types - PE32, EXE, DLL, JAR, JS, PDF, DOC, DOCX, RTF, XLS, PPT, PPTX, XML, ZIP, VBN, SEP, XZ, GZ, BZ2, TAR, MHTML, SWF, LNK, URL, MSI, JTD, JTT, JTDC, JTTC, HWP, HWT, HWPX, BAT, HTA, PS1, VBS, WSF, JSE, VBE, CHM, JPG, JPEG, GIF, PNG, XLSX",
+				"name": "Detonate File - FireEye AX"
+			},
+			{
+				"description": "Detonating URL with FireEye AX.",
+				"name": "Detonate URL - FireEye AX"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-11-09T18:42:51Z",
+	"currentVersion": "1.0.10",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.39",
+			"name": "Base"
+		},
+		"CommonPlaybooks": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "2.3.13",
+			"name": "Common Playbooks"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.10.7",
+			"name": "Common Scripts"
+		}
+	},
+	"deprecated": false,
+	"description": "Perform malware dynamic analysis",
+	"disabledMonthly": false,
+	"downloads": 1992,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "fireeye",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/fireeye/fireeye_image.png",
+			"name": "FireEye (AX Series)"
+		}
+	],
+	"itemVersion": "1.0.10",
+	"keywords": [],
+	"legacy": true,
+	"name": "FireEye (AX Series)",
+	"packID": "fireeye",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-09-13T14:32:59Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4098099",
+	"videos": []
+}
