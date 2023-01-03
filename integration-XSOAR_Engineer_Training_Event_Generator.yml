@@ -1,0 +1,429 @@
+category: Utilities
+commonfields:
+  id: XSOAR Engineer Training Event Generator
+  version: -1
+configuration:
+- defaultvalue: All
+  display: Events to fetch
+  name: events_type
+  options:
+  - All
+  - Issues
+  - Blocked Clicks
+  - Permitted Clicks
+  - Blocked Messages
+  - Delivered Messages
+  required: false
+  type: 15
+- display: Fetch incidents
+  name: isFetch
+  required: false
+  type: 8
+- display: Incident type
+  name: incidentType
+  required: false
+  type: 13
+- defaultvalue: "20"
+  display: Number of events per fetch
+  name: number_to_fetch
+  required: false
+  type: 0
+- defaultvalue: "1"
+  display: Incidents Fetch Interval
+  name: incidentFetchInterval
+  required: false
+  type: 19
+- display: ""
+  name: credentials
+  required: false
+  type: 9
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+description: Generates sample events for xsoar engineer training.   Can be used for
+  classification and mapping, and a simple playbook.
+detaileddescription: |
+  Did you know that 68% of all statistics are made up? But only 13% of people know that?
+display: XSOAR Engineer Training Event Generator
+image: data:image/png;base64,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
+name: XSOAR Engineer Training Event Generator
+script:
+  commands:
+  - arguments: []
+    description: Fetches events for all clicks and messages relating to known threats
+      within the specified time period. Details as per clicks/blocked.
+    name: xsoar-engineer-get-events
+  - arguments: []
+    description: Fetches the creds object to show how to use credentials in an integration.
+    name: xsoar-engineer-creds
+  dockerimage: demisto/python3:3.9.6.22912
+  isfetch: true
+  runonce: false
+  script: |+
+    from datetime import datetime, timedelta
+    from random import randrange
+    import json
+
+    raw = r'''
+    {
+        "queryEndTime": "2019-05-14T21:56:00Z",
+        "clicksPermitted": [{
+                "EventID": "b65a5d51145c47faad8924ebb37563a5",
+                "classification": "MALWARE",
+                "clickIP": "10.8.8.8",
+                "clickTime": "2016-06-24T19:17:44.000Z",
+                "messageID": "<123456@email>",
+                "recipient": "james.bond@demisto.local",
+                "sender": "cfroome@roadisntasgood.ca",
+                "senderIP": "213.167.75.58",
+                "url": "https://letour.com/login.zip",
+                "userAgent": "Mozilla/5.0(WindowsNT6.1;WOW64;rv:27.0)Gecko/20100101Firefox/27.0"
+            },
+            {
+                "EventID": "a65a5d51145c47faad8924ebb37563a5",
+                "classification": "MALWARE",
+                "clickIP": "10.8.8.9",
+                "clickTime": "2016-06-24T19:17:44.000Z",
+                "messageID": "<123456@email>",
+                "recipient": "eve.moneypenny@demisto.local",
+                "sender": "gthomas@iwishiracedcross.ca",
+                "senderIP": "213.167.75.58",
+                "url": "https://giro.com/login.zip",
+                "userAgent": "Mozilla/5.0(WindowsNT6.1;WOW64;rv:27.0)Gecko/20100101Firefox/27.0"
+            },
+            {
+                "EventID": "80385edaab174970962b4f866c5ec35d",
+                "classification": "PHISH",
+                "clickIP": "88.8.8.8",
+                "clickTime": "2016-06-24T19:17:44.000Z",
+                "messageID": "<123456@email>",
+                "recipient": "james.bond@demisto.local",
+                "sender": "sstybar@isitcrossseasonyet.ca",
+                "senderIP": "213.167.75.58",
+                "url": "https://vuelta.com/login.php",
+                "userAgent": "Mozilla/5.0(WindowsNT6.1;WOW64;rv:27.0)Gecko/20100101Firefox/27.0"
+            },
+            {
+                "EventID": "03f41b698ebe40e0aefa0762bab6a56f",
+                "classification": "SPAM",
+                "clickIP": "10.8.8.8",
+                "clickTime": "2016-06-24T19:17:44.000Z",
+                "messageID": "<123456@email>",
+                "recipient": "q@demisto.local",
+                "sender": "cfroome@roadisntasgood.ca",
+                "senderIP": "213.167.75.58",
+                "url": "https://nplusone.ca/getnewbike",
+                "userAgent": "Mozilla/5.0(WindowsNT6.1;WOW64;rv:27.0)Gecko/20100101Firefox/27.0"
+            }
+        ],
+        "clicksBlocked": [{
+                "EventID": "a65a5d51145c47faad8924ebb37563a5",
+                "classification": "PHISH",
+                "clickIP": "10.8.8.8",
+                "clickTime": "2016-06-24T19:17:44.000Z",
+                "messageID": "<123456@email>",
+                "recipient": "eve.moneypenny@demisto.local",
+                "sender": "gthomas@iwishiracedcross.ca",
+                "senderIP": "213.167.75.58",
+                "url": "https://letour.com/login.zip",
+                "userAgent": "Mozilla/5.0(WindowsNT6.1;WOW64;rv:27.0)Gecko/20100101Firefox/27.0"
+            },
+            {
+                "EventID": "80385edaab174970962b4f866c5ec35d",
+                "classification": "MALWARE",
+                "clickIP": "88.8.8.8",
+                "clickTime": "2016-06-24T19:17:44.000Z",
+                "messageID": "<123456@email>",
+                "recipient": "james.bond@demisto.local",
+                "sender": "gthomas@iwishiracedcross.ca",
+                "senderIP": "213.167.75.58",
+                "url": "https://vuelta.com/login.php",
+                "userAgent": "Mozilla/5.0(WindowsNT6.1;WOW64;rv:27.0)Gecko/20100101Firefox/27.0"
+            }
+        ],
+        "messagesDelivered": [{
+                "threats": [{
+                    "classification": "malware",
+                    "threatTime": "2019-05-13T23:36:23.000Z",
+                    "threat": "https://letour.com/login.zip",
+                    "threatType": "url"
+                }, {
+                    "classification": "malware",
+                    "threatTime": "2019-11-21T20:10:09.000Z",
+                    "threat": "2fab740f143fc1aa4c1cd0146d334c5593b1428f6d062b2c406e5efe8abe95ca",
+                    "threatType": "attachment"
+                }],
+                "messageTime": "2019-05-13T23:31:38.000Z",
+                "subject": "How about that Tour de France?!",
+                "fromAddress": ["gthomas@iwishiracedcross.ca"],
+                "ccAddresses": [],
+                "replyToAddress": ["gthomas@iwishiracedcross.ca"],
+                "toAddresses": ["eve.moneypenny@demisto.local"],
+                "completelyRewritten": true,
+                "EventID": "a65a5d51145c47faad8924ebb37563a5",
+                "sender": "gthomas@iwishiracedcross.ca",
+                "recipient": ["eve.moneypenny@demisto.local"],
+                "senderIP": "213.167.75.58",
+                "messageID": "<123456@email>"
+            },
+            {
+                "threats": [{
+                    "classification": "malware",
+                    "threatTime": "2019-05-13T23:36:23.000Z",
+                    "threat": "https://superbadurl.com/login.zip",
+                    "threatType": "url"
+                }, {
+                    "classification": "malware",
+                    "threatTime": "2019-11-21T20:10:09.000Z",
+                    "threat": "2fab740f143fc1aa4c1cd0146d334c5593b1428f6d062b2c406e5efe8abe95ca",
+                    "threatType": "attachment"
+                }],
+                "messageTime": "2019-05-13T23:31:38.000Z",
+                "subject": "Documents for Review",
+                "fromAddress": ["cfroome@roadisntasgood.ca"],
+                "ccAddresses": [],
+                "replyToAddress": ["cfroome@roadisntasgood.ca"],
+                "toAddresses": ["eve.moneypenny@demisto.local"],
+                "completelyRewritten": true,
+                "EventID": "b65a5d51145c47faad8924ebb37563a5",
+                "sender": "cfroome@roadisntasgood.ca",
+                "recipient": ["james.bond@demisto.local"],
+                "senderIP": "213.167.75.58",
+                "messageID": "<123456@email>"
+            },
+            {
+                "threats": [{
+                    "classification": "phish",
+                    "threatTime": "2019-05-13T23:36:23.000Z",
+                    "threat": "https://ooffice365.com/login.php",
+                    "threatType": "url"
+                }],
+                "messageTime": "2019-05-13T23:31:38.000Z",
+                "fromAddress": ["sstybar@isitcrossseasonyet.ca"],
+                "ccAddresses": [],
+                "replyToAddress": ["sstybar@isitcrossseasonyet.ca"],
+                "toAddresses": ["m@demisto.local"],
+                "completelyRewritten": false,
+                "EventID": "80385edaab174970962b4f866c5ec35d",
+                "sender": "sstybar@isitcrossseasonyet.ca",
+                "recipient": ["m@demisto.local"],
+                "senderIP": "213.167.75.58",
+                "messageID": "<654321@email>"
+            }
+        ],
+        "messagesBlocked": [{
+                "threats": [{
+                    "classification": "phish",
+                    "threatTime": "2019-05-13T23:36:23.000Z",
+                    "threat": "https://totallybadurl.com/login.php",
+                    "threatType": "url"
+                }],
+                "messageTime": "2019-05-13T23:31:38.000Z",
+                "subject": "Click me!",
+                "fromAddress": ["terrible@badguy.bad.com"],
+                "ccAddresses": [],
+                "replyToAddress": ["terrible@badguy.bad.com"],
+                "toAddresses": ["m@demisto.local"],
+                "completelyRewritten": true,
+                "EventID": "60cf8d6b46bd431e9685415934fead99",
+                "sender": "terrible@badguy.bad.com",
+                "recipient": ["m@demisto.local"],
+                "senderIP": "213.167.75.58",
+                "messageID": "<1234567@email>"
+            }
+        ]
+    }
+    '''
+
+    ALL_EVENTS = "All"
+    ISSUES_EVENTS = "Issues"
+    BLOCKED_CLICKS = "Blocked Clicks"
+    PERMITTED_CLICKS = "Permitted Clicks"
+    BLOCKED_MESSAGES = "Blocked Messages"
+    DELIVERED_MESSAGES = "Delivered Messages"
+
+    DEFAULT_LIMIT = 20
+    DATE_FORMAT = "%Y-%m-%dT%H:%M:%SZ"
+
+
+    """ Helper functions """
+
+
+    def get_now():
+        """
+        A wrapper function of datetime.now
+        helps handle tests
+
+        Returns:
+            datetime: time right now
+        """
+        return datetime.now()
+
+
+    def mock_data(data):
+        """
+        Changes query time, and click or message time to current date in the raw data.
+        We also mock the time when the message was delievered, or click happened, which can be mapped to the occured field
+        """
+        alerts = ['clicksPermitted', 'clicksBlocked', 'messagesDelivered', 'messagesBlocked']
+        clicks = ['clicksPermitted', 'clicksBlocked']
+        messages = ['messagesDelivered', 'messagesBlocked']
+
+        now = get_now()
+        for alert in alerts:
+            for item in data[alert]:
+                if alert in clicks:
+                    item['clickTime'] = (now - timedelta(minutes=randrange(6,20))).strftime('%Y-%m-%dT%H:%M:%SZ')
+                    item['threatTime'] = (now - timedelta(minutes=5)).strftime('%Y-%m-%dT%H:%M:%SZ')
+                elif alert in messages:
+                    item['messageTime'] = (now - timedelta(minutes=randrange(25,55))).strftime('%Y-%m-%dT%H:%M:%SZ')
+                    for threat in item['threats']:
+                        threat['threatTime'] = (now - timedelta(minutes=5)).strftime('%Y-%m-%dT%H:%M:%SZ')
+        return data
+
+
+    """ Command functions """
+
+
+    def get_events_command(args):
+        """
+        returns the events, in this case the mock data
+        """
+        event_type_filter = args.get("eventTypes")
+
+        raw_events = mock_data(json.loads(raw))
+        readable = tableToMarkdown("Training Events", raw_events)
+        results = CommandResults(outputs=raw_events, readable_output=readable,ignore_auto_extract=True)
+        return results
+
+
+    def get_creds_command(args):
+        """
+        returns the credentials, example of how to use credential objects in an integration
+        """
+
+        creds = demisto.params().get("credentials")
+        readable = tableToMarkdown("Training Creds", creds)
+        results = CommandResults(readable_output=readable,ignore_auto_extract=True)
+        return results
+
+
+    def fetch_incidents(event_type_filter, limit=DEFAULT_LIMIT):
+        """
+        fetch!
+        """
+        incidents = []
+
+        # get last run, can be used to store the last fetch time.
+        last_run_object = demisto.getLastRun()
+        if 'time' in last_run_object.keys():
+            last_run = last_run_object.get('time')
+            demisto.info(f"XET - We have a last run object, previous last_run: {last_run}")
+        else:
+            last_run = get_now().strftime('%Y-%m-%dT%H:%M:%SZ')
+
+        raw_events = mock_data(json.loads(raw))
+        message_delivered = raw_events.get("messagesDelivered", [])
+        for raw_event in message_delivered:
+            raw_event["type"] = "messages delivered"
+            event_EventID = raw_event.get("EventID", "")
+            incident = {
+                "name": "Email Alert - Message Delivered - {}".format(event_EventID),
+                "rawJSON": json.dumps(raw_event),
+                "occurred": raw_event["messageTime"]
+            }
+            incidents.append(incident)
+
+        message_blocked = raw_events.get("messagesBlocked", [])
+        for raw_event in message_blocked:
+            raw_event["type"] = "messages blocked"
+            event_EventID = raw_event.get("EventID", "")
+            incident = {
+                "name": "Email Alert - Message Blocked - {}".format(event_EventID),
+                "rawJSON": json.dumps(raw_event),
+                "occured": raw_event["messageTime"],
+            }
+            incidents.append(incident)
+
+        clicks_permitted = raw_events.get("clicksPermitted", [])
+        for raw_event in clicks_permitted:
+            raw_event["type"] = "clicks permitted"
+            event_EventID = raw_event.get("EventID", "")
+            incident = {
+                "name": "Email Alert - Click Permitted - {}".format(event_EventID),
+                "rawJSON": json.dumps(raw_event),
+                "occurred": raw_event["clickTime"] if raw_event["clickTime"] > raw_event["threatTime"] else raw_event[
+                    "threatTime"]
+            }
+            incidents.append(incident)
+
+        clicks_blocked = raw_events.get("clicksBlocked", [])
+        for raw_event in clicks_blocked:
+            raw_event["type"] = "clicks blocked"
+            event_EventID = raw_event.get("EventID", "")
+            incident = {
+                "name": "Email Alert - Click Blocked - {}".format(event_EventID),
+                "rawJSON": json.dumps(raw_event),
+                "occurred": raw_event["clickTime"] if raw_event["clickTime"] > raw_event["threatTime"] else raw_event[
+                    "threatTime"]
+            }
+            incidents.append(incident)
+
+        # set last run
+        next_run = { "time": get_now().strftime('%Y-%m-%dT%H:%M:%SZ') }
+        demisto.setLastRun(next_run)
+        demisto.info(f"XET - Setting LastRun: {next_run}")
+
+        # return our list of Incidents
+        return incidents[:limit]
+
+
+    ''' COMMANDS MANAGER / SWITCH PANEL '''
+
+
+    def main():
+        """
+        PARSE AND VALIDATE INTEGRATION PARAMS
+        """
+        params = demisto.params()
+        event_type_filter = params.get('events_type')
+        fetch_limit = 20
+
+        command = demisto.command()
+        LOG(f'Command being called is {command}')
+
+        try:
+            commands = {
+                'xsoar-engineer-get-events': get_events_command,
+                'xsoar-engineer-creds': get_creds_command
+            }
+            if command == 'test-module':
+                demisto.results('ok')
+
+            elif demisto.command() == 'fetch-incidents':
+                # demisto.setLastRun({"time": get_now()})
+                demisto.incidents(fetch_incidents(
+                    event_type_filter=event_type_filter,
+                    limit=fetch_limit
+                ))
+            elif command in commands:
+                return_results(commands[command](demisto.args()))
+
+        except Exception as e:
+            return_error(str(e))
+
+
+    if __name__ in ['__main__', 'builtin', 'builtins']:
+        main()
+
+  subtype: python3
+  type: python
+sourcemoduleid: Proofpoint TAP v2
