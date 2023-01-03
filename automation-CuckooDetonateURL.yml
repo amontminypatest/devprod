@@ -1,0 +1,62 @@
+args:
+- default: true
+  description: URL to check.
+  name: url
+  required: true
+comment: Deprecated. Use 'cuckoo-create-task-from-url' instead.
+commonfields:
+  id: CuckooDetonateURL
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.1.2
+    packID: CuckooSandbox
+    packName: Cuckoo Sandbox
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+dependson:
+  must:
+  - cuckoo-create-task-from-url
+deprecated: true
+dockerimage: demisto/python3:3.10.6.33415
+engineinfo: {}
+mainengineinfo: {}
+name: CuckooDetonateURL
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('CuckooDetonateURL', 'start', __line__())
+
+
+
+
+  def main():
+      res = demisto.executeCommand("cuckoo-create-task-from-url", demisto.args())
+      if isError(res[0]):
+          demisto.results(res)
+      else:
+          taskid = demisto.get(res[0], 'Contents.task_id')
+          if taskid:
+              demisto.setContext('CuckooTaskID', str(taskid))
+              demisto.results('Task #' + str(taskid) + " added.")
+          else:
+              demisto.results(res + [{"Type": entryTypes["error"],
+                              "ContentsFormat": formats["text"], "Contents": 'No taskID returned.'}])
+
+
+  if __name__ in ('__main__', '__builtin__', 'builtins'):
+      main()
+
+  register_module_line('CuckooDetonateURL', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags:
+- cuckoo
+type: python
