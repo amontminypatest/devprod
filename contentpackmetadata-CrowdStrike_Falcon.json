@@ -1,0 +1,578 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Endpoint"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"automation",
+		"incidentfield",
+		"incidenttype",
+		"playbook",
+		"classifier"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "Load and return the processes file (generated from the cs-falcon-rtr-list-network-stats command) content.",
+				"name": "ReadNetstatFile",
+				"tags": [
+					"dynamic-section"
+				]
+			},
+			{
+				"description": "Load and return the processes file (generated from the cs-falcon-rtr-list-processes command) content.",
+				"name": "ReadProcessesFile",
+				"tags": [
+					"dynamic-section"
+				]
+			},
+			{
+				"description": "Transform a XSOAR indicator into a Crowd Strike Falcon IOC. The output (found at the TransformIndicatorToCSFalconIOC.JsonOutput context path) is a JSON, which represents the indicators in CS Falcon format. This JSON can be used as the input for the *cs-falcon-batch-upload-custom-ioc* command.",
+				"name": "TransformIndicatorToCSFalconIOC",
+				"tags": []
+			}
+		],
+		"classifier": [
+			{
+				"description": "CrowdStrike Falcon Mapper for incidents and detections",
+				"id": "CrowdStrike Falcon-Mapper",
+				"name": "CrowdStrike Falcon Mapper"
+			},
+			{
+				"description": "CrowdStrike Falcon Incident Classifier",
+				"id": "CrowdStrike Falcon",
+				"name": "CrowdStrike Falcon Incident Classifier"
+			},
+			{
+				"description": "CrowdStrike Falcon mirror out mapper.",
+				"id": "CrowdStrike Falcon - Outgoing Mapper",
+				"name": "CrowdStrike Falcon - Outgoing Mapper"
+			},
+			{
+				"description": "CrowdStrike Falcon Mapper for incidents and detections",
+				"id": "CrowdStrike Falcon-Mapper",
+				"name": "CrowdStrike Falcon Mapper"
+			}
+		],
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": [
+			{
+				"description": "Behaviour Objective",
+				"name": "Behaviour Objective",
+				"type": "shortText"
+			},
+			{
+				"description": "Behaviour Tactic",
+				"name": "Behaviour Tactic",
+				"type": "shortText"
+			},
+			{
+				"description": "Behaviour Scenario",
+				"name": "Behaviour Scenario",
+				"type": "shortText"
+			}
+		],
+		"incidenttype": [
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "CrowdStrike Falcon Detection",
+				"playbook": "",
+				"weeks": 0
+			},
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "CrowdStrike Falcon Incident",
+				"playbook": "",
+				"weeks": 0
+			}
+		],
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Endpoint",
+				"commands": [
+					{
+						"description": "Searches for a device that matches the query.",
+						"name": "cs-falcon-search-device"
+					},
+					{
+						"description": "Searches for and fetches the behavior that matches the query.",
+						"name": "cs-falcon-get-behavior"
+					},
+					{
+						"description": "Search for details of specific detections, either using a filter query, or by providing the IDs of the detections.",
+						"name": "cs-falcon-search-detection"
+					},
+					{
+						"description": "Resolves and updates a detection using the provided arguments. At least one optional argument must be passed, otherwise no change will take place.",
+						"name": "cs-falcon-resolve-detection"
+					},
+					{
+						"description": "Contains containment for a specified host. When contained, a host can only communicate with the CrowdStrike cloud and any IPs specified in your containment policy.",
+						"name": "cs-falcon-contain-host"
+					},
+					{
+						"description": "Lifts containment on the host, which returns its network communications to normal.",
+						"name": "cs-falcon-lift-host-containment"
+					},
+					{
+						"description": "Sends commands to hosts.",
+						"name": "cs-falcon-run-command"
+					},
+					{
+						"description": "Uploads a script to Falcon.",
+						"name": "cs-falcon-upload-script"
+					},
+					{
+						"description": "Uploads a file to the CrowdStrike cloud. (Can be used for the RTR 'put' command.)",
+						"name": "cs-falcon-upload-file"
+					},
+					{
+						"description": "Deletes a file based on the provided ID. Can delete only one file at a time.",
+						"name": "cs-falcon-delete-file"
+					},
+					{
+						"description": "Returns files based on the provided IDs. These files are used for the RTR 'put' command.",
+						"name": "cs-falcon-get-file"
+					},
+					{
+						"description": "Returns a list of put-file IDs that are available for the user in the 'put' command.",
+						"name": "cs-falcon-list-files"
+					},
+					{
+						"description": "Returns custom scripts based on the provided ID. Used for the RTR 'runscript' command.",
+						"name": "cs-falcon-get-script"
+					},
+					{
+						"description": "Deletes a custom-script based on the provided ID. Can delete only one script at a time.",
+						"name": "cs-falcon-delete-script"
+					},
+					{
+						"description": "Returns a list of custom script IDs that are available for the user in the 'runscript' command.",
+						"name": "cs-falcon-list-scripts"
+					},
+					{
+						"description": "Runs a script on the agent host.",
+						"name": "cs-falcon-run-script"
+					},
+					{
+						"description": "Batch executes 'get' command across hosts to retrieve files.",
+						"name": "cs-falcon-run-get-command"
+					},
+					{
+						"description": "Retrieves the status of the specified batch 'get' command.",
+						"name": "cs-falcon-status-get-command"
+					},
+					{
+						"description": "Gets the status of a command executed on a host.",
+						"name": "cs-falcon-status-command"
+					},
+					{
+						"description": "Gets the RTR extracted file contents for the specified session and SHA256 hash.",
+						"name": "cs-falcon-get-extracted-file"
+					},
+					{
+						"description": "Gets a list of files for the specified RTR session on a host.",
+						"name": "cs-falcon-list-host-files"
+					},
+					{
+						"description": "Refresh a session timeout on a single host.",
+						"name": "cs-falcon-refresh-session"
+					},
+					{
+						"description": "Deprecated. Use the cs-falcon-search-custom-iocs command instead.",
+						"name": "cs-falcon-search-iocs"
+					},
+					{
+						"description": "Deprecated. Use the cs-falcon-get-custom-ioc command instead.",
+						"name": "cs-falcon-get-ioc"
+					},
+					{
+						"description": "Deprecated. Use the cs-falcon-upload-custom-ioc command instead.",
+						"name": "cs-falcon-upload-ioc"
+					},
+					{
+						"description": "Deprecated. Use the cs-falcon-update-custom-ioc command instead.",
+						"name": "cs-falcon-update-ioc"
+					},
+					{
+						"description": "Deprecated. Use the cs-falcon-delete-custom-ioc command instead.",
+						"name": "cs-falcon-delete-ioc"
+					},
+					{
+						"description": "Returns a list of your uploaded IOCs that match the search criteria.",
+						"name": "cs-falcon-search-custom-iocs"
+					},
+					{
+						"description": "Gets the full definition of one or more indicators that you are watching.",
+						"name": "cs-falcon-get-custom-ioc"
+					},
+					{
+						"description": "Uploads an indicator for CrowdStrike to monitor.",
+						"name": "cs-falcon-upload-custom-ioc"
+					},
+					{
+						"description": "Updates an indicator for CrowdStrike to monitor.",
+						"name": "cs-falcon-update-custom-ioc"
+					},
+					{
+						"description": "Deletes a monitored indicator.",
+						"name": "cs-falcon-delete-custom-ioc"
+					},
+					{
+						"description": "The number of hosts that observed the provided IOC.",
+						"name": "cs-falcon-device-count-ioc"
+					},
+					{
+						"description": "Get processes associated with a given IOC.",
+						"name": "cs-falcon-processes-ran-on"
+					},
+					{
+						"description": "Retrieves the details of a process, according to the process ID that is running or that previously ran.",
+						"name": "cs-falcon-process-details"
+					},
+					{
+						"description": "Returns a list of device IDs an indicator ran on.",
+						"name": "cs-device-ran-on"
+					},
+					{
+						"description": "Returns a list of device IDs an indicator ran on.",
+						"name": "cs-falcon-device-ran-on"
+					},
+					{
+						"description": "Lists detection summaries.",
+						"name": "cs-falcon-list-detection-summaries"
+					},
+					{
+						"description": "Lists incident summaries.",
+						"name": "cs-falcon-list-incident-summaries"
+					},
+					{
+						"description": "Returns information about an endpoint.",
+						"name": "endpoint"
+					},
+					{
+						"description": "Create a host group.",
+						"name": "cs-falcon-create-host-group"
+					},
+					{
+						"description": "List the available host groups.",
+						"name": "cs-falcon-list-host-groups"
+					},
+					{
+						"description": "Deletes the requested host groups.",
+						"name": "cs-falcon-delete-host-groups"
+					},
+					{
+						"description": "Updates a host group.",
+						"name": "cs-falcon-update-host-group"
+					},
+					{
+						"description": "Gets the list of host group members.",
+						"name": "cs-falcon-list-host-group-members"
+					},
+					{
+						"description": "Add host group members.",
+						"name": "cs-falcon-add-host-group-members"
+					},
+					{
+						"description": "Remove host group members.",
+						"name": "cs-falcon-remove-host-group-members"
+					},
+					{
+						"description": "Resolve incidents.",
+						"name": "cs-falcon-resolve-incident"
+					},
+					{
+						"description": "Uploads a batch of indicators.",
+						"name": "cs-falcon-batch-upload-custom-ioc"
+					},
+					{
+						"description": "Execute an active responder kill command on a single host.",
+						"name": "cs-falcon-rtr-kill-process"
+					},
+					{
+						"description": "Batch executes an RTR active-responder remove file across the hosts mapped to the given batch ID.",
+						"name": "cs-falcon-rtr-remove-file"
+					},
+					{
+						"description": "Executes an RTR active-responder ps command to get a list of active processes across the given host.",
+						"name": "cs-falcon-rtr-list-processes"
+					},
+					{
+						"description": "Executes an RTR active-responder netstat command to get a list of network status and protocol statistics across the given host.",
+						"name": "cs-falcon-rtr-list-network-stats"
+					},
+					{
+						"description": "Executes an RTR active-responder read registry keys command across the given hosts. This command is valid only for Windows hosts.",
+						"name": "cs-falcon-rtr-read-registry"
+					},
+					{
+						"description": "Executes an RTR active-responder netstat command to get a list of scheduled tasks across the given host. This command is valid only for Windows hosts.",
+						"name": "cs-falcon-rtr-list-scheduled-tasks"
+					},
+					{
+						"description": "Gets the RTR extracted file contents for the specified file path.",
+						"name": "cs-falcon-rtr-retrieve-file"
+					},
+					{
+						"description": "Gets the detections for a specific incident.",
+						"name": "cs-falcon-get-detections-for-incident"
+					},
+					{
+						"description": "Returns the list of fields to map in outgoing mirroring. This command is only used for debugging purposes.",
+						"name": "get-mapping-fields"
+					},
+					{
+						"description": "Gets remote data from a remote incident or detection. This method does not update the current incident or detection, and should be used for debugging purposes only.",
+						"name": "get-remote-data"
+					},
+					{
+						"description": "Gets the list of incidents and detections that were modified since the last update time. This method is used for debugging purposes. The get-modified-remote-data command is used as part of the Mirroring feature that was introduced in Cortex XSOAR version 6.1.",
+						"name": "get-modified-remote-data"
+					},
+					{
+						"description": "Updates the remote incident or detection with local incident or detection changes. This method is only used for debugging purposes and will not update the current incident or detection.",
+						"name": "update-remote-system"
+					},
+					{
+						"description": "Retrieve vulnerability details according to the selected filter. Each request requires at least one filter parameter. Supported with the CrowdStrike Spotlight license.",
+						"name": "cs-falcon-spotlight-search-vulnerability"
+					},
+					{
+						"description": "Retrieve vulnerability details according to the selected filter. Each request requires at least one filter parameter. Supported with the CrowdStrike Spotlight license.",
+						"name": "cve"
+					},
+					{
+						"description": "Retrieve vulnerability details for a specific ID and host. Supported with the CrowdStrike Spotlight license.",
+						"name": "cs-falcon-spotlight-list-host-by-vulnerability"
+					}
+				],
+				"description": "The CrowdStrike Falcon OAuth 2 API (formerly the Falcon Firehose API), enables fetching and resolving detections, searching devices, getting behaviors by ID, containing hosts, and lifting host containment.",
+				"id": "CrowdstrikeFalcon",
+				"name": "CrowdStrike Falcon"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": [
+			{
+				"description": "This playbook is part of the 'Malware Investigation And Response' pack. For more information, refer to https://xsoar.pan.dev/docs/reference/packs/malware-investigation-and-response.\nThis playbook verifies and sets the policy actions applied by CrowdStrike Falcon.",
+				"name": "CrowdStrike Falcon Malware - Verify Containment Actions"
+			},
+			{
+				"description": "This playbook is part of the 'Malware Investigation And Response' pack. For more information, refer to https://xsoar.pan.dev/docs/reference/packs/malware-investigation-and-response.\nThis playbook retrieves and unzips files from CrowdStrike Falcon and returns a list of the files that were and were not retrieved.",
+				"name": "CrowdStrike Falcon - Retrieve File"
+			},
+			{
+				"description": " This playbook is part of the 'Malware Investigation And Response' pack. For more information, refer to https://xsoar.pan.dev/docs/reference/packs/malware-investigation-and-response. This playbook handles a CrowdStrike Falcon malware investigation, including:\n - Extracting and displaying MITRE data from the EDR and sandboxes\n - Deduplicating similar incidents\n - Searching for hashes in an alert in a sandbox to provide their relevant information. If the hashes are not found, retrieving them from the endpoint and detonating them in the sandbox.\n - Verifying the actions taken by the EDR\n - Analyzing the command line\n - Searching for relevant hashes in additional hosts in the organization\n - Retrieving data about the host, including process list and network connections\n - Performing containment and mitigation actions as part of handling false/true positives \n - Setting the relevant layouts",
+				"name": "CrowdStrike Falcon Malware - Investigation and Response"
+			},
+			{
+				"description": "This playbook is part of the 'Malware Investigation And Response' pack. For more information, refer to https://xsoar.pan.dev/docs/reference/packs/malware-investigation-and-response.\nThis playbook handles a CrowdStrike incident that was determined\nto be a false positive by the analyst. Actions include unisolating the host, allowing\nthe indicator by the EDR, and tagging it.",
+				"name": "CrowdStrike Falcon - False Positive Incident Handling"
+			},
+			{
+				"description": "This playbook will auto isolate endpoints by the device ID that was provided in the playbook.",
+				"name": "Crowdstrike Falcon - Isolate Endpoint"
+			},
+			{
+				"description": "This playbook is part of the 'Malware Investigation And Response' pack. For more information, refer to https://xsoar.pan.dev/docs/reference/packs/malware-investigation-and-response. This playbook searches across the organization for other endpoints associated with a specific SHA256 hash.",
+				"name": "CrowdStrike Falcon - Search Endpoints By Hash"
+			},
+			{
+				"description": "This playbook is part of the 'Malware Investigation And Response' pack. For more information, refer to https://xsoar.pan.dev/docs/reference/packs/malware-investigation-and-response. This playbook handles a CrowdStrike incident that was determined to be a true positive by the analyst. Actions include isolating the host, blocking the indicator by the EDR, and tagging it.",
+				"name": "CrowdStrike Falcon - True Positive Incident Handling"
+			},
+			{
+				"description": "This playbook is part of the 'Malware Investigation And Response' pack. For more information, refer to https://xsoar.pan.dev/docs/reference/packs/malware-investigation-and-response.\nThis playbook extracts data from the host using RTR commands. For example, commands for getting a list of running processes and network connections.",
+				"name": "CrowdStrike Falcon - Get Endpoint Forensics Data"
+			},
+			{
+				"description": "This playbook is part of the 'Malware Investigation And Response' pack. For more information, refer to https://xsoar.pan.dev/docs/reference/packs/malware-investigation-and-response.\nThis playbook enables enriching CrowdStrike Falcon incidents by pivoting to their detections as well as mapping all the relevant data to the Cortex XSOAR incident fields.",
+				"name": "CrowdStrike Falcon Malware - Incident Enrichment"
+			},
+			{
+				"description": "This playbook is part of the 'Malware Investigation And Response' pack. For more information, refer to https://xsoar.pan.dev/docs/reference/packs/malware-investigation-and-response.\nThis playbook enables getting CrowdStrike Falcon detection details based on the CrowdStrike incident ID.",
+				"name": "CrowdStrike Falcon - Get Detections by Incident"
+			},
+			{
+				"description": "This playbook is part of the 'Malware Investigation And Response' pack. For more information, refer to https://xsoar.pan.dev/docs/reference/packs/malware-investigation-and-response.\nThis playbook handles incident ingestion from a SIEM.\nThe user provides the field for the incident ID or detection ID and the field indicating whether the ingested item is an incident or detection. This playbook enables changing the severity scale in Cortex XSOAR as well as fetching CrowdStrike detections based on the CrowdStrike incident type.",
+				"name": "CrowdStrike Falcon - SIEM ingestion Get Incident Data"
+			},
+			{
+				"description": "This playbook unisolates devices according to the device ID that is provided in the playbook input.",
+				"name": "Crowdstrike Falcon - Unisolate Endpoint"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-09-09T12:16:53Z",
+	"currentVersion": "1.10.1",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.51",
+			"name": "Base"
+		},
+		"CommonPlaybooks": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "2.3.23",
+			"name": "Common Playbooks"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.10.34",
+			"name": "Common Scripts"
+		},
+		"CommonTypes": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "3.3.41",
+			"name": "Common Types"
+		},
+		"FeedMitreAttackv2": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.1.5",
+			"name": "MITRE ATT\u0026CK"
+		},
+		"FiltersAndTransformers": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.1.7",
+			"name": "Filters And Transformers"
+		},
+		"Jira": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "2.0.21",
+			"name": "Atlassian Jira"
+		},
+		"Malware": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.4.3",
+			"name": "Malware Core"
+		},
+		"MalwareInvestigationAndResponse": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "2.0.2",
+			"name": "Malware Investigation and Response"
+		},
+		"ServiceNow": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "2.5.5",
+			"name": "ServiceNow"
+		}
+	},
+	"deprecated": false,
+	"description": "The CrowdStrike Falcon OAuth 2 API (formerly the Falcon Firehose API), enables fetching and resolving detections, searching devices, getting behaviors by ID, containing hosts, and lifting host containment.",
+	"disabledMonthly": false,
+	"downloads": 10985,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "CrowdStrikeFalcon",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/CrowdStrikeFalcon/CrowdstrikeFalcon_image.png",
+			"name": "CrowdStrike Falcon"
+		},
+		{
+			"imagePath": "content/packs/ServiceNow/ServiceNow_image.png",
+			"name": "ServiceNow (Deprecated)"
+		},
+		{
+			"imagePath": "content/packs/ServiceNow/ServiceNowCMDB_image.png",
+			"name": "ServiceNow CMDB"
+		},
+		{
+			"imagePath": "content/packs/ServiceNow/ServiceNowIAM_image.png",
+			"name": "ServiceNow IAM"
+		},
+		{
+			"imagePath": "content/packs/ServiceNow/ServiceNowv2_image.png",
+			"name": "ServiceNow v2"
+		},
+		{
+			"imagePath": "content/packs/FeedMitreAttackv2/MITREATT%26CKv2_image.png",
+			"name": "MITRE ATT\u0026CK"
+		},
+		{
+			"imagePath": "content/packs/FeedMitreAttackv2/MITREATT%26CKv2_image.png",
+			"name": "MITRE ATT\u0026CK Feed v2"
+		},
+		{
+			"imagePath": "content/packs/Jira/jira-v2_image.png",
+			"name": "Atlassian Jira v2"
+		}
+	],
+	"itemVersion": "1.10.1",
+	"keywords": [],
+	"legacy": true,
+	"name": "CrowdStrike Falcon",
+	"packID": "CrowdStrikeFalcon",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "Endpoint security is at the frontline to protect against malicious cybersecurity threats. It represents one of the first places organizations look to secure their enterprise networks.  \r\nAs the volume and sophistication of cybersecurity threats have increased, so has the need for more advanced endpoint security solutions.  \r\nCrowdStrike Falcon is one of the leaders in the Endpoint Protection Platform (EPP) market, and the CrowdStrike Falcon content pack provides a holistic solution for protecting enterprise endpoints and servers from malicious attacks that can seriously impact your organization.  \r\nThis pack is designed to quickly detect, analyze, block, and contain malicious attacks in progress. It also gives administrators visibility into advanced threats to speed detection and remediation response times.  \r\n  \r\n## What Does This Pack Do?\r\n- Mirrors incidents between Cortex XSOAR incidents and CrowdStrike Falcon incidents or detections\r\n- Provides real-time response features\r\n- Assesses vulnerability\r\n- Contains endpoints (isolation/unisolation)\r\n- Removes duplicate incidents\r\n- Eliminates false positive incidents\r\n- Enriches incidents\r\n\r\n## Before You Start\r\nMake sure you have the following content packs:\r\n- Base\r\n- Common Scripts\r\n- Common Types\r\n\r\n## Pack Configurations  \r\nTo get up and running with this pack, you must get an API client ID and secret from CrowdStrike support: support@crowdstrike.com.\r\n",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2023-01-03T12:25:09Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4321146",
+	"videos": []
+}
