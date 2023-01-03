@@ -1,0 +1,159 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Vulnerability Management"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"playbook"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Vulnerability Management",
+				"commands": [
+					{
+						"description": "Searches for vulnerabilities in Kenna.",
+						"name": "kenna-search-vulnerabilities"
+					},
+					{
+						"description": "Executes a run of the specified connector. If file based, it will use the most recently uploaded data file.",
+						"name": "kenna-run-connector"
+					},
+					{
+						"description": "Filters fixes by a given set of vulnerability and asset parameters and returns the filtered fixes.",
+						"name": "kenna-search-fixes"
+					},
+					{
+						"description": "Updates the attributes of a single asset.",
+						"name": "kenna-update-asset"
+					},
+					{
+						"description": "Updates the attributes of a single vulnerability.",
+						"name": "kenna-update-vulnerability"
+					},
+					{
+						"description": "Returns all connectors.",
+						"name": "kenna-get-connectors"
+					},
+					{
+						"description": "Searches for assets.",
+						"name": "kenna-search-assets"
+					},
+					{
+						"description": "Gets vulnerabilities of the specified asset.",
+						"name": "kenna-get-asset-vulnerabilities"
+					},
+					{
+						"description": "Adds a tag to the specified asset.",
+						"name": "kenna-add-tag"
+					},
+					{
+						"description": "Deletes tags from the specified asset.",
+						"name": "kenna-delete-tag"
+					},
+					{
+						"description": "Returns JSON data on all the runs of a given connector.",
+						"name": "kenna-get-connector-runs"
+					}
+				],
+				"description": "Use the Kenna v2 integration to search and update vulnerabilities, schedule a run connector, and manage tags and attributes.",
+				"id": "",
+				"name": "Kenna v2"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": [
+			{
+				"description": "This playbook accepts an asset, then searches for vulnerabilities on that asset using the Kenna integration. If a vulnerability exists, it looks for relevant patches, lets the analyst deploy them and then generates an investigation summary report.",
+				"name": "Kenna - Search and Handle Asset Vulnerabilities"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-11-09T18:47:46Z",
+	"currentVersion": "1.1.16",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.39",
+			"name": "Base"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.10.7",
+			"name": "Common Scripts"
+		}
+	},
+	"deprecated": false,
+	"description": "Use the Kenna v2 integration to search and update vulnerabilities, schedule a run connector, and manage tags and attributes.",
+	"disabledMonthly": false,
+	"downloads": 2049,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "Kenna",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/Kenna/Kennav2_image.png",
+			"name": "Kenna v2"
+		}
+	],
+	"itemVersion": "1.1.16",
+	"keywords": [],
+	"legacy": true,
+	"name": "Kenna",
+	"packID": "Kenna",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-11-22T23:56:18Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4098099",
+	"videos": []
+}
