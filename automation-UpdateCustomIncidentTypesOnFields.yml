@@ -1,0 +1,103 @@
+args:
+- description: 'Comma separated list of field machine names to add the Incident Type  to.
+    (Example: emailto,emailfrom) '
+  name: fields
+  required: true
+- description: Comma separated list of Incident Types to add the field to. (e.g Custom
+    Type,Custom Type 2)
+  name: incident_types
+  required: true
+- auto: PREDEFINED
+  defaultValue: add
+  description: Whether to add or remove the Incident Types from the field. Default
+    is to add.
+  name: action
+  predefined:
+  - add
+  - remove
+comment: This will add  or remove custom Incident Types on Incident fields in XSOAR
+commonfields:
+  id: 4d9dc8f5-8ddc-4ccd-8fd7-1d3493a42033
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dependson:
+  must:
+  - Demisto REST API|||demisto-api-post
+  - Demisto REST API|||demisto-api-get
+dockerimage: demisto/python3:3.9.1.14969
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: UpdateCustomIncidentTypesOnFields
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |-
+  fields = demisto.args().get('fields').split(",")
+  fields = [x.strip() for x in fields]
+  incident_types = demisto.args().get('incident_types').split(",")
+  incident_types = [x.strip() for x in incident_types]
+
+  action = demisto.args().get('action')
+
+
+  # get the current fields and incident types from the system
+  current_fields = demisto.executeCommand("demisto-api-get", {"uri":"/incidentfields"})[0]["Contents"]['response']
+  current_types = demisto.executeCommand("demisto-api-get", {"uri":"/incidenttype"})[0]["Contents"]['response']
+
+  # build quick lists of the field machinenames, and names of incident types
+  current_fields_cli_list = [x["cliName"] for x in current_fields]
+  current_types_list = [x["name"] for x in current_types]
+
+  # error checking for Ori, verify the fields provided and the incident types actually exist
+  for it in incident_types:
+      if it not in current_types_list:
+          return_error(f"{it} is not a valid Incident Type, check the Incident Type Name from the Advanced menu (Settings)")
+
+  for f in fields:
+      if f not in current_fields_cli_list:
+          return_error(f"{f} is not a valid field machinename, check the field from the Advanced menu (Settings) to get the machinename of the field.")
+
+  # add or remove the incident types from the fields
+
+  results = {
+      "Modified": [],
+      "Unmodified": []
+  }
+
+  for f in fields:
+      field = next(item for item in current_fields if item["cliName"] == f)
+      if not field['associatedToAll']:
+          if action == "add":
+              # add the incident type to the field
+              field["associatedTypes"] = list(set(field.get('associatedTypes', []) + incident_types))
+              demisto.executeCommand("demisto-api-post", {"uri":"/incidentfield","body":field})
+              results["Modified"].append(f)
+          else:
+              # prevent removing the field from any system associated incident types
+              incident_types = [x for x in incident_types if x not in field.get('systemAssociatedTypes')]
+              field["associatedTypes"] = [x for x in field.get('associatedTypes') if x not in incident_types]
+              demisto.executeCommand("demisto-api-post", {"uri":"/incidentfield","body":field})
+              print(field)
+              results["Modified"].append(f)
+
+      else:
+          results["Unmodified"].append(f)
+
+  result = CommandResults(readable_output=tableToMarkdown(f"Fields updated, action:{action}",results,removeNull=True))
+  return_results(result)
+scripttarget: 0
+subtype: python3
+tags:
+- training
+type: python
