@@ -1,0 +1,159 @@
+{
+	"author": "SecneurX Technologies",
+	"authorImage": "content/packs/SecneurXAnalysis/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Forensics \u0026 Malware Analysis"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"playbook"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Forensics \u0026 Malware Analysis",
+				"commands": [
+					{
+						"description": "Get verdict summary report of the analyzed sample",
+						"name": "snx-analysis-get-verdict"
+					},
+					{
+						"description": "Get the list of submitted samples whose status is marked as \"Completed\"",
+						"name": "snx-analysis-get-completed"
+					},
+					{
+						"description": "Get the list of submitted samples that are still in pending state",
+						"name": "snx-analysis-get-pending"
+					},
+					{
+						"description": "Get the status of all the submitted samples",
+						"name": "snx-analysis-get-status"
+					},
+					{
+						"description": "Submit a file for Analysis",
+						"name": "snx-analysis-submit-file"
+					},
+					{
+						"description": "Submit the URL for Analysis",
+						"name": "snx-analysis-submit-url"
+					},
+					{
+						"description": "Get the detailed report of the analyzed sample.",
+						"name": "snx-analysis-get-report"
+					},
+					{
+						"description": "Get the API Key quota usage details.",
+						"name": "snx-analysis-get-quota"
+					}
+				],
+				"description": "Fully automated malware dynamic analysis sandboxing",
+				"id": "",
+				"name": "SecneurX Analysis (Partner Contribution)"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": [
+			{
+				"description": "Detonates a URL using the SecneurX Analysis integration. Returns relevant reports to the War Room and file reputations to the context data.",
+				"name": "Detonate URL - SecneurX Analysis"
+			},
+			{
+				"description": "Detonates a file using the SecneurX Analysis Integration. Returns relevant reports to the War Room and file reputations to the context data.",
+				"name": "Detonate File - SecneurX Analysis"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2022-09-10T21:57:05Z",
+	"currentVersion": "1.0.1",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.39",
+			"name": "Base"
+		},
+		"CommonPlaybooks": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "2.3.13",
+			"name": "Common Playbooks"
+		}
+	},
+	"deprecated": false,
+	"description": "Fully automated malware dynamic analysis sandboxing",
+	"disabledMonthly": false,
+	"downloads": 11,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "6.2.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByPartner",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "SecneurXAnalysis",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/SecneurXAnalysis/SecneurxAnalysis_image.png",
+			"name": "SecneurX Analysis"
+		}
+	],
+	"itemVersion": "1.0.1",
+	"keywords": [
+		"Malware Analysis"
+	],
+	"legacy": true,
+	"name": "SecneurX Analysis",
+	"packID": "SecneurXAnalysis",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "Use SecneurX Analysis  pack to provide threat analysts and incident response teams with the advanced malware isolation and inspection environment needed to safely execute advanced malware samples, and understand their behavior.\n\nYou can use the pack's playbooks to detonate both files and URLs. SecneurX Analysis performs both static and dynamic analysis of advanced threats, including zero day and targeted attacks.\n\n## What does this pack do?\n- Automatically analyze malware found on endpoints.\n- Enrich results with threat intelligence.\n- Provide security teams with extensive set of indicators of compromise (IOCs).\n\n## Playbooks\nThis pack includes the following built-in playbooks:\n- Detonate File - SecneurX Analysis: Detonate a file using SecneurX Analysis Sandbox.\n- Detonate URL - SecneurX Analysis: Detonate a url using SecneurX Analysis Sandbox.",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "6.2.0",
+	"support": "partner",
+	"supportDetails": {
+		"email": "support@secneurx.com",
+		"url": "https://www.secneurx.com/products"
+	},
+	"tags": [
+		"Forensics",
+		"Threat Intelligence",
+		"Malware",
+		"Trending"
+	],
+	"toServerVersion": "",
+	"updated": "2022-11-28T11:21:33Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4112675",
+	"videos": []
+}
