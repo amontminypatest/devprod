@@ -1,0 +1,343 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+description: 'This playbook demonstrates a timer breach script in action.  Timers
+  can be used to track metrics, or to trigger actions in a playbook at a later date. '
+id: 1091baf8-ab34-4bc9-8a83-526cb98ea529
+inputs: []
+name: XSOAR Engineer Training - SLA Timer Breach Example
+outputs: []
+sourceplaybookid: c87eac93-7aa8-4432-86ee-9ed0b10d01cd
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 79d99293-bb21-4e9b-8ae5-c7bc326e49ed
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 79d99293-bb21-4e9b-8ae5-c7bc326e49ed
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 18657e93-9ad2-45a3-8aaf-57f02996ccb6
+      iscommand: false
+      name: Start Training Example Timer
+      type: title
+      version: -1
+    taskid: 18657e93-9ad2-45a3-8aaf-57f02996ccb6
+    timertriggers:
+    - action: start
+      fieldname: trainingexampletimer
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 895
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |
+        This task is tagged with 'timerbreach', and the breach script will complete it when the SLA timer breaches in 1 minute.
+      id: 54054ce4-bac3-4a18-8252-f51d149afcfb
+      iscommand: false
+      name: This task will complete when the timer breaches in 1 minute.
+      tags:
+      - timerbreach
+      type: regular
+      version: -1
+    taskid: 54054ce4-bac3-4a18-8252-f51d149afcfb
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 1040
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        complex:
+          accessor: slaStatus
+          root: incident.trainingexampletimer
+          transformers:
+          - args:
+              input_values:
+                value:
+                  simple: "-1"
+              mapped_values:
+                value:
+                  simple: BREACHED
+            operator: MapValuesTransformer
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: 842a6acc-fffb-43c5-84f8-4cc59fca26fc
+      iscommand: false
+      name: Timer Breached!
+      script: Print
+      type: regular
+      version: -1
+    taskid: 842a6acc-fffb-43c5-84f8-4cc59fca26fc
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 1215
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 77915fca-4285-4775-8ad0-b2073ef3369c
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 77915fca-4285-4775-8ad0-b2073ef3369c
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 1390
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "8"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: 'Complete this Task to start the timer. '
+      id: 4084f103-5fca-485d-896b-9bad64e1185b
+      iscommand: false
+      name: Continue to Start the Timer
+      type: regular
+      version: -1
+    taskid: 4084f103-5fca-485d-896b-9bad64e1185b
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 545
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      all:
+        simple: "yes"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Delete field from context
+      id: c8b17bd5-7eed-4c0b-8101-9fd40b69fb1d
+      iscommand: false
+      name: Delete Context
+      script: DeleteContext
+      type: regular
+      version: -1
+    taskid: c8b17bd5-7eed-4c0b-8101-9fd40b69fb1d
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 195
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: true
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: "## XSOAR Engineer Training - SLA Timer Breach Example\n\nThis playbook
+          demonstrates a timer breach script in action.  Timers can be used to track
+          metrics, or to trigger actions in a playbook at a later date. "
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: 3d0f0900-80c2-4e91-867a-eb84455201cf
+      iscommand: false
+      name: Print Playbook Overview
+      script: Print
+      type: regular
+      version: -1
+    taskid: 3d0f0900-80c2-4e91-867a-eb84455201cf
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 370
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      incidentId:
+        complex:
+          accessor: id
+          root: incident
+      timerField:
+        simple: trainingexampletimer
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.reset.timer
+      id: 3cbbe9ef-9ec5-495a-8ca1-2b71aef2d388
+      iscommand: true
+      name: Reset Timer - To run more than once!
+      script: Builtin|||resetTimer
+      type: regular
+      version: -1
+    taskid: 3cbbe9ef-9ec5-495a-8ca1-2b71aef2d388
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 720
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1405,
+        "width": 380,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
