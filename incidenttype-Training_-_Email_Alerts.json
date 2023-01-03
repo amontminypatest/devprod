@@ -1,0 +1,65 @@
+{
+	"autorun": false,
+	"cacheVersn": 0,
+	"closureScript": "",
+	"color": "#E55100",
+	"days": 0,
+	"daysR": 0,
+	"default": false,
+	"definitionId": "",
+	"detached": false,
+	"disabled": false,
+	"extractSettings": {
+		"fieldCliNameToExtractSettings": {
+			"details": {
+				"extractAsIsIndicatorTypeId": "",
+				"extractIndicatorTypesIDs": [],
+				"isExtractingAllIndicatorTypes": true
+			},
+			"emailfrom": {
+				"extractAsIsIndicatorTypeId": "",
+				"extractIndicatorTypesIDs": [
+					"emailRep"
+				],
+				"isExtractingAllIndicatorTypes": false
+			},
+			"emailsenderip": {
+				"extractAsIsIndicatorTypeId": "",
+				"extractIndicatorTypesIDs": [
+					"ipRep"
+				],
+				"isExtractingAllIndicatorTypes": false
+			},
+			"emailto": {
+				"extractAsIsIndicatorTypeId": "",
+				"extractIndicatorTypesIDs": [
+					"emailRep"
+				],
+				"isExtractingAllIndicatorTypes": false
+			}
+		},
+		"mode": "Specific"
+	},
+	"fromServerVersion": "",
+	"hours": 0,
+	"hoursR": 0,
+	"id": "Training - Email Alerts",
+	"itemVersion": "",
+	"layout": "8197290c-c262-46f4-8b7b-14aca2f564b7",
+	"locked": false,
+	"name": "Training - Email Alerts",
+	"onChangeRepAlg": 2,
+	"packID": "",
+	"packName": "",
+	"preProcessingScript": "",
+	"propagationLabels": [
+		"all"
+	],
+	"readonly": false,
+	"reputationCalc": 2,
+	"system": false,
+	"toServerVersion": "",
+	"version": -1,
+	"weeks": 0,
+	"weeksR": 0
+}
