@@ -1,0 +1,221 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.0.16
+    packID: PaloAltoNetworks_IoT
+    packName: IoT by Palo Alto Networks
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: This playbook should be used in a recurring Job to check the ServiceNow
+  ticket status for the Palo Alto Networks IoT (previously Zingbox) alerts or vulnerabilties.
+id: PANW IoT ServiceNow Tickets Check
+inputs: []
+name: PANW IoT ServiceNow Tickets Check
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: b2784e0e-12c4-4468-863a-210bf630a2fc
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: b2784e0e-12c4-4468-863a-210bf630a2fc
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 162.5,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Closes the XSOAR incident if the IoT ServiceNow ticket was closed.
+        This command should be run in a Job.
+      id: 1db6684d-1ed6-40b8-8ec3-6ad24fc9520c
+      iscommand: false
+      name: iot-security-check-servicenow
+      script: iot-security-check-servicenow
+      type: regular
+      version: -1
+    taskid: 1db6684d-1ed6-40b8-8ec3-6ad24fc9520c
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 370
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      close_reason:
+        simple: Other
+      closeNotes:
+        simple: Job finished
+      id:
+        simple: ${incident.id}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Close the current incident.
+      id: a22d3115-8190-4665-8573-a30860676e83
+      iscommand: true
+      name: Close incident
+      script: Builtin|||closeInvestigation
+      type: regular
+      version: -1
+    taskid: a22d3115-8190-4665-8573-a30860676e83
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 162.5,
+          "y": 545
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 0497f4af-ffe3-4d87-86cf-6f8646dcbd96
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 0497f4af-ffe3-4d87-86cf-6f8646dcbd96
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 162.5,
+          "y": 720
+        }
+      }
+  "4":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: ServiceNow v2
+                root: modules
+                transformers:
+                - args:
+                    field:
+                      value:
+                        simple: state
+                  operator: getField
+          operator: isEqualString
+          right:
+            value:
+              simple: active
+      label: "yes"
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "2"
+      "yes":
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 42671f8d-5426-4da0-8943-b0706a66b08f
+      iscommand: false
+      name: Is ServiceNow v2 enabled?
+      type: condition
+      version: -1
+    taskid: 42671f8d-5426-4da0-8943-b0706a66b08f
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 162.5,
+          "y": 195
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 735,
+        "width": 492.5,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
