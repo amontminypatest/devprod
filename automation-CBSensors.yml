@@ -1,0 +1,37 @@
+comment: List Carbon Black sensors
+commonfields:
+  id: CBSensors
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 2.1.25
+    packID: Carbon_Black_Enterprise_Response
+    packName: Carbon Black Enterprise Response
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+dependson:
+  must:
+  - cb-list-sensors
+engineinfo: {}
+mainengineinfo: {}
+name: CBSensors
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  //Show a list of carbon black sensors.
+  var sensors = executeCommand("cb-list-sensors",{})
+  var output = sensors[0];
+  output.ContentsFormat = formats.table;
+  return output;
+scripttarget: 0
+system: true
+tags:
+- carbon-black
+- endpoint
+type: javascript
