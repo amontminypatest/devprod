@@ -1,0 +1,39 @@
+{
+	"autorun": true,
+	"cacheVersn": 0,
+	"closureScript": "",
+	"color": "#E57373",
+	"days": 0,
+	"daysR": 0,
+	"default": false,
+	"definitionId": "",
+	"detached": false,
+	"disabled": false,
+	"extractSettings": {
+		"fieldCliNameToExtractSettings": {},
+		"mode": "All"
+	},
+	"fromServerVersion": "",
+	"hours": 0,
+	"hoursR": 0,
+	"id": "Training",
+	"itemVersion": "",
+	"layout": "0d3331a2-6223-475c-8f1e-5faa2eef4d8e",
+	"locked": false,
+	"name": "Training",
+	"onChangeRepAlg": 1,
+	"packID": "",
+	"packName": "",
+	"playbookId": "9fc08b11-3fc7-4df9-8d72-79eda5c49dc2",
+	"preProcessingScript": "",
+	"propagationLabels": [
+		"all"
+	],
+	"readonly": false,
+	"reputationCalc": 1,
+	"system": false,
+	"toServerVersion": "",
+	"version": -1,
+	"weeks": 0,
+	"weeksR": 0
+}
