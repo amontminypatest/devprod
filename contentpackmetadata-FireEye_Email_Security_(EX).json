@@ -1,0 +1,235 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Network Security"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"incidenttype",
+		"playbook",
+		"classifier"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": [
+			{
+				"description": "Classifies FireEye Email Security Alerts as Phishing Alerts incident type.",
+				"id": "",
+				"name": "FireEye Email Security - Phishing Alerts - Classifier"
+			},
+			{
+				"description": "Classifies FireEye Email Security Alerts.",
+				"id": "",
+				"name": "FireEye Email Security - Classifier"
+			}
+		],
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": [
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "FireEye EX Alert",
+				"playbook": "",
+				"weeks": 0
+			}
+		],
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Network Security",
+				"commands": [
+					{
+						"description": "Searches and retrieves FireEye EX alerts based on several filters.",
+						"name": "fireeye-ex-get-alerts"
+					},
+					{
+						"description": "Searches and retrieves the details of a single alert.",
+						"name": "fireeye-ex-get-alert-details"
+					},
+					{
+						"description": "Downloads malware artifacts data for the specified UUID as a zip file.",
+						"name": "fireeye-ex-get-artifacts-by-uuid"
+					},
+					{
+						"description": "Gets artifacts metadata for the specified UUID.",
+						"name": "fireeye-ex-get-artifacts-metadata-by-uuid"
+					},
+					{
+						"description": "Searches and retrieves quarantined emails.",
+						"name": "fireeye-ex-get-quarantined-emails"
+					},
+					{
+						"description": "Releases and deletes quarantined emails. This is not available when Email Security is in Drop mode.",
+						"name": "fireeye-ex-release-quarantined-emails"
+					},
+					{
+						"description": "Deletes quarantined emails. This is not available when Email Security is in Drop mode.",
+						"name": "fireeye-ex-delete-quarantined-emails"
+					},
+					{
+						"description": "Download quarantined emails.",
+						"name": "fireeye-ex-download-quarantined-emails"
+					},
+					{
+						"description": "Returns reports on selected alerts.",
+						"name": "fireeye-ex-get-reports"
+					},
+					{
+						"description": "Lists the allowed sender domain by type.",
+						"name": "fireeye-ex-list-allowedlist"
+					},
+					{
+						"description": "Creates allowed sender domain.",
+						"name": "fireeye-ex-create-allowedlist"
+					},
+					{
+						"description": "Updates the allowed sender domain.",
+						"name": "fireeye-ex-update-allowedlist"
+					},
+					{
+						"description": "Deletes the allowed sender domain.",
+						"name": "fireeye-ex-delete-allowedlist"
+					},
+					{
+						"description": "Lists the blocked sender domain by type.",
+						"name": "fireeye-ex-list-blockedlist"
+					},
+					{
+						"description": "Creates the blocked sender domain.",
+						"name": "fireeye-ex-create-blockedlist"
+					},
+					{
+						"description": "Updates the blocked sender domain.",
+						"name": "fireeye-ex-update-blockedlist"
+					},
+					{
+						"description": "Deletes the blocked sender domain.",
+						"name": "fireeye-ex-delete-blockedlist"
+					}
+				],
+				"description": "FireEye Email Security (EX) series protects against breaches caused by advanced email attacks.",
+				"id": "",
+				"name": "FireEye Email Security"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": [
+			{
+				"description": "This playbook retrieves a specified EML/MSG file directly from FireEye Email Security or Central Management.",
+				"name": "Get Email From Email Gateway - FireEye"
+			},
+			{
+				"description": "This playbook blocks domains using FireEye Email Security.\nThe playbook checks whether the FireEye Email Security integration is enabled, whether the Domain input has been provided and if so, blocks the domain.",
+				"name": "Block Domain - FireEye Email Security"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2021-06-11T22:56:08Z",
+	"currentVersion": "2.0.10",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.39",
+			"name": "Base"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.10.7",
+			"name": "Common Scripts"
+		},
+		"FireEyeCM": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.1.18",
+			"name": "FireEye Central Management"
+		},
+		"FireEyeCommonFields": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.0.5",
+			"name": "FireEye Common Fields"
+		},
+		"PhishingAlerts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.0.0",
+			"name": "PhishingAlerts"
+		}
+	},
+	"deprecated": false,
+	"description": "FireEye Email Security series protects against breaches caused by advanced email attacks.",
+	"disabledMonthly": false,
+	"downloads": 856,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "6.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "FireEyeEX",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/FireEyeEX/FireEyeEmailSecurity_image.png",
+			"name": "FireEye Email Security"
+		},
+		{
+			"imagePath": "content/packs/FireEyeCM/FireEyeCentralManagement_image.png",
+			"name": "FireEye Central Management"
+		}
+	],
+	"itemVersion": "2.0.10",
+	"keywords": [],
+	"legacy": true,
+	"name": "FireEye Email Security (EX)",
+	"packID": "FireEyeEX",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "\u003c!-- Currently holds the incident type for FE CM, will be edited when an integration will be added --\u003e",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "6.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-11-22T23:03:53Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4098099",
+	"videos": []
+}
