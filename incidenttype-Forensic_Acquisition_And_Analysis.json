@@ -1,0 +1,40 @@
+{
+	"autorun": true,
+	"cacheVersn": 0,
+	"closureScript": "",
+	"color": "#3F51B5",
+	"days": 0,
+	"daysR": 0,
+	"default": false,
+	"definitionId": "",
+	"detached": false,
+	"disabled": false,
+	"extractSettings": {
+		"fieldCliNameToExtractSettings": {},
+		"mode": "All"
+	},
+	"fromServerVersion": "6.0.0",
+	"hours": 0,
+	"hoursR": 0,
+	"id": "Forensic Acquisition And Analysis",
+	"itemVersion": "1.0.2",
+	"layout": "Forensic Acquisition And Analysis",
+	"locked": false,
+	"name": "Forensic Acquisition And Analysis",
+	"onChangeRepAlg": 1,
+	"packID": "WindowsForensics",
+	"packName": "Windows Forensics",
+	"packPropagationLabels": [
+		"all"
+	],
+	"playbookId": "Acquire And Analyze Host Forensics",
+	"preProcessingScript": "",
+	"propagationLabels": [],
+	"readonly": false,
+	"reputationCalc": 0,
+	"system": true,
+	"toServerVersion": "",
+	"version": -1,
+	"weeks": 0,
+	"weeksR": 0
+}
