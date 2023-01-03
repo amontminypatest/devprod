@@ -1,0 +1,75 @@
+{
+	"autorun": false,
+	"cacheVersn": 0,
+	"closureScript": "",
+	"color": "#FF5000",
+	"days": 0,
+	"daysR": 0,
+	"default": false,
+	"definitionId": "",
+	"detached": false,
+	"disabled": false,
+	"extractSettings": {
+		"fieldCliNameToExtractSettings": {
+			"emailfrom": {
+				"extractAsIsIndicatorTypeId": "",
+				"extractIndicatorTypesIDs": [
+					"emailRep"
+				],
+				"isExtractingAllIndicatorTypes": false
+			},
+			"emailsenderip": {
+				"extractAsIsIndicatorTypeId": "",
+				"extractIndicatorTypesIDs": [
+					"ipRep"
+				],
+				"isExtractingAllIndicatorTypes": false
+			},
+			"emailto": {
+				"extractAsIsIndicatorTypeId": "",
+				"extractIndicatorTypesIDs": [
+					"emailRep"
+				],
+				"isExtractingAllIndicatorTypes": false
+			},
+			"emailurlclicked": {
+				"extractAsIsIndicatorTypeId": "",
+				"extractIndicatorTypesIDs": [
+					"urlRep",
+					"domainRepUnified"
+				],
+				"isExtractingAllIndicatorTypes": false
+			},
+			"sourceip": {
+				"extractAsIsIndicatorTypeId": "",
+				"extractIndicatorTypesIDs": [
+					"ipRep"
+				],
+				"isExtractingAllIndicatorTypes": false
+			}
+		},
+		"mode": "Specific"
+	},
+	"fromServerVersion": "",
+	"hours": 0,
+	"hoursR": 0,
+	"id": "Training - URL Clicks",
+	"itemVersion": "",
+	"layout": "4002c3bb-9ddb-470a-8268-fc1186b841ac",
+	"locked": false,
+	"name": "Training - URL Clicks",
+	"onChangeRepAlg": 2,
+	"packID": "",
+	"packName": "",
+	"preProcessingScript": "",
+	"propagationLabels": [
+		"all"
+	],
+	"readonly": false,
+	"reputationCalc": 2,
+	"system": false,
+	"toServerVersion": "",
+	"version": -1,
+	"weeks": 0,
+	"weeksR": 0
+}
