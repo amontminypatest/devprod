@@ -1,0 +1,112 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "",
+	"feed": false,
+	"fromServerVersion": "",
+	"id": "e5ea5384-d746-4d53-895f-fa80eec654df",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "",
+	"keyTypeMap": {},
+	"locked": false,
+	"logicalVersion": 1,
+	"mapping": {
+		"Training - Email Alerts": {
+			"dontMapEventToLabels": false,
+			"internalMapping": {
+				"Email From": {
+					"simple": "sender"
+				},
+				"Email Message ID": {
+					"simple": "messageID"
+				},
+				"Email Reply To": {
+					"simple": "replyToAddress.[0]"
+				},
+				"Email Subject": {
+					"simple": "subject"
+				},
+				"Email To": {
+					"simple": "toAddresses.[0]"
+				},
+				"Event ID": {
+					"complex": {
+						"filters": [],
+						"root": "EventID",
+						"transformers": []
+					}
+				},
+				"Event Type": {
+					"simple": "type"
+				},
+				"details": {
+					"complex": {
+						"filters": [],
+						"root": "threats",
+						"transformers": []
+					}
+				},
+				"occurred": {
+					"simple": "messageTime"
+				}
+			}
+		},
+		"Training - URL Clicks": {
+			"dontMapEventToLabels": false,
+			"internalMapping": {
+				"Email From": {
+					"simple": "sender"
+				},
+				"Email Message ID": {
+					"simple": "messageID"
+				},
+				"Email Sender IP": {
+					"simple": "senderIP"
+				},
+				"Email To": {
+					"simple": "recipient"
+				},
+				"Email URL Clicked": {
+					"simple": "url"
+				},
+				"Event ID": {
+					"complex": {
+						"filters": [],
+						"root": "EventID",
+						"transformers": []
+					}
+				},
+				"Event Type": {
+					"simple": "type"
+				},
+				"Source IP": {
+					"simple": "clickIP"
+				},
+				"details": {
+					"simple": "classification"
+				},
+				"occurred": {
+					"simple": "clickTime"
+				}
+			}
+		}
+	},
+	"name": "Training - XSOAR Engineer Training - Incoming Mapper",
+	"nameRaw": "Training - XSOAR Engineer Training - Incoming Mapper",
+	"packID": "",
+	"packName": "",
+	"propagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": false,
+	"toServerVersion": "",
+	"transformer": {},
+	"type": "mapping-incoming",
+	"unclassifiedCases": null,
+	"version": -1
+}
