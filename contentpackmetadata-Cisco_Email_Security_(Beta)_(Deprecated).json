@@ -1,0 +1,154 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Network Security"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Network Security",
+				"commands": [
+					{
+						"description": "Retrieves details of an email security report by counter type.",
+						"name": "cisco-email-security-report-get"
+					},
+					{
+						"description": "Executes a search for messages in Cisco Email Security.",
+						"name": "cisco-email-security-messages-search"
+					},
+					{
+						"description": "Retrieves details of a message.",
+						"name": "cisco-email-security-message-details-get"
+					},
+					{
+						"description": "Executes a search for spam quarantine.",
+						"name": "cisco-email-security-spam-quarantine-search"
+					},
+					{
+						"description": "Retrieves details for a quarantined message.",
+						"name": "cisco-email-security-spam-quarantine-message-details-get"
+					},
+					{
+						"description": "Retrieves details on a DLP.",
+						"name": "cisco-email-security-dlp-details-get"
+					},
+					{
+						"description": "Retrieves details of an AMP.",
+						"name": "cisco-email-security-amp-details-get"
+					},
+					{
+						"description": "Retrieves details of a URL.",
+						"name": "cisco-email-security-url-details-get"
+					},
+					{
+						"description": "Deletes quarantined messages.",
+						"name": "cisco-email-security-spam-quarantine-messages-delete"
+					},
+					{
+						"description": "Releases quarantined messages.",
+						"name": "cisco-email-security-spam-quarantine-messages-release"
+					},
+					{
+						"description": "Retrieves a list of entries.",
+						"name": "cisco-email-security-list-entries-get"
+					},
+					{
+						"description": "Performs actions on list entries. Supports add, edit, and append.",
+						"name": "cisco-email-security-list-entry-add"
+					},
+					{
+						"description": "Deletes a list entry.",
+						"name": "cisco-email-security-list-entry-delete"
+					}
+				],
+				"description": "Deprecated. Use Cisco Security Management Appliance instead.",
+				"id": "",
+				"name": "CiscoEmailSecurity (Beta) (Deprecated)"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-10-11T09:18:39Z",
+	"currentVersion": "1.1.0",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.39",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Deprecated. Use CiscoSMA instead.",
+	"disabledMonthly": false,
+	"downloads": 1205,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "CiscoEmailSecurity",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/CiscoEmailSecurity/CiscoEmailSecurity_image.png",
+			"name": "CiscoEmailSecurity (Beta) (Deprecated)"
+		}
+	],
+	"itemVersion": "1.1.0",
+	"keywords": [],
+	"legacy": true,
+	"name": "Cisco Email Security (Beta) (Deprecated)",
+	"packID": "CiscoEmailSecurity",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": -40,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "0001-01-01T00:00:00Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4123091",
+	"videos": []
+}
