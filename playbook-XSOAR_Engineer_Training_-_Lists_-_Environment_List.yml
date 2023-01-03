@@ -1,0 +1,421 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+description: This playbook demonstrates using the values in an XSOAR list in a playbook.  Specifically
+  a list called environment that holds which environment we are dealing with!
+id: 16a9c9e7-fcad-42b9-8d28-7d8e56fe34e4
+inputs: []
+name: XSOAR Engineer Training - Lists - Environment List
+outputs: []
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 0363ab4a-955c-4da9-8afa-feedfdfc84c6
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 0363ab4a-955c-4da9-8afa-feedfdfc84c6
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 1125,
+          "y": 50
+        }
+      }
+  "1":
+    conditions:
+    - condition:
+      - - ignorecase: true
+          left:
+            iscontext: true
+            value:
+              simple: lists.environment
+          operator: isEqualString
+          right:
+            value:
+              simple: development
+      label: development
+    - condition:
+      - - ignorecase: true
+          left:
+            iscontext: true
+            value:
+              simple: lists.environment
+          operator: isEqualString
+          right:
+            value:
+              simple: test
+      label: test
+    - condition:
+      - - ignorecase: true
+          left:
+            iscontext: true
+            value:
+              simple: lists.environment
+          operator: isEqualString
+          right:
+            value:
+              simple: production
+      label: production
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "8"
+      development:
+      - "2"
+      production:
+      - "4"
+      test:
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 72eeb811-04f6-4195-8473-678b37cd452b
+      iscommand: false
+      name: 'Check Environment '
+      type: condition
+      version: -1
+    taskid: 72eeb811-04f6-4195-8473-678b37cd452b
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 695,
+          "y": 545
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: DEVELOPMENT!
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: 7c6500d5-86b5-4ac0-837a-febe60957551
+      iscommand: false
+      name: Print Development Environment
+      script: Print
+      type: regular
+      version: -1
+    taskid: 7c6500d5-86b5-4ac0-837a-febe60957551
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 720
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: TEST!
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: 916782db-1d65-44b3-8fd6-4d0e02ee082f
+      iscommand: false
+      name: Print Test Environment
+      script: Print
+      type: regular
+      version: -1
+    taskid: 916782db-1d65-44b3-8fd6-4d0e02ee082f
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 720
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: PRODUCTION!
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: 87987867-ddfc-404a-81bb-cf74813162d7
+      iscommand: false
+      name: Print Production Environment
+      script: Print
+      type: regular
+      version: -1
+    taskid: 87987867-ddfc-404a-81bb-cf74813162d7
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 910,
+          "y": 720
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 4686955c-6739-4330-8e0e-58f7003b3bb3
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 4686955c-6739-4330-8e0e-58f7003b3bb3
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 910,
+          "y": 895
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: true
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: |-
+          ## XSOAR Engineer Training - Lists - Environment List
+
+          This playbook demonstrates using the values in an XSOAR list in a playbook.  Specifically a list called environment that holds which environment we are dealing with!
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: 43baabcc-86a9-4344-8b52-3a1881166bc5
+      iscommand: false
+      name: Print Playbook Overview
+      script: Print
+      type: regular
+      version: -1
+    taskid: 43baabcc-86a9-4344-8b52-3a1881166bc5
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1125,
+          "y": 195
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        complex:
+          accessor: environment
+          root: lists
+          transformers:
+          - operator: toUpperCase
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: 7f10ffdd-7e78-4261-8367-a18f71e70084
+      iscommand: false
+      name: Print Other Environment in Upper Case
+      script: Print
+      type: regular
+      version: -1
+    taskid: 7f10ffdd-7e78-4261-8367-a18f71e70084
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1340,
+          "y": 720
+        }
+      }
+  "9":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: lists.environment
+          operator: isExists
+      - - left:
+            iscontext: true
+            value:
+              simple: lists.environment
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "10"
+      "yes":
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: d64bd487-9550-41bd-8345-75edd0f8286d
+      iscommand: false
+      name: Does the Environment list exist?
+      type: condition
+      version: -1
+    taskid: d64bd487-9550-41bd-8345-75edd0f8286d
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1125,
+          "y": 370
+        }
+      }
+  "10":
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: You need to create the environment list in XSOAR, do this by navigating
+          to Settings -> Advanced -> Lists
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: 2eaf20d7-a05f-48fc-8d9d-d126ca2d21b5
+      iscommand: false
+      name: Print instructions for creating the Environment list
+      script: Print
+      type: regular
+      version: -1
+    taskid: 2eaf20d7-a05f-48fc-8d9d-d126ca2d21b5
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1740,
+          "y": 545
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 910,
+        "width": 2070,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
