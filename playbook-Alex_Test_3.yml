@@ -1,0 +1,248 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: 719dc730-4577-4541-8f91-b2cf1af62031
+inputs: []
+name: Alex Test 3
+outputs: []
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 110531b8-5205-4161-8ec5-883e1aa6769e
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 110531b8-5205-4161-8ec5-883e1aa6769e
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    form:
+      description: ""
+      expired: false
+      questions:
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "0"
+        label: ""
+        labelarg:
+          simple: Please provide an IP address to enrich.
+        options: []
+        optionsarg: []
+        placeholder: ""
+        readonly: false
+        required: true
+        tooltip: ""
+        type: shortText
+      sender: ""
+      title: IP Address Collection
+      totalanswers: 0
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    message:
+      bcc: null
+      body: null
+      cc: null
+      format: ""
+      methods: []
+      subject: null
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: true
+        retriescount: 2
+        retriesinterval: 360
+      to: null
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 5de9a96e-b453-4d9d-8cf2-726192d1c160
+      iscommand: false
+      name: Please provide an IP address
+      type: collection
+      version: -1
+    taskid: 5de9a96e-b453-4d9d-8cf2-726192d1c160
+    timertriggers: []
+    type: collection
+    view: |-
+      {
+        "position": {
+          "x": 600,
+          "y": 190
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 54df6f41-34d3-4399-8b97-f60b641cd89a
+      iscommand: false
+      name: Enrichment
+      type: title
+      version: -1
+    taskid: 54df6f41-34d3-4399-8b97-f60b641cd89a
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 620,
+          "y": 350
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      ip:
+        simple: ${IP Address Collection.Answers.0}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: VirusTotal (API v3)
+      description: Checks the reputation of an IP address.
+      id: ee744639-369e-42c0-8352-e003b39944ce
+      iscommand: true
+      name: Enrich IP
+      script: VirusTotal (API v3)|||ip
+      type: regular
+      version: -1
+    taskid: ee744639-369e-42c0-8352-e003b39944ce
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 620,
+          "y": 510
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Close the current incident
+      id: 9f0d11ef-344c-4789-804c-a41c71386e21
+      iscommand: true
+      name: Close Investigation
+      script: Builtin|||closeInvestigation
+      type: regular
+      version: -1
+    taskid: 9f0d11ef-344c-4789-804c-a41c71386e21
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 640,
+          "y": 680
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 35a5150c-bd82-43f2-8339-a86518c54074
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 35a5150c-bd82-43f2-8339-a86518c54074
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 650,
+          "y": 890
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 905,
+        "width": 580,
+        "x": 450,
+        "y": 50
+      }
+    }
+  }
