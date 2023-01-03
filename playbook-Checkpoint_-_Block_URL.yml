@@ -1,0 +1,861 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 2.3.5
+    packID: CheckpointFirewall
+    packName: Check Point Firewall
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: |-
+  This playbook blocks URLs using Check Point Firewall through Custom URL Categories.
+  The playbook checks whether the input URL category already exists, and if the URLs are a part of this category. Otherwise, it creates the category, blocks the URLs, and publishes the configuration.
+id: Checkpoint - Block URL
+inputs:
+- description: Whether the playbook should continue install policy process for Check
+    Point Firewall.
+  key: install_policy
+  playbookInputQuery: null
+  required: true
+  value:
+    simple: "True"
+- description: |-
+    An array of URLs to block.
+    Example: example.com,example.org
+  key: URL
+  playbookInputQuery: null
+  required: true
+  value: {}
+- description: The name of the policy package to be installed.
+  key: policy_package
+  playbookInputQuery: null
+  required: true
+  value:
+    simple: Standard
+- description: URL category object name.  The category to add URL to.
+  key: URL_application_site_category
+  playbookInputQuery: null
+  required: true
+  value:
+    simple: Suspicious
+- description: |-
+    If one of the actions for the block IP playbook fails due to issues on the Check Point Firewall, this input determines whether the playbook continues or stops for manual review. If the playbook continues, the session ID logs out and all Check Point changes are discarded.
+    Values are "Continue" or "Stop".
+    The default value is "Stop".
+  key: checkpoint_error_handling
+  playbookInputQuery: null
+  required: true
+  value:
+    simple: Stop
+- description: |-
+    If one of the actions for block URL playbook fails due to issues on the Check Point Firewall, this input determines whether the playbook continues or stops for manual review. If the playbook continues, session ID logs out and all Check Point changes are discarded.
+    Values can be "Continue" or "Stop".
+    The default value will be "Stop".
+  key: block_URL_error_handling
+  playbookInputQuery: null
+  required: true
+  value:
+    simple: Stop
+- description: 'Define the Application Site Name. Default: Bad_URLs.'
+  key: application_site_name
+  playbookInputQuery: null
+  required: true
+  value:
+    simple: Bad_URLs
+name: Checkpoint - Block URL
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 752c8366-9954-40bb-81f7-25944a795ef9
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 752c8366-9954-40bb-81f7-25944a795ef9
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 690,
+          "y": -1280
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 0
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      auto_logout:
+        simple: "True"
+      checkpoint_error_handling:
+        simple: ${inputs.checkpoint_error_handling}
+      discard_changes:
+        simple: ${inputs.discard_changes}
+      install_policy:
+        simple: ${inputs.install_policy}
+      policy_package:
+        simple: ${inputs.policy_package}
+      sid:
+        simple: ${CheckPoint.Login.session-id}
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |
+        Publish the Check Point Firewall configuration and install policy  on all available gateways.
+      id: 637bf853-b339-434f-82f5-ad53762b2e89
+      iscommand: false
+      name: Checkpoint - Publish&Install configuration
+      playbookId: Checkpoint - Publish&Install configuration
+      type: playbook
+      version: -1
+    taskid: 637bf853-b339-434f-82f5-ad53762b2e89
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 460,
+          "y": 1200
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 15efb195-e8c1-4309-82f9-ac5b71f89872
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 15efb195-e8c1-4309-82f9-ac5b71f89872
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 690,
+          "y": 1760
+        }
+      }
+  "3":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      identifier:
+        complex:
+          root: inputs.URL
+          transformers:
+          - args:
+              delimiter:
+                value:
+                  simple: ','
+            operator: split
+      name:
+        simple: ${inputs.application_site_name}
+      primary_category:
+        simple: ${inputs.URL_application_site_category}
+      session_id:
+        simple: ${CheckPoint.Login.session-id}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Add the URL as application site in Check Point Firewall.
+      id: 6de4c75e-2094-4333-878b-169f73a7d3bf
+      iscommand: true
+      name: Append URL as application site in Check Point Firewall
+      script: '|||checkpoint-application-site-add'
+      type: regular
+      version: -1
+    taskid: 6de4c75e-2094-4333-878b-169f73a7d3bf
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 460,
+          "y": 250
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "12"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Log in to Check Point to get unique session ID.
+      id: a25d05d5-5d23-4d8b-856d-015b3bd5862d
+      iscommand: true
+      name: Log in to Check Point and get session ID
+      script: '|||checkpoint-login-and-get-session-id'
+      type: regular
+      version: -1
+    taskid: a25d05d5-5d23-4d8b-856d-015b3bd5862d
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 460,
+          "y": -955
+        }
+      }
+  "5":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: brand
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: inList
+                    right:
+                      value:
+                        simple: CheckPointFirewall,CheckPointFirewall_v2
+                root: modules
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "2"
+      "yes":
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Is Checkpoint firewall enabled
+      id: d3b456a4-5da6-441d-897a-5dbe043fbf67
+      iscommand: false
+      name: Is Check Point Firewall enabled?
+      type: condition
+      version: -1
+    taskid: d3b456a4-5da6-441d-897a-5dbe043fbf67
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 690,
+          "y": -1140
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      session_id:
+        simple: ${CheckPoint.Login.session-id}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Log out with specific session ID from Checkpoint firewall.
+      id: 6284f556-ab72-4787-8586-a79422d3d4b1
+      iscommand: true
+      name: Check Point logout
+      script: '|||checkpoint-logout'
+      type: regular
+      version: -1
+    taskid: 6284f556-ab72-4787-8586-a79422d3d4b1
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 460,
+          "y": 1580
+        }
+      }
+  "7":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: ApplicationSite
+                root: CheckPoint
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "19"
+      "yes":
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Validate if URL was added to application site successfully.
+      id: 0a45e01c-feb1-4ecb-8016-bc262d9f3410
+      iscommand: false
+      name: Was the application site URL created?
+      type: condition
+      version: -1
+    taskid: 0a45e01c-feb1-4ecb-8016-bc262d9f3410
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 460,
+          "y": 420
+        }
+      }
+  "8":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "15"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: 'The URL was not added to application site due to error. '
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported).
+      id: 0ee35904-5636-4247-84dd-788fcc94df9e
+      iscommand: false
+      name: Print added URL error
+      script: Print
+      type: regular
+      version: -1
+    taskid: 0ee35904-5636-4247-84dd-788fcc94df9e
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 180,
+          "y": 985
+        }
+      }
+  "9":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: ${CheckPoint.ApplicationSiteCategory.name}
+          operator: isEqualString
+          right:
+            iscontext: true
+            value:
+              simple: inputs.URL_application_site_category
+      label: "yes"
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "11"
+      "yes":
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Validate if URL application site category exists.
+      id: 739a1d5a-d361-47a9-8869-2ac6e480eb64
+      iscommand: false
+      name: Does the URL application site category exist?
+      type: condition
+      version: -1
+    taskid: 739a1d5a-d361-47a9-8869-2ac6e480eb64
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 460,
+          "y": -610
+        }
+      }
+  "10":
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 0
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      auto_logout:
+        simple: "False"
+      checkpoint_error_handling:
+        simple: ${inputs.checkpoint_error_handling}
+      discard_changes:
+        simple: ${inputs.discard_changes}
+      install_policy:
+        simple: ${inputs.install_policy}
+      policy_package:
+        simple: ${inputs.policy_package}
+      sid:
+        simple: ${CheckPoint.Login.session-id}
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |
+        Publish the Check Point Firewall configuration and install policy  on all available gateways.
+      id: aabcbca8-e6ab-4e1b-8dc9-55027b523d19
+      iscommand: false
+      name: Checkpoint - Publish&Install configuration
+      playbookId: Checkpoint - Publish&Install configuration
+      type: playbook
+      version: -1
+    taskid: aabcbca8-e6ab-4e1b-8dc9-55027b523d19
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 180,
+          "y": 80
+        }
+      }
+  "11":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "14"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      identifier:
+        simple: ${inputs.URL_application_site_category}
+      session_id:
+        simple: ${CheckPoint.Login.session-id}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Add URL application site category in Check Point Firewall.
+      id: 03dc594c-c844-4fa4-8b0f-01788a808b3f
+      iscommand: true
+      name: Add URL category
+      script: '|||checkpoint-application-site-category-add'
+      type: regular
+      version: -1
+    taskid: 03dc594c-c844-4fa4-8b0f-01788a808b3f
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 180,
+          "y": -430
+        }
+      }
+  "12":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      identifier:
+        simple: ${inputs.URL_application_site_category}
+      session_id:
+        simple: ${CheckPoint.Login.session-id}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Get application site category to check if the category already
+        exists.
+      id: cf5f8fb4-12b4-4940-8814-b787d76eb876
+      iscommand: true
+      name: Check Point app site category
+      script: '|||checkpoint-application-site-category-get'
+      type: regular
+      version: -1
+    taskid: cf5f8fb4-12b4-4940-8814-b787d76eb876
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 460,
+          "y": -780
+        }
+      }
+  "13":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "15"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: There was a problem adding the URL Category.
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported).
+      id: fa43eea8-11cd-44d5-8929-326f1ca64434
+      iscommand: false
+      name: Print added URL Category error
+      script: Print
+      type: regular
+      version: -1
+    taskid: fa43eea8-11cd-44d5-8929-326f1ca64434
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -130,
+          "y": -70
+        }
+      }
+  "14":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: ${CheckPoint.ApplicationSiteCategory}
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "14"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "13"
+      "yes":
+      - "10"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Validate if URL was added successfully in Check Point Firewall.
+      id: f08aa17b-4127-4aa2-8702-129292de3973
+      iscommand: false
+      name: Was URL category added successfully?
+      type: condition
+      version: -1
+    taskid: f08aa17b-4127-4aa2-8702-129292de3973
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 180,
+          "y": -270
+        }
+      }
+  "15":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.block_URL_error_handling
+          operator: isEqualString
+          right:
+            value:
+              simple: Stop
+      label: "yes"
+    continueonerrortype: ""
+    id: "15"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "6"
+      "yes":
+      - "18"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: If action manual handling is enabled, the playbook will pause and
+        wait for manual review.
+      id: 5a2510e1-95ab-46ce-8d66-19129a2849f6
+      iscommand: false
+      name: Is action manual handling enabled?
+      type: condition
+      version: -1
+    taskid: 5a2510e1-95ab-46ce-8d66-19129a2849f6
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -130,
+          "y": 1200
+        }
+      }
+  "18":
+    continueonerrortype: ""
+    id: "18"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: User manually publishes on Check Point Firwall console.
+      id: e56d12bd-27a4-4c85-8b16-f4096daa642e
+      iscommand: false
+      name: Fix error and publish manually
+      type: regular
+      version: -1
+    taskid: e56d12bd-27a4-4c85-8b16-f4096daa642e
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -130,
+          "y": 1410
+        }
+      }
+  "19":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "19"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "20"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      identifier:
+        simple: ${inputs.application_site_name}
+      primary_category:
+        simple: ${inputs.URL_application_site_category}
+      session_id:
+        simple: ${CheckPoint.Login.session-id}
+      url_list_to_add:
+        complex:
+          root: inputs.URL
+          transformers:
+          - args:
+              delimiter:
+                value:
+                  simple: ','
+            operator: split
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: "Edits an existing application using the object name or UID. \nIt
+        is not possible to set 'application-signature' when the application was initialized
+        with 'url-list' and vice-versa."
+      id: 28beae0e-0e08-4fcb-8490-bf56b83f8566
+      iscommand: true
+      name: Update Existing Application Site
+      script: '|||checkpoint-application-site-update'
+      type: regular
+      version: -1
+    taskid: 28beae0e-0e08-4fcb-8490-bf56b83f8566
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 180,
+          "y": 590
+        }
+      }
+  "20":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: ApplicationSite
+                root: CheckPoint
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "20"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "8"
+      "yes":
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Validate if URL was added to application site successfully.
+      id: 492d875a-b6d8-4b18-85b0-12477df2de55
+      iscommand: false
+      name: Was the application site URL appended?
+      type: condition
+      version: -1
+    taskid: 492d875a-b6d8-4b18-85b0-12477df2de55
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 180,
+          "y": 750
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "20_8_#default#": 0.68
+    },
+    "paper": {
+      "dimensions": {
+        "height": 3105,
+        "width": 1200,
+        "x": -130,
+        "y": -1280
+      }
+    }
+  }
