@@ -1,0 +1,32 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "Code42 Security Alert",
+	"definitionId": "",
+	"description": "Classifies fetched Code42 alerts as XSOAR Incidents.",
+	"feed": false,
+	"fromServerVersion": "6.5.0",
+	"id": "Code42 - Classifier",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "3.0.1",
+	"keyTypeMap": {},
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": null,
+	"name": "Code42 - Classifier",
+	"nameRaw": "Code42 - Classifier",
+	"packID": "Code42",
+	"packName": "Code42",
+	"packPropagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {},
+	"type": "classification",
+	"unclassifiedCases": null,
+	"version": -1
+}
