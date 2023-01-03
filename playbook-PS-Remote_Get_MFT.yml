@@ -1,0 +1,532 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.0.0
+    itemVersion: 1.0.2
+    packID: WindowsForensics
+    packName: Windows Forensics
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: This playbook leverages the Windows built-in PowerShell and WinRM capabilities
+  to connect to a Windows host to acquire and export the MFT (Master File Table) as
+  forensic evidence for further analysis.
+id: PS-Remote Get MFT
+inputs:
+- description: A single hostname or IP address from which to export the registry file.
+    For example, testpc01.
+  key: Host
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: |-
+    The path on the host on which to create the MFT file. The default path will be c:\mft.mft.
+    If you the AddHostNameToFile input os "true", the file downloaded to XSOAR will contain the hostname.
+  key: FilePath
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: c:\mft.mft
+- description: |
+    Specify the volume for which to create the MFT. The default is c.
+  key: VolumeForMft
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: c
+- description: Specify "true" to zip the MFT file before sending it to XSOAR.
+  key: ZipMft
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "true"
+- description: Specify "true" for the downloaded filename to contain the hostname,
+    or "false" to keep the file name as configured in the FilePath argument.
+  key: AddHostNameToFile
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "true"
+name: PS-Remote Get MFT
+outputs:
+- contextPath: MftDetails
+  description: The MFT file details.
+  type: string
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 2e73d06c-0d0e-4db2-8807-3c8bd9eaaae4
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 2e73d06c-0d0e-4db2-8807-3c8bd9eaaae4
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 570,
+          "y": 80
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "3"
+      "yes":
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      brandname:
+        simple: PowerShell Remoting
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Returns 'yes' if the integration brand is available. Otherwise
+        returns 'no'.
+      id: 3d412b04-16a0-4b5f-8b0f-08eb4e46478c
+      iscommand: false
+      name: Is PowerShell Remoting enabled?
+      script: IsIntegrationAvailable
+      type: condition
+      version: -1
+    taskid: 3d412b04-16a0-4b5f-8b0f-08eb4e46478c
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 570,
+          "y": 230
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 664de072-ce7b-4c00-8572-87b23b878bd5
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 664de072-ce7b-4c00-8572-87b23b878bd5
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 570,
+          "y": 2110
+        }
+      }
+  "4":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.Host
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "3"
+      "yes":
+      - "9"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 671e520f-dba6-49c5-8f9b-bc06dec5fe5e
+      iscommand: false
+      name: Was a host specified?
+      type: condition
+      version: -1
+    taskid: 671e520f-dba6-49c5-8f9b-bc06dec5fe5e
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 330,
+          "y": 410
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "10"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      host:
+        simple: ${inputs.Host}
+      output_path:
+        simple: ${inputs.FilePath}
+      volume:
+        simple: ${inputs.VolumeForMft}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Extract master file table from volume.
+      id: f34edc43-9c6f-4489-8fbd-eab2e5f74c14
+      iscommand: true
+      name: PS-Remote export MFT
+      script: '|||ps-remote-export-mft'
+      type: regular
+      version: -1
+    taskid: f34edc43-9c6f-4489-8fbd-eab2e5f74c14
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 40,
+          "y": 840
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "11"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      check_hash:
+        simple: "true"
+      host:
+        simple: ${inputs.Host}
+      host_prefix:
+        simple: ${inputs.AddHostNameToFile}
+      path:
+        simple: ${inputs.FilePath}
+      zip_file:
+        simple: ${inputs.ZipMft}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Download a file from the remote endpoint.
+      id: c2b26a24-e487-4505-8ee2-5f4bb7f1f54b
+      iscommand: true
+      name: PS-Remote download file
+      script: '|||ps-remote-download-file'
+      type: regular
+      version: -1
+    taskid: c2b26a24-e487-4505-8ee2-5f4bb7f1f54b
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 40,
+          "y": 1240
+        }
+      }
+  "9":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.FilePath
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "3"
+      "yes":
+      - "5"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 6cd97deb-540a-48e6-8959-2af17a02788f
+      iscommand: false
+      name: Was an MFT file path specified?
+      type: condition
+      version: -1
+    taskid: 6cd97deb-540a-48e6-8959-2af17a02788f
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 180,
+          "y": 620
+        }
+      }
+  "10":
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      seconds:
+        simple: "30"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Sleep for X seconds.
+      id: 36ec8072-289b-4b06-8d5b-526be956e01a
+      iscommand: false
+      name: Sleep
+      script: Sleep
+      type: regular
+      version: -1
+    taskid: 36ec8072-289b-4b06-8d5b-526be956e01a
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 40,
+          "y": 1040
+        }
+      }
+  "11":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.ZipMft
+          operator: isEqualString
+          right:
+            value:
+              simple: "true"
+      label: "yes"
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "15"
+      "yes":
+      - "12"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 75a21419-baec-4995-8985-d22747adcf3f
+      iscommand: false
+      name: Was file zipped?
+      type: condition
+      version: -1
+    taskid: 75a21419-baec-4995-8985-d22747adcf3f
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 40,
+          "y": 1430
+        }
+      }
+  "12":
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "15"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      entryID:
+        simple: ${File.EntryID}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Unzip a file using the fileName or entryID to specify a file. Unzipped
+        files will be loaded to the War Room and names will be put into the context.
+      id: 0edb3fc1-2f10-40ab-844f-b9132750f91b
+      iscommand: false
+      name: Unzip file
+      script: UnzipFile
+      type: regular
+      version: -1
+    taskid: 0edb3fc1-2f10-40ab-844f-b9132750f91b
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -380,
+          "y": 1600
+        }
+      }
+  "14":
+    continueonerrortype: ""
+    id: "14"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      append:
+        simple: "true"
+      key:
+        simple: MftDetails
+      value:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: File.Extension
+              operator: isEqualString
+              right:
+                value:
+                  simple: mft
+          root: File
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: efe81ba7-8f3c-4fba-8d53-ea617e6f30b3
+      iscommand: false
+      name: Set MFT details
+      script: Set
+      type: regular
+      version: -1
+    taskid: efe81ba7-8f3c-4fba-8d53-ea617e6f30b3
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 40,
+          "y": 1940
+        }
+      }
+  "15":
+    continueonerrortype: ""
+    id: "15"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "14"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      entryIDs:
+        complex:
+          accessor: EntryID
+          root: File
+          transformers:
+          - operator: LastArrayElement
+      entryTags:
+        simple: MFT
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.entriesTags.set
+      id: d7db312d-7719-42d6-8819-d4fa97fb6e37
+      iscommand: true
+      name: Mark and tag MFT
+      script: Builtin|||setEntriesTags
+      type: regular
+      version: -1
+    taskid: d7db312d-7719-42d6-8819-d4fa97fb6e37
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 40,
+          "y": 1770
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 2095,
+        "width": 1330,
+        "x": -380,
+        "y": 80
+      }
+    }
+  }
