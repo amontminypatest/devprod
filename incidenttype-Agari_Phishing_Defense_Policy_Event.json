@@ -1,0 +1,40 @@
+{
+	"autorun": false,
+	"cacheVersn": 0,
+	"closureScript": "",
+	"color": "#2196F3",
+	"days": 0,
+	"daysR": 0,
+	"default": false,
+	"definitionId": "",
+	"detached": false,
+	"disabled": false,
+	"extractSettings": {
+		"fieldCliNameToExtractSettings": {},
+		"mode": "All"
+	},
+	"fromServerVersion": "5.0.0",
+	"hours": 0,
+	"hoursR": 0,
+	"id": "Agari Phishing Defense Policy Event",
+	"itemVersion": "1.1.3",
+	"layout": "Agari Phishing Defense Policy Event",
+	"locked": false,
+	"name": "Agari Phishing Defense Policy Event",
+	"onChangeRepAlg": 1,
+	"packID": "AgariPhishingDefense",
+	"packName": "Agari Phishing Defense",
+	"packPropagationLabels": [
+		"all"
+	],
+	"playbookId": "Agari Message Remediation - Agari Phishing Defense",
+	"preProcessingScript": "",
+	"propagationLabels": [],
+	"readonly": false,
+	"reputationCalc": 0,
+	"system": true,
+	"toServerVersion": "",
+	"version": -1,
+	"weeks": 0,
+	"weeksR": 0
+}
