@@ -1,0 +1,32 @@
+comment: Sets the Roles on an Incident as part of preprocessing
+commonfields:
+  id: e6dd8608-a334-447e-8877-2e67f41cea2f
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.9.1.15759
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: SetRolesOnPreProcess
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |-
+  demisto.executeCommand("setIncident", {"roles":"Administrator,DayTime"})
+  demisto.results(True)
+scripttarget: 0
+subtype: python3
+tags:
+- preProcessing
+- training
+type: python
