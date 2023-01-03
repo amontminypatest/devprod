@@ -1,0 +1,89 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "Data Loss Prevention",
+	"definitionId": "",
+	"description": "A mapper that maps raw DLP incident fields into Cortex XSOAR incident fields",
+	"feed": false,
+	"fromServerVersion": "6.0.0",
+	"id": "Data Loss Prevention",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "1.2.1",
+	"keyTypeMap": null,
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": {
+		"Data Loss Prevention": {
+			"dontMapEventToLabels": true,
+			"internalMapping": {
+				"App": {
+					"simple": "incidentDetails.app_details.name"
+				},
+				"File Name": {
+					"simple": "filename"
+				},
+				"File SHA256": {
+					"simple": "checksum"
+				},
+				"PAN DLP Action": {
+					"simple": "action"
+				},
+				"PAN DLP Channel": {
+					"simple": "channel"
+				},
+				"PAN DLP Data Profile Name": {
+					"simple": "dataProfileName"
+				},
+				"PAN DLP Incident ID": {
+					"simple": "incidentId"
+				},
+				"PAN DLP Incident Region": {
+					"simple": "region"
+				},
+				"PAN DLP Previous Feedback": {
+					"simple": "previousNotification.feedback_status"
+				},
+				"PAN DLP Report ID": {
+					"simple": "reportId"
+				},
+				"PAN DLP Tenant ID": {
+					"simple": "tenantId"
+				},
+				"Source Username": {
+					"simple": "userId"
+				},
+				"app channel name": {
+					"simple": "channel"
+				}
+			}
+		},
+		"dbot_classification_incident_type_all": {
+			"dontMapEventToLabels": false,
+			"internalMapping": {
+				"File Name": {
+					"complex": {
+						"filters": [],
+						"root": "file_name",
+						"transformers": []
+					}
+				}
+			}
+		}
+	},
+	"name": "Data Loss Prevention",
+	"nameRaw": "Data Loss Prevention",
+	"packID": "Palo_Alto_Networks_Enterprise_DLP",
+	"packName": "Enterprise DLP by Palo Alto Networks",
+	"packPropagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {},
+	"type": "mapping-incoming",
+	"unclassifiedCases": null,
+	"version": -1
+}
