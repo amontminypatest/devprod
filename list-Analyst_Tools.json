@@ -1,0 +1,23 @@
+{
+	"cacheVersn": 0,
+	"data": "[{\"Link\":\"https://www.google.ca\",\"Name\":\"Google\"},{\"Link\":\"https://docs.paloaltonetworks.com/cortex/cortex-xsoar.html\",\"Name\":\"Cortex XSOAR Admin Guide\"},{\"Link\":\"https://xsoar.pan.dev/\",\"Name\":\"Cortex XSOAR Developer Guide\"},{\"Link\":\"https://xsoar.pan.dev/docs/reference/index\",\"Name\":\"Cortex XSOAR Integration Documentation Reference\"},{\"Link\":\"https://xsoar.ideas.aha.io/\",\"Name\":\"Cortex XSOAR Feature Request Portal\"},{\"Link\":\"https://event.on24.com/wcc/r/2947927/BB6BF4B437CD3534B314909D4E3C8BE3/1064499\",\"Name\":\"Cortex XSOAR Webinars\"},{\"Link\":\"https://live.paloaltonetworks.com/\",\"Name\":\"Palo Alto Networks Live Community\"},{\"Link\":\"https://https://support.paloaltonetworks.com/\",\"Name\":\"Palo Alto Networks Support Portal\"},{\"Link\":\"https://urlfiltering.paloaltonetworks.com/\",\"Name\":\"Palo Alto Networks URL Filtering\"}]",
+	"definitionId": "",
+	"description": "",
+	"fromServerVersion": "",
+	"id": "Analyst Tools",
+	"itemVersion": "",
+	"locked": false,
+	"name": "Analyst Tools",
+	"nameLocked": false,
+	"packID": "",
+	"packName": "",
+	"propagationLabels": [
+		"all"
+	],
+	"system": false,
+	"tags": null,
+	"toServerVersion": "",
+	"truncated": false,
+	"type": "plain_text",
+	"version": -1
+}
