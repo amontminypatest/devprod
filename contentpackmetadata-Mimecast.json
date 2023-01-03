@@ -1,0 +1,283 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Network Security"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"automation",
+		"playbook"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "Find an email across all mailboxes, and return the list of mailboxes where the email was found, as well as Yes if the mail was found anywhere or No otherwise.",
+				"name": "MimecastFindEmail",
+				"tags": [
+					"Mimecast"
+				]
+			},
+			{
+				"description": "Deprecated. Use mimecsat-query command instead.",
+				"name": "MimecastQuery",
+				"tags": [
+					"Mimecast"
+				]
+			}
+		],
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Network Security",
+				"commands": [
+					{
+						"description": "Query Mimecast emails. This is an archive search command.",
+						"name": "mimecast-query"
+					},
+					{
+						"description": "List all existing Mimecast blocked sender policies",
+						"name": "mimecast-list-blocked-sender-policies"
+					},
+					{
+						"description": "Get a blocked sender policy by ID",
+						"name": "mimecast-get-policy"
+					},
+					{
+						"description": "Create a Blocked Sender Policy",
+						"name": "mimecast-create-policy"
+					},
+					{
+						"description": "Delete a Blocked Sender Policy",
+						"name": "mimecast-delete-policy"
+					},
+					{
+						"description": "Permit or block a specific sender",
+						"name": "mimecast-manage-sender"
+					},
+					{
+						"description": "Get a list of all managed URLs",
+						"name": "mimecast-list-managed-url"
+					},
+					{
+						"description": "Create a managed URL on Mimecast",
+						"name": "mimecast-create-managed-url"
+					},
+					{
+						"description": "Get a list of messages for a given user. This is an archive search command.",
+						"name": "mimecast-list-messages"
+					},
+					{
+						"description": "Returns Attachment Protect logs for a Mimecast customer account",
+						"name": "mimecast-get-attachment-logs"
+					},
+					{
+						"description": "Returns URL protect logs for a Mimecast customer account. Default value of scanResult as malicious",
+						"name": "mimecast-get-url-logs"
+					},
+					{
+						"description": "Returns Impersonation Protect logs for a Mimecast customer account",
+						"name": "mimecast-get-impersonation-logs"
+					},
+					{
+						"description": "Decodes a given url from mimecast",
+						"name": "mimecast-url-decode"
+					},
+					{
+						"description": "discover authentication types that are supported for your account and which base URL to use for the requesting user.",
+						"name": "mimecast-discover"
+					},
+					{
+						"description": "Refresh access key validity",
+						"name": "mimecast-refresh-token"
+					},
+					{
+						"description": "Login to generate Access Key and  Secret Key",
+						"name": "mimecast-login"
+					},
+					{
+						"description": "Get the contents or metadata of a given message. This is an archive search command.",
+						"name": "mimecast-get-message"
+					},
+					{
+						"description": "Download attachments from a specified message. This is an archive search command.",
+						"name": "mimecast-download-attachments"
+					},
+					{
+						"description": "Returns the list of groups according to the specified query.",
+						"name": "mimecast-find-groups"
+					},
+					{
+						"description": "Returns the members list for the specified group.",
+						"name": "mimecast-get-group-members"
+					},
+					{
+						"description": "Adds a user to a group. The email_address and domain_address arguments are optional, but one of them must be supplied.",
+						"name": "mimecast-add-group-member"
+					},
+					{
+						"description": "Removes a user from a group. The email_address and domain_address arguments are optional, but one of them must be supplied.",
+						"name": "mimecast-remove-group-member"
+					},
+					{
+						"description": "Creates a new Mimecast group.",
+						"name": "mimecast-create-group"
+					},
+					{
+						"description": "Updates an existing Mimecast group.",
+						"name": "mimecast-update-group"
+					},
+					{
+						"description": "Creates a new Mimecast remediation incident.",
+						"name": "mimecast-create-remediation-incident"
+					},
+					{
+						"description": "Returns a Mimecast remediation incident.",
+						"name": "mimecast-get-remediation-incident"
+					},
+					{
+						"description": "Searches for one or more file hashes in the account. Maximum is 100.",
+						"name": "mimecast-search-file-hash"
+					},
+					{
+						"description": "Updates the specified policy.",
+						"name": "mimecast-update-policy"
+					},
+					{
+						"description": "Searches a message.",
+						"name": "mimecast-search-message"
+					},
+					{
+						"description": "Retrieves detailed information about a specific message.",
+						"name": "mimecast-get-message-info"
+					},
+					{
+						"description": "Get information about held messages, including the reason, hold level, sender and recipients",
+						"name": "mimecast-list-held-message"
+					},
+					{
+						"description": "Get counts of currently held messages for each hold reason.",
+						"name": "mimecast-held-message-summary"
+					},
+					{
+						"description": "Reject a currently held message.",
+						"name": "mimecast-reject-held-message"
+					},
+					{
+						"description": "Release a currently held message.",
+						"name": "mimecast-release-held-message"
+					},
+					{
+						"description": "Return messages currently being processed by Mimecast. Note that most of the time, no results are returned.",
+						"name": "mimecast-search-processing-message"
+					},
+					{
+						"description": "Get the count of the inbound and outbound email queues at specified times.",
+						"name": "mimecast-list-email-queues"
+					}
+				],
+				"description": "Mimecast unified email management offers cloud email services for email security, continuity and archiving emails. Please read detailed instructions in order to understand how to set the integration's parameters.",
+				"id": "",
+				"name": "Mimecast v2"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": [
+			{
+				"description": "This playbook retrieves a specified EML/MSG file directly from Mimecast.",
+				"name": "Get Email From Email Gateway - Mimecast"
+			},
+			{
+				"description": "A playbook to block sender email address using Mimecast integration.",
+				"name": "Mimecast - Block Sender Email"
+			},
+			{
+				"description": "A playbook to block sender domain name using Mimecast integration.",
+				"name": "Mimecast - Block Sender Domain"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-07-19T12:45:07Z",
+	"currentVersion": "2.1.5",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.40",
+			"name": "Base"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.10.16",
+			"name": "Common Scripts"
+		}
+	},
+	"deprecated": false,
+	"description": "Mimecast unified email management offers cloud email services for email security, continuity and archiving emails. Read the detailed instructions to understand how to configure the integration's parameters.",
+	"disabledMonthly": false,
+	"downloads": 1859,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "Mimecast",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/Mimecast/MimecastV2_image.png",
+			"name": "Mimecast v2"
+		}
+	],
+	"itemVersion": "2.1.5",
+	"keywords": [],
+	"legacy": true,
+	"name": "Mimecast",
+	"packID": "Mimecast",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-12-02T01:02:18Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4137548",
+	"videos": []
+}
