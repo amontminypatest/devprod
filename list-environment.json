@@ -1,0 +1,23 @@
+{
+	"cacheVersn": 0,
+	"data": "development",
+	"definitionId": "",
+	"description": "",
+	"fromServerVersion": "",
+	"id": "environment",
+	"itemVersion": "",
+	"locked": false,
+	"name": "environment",
+	"nameLocked": false,
+	"packID": "",
+	"packName": "",
+	"propagationLabels": [
+		"all"
+	],
+	"system": false,
+	"tags": null,
+	"toServerVersion": "",
+	"truncated": false,
+	"type": "plain_text",
+	"version": -1
+}
