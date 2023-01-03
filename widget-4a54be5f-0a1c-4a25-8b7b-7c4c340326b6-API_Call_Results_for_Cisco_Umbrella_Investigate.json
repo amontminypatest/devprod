@@ -1,0 +1,96 @@
+{
+	"Cache": null,
+	"cacheVersn": 0,
+	"category": "",
+	"dataType": "metrics",
+	"dateRange": {
+		"fromDate": "0001-01-01T00:00:00Z",
+		"fromDateLicense": "0001-01-01T00:00:00Z",
+		"period": {
+			"by": "",
+			"byFrom": "days",
+			"byTo": "days",
+			"field": "",
+			"fromValue": 3,
+			"toValue": 0
+		},
+		"toDate": "0001-01-01T00:00:00Z"
+	},
+	"definitionId": "",
+	"fromServerVersion": "6.5.0",
+	"id": "4a54be5f-0a1c-4a25-8b7b-7c4c340326b6",
+	"isPredefined": true,
+	"itemVersion": "1.0.14",
+	"name": "API Call Results for Cisco Umbrella Investigate",
+	"packID": "Cisco-umbrella",
+	"packName": "Cisco Umbrella Investigate",
+	"packPropagationLabels": [
+		"all"
+	],
+	"params": {
+		"customGroupBy": [
+			null,
+			{
+				"General Error": {
+					"conditions": [
+						[
+							{
+								"field": "apiResponseType",
+								"operator": "isEqualCaseString",
+								"right": "GeneralError",
+								"type": "string"
+							}
+						]
+					],
+					"name": "General Error"
+				},
+				"Quota Error": {
+					"conditions": [
+						[
+							{
+								"field": "apiResponseType",
+								"operator": "isEqualCaseString",
+								"right": "QuotaError",
+								"type": "string"
+							}
+						]
+					],
+					"name": "Quota Error"
+				},
+				"Success": {
+					"conditions": [
+						[
+							{
+								"field": "apiResponseType",
+								"operator": "isEqualCaseString",
+								"right": "Successful",
+								"type": "string"
+							}
+						]
+					],
+					"name": "Success"
+				}
+			}
+		],
+		"groupBy": [
+			"modified(d)",
+			"apiResponseType"
+		],
+		"keys": [
+			"sum|totalAPICalls"
+		],
+		"referenceLine": {
+			"type": "max"
+		},
+		"showOthers": false,
+		"timeFrame": "days",
+		"valuesFormat": "abbreviated",
+		"xAxisLabel": "Time",
+		"yAxisLabel": "Request Counts"
+	},
+	"propagationLabels": [],
+	"query": "type:integration and instance:\"Cisco Umbrella Investigate_instance_1\"",
+	"toServerVersion": "",
+	"version": -1,
+	"widgetType": "line"
+}
