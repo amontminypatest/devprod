@@ -1,0 +1,58 @@
+args:
+- description: The file entry ID.
+  name: entryId
+  required: true
+comment: |-
+  Little bit of Magic, gets the magic bytes from a war room file. Requires a custom Docker image that has the python-magic dependency, and python3-magic package.
+
+  /docker_image_create name=pythonmagic dependencies=python-magic packages=python3-magic
+commonfields:
+  id: 0cc4810e-7b8c-481a-8b70-926c61ea30b0
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: pythonmagic
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: MagicBytes
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |-
+  #Requires a custom Docker image that has the python-magic dependency, and python3-magic package.
+  #To create docker image on XSOAR: /docker_image_create name=pythonmagic dependencies=python-magic packages=python3-magic
+
+  import magic
+
+  entry_id = demisto.args().get('entryId')
+  res = demisto.getFilePath(entry_id)
+
+  if not res:
+      return_error(f"Entry {entry_id} not found")
+  else:
+      file_path = res.get('path')
+
+      with open(file_path, 'rb') as f:
+          data = f.read(2048)
+
+      # file type
+      demisto.results(magic.from_buffer(data))
+
+      # mime type
+      demisto.results(magic.from_buffer(data, mime=True))
+scripttarget: 0
+subtype: python3
+tags:
+- Utility
+- training
+type: python
