@@ -1,0 +1,877 @@
+category: Identity and Access Management
+commonfields:
+  id: PingOne
+  version: -1
+configuration:
+- additionalinfo: Environment ID is available under the PingOne Dashboard->Environment
+    Properties.
+  display: Your PingOne Environment ID
+  name: environment_id
+  required: true
+  type: 0
+- additionalinfo: PingOne has 3 regions, US, EU and Asia.
+  defaultvalue: US
+  display: PingOne Region
+  name: region
+  options:
+  - US
+  - EU
+  - Asia
+  required: true
+  type: 15
+- display: Client ID
+  displaypassword: Client Secret
+  name: credentials
+  required: true
+  type: 9
+- display: Trust any certificate (not secure)
+  name: insecure
+  required: false
+  type: 8
+- display: Use system proxy settings
+  name: proxy
+  required: false
+  type: 8
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.0.0
+    itemVersion: 1.0.1
+    packID: PingIdentity
+    packName: PingIdentity
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: 'Integrates with the PingOne Management API to unlock, create, delete
+  and update users. '
+detaileddescription: |-
+  ### Partner Contributed Integration
+  #### Integration Author: Ping Identity
+  Support and maintenance for this integration are provided by the author. Please use the following contact details:
+  - **Email**: [tap-global@pingidentity.com](mailto:tap-global@pingidentity.com)
+  - **URL**: [https://docs.pingidentity.com/bundle/p14c/page/als1564020488261.html](https://docs.pingidentity.com/bundle/p14c/page/als1564020488261.html)
+  ***
+  [View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/ping-one)
+display: PingOne (Partner Contribution)
+image: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHMAAABzCAYAAACrQz3mAAABDmlDQ1BpY2MAACjPY2BgUkgsKMhhEmBgyM0rKQpyd1KIiIxSYH/KwMbAB4TmDIaJycUFjgEBPgxAAKNRwbdrDIwg+rIuyCwG0gBXSmpxMpD+A8TZyQVFJQwMjBlAtnJ5SQGI3QNkiyRlg9kLQOwioAOB7C0gdjqEfQKsBsK+A1YTEuQMZH8AsvmSwGwmkF186RC2AIgNtRcEBB1T8pNSFUC+1zC0tLTQJNEPBEFJakUJiHbOL6gsykzPKFFwBIZUqoJnXrKejoKRgZEhAwMo3CGqPweCw5NR7AxCDAEQYnMkGBj8lzIwsPxBiJn0MjAs0GFg4J+KEFMDmi6gz8Cwb05yaVEZ1BhGJmMGBkJ8AHnDSoKWDZCUAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAGYktHRAD/AP8A/6C9p5MAAAAJcEhZcwAAFxIAABcSAWef0lIAAAAHdElNRQflCBQSDiIxF7DsAAAZAElEQVR42u2deXRU5333P8+dTbNoJI32DQRISGBAIBZhvAE2Nl7q2uAkDlm8penp29bHbRq/iZukff0eN23SJK6bJid2iJscJzhOHKexqTFewEmM2ITYLRAYbUhISBpJo5nRbPfpH3c02ma0G8F0vufcA5q5y3N/32f5bc9vxLfLV0oSiAsos92ABGYOCTLjCAky4wgJMuMICTLjCAky4wgJMuMICTLjCAky4wgJMuMICTLjCAky4wgJMuMICTLjCAky4wgJMuMICTLjCAky4wgJMuMICTLjCAky4wgJMuMICTLjCAky4wgJMuMICTLjCAky4wgJMuMICTLjCAky4wgJMuMICTLjCAky4wgJMuMICTLjCAky4wgJMuMICTLjCAky4wgJMuMI+tluwEQhpUSqKkIIhBAgxGw36arD1U+mlEjAlpmBPSeHUDBIT/NF+nt7EUpiYhmKyZMZFu5EERk/UxlJUqJPSmLZ1vtZtuU+7Lk5qKEQl8/WcWD7i9RXHZgNmV21mDSZBrMZg8U8/olyYGoMEQoGUQNBQoEAaigEgFAUbbocA0JRWPW5bVz/519EZzBEPi9ctYrUwgJ2fvXrNB2uTozQMCZFplRVyu7czKrPb0Oq441PiVQlajBI0OfH1+fC3dGJs6GRtg9raa+txdPlhIE1MMqzMstKWf6pT4aJHP685OwcKrY9SOvJk4T8gdmW41WByZEpJZa0VNLnzZ/WQ4P9/XScO8fJ13dSu+stvM7uUaNLSkle+TJsmZkQY2LPuW4xtswsupuaEqOTaSlAU69sqk8ykbNkCVmLyijZuJ4/fv+HtBw7PooQc0rKmPcxmJMwmCcw5f8vwSx2Z4mi0zG3spK7v/n/KVp3PVJVh53hamtHSjXmHfp7eunv7U2YKWFcBXOTJLWgkFu/8mWyykojhAohuHj0KN1NzQzRiYeh4cBB3B0d4ypS/1sw42RKVR1+yIHpeCyBSxxFRaz9s8cwWCwgJUJR6G5s4sD2F/G5esPXDx4tx49T/dIvUIPB2ZbhVYMZdBoInA0N7P/xiwR9Pk3mEoQisKSlUbhqJXOvr8RosRJrvZ1/4w3MWb2Kc3vfR9HpQAhOvb4Tb3cP5VvvJ23uHII+H02Hqzmy4xWcDQ0JxWcIZtQD5HE6ObP7bfxuN8NGooBjv/4NZZtv55a/fQJLWhqjCZUYzGYW3nYrFz7YF5lupapybs9eGqr2Y7LbUYMBvD29yFAoromUqjrp95tRaQghUHQ67dAPOXQ6Qn4/J3/3Bkd+sQNkbE04b9kSLOmOIdOz5jwI+nz0tbfj7uxCDQY1h4QcX6OWqooaCo1SriLfS4kaCmlHUPt3Ivcd85lSIofec+C+w5ad2O3VGQxklS7UZqdJ4Mr5ZoUAVaV2126Wbbkfe24u0aZbW2Ym9txcXJfaEDpdhARFr8dksWBOTcWWrZ3Tcuw4zoYmhDJkFgiTLKVEbzJhz8kmZ8l1dDc20XryVKS3y1AIxaDHlp6JPS8Xi8OBUASeLifdjU24OzqQMGHlaiAQoDcasTjSsGVmYnakYUgyAxJfnxt3Ryfujsv097oIBQJhsYjI9QJIzs1h5Wc+TcnGDez6xv/TPFwTJPWKOtqFouBqa6frwoUwmaNEgt6chC0jPdIB5t24jsJVK0ktKMCel4stM4Mkux1Fr+f1L3+VrvoGBIMva7BaSJszh/zlyyhcvYqcxYuw5+Ry5u132PnU1wn5/egMBgrWrGbRnXeQv2I5tsxM9EkmBBD0+ehpaaXu3T0c/81r9LZeGne6k6qKJd3BvHXXM//mG8kqLcWa7kCflBQZXaFgkIDbjav9Mh1152g9cZL2s3W4L3cgpYo1I4OCihWUbb6dzJIShKKw+pGHaD9bh6+vb0Kd6opHTUJ+P+7OrjEJH9BoFUWh/IGtlGzcMOo8NRhg2MiW2pq78cm/o2TDekx2+zAB5C5dQnJWFqqqUvnoQyy6czOm5ORhHQnAYLGSUVxMRvEC5q5dw9vP/DPttWeiEyolQqejZOMGVj/8OXIWL0bR60fdE0BvNKI3mjCnOcgqLWXx3Xfh93rwufoAiclm05RDEdYckcxbt5bFd99JzcuvTMiWnpUQmAw722OfEG1dGWcdE4Kg349OrycpJSUikAGYU1NYct+9zFt3PTlLrhvjnoOf5ZWXs/HJL/H6k0/h7uwcPjqkRGc0supzn6Hy0Ycx2myjnjnmOwgwWqxh7X7o94PnKHoDKz+7jabD1XScOz/uDHHF1UGhU8IvHuN1QyF8fX2MbZdGRygQoK32TNTvDElJVD76UJjI8YQeaQ0FFRWU3LphtAIlBMu23s/1f/6FIURGfeMx3kWOOEZeBzqjIdw5x8cVJVNKbTpJyc+L+eIBrxf35Y6pcAlAd3NzeAoeeWsRngKHCm2oIyJGixSForWV6E2mwfdQVbLKSlnzyEPoTUlEJ1IQCgTpd/Xi63OFQ3+xnzOgdQ/839vdTd277/HGk09xsebohMyUKzrNypBK3rJlOIqKYp7jartMb1vblG1IT2cXQZ8Po3502GwQmlD97j7cnZ3ojEZsmVkouujPTC0swGSz4nF2a2krisKSe+8hOTs76jNC/gDn9u6ldtduelpaURQFx7wirrv3HuasXj1c+w63x9fXx8EXf4a7o4Ngvw9nUxNdF+oJeL0TlsWMkznK/gv/X6oq9twcVn/+s+FIR3RBt548ibfLOSV/qxCCgMejxTetMc+iv7eH2l27qd31Ft1NzeiMJtY8/DnKP7E16hUmm01rc5czksIyt3JNzHYce/U1fv9vz+HvcyOEAkhajp/gwr4qbv/634cVuqHvL0myp2BOTeHAj3+imSmKEjkmihklU2cwkJydRcDjDXd+gVAEBrMZR1ER5Z/YQsGqCmJNS8H+fs7t2UsoGJy0wTyAUDA4hr9WcPnsWX7/3Pep37efUCCAUBRkKMTRV35NyW0bsaQ5RrVP6HURLVWqKil5eSTnZEe9v6vtEkd/+QoBt2eYZisA9+UOjvx8B3MrV2O0jl5nizdsoOblV+i52DKlmWkGyZSkFy9g6w+eQ6oysjoIRUGfZMKUnIzOYGQsxaPx0GGaDlWjTMdNJyUyRmdxd3Sw++lnuHj0eMQzBYBOR19HJ54uZ5jMkVcOz4awOBwx10pnY5Nmm0bpjEKno7O+Hld7O+nzRiqBkuTsTFLnFNLdfHFKKsOMjky90UhKXn4sKTPWGubu7OTQf/5MM5A/Jp+r3+0OC3r4/QWgBgIE+30Tuo+i18U0+4L9vogiEw1qIEjI54/6nc5gwJyaOuX3+xikJmMcsaCtc1U/eoGm6iMfv/M8BgvaWq9O6BZ+jycmYRZHGgZzUnRbWUpMyckkpUY3NaSUyOA4NvgYmOWwg8Db7eT3z32f46++NqYD/mqBEIK+9sv4+kZEhsJwzCsir3yZRvaQ9xlQDOffdAPJWVlEsysDXi+u9vapWmVX2gM02MxQIEDL0aPs/8l/0lB1QHvxayBjQAhBb0srnR9dwOIYub5KjBYrNz/+V0hV0nLsGIH+fgQCkz2Z4vW3UPnYwwhFR7TZqutCA87GRpji7DTzpkmUUNNAmCnY78PrdNJ+5gx17+2lfl8V3u4ebWq9BogEQGg2Ye2ut8hfUR5F65ZkLlzIn3zrm3SeP09f+2UUvY6U/HwcRXPRGU1EI1KqasxMxYli5jMNtr+oKRID3EhJKBAk4PXS39ODu6MTT1cXQb9/0nbUVQMhqN21m7mVa1i46TaiBdpNNht55eWjPo9lll3Y9wGn3vjvaXXqmc80eCtKpoHWXgQCFBEJYl+rEELQ39vLnn/9LqFggIW33RrF7JrI+q/JqPHQIfZ8+7t4nc5pde4ZJXNopsE1M21O9V0Vhd7WS+x++hnO7/0DS+67l4KK5cN8uFGuGvZXf08PH765i4Mv/nRCcdPxcPXvArvKISX4+lz09/SE9YWBeOQABKGAH6REDakEvB56Wy/RfKSGs++8x6WTpyKeqOkiQeYUIVWV9PnzufGv/oL5N96APmnAIzSYWhrweDj73h7O7H6bkD9AKODH6+zG3dFBf0+v5inTzZzekCBzCpBSYk1P57an/i9z1qxmtGIj8Di72PudZ6ndtZtgf3/448GNwkIIhG5ml6IEmVOAVFUKV62koGIFsRSdjrrz1O/bj85gQGcwaJGkcNLXQDagVFUtmjpDplmCzCnCnp8XJdg9AEle+VIe+OG/E/B6tRTLkIqqhlCDQfweD57OLrrqG7h06jSX6+oIeCYet4yFBJlTRMjvH/N7vclEVmnpOHeR+Fwumo/UUP3SDhoPHdb6xhQH6TVosV8d6Dh/noDXw3h7aMY+wJRsZ8Ett3DPt/6J8ge2jIroTAYJMqcARVFoPX6Suj17GRxKU13zNGItaQ5ufuJxSu/YFDP7ftx2zbZgrkkIgd/jYe+/Pssf/v0HtBw7Fs7d6R8SGhNjHNGguQDXPvYoKfn5UyI0sWZOEUJoAfX9L2yn5uVXsGVmYs1Ix5yagsFiQW80ohj0KDo9ik6H3mTCmu4gc2EJWWWlGMwWovl0M4rns+CWm6j++Y5Jj/VpkCkm+NmMiS/K37HaIMa4ZqwnTOK6IYU1/G43nX19dH70UcQEiWZqCEXBZLMy/8YbuPmJx2PstxEUrlrJsV+9OmbGQjRMikyhKDQeOsz7zz43KpAshMDV1q5tiJkhv6xUVU69/gatx0+M2j0lVZWO8+eH5eYIoQW7q57/MUaLZRQf/T29+N3u0dQIQcjv58iOl7FlZo56lt/jwdvdHXmv6+65m6Ibhm/bF4rAdamN/dtfxO/qiykDf5+b0zvfxJaVxfovPRH1HHteLgaLGV+va1KynByZQtBy/AQXjx6L+f1MhrSklNS9uyfmNrhRITQh6O91aXszYiBWECAUCHDqdzuJVbJK0ekQgNFqZdkDW8hfXj7qnIYDB1EDwbEJCHuAWk+eIuD1Rp1uDUlJ6IzGSVspk55mBcAECjIBkWpe06k5IBRl7BeK8oyY4bVwoalY7RG6sZ8lpSTJbic5K3PwhkMkM5H9lwNtNtmsMZ0OAyUEJotJDyOD2YzV4UBnGL8fGK1WrOnpI3ZGzSyMViuWtNQJxUe17YIZ6IzGKT9P6JSYtqCjaA4pebljrnVSVTFarSy6c3M4BjoaHmc3AW//kDV8YpgUmVJVWXTXZj7xo/8gq7R0zN1cUlVZuuU+tnz/WdLmFE7ZdhqzPVKy8rOf5v7nvoc9P2/MZ6ihEMXrb+aTz/+Agorlk1YuAM0k6XPT3+OK1hrsubnc+Jd/Qfq8osgzhx4IQWpBAbc88TgLN91KLL9ue+0ZAl7vpPXJSVfoMqelkT5/Pgazedw53ZKWhmPO3GmNhPFgzcjEMW8e+vGeIcGUnExaUdGIbXQTh5Zh0MOlU6fIXFgS9ZyFt91KVlkpTYer6fzoQiQPOMlux1E0l/wV5aQWFsaY6gU+l4vz7/9ec8J/7Nvgx6slMEwtHyNndmCt06Q0oecS9dzwM8ZdquTY508wO1ANhDi9802KN67HnJI6+v0EpBYWklpYOOK5Q+8du7Fn33mXlmPHp5RWM2Oqp1YdQ2C02dAZDaiqGjMNVqoqerMZa3o6RpstarEJncGAEq5pIBQFk92O3myOuk9ymKwifwv0JlNkvdaKDg+eI5RBzVsoSuyybSMKNQqdQvORGo78/OXwnpZoHSBa8vd4CeGC5poaql7YrpXemQJmRDORqkrmwhIqtj1IVlmpltvy37vQG43DVX0pUfR6Su+8g6Vb7iM5Oxufy8XZd97j2K9/o5VOk5L8FctZ88jnqX5pBz6Xi4rPfJrsRWV4nU6O/upVzr7zXtj19QhzK9dgSEripr/+S/zuPhoPVXP81ddYcPNNVGx7kKoXttNy9BhrHnuEss23a2VPP7uN0ts30fbhhxx/9bes/cIjGJKS2POd70UqZEopsTocrP3iY/T39HLwxZ9GhKyGQhz+2UvoTUYqtj0Yw5szUQikGqK+aj97vv09epovzl6qpVRVsheVcdczT2NxOGg8eBA1GGL5Jx/A4nAMjiQpQVFYtvV+bvrr/0PzkRpO/Pa/yFq4kOu/+Bj2nGz2fOdZAh4PJpuNonXr0OkNJOfmEOzvp6u+gfzyZWx66iu4OzrpqDuHwWLWtGop0ZuMSGnB292NGgrhmFfEnMo1HHn5l5o5MpCeEZ4FFJ0uspczo7iYzJISDr/0C5wNjdrOMFUlq2wh5Q9s5dTvXic4JOQlhMDv9fLBD5+nvfYsFds+Rc51i8M5scOkM4q4oVBDIZwNDZz8r9c5+dvf4ZnV7DwpMVgsrP3iF7BlZrLz77/BhT9+AIA9N5fNT3+D7EVlWsNVSXbpAiofe5TGQ9W8+bV/oL+3F31SEuu/9ARL/vRezrz9LvVV+3F3dhLy9ZO1qJSqH73Ah2/uxtfbS9nmO7jrn56maG0lzdVHeOeb32KT8hWKN6zn7Wf+he6mJk1kEYHIiNCqnt+Oz9XHhr/7G6qe3079viqEoqCGQtTvq2Lu2kpyFi8KVy/RCMsr15Kc6/cfQB2xzVAIgRoMUvvWbhoOHCR/xXLmrl1D9qIykrOzMdms6IzGSJFkqaqEAlpg2n35MpfPnaPx4GGaDh2m91LbiHbPAplSVckoKaaocg1n39tD/Qf7It91Nzdz6dRpchYvigh2/o03YMvKoPa7u/F2d6Po9QQ8Xs7teZ/yB7aQu3QJ9VX7I6P59M43qdnxK1AEqDIcQ/RqVUKEQEYKMMmIoR1TIEPX5fD/B0hrqj5CwOOmcNVKat96O9xJzeSvWI6rrY1Lp07HdjQoCt6eHure28P5ve9jtFoxp6aSlJqCyWZDbzIhhCAUDOB3u/F29+B1duNzuQgFgxOqiH1lyJSQWVyM0Wal9cRJQoEgil7rvWKE4qDo9WQuLEENBhFCkF68ACU8nZlsVtRgiOTsrGHX+N1uJBJFKEghB53YEUlORggxyBACZ0Mj7WfOkre8HHNqKu7OTuy5uWSWFNN0uJq+tvYxR42WnKWLtNnX1wdNTdFz14ckdc10Ivi0yBQCrOECTP09PWOeq+h0kQ23G5/8UrhClZZjquj16JNMmj06wnH+sUMI/G43DfsPUvnYI6QvmE9fezvZi8pISrHTcOAgQb9/4oIf0omvdBr4tBWgSLGFibgkVZVQwM+hn76Es7FxsLeHDc7eltZZqR0rpaTx0GHWPPIQBRXLaTp0mIKVFfhcLlqOHr9m6tlOe5r1dvcAIvyLCiPCVEOmRDUYxNPVBVJyseYojYerR/X22RKaoih0nv+IzgsXKKioIDknm7ylS2ivPUt3s1a8eEDDvZoxLfVJCOi6UB9W7xcMGWmDhQghvM08GKLt9IcoBgNZZaUoihLZlzKgBEyPzMnYeSO9NoJ+l4vm6hocRXMpXLUKe14ujQcP4fd4yCwtYfHddzF3beWEAgyzhemRqSi0nzlD2+nTlG7axJw1q1D0OvRJSRRvuIXi9TcDmnIgFEH9/gP0NF9kxac+Qf7yco08KTGnpFB6xyYsGemTKw8qJagqOr0BndE4arfyqNNVFaHoMJjNqMHhpUilqnKx5ihGi4XF99yJDKk0Ha7GaLGQv7yctDmFZC8qJbWg4KodoZPvZkN/i0sIvN09VL3wE+74x6/xJ9/6Z9pra9GbTKTO0ao2K3o9JpsNhMDZ2ETV8z9mw5f/lvue/Q7NNTX43R4yihdgSUvlja98DVfY5hpI/xg6VsVASsjAMi0lPS2tmOx21jzyEA1VB7iwrwpPZ+eQKwbdfX1t7UhVpWLbg1gzMmg4cBBnY1NkVug4dw6/x828ddfTcvwEnR9diNiI/b29BH2+adei/Tihuz0n7x8nc4Ep2UbQ76e+an9kl293UzOtx06gGAxY09Pxuz3U7PgltbveAilpOXEiot531J2jvfYMSXYbjrlzsaSmcflsHVU/eoHWk6ciBQaNNistR4/RVV8fmX51Bj2mZButx07QUXcOhKCvvR1bZgaFKyvIKJ5P/f4DeLq6MNmTUYNB7e/OThRFwd3Vic5oIHfpUnKXXEfryVMRj48IF1IsWreO1IICPnxzF+ff/wNqUNsoLHQ6eltbuXy2brY5iwnx7fKVM9LVBgx2ndGIDIW0bWpDRjAjpjRFr8dosSClit/jnXKZ7oG12ZruIOQP4HE6Y0+D4ZKiFkcaAF5n97C4ppSS2776JMu23s9rj/8NH/1xn+bsD1fMGviVwKsVM7aaDxAxkLY/jJiRyV9hwfhc4SDvNHKHRDgZq+diS8yfohpyMlJV6bvcEbl2sIkSvdGILSuLttO1tJ48HSkuNbC2X81EwmwnQc/g72BOxi02SnOWEnOKndUPf56CihXU/PIVzQlylZM3EomMdkBVVXKXLmXZ/X9K9Us/5+zb716ThTNmbM28phGunGXLyqSrvkHLbbrGRiUktidoEFruTeTXcq9BIiFB5iCm7YGafVx7C0MCMZEgM46QIDOOkCAzjqD/OLPNE7iy+B/v+7ZBP/pGRwAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMS0wOC0yMFQxODoxNDozNC0wNDowMOq7lWsAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjEtMDgtMjBUMTg6MTQ6MzQtMDQ6MDCb5i3XAAAAAElFTkSuQmCC
+name: PingOne
+script:
+  commands:
+  - arguments:
+    - default: true
+      description: Username to unlock.
+      name: username
+      required: true
+    description: Unlock a user's account.
+    name: pingone-unlock-user
+  - arguments:
+    - default: true
+      description: A username to deactivate.
+      name: username
+      required: true
+    description: Deactivate a user's account.
+    name: pingone-deactivate-user
+  - arguments:
+    - default: true
+      description: A username to activate.
+      name: username
+      required: true
+    description: Activate a user's account.
+    name: pingone-activate-user
+  - arguments:
+    - default: true
+      description: The username to change the password for.
+      name: username
+      required: true
+    - description: The new password.
+      name: password
+      required: true
+    description: 'Sets a user''s password. Further password details available here:
+      https://apidocs.pingidentity.com/pingone/platform/v1/api/#put-update-password-self
+      .'
+    name: pingone-set-password
+  - arguments:
+    - description: Username.
+      name: username
+    - description: Group name.
+      name: groupName
+    - description: Group id.
+      name: groupId
+    - description: User id.
+      name: userId
+    description: Add user to the group. One of the following has to be given username
+      or userId and groupName or groupId.
+    name: pingone-add-to-group
+  - arguments:
+    - description: Username.
+      name: username
+    - description: Group name.
+      name: groupName
+    - description: User id.
+      name: userId
+    - description: Group id.
+      name: groupId
+    description: Remove user from the group. One of the following has to be given
+      username or userId and groupName or groupId.
+    name: pingone-remove-from-group
+  - arguments:
+    - description: Username.
+      name: username
+      required: true
+    description: Returns user's group memberships.
+    name: pingone-get-groups
+    outputs:
+    - contextPath: PingOne.Account.Group
+      description: PingOne groups of the user.
+      type: string
+    - contextPath: PingOne.Account.ID
+      description: PingOne account id.
+      type: string
+    - contextPath: PingOne.Account.Type
+      description: PingOne account type.
+      type: string
+    - contextPath: PingOne.Account.Group.ID
+      description: Group unique id.
+      type: string
+    - contextPath: PingOne.Account.Group.Name
+      description: Group name.
+      type: string
+  - arguments:
+    - description: Username.
+      name: username
+    - description: User id.
+      name: userId
+    - description: PingOne user details.
+      name: detailed
+    description: Returns a PingOne user. One of the following has to be given username
+      or userId.
+    name: pingone-get-user
+    outputs:
+    - contextPath: PingOne.Account.ID
+      description: PingOne account ID.
+      type: string
+    - contextPath: PingOne.Account.Username
+      description: PingOne account username.
+      type: string
+    - contextPath: PingOne.Account.DisplayName
+      description: PingOne account display name.
+      type: string
+    - contextPath: PingOne.Account.Email
+      description: PingOne account email.
+      type: string
+    - contextPath: PingOne.Account.Enabled
+      description: PingOne account enabled status.
+      type: boolean
+    - contextPath: PingOne.Account.CreatedAt
+      description: PingOne account create date.
+      type: date
+    - contextPath: PingOne.Account.UpdatedAt
+      description: PingOne account updated date.
+      type: date
+  - arguments:
+    - description: The username to create.
+      name: username
+      required: true
+    - description: PingOne population ID where the new user will be created.
+      name: populationId
+      required: true
+    description: Create a PingOne user.
+    name: pingone-create-user
+    outputs:
+    - contextPath: PingOne.Account.ID
+      description: PingOne account ID.
+      type: string
+    - contextPath: PingOne.Account.Username
+      description: PingOne account username.
+      type: string
+    - contextPath: PingOne.Account.DisplayName
+      description: PingOne account display name.
+      type: string
+    - contextPath: PingOne.Account.Email
+      description: PingOne account email.
+      type: string
+    - contextPath: PingOne.Account.Enabled
+      description: PingOne account enabled status.
+      type: boolean
+    - contextPath: PingOne.Account.CreatedAt
+      description: PingOne account create date.
+      type: date
+    - contextPath: PingOne.Account.UpdatedAt
+      description: PingOne account updated date.
+      type: date
+  - arguments:
+    - description: The username to be updated.
+      name: username
+      required: true
+    - description: Formatted PingOne name.
+      name: formatted
+    - description: Given name.
+      name: given
+    - description: Middle name.
+      name: middle
+    - description: Family name.
+      name: family
+    - description: Nickname.
+      name: nickname
+    - description: Title.
+      name: title
+    - description: Locale.
+      name: locale
+    - description: Email.
+      name: email
+    - description: Primary phone number.
+      name: primaryPhone
+    - description: Mobile phone number.
+      name: mobilePhone
+    - description: Street address.
+      name: streetAddress
+    - description: Locality.
+      name: locality
+    - description: Region.
+      name: region
+    - description: Zip code.
+      name: postalCode
+    - description: Country code.
+      name: countryCode
+    - description: Account type.
+      name: Type
+    description: Update a PingOne user.
+    name: pingone-update-user
+  - arguments:
+    - description: Username.
+      name: username
+    - description: User id.
+      name: userId
+    description: Delete a PingOne user. One of the following has to be given username
+      or userId.
+    name: pingone-delete-user
+  dockerimage: demisto/python3:3.9.8.24399
+  runonce: false
+  script: |
+    register_module_line('PingOne', 'start', __line__())
+
+
+
+    # IMPORTS
+    # Disable insecure warnings
+    requests.packages.urllib3.disable_warnings()
+
+    PROFILE_ARGS = [
+        'formatted',
+        'given',
+        'middle',
+        'family',
+        'nickname',
+        'title',
+        'locale',
+        'email',
+        'primaryPhone',
+        'mobilePhone',
+        'streetAddress',
+        'locality',
+        'region',
+        'postalCode',
+        'countryCode',
+        'type'
+    ]
+
+
+    class Client(BaseClient):
+        """
+        Client will implement the service API, and should not contain any Demisto logic.
+        Should only do requests and return data.
+        """
+
+        def __init__(self, base_url, verify, proxy, auth_params):
+            super().__init__(base_url=base_url, verify=verify, proxy=proxy)
+
+            self.client_id = auth_params.get('client_id')
+            self.client_secret = auth_params.get('client_secret')
+            self.auth_url = auth_params.get('auth_url')
+            self._headers = self._request_token()
+
+        def _request_token(self):
+            """
+            Handles the actual request made to retrieve the access token.
+            :return: Access token to be used in the authorization header for each request.
+            """
+            params = {
+                'grant_type': 'client_credentials',
+                'client_id': self.client_id,
+                'client_secret': self.client_secret
+            }
+
+            response = self._http_request(
+                method='POST',
+                headers={'Content-Type': 'application/x-www-form-urlencoded'},
+                full_url=self.auth_url,
+                data=params
+            )
+            access_token = response.get('access_token')
+            auth_header = {'Authorization': f'Bearer {access_token}'}
+            return auth_header
+
+        # Getting Group Id with a given group name
+        def get_group_id(self, group_name):
+            uri = 'groups'
+            query_params = {
+                'filter': encode_string_results(f'name eq "{group_name}"')
+            }
+            res = self._http_request(
+                method="GET",
+                url_suffix=uri,
+                params=query_params
+            )
+
+            if '_embedded' in res and len(res.get('_embedded', {}).get('groups')) == 1:
+                return res.get('_embedded', {}).get('groups')[0].get('id')
+            raise Exception(f'Failed to find groupID for: {group_name} group name.')
+
+        # Return User Id from username
+        def get_user_id(self, username):
+            uri = 'users'
+            query_params = {
+                'filter': encode_string_results(f'username eq "{username}"')
+            }
+            res = self._http_request(
+                method='GET',
+                url_suffix=uri,
+                params=query_params
+
+            )
+
+            if '_embedded' in res and len(res.get('_embedded', {}).get('users')) == 1:
+                return res.get('_embedded', {}).get('users')[0].get('id')
+            raise Exception(f'PingOne error: Failed to find userID for: {username} username.')
+
+        # Return user from username
+        def get_user_by_username(self, username):
+            uri = 'users'
+            query_params = {
+                'filter': encode_string_results(f'username eq "{username}"')
+            }
+            res = self._http_request(
+                method='GET',
+                url_suffix=uri,
+                params=query_params
+
+            )
+
+            if '_embedded' in res and len(res.get('_embedded', {}).get('users')) == 1:
+                return res.get('_embedded', {}).get('users')[0]
+            raise Exception(f'Failed to find user for {username} username.')
+
+        # Return user from id
+        def get_user_by_id(self, user_id):
+            uri = f'users/{user_id}'
+
+            res = self._http_request(
+                method='GET',
+                url_suffix=uri,
+            )
+
+            if res.get('code') == 'NOT_FOUND':
+                raise Exception(f'Failed to find user for {user_id}')
+
+            return res
+
+        def unlock_user(self, user_id):
+            """
+            sending a POST request to unlock a specific user
+            """
+            uri = f'users/{user_id}'
+
+            new_headers = self._headers
+            new_headers['Content-Type'] = 'application/vnd.pingidentity.account.unlock+json'
+
+            return self._http_request(
+                method='POST',
+                url_suffix=uri,
+                headers=new_headers
+            )
+
+        def deactivate_user(self, user_id):
+            uri = f'users/{user_id}/enabled'
+
+            body = {
+                "enabled": False
+            }
+
+            return self._http_request(
+                method="PUT",
+                url_suffix=uri,
+                json_data=body
+            )
+
+        def activate_user(self, user_id):
+            uri = f'users/{user_id}/enabled'
+
+            body = {
+                "enabled": True
+            }
+
+            return self._http_request(
+                method="PUT",
+                url_suffix=uri,
+                json_data=body
+            )
+
+        def set_password(self, user_id, password):
+            uri = f'users/{user_id}/password'
+
+            body = {
+                "newPassword": password
+            }
+
+            new_headers = self._headers
+            new_headers['Content-Type'] = 'application/vnd.pingidentity.password.reset+json'
+
+            return self._http_request(
+                method="PUT",
+                url_suffix=uri,
+                headers=new_headers,
+                json_data=body
+            )
+
+        def add_user_to_group(self, user_id, group_id):
+            uri = f'users/{user_id}/memberOfGroups'
+
+            body = {
+                "id": group_id
+            }
+
+            return self._http_request(
+                method="POST",
+                url_suffix=uri,
+                json_data=body
+            )
+
+        def remove_user_from_group(self, user_id, group_id):
+            uri = f'users/{user_id}/memberOfGroups/{group_id}'
+            self._http_request(
+                method="DELETE",
+                url_suffix=uri,
+                return_empty_response=True,
+                ok_codes=(204, 404)  # PingOne returns 404 if the group has already removed which results in a XSOAR error
+            )
+
+        def get_groups_for_user(self, user_id):
+            uri = f'users/{user_id}/memberOfGroups?expand=group&filter=type eq "DIRECT"'
+
+            query_params = {
+                'expand': 'group',
+                'filter': 'username eq "DIRECT"'
+            }
+
+            return self._http_request(
+                method="GET",
+                url_suffix=uri,
+                params=query_params
+            )
+
+        @staticmethod
+        def build_user_profile(args):
+            profile = {}  # type:ignore
+            keys = args.keys()
+            for key in PROFILE_ARGS:
+                if key in keys:
+                    if key in ['formatted', 'given', 'middle', 'family']:
+                        if 'name' not in profile:
+                            profile['name'] = {}
+                        profile['name'][key] = args[key]
+
+                    elif key in ['streetAddress', 'locality', 'region', 'postalCode', 'countryCode']:
+                        if 'address' not in profile:
+                            profile['address'] = {}
+                        profile['address'][key] = args[key]
+
+                    else:
+                        profile[key] = args[key]
+            return profile
+
+        @staticmethod
+        def get_readable_group_membership(raw_groups):
+            groups = []
+            raw_groups = raw_groups.get('_embedded', {}).get('groupMemberships', [])
+
+            for group in raw_groups:
+
+                if group.get('type') == 'DIRECT':
+                    grp = {
+                        'ID': group.get('id'),
+                        'Name': group.get('name')
+                    }
+                    groups.append(grp)
+
+            return groups
+
+        @staticmethod
+        def get_user_context(raw_user):
+            user = {
+                'ID': raw_user.get('id'),
+                'Username': raw_user.get('username'),
+                'DisplayName':
+                    raw_user.get('name', {}).get('formatted'),
+                'Email': raw_user.get('email'),
+                'Enabled': raw_user.get('enabled'),
+                'CreatedAt': raw_user.get('createdAt'),
+                'UpdatedAt': raw_user.get('updatedAt')
+            }
+            return user
+
+        @staticmethod
+        def get_readable_user(raw_user):
+            user_attrs = {
+                'ID': raw_user.get('id'),
+                'Username': raw_user.get('username'),
+                'Email': raw_user.get('email'),
+                'First Name': raw_user.get('name', {}).get('given'),
+                'Last Name': raw_user.get('name', {}).get('family'),
+                'Enabled': raw_user.get('enabled'),
+                'Environment': raw_user.get('environment', {}).get('id'),
+                'PopulationID': raw_user.get('population', {}).get('id'),
+                'AccountStatus': raw_user.get('account', {}).get('status'),
+                'CreatedAt': raw_user.get('createdAt'),
+                'UpdatedAt': raw_user.get('updatedAt')
+            }
+            return user_attrs
+
+        def get_user(self, user_id):
+            uri = f'users/{user_id}'
+            return self._http_request(
+                method='GET',
+                url_suffix=uri
+            )
+
+        def create_user(self, username, pop_id):
+            uri = 'users'
+
+            body = {
+                "population": {
+                    "id": f'{pop_id}'
+                },
+                "username": f'{username}'
+            }
+
+            res = self._http_request(
+                method='POST',
+                url_suffix=uri,
+                json_data=body
+            )
+
+            return res
+
+        def update_user(self, user_id, attrs):
+            uri = f"users/{user_id}"
+            return self._http_request(
+                method='PATCH',
+                url_suffix=uri,
+                json_data=attrs
+            )
+
+        def delete_user(self, user_id):
+            uri = f"users/{user_id}"
+            return self._http_request(
+                method="DELETE",
+                url_suffix=uri,
+                return_empty_response=True,
+                ok_codes=(204, 404)  # PingOne returns 404 if the group has already removed which results in a XSOAR error
+            )
+
+
+    def test_module(client, _args):
+        """
+        Returning 'ok' indicates that the integration works like it is supposed to. Connection to the service is successful.
+
+        Args:
+            client: HelloWorld client
+
+        Returns:
+            'ok' if test passed, anything else will fail the test.
+        """
+        uri = '/'
+        client._http_request(method='GET', url_suffix=uri)
+        return 'ok', None, None
+
+
+    def unlock_user_command(client, args):
+        user_id = client.get_user_id(args.get('username'))
+        raw_response = client.unlock_user(user_id)
+
+        readable_output = f"### {args.get('username')} unlocked"
+
+        return (
+            readable_output,
+            {},
+            raw_response  # raw response - the original response
+        )
+
+
+    def activate_user_command(client, args):
+        user_id = client.get_user_id(args.get('username'))
+        raw_response = client.activate_user(user_id)
+
+        readable_output = f"### {args.get('username')} is active now"
+        return (
+            readable_output,
+            {},
+            raw_response
+        )
+
+
+    def deactivate_user_command(client, args):
+        user_id = client.get_user_id(args.get('username'))
+        raw_response = client.deactivate_user(user_id)
+
+        readable_output = f"### User {args.get('username')} deactivated"
+
+        return (
+            readable_output,
+            {},
+            raw_response  # raw response - the original response
+        )
+
+
+    def set_password_command(client, args):
+        user_id = client.get_user_id(args.get('username'))
+        password = args.get('password')
+
+        raw_response = client.set_password(user_id, password)
+        readable_output = f"{args.get('username')} password was updated."
+        return (
+            readable_output,
+            {},
+            raw_response
+        )
+
+
+    def add_user_to_group_command(client, args):
+        group_id = args.get('groupId')
+        user_id = args.get('userId')
+
+        if (not (args.get('username') or user_id)) or (not (args.get('groupName') or group_id)):
+            raise Exception("PingOne error: You must supply either 'Username' or 'userId and 'groupName' or 'groupId'.")
+        if not user_id:
+            user_id = client.get_user_id(args.get('username'))
+            user_id_or_name = args.get('username')
+        else:
+            user_id_or_name = user_id
+
+        if not group_id:
+            group_id = client.get_group_id(args.get('groupName'))
+            group_id_or_name = args.get('groupName')
+        else:
+            group_id_or_name = group_id
+
+        raw_response = client.add_user_to_group(user_id, group_id)
+        readable_output = f"User: {user_id_or_name} added to group: {group_id_or_name} successfully"
+        return (
+            readable_output,
+            {},
+            raw_response
+        )
+
+
+    def remove_from_group_command(client, args):
+        group_id = args.get('groupId')
+        user_id = args.get('userId')
+
+        if (not (args.get('username') or user_id)) or (not (args.get('groupName') or group_id)):
+            raise Exception("PingOne error: You must supply either 'Username' or 'userId and 'groupName' or 'groupId'.")
+        if not user_id:
+            user_id = client.get_user_id(args.get('username'))
+            user_id_or_name = args.get('username')
+        else:
+            user_id_or_name = user_id
+
+        if not group_id:
+            group_id = client.get_group_id(args.get('groupName'))
+            group_id_or_name = args.get('groupName')
+        else:
+            group_id_or_name = group_id
+
+        client.remove_user_from_group(user_id, group_id)
+
+        readable_output = f"User: {user_id_or_name} was removed from group: {group_id_or_name} successfully"
+
+        return (
+            readable_output,
+            {},
+            '')
+
+
+    def get_groups_for_user_command(client, args):
+        user_id = client.get_user_id(args.get('username'))
+        raw_response = client.get_groups_for_user(user_id)
+        groups = client.get_readable_group_membership(raw_response)
+
+        context = createContext(groups, removeNull=True)
+        outputs = {
+            'PingOne.Account(val.ID && val.ID === obj.ID)': {
+                'Group': context,
+                'ID': args.get('username'),
+                'Type': 'PingOne'
+            }
+        }
+        readable_output = f"PingOne groups for user: {args.get('username')}\n {tableToMarkdown('Groups', groups)}"
+
+        return (
+            readable_output,
+            outputs,
+            raw_response
+        )
+
+
+    def get_user_command(client, args):
+        if args.get('userId'):
+            user_id_or_name = args.get('userId')
+            raw_response = client.get_user_by_id(args.get('userId'))
+        elif args.get('username'):
+            user_id_or_name = args.get('username')
+            raw_response = client.get_user_by_username(args.get('username'))
+        else:
+            raise Exception("PingOne error: You must supply either 'Username' or 'userId")
+
+        user_context = client.get_user_context(raw_response)
+        user_readable = client.get_readable_user(raw_response)
+        outputs = {
+            'PingOne.Account(val.ID && val.ID === obj.ID)': createContext([user_context])
+        }
+        readable_output = f"{tableToMarkdown(f'User:{user_id_or_name}', [user_readable])} "
+        return (
+            readable_output,
+            outputs,
+            raw_response
+        )
+
+
+    def create_user_command(client, args):
+        username = args.get('username')
+        pop_id = args.get('populationId')
+        raw_response = client.create_user(username, pop_id)
+        user_context = client.get_user_context(raw_response)
+        outputs = {
+            'PingOne.Account(val.ID && val.ID === obj.ID)': createContext(user_context)
+        }
+        readable_output = tableToMarkdown(f"PingOne user created: {args.get('username')}",
+                                          client.get_readable_user(raw_response))
+
+        return (
+            readable_output,
+            outputs,
+            raw_response
+        )
+
+
+    def update_user_command(client, args):
+        user_id = client.get_user_id(args.get('username'))
+        attrs = Client.build_user_profile(args)
+
+        raw_response = client.update_user(user_id, attrs)
+        readable_output = tableToMarkdown(f"PingOne user updated: {args.get('username')}", attrs)
+
+        return (
+            readable_output,
+            {},
+            raw_response
+        )
+
+
+    def delete_user_command(client, args):
+        if not (args.get('username') or args.get('userId')):
+            raise Exception("PingOne error: You must supply either 'Username' or 'userId")
+
+        if args.get('username'):
+            user = client.get_user_by_username(args.get('username'))
+            user_id = user.get('id')
+
+            # Output username when possible
+            user_id_or_name = args.get('username')
+        else:
+            user_id = args.get('userId')
+            user_id_or_name = user_id
+
+        client.delete_user(user_id)
+        readable_output = f"User: {user_id_or_name} was Deleted successfully"
+        return (
+            readable_output,
+            {},
+            '')
+
+
+    def main():
+        """
+            PARSE AND VALIDATE INTEGRATION PARAMS
+        """
+        # get the service API URL
+        params = demisto.params()
+        environment_id = params.get('environment_id')
+        region = params.get('region')
+        tld = '.com'
+
+        if region == 'EU':
+            tld = '.eu'
+        elif region == 'Asia':
+            tld = '.asia'
+
+        base_url = urljoin(f'https://api.pingone{tld}', f'/v1/environments/{environment_id}/')
+        auth_url = urljoin(f'https://auth.pingone{tld}', f'/{environment_id}/as/token')
+
+        client_id = demisto.params().get('credentials', {}).get('identifier')
+        client_secret = demisto.params().get('credentials', {}).get('password')
+
+        verify_certificate = not demisto.params().get('insecure', False)
+        proxy = demisto.params().get('proxy', False)
+
+        auth_params = {
+            'client_id': client_id,
+            'client_secret': client_secret,
+            'base_url': base_url,
+            'auth_url': auth_url,
+        }
+
+        demisto.debug(f'Command being called is {demisto.command()}')
+
+        commands = {
+            'test-module': test_module,
+            'pingone-unlock-user': unlock_user_command,
+            'pingone-deactivate-user': deactivate_user_command,
+            'pingone-activate-user': activate_user_command,
+            'pingone-set-password': set_password_command,
+            'pingone-add-to-group': add_user_to_group_command,
+            'pingone-remove-from-group': remove_from_group_command,
+            'pingone-get-groups': get_groups_for_user_command,
+            'pingone-get-user': get_user_command,
+            'pingone-create-user': create_user_command,
+            'pingone-update-user': update_user_command,
+            'pingone-delete-user': delete_user_command,
+        }
+
+        command = demisto.command()
+
+        client = Client(
+            auth_params=auth_params,
+            base_url=base_url,
+            verify=verify_certificate,
+            proxy=proxy
+        )
+
+        try:
+            if command in commands:
+                human_readable, outputs, raw_response = commands[command](client, demisto.args())
+                return_outputs(readable_output=human_readable, outputs=outputs, raw_response=raw_response)
+
+        # Log exceptions
+        except Exception as e:
+            return_error(f'Failed to execute {command} command. Error: {str(e)}')
+
+
+    if __name__ in ('__main__', '__builtin__', 'builtins'):
+        main()
+
+    register_module_line('PingOne', 'end', __line__())
+  subtype: python3
+  type: python
+system: true
