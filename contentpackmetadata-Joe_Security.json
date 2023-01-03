@@ -1,0 +1,247 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Forensics \u0026 Malware Analysis"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"playbook",
+		"widget"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Forensics \u0026 Malware Analysis",
+				"commands": [
+					{
+						"description": "Check if the Joe Sandbox analysis backend is online or in maintenance mode.",
+						"name": "joe-is-online"
+					},
+					{
+						"description": "Get information about an analysis.",
+						"name": "joe-analysis-info"
+					},
+					{
+						"description": "Lists all analyses.",
+						"name": "joe-list-analysis"
+					},
+					{
+						"description": "Download a resource belonging to a report. This can be the full report, dropped binaries, etc. See the integration README for the full list of supported report types.",
+						"name": "joe-download-report"
+					},
+					{
+						"description": "Download a sample.",
+						"name": "joe-download-sample"
+					},
+					{
+						"description": "Search through all analyses.",
+						"name": "joe-search"
+					},
+					{
+						"description": "Retrieves files information from Joe Security.",
+						"name": "file"
+					},
+					{
+						"description": "Retrieves URL information from Joe Security.",
+						"name": "url"
+					},
+					{
+						"description": "Retrieve a list of localized internet anonymization countries.",
+						"name": "joe-list–lia-countries"
+					},
+					{
+						"description": "Retrieve a list of available language and locale combinations.",
+						"name": "joe-list-lang-locales"
+					},
+					{
+						"description": "Retrieve the account quota.",
+						"name": "joe-get-account-quota"
+					},
+					{
+						"description": "Retrieve the submission info.",
+						"name": "joe-submission-info"
+					},
+					{
+						"description": "Submit a sample for sandbox analysis.",
+						"name": "joe-submit-sample"
+					},
+					{
+						"description": "Submit an URL for sandbox analysis.",
+						"name": "joe-submit-url"
+					}
+				],
+				"description": "Access the full set of possibilities the JoeSandbox Cloud provides via the RESTful Web API v2.",
+				"id": "JoeSecurityV2",
+				"name": "Joe Security v2"
+			},
+			{
+				"category": "Forensics \u0026 Malware Analysis",
+				"commands": [
+					{
+						"description": "Check if Joe Sandbox is online or in maintenance mode.",
+						"name": "joe-is-online"
+					},
+					{
+						"description": "Submit a url for analysis.",
+						"name": "joe-analysis-submit-url"
+					},
+					{
+						"description": "Submit a url for analysis.",
+						"name": "joe-detonate-url"
+					},
+					{
+						"description": "Show information about an analysis.",
+						"name": "joe-analysis-info"
+					},
+					{
+						"description": "List all analyses.",
+						"name": "joe-list-analysis"
+					},
+					{
+						"description": "Submit a sample for analysis.",
+						"name": "joe-analysis-submit-sample"
+					},
+					{
+						"description": "Download a resource belonging to a report. This can be the full report, dropped binaries, etc. See integration README for the full supported report types.",
+						"name": "joe-download-report"
+					},
+					{
+						"description": "Submit a sample for analysis.",
+						"name": "joe-detonate-file"
+					},
+					{
+						"description": "Search through all analyses.",
+						"name": "joe-search"
+					},
+					{
+						"description": "Download the sample file of an analysis. for security reasons, the extension will be \"dontrun\"",
+						"name": "joe-download-sample"
+					}
+				],
+				"description": "Sandbox Cloud",
+				"id": "Joe Security",
+				"name": "Joe Security"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": [
+			{
+				"description": "Deprecated. Use the joe-submit-sample command instead.",
+				"name": "Detonate File - JoeSecurity"
+			},
+			{
+				"description": "Deprecated. Use the joe-submit-sample command instead.",
+				"name": "Detonate File From URL - JoeSecurity"
+			},
+			{
+				"description": "Deprecated. Use the joe-submit-url command instead.",
+				"name": "Detonate URL - JoeSecurity"
+			},
+			{
+				"description": "Deprecated. Use the joe-submit-sample command instead.",
+				"name": "Detonate and Analyze File - JoeSecurity"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": [
+			{
+				"name": "API Call Results for Joe Security"
+			}
+		],
+		"wizard": null
+	},
+	"created": "2020-11-09T18:46:26Z",
+	"currentVersion": "1.1.4",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.51",
+			"name": "Base"
+		},
+		"CommonPlaybooks": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "2.3.23",
+			"name": "Common Playbooks"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.10.34",
+			"name": "Common Scripts"
+		}
+	},
+	"deprecated": false,
+	"description": "Sandbox Cloud",
+	"disabledMonthly": false,
+	"downloads": 2572,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "JoeSecurity",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/JoeSecurity/JoeSecurity_image.png",
+			"name": "Joe Security"
+		},
+		{
+			"imagePath": "content/packs/JoeSecurity/JoeSecurityV2_image.png",
+			"name": "Joe Security v2"
+		}
+	],
+	"itemVersion": "1.1.4",
+	"keywords": [],
+	"legacy": true,
+	"name": "Joe Security",
+	"packID": "JoeSecurity",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-12-28T13:15:36Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4314430",
+	"videos": []
+}
