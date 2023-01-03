@@ -1,0 +1,762 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+description: This playbook walks you through setting up the XSOAR Training Pack
+id: 9fc08b11-3fc7-4df9-8d72-79eda5c49dc2
+inputs: []
+name: XSOAR Engineer Training - Setup Playbook
+outputs: []
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "10"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: a7bcbae5-a70d-4ca2-8ee5-06f5bb8a02a4
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: a7bcbae5-a70d-4ca2-8ee5-06f5bb8a02a4
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 275,
+          "y": -1000
+        }
+      }
+  "1":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: lists.Internal IP Ranges
+          operator: isExists
+      - - left:
+            iscontext: true
+            value:
+              simple: lists.Internal IP Ranges
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "2"
+      "yes":
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 13ef0ef1-a0e4-4e24-8fdc-d9a3d7f58dd2
+      iscommand: false
+      name: Does the Internal IP Ranges list exist?
+      type: condition
+      version: -1
+    taskid: 13ef0ef1-a0e4-4e24-8fdc-d9a3d7f58dd2
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 370
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      listData:
+        simple: 10.0.0.0/8,192.168.8.0/24
+      listName:
+        simple: Internal IP Ranges
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.list.create
+      id: ce43ed3d-b808-45eb-864f-85a2fb5761cd
+      iscommand: true
+      name: Create Internal IP Ranges list
+      script: Builtin|||createList
+      type: regular
+      version: -1
+    taskid: ce43ed3d-b808-45eb-864f-85a2fb5761cd
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -280,
+          "y": 560
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "5"
+      "yes":
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      brandname:
+        simple: Demisto REST API
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Returns 'yes' if integration brand is available. Otherwise returns
+        'no'
+      id: 1ca790e8-76e0-488b-88a5-e9dae80475c6
+      iscommand: false
+      name: Is the Demisto REST API integration available?
+      script: IsIntegrationAvailable
+      type: condition
+      version: -1
+    taskid: 1ca790e8-76e0-488b-88a5-e9dae80475c6
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 275,
+          "y": 770
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: 'This playbook requires the Demisto REST API integration, please
+        configure an instance of it. '
+      id: c7415491-b131-477a-83b3-c61c5465bf19
+      iscommand: false
+      name: Configure Demisto Rest API integration
+      type: regular
+      version: -1
+    taskid: c7415491-b131-477a-83b3-c61c5465bf19
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 590,
+          "y": 940
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "19"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 63f05479-0059-41cf-8ba7-11b1d712d2ec
+      iscommand: false
+      name: Configuration of Fields and Integrations
+      type: title
+      version: -1
+    taskid: 63f05479-0059-41cf-8ba7-11b1d712d2ec
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 275,
+          "y": 1110
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "8"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      action:
+        simple: add
+      fields:
+        simple: emailcc,emailfrom,emailmessageid,emailreplyto,emailsenderip,emailsubject,emailto,emailurlclicked
+      incident_types:
+        simple: Training - URL Clicks,Training - Email Alerts
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: This will add  or remove custom Incident Types on Incident fields
+        in XSOAR
+      id: 99a8dfd9-8bfa-4148-8cf7-ec21442e0ad3
+      iscommand: false
+      name: Add Training Incident Types to OOTB Fields
+      script: 4d9dc8f5-8ddc-4ccd-8fd7-1d3493a42033
+      type: regular
+      version: -1
+    taskid: 99a8dfd9-8bfa-4148-8cf7-ec21442e0ad3
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -290,
+          "y": 1460
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "12"
+      - "13"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Install the Case Management - Generic Pack & Generic Export Indicators Service Packs
+        - Make sure to Install the Case Management - Generic pack from the Marketplace. The layouts have the buttons on them....
+        - Add instance.execute.external = true, in server configurations
+
+        Configure an Instance for the following integrations, no configuration needed:
+        - Active Directory Query v2 (XSOAR Engineer Training)
+        - SIEM (XSOAR Engineer Training)
+        - RandomThreatIntel (this is optional)
+
+        Configure the XSOAR Engineer Training Event Generator integration with the following settings:
+        - Classifier: Training - XSOAR Engineer Training - Classifier
+        - Incoming Mapper: - Training - XSOAR Engineer Training - Incoming Mapper
+
+        Alternatively you can use this integration go to through classification and mapping and preprocessing demos as well.
+      id: ab62bab1-94b6-4c40-87cf-e654796a9ef4
+      iscommand: false
+      name: Configure Training Integrations and Packs
+      type: regular
+      version: -1
+    taskid: ab62bab1-94b6-4c40-87cf-e654796a9ef4
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 275,
+          "y": 1650
+        }
+      }
+  "9":
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: ecbd7f78-e192-4c94-8bc0-02c379101fdc
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: ecbd7f78-e192-4c94-8bc0-02c379101fdc
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 275,
+          "y": 2400
+        }
+      }
+  "10":
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "20"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      all:
+        simple: "yes"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Delete field from context
+      id: f5d0177b-46bb-4cdf-84ed-654ab90f49f3
+      iscommand: false
+      name: Delete Context
+      script: DeleteContext
+      type: regular
+      version: -1
+    taskid: f5d0177b-46bb-4cdf-84ed-654ab90f49f3
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 275,
+          "y": -875
+        }
+      }
+  "12":
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "18"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      email:
+        simple: james.bond@demisto.local
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Active Directory Query v2 (XSOAR Engineer Training)
+      description: Retrieves detailed information about a user account. The user can
+        be specified by name, email address, or as an Active Directory Distinguished
+        Name (DN). If no filter is specified, all users are returned.
+      id: 700a0032-6f46-4ab6-860e-2a15190b3aeb
+      iscommand: true
+      name: Test AD Lab Integration
+      script: Active Directory Query v2 (XSOAR Engineer Training)|||ad-get-user
+      type: regular
+      version: -1
+    taskid: 700a0032-6f46-4ab6-860e-2a15190b3aeb
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 30,
+          "y": 1840
+        }
+      }
+  "13":
+    continueonerrortype: ""
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "18"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      query:
+        simple: Test
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: SIEM (XSOAR Engineer Training)
+      description: Searches the SIEM for events.
+      id: 83eec4f0-8461-4e2f-839d-b34de95c1707
+      iscommand: true
+      name: Test SIEM Integration
+      script: SIEM (XSOAR Engineer Training)|||siem-search
+      type: regular
+      version: -1
+    taskid: 83eec4f0-8461-4e2f-839d-b34de95c1707
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 540,
+          "y": 1840
+        }
+      }
+  "14":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: lists.environment
+          operator: isExists
+      - - left:
+            iscontext: true
+            value:
+              simple: lists.environment
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "14"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "16"
+      "yes":
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 0437d928-b469-456e-8d6a-f2308d8253f3
+      iscommand: false
+      name: Does the Environment list exist?
+      type: condition
+      version: -1
+    taskid: 0437d928-b469-456e-8d6a-f2308d8253f3
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 500,
+          "y": 370
+        }
+      }
+  "16":
+    continueonerrortype: ""
+    id: "16"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      listData:
+        simple: development
+      listName:
+        simple: environment
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.list.create
+      id: ffe718e8-a66f-41a6-8460-3cd7ea26e7fc
+      iscommand: true
+      name: Create Environment list
+      script: Builtin|||createList
+      type: regular
+      version: -1
+    taskid: ffe718e8-a66f-41a6-8460-3cd7ea26e7fc
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 830,
+          "y": 550
+        }
+      }
+  "17":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: lists.training setup completed
+          operator: isExists
+      - - left:
+            iscontext: true
+            value:
+              simple: lists.training setup completed
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "17"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "21"
+      "yes":
+      - "9"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: deeada46-308e-484b-897a-fe44aa33d1d0
+      iscommand: false
+      name: Has the setup already been run?
+      type: condition
+      version: -1
+    taskid: deeada46-308e-484b-897a-fe44aa33d1d0
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 275,
+          "y": -390
+        }
+      }
+  "18":
+    continueonerrortype: ""
+    id: "18"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      listData:
+        simple: Ooooooohhhhh Canada....
+      listName:
+        simple: training setup completed
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.list.create
+      id: 0c22df0e-461e-4c52-80b6-5632ef34c1a7
+      iscommand: true
+      name: Set Setup Completed Flag
+      script: Builtin|||createList
+      type: regular
+      version: -1
+    taskid: 0c22df0e-461e-4c52-80b6-5632ef34c1a7
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 275,
+          "y": 2110
+        }
+      }
+  "19":
+    continueonerrortype: ""
+    id: "19"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "NO":
+      - "8"
+      "YES":
+      - "7"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: "Select YES to have the OOTB fields automatically added to the
+        Training Incident types in this pack. (Email To, Email From, etc)\n\nSelect
+        NO to leave this, so you can demo how to do this. "
+      id: 34bd0930-9361-497c-8b0d-05d820581fca
+      iscommand: false
+      name: Do you want to add the Training Incident Types to the OOTB Fields?
+      type: condition
+      version: -1
+    taskid: 34bd0930-9361-497c-8b0d-05d820581fca
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 30,
+          "y": 1280
+        }
+      }
+  "20":
+    continueonerrortype: ""
+    id: "20"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "17"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      severity:
+        simple: "0.5"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: 9204ddc0-32f2-4074-8dee-2a554b51e9db
+      iscommand: true
+      name: Set Severity to Informational
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 9204ddc0-32f2-4074-8dee-2a554b51e9db
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 275,
+          "y": -660
+        }
+      }
+  "21":
+    continueonerrortype: ""
+    id: "21"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "No":
+      - "9"
+      "Yes":
+      - "22"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: "Select YES to have the playbook walk you through setting up this
+        content.  \n\nSelect NO if you don't want to go through this process at this
+        time.\n\nYou can rerun the playbook if you want to complete this in the future. "
+      id: 4975ffd1-1c70-4e1e-855b-9c37efdfea09
+      iscommand: false
+      name: 'Do quick setup? '
+      type: condition
+      version: -1
+    taskid: 4975ffd1-1c70-4e1e-855b-9c37efdfea09
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1070,
+          "y": -130
+        }
+      }
+  "22":
+    continueonerrortype: ""
+    id: "22"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+      - "14"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 7500a450-bd48-4afc-8a5f-b54a2c3d43cf
+      iscommand: false
+      name: "Yes"
+      type: title
+      version: -1
+    taskid: 7500a450-bd48-4afc-8a5f-b54a2c3d43cf
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 500,
+          "y": 70
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 3465,
+        "width": 1740,
+        "x": -290,
+        "y": -1000
+      }
+    }
+  }
