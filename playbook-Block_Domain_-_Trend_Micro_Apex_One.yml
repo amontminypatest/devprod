@@ -1,0 +1,245 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.5.0
+    itemVersion: 2.0.3
+    packID: TrendMicroApex
+    packName: Trend Micro Apex One
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: |-
+  This playbook blocks domains using Trend Micro Apex One.
+  The playbook checks whether the Trend Micro Apex One integration is enabled, whether the Domain input has been provided and if so, blocks the domain.
+id: Block Domain - Trend Micro Apex One
+inputs:
+- description: The Domain to block.
+  key: Domain
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: www.test.com
+name: Block Domain - Trend Micro Apex One
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: d333e30b-b0ba-4578-820f-116443c2fa50
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: d333e30b-b0ba-4578-820f-116443c2fa50
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": -110
+        }
+      }
+  "1":
+    conditions:
+    - condition:
+      - - ignorecase: true
+          left:
+            iscontext: true
+            value:
+              complex:
+                accessor: brand
+                filters:
+                - - ignorecase: true
+                    left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: Trend Micro Apex
+                - - ignorecase: true
+                    left:
+                      iscontext: true
+                      value:
+                        simple: modules.state
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: Active
+                root: modules
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "3"
+      "yes":
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Verify that there is a valid instance of Check Point Firewall enabled.
+      id: b414b6be-6e40-48a4-8612-d7cc449eb0cf
+      iscommand: false
+      name: Is Trend Micro Apex One enabled?
+      type: condition
+      version: -1
+    taskid: b414b6be-6e40-48a4-8612-d7cc449eb0cf
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 230
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      content:
+        complex:
+          root: inputs.Domain
+      scan_action:
+        simple: block
+      type:
+        simple: domain
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Add suspicious file SHA-1, IP address, domain, or URL objects to
+        the User-Defined Suspicious Object list.
+      id: 1ba41c15-db4f-4493-82f4-61beb7dbac33
+      iscommand: true
+      name: Block Domain
+      script: '|||trendmicro-apex-udso-add'
+      type: regular
+      version: -1
+    taskid: 1ba41c15-db4f-4493-82f4-61beb7dbac33
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 440
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 410a42e0-2997-42fb-8b86-99085fe3168b
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 410a42e0-2997-42fb-8b86-99085fe3168b
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 610
+        }
+      }
+  "4":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.Domain
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "3"
+      "yes":
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check whether the necessary inputs were provided
+      id: 36454014-dd62-4832-8cfe-f60877860910
+      iscommand: false
+      name: Check if Domain input was provided
+      type: condition
+      version: -1
+    taskid: 36454014-dd62-4832-8cfe-f60877860910
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 30
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "1_2_yes": 0.63
+    },
+    "paper": {
+      "dimensions": {
+        "height": 785,
+        "width": 380,
+        "x": 450,
+        "y": -110
+      }
+    }
+  }
