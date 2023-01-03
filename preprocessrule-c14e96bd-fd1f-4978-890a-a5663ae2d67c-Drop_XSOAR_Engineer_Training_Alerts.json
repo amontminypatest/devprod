@@ -1,0 +1,98 @@
+{
+	"action": "drop",
+	"cacheVersn": 0,
+	"definitionId": "",
+	"enabled": false,
+	"existingEventsFilters": [],
+	"fromServerVersion": "",
+	"id": "c14e96bd-fd1f-4978-890a-a5663ae2d67c",
+	"index": 0,
+	"itemVersion": "",
+	"linkTo": "oldest",
+	"locked": false,
+	"name": "Drop XSOAR Engineer Training Alerts",
+	"newEventFilters": [
+		[
+			{
+				"left": {
+					"isContext": true,
+					"value": {
+						"simple": "type"
+					}
+				},
+				"operator": "isEqualString",
+				"right": {
+					"value": {
+						"simple": "Training - Email Alerts"
+					}
+				},
+				"type": "singleSelect"
+			},
+			{
+				"left": {
+					"isContext": true,
+					"value": {
+						"simple": "eventtype"
+					}
+				},
+				"operator": "containsGeneral",
+				"right": {
+					"value": {
+						"simple": "blocked"
+					}
+				},
+				"type": "shortText"
+			}
+		]
+	],
+	"packID": "",
+	"packName": "",
+	"period": {
+		"by": "days",
+		"fromValue": 30
+	},
+	"propagationLabels": [
+		"all"
+	],
+	"readyExistingEventsFilters": [],
+	"readyNewEventFilters": [
+		[
+			{
+				"left": {
+					"isContext": true,
+					"value": {
+						"simple": "type"
+					}
+				},
+				"operator": "isEqualString",
+				"right": {
+					"value": {
+						"simple": "Training - Email Alerts"
+					}
+				},
+				"type": "singleSelect"
+			},
+			{
+				"left": {
+					"isContext": true,
+					"value": {
+						"simple": "eventtype"
+					}
+				},
+				"operator": "containsGeneral",
+				"right": {
+					"value": {
+						"simple": "blocked"
+					}
+				},
+				"type": "shortText"
+			}
+		]
+	],
+	"scriptID": "",
+	"scriptName": "",
+	"searchClosed": false,
+	"system": false,
+	"toServerVersion": "",
+	"version": -1
+}
