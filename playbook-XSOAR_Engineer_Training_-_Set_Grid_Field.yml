@@ -1,0 +1,242 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+description: 'This playbook demos the set grid field automation.  '
+id: c3c10c9c-0759-41e5-8feb-f9c4c2831b7b
+inputs: []
+name: XSOAR Engineer Training - Set Grid Field
+outputs: []
+sourceplaybookid: 9211a701-c9e4-4b57-8043-1c589b6f857b
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "8"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 50c81f50-c146-4dbc-8474-994494b8838e
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 50c81f50-c146-4dbc-8474-994494b8838e
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 50
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.close.inv
+      id: f30b2a43-15a3-46f7-8586-627279d5bb47
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: f30b2a43-15a3-46f7-8586-627279d5bb47
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 895
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "11"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      all:
+        simple: "yes"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Delete field from context
+      id: 0e73bfcd-7c0d-4432-8cdd-ce257ae1a18f
+      iscommand: false
+      name: Delete Context
+      script: DeleteContext
+      type: regular
+      version: -1
+    taskid: 0e73bfcd-7c0d-4432-8cdd-ce257ae1a18f
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 195
+        }
+      }
+  "9":
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "10"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      query:
+        simple: host=*
+      result_type:
+        simple: hosts
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: SIEM (XSOAR Engineer Training)
+      description: Searches the SIEM for events.
+      id: 1ea584ec-0bc9-47b5-82de-d65b87bd0ab0
+      iscommand: true
+      name: SIEM Search for Hosts
+      script: SIEM (XSOAR Engineer Training)|||siem-search
+      type: regular
+      version: -1
+    taskid: 1ea584ec-0bc9-47b5-82de-d65b87bd0ab0
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 545
+        }
+      }
+  "10":
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      columns:
+        simple: host,online
+      context_path:
+        simple: SIEM.Result
+      grid_id:
+        simple: traininggridsetgridfield
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Creates a Grid table from items or key-value pairs.
+      id: 4ea7606d-4421-4cc6-8c9f-18038244b43b
+      iscommand: false
+      name: Set Grid Field
+      script: SetGridField
+      type: regular
+      version: -1
+    taskid: 4ea7606d-4421-4cc6-8c9f-18038244b43b
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 720
+        }
+      }
+  "11":
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: true
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      value:
+        simple: |-
+          ## XSOAR Engineer Training - Set Grid Field
+
+          This playbook takes the result of the Splunk Search for Hosts, and sets it to a Grid Field using the set Grid Field automation.
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: b43e3001-9fd7-4ace-8786-93e45f5ab6d2
+      iscommand: false
+      name: Print Playbook Overview
+      script: Print
+      type: regular
+      version: -1
+    taskid: b43e3001-9fd7-4ace-8786-93e45f5ab6d2
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 370
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 910,
+        "width": 380,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
