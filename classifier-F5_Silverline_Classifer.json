@@ -1,0 +1,67 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "",
+	"feed": false,
+	"fromServerVersion": "6.0.0",
+	"id": "fff43e29-36aa-41a4-82e4-20bc8f9e5a00",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "1.0.21",
+	"keyTypeMap": {
+		"ipi": "F5 Silverline Threat Intelligence Events",
+		"irule": "F5 Silverline iRule Events",
+		"l7ddos": "F5 Silverline L7 DDoS Events",
+		"waf": "F5 Silverline WAF Events"
+	},
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": null,
+	"name": "F5 Silverline Classifer",
+	"nameRaw": "F5 Silverline Classifer",
+	"packID": "F5Silverline",
+	"packName": "F5 Silverline",
+	"packPropagationLabels": [
+		"all"
+	],
+	"propagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {
+		"complex": {
+			"filters": [],
+			"root": "message",
+			"transformers": [
+				{
+					"args": {
+						"from": {
+							"value": {
+								"simple": "type="
+							}
+						}
+					},
+					"operator": "substringFrom"
+				},
+				{
+					"args": {
+						"to": {
+							"value": {
+								"simple": ","
+							}
+						}
+					},
+					"operator": "substringTo"
+				}
+			]
+		}
+	},
+	"type": "classification",
+	"unclassifiedCases": null,
+	"version": -1
+}
