@@ -1,0 +1,61 @@
+comment: Get the list of Alerts from Carbon Black Enterprise Response. Supports the
+  same arguments as the cb-alerts command.
+commonfields:
+  id: CBAlerts
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 2.1.25
+    packID: Carbon_Black_Enterprise_Response
+    packName: Carbon Black Enterprise Response
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+dependson:
+  must:
+  - cb-alert
+dockerimage: demisto/python3:3.10.6.33415
+engineinfo: {}
+mainengineinfo: {}
+name: CBAlerts
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('CBAlerts', 'start', __line__())
+
+
+
+
+  def main():
+      # args: same as cb-alert
+      res = []
+      resCmd1 = demisto.executeCommand("cb-alert", demisto.args())
+      for entry in resCmd1:
+          if isError(entry):
+              res.append(entry)
+          else:
+              matches = entry["Contents"]["results"]
+              if matches:
+                  formattedMatches = [{k: json.dumps(m[k]) if type(m[k]) == dict else m[k] for k in m} for m in matches]
+                  res.append(
+                      {"Type": entryTypes["note"], "ContentsFormat": formats["table"], "Contents": formattedMatches})
+              else:
+                  res.append({"Type": entryTypes["note"], "ContentsFormat": formats["text"], "Contents": "No matches."})
+      demisto.results(res)
+
+
+  if __name__ in ['__main__', 'builtin', 'builtins']:
+      main()
+
+  register_module_line('CBAlerts', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags:
+- carbon-black
+type: python
