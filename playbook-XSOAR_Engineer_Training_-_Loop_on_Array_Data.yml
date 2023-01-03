@@ -1,0 +1,294 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+description: "This playbook demonstrates how a playbook task loops over an array of
+  data, and different ways to handle that.\n\nBy default when you pass an array into
+  an integration command or an Automation script, it run the command for each item
+  in the array.   \n\nThis behaviour can be changed by using the \"Is Array\" option
+  on the argument, which tells XSOAR to expect an array in this field, and run once
+  instead.\n\nThis playbook demonstrates this using 2 automations, one is IsIPinRanges,
+  the other is CheckCIDRinList, which is a custom automation in this pack.  Both can
+  be viewed from the Automations menu."
+id: 9c085d10-017e-4c45-8d22-df88880a56ec
+inputs: []
+name: XSOAR Engineer Training - Loop on Array Data
+outputs: []
+sourceplaybookid: 9211a701-c9e4-4b57-8043-1c589b6f857b
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "8"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: ea9bdefd-b1cc-4311-82de-8633190a1861
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: ea9bdefd-b1cc-4311-82de-8633190a1861
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 50
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.close.inv
+      id: 20410b19-0ce1-4fbc-8473-b70d9ccac463
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 20410b19-0ce1-4fbc-8473-b70d9ccac463
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 1070
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "11"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      all:
+        simple: "yes"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Delete field from context
+      id: c9f0310c-a833-48a5-8879-fa8b82632f3a
+      iscommand: false
+      name: Delete Context
+      script: DeleteContext
+      type: regular
+      version: -1
+    taskid: c9f0310c-a833-48a5-8879-fa8b82632f3a
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 195
+        }
+      }
+  "11":
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "12"
+    note: true
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      value:
+        simple: "## XSOAR Engineer Training - Loop on Array Data\n\nBy default when
+          you pass an array into an integration command or an Automation script, it
+          run the command for each item in the array.   \n\nThis behaviour can be
+          changed by using the \"Is Array\" option on the argument, which tells XSOAR
+          to expect an array in this field, and run once instead.\n\nThis playbook
+          demonstrates this using 2 automations, one is IsIPinRanges, the other is
+          CheckCIDRinList, which is a custom automation in this pack.  Both can be
+          viewed from the Automations menu."
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: ab2a72e7-2257-4911-81b4-823794546c3a
+      iscommand: false
+      name: Print Playbook Overview
+      script: Print
+      type: regular
+      version: -1
+    taskid: ab2a72e7-2257-4911-81b4-823794546c3a
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 370
+        }
+      }
+  "12":
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "13"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      key:
+        simple: IPArray
+      value:
+        simple: '["8.8.8.1","8.8.8.2","8.8.8.3","10.8.8.1","10.8.8.2"]'
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Set a value in context under the key you entered.
+      id: c37170d7-fe4f-4c60-8451-b00e46a49077
+      iscommand: false
+      name: Set Array of IPs to Context
+      script: Set
+      type: regular
+      version: -1
+    taskid: c37170d7-fe4f-4c60-8451-b00e46a49077
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 545
+        }
+      }
+  "13":
+    continueonerrortype: ""
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "14"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      ip:
+        complex:
+          root: IPArray
+      ipRanges:
+        simple: ${lists.Internal IP Ranges}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Returns yes if the IP is in one of the ranges provided, returns
+        no otherwise.
+      id: 6910ef0b-47ce-4b40-8772-02cb1203a1cb
+      iscommand: false
+      name: Is IP in Ranges
+      script: IsIPInRanges
+      type: regular
+      version: -1
+    taskid: 6910ef0b-47ce-4b40-8772-02cb1203a1cb
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 720
+        }
+      }
+  "14":
+    continueonerrortype: ""
+    id: "14"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      ips:
+        complex:
+          root: IPArray
+      listname:
+        simple: Internal IP Ranges
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Determines whether an IPv4 address is contained in one or more
+        comma-delimited CIDR ranges.  You can pass in an array of IPs, and the name
+        of the XSOAR list containing the comma separated list of CIDRs or /32 addresses.
+      id: f4bba500-f4c4-4466-8e05-9ca50e134aff
+      iscommand: false
+      name: CheckIPsinCIDRList (uses Is Array)
+      script: 9fe51cf2-f8f7-4a7b-83f2-a7eb9be5622b
+      type: regular
+      version: -1
+    taskid: f4bba500-f4c4-4466-8e05-9ca50e134aff
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 895
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1085,
+        "width": 380,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
