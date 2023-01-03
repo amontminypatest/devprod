@@ -1,0 +1,286 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.1.3
+    packID: AgariPhishingDefense
+    packName: Agari Phishing Defense
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: Remediates a given message id.
+id: Remediate Message - Agari Phishing Defense
+inputs:
+- description: Id of message to remediate.
+  key: id
+  playbookInputQuery: null
+  required: true
+  value:
+    complex:
+      accessor: apdinternalmessageid
+      root: incident
+- description: Flag for whether to automatically remediate or not.
+  key: auto_remediation
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "true"
+- description: Action for remediation.
+  key: remediate_action
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: move
+name: Remediate Message - Agari Phishing Defense
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: e613675e-6bab-466e-8756-a675685b9d71
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: e613675e-6bab-466e-8756-a675685b9d71
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 390,
+          "y": 0
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      id:
+        complex:
+          root: inputs.id
+      operation:
+        complex:
+          root: inputs.remediate_action
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Remediate suspected message.
+      id: fb1898ef-3db3-4a89-8ec4-5e5601729baf
+      iscommand: true
+      name: Remediate message
+      script: '|||apd-remediate-message'
+      type: regular
+      version: -1
+    taskid: fb1898ef-3db3-4a89-8ec4-5e5601729baf
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 220,
+          "y": 710
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 63140734-a6d7-4dc9-80e4-996c26317fa4
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 63140734-a6d7-4dc9-80e4-996c26317fa4
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 390,
+          "y": 1020
+        }
+      }
+  "3":
+    conditions:
+    - condition:
+      - - ignorecase: true
+          left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.auto_remediation
+          operator: isTrue
+      label: "yes"
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "5"
+      "yes":
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Is remediation auto?
+      id: 6ac0d42a-d553-416d-89bb-55ae1aa0f795
+      iscommand: false
+      name: Is remediation auto?
+      type: condition
+      version: -1
+    taskid: 6ac0d42a-d553-416d-89bb-55ae1aa0f795
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 390,
+          "y": 160
+        }
+      }
+  "4":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: brand
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: Agari Phishing Defense
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.state
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: active
+                root: modules
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "2"
+      "yes":
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Is Agari Phishing Defense Integration Enable?
+      id: 58c547ca-3de4-4d5b-8314-ff463dc15c9c
+      iscommand: false
+      name: Is Agari Phishing Defense Integration Enable?
+      type: condition
+      version: -1
+    taskid: 58c547ca-3de4-4d5b-8314-ff463dc15c9c
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 220,
+          "y": 535
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "NO":
+      - "2"
+      "YES":
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Do Auto Remediate Message?
+      id: 136fbcaa-1f57-49c4-84c5-704a17e82057
+      iscommand: false
+      name: Do Auto Remediate Message?
+      type: condition
+      version: -1
+    taskid: 136fbcaa-1f57-49c4-84c5-704a17e82057
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 620,
+          "y": 340
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "3_5_#default#": 0.9
+    },
+    "paper": {
+      "dimensions": {
+        "height": 1085,
+        "width": 780,
+        "x": 220,
+        "y": 0
+      }
+    }
+  }
