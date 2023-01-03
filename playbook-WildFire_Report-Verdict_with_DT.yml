@@ -1,0 +1,229 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: 542c23b8-584b-48be-8c1f-60b3dca2dc0e
+inputs: []
+name: WildFire Report-Verdict with DT
+outputs: []
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: e28c9bd0-13cc-4079-8ab4-53c9cddce7a2
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: e28c9bd0-13cc-4079-8ab4-53c9cddce7a2
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      key:
+        simple: WildFire
+      stringify:
+        simple: "false"
+      value:
+        simple: "{\"Report\" : [\n\t{\n\t\t\"URL\" : \"Pineapple.com\",\n\t\t\"detection_reseason\"
+          : {\n\t\t\t\"verdict\" : \"bengin\"\n\t\t}\n\t}\n],\n\"Verdicts\" : [\n\t{\n\t\t\"URL\"
+          : \"DarknessMyOldFriend.com\",\n\t\t\"Verdict\" : \"Suspicious\"\n\t}\n]\n}"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: b319b60c-8b20-436a-8ab4-800a0900a68f
+      iscommand: false
+      name: Set Context Data
+      script: Set
+      type: regular
+      version: -1
+    taskid: b319b60c-8b20-436a-8ab4-800a0900a68f
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 370
+        }
+      }
+  "5":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      append:
+        simple: "false"
+      key:
+        simple: WildFire_Verdict
+      value:
+        complex:
+          accessor: '}'
+          root: ${
+          transformers:
+          - args:
+              dt:
+                value:
+                  simple: ".=>val.map(function(elem){URL = elem['CDL']['Logging']['Data']['input_url'];
+                    Reports = elem['WildFire']['Report']; Verdicts = elem['WildFire']['Verdicts'];
+                    results = [];\nfor (i = 0;i<Reports.length;i++){\n\tif (Reports[i][\"URL\"]
+                    == URL){\n\t\tresults.push(Reports[i]['detection_reseason']['verdict']);\n
+                    \   }\n}\nfor (i = 0;i<Verdicts.length;i++){\n\tif (Verdicts[i][\"URL\"]
+                    == URL){\n\t\tresults.push(Verdicts[i]['Verdicts']['Verdict']);\n
+                    \   }\n}\nreturn results;})"
+            operator: DT
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: cda4a98e-82e0-4401-8647-27982838ca96
+      iscommand: false
+      name: Set Verdict
+      script: Set
+      type: regular
+      version: -1
+    taskid: cda4a98e-82e0-4401-8647-27982838ca96
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 555
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+      - "8"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      all:
+        simple: "yes"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Delete field from context.
+
+        This automation runs using the default Limited User role, unless you explicitly change the permissions.
+        For more information, see the section about permissions here:
+        https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html
+      id: 7d521dd6-db05-4740-8150-6c9b7274cd8f
+      iscommand: false
+      name: Delete Context
+      script: DeleteContext
+      type: regular
+      version: -1
+    taskid: 7d521dd6-db05-4740-8150-6c9b7274cd8f
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 195
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      key:
+        simple: CDL.Logging.Data.input_url
+      value:
+        simple: Pineapple.com
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: 184f89c2-a651-4835-834c-9c847381d5cd
+      iscommand: false
+      name: Set URL
+      script: Set
+      type: regular
+      version: -1
+    taskid: 184f89c2-a651-4835-834c-9c847381d5cd
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 370
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 600,
+        "width": 810,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
