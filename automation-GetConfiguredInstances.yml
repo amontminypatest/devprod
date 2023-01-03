@@ -1,0 +1,39 @@
+comment: 'Get retrieves a list of configured integration instances with brand and
+  name using the server API. '
+commonfields:
+  id: efeb4980-750d-4d6c-8048-fe5f70312fd7
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dependson:
+  must:
+  - Demisto REST API|||demisto-api-post
+dockerimage: demisto/python3:3.7.3.286
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: GetConfiguredInstances
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |-
+  body = {"page": 0, "size": 100 }
+  res = demisto.executeCommand("demisto-api-post", {"uri":"/settings/integration/search", "body":body})
+  all_instance_details = [ {"brand": x['brand'], "name": x["name"] } for x in res[0]['Contents']['response']['instances'] ]
+  results = CommandResults(readable_output=tableToMarkdown("Configured Instances", all_instance_details))
+  return_results(results)
+scripttarget: 0
+subtype: python3
+tags:
+- training
+- Utility
+type: python
