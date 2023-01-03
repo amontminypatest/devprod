@@ -1,0 +1,136 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Forensics \u0026 Malware Analysis"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"playbook"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Forensics \u0026 Malware Analysis",
+				"commands": [
+					{
+						"description": "Get analysis history.",
+						"name": "anyrun-get-history"
+					},
+					{
+						"description": "Gets the report of a task created for a submitted file or URL.",
+						"name": "anyrun-get-report"
+					},
+					{
+						"description": "Submit a file or url for analysis.",
+						"name": "anyrun-run-analysis"
+					}
+				],
+				"description": "ANY.RUN is a cloud-based sanbox with interactive access.",
+				"id": "",
+				"name": "ANY.RUN"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": [
+			{
+				"description": "Detonates one or more URLs using the ANYRUN sandbox integration.\nReturns relevant reports to the War Room and url reputations to the context data.",
+				"name": "Detonate URL - ANYRUN"
+			},
+			{
+				"description": "Detonates one or more remote files using the ANYRUN sandbox integration.\nReturns relevant reports to the War Room and file reputations to the context data.\nThis type of analysis works only for direct download links.",
+				"name": "Detonate File From URL - ANYRUN"
+			},
+			{
+				"description": "Detonates one or more files using the ANYRUN sandbox integration.\nReturns relevant reports to the War Room and file reputations to the context data.\nAll file types are supported.",
+				"name": "Detonate File - ANYRUN"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2021-01-26T11:44:29Z",
+	"currentVersion": "1.0.11",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.45",
+			"name": "Base"
+		},
+		"CommonPlaybooks": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "2.3.21",
+			"name": "Common Playbooks"
+		}
+	},
+	"deprecated": false,
+	"description": "ANY.RUN is a cloud-based sandbox with interactive access.",
+	"disabledMonthly": false,
+	"downloads": 2537,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "ANYRUN",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/ANYRUN/ANYRUN_image.png",
+			"name": "ANY.RUN"
+		}
+	],
+	"itemVersion": "1.0.11",
+	"keywords": [],
+	"legacy": true,
+	"name": "ANY.RUN",
+	"packID": "ANYRUN",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "\n### Pack Contributors:\n\n---\n - Adam Burt\n\nContributions are welcome and appreciated. For more info, visit our [Contribution Guide](https://xsoar.pan.dev/docs/contributing/contributing).",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-12-18T11:28:38Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4239699",
+	"videos": []
+}
