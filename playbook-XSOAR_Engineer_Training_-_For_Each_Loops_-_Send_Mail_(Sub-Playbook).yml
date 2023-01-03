@@ -1,0 +1,141 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+description: "Playbook takes the email to send to as input and sends a quick email
+  message.  \n\nWhen used as a subplaybook you can add a loop to loop over each inputted
+  list of emails to send one email to each person. "
+id: 12860c08-bbb6-4d98-810f-2c31da8e495b
+inputs:
+- description: ""
+  key: mailto
+  playbookInputQuery: null
+  required: true
+  value: {}
+name: XSOAR Engineer Training - For Each Loops - Send Mail (Sub-Playbook)
+outputs: []
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 785fe564-0ac3-47d0-8e73-9b5512783a73
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 785fe564-0ac3-47d0-8e73-9b5512783a73
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      subject:
+        complex:
+          root: inputs.mailto
+          transformers:
+          - args:
+              prefix:
+                value:
+                  simple: 'Playbook Input was - '
+              suffix: {}
+            operator: concat
+      to:
+        complex:
+          root: inputs.mailto
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Send an email
+      id: d5c6752a-6784-4a3d-82bf-a8d2f2d22c3b
+      iscommand: true
+      name: Send Email
+      script: '|||send-mail'
+      type: regular
+      version: -1
+    taskid: d5c6752a-6784-4a3d-82bf-a8d2f2d22c3b
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 220
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: f52ab666-3fd0-439c-89f6-248ebe25e708
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: f52ab666-3fd0-439c-89f6-248ebe25e708
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 390
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 405,
+        "width": 380,
+        "x": 450,
+        "y": 50
+      }
+    }
+  }
