@@ -1,0 +1,66 @@
+comment: Displays the instructions for setting up Custom Indicators as part of the
+  XSOAR Engineer Training Pack
+commonfields:
+  id: 7de81f49-97f7-4d2a-887f-8d9240d30daa
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.9.1.15759
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: TrainingCustomIndicators
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |-
+  readable = '''
+  This pack contains a custom integration called **RandomThreatIntel**.  Basically it produces fake enrichment data for file, domain, url, and ip indicators.
+
+  It also contains reputation commands for custom indicators that you can setup as per these instructions.  The instructions are also in the code of the integration.
+
+  # Private IP Addresses
+
+  Don't want to reach out to VirusTotal for a Private IP, and instead want to query internal systems for information about it?
+
+  You can setup a custom indicator type and regex to extract these and use the private-ip command from RandomThreatIntel to do it.
+
+  ## Setup Instructions
+
+  **Add following CIDRs to your exclusion list in XSOAR, for IP type Indicators:**
+
+  10.0.0.0/8
+  192.168.0.0/16
+  172.16.0.0/12
+
+  **Create a new Indicator Type "Private IP":**
+
+  Regex: (10((?:\[\.\]|\.)(25[0-5]|2[0-4][0-9]|1[0-9]{1,2}|[0-9]{1,2})){3}|((172(?:\[\.\]|\.)(1[6-9]|2[0-9]|3[01]))|192(?:\[\.\]|\.)168)((?:\[\.\]|\.)(25[0-5]|2[0-4][0-9]|1[0-9]{1,2}|[0-9]{1,2})){2})
+  Reputation Command: private-ip
+
+  # CXHOST
+
+  Extract hostnames based on the organization standard, and enrich.
+
+  Indicator Type: CXHost
+  Regex: (crossiscoming\d{3,5})
+  Reputation Command: cxhost
+  '''
+
+  results = CommandResults(readable_output=readable,ignore_auto_extract=True)
+  return_results(results)
+scripttarget: 0
+subtype: python3
+tags:
+- training
+- dynamic-section
+type: python
