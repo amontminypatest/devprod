@@ -1,0 +1,23 @@
+{
+	"cacheVersn": 0,
+	"data": "10.0.0.0/8,192.168.8.0/24",
+	"definitionId": "",
+	"description": "",
+	"fromServerVersion": "",
+	"id": "Internal IP Ranges",
+	"itemVersion": "",
+	"locked": false,
+	"name": "Internal IP Ranges",
+	"nameLocked": false,
+	"packID": "",
+	"packName": "",
+	"propagationLabels": [
+		"all"
+	],
+	"system": false,
+	"tags": null,
+	"toServerVersion": "",
+	"truncated": false,
+	"type": "plain_text",
+	"version": -1
+}
