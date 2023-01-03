@@ -1,0 +1,55 @@
+args:
+- default: true
+  description: ID of the task that generated the screenshot
+  name: id
+  required: true
+- description: (optional) - numerical identifier of a single screenshot (e.g. 0001,
+    0002)
+  name: screenshot
+comment: Deprecated. Use 'cuckoo-task-screenshot' command instead.
+commonfields:
+  id: CuckooGetScreenshot
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.1.2
+    packID: CuckooSandbox
+    packName: Cuckoo Sandbox
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+dependson:
+  must:
+  - cuckoo-task-screenshot
+deprecated: true
+dockerimage: demisto/python3:3.10.6.33415
+engineinfo: {}
+mainengineinfo: {}
+name: CuckooGetScreenshot
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('CuckooGetScreenshot', 'start', __line__())
+
+
+
+
+  def main():
+      demisto.results(demisto.executeCommand("cuckoo-task-screenshot", demisto.args()))
+
+
+  if __name__ in ('__main__', '__builtin__', 'builtins'):
+      main()
+
+  register_module_line('CuckooGetScreenshot', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags:
+- cuckoo
+type: python
