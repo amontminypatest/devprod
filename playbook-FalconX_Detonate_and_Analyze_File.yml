@@ -1,0 +1,467 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.5.0
+    itemVersion: 1.2.15
+    packID: CrowdStrikeFalconX
+    packName: CrowdStrike FalconX
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: This playbook uploads, detonates, and analyzes files for the Falcon X
+  sandbox.
+id: FalconX Detonate and Analyze File
+inputs:
+- description: The details of the file to detonate.
+  key: File
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: |-
+    The operating system for which the alert was raised.
+    accepted values are Windows, Linux, Android
+  key: AlertOS
+  playbookInputQuery: null
+  required: false
+  value:
+    complex:
+      accessor: deviceosname}
+      root: ${incident
+      transformers:
+      - args:
+          input_values:
+            value:
+              simple: Windows,Linux,Android
+          mapped_values:
+            value:
+              simple: '160: Windows 10,300: Linux Ubuntu 16.04,300: Linux Ubuntu 16.04'
+        operator: MapValuesTransformer
+- description: Whether the sandbox analysis routes network traffic via TOR. If true,
+    sandbox analysis routes network traffic via TOR. Relevant if the submit_file parameter
+    is set to true.
+  key: EnableTor
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "false"
+- description: Sandbox environment used for analysis.
+  key: EnvironmentID
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: '''160: Windows 10'''
+- description: Runtime script for sandbox analysis.
+  key: ActionScript
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: 'Command line script passed to the submitted file at runtime. Max length:
+    2048 characters.'
+  key: CommandLine
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: 'Auto-filled for Adobe or Office files that prompt for a password.
+    Max length: 32 characters.'
+  key: DocumentPassword
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: Name of the malware sample that’s used for file type detection. and
+    analysis.
+  key: SubmitName
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: Set a custom date for the sandbox environment in the format yyyy-MM-dd.
+  key: SystemDate
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: Sets a custom time for the sandbox environment in the format HH:mm.
+  key: SystemTime
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: FalconX Detonate and Analyze File
+outputs:
+- contextPath: csfalconx.resource.tags
+  description: The analysis tags.
+- contextPath: csfalconx.resource.sha256
+  description: The SHA256 hash of the scanned file.
+- contextPath: csfalconx.resource.file_name
+  description: 'The name of the uploaded file. '
+- contextPath: csfalconx.resource.sandbox
+  description: The Falcon X findings.
+  type: unknown
+- contextPath: csfalconx.resource.intel
+  description: The Falcon X intelligence results.
+  type: unknown
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: d6740543-d7a7-44f8-82c0-9b63ba206946
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: d6740543-d7a7-44f8-82c0-9b63ba206946
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 490,
+          "y": 260
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "10"
+      "yes":
+      - "7"
+    note: false
+    quietmode: 0
+    results:
+    - brandInstances
+    scriptarguments:
+      brandname:
+        simple: CrowdStrike Falcon X
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Returns 'yes' if the Falcon X integration is available.
+      id: 20d4c83c-1366-4524-82a4-42a305852e17
+      iscommand: false
+      name: Is CrowdStrike Falcon X enabled?
+      script: IsIntegrationAvailable
+      type: condition
+      version: -1
+    taskid: 20d4c83c-1366-4524-82a4-42a305852e17
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 490,
+          "y": 400
+        }
+      }
+  "5":
+    conditions:
+    - condition:
+      - - ignorecase: true
+          left:
+            iscontext: true
+            value:
+              complex:
+                accessor: EntryID
+                filters:
+                - - ignorecase: true
+                    left:
+                      iscontext: true
+                      value:
+                        simple: File.Type
+                    operator: match
+                    right:
+                      value:
+                        simple: .*(?:EXE|DLL|COM|SCR|CPL|DOC|DOCX|XLS|XSLX|PPS|PPSX|PPT|PPTX|RTF|PDF|ETC|PUB|SCT|INK|CHM|HTA|WSF|JS|VBS|VBE|SWF|PL|PS1|PSD1|PSM1|SVG|PY|ELF|EML|MSG)\b
+                  - ignorecase: true
+                    left:
+                      iscontext: true
+                      value:
+                        simple: File.Extension
+                    operator: match
+                    right:
+                      value:
+                        simple: .*(?:EXE|DLL|COM|SCR|CPL|DOC|DOCX|XLS|XSLX|PPS|PPSX|PPT|PPTX|RTF|PDF|ETC|PUB|SCT|INK|CHM|HTA|WSF|JS|VBS|VBE|SWF|PL|PS1|PSD1|PSM1|SVG|PY|ELF|EML|MSG)\b
+                  - ignorecase: true
+                    left:
+                      iscontext: true
+                      value:
+                        simple: File.Info
+                    operator: match
+                    right:
+                      value:
+                        simple: .*(?:EXE|DLL|COM|SCR|CPL|DOC|DOCX|XLS|XSLX|PPS|PPSX|PPT|PPTX|RTF|PDF|ETC|PUB|SCT|INK|CHM|HTA|WSF|JS|VBS|VBE|SWF|PL|PS1|PSD1|PSM1|SVG|PY|ELF|EML|MSG)\b
+                root: File
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "10"
+      "yes":
+      - "11"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks if the file type is supported.
+      id: 5612d5cb-af92-4478-84c8-216b2c947b9f
+      iscommand: false
+      name: Is file type supported?
+      type: condition
+      version: -1
+    taskid: 5612d5cb-af92-4478-84c8-216b2c947b9f
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 700,
+          "y": 1120
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      key:
+        simple: File
+      value:
+        complex:
+          root: inputs.File
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Sets the file object into context.
+      id: 14ec2393-6dc2-464b-874b-ecff72eaf913
+      iscommand: false
+      name: Set File to context
+      script: Set
+      type: regular
+      version: -1
+    taskid: 14ec2393-6dc2-464b-874b-ecff72eaf913
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 700,
+          "y": 940
+        }
+      }
+  "7":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.File
+          operator: isNotEmpty
+          right:
+            value: {}
+      label: "yes"
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "10"
+      "yes":
+      - "6"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks that there is a file in the playbook input.
+      id: 4c6b9421-a1bd-4b04-8b88-0a4d418e2fd4
+      iscommand: false
+      name: Is there a File to Detonate?
+      type: condition
+      version: -1
+    taskid: 4c6b9421-a1bd-4b04-8b88-0a4d418e2fd4
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 700,
+          "y": 600
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    evidencedata:
+      customfields: {}
+      description:
+        simple: FalconX sandbox report
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "10"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      environment_id:
+        simple: ${inputs.AlertOS}
+      extended_data:
+        simple: "true"
+      polling:
+        simple: "true"
+      sha256:
+        simple: ${File.SHA256}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Submits a sample SHA256 hash for sandbox analysis.
+      id: d840af25-45ab-4b77-8eef-be41022df556
+      iscommand: true
+      name: CrowdStrike Falcon X upload and detonate
+      script: '|||cs-fx-submit-uploaded-file'
+      type: regular
+      version: -1
+    taskid: d840af25-45ab-4b77-8eef-be41022df556
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 780,
+          "y": 1530
+        }
+      }
+  "10":
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: bb0060f5-6110-463f-8023-ac1f336e6b48
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: bb0060f5-6110-463f-8023-ac1f336e6b48
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 490,
+          "y": 1700
+        }
+      }
+  "11":
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "8"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      action_script:
+        simple: ${inputs.ActionScript}
+      command_line:
+        simple: ${inputs.CommandLine}
+      document_password:
+        simple: ${inputs.DocumentPassword}
+      enable_tor:
+        simple: ${inputs.EnableTor}
+      environment_id:
+        simple: ${inputs.EnvironmentID}
+      extended_data:
+        simple: "true"
+      file:
+        simple: ${File.EntryID}
+      file_name:
+        simple: example
+      submit_file:
+        simple: "no"
+      submit_name:
+        simple: ${inputs.SubmitName}
+      system_date:
+        simple: ${inputs.SystemDate}
+      system_time:
+        simple: ${inputs.SystemTime}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Uploads a file for sandbox analysis.
+      id: 2d0ba109-c75b-497f-809f-cbb54c1d230d
+      iscommand: true
+      name: Submit Uploaded file
+      script: '|||cs-fx-upload-file'
+      type: regular
+      version: -1
+    taskid: 2d0ba109-c75b-497f-809f-cbb54c1d230d
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 780,
+          "y": 1380
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1505,
+        "width": 670,
+        "x": 490,
+        "y": 260
+      }
+    }
+  }
