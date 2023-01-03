@@ -1,0 +1,59 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "",
+	"feed": false,
+	"fromServerVersion": "6.0.0",
+	"id": "FireEye HX Alert",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "2.2.11",
+	"keyTypeMap": {
+		"/hx/api/v3": "FireEye HX Alert"
+	},
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": null,
+	"name": "FireEye HX Alert",
+	"nameRaw": "FireEye HX Alert",
+	"packID": "FireEyeHX",
+	"packName": "FireEye HX",
+	"packPropagationLabels": [
+		"all"
+	],
+	"propagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {
+		"complex": {
+			"filters": [],
+			"root": "url",
+			"transformers": [
+				{
+					"args": {
+						"from": {
+							"value": {
+								"simple": "0"
+							}
+						},
+						"to": {
+							"value": {
+								"simple": "10"
+							}
+						}
+					},
+					"operator": "substring"
+				}
+			]
+		}
+	},
+	"type": "classification",
+	"unclassifiedCases": null,
+	"version": -1
+}
