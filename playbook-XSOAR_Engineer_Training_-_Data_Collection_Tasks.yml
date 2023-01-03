@@ -1,0 +1,744 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+description: "This playbooks sets a list of users to a key in Context (UsersToBlock)
+  and extracts IP addresses and then presents that list to the user in a data collection
+  task.   \n\nUser can pick one, multiple, or no users/ips, and it will print the
+  results. \n\nUse case for this would be to get a list of users to take further action
+  on, or filter down the list for example.   \n\nThis technique can be adapted to
+  actual data in context to present a list of IPs, URLs, etc for blocking."
+id: 7e77fce0-72bb-4918-85bf-c95390ce39b6
+inputs: []
+name: XSOAR Engineer Training - Data Collection Tasks
+outputs: []
+sourceplaybookid: 28a7580d-04a1-4405-8a1e-b56bf540c9c0
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "20"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 8c596664-2386-498f-8e32-9b66f6f24314
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 8c596664-2386-498f-8e32-9b66f6f24314
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 695,
+          "y": -180
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "16"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      arrayData:
+        simple: jgaudreau,smonahan,jmarkstrom,mtkachuk,dsutter
+      contextKey:
+        simple: UsersToBlock
+      separator:
+        simple: ','
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: 'Will create an array object in context from given string input '
+      id: e7e9fcd8-e282-4bec-89f9-f27dc2c019f3
+      iscommand: false
+      name: Set Users to Block Key (Array)
+      script: CreateArray
+      type: regular
+      version: -1
+    taskid: e7e9fcd8-e282-4bec-89f9-f27dc2c019f3
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 910,
+          "y": 370
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    form:
+      description: Select the users to block
+      expired: false
+      questions:
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "0"
+        label: ""
+        labelarg:
+          simple: Users to Block
+        options:
+        - Test
+        optionsarg:
+        - simple: ${UsersToBlock}
+        placeholder: ""
+        readonly: false
+        required: false
+        tooltip: Users to Block
+        type: multiSelect
+      sender: ""
+      title: Users to Block
+      totalanswers: 0
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    message:
+      bcc: null
+      body:
+        simple: Users to Block
+      cc: null
+      format: ""
+      methods: []
+      subject: null
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: false
+        retriescount: 2
+        retriesinterval: 360
+      to: null
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: b431705a-2a61-4569-86a7-dbd26d6f2f06
+      iscommand: false
+      name: Users to Block?
+      type: collection
+      version: -1
+    taskid: b431705a-2a61-4569-86a7-dbd26d6f2f06
+    timertriggers: []
+    type: collection
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 865
+        }
+      }
+  "3":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: Users to Block.Answers.0
+          operator: isExists
+      - - left:
+            iscontext: true
+            value:
+              simple: Users to Block.Answers.0
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "5"
+      "yes":
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 64c2f9df-4cfd-45e5-897c-9780b9c99702
+      iscommand: false
+      name: Are there users to block?
+      type: condition
+      version: -1
+    taskid: 64c2f9df-4cfd-45e5-897c-9780b9c99702
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 1040
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "15"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        complex:
+          accessor: "0"
+          root: Users to Block.Answers
+          transformers:
+          - operator: uniq
+          - args:
+              separator:
+                value:
+                  simple: ','
+            operator: join
+          - args:
+              prefix:
+                value:
+                  simple: 'Users selected to block - '
+              suffix: {}
+            operator: concat
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: a5e5b55c-20b9-4cfc-8a62-0f92c39f201c
+      iscommand: false
+      name: Print Users to Block
+      script: Print
+      type: regular
+      version: -1
+    taskid: a5e5b55c-20b9-4cfc-8a62-0f92c39f201c
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 1215
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "15"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: No users were selected for blocking
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: 2c843530-f1f4-4232-8ca6-9219f96497be
+      iscommand: false
+      name: No users to block
+      script: Print
+      type: regular
+      version: -1
+    taskid: 2c843530-f1f4-4232-8ca6-9219f96497be
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 1215
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: c5241cc7-1010-47ca-8e4f-53aca4ddcc4f
+      iscommand: false
+      name: Block Users Example
+      type: title
+      version: -1
+    taskid: c5241cc7-1010-47ca-8e4f-53aca4ddcc4f
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 720
+        }
+      }
+  "9":
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "10"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 03884afc-436f-4239-8751-a738f1726787
+      iscommand: false
+      name: Block Extracted IP Indicators
+      type: title
+      version: -1
+    taskid: 03884afc-436f-4239-8751-a738f1726787
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 1125,
+          "y": 720
+        }
+      }
+  "10":
+    continueonerrortype: ""
+    form:
+      description: Select the Indicators to Block
+      expired: false
+      questions:
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "0"
+        label: ""
+        labelarg:
+          simple: IP Indicators to Block
+        options:
+        - Test
+        optionsarg:
+        - complex:
+            accessor: IP
+            root: ExtractedIndicators
+            transformers:
+            - operator: uniq
+        placeholder: ""
+        readonly: false
+        required: true
+        tooltip: Indicators to Block
+        type: multiSelect
+      sender: ""
+      title: Indicators to Block
+      totalanswers: 0
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    message:
+      bcc: null
+      body:
+        simple: Indicators to Block
+      cc: null
+      format: ""
+      methods: []
+      subject: null
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: false
+        retriescount: 2
+        retriesinterval: 360
+      to: null
+    nexttasks:
+      '#none#':
+      - "12"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: fd33d7e1-5be8-49db-8222-e022b479ce21
+      iscommand: false
+      name: Block IP Indicators
+      type: collection
+      version: -1
+    taskid: fd33d7e1-5be8-49db-8222-e022b479ce21
+    timertriggers: []
+    type: collection
+    view: |-
+      {
+        "position": {
+          "x": 1125,
+          "y": 865
+        }
+      }
+  "12":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: Indicators to Block.Answers.0
+          operator: isExists
+      - - left:
+            iscontext: true
+            value:
+              simple: Indicators to Block.Answers.0
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "14"
+      "yes":
+      - "13"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 4d29a913-e47b-4530-88e9-eee159f29772
+      iscommand: false
+      name: Are there Indicators to Block?
+      type: condition
+      version: -1
+    taskid: 4d29a913-e47b-4530-88e9-eee159f29772
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1125,
+          "y": 1040
+        }
+      }
+  "13":
+    continueonerrortype: ""
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "15"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        complex:
+          accessor: "0"
+          root: Indicators to Block.Answers
+          transformers:
+          - operator: uniq
+          - args:
+              separator:
+                value:
+                  simple: ','
+            operator: join
+          - args:
+              prefix:
+                value:
+                  simple: 'Indicators selected for blocking - '
+              suffix: {}
+            operator: concat
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: ff4056a6-5e0e-4e31-8474-53c7c61913a1
+      iscommand: false
+      name: Print Indicators to Block
+      script: Print
+      type: regular
+      version: -1
+    taskid: ff4056a6-5e0e-4e31-8474-53c7c61913a1
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 910,
+          "y": 1215
+        }
+      }
+  "14":
+    continueonerrortype: ""
+    id: "14"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "15"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: No Indicators were selected for Blocking
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: 1ff139f2-b4ea-4d21-8e09-110ee9805b31
+      iscommand: false
+      name: No Indicators to Block
+      script: Print
+      type: regular
+      version: -1
+    taskid: 1ff139f2-b4ea-4d21-8e09-110ee9805b31
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1340,
+          "y": 1215
+        }
+      }
+  "15":
+    continueonerrortype: ""
+    id: "15"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: b02c6277-9775-4fdc-8821-01819b9b908a
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: b02c6277-9775-4fdc-8821-01819b9b908a
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 695,
+          "y": 1390
+        }
+      }
+  "16":
+    continueonerrortype: ""
+    id: "16"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "8"
+      - "9"
+    note: false
+    quietmode: 0
+    reputationcalc: 2
+    scriptarguments:
+      text:
+        complex:
+          accessor: details
+          root: incident
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.extract.indicators
+      id: b9cc44b3-7196-4811-8a6e-680efeb8caba
+      iscommand: true
+      name: Extract Indicators
+      script: Builtin|||extractIndicators
+      type: regular
+      version: -1
+    taskid: b9cc44b3-7196-4811-8a6e-680efeb8caba
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 695,
+          "y": 545
+        }
+      }
+  "18":
+    continueonerrortype: ""
+    id: "18"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "16"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      details:
+        simple: 8.8.8.8,9.9.9.9,10.10.10.10
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: 9cd618b9-c15f-498c-862c-f50966a01c01
+      iscommand: true
+      name: Set IP Addresses into Details Field
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 9cd618b9-c15f-498c-862c-f50966a01c01
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 370
+        }
+      }
+  "19":
+    continueonerrortype: ""
+    id: "19"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "18"
+      - "1"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      all:
+        simple: "yes"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Delete field from context
+      id: 0bec0ca7-03f4-45f1-82c3-502515bea9df
+      iscommand: false
+      name: Delete Context
+      script: DeleteContext
+      type: regular
+      version: -1
+    taskid: 0bec0ca7-03f4-45f1-82c3-502515bea9df
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 695,
+          "y": 195
+        }
+      }
+  "20":
+    continueonerrortype: ""
+    id: "20"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "19"
+    note: true
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: "## XSOAR Engineer Training - Data Collection Tasks\n\nThis playbooks
+          sets a list of users to a key in Context (UsersToBlock) and extracts IP
+          addresses and then presents that list to the user in a data collection task.
+          \  \n\nUser can pick one, multiple, or no users/ips, and it will print the
+          results. \n\nUse case for this would be to get a list of users to take further
+          action on, or filter down the list for example.   \n\nThis technique can
+          be adapted to actual data in context to present a list of IPs, URLs, etc
+          for blocking."
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: d2487547-9a29-4215-8d2d-72bde2a08fe0
+      iscommand: false
+      name: Print Playbook Overview
+      script: Print
+      type: regular
+      version: -1
+    taskid: d2487547-9a29-4215-8d2d-72bde2a08fe0
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 695,
+          "y": -10
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1635,
+        "width": 1670,
+        "x": 50,
+        "y": -180
+      }
+    }
+  }
