@@ -1,0 +1,77 @@
+args:
+- default: true
+  description: Only show computers matching this query. If omitted, displays all computers.
+    Query is in CBEP/Bit9 syntax documented in https://developer.carbonblack.com/reference/enterprise-protection/7.2/rest-api/#query-condition
+    - e.g. "name:*srv*"
+  name: query
+comment: Find a computer in CBEP/Bit9.
+commonfields:
+  id: CBPFindComputer
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.0.29
+    packID: CarbonBlackProtect
+    packName: Carbon Black Enterprise Protection
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+dependson:
+  must:
+  - cbp-computer-search
+dockerimage: demisto/python3:3.10.6.33415
+engineinfo: {}
+mainengineinfo: {}
+name: CBPFindComputer
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('CBPFindComputer', 'start', __line__())
+
+
+
+
+  def cbp_find_computer(args):
+      # query syntax is according to Carbon Black Enterprise Protection query language documented in
+      # https://developer.carbonblack.com/reference/enterprise-protection/7.2/rest-api/#query-condition - e.g. "name:*srv*"
+      res = []
+      if "limit" not in args:
+          args["limit"] = "10"
+      resCmd1 = demisto.executeCommand("cbp-computer-search", args)
+      for entry in resCmd1:
+          if isError(entry):
+              res.append(entry)
+          else:
+              matches = entry.get("Contents")
+              if matches:
+                  res.append({"Type": entryTypes["note"], "ContentsFormat": formats["table"], "Contents": matches})
+              else:
+                  res.append({"Type": entryTypes["note"], "ContentsFormat": formats["text"], "Contents": "No matches."})
+      demisto.results(res)
+
+
+  def main():  # pragma: no cover
+      args = demisto.args()
+      try:
+          cbp_find_computer(args)
+      except Exception as e:
+          err_msg = f'Encountered an error while running the script: [{e}]'
+          return_error(err_msg, error=e)
+
+
+  if __name__ in ('__main__', '__builtin__', 'builtins'):
+      main()
+
+  register_module_line('CBPFindComputer', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags:
+- carbon-black-protection
+- bit9
+type: python
