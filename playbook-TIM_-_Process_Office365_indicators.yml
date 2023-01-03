@@ -1,0 +1,471 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.5.0
+    itemVersion: 1.2.2
+    packID: FeedOffice365
+    packName: Office 365 Feed
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: This playbook handles the tagging of Office365 indicators. Specify the
+  tag to apply to these indicators in the playbook inputs. An example tag will be
+  approved_white. If no inputs are specified, the indicators will be tagged for manual
+  review. The user can specify whether a manual review incident is required.
+id: TIM - Process Office365 indicators
+inputs:
+- description: 'Use this input to define which tag to apply to Office 365 Feed indicators.
+    An example tag can be approved_white. If no tags are specified in the input, the
+    tag whitelist_review will be used. '
+  key: Office365FeedIndicatorTagName
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: ""
+  key: ""
+  playbookInputQuery:
+    daterange:
+      fromdate: "0001-01-01T00:00:00Z"
+      fromdatelicenseval: "0001-01-01T00:00:00Z"
+      period:
+        by: ""
+        byfrom: ""
+        byto: ""
+        field: ""
+        fromvalue: null
+        tovalue: null
+      todate: "0001-01-01T00:00:00Z"
+    query: sourceBrands:"Office 365 Feed"
+    queryEntity: indicators
+    results: null
+    runFromLastJobTime: false
+  required: false
+  value: {}
+- description: This input determines if processed indicators that have the whitelist_review
+    tag are reviewed in a new incident. To create an incident, enter any value other
+    than 'No'.
+  key: OpenIncidentToReviewIndicatorsManually
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "No"
+name: TIM - Process Office365 indicators
+outputs: []
+quiet: true
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "24"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 3680fc53-e6ea-4ea1-83c8-db2f69f24331
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 3680fc53-e6ea-4ea1-83c8-db2f69f24331
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 510,
+          "y": -260
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 9665b878-0b33-4874-86fb-e69b98d48b8b
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 9665b878-0b33-4874-86fb-e69b98d48b8b
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 510,
+          "y": 960
+        }
+      }
+  "3":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.Office365FeedIndicatorTagName
+          operator: isNotEmpty
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.Office365FeedIndicatorTagName
+          operator: isNotEqualString
+          right:
+            value:
+              simple: whitelist_review
+      label: "yes"
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "29"
+      "yes":
+      - "28"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 332ef157-d171-4a81-8cf0-7cfb5323d37f
+      iscommand: false
+      name: Is there a Office365FeedIndicatorTagName input?
+      type: condition
+      version: -1
+    taskid: 332ef157-d171-4a81-8cf0-7cfb5323d37f
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 220,
+          "y": 100
+        }
+      }
+  "23":
+    continueonerrortype: ""
+    id: "23"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      field:
+        simple: tags
+      fieldValue:
+        simple: ${inputs.Office365FeedIndicatorTagName}
+      indicatorsValues:
+        complex:
+          accessor: value}
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: playbookQuery.sourceBrands
+              operator: isEqualString
+              right:
+                value:
+                  simple: Office 365 Feed
+          root: ${playbookQuery
+          transformers:
+          - operator: uniq
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Adds the tag provided in the input to the indicator.
+      id: 217fffc0-984d-43c4-8f6b-9d2956c748d9
+      iscommand: true
+      name: Tag Office365 indicators with tag from inputs
+      script: Builtin|||appendIndicatorField
+      type: regular
+      version: -1
+    taskid: 217fffc0-984d-43c4-8f6b-9d2956c748d9
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 220,
+          "y": 770
+        }
+      }
+  "24":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: value
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: playbookQuery.sourceBrands
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: Office 365 Feed
+                root: playbookQuery
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "24"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "2"
+      "yes":
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: be879bb6-604a-4081-899b-d244895b88a1
+      iscommand: false
+      name: Are there filtered results?
+      type: condition
+      version: -1
+    taskid: be879bb6-604a-4081-899b-d244895b88a1
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 510,
+          "y": -80
+        }
+      }
+  "25":
+    continueonerrortype: ""
+    id: "25"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "26"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      field:
+        simple: tags
+      fieldValue:
+        simple: whitelist_review
+      indicatorsValues:
+        complex:
+          accessor: value}
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: playbookQuery.sourceBrands
+              operator: isEqualString
+              right:
+                value:
+                  simple: Office 365 Feed
+          root: ${playbookQuery
+          transformers:
+          - operator: uniq
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Adds the whitelist_review tag to the indicator.
+      id: 95505141-c065-40f7-87f7-34ddea589cbb
+      iscommand: true
+      name: Tag Office365 indicators with tag whitelist review
+      script: Builtin|||appendIndicatorField
+      type: regular
+      version: -1
+    taskid: 95505141-c065-40f7-87f7-34ddea589cbb
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -230,
+          "y": 440
+        }
+      }
+  "26":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.OpenIncidentToReviewIndicatorsManually
+          operator: isNotEqualString
+          right:
+            value:
+              simple: "No"
+      label: "yes"
+    continueonerrortype: ""
+    id: "26"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "2"
+      "yes":
+      - "27"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: c102a8e4-6fd6-4aef-8a53-aea28ad6ab06
+      iscommand: false
+      name: Open manual review incident?
+      type: condition
+      version: -1
+    taskid: c102a8e4-6fd6-4aef-8a53-aea28ad6ab06
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -230,
+          "y": 595
+        }
+      }
+  "27":
+    continueonerrortype: ""
+    id: "27"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 2
+    scriptarguments:
+      name:
+        simple: Review Indicators Manually For Whitelisting
+      type:
+        simple: Review Indicators Manually For Whitelisting
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Open new manual review incident
+      id: 7aad5367-1499-411f-8cb7-4e0120c2fdec
+      iscommand: true
+      name: Create Process Indicators Manually incident
+      script: Builtin|||createNewIncident
+      type: regular
+      version: -1
+    taskid: 7aad5367-1499-411f-8cb7-4e0120c2fdec
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -610,
+          "y": 770
+        }
+      }
+  "28":
+    continueonerrortype: ""
+    id: "28"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "23"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: b9bdddeb-6610-40d7-89a9-95084e9adaa1
+      iscommand: false
+      name: Auto Approve
+      type: title
+      version: -1
+    taskid: b9bdddeb-6610-40d7-89a9-95084e9adaa1
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 220,
+          "y": 480
+        }
+      }
+  "29":
+    continueonerrortype: ""
+    id: "29"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "25"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 4d858433-299e-48d1-86bd-b6188a9fe407
+      iscommand: false
+      name: Manually review
+      type: title
+      version: -1
+    taskid: 4d858433-299e-48d1-86bd-b6188a9fe407
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -230,
+          "y": 300
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1285,
+        "width": 1500,
+        "x": -610,
+        "y": -260
+      }
+    }
+  }
