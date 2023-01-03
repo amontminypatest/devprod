@@ -1,0 +1,168 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Endpoint"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"playbook"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Endpoint",
+				"commands": [
+					{
+						"description": "Retrieve a list of User-Defined Suspicious Objects from the Apex One Central server.",
+						"name": "trendmicro-apex-usdo-list"
+					},
+					{
+						"description": "Add suspicious file, file SHA-1, IP address, domain, or URL objects to the User-Defined Suspicious Object list.",
+						"name": "trendmicro-apex-usdo-add"
+					},
+					{
+						"description": "Delete suspicious file SHA-1, IP address, domain, or URL objects from the User-Defined Suspicious Object list.",
+						"name": "trendmicro-apex-usdo-delete"
+					},
+					{
+						"description": "Retrieve a list of User-Defined Suspicious Objects from the Apex One Central server.",
+						"name": "trendmicro-apex-udso-list"
+					},
+					{
+						"description": "Add suspicious file SHA-1, IP address, domain, or URL objects to the User-Defined Suspicious Object list.",
+						"name": "trendmicro-apex-udso-add"
+					},
+					{
+						"description": "Delete suspicious file SHA-1, IP address, domain, or URL objects from the User-Defined Suspicious Object list.",
+						"name": "trendmicro-apex-udso-delete"
+					},
+					{
+						"description": "Isolate an agent from the network",
+						"name": "trendmicro-apex-isolate"
+					},
+					{
+						"description": "Restore an isolated agent connection to the network.",
+						"name": "trendmicro-apex-restore"
+					},
+					{
+						"description": "Retrieves a maximum of 1000 logs of detection types from the server. The `Pattern Update Status` and `Engine Update Status` log types returns all logs (no maximum) from the specified \"since_time\". In some cases the command might return alerts that were created before the specified time. This is a known issue with the API.",
+						"name": "trendmicro-apex-list-logs"
+					},
+					{
+						"description": "Adds the uploaded file information to the User-Defined Suspicious Objects list. If the file already exists, it will be updated with the new arguments.",
+						"name": "trendmicro-apex-udso-file-add"
+					},
+					{
+						"description": "Retrieves a list of managed product servers reporting to Apex One Central.",
+						"name": "trendmicro-apex-managed-servers-list"
+					},
+					{
+						"description": "Retrieves a list of Security Agents.",
+						"name": "trendmicro-apex-security-agents-list"
+					},
+					{
+						"description": "Retrieves a list of Security Agents with the Endpoint Sensor feature enabled.",
+						"name": "trendmicro-apex-endpoint-sensors-list"
+					},
+					{
+						"description": "Creates a new historical investigation on all Security Agents with Endpoint Sensor enabled using the specified criteria, search operator, and match condition.",
+						"name": "trendmicro-apex-historical-investigation-create"
+					},
+					{
+						"description": "Retrieves a list of all investigation results.",
+						"name": "trendmicro-apex-investigation-result-list"
+					}
+				],
+				"description": "Trend Micro Apex One central automation to manage agents and User-Defined Suspicious Objects",
+				"id": "",
+				"name": "Trend Micro Apex One"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": [
+			{
+				"description": "This playbook blocks domains using Trend Micro Apex One.\nThe playbook checks whether the Trend Micro Apex One integration is enabled, whether the Domain input has been provided and if so, blocks the domain.",
+				"name": "Block Domain - Trend Micro Apex One"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-07-22T19:10:13Z",
+	"currentVersion": "2.0.3",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.39",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Trend Micro Apex One central automation to manage agents and User-Defined Suspicious Objects",
+	"disabledMonthly": false,
+	"downloads": 1133,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "TrendMicroApex",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/TrendMicroApex/TrendMicroApex_image.png",
+			"name": "Trend Micro Apex One"
+		}
+	],
+	"itemVersion": "2.0.3",
+	"keywords": [],
+	"legacy": true,
+	"name": "Trend Micro Apex One",
+	"packID": "TrendMicroApex",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2021-12-21T22:16:18Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4098099",
+	"videos": []
+}
