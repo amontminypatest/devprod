@@ -1,0 +1,192 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.1.4
+    packID: Carbon_Black_Enterprise_Live_Response
+    packName: Carbon Black Enterprise Live Response
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: Creates an active session.
+id: Carbon Black Live Response - Create active session
+inputs:
+- description: Sensor ID to create a session for.
+  key: sensor
+  playbookInputQuery: null
+  required: true
+  value: {}
+name: Carbon Black Live Response - Create active session
+outputs:
+- contextPath: CbLiveResponse.Sessions.CbSessionID
+  description: Session ID
+  type: number
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 1f48e8f5-ec87-4acb-8857-40dd9a445080
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 1f48e8f5-ec87-4acb-8857-40dd9a445080
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 50
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 28f833ea-2d5e-4c47-8fb5-9c4f8335280f
+      iscommand: false
+      name: Session created
+      type: title
+      version: -1
+    taskid: 28f833ea-2d5e-4c47-8fb5-9c4f8335280f
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 545
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      sensor:
+        complex:
+          root: inputs.sensor
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Create a new CarbonBlack session for a given sensor.
+      id: 8a0beb88-3daf-423c-8e62-5a4b61706b94
+      iscommand: true
+      name: Create new session
+      script: '|||cb-session-create'
+      type: regular
+      version: -1
+    taskid: 8a0beb88-3daf-423c-8e62-5a4b61706b94
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 195
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      Ids:
+        complex:
+          accessor: CbSessionID
+          root: CbLiveResponse.Sessions
+      Interval:
+        simple: "1"
+      PollingCommandArgName:
+        simple: session
+      PollingCommandName:
+        simple: cb-session-info
+      Timeout:
+        simple: "10"
+      dt:
+        simple: CbLiveResponse.Sessions(val.Status.toUpperCase()  != "ACTIVE")
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Use this playbook as a sub-playbook to block execution of the master playbook until a remote action is complete.
+        This playbook implements polling by continuously running the command in Step \#2 until the operation completes.
+        The remote action should have the following structure:
+
+        1. Initiate the operation.
+        2. Poll to check if the operation completed.
+        3. (optional) Get the results of the operation.
+      id: 1e9c0da0-ebcb-41b1-8adc-4a95bbb6d7be
+      iscommand: false
+      name: GenericPolling
+      playbookId: GenericPolling
+      type: playbook
+      version: -1
+    taskid: 1e9c0da0-ebcb-41b1-8adc-4a95bbb6d7be
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 370
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 560,
+        "width": 380,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
