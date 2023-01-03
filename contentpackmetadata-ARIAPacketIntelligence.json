@@ -1,0 +1,239 @@
+{
+	"author": "ARIA Cybersecurity Solutions",
+	"authorImage": "content/packs/ARIAPacketIntelligence/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Network Security"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Network Security",
+				"commands": [
+					{
+						"description": "Creates a rule that drops all packets that match the specified 5-tuple values.",
+						"name": "aria-block-conversation"
+					},
+					{
+						"description": "Deletes a named rule from the 5-tuple logic block. This allows the previously blocked conversation to resume.",
+						"name": "aria-unblock-conversation"
+					},
+					{
+						"description": "Creates a rule that redirects a conversation that matches 5-tuple values to the Packet Recorder. Packets are tagged with the VID specified in the instance.",
+						"name": "aria-record-conversation"
+					},
+					{
+						"description": "Removes the named rule from the 5-tuple block. This stops redirecting traffic to the Packet Recorder.",
+						"name": "aria-stop-recording-conversation"
+					},
+					{
+						"description": "Adds a rule that generates an alert when a conversation that matches the specified 5-tuple values is detected.",
+						"name": "aria-alert-conversation"
+					},
+					{
+						"description": "Removes a named rule from the 5-tuple logic block, disabling the alerts.",
+						"name": "aria-mute-alert-conversation"
+					},
+					{
+						"description": "Creates a rule that blocks packets destined for one or more specified ports.",
+						"name": "aria-block-dest-port"
+					},
+					{
+						"description": "Removes a named rule from the destination port logic block. This allows the previously blocked traffic to resume.",
+						"name": "aria-unblock-dest-port"
+					},
+					{
+						"description": "Adds a rule that redirects traffic that is destined for one or more ports to the Packet Recorder. Packets are tagged with the VID specified in the instance.",
+						"name": "aria-record-dest-port"
+					},
+					{
+						"description": "Removes a named rule from the destination port logic block. This stops redirecting traffic to the Packet Recorder.",
+						"name": "aria-stop-recording-dest-port"
+					},
+					{
+						"description": "Creates a rule that generates an alert when traffic destined for one or more ports is detected.",
+						"name": "aria-alert-dest-port"
+					},
+					{
+						"description": "Removes a named rule from the destination port logic block, disabling the alerts.",
+						"name": "aria-mute-alert-dest-port"
+					},
+					{
+						"description": "Adds a rule that blocks packets originating from one or more specific ports.",
+						"name": "aria-block-src-port"
+					},
+					{
+						"description": "Removes a named rule from the source port logic block. This allows the previously blocked traffic to resume.",
+						"name": "aria-unblock-src-port"
+					},
+					{
+						"description": "Adds a rule that redirects traffic originating from one or more ports to the Packet Recorder. Packets are tagged with the VID specified in the instance.",
+						"name": "aria-record-src-port"
+					},
+					{
+						"description": "Removes a named rule from the source port logic block. This stops redirecting traffic to the Packet Recorder.",
+						"name": "aria-stop-recording-src-port"
+					},
+					{
+						"description": "Creates a rule that generates an alert when traffic originating from one or more ports is detected.",
+						"name": "aria-alert-src-port"
+					},
+					{
+						"description": "Removes a named rule from the source port logic block, disabling the alerts.",
+						"name": "aria-mute-alert-src-port"
+					},
+					{
+						"description": "Adds a rule that blocks packets destined for a specific IP address or range of IP addresses.",
+						"name": "aria-block-dest-subnet"
+					},
+					{
+						"description": "Removes a named rule from the destination subnet logic block. This allows the previously blocked traffic to resume.",
+						"name": "aria-unblock-dest-subnet"
+					},
+					{
+						"description": "Creates a rule that redirects traffic destined for a specific IP address or range of IP addresses to the Packet Recorder. Packets are tagged with the VID specified in the instance.",
+						"name": "aria-record-dest-subnet"
+					},
+					{
+						"description": "Removes a named rule from the destination subnet logic block. This stops redirecting traffic to the Packet Recorder.",
+						"name": "aria-stop-recording-dest-subnet"
+					},
+					{
+						"description": "Creates a rule that generates an alert when traffic destined for a specific IP address or range of IP addresses is detected.",
+						"name": "aria-alert-dest-subnet"
+					},
+					{
+						"description": "Removes a named rule from the destination subnet logic block, disabling the alerts.",
+						"name": "aria-mute-alert-dest-subnet"
+					},
+					{
+						"description": "Adds a rule that blocks packets originating from a specific IP address or range of IP addresses.",
+						"name": "aria-block-src-subnet"
+					},
+					{
+						"description": "Removes a named rule from the source subnet logic block. This allows the previously blocked traffic to resume.",
+						"name": "aria-unblock-src-subnet"
+					},
+					{
+						"description": "Creates a rule that redirects traffic originating from one or more specific IP addresses to the Packet Recorder. Packets are tagged with the VID specified in the instance.",
+						"name": "aria-record-src-subnet"
+					},
+					{
+						"description": "Removes a named rule from the source subnet logic block. This stops redirecting traffic to the Packet Recorder.",
+						"name": "aria-stop-recording-src-subnet"
+					},
+					{
+						"description": "Adds a rule that generates an alert when traffic originating from a specific IP address or range of IP addresses is detected.",
+						"name": "aria-alert-src-subnet"
+					},
+					{
+						"description": "Removes a named rule from the source subnet logic block, disabling the alerts.",
+						"name": "aria-mute-alert-src-subnet"
+					}
+				],
+				"description": "The ARIA Cybesecurity Solutions Software-Defined Security (SDS)  platform integrates with Cortex XSOAR to add robustness when responding to incidents. The combination of ARIA hardware, in the form of a Secure Intelligent Adapter (SIA), and software, specifically Packet Intelligence and SDS orchestrator (SDSo), provides the elements required to react instantly when an incident is detected. When integrated with the ARIA solution, you can create playbooks that instruct one or more SIAs to add, modify, or delete rules automatically. These rule changes, which take effect immediately, can block conversations, redirect packets to a recorder or VLAN, or perform a variety of other actions.",
+				"id": "",
+				"name": "ARIA Packet Intelligence (Partner Contribution)"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-11-09T18:43:36Z",
+	"currentVersion": "2.0.10",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.45",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Manage Packet Intelligence rules in response to incidents. Instantly block conversations, redirect packets, generate alerts, or perform other actions.",
+	"disabledMonthly": false,
+	"downloads": 1246,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByPartner",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "ARIAPacketIntelligence",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/ARIAPacketIntelligence/ARIAPacketIntelligence_image.png",
+			"name": "ARIA Packet Intelligence"
+		}
+	],
+	"itemVersion": "2.0.10",
+	"keywords": [
+		"Block",
+		"Redirect",
+		"Alert",
+		"PI",
+		"SDS",
+		"ARIA"
+	],
+	"legacy": true,
+	"name": "ARIAPacketIntelligence",
+	"packID": "ARIAPacketIntelligence",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "partner",
+	"supportDetails": {
+		"email": "ARIA_support@ariacybersecurity.com",
+		"url": "https://www.ariacybersecurity.com/cybersecurity-products/aria-packet-intelligence"
+	},
+	"tags": [
+		"Threat Intelligence",
+		"Network",
+		"Use Case",
+		"Incident Response",
+		"Security",
+		"Alerts"
+	],
+	"toServerVersion": "",
+	"updated": "2022-12-18T11:51:13Z",
+	"useCases": [
+		"Incident Response",
+		"Threat Intelligence Management"
+	],
+	"version": -1,
+	"versionInfo": "4239699",
+	"videos": []
+}
