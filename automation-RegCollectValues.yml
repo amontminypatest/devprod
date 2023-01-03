@@ -1,0 +1,77 @@
+args:
+- default: true
+  description: The registry path of the key to query
+  name: regpath
+  required: true
+comment: Deprecated. No available replacement.
+commonfields:
+  id: RegCollectValues
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.0.7
+    packID: D2
+    packName: D2 (Deprecated)
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+deprecated: true
+dockerimage: demisto/python:2.7.18.24398
+engineinfo: {}
+mainengineinfo: {}
+name: RegCollectValues
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('RegCollectValues', 'start', __line__())
+
+
+
+
+  def Reg2Markdown(baseKey, regResp):
+      res, mdRows = [], ''
+      if isError(regResp[0]):
+          res += regResp
+      elif len(regResp) > 1:
+          contents = 'Unexpected output from D2RegQuery - more than one entry returned:\n' + '\n'.join([str(x) for x in regResp])
+          res.append({'Type': entryTypes['error'], 'ContentsFormat': formats['text'],
+                     'Contents': contents})
+      else:
+          subkeys = regResp[0]['Contents']
+          for sk in subkeys:
+              if type(subkeys[sk]) == dict:
+                  for ssk in subkeys[sk]:
+                      mdRows += '\n|' + str(baseKey) + '\\' + str(sk) + '|' + str(ssk) + '|' + str(subkeys[sk][ssk]) + '|'
+              else:
+                  mdRows += '\n|' + str(baseKey) + '|' + str(sk) + '|' + str(subkeys[sk]) + '|'
+      return (res, mdRows)
+
+
+  # Note: Don't use !d2_status as that only shows systems with generated agents - the correct way is below:
+  res = []
+  regPath = NormalizeRegistryPath(demisto.args()['regpath'])
+  for system in demisto.investigation()['systems']:
+      if system['os'] == 'windows':
+          mdTable = '### Values retrieved from system *' + system['name'] + '*'
+          mdTable += '\n|Key|SubKey|Value|'
+          mdTable += '\n|-----|------|-----|'
+          cmdResp = demisto.executeCommand('D2RegQuery', {'using': system['name'], 'regpath': regPath})
+          moreEntries, moreRows = Reg2Markdown(regPath, cmdResp)
+          mdTable += moreRows
+          res += moreEntries
+          res.append({'Type': entryTypes['note'], 'ContentsFormat': formats['markdown'], 'Contents': mdTable})
+  demisto.results(res)
+
+  register_module_line('RegCollectValues', 'end', __line__())
+scripttarget: 0
+subtype: python2
+system: true
+tags:
+- registry
+- enhancement
+type: python
