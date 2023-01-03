@@ -1,0 +1,101 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "",
+	"feed": false,
+	"fromServerVersion": "",
+	"id": "53dbfe5e-b7fd-4423-83ab-e5683880317f",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "",
+	"keyTypeMap": {},
+	"locked": false,
+	"logicalVersion": 2,
+	"mapping": {
+		"Alex Training - Mock DLP": {
+			"dontMapEventToLabels": false,
+			"internalMapping": {
+				"Device Name": {
+					"simple": "device_source"
+				},
+				"Device Username": {
+					"simple": "user"
+				}
+			}
+		},
+		"Alex Training - Mock Malware": {
+			"dontMapEventToLabels": false,
+			"internalMapping": {
+				"Device Name": {
+					"simple": "device_hostname"
+				},
+				"SHA256": {
+					"simple": "SHA256"
+				},
+				"Verdict": {
+					"simple": "verdict"
+				}
+			}
+		},
+		"dbot_classification_incident_type_all": {
+			"dontMapEventToLabels": true,
+			"internalMapping": {
+				"Event ID": {
+					"simple": "event_id"
+				},
+				"File Name": {
+					"complex": {
+						"filters": [],
+						"root": "file_path",
+						"transformers": [
+							{
+								"args": {
+									"error_if_no_match": {},
+									"ignore_case": {},
+									"multi_line": {},
+									"period_matches_newline": {},
+									"regex": {
+										"value": {
+											"simple": "[^\\/]+$"
+										}
+									},
+									"unpack_matches": {}
+								},
+								"operator": "RegexExtractAll"
+							}
+						]
+					}
+				},
+				"File Path": {
+					"simple": "file_path"
+				},
+				"File Size": {
+					"simple": "file_size"
+				},
+				"occurred": {
+					"simple": "event_timestamp"
+				},
+				"severity": {
+					"simple": "severity"
+				}
+			}
+		}
+	},
+	"name": "Alex Training - Mock Mapper",
+	"nameRaw": "Alex Training - Mock Mapper",
+	"packID": "",
+	"packName": "",
+	"propagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": false,
+	"toServerVersion": "",
+	"transformer": {},
+	"type": "mapping-incoming",
+	"unclassifiedCases": null,
+	"version": -1
+}
