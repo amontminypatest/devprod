@@ -1,0 +1,163 @@
+{
+	"author": "Ping Identity",
+	"authorImage": "content/packs/PingIdentity/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Authentication"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Identity and Access Management",
+				"commands": [
+					{
+						"description": "Unlock a user's account.",
+						"name": "pingone-unlock-user"
+					},
+					{
+						"description": "Deactivate a user's account.",
+						"name": "pingone-deactivate-user"
+					},
+					{
+						"description": "Activate a user's account.",
+						"name": "pingone-activate-user"
+					},
+					{
+						"description": "Sets a user's password. Further password details available here: https://apidocs.pingidentity.com/pingone/platform/v1/api/#put-update-password-self .",
+						"name": "pingone-set-password"
+					},
+					{
+						"description": "Add user to the group. One of the following has to be given username or userId and groupName or groupId.",
+						"name": "pingone-add-to-group"
+					},
+					{
+						"description": "Remove user from the group. One of the following has to be given username or userId and groupName or groupId.",
+						"name": "pingone-remove-from-group"
+					},
+					{
+						"description": "Returns user's group memberships.",
+						"name": "pingone-get-groups"
+					},
+					{
+						"description": "Returns a PingOne user. One of the following has to be given username or userId.",
+						"name": "pingone-get-user"
+					},
+					{
+						"description": "Create a PingOne user.",
+						"name": "pingone-create-user"
+					},
+					{
+						"description": "Update a PingOne user.",
+						"name": "pingone-update-user"
+					},
+					{
+						"description": "Delete a PingOne user. One of the following has to be given username or userId.",
+						"name": "pingone-delete-user"
+					}
+				],
+				"description": "Integrates with the PingOne Management API to unlock, create, delete and update users. ",
+				"id": "",
+				"name": "PingOne (Partner Contribution)"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2021-09-25T09:15:07Z",
+	"currentVersion": "1.0.1",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.39",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Integration with PingIdentity's PingOne identity platform",
+	"disabledMonthly": false,
+	"downloads": 138,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "6.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByPartner",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "PingIdentity",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/PingIdentity/PingOne_image.png",
+			"name": "PingOne"
+		}
+	],
+	"itemVersion": "1.0.1",
+	"keywords": [
+		"PingIdentity",
+		"PingOne",
+		"Identity",
+		"Security",
+		"SSO",
+		"MFA",
+		"Federation",
+		"CIAM",
+		"Single Sign-On",
+		"Multi-factor authentication",
+		"Multi-factor",
+		"Passwordless",
+		"Accounts",
+		"Roles",
+		"Entitlements"
+	],
+	"legacy": true,
+	"name": "PingIdentity",
+	"packID": "PingIdentity",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "# PingIdentity PingOne\n\n## Overview:\nIn today’s business environment, user experience is king, but security can’t be sacrificed. The PingOne Cloud Platform helps you optimize both. Our comprehensive, standards-based platform is designed for hybrid, multi-generational and multi-cloud environments. It enables unified digital identities and allows all users and devices to securely access cloud, mobile, SaaS and on-premises applications and APIs.\n\nPingOne offers a unified cloud identity for every user type that delivers real-time, intelligent access and secure, seamless experiences. Choose our cloud for speed, your cloud for control, or deploy in multiple clouds for redundancy.\n\nThe Ping Identity context pack enables XSOAR customers to utilize PingOne cloud identity and access management services for different triggering events.\n\n## Requirements\nThis content pack is compatibility with PingIdentity's cloud platform PingOne.",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "6.0.0",
+	"support": "partner",
+	"supportDetails": {
+		"email": "tap-global@pingidentity.com",
+		"url": "https://docs.pingidentity.com/bundle/p14c/page/als1564020488261.html"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-10-25T11:08:28Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4098099",
+	"videos": []
+}
