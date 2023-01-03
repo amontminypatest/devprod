@@ -1,0 +1,175 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Forensics \u0026 Malware Analysis"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"playbook"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Forensics \u0026 Malware Analysis",
+				"commands": [
+					{
+						"description": "Uploads a file for sandbox analysis.",
+						"name": "cs-fx-upload-file"
+					},
+					{
+						"description": "Submits a sample SHA256 hash for sandbox analysis.",
+						"name": "cs-fx-submit-uploaded-file"
+					},
+					{
+						"description": "Gets a full version of a sandbox report.",
+						"name": "cs-fx-get-full-report"
+					},
+					{
+						"description": "Gets a short summary version of a sandbox report.",
+						"name": "cs-fx-get-report-summary"
+					},
+					{
+						"description": "Checks the status of a sandbox analysis.",
+						"name": "cs-fx-get-analysis-status"
+					},
+					{
+						"description": "Returns the total quota number and the in use quota number.",
+						"name": "cs-fx-check-quota"
+					},
+					{
+						"description": "Finds sandbox reports by providing an FQL filter and paging details.",
+						"name": "cs-fx-find-reports"
+					},
+					{
+						"description": "Finds submission IDs for uploaded files by providing an FQL filter and paging details. Returns a set of submission IDs that match the search criteria.",
+						"name": "cs-fx-find-submission-id"
+					},
+					{
+						"description": "Gets reputation data for one or more files, by sha256 hashes.",
+						"name": "file"
+					},
+					{
+						"description": "Submits a URL or FTP for sandbox analysis.",
+						"name": "cs-fx-submit-url"
+					},
+					{
+						"description": "Downloads IOC packs, PCAP files, and other analysis artifacts.",
+						"name": "cs-fx-download-ioc"
+					}
+				],
+				"description": "Use the CrowdStrike Falcon X integration to submit files, file hashes, URLs, and FTPs for sandbox analysis, and to retrieve reports.",
+				"id": "CrowdStrike Falcon X",
+				"name": "CrowdStrike Falcon X"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": [
+			{
+				"description": "Detonates a File using CrowdStrike Falcon X sandbox.\nAccepted file formats:\nPortable executables: .exe, .scr, .pif, .dll, .com, .cpl, etc.\nOffice documents: .doc, .docx, .ppt, .pps, .pptx, .ppsx, .xls, .xlsx, .rtf, .pub\nPDF\nAPK\nExecutable JAR\nWindows script component: .sct\nWindows shortcut: .lnk\nWindows help: .chm\nHTML application: .hta\nWindows script file: .wsf\nJavascript: .js\nVisual Basic: .vbs, .vbe\nShockwave Flash: .swf\nPerl: .pl\nPowershell: .ps1, .psd1, .psm1\nScalable vector graphics: .svg\nPython: .py\nLinux ELF executables\nEmail files: MIME RFC 822 .eml, Outlook .msg.",
+				"name": "Detonate File - CrowdStrike Falcon X"
+			},
+			{
+				"description": "This playbook uploads, detonates, and analyzes files for the Falcon X sandbox.",
+				"name": "FalconX Detonate and Analyze File"
+			},
+			{
+				"description": "Detonate one or more files using the CrowdStrike Falcon Sandbox integration. This playbook returns relevant reports to the War Room and file reputations to the context data.",
+				"name": "Detonate URL - CrowdStrike Falcon X"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-08-19T08:01:58Z",
+	"currentVersion": "1.2.15",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.51",
+			"name": "Base"
+		},
+		"CommonPlaybooks": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "2.3.23",
+			"name": "Common Playbooks"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.10.34",
+			"name": "Common Scripts"
+		}
+	},
+	"deprecated": false,
+	"description": "Fully automated malware analysis",
+	"disabledMonthly": false,
+	"downloads": 4096,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "CrowdStrikeFalconX",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/CrowdStrikeFalconX/CrowdStrikeFalconX_image.png",
+			"name": "CrowdStrike Falcon X"
+		}
+	],
+	"itemVersion": "1.2.15",
+	"keywords": [],
+	"legacy": true,
+	"name": "CrowdStrike FalconX",
+	"packID": "CrowdStrikeFalconX",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "CrowdStrike Falcon X is an automated threat intelligence service built on the Falcon platform.\n\nIt provides rich content and actionable information to malware analysts and security teams to aid in their malware evaluation. It gives context around the behavior of malicious files and outlines the risk assessment providing related samples. Having this research at your fingertips can aid in the larger investigation.\n\nUnderstanding malware behavior can help you identify and address potential areas of weakness to stay ahead of potential attacks. \n\n## What does this pack do?\n- Automatically analyze malware found on endpoints.\n- Determine if there are related samples from other malware search engines.\n- Enrich results with customized threat intelligence.\n- Provide security teams with custom indicators of compromise (IOCs).\n- Show not only what happened on the endpoint, but also details behind the attack.\n\n\n## Playbooks\nThis pack includes the following built-in playbooks:\n- **Detonate File - CrowdStrike Falcon X**: Detonate a file using CrowdStrike Falcon X sandbox.\n- **Detonate URL - CrowdStrike Falcon X**: Detonate one or more files using the CrowdStrike Falcon Sandbox integration. This playbook returns relevant reports to the War Room and file reputations to the context data.\n",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-12-28T22:27:40Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4314430",
+	"videos": []
+}
