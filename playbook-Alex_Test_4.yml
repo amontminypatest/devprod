@@ -1,0 +1,361 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: f2284736-d03c-4d2a-8af6-ace6d0c7dd63
+inputs: []
+name: Alex Test 4
+outputs: []
+quiet: true
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 01c84936-6e05-4e42-85a6-906fa87eca94
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 01c84936-6e05-4e42-85a6-906fa87eca94
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 162.5,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    form:
+      description: ""
+      expired: false
+      questions:
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "0"
+        label: ""
+        labelarg:
+          simple: Source IP
+        options: []
+        optionsarg: []
+        placeholder: ""
+        readonly: false
+        required: true
+        tooltip: ""
+        type: shortText
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "1"
+        label: ""
+        labelarg:
+          simple: Destination IP
+        options: []
+        optionsarg: []
+        placeholder: ""
+        readonly: false
+        required: true
+        tooltip: ""
+        type: shortText
+      sender: ""
+      title: Source and Destination IPs
+      totalanswers: 0
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    message:
+      bcc: null
+      body: null
+      cc: null
+      format: ""
+      methods: []
+      subject: null
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: true
+        retriescount: 2
+        retriesinterval: 360
+      to: null
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: d8cec8ee-b268-4a4f-8e9a-0128561e4b56
+      iscommand: false
+      name: Collect Source and Destination IPs
+      type: collection
+      version: -1
+    taskid: d8cec8ee-b268-4a4f-8e9a-0128561e4b56
+    timertriggers: []
+    type: collection
+    view: |-
+      {
+        "position": {
+          "x": 162.5,
+          "y": 195
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      DstIP:
+        complex:
+          accessor: "1"
+          root: Source and Destination IPs.Answers
+      OnCall:
+        simple: "false"
+      Role:
+        simple: Administrator
+      SrcIP:
+        complex:
+          accessor: "0"
+          root: Source and Destination IPs.Answers
+      Username:
+        complex:
+          accessor: srcuser
+          root: incident
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 14adb958-2edf-445f-826c-d8b6000a2d36
+      iscommand: false
+      name: Access Investigation - Generic
+      playbookId: access_investigation_-_generic
+      type: playbook
+      version: -1
+    taskid: 14adb958-2edf-445f-826c-d8b6000a2d36
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 162.5,
+          "y": 370
+        }
+      }
+  "3":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: DBotScore.Score
+          operator: greaterThan
+          right:
+            value:
+              simple: "2"
+      label: "yes"
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "6"
+      "yes":
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: ad0336af-3b8d-421f-8aa1-28614cf1c8eb
+      iscommand: false
+      name: Is DBotScore > 2
+      type: condition
+      version: -1
+    taskid: ad0336af-3b8d-421f-8aa1-28614cf1c8eb
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 162.5,
+          "y": 545
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      severity:
+        simple: High
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: cb31285e-3af5-45c2-8e10-6a464648ead7
+      iscommand: true
+      name: Increase Severity to High
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: cb31285e-3af5-45c2-8e10-6a464648ead7
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 895
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.close.inv
+      id: c97f8ea7-fffe-4c27-83cd-0d4d327f3a01
+      iscommand: true
+      name: Close Investigation
+      script: Builtin|||closeInvestigation
+      type: regular
+      version: -1
+    taskid: c97f8ea7-fffe-4c27-83cd-0d4d327f3a01
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 162.5,
+          "y": 1070
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "5"
+      "Yes":
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: de9e596a-2911-4568-8d5f-a8893e545754
+      iscommand: false
+      name: Should incident be escalated
+      type: condition
+      version: -1
+    taskid: de9e596a-2911-4568-8d5f-a8893e545754
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 275,
+          "y": 720
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 7631c1ea-b723-4301-8b5b-ab8d79275390
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 7631c1ea-b723-4301-8b5b-ab8d79275390
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 162.5,
+          "y": 1245
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1260,
+        "width": 605,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
