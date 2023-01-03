@@ -1,0 +1,39 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "SailPoint IdentityIQ Alert",
+	"definitionId": "",
+	"description": "",
+	"feed": false,
+	"fromServerVersion": "6.0.0",
+	"id": "SailPoint IdentityIQ Alert Classifier",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "1.0.7",
+	"keyTypeMap": {
+		"PAN XSOAR": "SailPoint IdentityIQ Alert"
+	},
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": null,
+	"name": "SailPoint IdentityIQ Alert Classifier",
+	"nameRaw": "SailPoint IdentityIQ Alert Classifier",
+	"packID": "SailPointIdentityIQ",
+	"packName": "SailPoint IdentityIQ",
+	"packPropagationLabels": [
+		"all"
+	],
+	"propagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {
+		"simple": "type"
+	},
+	"type": "classification",
+	"unclassifiedCases": null,
+	"version": -1
+}
