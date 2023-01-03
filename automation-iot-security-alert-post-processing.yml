@@ -1,0 +1,80 @@
+args:
+- default: true
+  defaultValue: Resolved
+  description: The reason the alert was closed (either 'Resolved' or 'No Action Needed').
+  name: close_reason
+comment: IoT alert post processing script to resolve the alert in IoT security portal
+  using API
+commonfields:
+  id: iot-security-alert-post-processing
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.0.16
+    packID: PaloAltoNetworks_IoT
+    packName: IoT by Palo Alto Networks
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+dockerimage: demisto/python3:3.9.7.24076
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: iot-security-alert-post-processing
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('iot-security-alert-post-processing', 'start', __line__())
+
+
+
+
+  def _get_incident():
+      return demisto.incidents()[0]
+
+
+  def iot_resolve_alert():
+      incident = _get_incident()
+
+      _id = ""
+      for label in incident['labels']:
+          if label['type'] == 'id':
+              _id = label['value']
+              break
+
+      if _id == "":
+          raise Exception('id was not found in the incident labels')
+
+      args = demisto.args()
+      close_reason = args.get('close_reason')
+
+      demisto.executeCommand('iot-security-resolve-alert', {
+          'id': _id,
+          'reason': f'resolved by XSOAR incident {incident["id"]}',
+          'reason_type': 'Issue Mitigated' if close_reason == "Resolved" else 'No Action Needed'
+      })
+
+
+  def main():
+      try:
+          iot_resolve_alert()
+      except Exception as ex:
+          return_error(f'Failed to execute iot-security-alert-post-processing. Error: {str(ex)}')
+
+
+  if __name__ in ('__main__', '__builtin__', 'builtins'):
+      main()
+
+  register_module_line('iot-security-alert-post-processing', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags:
+- iot
+- post-processing
+type: python
