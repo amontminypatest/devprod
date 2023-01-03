@@ -1,0 +1,104 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "",
+	"feed": false,
+	"fromServerVersion": "",
+	"id": "db94f792-2813-4205-8cb3-4165420a232a",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "",
+	"keyTypeMap": {},
+	"locked": false,
+	"logicalVersion": 1,
+	"mapping": {
+		"Alex Training - Phishing Email Alert": {
+			"dontMapEventToLabels": true,
+			"internalMapping": {
+				"Description": {
+					"complex": {
+						"filters": [],
+						"root": "${threats}",
+						"transformers": []
+					}
+				},
+				"Email CC": {
+					"simple": "${ccAddresses}"
+				},
+				"Email From": {
+					"simple": "sender"
+				},
+				"Email Subject": {
+					"simple": "subject"
+				},
+				"Email To": {
+					"complex": {
+						"filters": [],
+						"root": "${toAddresses}",
+						"transformers": []
+					}
+				},
+				"occurred": {
+					"simple": "messageTime"
+				}
+			}
+		},
+		"Alex Training - Phishing URL Clicked": {
+			"dontMapEventToLabels": true,
+			"internalMapping": {
+				"Email From": {
+					"simple": "sender"
+				},
+				"Email Message ID": {
+					"simple": "messageID"
+				},
+				"Email Sender IP": {
+					"simple": "senderIP"
+				},
+				"Email To": {
+					"simple": "recipient"
+				},
+				"Email URL Clicked": {
+					"simple": "url"
+				},
+				"Source IP": {
+					"simple": "clickIP"
+				},
+				"details": {
+					"simple": "classification"
+				},
+				"occurred": {
+					"simple": "clickTime"
+				}
+			}
+		},
+		"dbot_classification_incident_type_all": {
+			"dontMapEventToLabels": true,
+			"internalMapping": {
+				"Event ID": {
+					"simple": "EventID"
+				},
+				"Event Type": {
+					"simple": "type"
+				}
+			}
+		}
+	},
+	"name": "Alex Training - Phishing Mapper",
+	"nameRaw": "Alex Training - Phishing Mapper",
+	"packID": "",
+	"packName": "",
+	"propagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": false,
+	"toServerVersion": "",
+	"transformer": {},
+	"type": "mapping-incoming",
+	"unclassifiedCases": null,
+	"version": -1
+}
