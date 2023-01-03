@@ -1,0 +1,47 @@
+comment: Dynamic section which shows the automations from the Training Pack on the
+  Training layout.
+commonfields:
+  id: 224e202f-1c04-4796-8cdc-87aaa9b9ef1b
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.9.1.15759
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: GetTrainingAutomationsList
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  result = demisto.executeCommand("demisto-api-post", {"uri":"/automation/search","body":{"query":"tags:training AND system:F"}})
+  scripts = [{ "Name":x["name"],"Description":x["comment"],"Tags":x["tags"]} for x in result[0]["Contents"]["response"]["scripts"]]
+
+  # remove the Training tag
+  for script in scripts:
+      tags = script["Tags"]
+      tags.remove("training")
+      script["Tags"] = tags
+
+  # return a MD entry for the dynamic section
+  entry = {
+      'Type': entryTypes['note'],
+      'Contents': tableToMarkdown('Training Automation Scripts', scripts, headers=["Name","Description","Tags"]),
+      'ContentsFormat': formats['markdown']
+  }
+  demisto.results(entry)
+scripttarget: 0
+subtype: python3
+tags:
+- training
+- dynamic-section
+type: python
