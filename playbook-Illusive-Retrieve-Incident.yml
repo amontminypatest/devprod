@@ -1,0 +1,284 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.0.21
+    packID: IllusiveNetworks
+    packName: Illusive Networks
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: This playbook is used for retrieving an extensive view over a detected
+  incident by retrieving the incident details and a forensics timeline if and when
+  forensics have been successfully collected.
+id: Illusive-Retrieve-Incident
+inputs:
+- description: The desired incident ID to retrieve.
+  key: incident_id
+  playbookInputQuery: null
+  required: true
+  value:
+    simple: "3"
+- description: The starting date of the forensics timeline.
+  key: start_date
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: The last date of the forensics timeline.
+  key: end_date
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: Illusive-Retrieve-Incident
+outputs:
+- contextPath: Illusive.Forensics.Evidence.details
+  description: The forensics evidence details
+- contextPath: Illusive.Forensics.Evidence.eventId
+  description: The event ID
+- contextPath: Illusive.Forensics.Evidence.id
+  description: The forensics evidence ID
+- contextPath: Illusive.Forensics.Evidence.source
+  description: The Evidence source
+- contextPath: Illusive.Forensics.Evidence.starred
+  description: Whether the forensics evidence has been starred
+- contextPath: Illusive.Forensics.Evidence.time
+  description: 'Date and time of the forensics evidence '
+- contextPath: Illusive.Forensics.Evidence.title
+  description: The forensics evidence description
+- contextPath: Illusive.Forensics.IncidentId
+  description: The Incident Id
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 3d6c1f0c-803f-461a-855e-4959014d05c1
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 3d6c1f0c-803f-461a-855e-4959014d05c1
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 40
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      incident_id:
+        complex:
+          root: inputs.incident_id
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: IllusiveNetworks
+      description: Retrieve incidents
+      id: f48425c1-1132-4c81-8f19-bcb74dddf734
+      iscommand: true
+      name: illusive-get-incidents
+      script: IllusiveNetworks|||illusive-get-incidents
+      type: regular
+      version: -1
+    taskid: f48425c1-1132-4c81-8f19-bcb74dddf734
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 190
+        }
+      }
+  "2":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: Incident.hasForensics
+                root: Illusive
+          operator: isEqualString
+          right:
+            value:
+              simple: "true"
+      label: "yes"
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "5"
+      "yes":
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: ab6c331d-ee27-4636-8f60-7d03d3810c7f
+      iscommand: false
+      name: Check If Incident Has Forensics
+      type: condition
+      version: -1
+    taskid: ab6c331d-ee27-4636-8f60-7d03d3810c7f
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 370
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      end_date:
+        complex:
+          root: inputs.end_date
+      incident_id:
+        complex:
+          accessor: Incident.incidentId
+          root: Illusive
+      start_date:
+        complex:
+          root: inputs.start_date
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: IllusiveNetworks
+      description: Retrieve forensics timeline for a specific incident
+      id: 24d89786-a8cf-45b5-8700-c54b4ae85b09
+      iscommand: true
+      name: illusive-get-forensics-timeline
+      script: IllusiveNetworks|||illusive-get-forensics-timeline
+      type: regular
+      version: -1
+    taskid: 24d89786-a8cf-45b5-8700-c54b4ae85b09
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 570
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: '"The Incident Has No Forensics'
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: 4fb8acc2-f576-4c0b-8e9e-686ada74e3ce
+      iscommand: false
+      name: Print No Forensics Timeline for Incident
+      script: Print
+      type: regular
+      version: -1
+    taskid: 4fb8acc2-f576-4c0b-8e9e-686ada74e3ce
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1040,
+          "y": 560
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: ${Illusive.Forensics.Evidence}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: b8673e22-bfbd-4cc6-82a5-cd7ff14811dd
+      iscommand: false
+      name: Print Incident Forensics Timeline
+      script: Print
+      type: regular
+      version: -1
+    taskid: b8673e22-bfbd-4cc6-82a5-cd7ff14811dd
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 740
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 795,
+        "width": 970,
+        "x": 450,
+        "y": 40
+      }
+    }
+  }
