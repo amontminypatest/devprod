@@ -1,0 +1,39 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "",
+	"feed": false,
+	"fromServerVersion": "",
+	"id": "5c1011c8-827a-4035-8593-14aaf7fc76dc",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "",
+	"keyTypeMap": {
+		"clicks blocked": "Training - URL Clicks",
+		"clicks permitted": "Training - URL Clicks",
+		"messages blocked": "Training - Email Alerts",
+		"messages delivered": "Training - Email Alerts"
+	},
+	"locked": false,
+	"logicalVersion": 1,
+	"mapping": null,
+	"name": "Training - XSOAR Engineer Training - Classifier",
+	"nameRaw": "Training - XSOAR Engineer Training - Classifier",
+	"packID": "",
+	"packName": "",
+	"propagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "3be49fb4-9b3b-4f53-8607-4a7e1084fb80",
+	"system": false,
+	"toServerVersion": "",
+	"transformer": {
+		"simple": "type"
+	},
+	"type": "classification",
+	"unclassifiedCases": null,
+	"version": -1
+}
