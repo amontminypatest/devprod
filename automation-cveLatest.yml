@@ -1,0 +1,52 @@
+comment: Deprecated. No available replacement. Displays the latest updated CVE entries.
+commonfields:
+  id: cveLatest
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.0.12
+    packID: CVESearch
+    packName: CVE Search
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+dependson:
+  must:
+  - cve-latest
+deprecated: true
+engineinfo: {}
+mainengineinfo: {}
+name: cveLatest
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |2
+
+  var resCmd = executeCommand('cve-latest', args);
+
+  function markdownTableHeader(columnNames) {
+      var header="|";
+      var divider="|"
+      for (var idx=0;idx<columnNames.length;idx++) {
+          header += columnNames[idx] + "|";
+          divider+= "-|";
+      }
+      return header+"\n"+divider+"\n";
+  }
+  var data=resCmd[0].Contents.results;
+  //return JSON.stringify(data);
+  var res = "";//markdownTableHeader(['CVE ID','Summary']);
+  for (var cveIdx=0;cveIdx<data.length;cveIdx++) {
+      res += "**" + data[cveIdx].id + "**" + ": " + data[cveIdx].summary + "\n";
+  }
+
+  return { ContentsFormat: formats.markdown, Type: entryTypes.note, Contents: res } ;
+scripttarget: 0
+system: true
+tags:
+- cve
+type: javascript
