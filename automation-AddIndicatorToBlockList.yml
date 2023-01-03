@@ -1,0 +1,59 @@
+args:
+- name: indicator
+- description: Please provide a reason for adding this indicator to the block list.
+  name: reason
+  required: true
+comment: Tag the indicator to be added to the block list, and add a comment for reference.
+commonfields:
+  id: 9ef15abb-2879-4ced-8d07-98b7068378e9
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dependson:
+  must:
+  - Demisto REST API|||demisto-api-post
+dockerimage: demisto/python3:3.8.2.6981
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: AddIndicatorToBlockList
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |-
+  # update with the tag to add, and reputation to set
+  add_tag = 'approved_block'
+  comment = demisto.args().get('reason')
+  reputation = 'Bad'
+
+  # remove other tags if present
+  remove_tags = 'approved_allow,approved_block,approved_watch,quick_block'
+
+  # magic
+  indicator = demisto.args().get('indicator').get('Name')
+  indicator_id = demisto.args().get('indicator').get('id')
+
+  demisto.executeCommand("removeIndicatorField", {"indicatorsValues": indicator, "field": "tags", "fieldValue": remove_tags})
+  demisto.executeCommand("appendIndicatorField", {"indicatorsValues": indicator, "field": "tags", "fieldValue": add_tag})
+  demisto.executeCommand("setIndicator", {"id": indicator_id, "reputation": reputation})
+
+  # add the reason as a comment to the indicator
+  comment = {"indicatorId":indicator_id,"content":comment}
+  demisto.executeCommand("demisto-api-post", {"uri":"/indicator/comment","body":comment})
+
+  demisto.results(f"Indicator {indicator} tagged to requested list")
+scripttarget: 0
+subtype: python3
+tags:
+- indicator-action-button
+- training
+type: python
