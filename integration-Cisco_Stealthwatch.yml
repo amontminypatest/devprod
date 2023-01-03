@@ -1,0 +1,937 @@
+category: Analytics & SIEM
+commonfields:
+  id: Cisco Stealthwatch
+  version: -1
+configuration:
+- additionalinfo: 'Server URL for Cisco Stealthwatch console e.g.: https://ip:port/.'
+  display: Server URL
+  name: server_url
+  required: true
+  type: 0
+- display: User Credentials
+  name: credentials
+  required: true
+  type: 9
+- display: Trust any certificate (not secure)
+  name: insecure
+  required: false
+  type: 8
+- display: Use system proxy settings
+  name: proxy
+  required: false
+  type: 8
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.5.0
+    itemVersion: 1.0.8
+    packID: CiscoStealthwatch
+    packName: Cisco Secure Network Analytics (Stealthwatch)
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: Scalable visibility and security analytics.
+detaileddescription: |-
+  ## Cisco Stealthwatch
+
+  ### Getting Credentials
+
+  The username and password required by this integration are the same as the credentials used to login into the Cisco Stelathwatch console.
+
+
+  ---
+  [View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/cisco-stealthwatch)
+display: Cisco Secure Network Analytics (Stealthwatch)
+image: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAAyCAYAAACXpx/YAAAACXBIWXMAABJ0AAASdAHeZh94AAASJElEQVR4Xu1bCXRUZZauelWv9iyVhOwhIYLsEIjaKkLb3aAiinpEbZUepe3TjBsD6qgoIzON3S2N3erQ9vSIY8PgCLgggkMLyr4EAiGQhYRA9lSlstS+V72qmu++5MVKpqQqQXucc947Jyf1/vX+9/7/vd+9/30SifiIHBA5IHJA5IDIAZEDIgdEDogcEDkgckDkgMiB744DvT4u461aywuX7P7xI53lK4Pr9g8a7Uu4cFg20jGEfvIrHUDsP5gDba7g6F9V9q7KUslMqLkwEv581Oz8aZXVP2nhaN1H6O8ayRhCH+ZKOot9+zgQCIVZgRcRiSQklUrD+C8VyoKhy59E1LNcKDzQHn3piUQiX48xUl6LAh4p5/r71Vh8Ux47YtpSb/ON7S/ql4+E/w+VrX+yrGvjX9udd8eaKhQOM7+vsaz6Y53thXC4T8iCpPGfH+PjZseDT5eZNrgCoaThkisKeLgcG9K+1RW86rM25x0dbm5Mf9UgIdn8If2uduf8Gpt/WqwTHYpIZEe6vHMOmdw/DEskMW3uOYuv5IsO1zwXF9YJY0BrDJz4yy1BFPAwBXy40z3h0cPGrUZ3kFfLUqnEL2ckXBS3+Z+CikY9J5NKQ4xECvlJJN5gSPNSRc9b71+yP9Y/NeoiYWrzTaQwUglfL8xx0Oie+/hx0391eYK58cgXBRyPQ0PqL9gDuZ+2OheavFxavyAZnEIGAhVU86AesKMSGGQG0uV57Q1F1F8Y3LeW93ivF048bYZY9lbYJFTHt+nvAG0weWe7e4E1EE6PR76IouNxaEh9hkrmHpesaEpimSBVpbCMZ0wS25aiYCy8wCHMaN2pkTO+ItRnqmRdVM8yUl+Rjm3N08gN9I7GkVwNa1DLpR704095tAag35kqeXeBVm5QyqR+es/Ce7FO3qKRSd3DJF9sHo8D7mBI2uIM5ES3a3YECoX3M73e0oz3GxxbG+2PCGWtzkCRIxBSC+/trkC+1celCO8mTzC72xvMEN6XHu3cNOvzllOuYIi3uXY/p8UYgo2XgAam2Rm4Kh6tYv13wAGLj0v+c511GYQ+YgEc7HTPBXJ+6NsIdHwHSxSH/D5xICGo/X0i+PtIC1wWxh4I6aUSqQy2uJeVMWGoUTXAF5uskDmIZvJxAYrSuHBEDvvt1LAyj7AWIGuVIxjWK2TSgF4pNwvlfi7M2oOhVDkCJ2mqr8uHwwMRZA2HWzHaItBR8tjRzpcqzf4ZCkYaXH995hNodvDNWsvL1dbARNjeJSqAoX89b312S5PzoVAkIv+7sSmb0WYtDbe3w7Vg0QHDiiZnsLhAyxo6XIGf5esULbDl1z1yxLiy2hKYCgDmXX2m5/Plk/XrsAF4MJfoIwo4UU7FaNfjDWY9cND4dp0tMP7h4uQtdDK1LMMj22YXN6YW8WTEGxmDO1T0eo312al6Re3Tk/TrgaDbqc05s6/0nn2GfycEff+Y5G1K+NNybBL42PmL9hv+zejhch5AudEbzPtDjWV5OBKRIay5EhriG33mK1iO2HUoB3DrM1+96QL36tmeNUPrfnm0c3PJjuYaIOBUIOSsmz5vKS/Yesn01HHTO1Vm30xq/0aNeaVqUz23s9V5b3T/XW3Oe9Uo31BvfYrKPcGQ9s4v2/dO+7TpQq+XyxyOJMQTPBxuxWwbM74xEE+mIEemmu1qdPgXQ0Uv3nDB9ouzUOtWP3fbxov22J0vQxMiY8M6vaKAr0DA09OUZ64fpS6Hjn78uZNdKUkKxnnXaN2OknT1KUiBIeFCIBEzfN5DJs+MyamKWqhno9kfTgsCbP0kR7M3Ry1/emVFz29hY0thq7kl41LeRr/jJWmqql+fM69ceaq7eOlxU96BTs+c5VDv6cMEW6KAr0DAo3Ayqy2+J9dWmV/6vN11J6JU3I9zNPtoyHyNvMOazCYhhsxZA6FRAFnLe32hUUDZ1l/NyFiNU92NZt17OlxL36i1PPtBo2NxvlZuXHxV8l8KdIrmil7v469VmV/+BOpbLZN6n5mc9tY/AGS9Okx6RTdpmAyL1RzujNISCKVTsFmvlHUrZAwH9JxMLhHcGwsCFozVHxoVCEdUWjnjTB2ChOFS6exwoeAm+fRws2QMha4lEh8XUlv94QxsnECakulh+su/BZLFIUQOiBz4f8GBYaloQP6UFhc3ttvHZUL9yNKUMttoLXspR8tS/tHf9HEGQhrcxAS1rIy/1Rn6UKYE1F5yMsu45FCZf1PivqXJKIODrgmT+qNhIxk2IZBFYbbDJu+8l8/0/hSGwpyHqysWF9k1tkBau8vxKILrNQ8BHCAsZx8JESPps73VuSQD9g59KTHtfz1uLqJ+vdry6rLJ+tdQ2TGSOf6v++xqdy3EQaLEgo0jpSUhASNSM21DA1yBKWm/mQbXACBgwBdDztGojQ32vwdKfB6gYI1KLvPhJmVcvd0/bX5B0icjJSxeP5zOFBUj5eO5tAH/u919X0m68jQQaBNfFomwPb5QBkKDV5x6Go+Wy9XjWlD/pdF998LRSR+o5Ax/n5vo4wyGdf5wRJlo+1jtEsroON7tnV2arjo5I0N9Klq4NGCGSt7zxMTUP/hCYQ2pbyrr9HL5J3t8N14JYfH68glp8DGpHdBlhGg0+0MDd6pUTj5ovHG+63rKo/rK6JkLchPidTQ9RL+QeDdSOhM6wbB1ocvtJNyMuGETV7OMJAC/sHRHq/OWOpt/wo4Wx/3JCsZ+U5bmAFyHAFJD5eW9vllnzb5rXFChSazUA4f+9LUZquPRdhKaQFXW7Ztz3uafSqoWdtRdmqE6MTNdeVJwIXgBgmuwU8mHuzxz36m3TdzfKZuHOYugZc4iwtBF9aGwRF7W5Zlzxuy7lk5EulJmmZen3V2UpGgkeqqt/tJxKYpaHSsbyD8mjYANOhs+q22SXlUVzVxcBhT6kHYzNkVZT+muSL2Zdc7qn+kKRjRaXApgPRU/GKU6SutpcvjHwT++vckZKPyszXXf7nanY1am+mCKUm6jOZD7XFre45tl8YdS4D55J+sV1Tdkqg+p5TIvP2dfzk4ECQKFMJFzDcjBopulGdBU4Ol+xKRj4o9oehMSMIg6supM7++Omdw3z8rWHoy1mwQggFsQxh+KyLmwhMGmkAXxn3KKyFfc0GB/AlmIY+4s0G7Hye8CWMv5tNV1f43VPx3M+jMRTO3+WGd9jlTwggLtjlTYfLTL3dbs+JnBrS4AYz6iEyvQAIdRCobLg8hOhJ8pozlxTUfgMUQZi9uanY9o5FLnjZnqA0h58VX0+q5fc7b3VTD/FbRq2tHqWvSTXA1lTvABCnpwrZexttqyOl8ja8NV4FLanEIdktIfHq1jW+DbXnz3gv1J3AKNvWu09mOsx0S+7s52170trmAxQN5G1EmJF5SzxdMWisiIXhIu1v3gQZNn7h0Fuk9nZ6mbbPCD/9rhXgiB34DY81q6TsQJDiMHbOr7jY6ca9JVZaUZyjIES7I+BA3tbm405viP6A0/0lPO27j9RtetPz9i3Priqa63KNvgrNk7A/FUbaxB9+HTi1cqut+Irvui3blwWZnpXQQABlJVqJ6C8VSOLIZ59H7e6pv+fHnX2+T8R/en0/DEMdNGm5/TU/n6WsvKbU32R/mNHolInzlpevec2Xut0AfzqG7d03Z0XZV5dXRiOtW/U29d9nq1eRX9Ji2DSNRqISeZyo53eW5eU9mzFhcDf0EM+WphTDBes+JE1ztU1uYKjHkGv5HBMcgsINMxBxmPm5CGw2c8ou3YJYeNW7BxB1J2sMapjx0xbiFtEL1GLwIbtHbkUN/TT+cvf7S79QRhmuh2bUjfefigYTvdOsUTakInuP/E7AFzy6Hqrjtr9pceNnl+RAgPDGycn6/dOSVNdU6YjE7OkMx+duXpntseKE7ePBRpk7rChvh4v9F9C3bkPpzGphempf8L3J9Bn2wgZmtEemrEgZNNhyx6YRQxIi1B8wrldE2HhDg7aPsMJ3CQKpucqqze0eZcRG2np6sq9hrct8MUqPDKq8ZKqPMfZmu+rLUFpuKelzZNA5Xjs5RiSnzL17CtYUlEtnJ62iuIVPVG0wIT0KtDaBFqdxTKjdBk8ghMKReJDCTU7TG475iVqTmMe9/W6L6kmqGOf484taJv40qYOVmag2OSFRej22UjYY/cP8xBN0uX9RASErAwOEJsxNg99IdToejycjnHurw3wx1ZhZPw0d1FyR/G2lGwfckAXpSoxjT0fZQ1CNl2uIPSZjDPw0V0/areSScbKm4c0lPzgIazoLZzoPqKEv2YAxuMgXp36JXMoM1A9FEeMwL6vKrEpkBGpMwO1F+CqjLy9decNRffNyZpM+52nZ+0OB+E+dhKd7AVZv9145LZeuXXaNhDvirRafQEC4jO9XXWzDq7f1IMcMR7HlDt8uUnusc9WKz6z1i8ErwAqqN86FFqmTFGu4gMdXSZEWuM6LJhCTi6Y79doh24CZ9tVIApa6C2ykcjG2HopNiRKtin9N0IyCNw7iEDGh1hoZM3TU/ASBIGM+WwRXe/Vm2Zk8oyVqScNhUnKRoAssoh4LH00U+Cj/xyCJTqSMuQ3YeqrzjR7buJBNzoDI4nYIiT2K2SMV58mZBq8HBFqGsEICu5tzBpK81PgZR9Rs/tuPGZh/aOQh3bDNvcdA3AYDPsspAHHUUrLwzSNv5wWIXkgEQ/Kou1Yj5POhE+xBWwjwszZj+XmadVfGO0akKqqmbFCVN3gz1Ap5MXcDRVCKJ7c3G78vjE1Ddz1X3ZDP1teCIFoPCP+E2X6HsMrgXPT01fA4Y140MufijYMBWBJPyMu2v7h0+IAdSWkPz689bnCL1vbXLOJCTcT5Mdl/IXqiz+GcjecP22yqK8OoU9T31O9/pu+Bin+9kpab+mUy1cBEArMLSJYzCfAhYBoGCONg68iJj4JbpfvL1Mqj+ekOMyy82F03A6XyeQ802DYTcTglWoAfWFNtEzY7faM9VyXK35S8ieC3/ERPrrBFgA+uYz/Unl35ipOVSYpGgShEvlvJr3hDIxLj90Ij5uPAYJtCIRvVHDSt2wuSWXHIGrKZgj1AF9H4GAZ561+K/BdV4bYQaqO9HjvQnuSvn4VOX56FsemBltl4+nc+j0PN3kPiFxvh7Bo8mx+FmJXKxDne5b4gkuUf84roBxfWWG2in7U51tOSHEoROTcHdDpVI5LrSr+UXAxgFcDNhZOSJfCwt027e3uh6AGi+KHoOQ6Z/qbSvgDkykcthDK+x1XnQb8jfxucddsPnZpMaH0tBXBpMaZZP6GJCYiMmmTterzsAFWgz/OQJANwBcJqQoauCmZe1scy0qSVNWCHPDvltN3lBuNPrm1XanZz4l0AkbELYyFI5IB2EOAL9dx7s9s4FH+DULDxIDMt5rsC/FYRn4HPVygkYWZ9wFxlXRdNoA39/bdNGx9J8re9ci7nwmRyNrByM4DxdOgQ2aRD7rsklp6/pBmAQ7tG5bk/Ph7fjsEZ969OJElOMUH0MSWf66ass/bb5kK8sGKqbd/lqV5QfYRJY7+z52ltxTqPsQF92r36yxvDgxVVFDWYhQn1MICM3O1hwRhEjBF1J31Ieia+812CrxzdAiuHPJhGRR3MgyTDAWE0j4uGNF3dc7gGz823XWFU9N1L8ZBaIkpH1gXtqBCxa8ND2dd63ouS1PuwtrX7OuxvIKXMBKKsMhmEjj3pqn/YqPs+HBOk24y7VsaXI8esDoujg+RXk+V8vWwxXa+kaN9cVNF23HyHzBD9ZjvNkUpLk5W7OXXxe/RknMixKaJ9ZmH7oh4urw6A7wx8aSC9EBQcFpZyE86/gUxXmkrpyGWzPoO5la+LOIvvwYaSh++lIdqSY9NBapekSJZuE0ZhHQmA57h5NxOjqShSS17EOdfOQmD26VE+NXAIRVAFEX4IKhS40gAEV3yGVBZgSPDSgx7UuDe0GbmytE+0qKCBG6LdTJmyg+Hr0OQuhAvJmIRvHuDz3kK5MqLk5iLw3NQYZPm4O5c6fqlZXRgQX4wOlwF+cSukckyjMVwpmJkC6CEdlwY6w60E5jG9zBArhidyCcq56fr9uJKNolgRfHEbHrQTwfSdE2bLKTk1IV54Q50C+X3D24U4NcIWgKaaMjOIE2hjDHUMGK7yIHRA6IHBA5IHJA5IDIAZEDIgdEDogcEDkQkwP/A7MIWDjphWL4AAAAAElFTkSuQmCC
+name: Cisco Stealthwatch
+script:
+  commands:
+  - arguments:
+    - description: The ID of the tenant for which to initialize its flow search.
+      name: tenant_id
+      required: true
+    - description: 'Start time in the format: YYYY-mm-ddTHH:MM:SSZ. If start_time
+        is provided but end_time is not provided, the end_time will be set to the
+        current time.'
+      name: start_time
+    - description: 'End time in the format: YYYY-mm-ddTHH:MM:SSZ. '
+      name: end_time
+    - description: 'An optional time range, for example: 3 months, 1 week, 1 day ago,
+        etc.'
+      name: time_range
+    - default: true
+      defaultValue: "20"
+      description: The maximum number of records to retrieve.
+      name: limit
+    - description: The IP address by which to filter the results.
+      name: ip_addresses
+    description: Initializes the flow search based on specified arguments. Must provide
+      a start time, time range, or start time and end time.
+    name: cisco-stealthwatch-query-flows-initialize
+    outputs:
+    - contextPath: CiscoStealthwatch.FlowStatus.id
+      description: The ID of the flow.
+      type: str
+    - contextPath: CiscoStealthwatch.FlowStatus.searchJobStatus
+      description: The search job status of the flow.
+      type: str
+    - contextPath: CiscoStealthwatch.FlowStatus.percentComplete
+      description: The percent of the flow that was completed.
+      type: str
+  - arguments:
+    - description: The ID of the tenant for which to check its flow search status.
+      name: tenant_id
+      required: true
+    - description: The ID of the search from the cisco-stealthwatch-query-flows-initialize
+        command.
+      name: search_id
+      required: true
+    description: Checks the flow search status.
+    name: cisco-stealthwatch-query-flows-status
+    outputs:
+    - contextPath: CiscoStealthwatch.FlowStatus.id
+      description: The ID of the flow.
+      type: str
+    - contextPath: CiscoStealthwatch.FlowStatus.percentComplete
+      description: The percent of the flow that was completed.
+      type: str
+  - arguments:
+    - description: The ID of the tenant for which to retrieve its flow search results.
+      name: tenant_id
+      required: true
+    - description: The ID of the search from the cisco-stealthwatch-query-flows-initialize
+        command.
+      name: search_id
+      required: true
+    description: Retrieves the flow search results. Use this command after the search
+      job completes.
+    name: cisco-stealthwatch-query-flows-results
+    outputs:
+    - contextPath: CiscoStealthwatch.FlowResults.id
+      description: The ID of the flow.
+      type: str
+    - contextPath: CiscoStealthwatch.FlowResults.tenantId
+      description: The tenant ID of the flow.
+      type: str
+    - contextPath: CiscoStealthwatch.FlowResults.flowCollectorId
+      description: The collector ID of the flow.
+      type: str
+    - contextPath: CiscoStealthwatch.FlowResults.protocol
+      description: The protocol of the flow.
+      type: str
+    - contextPath: CiscoStealthwatch.FlowResults.serviceId
+      description: The service ID of the flow.
+      type: str
+    - contextPath: CiscoStealthwatch.FlowResults.statistics
+      description: The statistics of the flow.
+      type: str
+    - contextPath: CiscoStealthwatch.FlowResults.peer
+      description: The peer of the flow.
+      type: str
+    - contextPath: CiscoStealthwatch.FlowResults.subject
+      description: The subject of the flow.
+      type: str
+  - arguments:
+    - description: The ID of the tenant for which to get its tags.
+      name: tenant_id
+      required: true
+    description: Lists the host groups (called tags in the API).
+    name: cisco-stealthwatch-list-tags
+    outputs:
+    - contextPath: CiscoStealthwatch.Tag.id
+      description: The ID of the tag.
+      type: str
+    - contextPath: CiscoStealthwatch.Tag.displayName
+      description: The display name of the tag.
+      type: str
+  - arguments:
+    - description: The ID of the tenant for which to get its tag.
+      name: tenant_id
+      required: true
+    - description: The tag for which to get more information.
+      name: tag_id
+      required: true
+    description: Gets a single host group (called tag in the API).
+    name: cisco-stealthwatch-get-tag
+    outputs:
+    - contextPath: CiscoStealthwatch.Tag.id
+      description: The name of the tag.
+      type: str
+    - contextPath: CiscoStealthwatch.Tag.name
+      description: The ID of the tag.
+      type: str
+    - contextPath: CiscoStealthwatch.Tag.location
+      description: The location of the tag.
+      type: str
+    - contextPath: CiscoStealthwatch.Tag.domainId
+      description: The domain ID of the tag.
+      type: str
+  - arguments:
+    - description: The ID of the tenant for which to retrieve information.
+      name: tenant_id
+    description: Lists all domains if no domain is specified or gets a specified domain
+      (called tenant(s) in the API).
+    name: cisco-stealthwatch-list-tenants
+    outputs:
+    - contextPath: CiscoStealthwatch.Tenant.id
+      description: The ID of the tenant.
+      type: str
+    - contextPath: CiscoStealthwatch.Tenant.displayName
+      description: The display name of the tenant.
+      type: str
+  - arguments:
+    - description: The ID of the tenant for which to get its host information.
+      name: tenant_id
+      required: true
+    - description: The ID of the tag for which to get its information.
+      name: tag_id
+      required: true
+    description: Gets the hourly traffic summary of the byte count for a single host
+      group (called tenant in the API).
+    name: cisco-stealthwatch-get-tag-hourly-traffic-report
+    outputs:
+    - contextPath: CiscoStealthwatch.TagHourlyTraffic.timestamp
+      description: Timestamp of the hourly traffic summary for a single host group
+        (called tag on the API).
+      type: str
+    - contextPath: CiscoStealthwatch.TagHourlyTraffic.inboundByteCount
+      description: Inbound byte count of the hourly traffic summary for a single host
+        group (called tag on the API).
+      type: str
+    - contextPath: CiscoStealthwatch.TagHourlyTraffic.outboundByteCount
+      description: Outbound byte count of the hourly traffic summary for a single
+        host group (called tag on the API).
+      type: str
+    - contextPath: CiscoStealthwatch.TagHourlyTraffic.withinByteCount
+      description: Within the byte count of the hourly traffic summary for a single
+        host group (called tag on the API).
+      type: str
+    - contextPath: CiscoStealthwatch.TagHourlyTraffic.tenant_id
+      description: The tenant ID of the hourly traffic summary for a single host group
+        (called tag on the API).
+      type: str
+    - contextPath: CiscoStealthwatch.TagHourlyTraffic.tag_id
+      description: The tag ID of the hourly traffic summary for a single host group
+        (called tag on the API).
+      type: str
+  - arguments:
+    - description: The ID of the tenant for which to get its top alarming hosts.
+      name: tenant_id
+      required: true
+    description: Gets the top alarming host groups (called tags on the API) for a
+      specific domain (called tenant in the API).
+    name: cisco-stealthwatch-get-top-alarming-tags
+    outputs:
+    - contextPath: CiscoStealthwatch.AlarmingTag.ipAddress
+      description: The IP address of the alarming tag.
+      type: str
+    - contextPath: CiscoStealthwatch.AlarmingTag.hostGroupIds
+      description: The host group IDs of the alarming tag.
+      type: str
+    - contextPath: CiscoStealthwatch.AlarmingTag.typeId
+      description: The type ID of the alarming tag.
+      type: str
+    - contextPath: CiscoStealthwatch.AlarmingTag.severity
+      description: The severity of the alarming tag.
+      type: str
+    - contextPath: CiscoStealthwatch.AlarmingTag.alwaysBadCount
+      description: The always bad count of the alarming tag.
+      type: str
+  - arguments:
+    - description: The ID of the tenant for which to initialize its list security
+        events.
+      name: tenant_id
+      required: true
+    - description: 'Start time. Format: YYYY-mm-ddTHH:MM:SSZ. Given only the start_time,
+        the end_time will be set to the current time.'
+      name: start_time
+    - description: 'End time. Format: YYYY-mm-ddTHH:MM:SSZ.'
+      name: end_time
+    - description: 'An optional time range. For example: 3 months, 1 week, 1 day ago,
+        etc.'
+      name: time_range
+    description: Initializes the list of security events for a domain (called tenant
+      on the API).
+    name: cisco-stealthwatch-list-security-events-initialize
+    outputs:
+    - contextPath: CiscoStealthwatch.SecurityEventStatus.id
+      description: The ID of the security event.
+      type: str
+    - contextPath: CiscoStealthwatch.SecurityEventStatus.searchJobStatus
+      description: The status of the search job for the security event.
+      type: str
+    - contextPath: CiscoStealthwatch.SecurityEventStatus.percentComplete
+      description: The percent of the security event that is completed.
+      type: str
+  - arguments:
+    - description: The ID of the tenant for which to get its list of security events
+        status.
+      name: tenant_id
+      required: true
+    - description: The ID of the search from the initialize command.
+      name: search_id
+      required: true
+    description: Lists the security events status.
+    name: cisco-stealthwatch-list-security-events-status
+    outputs:
+    - contextPath: CiscoStealthwatch.SecurityEventStatus.id
+      description: The ID of the security event.
+      type: str
+    - contextPath: CiscoStealthwatch.SecurityEventStatus.percentComplete
+      description: The percent of the security event that is completed.
+      type: str
+  - arguments:
+    - description: The ID of the tenant for which to retrieve its list security events
+        results.
+      name: tenant_id
+      required: true
+    - description: The ID of the search from the initialize command.
+      name: search_id
+      required: true
+    - default: true
+      defaultValue: "50"
+      description: The maximum number of security events.
+      name: limit
+      required: true
+    description: Lists the security events results. Use this command after the search
+      job completes.
+    name: cisco-stealthwatch-list-security-events-results
+    outputs:
+    - contextPath: CiscoStealthwatch.SecurityEventResults.id
+      description: The ID of the security event.
+      type: str
+    - contextPath: CiscoStealthwatch.SecurityEventResults.domainId
+      description: The domain ID of the security event.
+      type: str
+    - contextPath: CiscoStealthwatch.SecurityEventResults.deviceId
+      description: The device ID of the security event.
+      type: str
+    - contextPath: CiscoStealthwatch.SecurityEventResults.securityEventType
+      description: The type of the security event.
+      type: str
+    - contextPath: CiscoStealthwatch.SecurityEventResults.firstActiveTime
+      description: The first active time of the security event.
+      type: str
+    - contextPath: CiscoStealthwatch.SecurityEventResults.lastActiveTime
+      description: The last active time of the security event.
+      type: str
+    - contextPath: CiscoStealthwatch.SecurityEventResults.source
+      description: The source of the security event.
+      type: str
+    - contextPath: CiscoStealthwatch.SecurityEventResults.target
+      description: The target of the security event.
+      type: str
+    - contextPath: CiscoStealthwatch.SecurityEventResults.details
+      description: The details of the security event.
+      type: str
+    - contextPath: CiscoStealthwatch.SecurityEventResults.hitCount
+      description: The hit count of the security event.
+      type: str
+  dockerimage: demisto/python3:3.10.9.40422
+  runonce: false
+  script: |
+    register_module_line('Cisco Stealthwatch', 'start', __line__())
+
+
+
+    import urllib3
+    import requests
+    import dateparser
+    from datetime import datetime
+
+    # Disable insecure warnings
+    urllib3.disable_warnings()
+
+    DATE_FORMAT = '%Y-%m-%dT%H:%M:%SZ'
+
+
+    class Client(BaseClient):
+        """
+        Cisco Stelathwatch Client.
+        """
+
+        def __init__(self, base_url: str, auth: tuple, verify: bool, proxy: bool):
+            super().__init__(base_url=base_url, auth=auth, verify=verify, proxy=proxy)
+
+        def prepare_request(self, url_suffix: str, method: str = 'GET', data: dict = {}, json_data: dict = {},
+                            resp_type: str = 'json'):
+            cookies = self._get_cookies()
+            headers = {}
+            if token := cookies.get('XSRF-TOKEN'):
+                demisto.debug('Received XSRF-TOKEN cookie from Cisco Secure Network, creating an X-XSRF-TOKEN header.')
+                headers.update({'X-XSRF-TOKEN': token})
+            return self._http_request(method=method, url_suffix=url_suffix, json_data=json_data, data=data, cookies=cookies,
+                                      headers=headers, resp_type=resp_type)
+
+        def list_tenants(self):
+            return self.prepare_request(method='GET', url_suffix='/sw-reporting/v1/tenants')
+
+        def get_tenant(self, tenant_id: str):
+            return self.prepare_request(method='GET', url_suffix=f'/sw-reporting/v1/tenants/{tenant_id}')
+
+        def list_tags(self, tenant_id: str):
+            return self.prepare_request(method='GET',
+                                        url_suffix=f'/sw-reporting/v1/tenants/{tenant_id}'
+                                                   f'/internalHosts/tags')
+
+        def get_tag(self, tenant_id: str, tag_id: str):
+            url = f'/smc-configuration/rest/v1/tenants/{tenant_id}/tags/{tag_id}'
+            return self.prepare_request(method='GET', url_suffix=url)
+
+        def tag_hourly_traffic(self, tenant_id: str, tag_id: str):
+            url = f'/sw-reporting/v1/tenants/{tenant_id}/internalHosts/tags/{tag_id}/traffic/hourly'
+            return self.prepare_request(method='GET', url_suffix=url)
+
+        def get_top_alarms(self, tenant_id: str):
+            url = f'/sw-reporting/v1/tenants/{tenant_id}/internalHosts/alarms/topHosts'
+            return self.prepare_request(method='GET', url_suffix=url)
+
+        def initialize_flow_search(self, tenant_id: str, data) -> dict:
+            url = f'/sw-reporting/v2/tenants/{tenant_id}/flows/queries'
+            return self.prepare_request(method='POST', url_suffix=url, json_data=data)
+
+        def check_flow_search_progress(self, tenant_id: str, search_id: str):
+            url = f'/sw-reporting/v2/tenants/{tenant_id}/flows/queries/{search_id}'
+            return self.prepare_request(method='GET', url_suffix=url)
+
+        def get_flow_search_results(self, tenant_id, search_id):
+            url = f'/sw-reporting/v2/tenants/{tenant_id}/flows/queries/{search_id}/results'
+            return self.prepare_request(method='GET', url_suffix=url)
+
+        def initialize_security_events_search(self, tenant_id: str, data) -> dict:
+            url = f'/sw-reporting/v1/tenants/{tenant_id}/security-events/queries'
+            return self.prepare_request(method='POST', url_suffix=url, json_data=data)
+
+        def check_security_events_search_progress(self, tenant_id: str, search_id: str):
+            url = f'/sw-reporting/v1/tenants/{tenant_id}/security-events/queries/{search_id}'
+            return self.prepare_request(method='GET', url_suffix=url)
+
+        def get_security_events_search_results(self, tenant_id, search_id):
+            url = f'/sw-reporting/v1/tenants/{tenant_id}/security-events/results/{search_id}'
+            return self.prepare_request(method='GET', url_suffix=url)
+
+        def _get_cookies(self) -> requests.cookies.RequestsCookieJar:
+            data = {
+                'username': self._auth[0],
+                'password': self._auth[1]
+            }
+
+            response = self._http_request(method='POST',
+                                          url_suffix='/token/v2/authenticate',
+                                          data=data,
+                                          resp_type='response')
+            return response.cookies
+
+
+    def cisco_stealthwatch_query_flows_initialize_command(client: Client, tenant_id: str,
+                                                          start_time: str = None, end_time: str = None,
+                                                          time_range: str = None, limit: str = None,
+                                                          ip_addresses: str = None) -> CommandResults:
+        """Initialize the process of query flows with user params and returns the id of the search
+        to retrieve its results
+
+        Args:
+            client (Client): Cisco Stealthwatch Client
+            tenant_id (str): The id of the tenant we want to search with
+            start_time (str, optional): The start time of the search. Defaults to None.
+            end_time (str, optional): The end time of the search. Defaults to None.
+            time_range (str, optional): Time range (start and end) of the search. Defaults to None.
+            limit (str, optional): Number of records to return. Defaults to None.
+            ip_addresses (str, optional): The IP addresses to search for. Defaults to None.
+
+        Returns:
+            CommandResults: Raw response, outputs and readable outputs.
+        """
+        # must provide start_time, time_range or start_time and end_time. else: throw error.
+        if not (start_time or end_time or time_range):
+            raise Exception('Must provide start_time, time_range, or start_time and end_time')
+        if not (time_range or start_time) and end_time:
+            raise Exception('Must provide start_time, time_range, or start_time and end_time')
+
+        # formatting start_time and end_time
+        start_time, end_time = times_handler(start_time, end_time, time_range)
+        if not start_time:
+            raise Exception('Invalid time format. Check: start_time, time_range, and end_time')
+
+        data = remove_empty_elements({
+            "startDateTime": start_time,
+            "endDateTime": end_time,
+            "recordLimit": limit,
+            "subject": {
+                "ipAddresses": {
+                    "includes": ip_addresses if isinstance(ip_addresses, list) else [ip_addresses]
+                }
+            }
+        })
+        response = client.initialize_flow_search(tenant_id, data)
+        outputs = dict_safe_get(response, ['data', 'query'])
+        table = tableToMarkdown('Query Flows Initializing Information:', outputs,
+                                headers=['id', 'status', 'percentComplete'], removeNull=True,
+                                headerTransform=pascalToSpace)
+        return CommandResults(
+            outputs_prefix='CiscoStealthwatch.FlowStatus',
+            outputs_key_field='id',
+            raw_response=response,
+            outputs=outputs,
+            readable_output=table)
+
+
+    def cisco_stealthwatch_query_flows_status_command(client: Client, tenant_id: str,
+                                                      search_id: str) -> CommandResults:
+        """Retrieve query flow status using search id
+
+        Args:
+            client (Client): Cisco Stealthwatch Client
+            tenant_id (str): The id of the tenant the search was performed on
+            search_id (str): The id of the search
+
+        Returns:
+            CommandResults: Raw response, outputs and readable outputs
+        """
+        response = client.check_flow_search_progress(tenant_id, search_id)
+        outputs = dict_safe_get(response, ['data', 'query'])
+        outputs['id'] = search_id
+        table = tableToMarkdown('Query Flows Status Information:', outputs,
+                                headers=['id', 'percentComplete'], removeNull=True,
+                                headerTransform=pascalToSpace)
+        return CommandResults(
+            outputs_prefix='CiscoStealthwatch.FlowStatus',
+            outputs_key_field='id',
+            raw_response=response,
+            outputs=outputs,
+            readable_output=table)
+
+
+    def cisco_stealthwatch_query_flows_results_command(client: Client, tenant_id: str,
+                                                       search_id: str) -> CommandResults:
+        """Retrieve the results for a query flow by search id
+
+        Args:
+            client (Client): Cisco Stealthwatch Client
+            tenant_id (str): The id of the tenant the search was performed on
+            search_id (str): The id of the search
+
+        Returns:
+            CommandResults: Raw response, outputs and readable outputs
+        """
+        response = client.get_flow_search_results(tenant_id, search_id)
+        outputs = []
+        for data in dict_safe_get(response, ['data', 'flows']):
+            outputs.append(data)
+        headers = ['id', 'tenantId', 'flowCollectorId', 'protocol', 'serviceId', 'statistics', 'peer',
+                   'subject']
+        table = tableToMarkdown('Query Flows Results Information:', outputs, headers=headers,
+                                removeNull=True, headerTransform=pascalToSpace)
+        return CommandResults(
+            outputs_prefix='CiscoStealthwatch.FlowResults',
+            outputs_key_field='id',
+            raw_response=response,
+            outputs=outputs,
+            readable_output=table
+        )
+
+
+    def cisco_stealthwatch_list_tags_command(client: Client, tenant_id: str) -> CommandResults:
+        """List tags (called host groups on the Stealthwatch API) based on tenant id
+
+        Args:
+            client (Client): Cisco Stealthwatch Client
+            tenant_id (str): The id of the tenant to list its tags (tenant is a domain on the API)
+
+        Returns:
+            CommandResults: Raw response, outputs and readable outputs
+        """
+        response = client.list_tags(tenant_id)
+        outputs = []
+        for tag in response.get('data', []):
+            outputs.append(tag)
+
+        outputs = sorted(outputs, key=lambda x: x.get('id'))
+
+        table = tableToMarkdown(f'Tags for tenant_id: {tenant_id}:', outputs,
+                                headers=['displayName', 'id'], removeNull=True,
+                                headerTransform=pascalToSpace)
+
+        return CommandResults(
+            outputs_prefix='CiscoStealthwatch.Tag',
+            outputs_key_field='id',
+            raw_response=response,
+            outputs=outputs,
+            readable_output=table
+        )
+
+
+    def cisco_stealthwatch_get_tag_command(client: Client, tenant_id: str, tag_id: str)\
+            -> CommandResults:
+        """Get a single tag (called host group on the Stealthwatch API) information
+
+        Args:
+            client (Client): Cisco Stealthwatch Client
+            tenant_id (str): The id of the tenant to get its tag information
+            tag_id (str): The id of the tag to retrieve its information
+
+        Returns:
+            CommandResults: Raw response, outputs and readable outputs
+        """
+        response = client.get_tag(tenant_id, tag_id)
+        outputs = response.get('data', {})
+
+        table = tableToMarkdown(f'Tag {tag_id} with tenant id {tenant_id} results:', outputs,
+                                headers=['id', 'name', 'location', 'domainId'],
+                                removeNull=True, headerTransform=pascalToSpace)
+
+        return CommandResults(
+            outputs_prefix='CiscoStealthwatch.Tag',
+            outputs_key_field='id',
+            raw_response=response,
+            outputs=outputs,
+            readable_output=table
+        )
+
+
+    def cisco_stealthwatch_list_tenants_command(client: Client,
+                                                tenant_id: str = None) -> CommandResults:
+        """List all tenants (called domains on the Stealthwatch API)
+
+        Args:
+            client (Client): Cisco Stealthwatch Client
+            tenant_id (str): The id of the tenant to retrieve its information
+
+        Returns:
+            CommandResults: Raw response, outputs and readable outputs
+        """
+        if tenant_id:
+            response = client.get_tenant(tenant_id)
+            outputs = response.get('data', [])
+
+            table = tableToMarkdown(f'Tenant {tenant_id}:', outputs,
+                                    headers=['id', 'displayName'], removeNull=True,
+                                    headerTransform=pascalToSpace)
+
+            command_results = CommandResults(
+                outputs_prefix='CiscoStealthwatch.Tenant',
+                outputs_key_field='id',
+                raw_response=response,
+                outputs=outputs,
+                readable_output=table
+            )
+        else:
+            response = client.list_tenants()
+            outputs = []
+            for tenant in response.get('data', []):
+                outputs.append(tenant)
+
+            table = tableToMarkdown('Tenants:', outputs, headers=['id', 'displayName'], removeNull=True,
+                                    headerTransform=pascalToSpace)
+
+            command_results = CommandResults(
+                outputs_prefix='CiscoStealthwatch.Tenant',
+                outputs_key_field='id',
+                raw_response=response,
+                outputs=outputs,
+                readable_output=table
+            )
+        return command_results
+
+
+    def cisco_stealthwatch_get_tag_hourly_traffic_report_command(client: Client, tenant_id: str,
+                                                                 tag_id: str) -> CommandResults:
+        """Get a tag (called host group on the Stealthwatch API) hourly traffic report
+
+        Args:
+            client (Client): Cisco Stealthwatch Client
+            tenant_id (str): The id of the tenant to retrieve its information
+            tag_id (str): The id of the tag to retrieve its information
+
+        Returns:
+            CommandResults: Raw response, outputs and readable outputs
+        """
+        response = client.tag_hourly_traffic(tenant_id, tag_id)
+        outputs = []
+        if response.get('data'):
+            for report in response['data'].get('data', []):
+                report['tag_id'] = tag_id
+                report['tenant_id'] = tenant_id
+                value = report.get('value')
+                report.pop('value')
+                report.update(value)
+                outputs.append(report)
+
+        headers = ['timestamp', 'inboundByteCount', 'outboundByteCount', 'withinByteCount']
+        title = f'Hourly Tag Traffic Report for tenant id {tenant_id} and tag id {tag_id}:'
+        table = tableToMarkdown(title, outputs, headers=headers, removeNull=True,
+                                headerTransform=pascalToSpace)
+
+        return CommandResults(
+            outputs_prefix='CiscoStealthwatch.TagHourlyTraffic',
+            outputs_key_field=['tag_id', 'tenant_id', 'timestamp'],
+            raw_response=response,
+            outputs=outputs,
+            readable_output=table
+        )
+
+
+    def cisco_stealthwatch_get_top_alarming_tags_command(client: Client,
+                                                         tenant_id: str) -> CommandResults:
+        """Get top alarming tags (called host groups on the Stealthwatch API)
+
+        Args:
+            client (Client): Cisco Stealthwatch Client
+            tenant_id (str): The id of the tenant to retrieve its information
+
+        Returns:
+            CommandResults: Raw response, outputs and readable outputs
+        """
+        response = client.get_top_alarms(tenant_id)
+
+        outputs = []
+        for alarm in dict_safe_get(response, ['data', 'data'], []):
+            alarm['tenant_id'] = tenant_id
+            outputs.append(alarm)
+
+        headers = ['hostGroupIds', 'ipAddress', 'sourceCategoryEvents']
+        title = f'Top Alarming Tags for tenant id {tenant_id}:'
+        table = tableToMarkdown(title, outputs, headers=headers, removeNull=True,
+                                headerTransform=pascalToSpace)
+
+        return CommandResults(
+            outputs_prefix='CiscoStealthwatch.AlarmingTag',
+            outputs_key_field=['tenant_id', 'hostGroupIds'],
+            raw_response=response,
+            outputs=outputs,
+            readable_output=table
+        )
+
+
+    def cisco_stealthwatch_list_security_events_initialize_command(client: Client, tenant_id: str,
+                                                                   start_time: str = None,
+                                                                   end_time: str = None,
+                                                                   time_range: str = None) \
+            -> CommandResults:
+        """Initialization of the security events list process.
+
+        Args:
+            client (Client): Cisco Stealthwatch Client
+            tenant_id (str): The id of the tenant to retrieve its information
+            start_time (str, optional): Start time for request params. Defaults to None.
+            end_time (str, optional): End time for request params. Defaults to None.
+            time_range (str, optional): Time range (start and end) for request params. Defaults to None.
+
+        Returns:
+            CommandResults: Raw response, outputs and readable outputs
+        """
+        # must provide start_time, time_range or start_time and end_time. else: throw error.
+        if not (start_time or end_time or time_range):
+            raise Exception('Must provide start_time, time_range, or start_time and end_time')
+        if not (time_range or start_time) and end_time:
+            raise Exception('Must provide start_time, time_range, or start_time and end_time')
+
+        # formatting start_time and end_time
+        start_time, end_time = times_handler(start_time, end_time, time_range)
+        if not start_time:
+            raise Exception('Invalid time format. Check: start_time, time_range, and end_time')
+        data = {
+            "timeRange": {
+                "from": start_time,
+                "to": end_time
+            }
+        }
+        response = client.initialize_security_events_search(tenant_id, data)
+        outputs = dict_safe_get(response, ['data', 'searchJob'])
+        table = tableToMarkdown('Security Events Initializing Information:', outputs,
+                                headers=['id', 'searchJobStatus', 'percentComplete'], removeNull=True,
+                                headerTransform=pascalToSpace)
+        return CommandResults(
+            outputs_prefix='CiscoStealthwatch.SecurityEventStatus',
+            outputs_key_field='id',
+            raw_response=response,
+            outputs=outputs,
+            readable_output=table)
+
+
+    def cisco_stealthwatch_list_security_events_status_command(client: Client, tenant_id: str,
+                                                               search_id: str) -> CommandResults:
+        """Retrieve the status of the security events process using search id
+
+        Args:
+            client (Client): Cisco Stealthwatch Client
+            tenant_id (str): The id of the tenant of the security events process
+            search_id (str): The if of the search.
+
+        Returns:
+            CommandResults: Raw response, outputs and readable outputs
+        """
+        response = client.check_security_events_search_progress(tenant_id, search_id)
+        outputs = response.get('data', {})
+        outputs['id'] = search_id
+        table = tableToMarkdown('Security Events Status Information:', outputs,
+                                headers=['id', 'percentComplete'], removeNull=True,
+                                headerTransform=pascalToSpace)
+        return CommandResults(
+            outputs_prefix='CiscoStealthwatch.SecurityEventStatus',
+            outputs_key_field='id',
+            raw_response=response,
+            outputs=outputs,
+            readable_output=table)
+
+
+    def cisco_stealthwatch_list_security_events_results_command(client: Client, tenant_id: str,
+                                                                search_id: str,
+                                                                limit: int) -> CommandResults:
+        """Retrieve the results of the security events process using search id
+
+        Args:
+            client (Client): Cisco Stealthwatch Client
+            tenant_id (str): The id of the tenant of the security events process
+            search_id (str): The id of the search
+            limit (int): security events limit
+
+        Returns:
+            CommandResults: Raw response, outputs and readable outputs
+        """
+        response = client.get_security_events_search_results(tenant_id, search_id)
+
+        outputs = []
+        if response.get('data'):
+            for security_event in dict_safe_get(response, ['data', 'results'], []):
+                outputs.append(security_event)
+
+        outputs = outputs[:int(limit)]
+        headers = ['id', 'domainId', 'deviceId', 'securityEventType', 'firstActiveTime',
+                   'lastActiveTime', 'source', 'target', 'details', 'hitCount']
+        title = f'Showing {len(outputs)} Security Events:'
+        table = tableToMarkdown(title, outputs, headers=headers, removeNull=True,
+                                headerTransform=pascalToSpace)
+
+        return CommandResults(
+            outputs_prefix='CiscoStealthwatch.SecurityEventResults',
+            outputs_key_field='id',
+            raw_response=response,
+            outputs=outputs,
+            readable_output=table
+        )
+
+
+    def times_handler(start_time: str = None, end_time: str = None, time_range: str = None):
+        """Handle the times when start_time, end_time and range needs to be start_time and end_time
+
+        Args:
+            start_time (str, optional): Start time from the user. Defaults to None.
+            end_time (str, optional): End time from the user. Defaults to None.
+            time_range (str, optional): Time range from the user. Defaults to None.
+
+        Returns:
+            Start time and end time from the user params with priority to time range.
+        """
+        start_time_obj = dateparser.parse(time_range) if time_range \
+            else dateparser.parse(start_time)  # type: ignore
+        end_time_obj = dateparser.parse(end_time) if end_time else datetime.now()
+
+        start_time_obj = start_time_obj.utcfromtimestamp(start_time_obj.timestamp())  # type: ignore
+        end_time_obj = end_time_obj.utcfromtimestamp(end_time_obj.timestamp())  # type: ignore
+        return start_time_obj.strftime(DATE_FORMAT), end_time_obj.strftime(DATE_FORMAT)
+
+
+    def test_module(client):
+        """Tests API connectivity and authentication'
+           Returning 'ok' indicates that the integration works like it is supposed to.
+           Connection to the service is successful.
+        """
+
+        try:
+            client.list_tenants()
+            return 'ok'
+        except Exception as error:
+            if 'Unauthorized' in str(error):
+                return 'Authorization Error: Check Credentials arguments'
+            if 'requests.exceptions.ConnectionError' in str(error):
+                return 'Connection Error: Check Server URL argument'
+            raise error
+
+
+    def main():
+        """
+            PARSE AND VALIDATE INTEGRATION PARAMS
+        """
+        params = demisto.params()
+        username = params.get('credentials').get('identifier')
+        password = params.get('credentials').get('password')
+
+        # get the service API url
+        base_url = params.get('server_url')
+
+        verify_certificate = not params.get('insecure', False)
+
+        proxy = params.get('proxy', False)
+
+        command = demisto.command()
+
+        demisto.info(f'Command being called is {command}')
+        try:
+            client = Client(
+                base_url=base_url,
+                auth=(username, password),
+                verify=verify_certificate,
+                proxy=proxy)
+
+            if command == 'test-module':
+                return_results(test_module(client))
+
+            elif command == 'cisco-stealthwatch-query-flows-initialize':
+                return_results(
+                    cisco_stealthwatch_query_flows_initialize_command(client, **demisto.args()))
+
+            elif command == 'cisco-stealthwatch-query-flows-status':
+                return_results(cisco_stealthwatch_query_flows_status_command(client, **demisto.args()))
+
+            elif command == 'cisco-stealthwatch-query-flows-results':
+                return_results(cisco_stealthwatch_query_flows_results_command(client, **demisto.args()))
+
+            elif command == 'cisco-stealthwatch-list-tags':
+                return_results(cisco_stealthwatch_list_tags_command(client, **demisto.args()))
+
+            elif command == 'cisco-stealthwatch-get-tag':
+                return_results(cisco_stealthwatch_get_tag_command(client, **demisto.args()))
+
+            elif command == 'cisco-stealthwatch-list-tenants':
+                return_results(cisco_stealthwatch_list_tenants_command(client, **demisto.args()))
+
+            elif command == 'cisco-stealthwatch-get-tag-hourly-traffic-report':
+                return_results(
+                    cisco_stealthwatch_get_tag_hourly_traffic_report_command(client, **demisto.args()))
+
+            elif command == 'cisco-stealthwatch-get-top-alarming-tags':
+                return_results(
+                    cisco_stealthwatch_get_top_alarming_tags_command(client, **demisto.args()))
+
+            elif command == 'cisco-stealthwatch-list-security-events-initialize':
+                return_results(
+                    cisco_stealthwatch_list_security_events_initialize_command(client,
+                                                                               **demisto.args()))
+
+            elif command == 'cisco-stealthwatch-list-security-events-status':
+                return_results(cisco_stealthwatch_list_security_events_status_command(client,
+                                                                                      **demisto.args()))
+
+            elif command == 'cisco-stealthwatch-list-security-events-results':
+                return_results(
+                    cisco_stealthwatch_list_security_events_results_command(client, **demisto.args()))
+
+        # Log exceptions
+        except Exception as error:
+            if 'Entity not found.' in str(error) or 'Not Found.' in str(error):
+                return_results("Entity not found: one or more of the IDs you've entered is illegal, "
+                               "or was not found.")
+            else:
+                return_error(f'Failed to execute {demisto.command()} command. Error: {str(error)}')
+
+
+    if __name__ in ('__main__', '__builtin__', 'builtins'):
+        main()
+
+    register_module_line('Cisco Stealthwatch', 'end', __line__())
+  subtype: python3
+  type: python
+system: true
