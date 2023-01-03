@@ -1,0 +1,195 @@
+{
+	"author": "VMRay",
+	"authorImage": "content/packs/VMRay/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Forensics \u0026 Malware Analysis"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"playbook"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Forensics \u0026 Malware Analysis",
+				"commands": [
+					{
+						"description": "Submits a sample to VMRay for analysis.",
+						"name": "vmray-upload-sample"
+					},
+					{
+						"description": "Submits a URL for analysis.",
+						"name": "vmray-upload-url"
+					},
+					{
+						"description": "Retrieves all analysis details for a specified sample.",
+						"name": "vmray-get-analysis-by-sample"
+					},
+					{
+						"description": "Retrieves details for all jobs  for a specified sample.",
+						"name": "vmray-get-job-by-sample"
+					},
+					{
+						"description": "Retrieves the results of a submission.",
+						"name": "vmray-get-submission"
+					},
+					{
+						"description": "Retrieves a sample using the sample ID.",
+						"name": "vmray-get-sample"
+					},
+					{
+						"description": "Retrieves sample information by hash.",
+						"name": "vmray-get-sample-by-hash"
+					},
+					{
+						"description": "Retrieves threat indicators (VTI).",
+						"name": "vmray-get-threat-indicators"
+					},
+					{
+						"description": "Adds a tag to an analysis and/or a submission.",
+						"name": "vmray-add-tag"
+					},
+					{
+						"description": "Deletes tags from an analysis and/or a submission.",
+						"name": "vmray-delete-tag"
+					},
+					{
+						"description": "Retrieves Indicators of Compromise for a specified sample.",
+						"name": "vmray-get-iocs"
+					},
+					{
+						"description": "Retrieves a job by job ID.",
+						"name": "vmray-get-job-by-id"
+					},
+					{
+						"description": "Retrieves the Summary JSON v2 for a specific analysis.",
+						"name": "vmray-get-summary"
+					},
+					{
+						"description": "This command performs a function similiar to the 'vmray-get-job-by-sample' command.",
+						"name": "get_job_sample"
+					},
+					{
+						"description": "similiar to vmray-get-sample",
+						"name": "get_results"
+					},
+					{
+						"description": "Retrieves a sample using the sample ID. (Deprecated)",
+						"name": "upload_sample"
+					}
+				],
+				"description": "Malware analysis sandboxing.",
+				"id": "",
+				"name": "VMRay (Partner Contribution)"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": [
+			{
+				"description": "Detonates a URL using the VMRay sandbox integration.",
+				"name": "Detonate URL - VMRay"
+			},
+			{
+				"description": "Get file information using the VMRay integration.",
+				"name": "File Enrichment - VMRay"
+			},
+			{
+				"description": "Detonates a file with VMRay.",
+				"name": "Detonate File - VMRay"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-12-22T23:39:36Z",
+	"currentVersion": "1.1.6",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.39",
+			"name": "Base"
+		},
+		"CommonPlaybooks": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "2.3.13",
+			"name": "Common Playbooks"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.10.7",
+			"name": "Common Scripts"
+		}
+	},
+	"deprecated": false,
+	"description": "Analyze files and URLs using the VMRay Platform for accurate threat intelligence and high-quality IOCs.",
+	"disabledMonthly": false,
+	"downloads": 2550,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByPartner",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "VMRay",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/VMRay/vmray_image.png",
+			"name": "VMRay"
+		}
+	],
+	"itemVersion": "1.1.6",
+	"keywords": [],
+	"legacy": true,
+	"name": "VMRay Analyzer",
+	"packID": "VMRay",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "*Note: Support for this pack moved to the Partner on December, 21, 2021. Please contact the Partner directly via the support link on the right.*\n\nVMRay Analyzer is a breakthrough solution for dynamic analysis of advanced threats, including zero day and targeted attacks. By surmounting inherent flaws that plague other products, VMRay Analyzer has become the gold standard for malware sandboxing among leading DFIR teams worldwide.\n\n## Core Capabilities and Advanced Features\n\n**Fully Automated Analysis** shortens DFIR investigations with hands-free features such as simulated user interaction and automatic reboot to trigger malicious behavior.\n\n**Manual Analysis** lets team members interact with suspicious malware in near real time to identify IOCs and fully reveal harmful behavior that automated methods occasionally miss.\n\n**Automated IOC Extraction** captures threat details (files, URLs, network traffic, registry activity) to enhance incident response, threat intelligence and support threat hunting.\n\n**Golden Images and Cloud Localization** support lets you replicate the users’ production environment to optimize detection of targeted malware.\n\n**Smart Memory Dumping** supports deep-dive investigations by capturing “just the right information at just the right time”, without noise or visibility gaps.\n\n**Phishing Detection** identifies credential-harvesting and drive-by download sites.\n",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "partner",
+	"supportDetails": {
+		"email": "support@vmray.com",
+		"url": "https://www.vmray.com/"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-09-10T22:05:13Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4098099",
+	"videos": []
+}
