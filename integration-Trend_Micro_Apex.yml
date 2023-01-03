@@ -1,0 +1,1711 @@
+category: Endpoint
+commonfields:
+  id: Trend Micro Apex
+  version: -1
+configuration:
+- display: Server URL (e.g. https://vxsuz5.manage.trendmicro.com)
+  name: url
+  required: true
+  type: 0
+- display: Application ID
+  name: application_id
+  required: true
+  type: 0
+- display: API Key
+  name: token
+  required: true
+  type: 4
+- display: Trust any certificate (not secure)
+  name: insecure
+  required: false
+  type: 8
+- display: Use system proxy settings
+  name: proxy
+  required: false
+  type: 8
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 2.0.3
+    packID: TrendMicroApex
+    packName: Trend Micro Apex One
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: Trend Micro Apex One central automation to manage agents and User-Defined
+  Suspicious Objects
+detaileddescription: |-
+  Trend Micro Apex One central automation to manage agents and User-Defined Suspicious Objects.
+  It is required to add an application in order to use the integration, follow the instructions [here](https://docs.trendmicro.com/en-us/enterprise/trend-micro-apex-central-2019-automation-api-guide/automation-api-guide/adding-an-applicatio.aspx) to do so.
+
+
+  ---
+  [View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/trend-micro-apex)
+display: Trend Micro Apex One
+image: data:image/png;base64,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
+name: Trend Micro Apex
+script:
+  commands:
+  - arguments:
+    - auto: PREDEFINED
+      description: The suspicious object type to query
+      name: type
+      predefined:
+      - ip
+      - url
+      - file_sha1
+      - domain
+      - file
+    - description: Filters the list to suspicious objects that match the specified
+        string
+      name: content_filter
+    deprecated: true
+    description: Retrieve a list of User-Defined Suspicious Objects from the Apex
+      One Central server.
+    name: trendmicro-apex-usdo-list
+    outputs:
+    - contextPath: TrendMicroApex.USDO.type
+      description: 'Indicator type of the USDO object, for example: ip, file, file_sha1,
+        url, domain.'
+      type: String
+    - contextPath: TrendMicroApex.USDO.content
+      description: Indicator content of the USDO object.
+      type: String
+    - contextPath: TrendMicroApex.USDO.notes
+      description: Indicator notes of the USDO object.
+      type: String
+    - contextPath: TrendMicroApex.USDO.scan_action
+      description: 'Scan action of the USDO object, for example: log, block, quarantine.'
+      type: String
+    - contextPath: TrendMicroApex.USDO.expiration_utc_date
+      description: Expiration date of the USDO object in UTC.
+      type: Date
+  - arguments:
+    - auto: PREDEFINED
+      description: The suspicious object type
+      name: type
+      predefined:
+      - ip
+      - url
+      - file_sha1
+      - domain
+      - file
+      required: true
+    - description: The suspicious object content for the specified type, for example
+        8.8.8.8 (for type "file", provide the binary content of the suspicious file
+        as a base64 string)
+      name: content
+      required: true
+    - auto: PREDEFINED
+      description: The scan action to perform on the suspicious object (The "quarantine"
+        scan action is only available for file type objects)
+      name: scan_action
+      predefined:
+      - log
+      - block
+      - quarantine
+      required: true
+    - description: Description of the object.
+      name: notes
+    - description: 'The UTC expiration date and time of the suspicious object, for
+        example: 2020-01-25T09:00:00Z'
+      name: expiration
+    deprecated: true
+    description: Add suspicious file, file SHA-1, IP address, domain, or URL objects
+      to the User-Defined Suspicious Object list.
+    name: trendmicro-apex-usdo-add
+  - arguments:
+    - auto: PREDEFINED
+      description: The suspicious object type
+      name: type
+      predefined:
+      - ip
+      - url
+      - file_sha1
+      - domain
+      required: true
+    - description: The suspicious object content for the specified type
+      name: content
+      required: true
+    deprecated: true
+    description: Delete suspicious file SHA-1, IP address, domain, or URL objects
+      from the User-Defined Suspicious Object list.
+    name: trendmicro-apex-usdo-delete
+  - arguments:
+    - auto: PREDEFINED
+      description: The suspicious object type to query
+      name: type
+      predefined:
+      - ip
+      - url
+      - file_sha1
+      - domain
+      - file
+    - description: Filters the list to suspicious objects that match the specified
+        string
+      name: content_filter
+    description: Retrieve a list of User-Defined Suspicious Objects from the Apex
+      One Central server.
+    name: trendmicro-apex-udso-list
+    outputs:
+    - contextPath: TrendMicroApex.UDSO.type
+      description: 'Indicator type of the UDSO object, for example: ip, file, file_sha1,
+        url, domain.'
+      type: String
+    - contextPath: TrendMicroApex.UDSO.content
+      description: Indicator content of the UDSO object.
+      type: String
+    - contextPath: TrendMicroApex.UDSO.notes
+      description: Indicator notes of the UDSO object.
+      type: String
+    - contextPath: TrendMicroApex.UDSO.scan_action
+      description: 'Scan action of the UDSO object, for example: log, block, quarantine.'
+      type: String
+    - contextPath: TrendMicroApex.UDSO.expiration_utc_date
+      description: Expiration date of the UDSO object in UTC.
+      type: Date
+  - arguments:
+    - auto: PREDEFINED
+      description: The suspicious object type
+      name: type
+      predefined:
+      - ip
+      - url
+      - file_sha1
+      - domain
+      - file
+      required: true
+    - description: The suspicious object content for the specified type, for example
+        8.8.8.8 (for type "file", provide the binary content of the suspicious file
+        as a base64 string)
+      name: content
+      required: true
+    - auto: PREDEFINED
+      description: The scan action to perform on the suspicious object (The "quarantine"
+        scan action is only available for file type objects)
+      name: scan_action
+      predefined:
+      - log
+      - block
+      - quarantine
+      required: true
+    - description: Description of the object.
+      name: notes
+    - description: 'The UTC expiration date and time of the suspicious object, for
+        example: 2020-01-25T09:00:00Z'
+      name: expiration
+    description: Add suspicious file SHA-1, IP address, domain, or URL objects to
+      the User-Defined Suspicious Object list.
+    name: trendmicro-apex-udso-add
+  - arguments:
+    - auto: PREDEFINED
+      description: The suspicious object type
+      name: type
+      predefined:
+      - ip
+      - url
+      - file_sha1
+      - domain
+      required: true
+    - description: The suspicious object content for the specified type
+      name: content
+      required: true
+    - description: 'Description of the object (maximum length: 256 characters).'
+      name: notes
+    - description: The scan action to perform on the suspicious object.
+      name: scan_action
+    description: Delete suspicious file SHA-1, IP address, domain, or URL objects
+      from the User-Defined Suspicious Object list.
+    name: trendmicro-apex-udso-delete
+  - arguments:
+    - auto: PREDEFINED
+      defaultValue: "true"
+      description: Whether to allow multiple matches or not. If this parameter is
+        set to "false", and the provided parameters match multiple agents, the action
+        will be unsuccessful.
+      name: multi_match
+      predefined:
+      - "true"
+      - "false"
+    - description: The GUID of the managed product agent
+      name: entity_id
+    - description: The IP address of the managed product agent
+      name: ip_address
+    - description: The MAC address of the managed product agent
+      name: mac_address
+    - description: The endpoint name of the managed product agent
+      name: host_name
+    - description: The Trend Micro product on the server instance
+      name: product
+    description: Isolate an agent from the network
+    name: trendmicro-apex-isolate
+  - arguments:
+    - auto: PREDEFINED
+      defaultValue: "true"
+      description: Whether to allow multiple matches or not. If this argument is set
+        to "false", and the provided parameters match multiple agents, the action
+        will be unsuccessful.
+      name: multi_match
+      predefined:
+      - "true"
+      - "false"
+    - description: The GUID of the managed product agent
+      name: entity_id
+    - description: The IP address of the managed product agent
+      name: ip_address
+    - description: The MAC address of the managed product agent
+      name: mac_address
+    - description: The endpoint name of the managed product agent
+      name: host_name
+    - description: The Trend Micro product on the server instance
+      name: product
+    description: Restore an isolated agent connection to the network.
+    name: trendmicro-apex-restore
+  - arguments:
+    - description: 'The log ID of the first record to query. Note: For Pattern Update
+        Status and Engine Update Status logs, the value of page_token must be "0".'
+      name: page_token
+    - description: 'The date/time of the first record to query, in one of the following
+        formats:  ''2020-06-21T08:00:00Z'', ''Jun 21 2020 08:00:00 GMT+00:00''. In
+        some cases the command might return logs that were created before the specified
+        time. This is a known issue with the API.'
+      name: since_time
+    - auto: PREDEFINED
+      description: The type of log data to retrieve.
+      name: log_type
+      predefined:
+      - Data Loss Prevention
+      - Device Control
+      - Behavior Monitoring
+      - Virus/Malware
+      - Spyware/Grayware
+      - Web Violation
+      - Content Violation
+      - Network Content Inspection
+      - C&C Callback
+      - Suspicious File Information
+      - Predictive Machine Learning
+      - Virtual Analyzer Detections
+      - Application Control
+      - Managed Product User Access
+      - Attack Discovery
+      - Pattern Update Status
+      - Engine Update Status
+      - Product Auditing Events
+      - Intrusion Prevention
+      required: true
+    - defaultValue: "50"
+      description: The number of items to return. Default is 50.
+      name: limit
+    description: Retrieves a maximum of 1000 logs of detection types from the server.
+      The `Pattern Update Status` and `Engine Update Status` log types returns all
+      logs (no maximum) from the specified "since_time". In some cases the command
+      might return alerts that were created before the specified time. This is a known
+      issue with the API.
+    name: trendmicro-apex-list-logs
+    outputs:
+    - contextPath: TrendMicroApex.Log.LogVersion
+      description: The version of the log.
+      type: Number
+    - contextPath: TrendMicroApex.Log.EventName
+      description: The name of the event.
+      type: String
+    - contextPath: TrendMicroApex.Log.EventID
+      description: The event ID.
+      type: String
+    - contextPath: TrendMicroApex.Log.ApplianceVersion
+      description: The version of the appliance.
+      type: Number
+    - contextPath: TrendMicroApex.Log.ApplianceProduct
+      description: The product name.
+      type: String
+    - contextPath: TrendMicroApex.Log.ApplianceVendor
+      description: The vendor name.
+      type: String
+  - arguments:
+    - auto: PREDEFINED
+      defaultValue: Log
+      description: 'The scan action to perform. Can be ''Log'', ''Block'' or ''Quarantine''.
+        Default is ''Log''. '
+      name: file_scan_action
+      predefined:
+      - Log
+      - Block
+      - Quarantine
+      required: true
+    - description: Additional information.
+      name: note
+    - description: The entry ID of the file to upload.
+      name: entry_id
+      required: true
+    description: Adds the uploaded file information to the User-Defined Suspicious
+      Objects list. If the file already exists, it will be updated with the new arguments.
+    name: trendmicro-apex-udso-file-add
+  - arguments:
+    - description: The GUID of the managed product server.
+      name: entity_id
+    - description: The IP address of the endpoint.
+      name: ip_address
+    - description: The MAC address of the endpoint.
+      name: mac_address
+    - description: The name of the endpoint.
+      name: host_name
+    - description: The Trend Micro product name.
+      name: product
+    description: Retrieves a list of managed product servers reporting to Apex One
+      Central.
+    name: trendmicro-apex-managed-servers-list
+    outputs:
+    - contextPath: TrendMicroApex.Server.entity_id
+      description: The GUID of the managed product server.
+      type: String
+    - contextPath: TrendMicroApex.Server.product
+      description: The Trend Micro product on the server instance.
+      type: String
+    - contextPath: TrendMicroApex.Server.ad_domain
+      description: The Active Directory domain that the server belongs to (if applicable).
+      type: String
+    - contextPath: TrendMicroApex.Server.ip_address_list
+      description: The IP address list on the server.
+      type: String
+    - contextPath: TrendMicroApex.Server.host_name
+      description: The hostname of the server.
+      type: String
+    - contextPath: TrendMicroApex.Server.capabilities
+      description: The API actions that can be performed on the server.
+      type: String
+  - arguments:
+    - description: The GUID of the Security Agent.
+      name: entity_id
+    - description: The IP address of the endpoint.
+      name: ip_address
+    - description: The MAC address of the endpoint.
+      name: mac_address
+    - description: The name of the endpoint.
+      name: host_name
+    - description: The Trend Micro product name.
+      name: product
+    - description: The GUID of the product server that manages the Security Agent.
+      name: managing_server_id
+    description: Retrieves a list of Security Agents.
+    name: trendmicro-apex-security-agents-list
+    outputs:
+    - contextPath: TrendMicroApex.Agent.entity_id
+      description: The GUID of the Security Agent.
+      type: String
+    - contextPath: TrendMicroApex.Agent.product
+      description: The Trend Micro product name.
+      type: String
+    - contextPath: TrendMicroApex.Agent.managing_server_id
+      description: The GUID of the product server that manages the Security Agent.
+      type: String
+    - contextPath: TrendMicroApex.Agent.ad_domain
+      description: The Active Directory domain that the agent belongs to (if applicable).
+      type: String
+    - contextPath: TrendMicroApex.Agent.folder_path
+      description: The folder path of the agent in the machine.
+      type: String
+    - contextPath: TrendMicroApex.Agent.ip_address_list
+      description: The IP address list on the server.
+      type: String
+    - contextPath: TrendMicroApex.Agent.mac_address_list
+      description: The MAC address of the endpoint.
+      type: String
+    - contextPath: TrendMicroApex.Agent.host_name
+      description: The name of the endpoint.
+      type: String
+    - contextPath: TrendMicroApex.Agent.isolation_status
+      description: The isolation status of the agent.
+      type: String
+    - contextPath: TrendMicroApex.Agent.capabilities
+      description: Lists the API actions that can be performed on the agent.
+      type: String
+  - arguments:
+    - defaultValue: "50"
+      description: The number of records to retrieve. Default is 50.
+      name: limit
+      predefined:
+      - ""
+    - defaultValue: "0"
+      description: The page from which to start retrieving records. Default is 0.
+      name: offset
+    - description: Filter the agents by endpoint name (partial string match).
+      name: filter_by_endpoint_name
+    - auto: PREDEFINED
+      description: Filter the agents by endpoint type. Can be "Desktop" or "Server".
+      name: filter_by_endpoint_type
+      predefined:
+      - Desktop
+      - Server
+    - description: 'Filter the agents by endpoint IP address range represented by
+        comma separated ranges list. Example: "Starting_IP_Address,Ending_IP_Address"'
+      name: filter_by_ip_address
+    - auto: PREDEFINED
+      description: Filter the agents by operating system.
+      name: filter_by_operating_system
+      predefined:
+      - Windows XP
+      - Windows Vista
+      - Windows 7
+      - Windows 8
+      - Windows 10
+      - Windows 2000
+      - Windows 2003
+      - Windows 2008
+      - Windows 2012
+      - Windows 2016
+      - iOS
+      - Mac OS
+      - Android
+      - Symbian
+      - Windows Mobile
+      - Windows General
+    description: Retrieves a list of Security Agents with the Endpoint Sensor feature
+      enabled.
+    name: trendmicro-apex-endpoint-sensors-list
+    outputs:
+    - contextPath: TrendMicroApex.EndpointSensorSecurityAgent.agentGuid
+      description: The GUID of the agent.
+      type: String
+    - contextPath: TrendMicroApex.EndpointSensorSecurityAgent.serverGuid
+      description: The GUID of the server that manages the agent.
+      type: String
+    - contextPath: TrendMicroApex.EndpointSensorSecurityAgent.machineName
+      description: The hostname of the endpoint.
+      type: String
+    - contextPath: TrendMicroApex.EndpointSensorSecurityAgent.isImportant
+      description: Whether the agent is tagged as important.
+      type: Boolean
+    - contextPath: TrendMicroApex.EndpointSensorSecurityAgent.isOnline
+      description: Whether the agent is online.
+      type: Boolean
+    - contextPath: TrendMicroApex.EndpointSensorSecurityAgent.ip
+      description: The IP address of the agent.
+      type: String
+    - contextPath: TrendMicroApex.EndpointSensorSecurityAgent.machineGuid
+      description: The GUID of the endpoint.
+      type: String
+    - contextPath: TrendMicroApex.EndpointSensorSecurityAgent.machineType
+      description: The endpoint type.
+      type: String
+    - contextPath: TrendMicroApex.EndpointSensorSecurityAgent.machineLabels
+      description: The machine labels.
+      type: Number
+    - contextPath: TrendMicroApex.EndpointSensorSecurityAgent.machineOS
+      description: The operating system of the endpoint.
+      type: String
+    - contextPath: TrendMicroApex.EndpointSensorSecurityAgent.isolateStatus
+      description: The isolation status of the agent.
+      type: String
+    - contextPath: TrendMicroApex.EndpointSensorSecurityAgent.isEnable
+      description: Whether the agent is enabled.
+      type: Boolean
+    - contextPath: TrendMicroApex.EndpointSensorSecurityAgent.userName
+      description: The user name of the agent.
+      type: String
+    - contextPath: TrendMicroApex.EndpointSensorSecurityAgent.userGuid
+      description: The GUID of the user.
+      type: String
+    - contextPath: TrendMicroApex.EndpointSensorSecurityAgent.productType
+      description: The Trend Micro product type on the server instance.
+      type: Number
+  - arguments:
+    - description: Filter by file name (partial string match).
+      name: file_name_contains
+    - description: Filter by file name (exact match). Supports comma-separated values.
+      name: file_name_is
+    - description: Filter by file path (exact match). Supports comma separated values.
+      name: file_path_is
+    - description: Filter by account (partial string match). Supports comma separated
+        values.
+      name: account_contains
+    - description: Filter by account (exact match). Supports comma separated values.
+      name: account_is
+    - description: Filter by command line (partial string match). Supports comma separated
+        values.
+      name: command_line_contains
+    - description: Filter by command line (exact match). Supports comma separated
+        values. list.
+      name: command_line_is
+    - description: Filter by registry key (partial string match). Supports comma separated
+        values.
+      name: registry_key_contains
+    - description: Filter by registry key (exact match). Supports comma separated
+        values. list.
+      name: registry_key_is
+    - description: Filter by registry name (partial string match). Supports comma
+        separated values.
+      name: registry_name_contains
+    - description: Filter by registry name (exact match). Supports comma separated
+        values. list.
+      name: registry_name_is
+    - description: Filter by registry data (partial string match). Supports comma
+        separated values.
+      name: registry_data_contains
+    - description: Filter by registry data (exact match). Supports comma separated
+        values. list.
+      name: registry_data_is
+    - description: Filter by host name (partial string match). Supports comma separated
+        values.
+      name: host_name_contains
+    - description: Filter by host name - (exact match). Supports comma separated values.
+      name: host_name_is
+    - description: Filter by file path (partial string match). Supports comma separated
+        values.
+      name: file_path_contains
+    - auto: PREDEFINED
+      description: Operator used in the investigation. 'AND' - return endpoints that
+        match all the criteria specified. 'OR' - return endpoints that match one of
+        the specified criteria.
+      name: operator
+      predefined:
+      - AND
+      - OR
+      required: true
+    - description: Criteria string to show in the auditing log.
+      name: criteria_kvp
+    - description: The source of criteria used to store the record in BIF. The default
+        value is 0 (UNKNOWN).
+      name: criteria_source
+    - auto: PREDEFINED
+      description: Scope of the search results. For example, if the value is Three
+        months, perform assessment on data within the last 90 days only. Can be "Default",
+        "All", "One month", "Three months", "Six months", or "Twelve months".
+      name: search_period
+      predefined:
+      - Default
+      - All
+      - One month
+      - Three months
+      - Six months
+      - Twelve months
+    description: Creates a new historical investigation on all Security Agents with
+      Endpoint Sensor enabled using the specified criteria, search operator, and match
+      condition.
+    name: trendmicro-apex-historical-investigation-create
+    outputs:
+    - contextPath: TrendMicroApex.HistoricalInvestigation.taskId
+      description: Task ID received from the investigation creation request.
+      type: String
+    - contextPath: TrendMicroApex.HistoricalInvestigation.lastContentId
+      description: ID used to retrieve the next set of results.
+      type: String
+    - contextPath: TrendMicroApex.HistoricalInvestigation.hasMore
+      description: Whether the source has more results.
+      type: Boolean
+    - contextPath: TrendMicroApex.HistoricalInvestigation.serverName
+      description: The name of the server.
+      type: String
+    - contextPath: TrendMicroApex.HistoricalInvestigation.serverGuid
+      description: The GUID of the server.
+      type: String
+  - arguments:
+    - defaultValue: "50"
+      description: The number of records to retrieve. Default is 50.
+      name: limit
+    - defaultValue: "0"
+      description: The page from which to start retrieving records. Default is 0.
+      name: offset
+    - description: The scan schedule ID of the investigation to retrieve.
+      name: scan_schedule_id
+    - description: Filter the results by task name (partial string match).
+      name: filter_by_task_name
+    - description: Filter the results by creator name (partial string match).
+      name: filter_by_creator_name
+    - auto: PREDEFINED
+      description: Filter the results by the scan method type. Can be "Search Windows
+        registry", "Memory scan using YARA", or "Disk scan using OpenIOC".
+      name: filter_by_scan_type
+      predefined:
+      - Search Windows registry
+      - Memory scan using YARA
+      - Disk scan using OpenIOC
+    - description: Filter the results by criteria name (partial string match).
+      name: filter_by_criteria_name
+    - description: 'The method used for the investigation. Supports comma-separated
+        values. Possible values are: "Windows registry", "YARA rule file", "IOC rule
+        file", and "Disk IOC rule file".'
+      isArray: true
+      name: scan_type
+      required: true
+    description: Retrieves a list of all investigation results.
+    name: trendmicro-apex-investigation-result-list
+    outputs:
+    - contextPath: TrendMicroApex.InvestigationResult.scanSummaryId
+      description: The ID of the investigation.
+      type: Number
+    - contextPath: TrendMicroApex.InvestigationResult.scanSummaryGuid
+      description: The GUID of the investigation.
+      type: String
+    - contextPath: TrendMicroApex.InvestigationResult.status
+      description: Status of the investigation.
+      type: Number
+    - contextPath: TrendMicroApex.InvestigationResult.statusForUI
+      description: Status of the investigation shown in the web console.
+      type: Number
+    - contextPath: TrendMicroApex.InvestigationResult.scanType
+      description: Method used for the investigation.
+      type: String
+    - contextPath: TrendMicroApex.InvestigationResult.submitTime
+      description: Date and time when the investigation was submitted.
+      type: Date
+    - contextPath: TrendMicroApex.InvestigationResult.finishTime
+      description: Date and time when the investigation was finished.
+      type: Date
+    - contextPath: TrendMicroApex.InvestigationResult.specificAgentType
+      description: Indicates how targets were selected for the investigation. 0-All,
+        1-Specific.
+      type: Number
+    - contextPath: TrendMicroApex.InvestigationResult.progressInfo.safeCount
+      description: Number of agents with "No match" status.
+      type: Number
+    - contextPath: TrendMicroApex.InvestigationResult.progressInfo.riskCount
+      description: Number of agents with "Matched" status.
+      type: Number
+    - contextPath: TrendMicroApex.InvestigationResult.progressInfo.pendingCount
+      description: Number of agents with "Pending" status.
+      type: Number
+    - contextPath: TrendMicroApex.InvestigationResult.progressInfo.timeoutCount
+      description: Number of agents with "Timeout" status.
+      type: Number
+    - contextPath: TrendMicroApex.InvestigationResult.progressInfo.noneCount
+      description: Number of agents with "None" status.
+      type: Number
+    - contextPath: TrendMicroApex.InvestigationResult.progressInfo.processingCount
+      description: Number of agents with "Processing" status.
+      type: Number
+    - contextPath: TrendMicroApex.InvestigationResult.progressInfo.errorCount
+      description: Number of agents with errors.
+      type: Number
+    - contextPath: TrendMicroApex.InvestigationResult.progressInfo.abortCount
+      description: Number of aborted agents.
+      type: Number
+    - contextPath: TrendMicroApex.InvestigationResult.progressInfo.connectionFailCount
+      description: Number of agents that fail to connect.
+      type: Number
+    - contextPath: TrendMicroApex.InvestigationResult.name
+      description: The name of the investigation.
+      type: String
+    - contextPath: TrendMicroApex.InvestigationResult.agentCount
+      description: The number of agents in the investigation.
+      type: Number
+    - contextPath: TrendMicroApex.InvestigationResult.matchedAgentCount
+      description: The number of matched agents in the investigation.
+      type: Number
+    - contextPath: TrendMicroApex.InvestigationResult.serverGuidList
+      description: Trend Micro GUID list of the servers.
+      type: String
+    - contextPath: TrendMicroApex.InvestigationResult.creator
+      description: The name of the user who created the investigation.
+      type: String
+    - contextPath: TrendMicroApex.InvestigationResult.scanCriteriaEntity.criteriaId
+      description: Unique identifier used by the server to store the criteria.
+      type: Number
+    - contextPath: TrendMicroApex.InvestigationResult.scanCriteriaEntity.criteriaName
+      description: The name of the criteria.
+      type: String
+    - contextPath: TrendMicroApex.InvestigationResult.scanCriteriaEntity.criteriaContent
+      description: The the criteria used to perform "registry" investigation.
+      type: String
+    - contextPath: TrendMicroApex.InvestigationResult.errorServers
+      description: Error response if server communication is unsuccessful.
+      type: String
+  dockerimage: demisto/pycef:1.0.0.23290
+  runonce: false
+  script: |
+    register_module_line('Trend Micro Apex', 'start', __line__())
+
+
+
+
+    ''' IMPORTS '''
+    import urllib3
+    import jwt
+    import base64
+    import pycef
+    import hashlib
+    import time
+    import json
+    from datetime import datetime, timezone
+    from dateutil.parser import parse
+
+    # Disable insecure warnings
+    urllib3.disable_warnings()
+    ''' CLIENT CLASS'''
+
+    UDSOAPIPATH = '/WebApp/api/SuspiciousObjects/UserDefinedSO'
+    PRODAGENTAPIPATH = '/WebApp/API/AgentResource/ProductAgents'
+    FIELDS_TO_REMOVE_FROM_CONTEXT = ['FeatureCtrl', 'Meta', 'PermissionCtrl', 'SystemCtrl']
+
+    CEF_HEADERS_TO_TREND_MICRO_HEADERS = {
+        'CEFVersion': 'LogVersion',
+        'Name': 'EventName',
+        'DeviceEventClassID': 'EventID',
+        'DeviceVersion': 'ApplianceVersion',
+        'DeviceProduct': 'ApplianceProduct',
+        'DeviceVendor': 'ApplianceVendor'
+    }
+
+    LOG_NAME_TO_LOG_TYPE = {
+        "Data Loss Prevention": "data_loss_prevention",
+        "Device Control": "device_access_control",
+        "Behavior Monitoring": "behaviormonitor_rule",
+        "Virus/Malware": "officescan_virus",
+        "Spyware/Grayware": "spyware",
+        "Web Violation": "web_security",
+        "Content Violation": "security",
+        "Network Content Inspection": "ncie",
+        "C&C Callback": "cncdetection",
+        "Suspicious File Information": "filehashdetection",
+        "Predictive Machine Learning": "Predictive_Machine_Learning",
+        "Virtual Analyzer Detections": "Sandbox_Detection_Log",
+        "Application Control": "EACV_Information",
+        "Managed Product User Access": "Managed_Product_Logged_Information",
+        "Attack Discovery": "Attack_Discovery_Detections",
+        "Pattern Update Status": "pattern_updated_status",
+        "Engine Update Status": "engine_updated_status",
+        "Product Auditing Events": "product_auditing_events",
+        "Intrusion Prevention": "intrusion_prevention"
+    }
+
+    OS_NAME_TO_OS_TYPE = {
+        "Windows XP": "WIN_XP",
+        "Windows Vista": "WIN_VISTA",
+        "Windows 7": "WIN_7",
+        "Windows 8": "WIN_8",
+        "Windows 10": "WIN_10",
+        "Windows 2000": "WIN_2000",
+        "Windows 2003": "WIN_2003",
+        "Windows 2008": "WIN_2008",
+        "Windows 2012": "WIN_2012",
+        "Windows 2016": "WIN_2016",
+        "iOS": "IOS",
+        "Mac OS": "MAC_OS",
+        "Android": "ANDROID",
+        "Symbian": "SYMBIAN",
+        "Windows Mobile": "WIN_MOBILE",
+        "Windows General": "WIN"
+    }
+
+    SECURITY_AGENTS_TYPE_TO_NUMBER = {
+        "endpoint_name": 1,
+        "endpoint_type": 2,
+        "endpoint_ip_address": 4,
+        "endpoint_user_name": 6,
+        "endpoint_OS": 5,
+        "partial_OS": 9
+    }
+
+    SCAN_TYPE_TO_NUM = {
+        "Custom criteria": 0,
+        "Windows registry": 1,
+        "YARA rule file": 2,
+        "IOC rule file": 3,
+        "Disk IOC rule file": 6
+    }
+
+    SCAN_NUM_TO_TYPE = {
+        0: "Custom criteria",
+        1: "Windows registry",
+        2: "YARA rule file",
+        3: "IOC rule file",
+        6: "Disk IOC rule file"
+    }
+
+    SCAN_STATUS_TO_NUM = {
+        "All": 1,
+        "Matched": 2,
+        "No match": 3,
+        "Pending": 4,
+        "Unsuccessful": 5
+    }
+
+    CUSTOM_INVESTIGATION_TYPE_TO_ID = {
+        'file_name': 3,
+        'file_path': 4,
+        'account': 7,
+        'command_line': 8,
+        'registry_key': 9,
+        'registry_name': 10,
+        'registry_data': 11,
+        'host_name': 12
+    }
+
+    REPEAT_TYPE_TO_ID = {
+        'Yearly': 1,
+        'Monthly': 2,
+        'Daily': 3
+    }
+    GENERAL_INVESTIGATION_ARGS = ['agent_guids', 'server_guids', 'investigation_name', 'scan_type', 'time_range_type',
+                                  'time_range_end', 'time_range_start', 'scan_schedule_guid', 'scan_schedule_Id']
+
+    SEARCH_PERIOD_NAME_TYPE_TO_NUM = {
+        'Default': -1,
+        'All': 0,
+        'One month': 1,
+        'Three months': 3,
+        'Six months': 6,
+        'Twelve months': 12
+    }
+
+    INVESTIGATION_RESULT_FILTER_TYPE_TO_NUM = {
+        'task_name': 10,
+        'creator_name': 11,
+        'scan_type': 12,
+        'criteria_name': 14
+    }
+
+    INVESTIGATION_RESULT_SCAN_TYPE_TO_NUM = {
+        'Search Windows registry': 1,
+        'Memory scan using YARA': 2,
+        'Disk scan using OpenIOC': 6
+    }
+
+    AGENT_ISOLATION_STATUS_NUM_TO_VALUE = {
+        0: "Unknown",
+        1: "Normal",
+        2: "Isolated",
+        3: "Isolate command sent -pending",
+        4: "Restore agent from isolation -pending",
+    }
+
+    INVESTIGATION_STATUS_NUM_TO_VALUE = {
+        0: "Pending",
+        1: "Running",
+        2: "Cancel",
+        3: "Complete",
+        4: "Invalid",
+        5: "Purged",
+        6: "Error (All servers failed)"
+    }
+
+
+    class Client(BaseClient):
+        def __init__(self, base_url, api_key, app_id, verify, proxy):
+            super().__init__(base_url=base_url, verify=verify, proxy=proxy)
+            self.base_url = base_url
+            self.api_key = api_key
+            self.application_id = app_id
+            self.suffix = ''
+
+        @staticmethod
+        def __create_checksum(http_method, api_path, headers, request_body):
+            string_to_hash = http_method.upper() + '|' + api_path.lower() + '|' + headers + '|' + request_body
+            base64_string = base64.b64encode(hashlib.sha256(str.encode(string_to_hash)).digest()).decode('utf-8')
+            return base64_string
+
+        def create_jwt_token(self, http_method, api_path, headers, request_body, iat=time.time(), algorithm='HS256',
+                             version='V1', ):
+            checksum = self.__create_checksum(http_method, api_path, headers, request_body)
+
+            payload = {'appid': self.application_id,
+                       'iat': iat,
+                       'version': version,
+                       'checksum': checksum}
+
+            token = jwt.encode(payload, self.api_key, algorithm=algorithm)
+            return token
+
+        def udso_list(self, list_type="", contentfilter=""):
+            querystring = "?type=" + list_type + "&contentFilter=" + contentfilter
+            headers = {
+                'Authorization': 'Bearer ' + self.create_jwt_token(http_method='GET', api_path=UDSOAPIPATH + querystring,
+                                                                   headers='', request_body='')}
+            response = (
+                self._http_request("GET", UDSOAPIPATH, full_url=self.base_url + UDSOAPIPATH + querystring, headers=headers))
+            return response
+
+        def udso_delete(self, list_type="", content=""):
+            querystring = "?type=" + list_type + "&content=" + content
+            headers = {'Authorization': 'Bearer ' + self.create_jwt_token(http_method='DELETE',
+                                                                          api_path=UDSOAPIPATH + querystring, headers='',
+                                                                          request_body='')}
+            response = self._http_request("DELETE", UDSOAPIPATH, full_url=self.base_url + UDSOAPIPATH + querystring,
+                                          headers=headers)
+            return response
+
+        def udso_add(self, add_type=None, content=None, scan_action=None, notes='', expiration=''):
+            if add_type and content and scan_action:
+                req_body = {
+                    "param": {
+                        "type": add_type,
+                        "content": content,
+                        "notes": notes,
+                        "scan_action": scan_action,
+                        "expiration_utc_date": expiration
+                    }
+                }
+
+                headers = {
+                    'Content-Type': 'application/json;charset=utf-8',
+                    'Authorization': 'Bearer ' + self.create_jwt_token(http_method='PUT', api_path=UDSOAPIPATH + '/',
+                                                                       headers='', request_body=json.dumps(req_body))}
+                response = self._http_request("PUT", UDSOAPIPATH + '/', full_url=self.base_url + UDSOAPIPATH + '/',
+                                              headers=headers, data=json.dumps(req_body))
+                if response.get('Meta', {}).get('ErrorCode', '') != 0:
+                    raise ValueError(f'Operation failed - {response.get("Meta", {}).get("ErrorMsg")}')
+
+                return response
+
+        def udso_add_file(self, file_content_base64_string, file_name, file_scan_action, note: str = ""):
+            payload = {
+                "file_name": file_name,
+                "file_content_base64_string": file_content_base64_string,
+                "file_scan_action": file_scan_action,
+                "note": note if note else ""
+            }
+
+            headers = {
+                'Content-Type': 'application/json;charset=utf-8',
+                'Authorization': 'Bearer ' + self.create_jwt_token(http_method='PUT', api_path=self.suffix,
+                                                                   headers='', request_body=json.dumps(payload))}
+            response = self._http_request("PUT", self.suffix, headers=headers, data=json.dumps(payload))
+            if response.get('result_code', '') != 1:
+                err_msg = f'Operation failed - {response.get("result_description", "")}'
+                raise ValueError(err_msg)
+            return response
+
+        def _prodagent_command(self, action, multi_match=False, entity_id="", ip_add="", mac_add="", host="", prod=""):
+            act = action
+
+            req_body = {
+                "act": act,
+                "allow_multiple_match": multi_match,
+                "entity_id": entity_id,
+                "ip_address": ip_add,
+                "mac_address": mac_add,
+                "host_name": host,
+                "product": prod
+            }
+
+            headers = {
+                'Content-Type': 'application/json;charset=utf-8',
+                'Authorization': 'Bearer ' + self.create_jwt_token(http_method='POST', api_path=PRODAGENTAPIPATH + '/',
+                                                                   headers='', request_body=json.dumps(req_body))}
+            response = (
+                self._http_request("POST", PRODAGENTAPIPATH + '/', full_url=self.base_url + PRODAGENTAPIPATH + '/',
+                                   headers=headers,
+                                   data=json.dumps(req_body)))
+            if response.get('result_code') != 1:
+                err_msg = f'Operation failed - {response.get("result_description", "")}'
+                raise ValueError(err_msg)
+            return response
+
+        def prodagent_isolate(self, multi_match=False, entity_id="", ip_add="", mac_add="", host="", prod=""):
+            action = "cmd_isolate_agent"
+            return self._prodagent_command(action, multi_match, entity_id, ip_add, mac_add, host, prod)
+
+        def prodagent_restore(self, multi_match=False, entity_id="", ip_add="", mac_add="", host="", prod=""):
+            action = "cmd_restore_isolated_agent"
+            return self._prodagent_command(action, multi_match, entity_id, ip_add, mac_add, host, prod)
+
+        @staticmethod
+        def verify_format_and_convert_to_timestamp(since_time: str):
+            if since_time == '0':  # '0' is the default timestamp
+                return since_time
+            if not (since_time.endswith('GMT+00:00') or since_time.endswith('Z')):
+                raise ValueError("'since_time' argument should be in one of the following formats:"
+                                 "'2020-06-21T08:00:00Z', 'Jun 21 2020 08:00:00 GMT+00:00'")
+
+            since_time_timestamp = int(parse(since_time).timestamp())
+            return since_time_timestamp
+
+        def logs_list(self, log_type: str, since_time: str = '0', page_token: str = '0'):
+            log_type = LOG_NAME_TO_LOG_TYPE.get(log_type)
+            if log_type in ["pattern_updated_status", "engine_updated_status"] and page_token != '0':
+                raise ValueError("For 'Pattern Update Status' and 'Engine Update Status' log types, \n"
+                                 "the value of page_token must be '0'.")
+            since_time_timestamp = self.verify_format_and_convert_to_timestamp(since_time)
+            querystring = f'?output_format=1&page_token={page_token}&since_time={since_time_timestamp}'
+            request_suffix = f'{self.suffix}/{log_type}{querystring}'
+            jwt_token = self.create_jwt_token(http_method='GET', api_path=request_suffix, headers='', request_body='')
+
+            headers = {
+                'Authorization': 'Bearer ' + jwt_token,
+                'Content-Type': 'application/json;charset=utf-8'
+            }
+
+            response = self._http_request("GET", url_suffix=request_suffix, headers=headers)
+            return response
+
+        @staticmethod
+        def convert_timestamps_and_scan_type_to_readable(results_list):
+            """
+            For every item in the list, convert the time values and the scan_type values to human readable
+            Args:
+                results_list: List of results returned from the API
+
+            Returns:
+                list. The updated list with the readable time and type values
+            """
+            time_keys = ['triggerTime', 'submitTime', 'finishTime']
+            status_keys = ['status', 'statusForUI']
+            for result in results_list:
+                for time_key in time_keys:
+                    if result.get(time_key):
+                        result[time_key] = datetime.fromtimestamp(result.get(time_key), timezone.utc).isoformat()
+                for status_key in status_keys:
+                    if result.get(status_key):
+                        result[status_key] = INVESTIGATION_STATUS_NUM_TO_VALUE[result.get(status_key)]
+                if result.get('scanType'):
+                    result['scanType'] = SCAN_NUM_TO_TYPE[result['scanType']]
+            return results_list
+
+        @staticmethod
+        def remove_unnecessary_fields_from_response(response):
+            for field in FIELDS_TO_REMOVE_FROM_CONTEXT:
+                if response.get(field):
+                    response.pop(field)
+            return response
+
+        @staticmethod
+        def build_query_string(entity_id='', ip_address='', mac_address='', host_name='', product='',
+                               managing_server_id=''):
+            query_string = ''
+            if entity_id:
+                query_string += f'&entity_id={entity_id}'
+            if ip_address:
+                query_string += f'&ip_address={ip_address}'
+            if mac_address:
+                query_string += f'&mac_address={mac_address}'
+            if host_name:
+                query_string += f'&host_name={host_name}'
+            if product:
+                query_string += f'&product={product}'
+            if managing_server_id:
+                query_string += f'&managing_server_id={managing_server_id}'
+
+            query_string = f'?{query_string[1:]}' if query_string else query_string
+
+            return query_string
+
+        def servers_or_agents_list(self, entity_id='', ip_address='', mac_address='', host_name='', product='',
+                                   managing_server_id=''):
+            querystring = self.build_query_string(entity_id, ip_address, mac_address, host_name, product,
+                                                  managing_server_id)
+            suffix = f'{self.suffix}{querystring}'
+            jwt_token = self.create_jwt_token(http_method='GET', api_path=suffix,
+                                              headers='', request_body='')
+            headers = {
+                'Authorization': 'Bearer ' + jwt_token,
+                'Content-Type': 'application/json;charset=utf-8'
+            }
+
+            response = self._http_request("GET", url_suffix=suffix, headers=headers)
+            if response.get('result_code') != 1:
+                err_msg = f'Operation failed - {response.get("result_description", "")}'
+                raise ValueError(err_msg)
+            return response
+
+        @staticmethod
+        def create_filter_entry(entry_value, entry_type, type_transformer: dict = SECURITY_AGENTS_TYPE_TO_NUMBER):
+            """
+            Create a filter entry - a dict with 'type', 'value' keys
+            Args:
+                entry_value: the value for the filter
+                entry_type: the type of the filter
+                type_transformer: transformer dict for the type value
+
+            Returns:
+                filter entry from the form :
+                {
+                    "type" : type,
+                    "value": value
+                }
+
+            """
+            filter_entry = {
+                "type": type_transformer[entry_type]
+            }
+            if "OS" in entry_type:
+                filter_entry["value"] = OS_NAME_TO_OS_TYPE[entry_value]  # type: ignore
+            if entry_type == "scan_type":
+                filter_entry["value"] = INVESTIGATION_RESULT_SCAN_TYPE_TO_NUM[entry_value]
+            else:
+                filter_entry["value"] = entry_value
+
+            return filter_entry
+
+        def create_payload_filter(self, endpoint_name='', endpoint_type='', ip_address='', operating_system=''):
+            payload_filter = []
+            if endpoint_name:
+                payload_filter.append(self.create_filter_entry(entry_value=endpoint_name, entry_type="endpoint_name"))
+            if endpoint_type:
+                payload_filter.append(self.create_filter_entry(entry_value=endpoint_type, entry_type="endpoint_type"))
+            if ip_address:
+                ip_range = argToList(ip_address)
+                payload_filter.append(self.create_filter_entry(entry_value=ip_range, entry_type="endpoint_ip_address"))
+            if operating_system:
+                if operating_system == "Windows General":
+                    # special case - filter by all windows security agents
+                    payload_filter.append(self.create_filter_entry(entry_value=operating_system, entry_type="partial_OS"))
+                else:
+                    payload_filter.append(self.create_filter_entry(entry_value=operating_system, entry_type="endpoint_OS"))
+
+            return payload_filter
+
+        def endpoint_sensors_list(self, limit=50, offset=0, filter_by_endpoint_name="", filter_by_endpoint_type="",
+                                  filter_by_ip_address="", filter_by_operating_system=""):
+
+            payload_data = {
+                "pagination": {
+                    "limit": int(limit),
+                    "offset": int(offset)
+                }
+            }
+
+            payload_filter = self.create_payload_filter(filter_by_endpoint_name, filter_by_endpoint_type,
+                                                        filter_by_ip_address, filter_by_operating_system)
+            if payload_filter:
+                payload_data["filter"] = payload_filter
+
+            # return_error(payload_data)
+            request_data = {
+                "Url": "V1/Task/ShowAgentList",
+                "TaskType": 4,  # For Endpoint Sensor, the value is always 4.
+                "Payload": payload_data
+            }
+
+            headers = {
+                'Content-Type': 'application/json;charset=utf-8',
+                'Authorization': 'Bearer ' + self.create_jwt_token(http_method='PUT', api_path=self.suffix,
+                                                                   headers='', request_body=json.dumps(request_data))}
+
+            response = self._http_request("PUT", self.suffix, headers=headers, data=json.dumps(request_data))
+            self.validate_response(response, error_message="Endpoint sensors list operation failed")
+            return response
+
+        @staticmethod
+        def fix_log_headers(log: dict):
+            """
+            Fix the cef log headers according to TrendMicro headers
+            Args:
+                log(dict): the cef log to fix.
+
+            Returns:
+                the fixed log with the correct headers mapping.
+
+            """
+
+            remove_from_dict = ['DeviceName',
+                                'DeviceSeverity']  # duplicate keys from pycef - backwards compatibility reasons
+            keys_to_fix = CEF_HEADERS_TO_TREND_MICRO_HEADERS.keys()
+
+            # remove unnecessary keys
+            for key in remove_from_dict:
+                log.pop(key, None)
+
+            # fix the keys to their correct name
+            new_log = log.copy()
+            for key in log.keys():
+                if key in keys_to_fix:
+                    new_log[CEF_HEADERS_TO_TREND_MICRO_HEADERS[key]] = new_log.pop(key)
+                if key == 'rt':  # this key is always referencing to 'Creation Time' header
+                    new_log['CreationTime'] = new_log.pop('rt')
+
+            return new_log
+
+        def parse_cef_logs_to_dict_logs(self, response):
+            logs_list_in_cef_format = response.get('Data', {}).get('Logs', [])
+            parsed_logs_list = []
+            for log in logs_list_in_cef_format:
+                parsed_log = pycef.parse(log)
+                if parsed_log:
+                    parsed_trendmicro_log = self.fix_log_headers(parsed_log)
+                    parsed_logs_list.append(parsed_trendmicro_log)
+
+            return parsed_logs_list
+
+        @staticmethod
+        def update_agents_info_in_payload(payload_data, agent_guids):
+            agent_guids_dict = json.loads(agent_guids)  # this is a dict of { server_guids : [agent_guids] }
+            payload_data["agentGuid"] = agent_guids_dict
+            payload_data["serverGuid"] = [server_guid for server_guid in agent_guids_dict.keys()]
+
+            return payload_data
+
+        @staticmethod
+        def validate_response(response, error_message):
+            response_message = response.get('Data', {}).get('Message', '')
+            if response_message and response_message != 'OK':
+                raise DemistoException(f'{error_message}. Reason:\n{response_message}')
+
+        @staticmethod
+        def get_file_name_and_base_64_content(entry_id: str):
+            file = demisto.getFilePath(entry_id)
+            file_path = file['path']
+            file_name = file['name']
+            with open(file_path, 'rb') as f:
+                file_content_base64_string = base64.b64encode(
+                    f.read()).decode()  # the api is expecting 64based encoded file
+            return file_name, file_content_base64_string
+
+        @staticmethod
+        def create_custom_criteria(custom_investigation_args):
+            custom_criteria = {
+                "operator": custom_investigation_args.pop('operator')
+            }
+            filters = []
+
+            for key, value in custom_investigation_args.items():
+                if key.endswith('is'):
+                    type_id = CUSTOM_INVESTIGATION_TYPE_TO_ID[key[:-3]]  # arg name is : 'NAME_is', pass NAME
+                    filters.append({
+                        "condition": "IS",
+                        "value": argToList(value),
+                        "typeId": type_id
+                    })
+                if key.endswith('contains'):
+                    type_id = CUSTOM_INVESTIGATION_TYPE_TO_ID[key[:-9]]  # arg name is : 'NAME_contains', pass NAME
+                    filters.append({
+                        "condition": "CONTAIN",
+                        "value": argToList(value),
+                        "typeId": type_id
+                    })
+            if filters:
+                custom_criteria['item'] = filters
+
+            return custom_criteria
+
+        @staticmethod
+        def create_historical_investigation_payload(criteria_kvp, criteria_source, search_period):
+            payload = {}
+            if criteria_kvp:
+                payload['criteriaKvp'] = criteria_kvp
+            if criteria_source:
+                payload['criteriaSource'] = criteria_source
+            if search_period:
+                payload['searchPeriod'] = SEARCH_PERIOD_NAME_TYPE_TO_NUM[search_period]
+
+            return payload
+
+        def create_historical_investigation(self, args):
+            criteria_kvp = args.get('criteria_kvp', '')
+            criteria_source = args.get('criteria_source', '')
+            search_period = args.get('search_period', '')
+
+            payload = self.create_historical_investigation_payload(criteria_kvp, criteria_source, search_period)
+
+            payload["criteria"] = self.create_custom_criteria(args)
+
+            request_data = {
+                "Url": "V1/Task/CreateQuickScan",
+                "TaskType": 4,  # For Endpoint Sensor, the value is always 4.
+                "Payload": payload
+            }
+            headers = {
+                'Content-Type': 'application/json;charset=utf-8',
+                'Authorization': 'Bearer ' + self.create_jwt_token(http_method='POST', api_path=self.suffix,
+                                                                   headers='', request_body=json.dumps(request_data))}
+
+            response = self._http_request("POST", self.suffix, headers=headers, data=json.dumps(request_data))
+            self.validate_response(response, error_message='The historical investigation creation was unsuccessful')
+            return response
+
+        def create_result_list_payload(self, limit, offset, scan_type, filter_by_task_name: str = '',
+                                       filter_by_creator_name: str = '', filter_by_scan_type: str = '',
+                                       filter_by_criteria_name: str = '', scan_schedule_id: str = ''):
+            payload = {
+                "pagination": {
+                    "limit": int(limit),
+                    "offset": int(offset)
+                },
+                "scanType": [SCAN_TYPE_TO_NUM[scan_type] for scan_type in argToList(scan_type)]
+            }
+            if scan_schedule_id:
+                payload["scanScheduleId"] = scan_schedule_id
+
+            payload_filter = []
+            if filter_by_task_name:
+                payload_filter.append(self.create_filter_entry(filter_by_task_name, 'task_name',
+                                                               INVESTIGATION_RESULT_FILTER_TYPE_TO_NUM))
+            if filter_by_creator_name:
+                payload_filter.append(self.create_filter_entry(filter_by_creator_name, 'creator_name',
+                                                               INVESTIGATION_RESULT_FILTER_TYPE_TO_NUM))
+            if filter_by_scan_type:
+                payload_filter.append(self.create_filter_entry(filter_by_scan_type, 'scan_type',
+                                                               INVESTIGATION_RESULT_FILTER_TYPE_TO_NUM))
+            if filter_by_criteria_name:
+                payload_filter.append(self.create_filter_entry(filter_by_criteria_name, 'criteria_name',
+                                                               INVESTIGATION_RESULT_FILTER_TYPE_TO_NUM))
+
+            if payload_filter:
+                payload["filter"] = payload_filter
+
+            return payload
+
+        def investigation_result_list(self, scan_type: str, limit: str = '50', offset: str = '0',
+                                      filter_by_task_name: str = '',
+                                      filter_by_creator_name: str = '', filter_by_scan_type: str = '',
+                                      filter_by_criteria_name: str = '', scan_schedule_id: str = ''):
+
+            payload = self.create_result_list_payload(limit, offset, scan_type, filter_by_task_name, filter_by_creator_name,
+                                                      filter_by_scan_type, filter_by_criteria_name, scan_schedule_id)
+
+            request_data = {
+                "Url": "V1/Task/ShowScanSummaryList",
+                "TaskType": 4,  # For Endpoint Sensor, the value is always 4.
+                "Payload": payload
+            }
+            headers = {
+                'Content-Type': 'application/json;charset=utf-8',
+                'Authorization': 'Bearer ' + self.create_jwt_token(http_method='PUT', api_path=self.suffix,
+                                                                   headers='', request_body=json.dumps(request_data))}
+            response = self._http_request("PUT", self.suffix, headers=headers, data=json.dumps(request_data))
+            self.validate_response(response, 'The investigation result list command was unsuccessfu')
+
+            return response
+
+
+    ''' COMMANDS + REQUESTS FUNCTIONS '''
+
+
+    def test_module(client: Client):
+        """
+        Performs basic get request to get item samples
+        """
+        client.udso_list()
+        return 'ok'
+
+
+    def udso_list_command(client: Client, args):
+        list_type = args.get('type', '')
+        content_filter = args.get('content_filter', '')
+
+        response = client.udso_list(list_type, content_filter)
+        list_data = response.get('Data', [])
+        readable_output = tableToMarkdown("Apex One UDSO List", list_data)
+
+        context = {
+            'TrendMicroApex.UDSO(val.content == obj.content)': list_data,
+            'TrendMicroApex.USDO(val.content == obj.content)': list_data,  # for bc reasons
+        }
+
+        return CommandResults(
+            readable_output=readable_output,
+            outputs=context,
+            raw_response=response
+        )
+
+
+    def udso_delete_command(client: Client, args):
+        list_type = args.get('type', '')
+        content = args.get('content', '')
+
+        response = client.udso_delete(list_type, content)
+
+        readable_output = f'### UDSO "{content}" of type "{list_type}" was deleted successfully'
+        return CommandResults(
+            readable_output=readable_output,
+            raw_response=response
+        )
+
+
+    def udso_add_command(client: Client, args):
+        add_type = args.get('type')
+        content = args.get('content')
+        scan_action = args.get('scan_action')
+        notes = args.get('notes', "")
+        expiration = args.get('expiration', "")
+        response = client.udso_add(add_type=add_type, content=content, scan_action=scan_action, notes=notes,
+                                   expiration=expiration)
+
+        readable_output = f'### UDSO "{content}" of type "{add_type}" was added successfully with scan action ' \
+                          f'"{scan_action}"'
+        return CommandResults(
+            readable_output=readable_output,
+            raw_response=response
+        )
+
+
+    def prodagent_isolate_command(client: Client, args):
+        multi_match = args.get('multi_match', 'true') == 'true'
+        entity_id = args.get('entity_id')
+        ip = args.get('ip_address')
+        mac = args.get('mac_address')
+        host = args.get('host_name')
+        product = args.get('product')
+
+        if not any([entity_id, ip, mac, host, product]):
+            raise ValueError('At least one of the following arguments must be provided: '
+                             'entity_id, ip_address, mac_address, host_name, product')
+
+        response = client.prodagent_isolate(multi_match=multi_match, entity_id=entity_id, ip_add=ip, mac_add=mac, host=host,
+                                            prod=product)
+        result_content = response.get('result_content', [])
+        if result_content:
+            readable_output = tableToMarkdown("Apex One ProductAgent Isolate", result_content)
+
+        else:
+            readable_output = '### No agents were affected.'
+
+        return CommandResults(
+            readable_output=readable_output,
+            outputs_prefix='TrendMicroApex.ProductAgent',
+            outputs=result_content,
+            raw_response=response
+        )
+
+
+    def prodagent_restore_command(client: Client, args):
+        multi_match = args.get('multi_match', 'true') == 'true'
+        entity_id = args.get('entity_id')
+        ip = args.get('ip_address')
+        mac = args.get('mac_address')
+        host = args.get('host_name')
+        product = args.get('product')
+
+        if not any([entity_id, ip, mac, host, product]):
+            raise ValueError('At least one of the following arguments must be provided: '
+                             'entity_id, ip_address, mac_address, host_name, product')
+
+        response = client.prodagent_restore(multi_match=multi_match, entity_id=entity_id, ip_add=ip, mac_add=mac, host=host,
+                                            prod=product)
+        result_content = response.get('result_content', [])
+        if result_content:
+            readable_output = tableToMarkdown("Apex One ProductAgent Restore", result_content)
+        else:
+            readable_output = '### No agents were affected.'
+
+        return CommandResults(
+            readable_output=readable_output,
+            outputs_prefix='TrendMicroApex.ProductAgent',
+            outputs=result_content,
+            raw_response=response
+        )
+
+
+    def list_logs_command(client: Client, args):
+        client.suffix = '/WebApp/api/v1/logs'
+        limit = int(args.pop('limit', 50))
+        response = client.logs_list(**assign_params(**args))
+        parsed_logs_list = []
+
+        if response:
+            if response.get('Data', {}).get('Logs'):
+                parsed_logs_list = client.parse_cef_logs_to_dict_logs(response)[:limit]
+
+        log_type = args.get('log_type')
+        headers = ['EventName', 'EventID', 'CreationTime', 'LogVersion', 'ApplianceVersion', 'ApplianceProduct',
+                   'ApplianceVendor']
+        readable_output = tableToMarkdown(f'Trend Micro Apex One - {log_type} Logs', parsed_logs_list, headers=headers,
+                                          removeNull=True)
+
+        return CommandResults(
+            readable_output=readable_output,
+            outputs_prefix='TrendMicroApex.Log',
+            outputs=parsed_logs_list,
+            raw_response=response
+        )
+
+
+    def udso_file_add_command(client: Client, args):
+        client.suffix = '/WebApp/api/SuspiciousObjectResource/FileUDSO'
+        note = args.get('note')
+        file_scan_action = args.get('file_scan_action')
+        entry_id = args.get('entry_id')
+
+        file_name, file_content_base64_string = client.get_file_name_and_base_64_content(entry_id)
+        response = client.udso_add_file(file_content_base64_string, file_name, file_scan_action, note)
+        readable_output = f'### The file "{file_name}" was added to the UDSO list successfully'
+
+        return CommandResults(
+            readable_output=readable_output,
+            raw_response=response
+        )
+
+
+    def servers_list_command(client: Client, args):
+        client.suffix = '/WebApp/API/ServerResource/ProductServers'
+
+        response = client.servers_or_agents_list(**assign_params(**args))
+
+        for item in response.get('result_content'):  # parse comma separated str to list
+            item['ip_address_list'] = item.get('ip_address_list', '').split(',')
+
+        context = human_readable_table = []
+        if response:
+            if response.get('result_content'):
+                context = human_readable_table = response.get('result_content')
+
+        headers = ['entity_id', 'product', 'host_name', 'ip_address_list', 'capabilities']
+        readable_output = tableToMarkdown('Trend Micro Apex One Servers List', human_readable_table, headers,
+                                          headerTransform=string_to_table_header, removeNull=True)
+        return CommandResults(
+            readable_output=readable_output,
+            outputs_prefix='TrendMicroApex.Server',
+            outputs=context,
+            outputs_key_field='entity_id',
+            raw_response=response
+        )
+
+
+    def agents_list_command(client: Client, args):
+        client.suffix = '/WebApp/API/AgentResource/ProductAgents'
+
+        response = client.servers_or_agents_list(**assign_params(**args))
+
+        for item in response.get('result_content'):  # parse comma separated str to list
+            item['ip_address_list'] = item.get('ip_address_list', '').split(',')
+
+        context = human_readable_table = []
+        if response:
+            if response.get('result_content'):
+                context = human_readable_table = response.get('result_content')
+
+        readable_output = tableToMarkdown('Trend Micro Apex One Agents List', human_readable_table,
+                                          headerTransform=string_to_table_header,
+                                          removeNull=True)
+
+        return CommandResults(
+            readable_output=readable_output,
+            outputs_prefix='TrendMicroApex.Agent',
+            outputs=context,
+            outputs_key_field='entity_id',
+            raw_response=response
+        )
+
+
+    def endpoint_sensors_list_command(client: Client, args):
+        client.suffix = '/WebApp/OSCE_iES/OsceIes/ApiEntry'
+
+        response = client.endpoint_sensors_list(**assign_params(**args))
+        human_readable_table = []
+        if response:
+            # extract the sensor agents entities from the response
+            content_list = response.get('Data', {}).get('Data', {}).get('content', {})
+            for content_item in content_list:
+                agent = content_item.get('content', {}).get('agentEntity', [])
+                if agent:
+                    if agent[0].get('isolateStatus'):
+                        agent['isolateStatus'] = AGENT_ISOLATION_STATUS_NUM_TO_VALUE[agent['isolateStatus']]
+                    human_readable_table.append(agent[0])
+
+        readable_output = tableToMarkdown('Trend Micro Apex One Security Agents with Endpoint Sensor enabled',
+                                          human_readable_table, removeNull=True)
+
+        return CommandResults(
+            readable_output=readable_output,
+            outputs_prefix='TrendMicroApex.EndpointSensorSecurityAgent',
+            outputs=human_readable_table,
+            outputs_key_field='agentGuid',
+            raw_response=response
+        )
+
+
+    def create_historical_investigation(client: Client, args):
+        client.suffix = '/WebApp/OSCE_iES/OsceIes/ApiEntry'
+        response = client.create_historical_investigation(args)
+        context = response
+        if response:
+            context = response.get('Data', {}).get('Data', {})
+
+            headers = ['taskId', 'serverName', 'serverGuid']
+            readable_output = tableToMarkdown('The historical investigation was created successfully',
+                                              context, headers=headers, removeNull=True)
+
+        return CommandResults(
+            readable_output=readable_output,
+            outputs_prefix='TrendMicroApex.HistoricalInvestigation',
+            outputs=context,
+            outputs_key_field='taskId',
+            raw_response=response
+        )
+
+
+    def investigation_result_list_command(client: Client, args):
+        client.suffix = '/WebApp/OSCE_iES/OsceIes/ApiEntry'
+        response = client.investigation_result_list(**assign_params(**args))
+        context = {}
+        if response:
+            content_list = response.get('Data', {}).get('Data', {}).get('content', [])
+            if content_list:
+                results_list = content_list[0].get('content', {}).get('scanSummaryEntity')
+                if results_list:
+                    context = results_list = client.convert_timestamps_and_scan_type_to_readable(results_list)
+
+                headers = ['name', 'scanSummaryId', 'scanSummaryGuid', 'submitTime', 'serverGuidList', 'creator']
+                readable_output = tableToMarkdown('Investigation result list:', results_list, headers=headers)
+
+        return CommandResults(
+            readable_output=readable_output,
+            outputs_prefix='TrendMicroApex.InvestigationResult',
+            outputs=context,
+            outputs_key_field='scanSummaryGuid',
+            raw_response=response
+        )
+
+
+    ''' COMMANDS MANAGER / SWITCH PANEL '''
+
+
+    def main():
+        """ GLOBALS/PARAMS """
+
+        params = demisto.params()
+
+        api_key = params.get('token')
+        app_id = params.get('application_id')
+
+        base_url = urljoin(params.get('url'), '')
+        verify = not params.get('insecure', False)
+        proxy = params.get('proxy', False)
+
+        client = Client(base_url, api_key, app_id, verify=verify, proxy=proxy)
+        command = demisto.command()
+        demisto.info(f'Command being called is {command}')
+        try:
+            if command == 'test-module':
+                test_result = test_module(client)
+                return_results(test_result)
+
+            elif command in ('trendmicro-apex-udso-list', 'trendmicro-apex-usdo-list'):  # For bc reasons.
+                return_results(udso_list_command(client, demisto.args()))
+
+            elif command in ('trendmicro-apex-udso-add', 'trendmicro-apex-usdo-add'):  # For bc reasons
+                return_results(udso_add_command(client, demisto.args()))
+
+            elif command in ('trendmicro-apex-udso-delete', 'trendmicro-apex-usdo-delete'):  # For bc reasons
+                return_results(udso_delete_command(client, demisto.args()))
+
+            elif command == 'trendmicro-apex-isolate':
+                return_results(prodagent_isolate_command(client, demisto.args()))
+
+            elif command == 'trendmicro-apex-restore':
+                return_results(prodagent_restore_command(client, demisto.args()))
+
+            elif command == 'trendmicro-apex-list-logs':
+                return_results(list_logs_command(client, demisto.args()))
+
+            elif command == 'trendmicro-apex-udso-file-add':
+                return_results(udso_file_add_command(client, demisto.args()))
+
+            elif command == 'trendmicro-apex-managed-servers-list':
+                return_results(servers_list_command(client, demisto.args()))
+
+            elif command == 'trendmicro-apex-security-agents-list':
+                return_results(agents_list_command(client, demisto.args()))
+
+            elif command == 'trendmicro-apex-endpoint-sensors-list':
+                return_results(endpoint_sensors_list_command(client, demisto.args()))
+
+            elif command == 'trendmicro-apex-historical-investigation-create':
+                return_results(create_historical_investigation(client, demisto.args()))
+
+            elif command == 'trendmicro-apex-investigation-result-list':
+                return_results(investigation_result_list_command(client, demisto.args()))
+
+        except ValueError as e:
+            return_error(f'Error from TrendMicro Apex One integration: {str(e)}', e)
+
+
+    if __name__ in ['__main__', 'builtin', 'builtins']:
+        main()
+
+    register_module_line('Trend Micro Apex', 'end', __line__())
+  subtype: python3
+  type: python
+system: true
