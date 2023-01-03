@@ -1,0 +1,396 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.0.21
+    packID: IllusiveNetworks
+    packName: Illusive Networks
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: This playbook is used to collect forensics on-demand on any compromised
+  host and retrieve the forensics timeline upon successful collection.
+id: Illusive-Collect-Forensics-On-Demand
+inputs:
+- description: The host FQDN or IP address on which to collect forensics.
+  key: fqdn_or_ip
+  playbookInputQuery: null
+  required: true
+  value:
+    simple: 172.27.102.12
+- description: |
+    The starting date of the forensics timeline.
+  key: start_date
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: |
+    The last date of the forensics timeline.
+  key: end_date
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: Illusive-Collect-Forensics-On-Demand
+outputs:
+- contextPath: Illusive.Forensics.Evidence.details
+  description: The forensics evidence details.
+- contextPath: Illusive.Forensics.Evidence.eventId
+  description: The event ID.
+- contextPath: Illusive.Forensics.Evidence.id
+  description: The forensics evidence ID.
+- contextPath: Illusive.Forensics.Evidence.source
+  description: The evidence source.
+- contextPath: Illusive.Forensics.Evidence.starred
+  description: Whether the forensics evidence has been starred.
+- contextPath: Illusive.Forensics.Evidence.time
+  description: 'Date and time of the forensics evidence. '
+- contextPath: Illusive.Forensics.Evidence.title
+  description: The forensics evidence description.
+- contextPath: Illusive.Forensics.IncidentId
+  description: The incident ID.
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 5c5a46fa-b621-45ab-8b8b-dc78415f2965
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 5c5a46fa-b621-45ab-8b8b-dc78415f2965
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 440,
+          "y": -160
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      fqdn_or_ip:
+        complex:
+          root: inputs.fqdn_or_ip
+      hostname_or_ip:
+        complex:
+          root: 'inputs.fqdn_or_ip '
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: IllusiveNetworks
+      description: Collect forensics on a specified host and retrieve the forensics
+        timeline.
+      id: 3d5d08b1-8544-487f-8f04-30ed968d8168
+      iscommand: true
+      name: illusive-run-forensics-on-demand
+      script: IllusiveNetworks|||illusive-run-forensics-on-demand
+      tags:
+      - forensics
+      type: regular
+      version: -1
+    taskid: 3d5d08b1-8544-487f-8f04-30ed968d8168
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 440,
+          "y": -10
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 0
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      Ids:
+        complex:
+          accessor: Event.eventId
+          root: Illusive
+      Interval:
+        simple: "1"
+      PollingCommandArgName:
+        simple: event_id
+      PollingCommandName:
+        simple: illusive-get-event-incident-id
+      Timeout:
+        simple: "5"
+      dt:
+        simple: Illusive.Event(val.status != 'Done').eventId
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      id: da5eee43-a8b5-48bc-889a-923df50b909d
+      iscommand: false
+      name: GenericPolling
+      playbookId: GenericPolling
+      type: playbook
+      version: -1
+    taskid: da5eee43-a8b5-48bc-889a-923df50b909d
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 440,
+          "y": 360
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      event_id:
+        complex:
+          accessor: Event.eventId
+          root: Illusive
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: IllusiveNetworks
+      description: event_id
+      id: 17a4a75a-fba1-4981-8b02-347d75fd10ba
+      iscommand: true
+      name: illusive-get-event-incident-id
+      script: IllusiveNetworks|||illusive-get-event-incident-id
+      tags:
+      - forensics
+      type: regular
+      version: -1
+    taskid: 17a4a75a-fba1-4981-8b02-347d75fd10ba
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 440,
+          "y": 540
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 0
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      Ids:
+        complex:
+          accessor: Event.incidentId
+          root: Illusive
+      Interval:
+        simple: "2"
+      PollingCommandArgName:
+        simple: incident_id
+      PollingCommandName:
+        simple: illusive-get-forensics-timeline
+      Timeout:
+        simple: "15"
+      dt:
+        simple: Illusive.Forensics(val.Status != 'Done').IncidentId
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      id: d1a6b201-4d05-46f2-8781-daf8c46d9f37
+      iscommand: false
+      name: GenericPolling
+      playbookId: GenericPolling
+      type: playbook
+      version: -1
+    taskid: d1a6b201-4d05-46f2-8781-daf8c46d9f37
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 440,
+          "y": 730
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      end_date:
+        complex:
+          root: inputs.end_date
+      incident_id:
+        complex:
+          accessor: Event.incidentId
+          root: Illusive
+      start_date:
+        complex:
+          root: inputs.end_date
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: IllusiveNetworks
+      description: Retrieve forensics timeline for a specific incident.
+      id: 17e61225-ffe1-4c2f-8f57-f444f9cb0902
+      iscommand: true
+      name: illusive-get-forensics-timeline
+      script: IllusiveNetworks|||illusive-get-forensics-timeline
+      tags:
+      - forensics
+      type: regular
+      version: -1
+    taskid: 17e61225-ffe1-4c2f-8f57-f444f9cb0902
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 440,
+          "y": 910
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        complex:
+          accessor: Forensics.Evidence
+          root: Illusive
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to the War Room. (Markdown supported.)
+      id: 222a72af-c675-4ea4-8719-ce3285fa2900
+      iscommand: false
+      name: Print Forensics Timeline
+      script: Print
+      tags:
+      - forensics
+      type: regular
+      version: -1
+    taskid: 222a72af-c675-4ea4-8719-ce3285fa2900
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 440,
+          "y": 1090
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      seconds:
+        simple: "5"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Sleep for 5 seconds. Waiting for event creation.
+      id: 6a3cbc0f-98d0-42a1-86ae-0eb43a2c1637
+      iscommand: false
+      name: Waiter
+      script: Sleep
+      type: regular
+      version: -1
+    taskid: 6a3cbc0f-98d0-42a1-86ae-0eb43a2c1637
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 440,
+          "y": 160
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1345,
+        "width": 380,
+        "x": 440,
+        "y": -160
+      }
+    }
+  }
