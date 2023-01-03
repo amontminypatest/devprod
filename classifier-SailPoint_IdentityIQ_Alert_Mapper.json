@@ -1,0 +1,53 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "",
+	"feed": false,
+	"fromServerVersion": "6.0.0",
+	"id": "SailPoint IdentityIQ Alert Mapper",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "1.0.7",
+	"keyTypeMap": null,
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": {
+		"dbot_classification_incident_type_all": {
+			"dontMapEventToLabels": true,
+			"internalMapping": {
+				"SailPoint IdentityIQ Alert Display Name": {
+					"simple": "displayName"
+				},
+				"SailPoint IdentityIQ Alert Target Display Name": {
+					"simple": "targetDisplayName"
+				},
+				"SailPoint IdentityIQ Alert Target Id": {
+					"simple": "targetId"
+				},
+				"SailPoint IdentityIQ Alert Target Type": {
+					"simple": "targetType"
+				},
+				"SailPoint IdentityIQ Alert Type": {
+					"simple": "type"
+				}
+			}
+		}
+	},
+	"name": "SailPoint IdentityIQ Alert Mapper",
+	"nameRaw": "SailPoint IdentityIQ Alert Mapper",
+	"packID": "SailPointIdentityIQ",
+	"packName": "SailPoint IdentityIQ",
+	"packPropagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {},
+	"type": "mapping-incoming",
+	"unclassifiedCases": null,
+	"version": -1
+}
