@@ -1,0 +1,81 @@
+args:
+- description: The query for the Incidents that you want to export. (e.g. status:closed
+    -category:job). You can and should generate the query from the Incidents search
+    screen.
+  name: query
+  required: true
+- defaultValue: "7"
+  description: Number of days you want to fetch back for (default is 7).  Needs to
+    be a number.
+  name: fetchdays
+- description: 'Comma separated list of columns (fields) for the CSV.  (Default is:
+    id,name,type,severity,status,owner,roles,playbookId,occurred,created,modified,closed)'
+  name: columns
+comment: This automation uses the Demisto REST API Integration to batch export Incidents
+  to CSV and return the resulting CSV file to the war room.
+commonfields:
+  id: 1ab5bf0d-698b-4257-8a0c-a3d48290258d
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dependson:
+  must:
+  - Demisto REST API|||demisto-api-post
+  - Demisto REST API|||demisto-api-get
+dockerimage: demisto/python3:3.9.1.15759
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: ExportIncidentsToCSV
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |+
+  incident_query = demisto.args().get("query")
+  incident_fetch_back_days = int(demisto.args().get("fetchdays"))
+
+  if demisto.args().get("columns"):
+      incident_columns = [x.strip() for x in demisto.args().get("columns").split(",")]
+  else:
+      incident_columns = ["id", "name", "type", "severity", "status", "owner", "roles", "playbookId", "occurred", "created", "modified", "closed"]
+
+  # body for the incident request
+  incident_body = {
+      "all": True,
+      "filter": {
+          "query": incident_query,
+          "sort": [{
+              "field": "id",
+              "asc": False
+          }],
+          "period": {
+              "by": "day",
+              "fromValue": incident_fetch_back_days
+          }
+      },
+      "columns": incident_columns
+  }
+
+  # generate the file
+  res = demisto.executeCommand("demisto-api-post", {"uri":"/incident/batch/exportToCsv","body":incident_body})[0]["Contents"]["response"]
+
+
+  # download the file and return to the war room
+  file = demisto.executeCommand("demisto-api-get", {"uri":f"/incident/csv/{res}"})[0]["Contents"]["response"]
+  demisto.results(fileResult(res, file))
+
+scripttarget: 0
+subtype: python3
+tags:
+- Utility
+- training
+type: python
