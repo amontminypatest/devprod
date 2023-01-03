@@ -1,0 +1,155 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Network Security"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"automation"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "Adds (or updates existing) rule in Forcepoint Triton. Preserves order of rules and modifies policy in-place if a rule exists with the exact type and value.",
+				"name": "FPSetRule",
+				"tags": [
+					"forcepoint",
+					"triton"
+				]
+			},
+			{
+				"description": "Deletes a rule in Forcepoint Triton.",
+				"name": "FPDeleteRule",
+				"tags": [
+					"forcepoint",
+					"triton"
+				]
+			}
+		],
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Network Security",
+				"commands": [
+					{
+						"description": "Create custom category.",
+						"name": "fp-add-category"
+					},
+					{
+						"description": "Retrieve a list of all the categories, or only API-managed categories.",
+						"name": "fp-list-categories"
+					},
+					{
+						"description": "Get a list of URLs and IP addresses in an API-managed category.",
+						"name": "fp-get-category-detailes"
+					},
+					{
+						"description": "Add URLs and IP addresses to an API-managed category. Refer to category either by it's ID or by it's name.",
+						"name": "fp-add-address-to-category"
+					},
+					{
+						"description": "Delete API-managed categories. Refer to categories you wish to delete either by ID list or by name list. It is possible to pass both lists, when each list refers to different categories.",
+						"name": "fp-delete-categories"
+					},
+					{
+						"description": " Remove URLs, IP addresses, and ranges from a specific API-managed category.  Refer to category either by it's ID or by it's name.",
+						"name": "fp-delete-address-from-category"
+					}
+				],
+				"description": "Advanced threat protection with added local management controls.",
+				"id": "",
+				"name": "Forcepoint"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-11-09T18:50:57Z",
+	"currentVersion": "1.0.5",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.39",
+			"name": "Base"
+		},
+		"RemoteAccess": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.0.8",
+			"name": "Remote Access"
+		}
+	},
+	"deprecated": false,
+	"description": "Advanced threat protection with added local management controls.",
+	"disabledMonthly": false,
+	"downloads": 1253,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "Forcepoint",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/Forcepoint/Forcepoint_image.png",
+			"name": "Forcepoint"
+		},
+		{
+			"imagePath": "content/packs/RemoteAccess/RemoteAccessv2_image.png",
+			"name": "RemoteAccess v2"
+		}
+	],
+	"itemVersion": "1.0.5",
+	"keywords": [],
+	"legacy": true,
+	"name": "Forcepoint",
+	"packID": "Forcepoint",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-09-10T22:57:56Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4098099",
+	"videos": []
+}
