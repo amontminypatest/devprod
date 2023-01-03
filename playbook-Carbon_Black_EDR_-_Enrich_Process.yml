@@ -1,0 +1,201 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.5.0
+    itemVersion: 2.1.25
+    packID: Carbon_Black_Enterprise_Response
+    packName: Carbon Black Enterprise Response
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: Test Playbook for Carbon Black EDR
+id: Carbon Black EDR - Enrich Process
+inputs:
+- description: The ID of the requested process.
+  key: Process ID
+  playbookInputQuery: null
+  required: true
+  value:
+    simple: ${incident.pid}
+- description: The ID of the segment of the requested process.
+  key: Segment ID
+  playbookInputQuery: null
+  required: true
+  value:
+    simple: ${incident.carbonblackedrsegmentid}
+- description: Whether the data fetched should include related processes (parent,
+    sibling and child processes) if available?
+  key: Enrich with related processes?
+  playbookInputQuery: null
+  required: true
+  value:
+    simple: "false"
+name: Carbon Black EDR - Enrich Process
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 88be698c-1313-4c4f-80de-4b0513c220fe
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 88be698c-1313-4c4f-80de-4b0513c220fe
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 162.5,
+          "y": 50
+        }
+      }
+  "1":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: state
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: Carbon Black EDR
+                root: modules
+          operator: isEqualString
+          right:
+            value:
+              simple: active
+      label: "yes"
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "4"
+      "yes":
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: ac928890-ed94-4fd1-8327-4e695992eccf
+      iscommand: false
+      name: Is instance valid?
+      type: condition
+      version: -1
+    taskid: ac928890-ed94-4fd1-8327-4e695992eccf
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 162.5,
+          "y": 195
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      get_related:
+        simple: ${inputs.Enrich with related processes?}
+      process_id:
+        simple: ${inputs.Process ID}
+      segment_id:
+        simple: ${inputs.Segment ID}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Gets basic process information for the segment of the process.
+      id: 6257b06f-4b2a-4b5e-82a0-f41e18fb0cca
+      iscommand: true
+      name: Enrich Process
+      script: '|||cb-edr-process-get'
+      type: regular
+      version: -1
+    taskid: 6257b06f-4b2a-4b5e-82a0-f41e18fb0cca
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 370
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 9b0191cf-a91a-4d71-89c2-3e495608591d
+      iscommand: false
+      name: Done.
+      type: title
+      version: -1
+    taskid: 9b0191cf-a91a-4d71-89c2-3e495608591d
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 162.5,
+          "y": 545
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 560,
+        "width": 492.5,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
