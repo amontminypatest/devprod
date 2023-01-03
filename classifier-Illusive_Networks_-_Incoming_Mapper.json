@@ -1,0 +1,62 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "Illusive Networks Incident",
+	"definitionId": "",
+	"description": "Maps incoming Illusive Networks incident fields.",
+	"feed": false,
+	"fromServerVersion": "6.0.0",
+	"id": "Illusive Networks-mapper",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "1.0.21",
+	"keyTypeMap": null,
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": {
+		"Illusive Networks Incident": {
+			"dontMapEventToLabels": false,
+			"internalMapping": {
+				"Illusive Networks Has Forensics": {
+					"simple": "hasForensics"
+				},
+				"Illusive Networks Host Name": {
+					"simple": "sourceHostname"
+				},
+				"Illusive Networks Id": {
+					"simple": "incidentId"
+				},
+				"Illusive Networks Last Seen User": {
+					"simple": "lastSeenUser"
+				},
+				"Illusive Networks Source Operating System": {
+					"simple": "sourceOperatingSystem"
+				},
+				"Illusive Networks Steps To Crown Jewel": {
+					"simple": "riskInsights.stepsToCrownJewel"
+				},
+				"Illusive Networks Steps To Domain Admin": {
+					"simple": "riskInsights.stepsToDomainAdmin"
+				},
+				"Source IP": {
+					"simple": "sourceIp"
+				}
+			}
+		}
+	},
+	"name": "Illusive Networks - Incoming Mapper",
+	"nameRaw": "Illusive Networks - Incoming Mapper",
+	"packID": "IllusiveNetworks",
+	"packName": "Illusive Networks",
+	"packPropagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {},
+	"type": "mapping-incoming",
+	"unclassifiedCases": null,
+	"version": -1
+}
