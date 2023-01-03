@@ -1,0 +1,553 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.0.0
+    itemVersion: 1.0.2
+    packID: WindowsForensics
+    packName: Windows Forensics
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: This playbook leverages the Windows built-in PowerShell and WinRM capabilities
+  to connect to a Windows host. It then connectst to the Netsh tool to create an ETL
+  file which is the equivalent of a Wireshark PCAP file by using the PS-Remote integration.
+  After receiving the resultant ETL, XSOAR will be able to convert the ETL to a PCAP
+  file to be parsed and enriched later. Review the Microsoft documentation for how
+  to use ETL filters (https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/jj129382(v=ws.11)#using-filters-to-limit-etl-trace-file-details).
+id: PS-Remote Get Network Traffic
+inputs:
+- description: A single hostname or IP address from which to create the ETL file.
+    For example, testpc01.
+  key: Host
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: The maximum file size for the ETL. Once the file has reached this size,
+    the capture will stop. For example, 10MB. The default size is 10MB.
+  key: EtlSizeLimit
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "10"
+- description: |-
+    The path on the hostname on which to create the ETL file. The default path will be c:\etl.etl.
+    If the AddHostNameToFile input is "true", the file downloaded to XSOAR will contain the hostname.
+  key: EtlPath
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: c:\etl.etl
+- description: The filter to apply when creating the ETL file. For example, IPv4.Address=1.1.1.1
+    to capture traffic just from the 1.1.1.1 IP address. If no filter is specified,
+    all traffic will be recorded.
+  key: EtlFilter
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: The time to record in seconds.
+  key: ETlTimeToRecord
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "60"
+- description: Specify "true" to zip the ETL file before sending it to XSOAR.
+  key: ZipEtl
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "true"
+- description: Specify "true" for the downloaded filename to contain the hostname,
+    or "false" to keep the filename as configured in the FilePath argument.
+  key: AddHostNameToFile
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "true"
+name: PS-Remote Get Network Traffic
+outputs:
+- contextPath: PcapDetails
+  description: The PCAP file details.
+  type: string
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 9aa0ca43-ef2f-4f50-8792-d771dae6fb48
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 9aa0ca43-ef2f-4f50-8792-d771dae6fb48
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 100
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "3"
+      "yes":
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      brandname:
+        simple: PowerShell Remoting
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Returns 'yes' if the integration brand is available. Otherwise
+        returns 'no'.
+      id: 3d412b04-16a0-4b5f-8b0f-08eb4e46478c
+      iscommand: false
+      name: Is PowerShell Remoting enabled?
+      script: IsIntegrationAvailable
+      type: condition
+      version: -1
+    taskid: 3d412b04-16a0-4b5f-8b0f-08eb4e46478c
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 230
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 76b788ce-2341-4b89-8de7-4682f3173321
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 76b788ce-2341-4b89-8de7-4682f3173321
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 1940
+        }
+      }
+  "4":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.Host
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "3"
+      "yes":
+      - "5"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 82c16993-2444-42cf-8e1b-7d97ee38d85e
+      iscommand: false
+      name: Was a host specified?
+      type: condition
+      version: -1
+    taskid: 82c16993-2444-42cf-8e1b-7d97ee38d85e
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 410
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      etl_filter:
+        simple: ${inputs.EtlFilter}
+      etl_max_size:
+        simple: ${inputs.EtlSizeLimit}
+      etl_path:
+        simple: ${inputs.EtlPath}
+      host:
+        simple: ${inputs.Host}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: This command starts the recording of an ETL file on a Windows endpoint.
+        ETL is similar to a PCAP file which is created by the Windows Netsh command.
+      id: 708d6c10-eeef-48ef-8d71-133fbd9c4e88
+      iscommand: true
+      name: PS-Remote start capture
+      script: '|||ps-remote-etl-create-start'
+      type: regular
+      version: -1
+    taskid: 708d6c10-eeef-48ef-8d71-133fbd9c4e88
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -160,
+          "y": 580
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      host:
+        simple: ${inputs.Host}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: This command ends the recording of an ETL file on a Windows endpoint.
+      id: e9dfb6c7-aaa3-4801-85df-fd8d2c59083d
+      iscommand: true
+      name: PS-Remote stop capture
+      script: '|||ps-remote-etl-create-stop'
+      type: regular
+      version: -1
+    taskid: e9dfb6c7-aaa3-4801-85df-fd8d2c59083d
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -160,
+          "y": 910
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "10"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      check_hash:
+        simple: "true"
+      host:
+        simple: ${inputs.Host}
+      host_prefix:
+        simple: ${inputs.AddHostNameToFile}
+      path:
+        simple: ${inputs.EtlPath}
+      zip_file:
+        simple: ${inputs.ZipEtl}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Download a file from the remote endpoint.
+      id: b33ad946-21f5-4b0d-83c1-b3c72cde6d94
+      iscommand: true
+      name: PS-Remote download file
+      script: '|||ps-remote-download-file'
+      type: regular
+      version: -1
+    taskid: b33ad946-21f5-4b0d-83c1-b3c72cde6d94
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -160,
+          "y": 1090
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    evidencedata:
+      customfields: {}
+      description:
+        simple: A PCAP file acquired from a host.
+      tags:
+        simple: PCAP
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "12"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      EntryID:
+        complex:
+          accessor: EntryID
+          root: File
+          transformers:
+          - operator: LastArrayElement
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 379481fb-392e-4c4d-89b9-a01b0687aa84
+      iscommand: false
+      name: Convert ETL to Pcap
+      script: Etl2Pcap
+      tags:
+      - PCAP
+      type: regular
+      version: -1
+    taskid: 379481fb-392e-4c4d-89b9-a01b0687aa84
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -160,
+          "y": 1600
+        }
+      }
+  "9":
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      seconds:
+        simple: ${inputs.ETlTimeToRecord}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Sleep for X seconds.
+      id: 31df3aba-23a1-4d17-8c5e-f971330de227
+      iscommand: false
+      name: Sleep
+      script: Sleep
+      type: regular
+      version: -1
+    taskid: 31df3aba-23a1-4d17-8c5e-f971330de227
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -160,
+          "y": 750
+        }
+      }
+  "10":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.ZipEtl
+          operator: isEqualString
+          right:
+            value:
+              simple: "true"
+      label: "yes"
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "8"
+      "yes":
+      - "11"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 12258569-d5e3-403a-8e6f-de4010c7bc48
+      iscommand: false
+      name: Was the file zipped?
+      type: condition
+      version: -1
+    taskid: 12258569-d5e3-403a-8e6f-de4010c7bc48
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -160,
+          "y": 1260
+        }
+      }
+  "11":
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "8"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      entryID:
+        complex:
+          accessor: EntryID
+          root: File
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Unzip a file using fileName or entryID to specify a file. Unzipped
+        files will be loaded to the War Room and names will be put into the context.
+      id: 4803e3a3-0bd8-43b4-84ac-0414f453f24b
+      iscommand: false
+      name: Unzip file
+      script: UnzipFile
+      type: regular
+      version: -1
+    taskid: 4803e3a3-0bd8-43b4-84ac-0414f453f24b
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -420,
+          "y": 1430
+        }
+      }
+  "12":
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      append:
+        simple: "true"
+      key:
+        simple: PcapDetails
+      value:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: File.Extension
+              operator: isEqualString
+              right:
+                value:
+                  simple: pcap
+          root: File
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: 8a60944d-54a1-4201-8d48-04b9bef97dd4
+      iscommand: false
+      name: Set PCAP details
+      script: Set
+      type: regular
+      version: -1
+    taskid: 8a60944d-54a1-4201-8d48-04b9bef97dd4
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -160,
+          "y": 1765
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1905,
+        "width": 1250,
+        "x": -420,
+        "y": 100
+      }
+    }
+  }
