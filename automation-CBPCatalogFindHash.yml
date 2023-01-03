@@ -1,0 +1,80 @@
+args:
+- default: true
+  description: md5 hash to find
+  name: md5
+  required: true
+comment: Search the CBP/Bit9 file catalog for an md5 hash.
+commonfields:
+  id: CBPCatalogFindHash
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.0.29
+    packID: CarbonBlackProtect
+    packName: Carbon Black Enterprise Protection
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+dependson:
+  must:
+  - cbp-fileCatalog-search
+dockerimage: demisto/python3:3.10.6.33415
+engineinfo: {}
+mainengineinfo: {}
+name: CBPCatalogFindHash
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('CBPCatalogFindHash', 'start', __line__())
+
+
+
+
+  def cbp_catalog_find_hash(args):
+      md5s = argToList(args.get('md5'))
+      found = []
+      res = []
+      t = []
+      for md5 in md5s:
+          resp = demisto.executeCommand('cbp-fileCatalog-search', {'query': 'md5:' + md5})
+          if isError(resp[0]):
+              demisto.results(resp)
+          else:
+              data = demisto.get(resp[0], 'Contents')
+              if data:
+                  found.append(md5)
+                  t += data
+      appendContext('found_hashes', ','.join(found), dedup=True)
+      if t:
+          res.append({"Type": entryTypes["note"], "ContentsFormat": formats["table"], "Contents": t})
+      else:
+          res.append({"Type": entryTypes["note"], "ContentsFormat": formats["text"], "Contents": 'No results.'})
+      demisto.results(res)
+
+
+  def main():  # pragma: no cover
+      args = demisto.args()
+      try:
+          cbp_catalog_find_hash(args)
+      except Exception as e:
+          err_msg = f'Encountered an error while running the script: [{e}]'
+          return_error(err_msg, error=e)
+
+
+  if __name__ in ('__main__', '__builtin__', 'builtins'):
+      main()
+
+  register_module_line('CBPCatalogFindHash', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags:
+- carbon-black-protection
+- bit9
+- enhancement
+type: python
