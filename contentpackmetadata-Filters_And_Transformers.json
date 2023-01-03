@@ -1,0 +1,200 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Utilities"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"automation"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "Each entry in an array is merged into the existing array if the keyed-value matches.",
+				"name": "MergeDictArray",
+				"tags": [
+					"transformer",
+					"general",
+					"entirelist"
+				]
+			},
+			{
+				"description": "Remove empty items, entries or nodes from the array.",
+				"name": "RemoveEmpty",
+				"tags": [
+					"transformer",
+					"entirelist",
+					"general"
+				]
+			},
+			{
+				"description": "Find tables inside HTML and extract the contents into objects using the following logic:\n\n- If table has 2 columns and has no header row, treat the first column as key and second as value and create a table of key/value\n- If table has a header row, create a table of objects where attribute names are the headers\n- If table does not have a header row, create table of objects where attribute names are cell1, cell2, cell3...",
+				"name": "ParseHTMLTables",
+				"tags": [
+					"transformer",
+					"general"
+				]
+			},
+			{
+				"description": "Return the string encoded with JSON from the whole array",
+				"name": "StringifyArray",
+				"tags": [
+					"entirelist",
+					"transformer",
+					"general"
+				]
+			},
+			{
+				"description": "Append item(s) to the end of the list if they are not empty.",
+				"name": "AppendIfNotEmpty",
+				"tags": [
+					"transformer",
+					"entirelist",
+					"general"
+				]
+			},
+			{
+				"description": "Format patterns matched with regex. If the regex does not match any pattern, the original value is returned.\n\nExample 1:\n value: user=john\n regex: user=(.*)\n output_format: name=\\1\n -\u003e output value: name=john\n\nExample 2:\n value: xxx=yyy\n regex: user=(.*)\n output_format: name=\\1\n -\u003e output value: xxx=yyy",
+				"name": "RegexReplace",
+				"tags": [
+					"transformer",
+					"string"
+				]
+			},
+			{
+				"description": "Returns a string concatenated with given a prefix and suffix which supports DT expressions.",
+				"name": "ConcatFormat",
+				"tags": [
+					"transformer",
+					"general",
+					"string"
+				]
+			},
+			{
+				"description": "Takes a date or time input and get time components in a specific time zone.\nReturns a dictionary with the following components.\n- year\n- year_4_digit\n- month\n- month_3_letter\n- month_full_name\n- month_2_digit\n- day\n- day_2_digit\n- day_of_week (Sun:0, Sat:6)\n- day_of_week_3_letter\n- day_of_week_full_name\n- day_of_year\n- day_of_year_3_digit\n- hour\n- hour_12_clock\n- hour_2_digit_24_clock\n- hour_2_digit_12_clock\n- hour_of_day\n- minute\n- minute_2_digit\n- minute_of_day\n- second\n- second_2_digit\n- second_of_day\n- millisecond\n- period_12_clock\n- time_zone_hhmm\n- time_zone_offset\n- time_zone_abbreviations\n- unix_epoch_time\n- iso_8601\n- y-m-d\n- yyyy-mm-dd\n- h:m:s\n- H:m:s\n- hh:mm:ss\n- HH:mm:ss",
+				"name": "TimeComponents",
+				"tags": [
+					"transformer",
+					"date"
+				]
+			},
+			{
+				"description": "Extract the strings matched to the patterns by doing backslash substitution on the template string.\nThis transformer allow to input multiple regex patterns and multiple match targets, and those can be given in the input value and the argument parameters.",
+				"name": "RegexExpand",
+				"tags": [
+					"transformer",
+					"string",
+					"entirelist"
+				]
+			},
+			{
+				"description": "This transformer will take in a value and transform it based on multiple condition expressions (wildcard, regex, etc) defined in a JSON dictionary structure. The key:value pair of the JSON dictionary should be:\n\n\"condition expression\": \"desired outcome\"\n\nFor example:\n\n{\n    \".*match 1.*\": \"Dest Val1\",\n    \".*match 2.*\": \"Dest Val2\",\n    \".*match 3(.*)\": \"\\\\1\",\n    \"*match 4*\": {\n        \"algorithm\": \"wildcard\",\n        \"output\": \"Dest Val4\"\n    }\n}\n\nThe transformer will return the value matched to a pattern following to the priority.\nWhen unmatched or the input value is structured (dict or list), it will simply return the input value.",
+				"name": "MapPattern",
+				"tags": [
+					"transformer",
+					"string"
+				]
+			},
+			{
+				"description": "Extracts email addresses from the given value.",
+				"name": "ExtractEmailTransformer",
+				"tags": [
+					"transformer"
+				]
+			},
+			{
+				"description": "Build text from a template that can include DT expressions.",
+				"name": "FormatTemplate",
+				"tags": [
+					"transformer",
+					"general"
+				]
+			},
+			{
+				"description": "This script converts an input value into another value using two lists. The input value or range is searched in the first list (map_from). \nIf it exists, the value at the same index from the second list (map_to) is returned. If there is no match, the original value is returned.\n\nExample 1:\n\nmap_from = \"1,2,3,4\"\nmap_to = \"4,3,2,1\"\nvalue = 3\n\nOutput is \"2\"\n\nExample 2:\n\nmap_from = \"1-3,4\"\nmap_to = \"5,1\"\nvalue = 3\n\nOutput is \"5\"",
+				"name": "MapRangeValues",
+				"tags": [
+					"transformer"
+				]
+			}
+		],
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": null,
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2022-01-04T22:18:23Z",
+	"currentVersion": "1.1.7",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.51",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Frequently used filters and transformers pack.",
+	"disabledMonthly": false,
+	"downloads": 9163,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "6.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "FiltersAndTransformers",
+	"installMessage": "",
+	"integrations": [],
+	"itemVersion": "1.1.7",
+	"keywords": [],
+	"legacy": true,
+	"name": "Filters And Transformers",
+	"packID": "FiltersAndTransformers",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "6.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [
+		"Transformer",
+		"Core"
+	],
+	"toServerVersion": "",
+	"updated": "2023-01-01T10:43:45Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4314430",
+	"videos": []
+}
