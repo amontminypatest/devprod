@@ -1,0 +1,311 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Network Security"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"playbook"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Network Security",
+				"commands": [
+					{
+						"description": "Lists all firewall rules. IMPORTANT: The list starts at 0 (not 1)!",
+						"name": "sophos-firewall-rule-list"
+					},
+					{
+						"description": "Gets a single firewall rule by name.",
+						"name": "sophos-firewall-rule-get"
+					},
+					{
+						"description": "Adds a new firewall rule.",
+						"name": "sophos-firewall-rule-add"
+					},
+					{
+						"description": "Updates an existing firewall rule.",
+						"name": "sophos-firewall-rule-update"
+					},
+					{
+						"description": "Deletes an existing firewall rule.",
+						"name": "sophos-firewall-rule-delete"
+					},
+					{
+						"description": "Lists all firewall rule groups. IMPORTANT: The list starts at 0 (not 1)!",
+						"name": "sophos-firewall-rule-group-list"
+					},
+					{
+						"description": "Gets a single firewall rule group by name.",
+						"name": "sophos-firewall-rule-group-get"
+					},
+					{
+						"description": "Adds a new firewall rule group.",
+						"name": "sophos-firewall-rule-group-add"
+					},
+					{
+						"description": "Updates an existing firewall rule group.",
+						"name": "sophos-firewall-rule-group-update"
+					},
+					{
+						"description": "Deletes an existing firewall group.",
+						"name": "sophos-firewall-rule-group-delete"
+					},
+					{
+						"description": "Lists all URL groups. IMPORTANT: The list starts at 0 (not 1)!",
+						"name": "sophos-firewall-url-group-list"
+					},
+					{
+						"description": "Gets a single URL group by name.",
+						"name": "sophos-firewall-url-group-get"
+					},
+					{
+						"description": "Adds new URLs to the group.",
+						"name": "sophos-firewall-url-group-add"
+					},
+					{
+						"description": "Updates an existing URL group.",
+						"name": "sophos-firewall-url-group-update"
+					},
+					{
+						"description": "Deletes an existing URL group or groups.",
+						"name": "sophos-firewall-url-group-delete"
+					},
+					{
+						"description": "Lists all IP hosts. IMPORTANT: The list starts at 0 (not 1)!",
+						"name": "sophos-firewall-ip-host-list"
+					},
+					{
+						"description": "Gets a single IP host by name.",
+						"name": "sophos-firewall-ip-host-get"
+					},
+					{
+						"description": "Adds a new IP host.",
+						"name": "sophos-firewall-ip-host-add"
+					},
+					{
+						"description": "Updates an existing IP host.",
+						"name": "sophos-firewall-ip-host-update"
+					},
+					{
+						"description": "Deletes an existing IP host.",
+						"name": "sophos-firewall-ip-host-delete"
+					},
+					{
+						"description": "Lists all IP host groups. IMPORTANT: The list starts at 0 (not 1)!",
+						"name": "sophos-firewall-ip-host-group-list"
+					},
+					{
+						"description": "Gets a single IP host group by name.",
+						"name": "sophos-firewall-ip-host-group-get"
+					},
+					{
+						"description": "Adds a new IP host group.",
+						"name": "sophos-firewall-ip-host-group-add"
+					},
+					{
+						"description": "Updates an existing IP host group.",
+						"name": "sophos-firewall-ip-host-group-update"
+					},
+					{
+						"description": "Deletes an existing IP host group.",
+						"name": "sophos-firewall-ip-host-group-delete"
+					},
+					{
+						"description": "Lists all firewall services. IMPORTANT: The list starts at 0 (not 1)!",
+						"name": "sophos-firewall-services-list"
+					},
+					{
+						"description": "Gets a single service by name.",
+						"name": "sophos-firewall-services-get"
+					},
+					{
+						"description": "Adds a new firewall service.",
+						"name": "sophos-firewall-services-add"
+					},
+					{
+						"description": "Updates an existing firewall service.",
+						"name": "sophos-firewall-services-update"
+					},
+					{
+						"description": "Deletes an existing firewall service.",
+						"name": "sophos-firewall-services-delete"
+					},
+					{
+						"description": "Lists all users. IMPORTANT: The list starts at 0 (not 1)!",
+						"name": "sophos-firewall-user-list"
+					},
+					{
+						"description": "Gets a single user by name.",
+						"name": "sophos-firewall-user-get"
+					},
+					{
+						"description": "Adds a new user.",
+						"name": "sophos-firewall-user-add"
+					},
+					{
+						"description": "Updates a user.",
+						"name": "sophos-firewall-user-update"
+					},
+					{
+						"description": "Deletes an existing user.",
+						"name": "sophos-firewall-user-delete"
+					},
+					{
+						"description": "Lists all app policies. IMPORTANT: The list starst at 0 (not 1)!",
+						"name": "sophos-firewall-app-policy-list"
+					},
+					{
+						"description": "Gets a single app policy by name.",
+						"name": "sophos-firewall-app-policy-get"
+					},
+					{
+						"description": "Adds a new app policy.",
+						"name": "sophos-firewall-app-policy-add"
+					},
+					{
+						"description": "Updates an existing app policy.",
+						"name": "sophos-firewall-app-policy-update"
+					},
+					{
+						"description": "Deletes an existing app policy.",
+						"name": "sophos-firewall-app-policy-delete"
+					},
+					{
+						"description": "Lists all app filter categories. IMPORTANT: The list starts at 0 (not 1)!",
+						"name": "sophos-firewall-app-category-list"
+					},
+					{
+						"description": "Gets a single app filter category by name.",
+						"name": "sophos-firewall-app-category-get"
+					},
+					{
+						"description": "Updates an existing app filter category.",
+						"name": "sophos-firewall-app-category-update"
+					},
+					{
+						"description": "Lists all web filter policies. IMPORTANT: The list starts at 0 (not 1)!",
+						"name": "sophos-firewall-web-filter-list"
+					},
+					{
+						"description": "Gets a single web filter policy by name.",
+						"name": "sophos-firewall-web-filter-get"
+					},
+					{
+						"description": "Adds a new web filter policy.",
+						"name": "sophos-firewall-web-filter-add"
+					},
+					{
+						"description": "Updates an existing web filter policy.",
+						"name": "sophos-firewall-web-filter-update"
+					},
+					{
+						"description": "Deletes an existing web filter policy.",
+						"name": "sophos-firewall-web-filter-delete"
+					}
+				],
+				"description": "On-premise firewall by Sophos enables you to manage your firewall, respond to threats, and monitor what’s happening on your network.",
+				"id": "",
+				"name": "Sophos Firewall"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": [
+			{
+				"description": "This playbook adds the URL to the Default Block URL Policy. (The target\npolicy can be changed as requested).\nPre-Requisite: \n1) Create a web policy rule that refers to the URL group you specified on the inputs of the playbook.\n2) Create a new firewall rule and assign the web policy to the one created in the previous step.",
+				"name": "Sophos Firewall - Block URL"
+			},
+			{
+				"description": "This playbook adds the IP address to a pre-configured firewall rule. (The target firewall rule can be changed as requested.)\nPre-Requisite:\n1) Create an IP host group.\n2) Create a firewall rule which refers to the IP host group created in the previous step.",
+				"name": "Sophos Firewall - Block IP"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2021-02-02T13:41:51Z",
+	"currentVersion": "1.1.3",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.39",
+			"name": "Base"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.10.7",
+			"name": "Common Scripts"
+		}
+	},
+	"deprecated": false,
+	"description": "Use the Sophos XG Firewall to manage your firewall, detect and respond to threats on your network.",
+	"disabledMonthly": false,
+	"downloads": 700,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "SophosXGFirewall",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/SophosXGFirewall/sophos_firewall_image.png",
+			"name": "Sophos Firewall"
+		}
+	],
+	"itemVersion": "1.1.3",
+	"keywords": [],
+	"legacy": true,
+	"name": "Sophos XG Firewall",
+	"packID": "SophosXGFirewall",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-10-26T10:55:10Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4098099",
+	"videos": []
+}
