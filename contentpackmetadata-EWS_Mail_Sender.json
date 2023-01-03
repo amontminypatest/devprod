@@ -1,0 +1,111 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"IT Services"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Messaging",
+				"commands": [
+					{
+						"description": "Sends an email using EWS.",
+						"name": "send-mail"
+					},
+					{
+						"description": "Replies to an email using EWS.",
+						"name": "reply-mail"
+					}
+				],
+				"description": "Exchange Web Services mail sender. Note: this integration supports Office 365 basic authentication only. If you are using Office 365, we recommend using the EWS O365 Integration instead, which supports modern authentication (oauth2).",
+				"id": "",
+				"name": "EWS Mail Sender"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-11-09T18:50:16Z",
+	"currentVersion": "1.1.15",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.40",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Exchange Web Services and Office 365 Email Sender. Note: this Integration supports Office 365 basic authentication only. If you are using Office 365, we recommend using the EWS O365 Integration instead, which supports modern authentication (oauth2).",
+	"disabledMonthly": false,
+	"downloads": 9207,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "EWSMailSender",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/EWSMailSender/EWSMailSender_image.png",
+			"name": "EWS Mail Sender"
+		}
+	],
+	"itemVersion": "1.1.15",
+	"keywords": [],
+	"legacy": true,
+	"name": "EWS Mail Sender",
+	"packID": "EWSMailSender",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "This content pack enables you to perform a very basic operation - send a message through the Microsoft Exchange Web Services (EWS)\n which integrates with Exchange Servers and Office 365. \n\n\n\n## What does this pack do?\n- Send notifications to external users.\n- Send an email asking for a response to be returned as part of a playbook. \n",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-11-07T00:18:00Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4148222",
+	"videos": []
+}
