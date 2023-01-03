@@ -1,0 +1,267 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Utilities"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"incidentfield",
+		"classifier"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": [
+			{
+				"description": "Maps FireEye NX IPS alerts.",
+				"id": "",
+				"name": "FireEye NX IPS Alert - Incoming Mapper v2"
+			},
+			{
+				"description": "Maps FireEye EX alerts.",
+				"id": "",
+				"name": "FireEye EX - Incoming Mapper"
+			},
+			{
+				"description": "Maps FireEye NX alerts.",
+				"id": "",
+				"name": "FireEye NX Alert - Incoming Mapper v2"
+			}
+		],
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": [
+			{
+				"description": "",
+				"name": "FireEye C2 Channel",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "FireEye Signature ID",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "FireEye Submitted At",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "FireEye Alert Infection ID",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "FireEye Email Source Domain",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "FireEye Matched Time",
+				"type": "date"
+			},
+			{
+				"description": "",
+				"name": "FireEye Alert Vlan",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "FireEye Malware Information",
+				"type": "markdown"
+			},
+			{
+				"description": "",
+				"name": "FireEye Infection ID",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "FireEye Email Queue ID",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "FireEye Infection URL",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "FireEye Alert Malicious",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "FireEye C2 Protocol",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "FireEye Signature",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "FireEye Match Count",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "FireEye C2 Host",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "FireEye Signature Revision",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "FireEye C2 Address",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "FireEye Malware Info",
+				"type": "grid"
+			},
+			{
+				"description": "",
+				"name": "FireEye Download At",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "FireEye C2 Port",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "FireEye Domain Name",
+				"type": "shortText"
+			}
+		],
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": null,
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2021-06-11T22:53:16Z",
+	"currentVersion": "1.0.5",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.39",
+			"name": "Base"
+		},
+		"CommonTypes": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "3.3.30",
+			"name": "Common Types"
+		},
+		"FireEyeEX": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "2.0.10",
+			"name": "FireEye Email Security (EX)"
+		},
+		"FireEyeNX": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.1.9",
+			"name": "FireEye Network Security (NX)"
+		},
+		"Malware": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.4.2",
+			"name": "Malware Core"
+		},
+		"Phishing": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "3.3.10",
+			"name": "Phishing"
+		},
+		"PhishingAlerts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.0.0",
+			"name": "PhishingAlerts"
+		}
+	},
+	"deprecated": false,
+	"description": "FireEye common fields concentrates all of the mutual content entities for the FireEye integrations.",
+	"disabledMonthly": false,
+	"downloads": 902,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "FireEyeCommonFields",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/FireEyeNX/FireEyeNX_image.png",
+			"name": "FireEye NX"
+		},
+		{
+			"imagePath": "content/packs/FireEyeEX/FireEyeEmailSecurity_image.png",
+			"name": "FireEye Email Security"
+		}
+	],
+	"itemVersion": "1.0.5",
+	"keywords": [],
+	"legacy": true,
+	"name": "FireEye Common Fields",
+	"packID": "FireEyeCommonFields",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-11-08T12:32:47Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4098099",
+	"videos": []
+}
