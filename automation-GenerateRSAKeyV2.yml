@@ -1,0 +1,153 @@
+args:
+- auto: PREDEFINED
+  defaultValue: privatekey
+  description: Usage for the key to generate, privatekey for a private key for SAML
+    integration, or dev2prod for a keypair for setting up remote repos, or a public
+    certificate / key pair (self signed cert)
+  name: usage
+  predefined:
+  - privatekey
+  - ssh
+  - selfsignedcert
+- description: Optional passphrase for the private key for ssh or self signed certificate
+    use cases
+  name: passphrase
+- description: hostname for the selfsigned cert, defaults to 'xsoar' if not specified
+  name: hostname
+comment: |-
+  This automation will generate a random private key, an ssh key pair, of a self signed public cert and private key pair.
+
+  Only requirement is a docker container with the cryptography module, which our teams container has, or which you can create using this command, and make sure it's the docker container for the automation:
+
+  /docker_image_create crypto dependencies=cryptography
+commonfields:
+  id: fa366852-04ac-4595-8e99-b291a7043b61
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/teams:1.0.0.6483
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: GenerateRSAKeyV2
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |-
+  from cryptography.hazmat.primitives import serialization as crypto_serialization
+  from cryptography.hazmat.primitives.asymmetric import rsa
+  from cryptography.hazmat.backends import default_backend as crypto_default_backend
+  from cryptography import x509
+  from cryptography.x509.oid import NameOID
+  from cryptography.hazmat.primitives import hashes
+  from datetime import datetime, timedelta
+
+
+  def private_key_encryption(passphrase, key):
+      """
+      utiliy function - for encrypting the private key with the given passphrase
+      """
+      if passphrase:
+          return key.private_bytes(crypto_serialization.Encoding.PEM, crypto_serialization.PrivateFormat.TraditionalOpenSSL, encryption_algorithm=crypto_serialization.BestAvailableEncryption(bytes(passphrase,'utf-8'))).decode("utf-8")
+      else:
+          return key.private_bytes(crypto_serialization.Encoding.PEM, crypto_serialization.PrivateFormat.TraditionalOpenSSL, crypto_serialization.NoEncryption()).decode("utf-8")
+
+
+  def priv_key(passphrase, key):
+      """
+      generate a private key
+      """
+      return private_key_encryption(passphrase, key)
+
+
+  def ssh_key(passphrase, key):
+      """
+      generate an ssh key pair
+      """
+      private_key = private_key_encryption(passphrase, key)
+      public_key = key.public_key().public_bytes(crypto_serialization.Encoding.OpenSSH, crypto_serialization.PublicFormat.OpenSSH).decode("utf-8")
+
+      return private_key, public_key
+
+
+  def self_signed_cert(passphrase, hostname, key):
+      """
+      generate a self signed certificate for a given hostname
+      """
+
+      # add the hostname to the name attribute and alt names
+      name = x509.Name([x509.NameAttribute(NameOID.COMMON_NAME, hostname)])
+      alt_names = [x509.DNSName(hostname)]
+      san = x509.SubjectAlternativeName(alt_names)
+
+      basic_contraints = x509.BasicConstraints(ca=True, path_length=0)
+      now = datetime.utcnow()
+      cert = (
+          x509.CertificateBuilder()
+          .subject_name(name)
+          .issuer_name(name)
+          .public_key(key.public_key())
+          .serial_number(x509.random_serial_number())
+          .not_valid_before(now)
+          .not_valid_after(now + timedelta(days=10*365))
+          .add_extension(basic_contraints, False)
+          .add_extension(san, False)
+          .sign(key, hashes.SHA256(), crypto_default_backend())
+      )
+
+      private_key = private_key_encryption(passphrase, key)
+      public_cert = cert.public_bytes(encoding=crypto_serialization.Encoding.PEM)
+
+      return private_key, public_cert
+
+
+  def main(args):
+      """
+      main function
+      """
+
+      # get the usage for the automation
+      usage = args.get('usage', 'privatekey')
+
+      # generate private key, as we need this for all of the functions:
+      key = rsa.generate_private_key(backend=crypto_default_backend(), public_exponent=65537, key_size=2048)
+
+      # grab the passphrase for encrypting the private key, if provided
+      passphrase = args.get('passphrase', '')
+
+      # generate keys
+      if usage == 'privatekey':
+          demisto.results(priv_key(passphrase,key))
+
+      elif usage == 'ssh':
+          private_key, public_key = ssh_key(passphrase, key)
+          demisto.results(private_key)
+          demisto.results(public_key)
+
+      elif usage == 'selfsignedcert':
+          hostname = args.get('hostname', 'xsoar')
+          private_key, public_cert = self_signed_cert(passphrase, hostname, key)
+          demisto.results(private_key)
+          demisto.results(public_cert)
+
+      else:
+          demisto.results('Choose an option sparky')
+
+
+  if __name__ in ('builtins', '__builtin__'):
+      main(demisto.args())
+scripttarget: 0
+subtype: python3
+tags:
+- Utility
+- training
+type: python
