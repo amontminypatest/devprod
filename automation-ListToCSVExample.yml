@@ -1,0 +1,58 @@
+args:
+- description: Array of assets to write to CSV
+  isArray: true
+  name: asset_list
+  required: true
+- defaultValue: Assets
+  description: Name of the header row, defaults to "Assets"
+  name: header_row
+comment: Takes an array of assets, and writes them to a CSV.
+commonfields:
+  id: 556fd992-12e0-424e-8fc8-826830756bcb
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.9.2.17957
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: ListToCSVExample
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |+
+  import io
+  import csv
+
+  assets = demisto.args().get('asset_list')
+  header = demisto.args().get('header_row')
+
+  si = io.StringIO()
+  cw = csv.writer(si)
+
+  # write header row
+  cw.writerow([header,])
+
+  # write the rows for each asset
+  for asset in assets:
+      cw.writerow([asset,])
+
+  # return the file
+  data = si.getvalue().strip('\r\n')
+  demisto.results(fileResult("test.csv", data.encode('utf-8')))
+
+scripttarget: 0
+subtype: python3
+tags:
+- training
+- Utility
+type: python
