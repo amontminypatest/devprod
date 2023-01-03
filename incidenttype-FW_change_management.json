@@ -1,0 +1,40 @@
+{
+	"autorun": true,
+	"cacheVersn": 0,
+	"closureScript": "",
+	"color": "#000000",
+	"days": 0,
+	"daysR": 0,
+	"default": false,
+	"definitionId": "",
+	"detached": false,
+	"disabled": false,
+	"extractSettings": {
+		"fieldCliNameToExtractSettings": {},
+		"mode": "Specific"
+	},
+	"fromServerVersion": "6.1.0",
+	"hours": 0,
+	"hoursR": 0,
+	"id": "FW change management",
+	"itemVersion": "1.0.1",
+	"layout": "FW change management",
+	"locked": false,
+	"name": "FW change management",
+	"onChangeRepAlg": 0,
+	"packID": "Change_Management",
+	"packName": "Change Management",
+	"packPropagationLabels": [
+		"all"
+	],
+	"playbookId": "Change Management",
+	"preProcessingScript": "",
+	"propagationLabels": [],
+	"readonly": false,
+	"reputationCalc": 0,
+	"system": true,
+	"toServerVersion": "",
+	"version": -1,
+	"weeks": 0,
+	"weeksR": 0
+}
