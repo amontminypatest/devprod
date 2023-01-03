@@ -1,0 +1,1679 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.1.3
+    packID: AgariPhishingDefense
+    packName: Agari Phishing Defense
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: Investigates Agari policy events by obtaining the original message and
+  attachments from the existing email integrations and remediates in Agari.
+id: Agari Message Remediation - Agari Phishing Defense
+inputs:
+- description: Global Message Id obtained from the incident.
+  key: APD Global Message ID
+  playbookInputQuery: null
+  required: true
+  value:
+    complex:
+      accessor: apdglobalmessageid
+      root: incident
+- description: Whether the authenticity of the email should be verified, using Authenticity
+    Score.
+  key: AuthenticateEmail
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "True"
+- description: Set to true to assign only user that is currently on shift. Requires
+    Cortex XSOAR v5.5 or later.
+  key: OnCall
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "false"
+- description: The default role to assign the incident to.
+  key: Role
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: Administrator
+- description: Resolve IP addresses to hostnames (DNS).
+  key: ResolveIP
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "False"
+- description: Whether Automatic remediate message or not.
+  key: AutoRemeditaion
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "false"
+- description: Default action for remediation of message.
+  key: RemediateAction
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: move
+- description: Flag for enabling User Enrichment.
+  key: UserEnrichmentEnable
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "True"
+- description: Id of User.
+  key: User Id
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: Internal Message Id obtained from the incident.
+  key: APD Internal Message ID
+  playbookInputQuery: null
+  required: true
+  value:
+    complex:
+      accessor: apdinternalmessageid
+      root: incident
+name: Agari Message Remediation - Agari Phishing Defense
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: be3da475-9f8d-4ec7-8f50-29409ec6649c
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: be3da475-9f8d-4ec7-8f50-29409ec6649c
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 810,
+          "y": 0
+        }
+      }
+  "1":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.APD Global Message ID
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "43"
+      "yes":
+      - "33"
+      - "34"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check if APD Global Message ID is present or not.
+      id: 8387f110-b132-411d-8f0f-7e6357076463
+      iscommand: false
+      name: Is APD Global Message ID not empty?
+      type: condition
+      version: -1
+    taskid: 8387f110-b132-411d-8f0f-7e6357076463
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 810,
+          "y": 150
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 2b82ffe9-342c-4080-8e14-713c6f7b6369
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 2b82ffe9-342c-4080-8e14-713c6f7b6369
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 1470,
+          "y": 5660
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "6"
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      Email/from:
+        complex:
+          accessor: From
+          root: EmailData
+      Email/headers:
+        complex:
+          accessor: EmailHeaders
+          root: EmailData
+      Email/html:
+        complex:
+          accessor: HtmlBody
+          root: EmailData
+      Email/subject:
+        complex:
+          accessor: Subject
+          root: EmailData
+      Email/text:
+        complex:
+          accessor: TextBody
+          root: EmailData
+      File:
+        complex:
+          root: File
+      GetOriginalEmail:
+        simple: "False"
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Add email details to the relevant context entities and handle the
+        case where original emails are attached.
+      id: 24bbeb18-785a-480f-874e-0d1b726f665e
+      iscommand: false
+      name: Process Email - Generic
+      playbookId: process_email_-_generic
+      type: playbook
+      version: -1
+    taskid: 24bbeb18-785a-480f-874e-0d1b726f665e
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 10,
+          "y": 585
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      File:
+        complex:
+          root: File
+          transformers:
+          - operator: uniq
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Extracts indicators from a file.
+        Supported file types:
+        - CSV
+        - PDF
+        - TXT
+        - HTM, HTML
+        - DOC, DOCX
+        - PPT
+        - PPTX
+        - RTF
+        - XLS
+        - XLSX
+        - XML
+      id: 99d4e6f0-0d09-4cfc-82bc-8950528e2741
+      iscommand: false
+      name: Extract Indicators From File - Generic v2
+      playbookId: Extract Indicators From File - Generic v2
+      type: playbook
+      version: -1
+    taskid: 99d4e6f0-0d09-4cfc-82bc-8950528e2741
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": -250,
+          "y": 940
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "13"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      EntryID:
+        complex:
+          accessor: EntryID
+          root: File
+      File:
+        complex:
+          root: File
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Detonate file through active integrations that support file detonation
+      id: 613a16bb-8408-4425-8e34-d491967b09d6
+      iscommand: false
+      name: Detonate File - Generic
+      playbookId: Detonate File - Generic
+      type: playbook
+      version: -1
+    taskid: 613a16bb-8408-4425-8e34-d491967b09d6
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 260,
+          "y": 940
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "42"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 5bbdd92d-06e2-4156-8aff-f234e378e4e8
+      iscommand: false
+      name: Indicator Enrichment
+      type: title
+      version: -1
+    taskid: 5bbdd92d-06e2-4156-8aff-f234e378e4e8
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -250,
+          "y": 1090
+        }
+      }
+  "13":
+    continueonerrortype: ""
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "14"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 705c5360-53cf-4a14-8540-579021588fe9
+      iscommand: false
+      name: Investigation
+      type: title
+      version: -1
+    taskid: 705c5360-53cf-4a14-8540-579021588fe9
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -250,
+          "y": 1960
+        }
+      }
+  "14":
+    conditions:
+    - condition:
+      - - ignorecase: true
+          left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.AuthenticateEmail
+          operator: isEqualString
+          right:
+            value:
+              simple: "True"
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: Headers
+                root: Email
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "14"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "16"
+      "yes":
+      - "15"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Whether the email should be authenticated using authenticityscore
+        of incident. This checks whether "AuthenticateEmail" output is set to "True"
+        and whether there are headers from an email to authenticate.
+      id: be2ed8e4-fba8-44f5-8c7c-0505f17b9184
+      iscommand: false
+      name: Should the email be authenticated?
+      type: condition
+      version: -1
+    taskid: be2ed8e4-fba8-44f5-8c7c-0505f17b9184
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -250,
+          "y": 2130
+        }
+      }
+  "15":
+    continueonerrortype: ""
+    id: "15"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "17"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 439af56d-b2c9-49ee-82b9-a04e6d5d3b97
+      iscommand: false
+      name: Email Authenticity Check
+      type: title
+      version: -1
+    taskid: 439af56d-b2c9-49ee-82b9-a04e6d5d3b97
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -250,
+          "y": 2410
+        }
+      }
+  "16":
+    continueonerrortype: ""
+    id: "16"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "19"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      Account:
+        complex:
+          root: Account
+          transformers:
+          - operator: uniq
+      CriticalEndpoints:
+        simple: admin
+      CriticalGroups:
+        simple: admins,administrators
+      CriticalUsers:
+        simple: admin,administrator
+      DBotScore:
+        complex:
+          root: DBotScore
+      EmailAuthenticityCheck:
+        complex:
+          root: UpdatedEmailAuthenticity
+          transformers:
+          - operator: uniq
+      Endpoint:
+        complex:
+          root: Endpoint
+          transformers:
+          - operator: uniq
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Calculate and assign the incident severity based on the highest returned severity level from the following calculations:
+
+        - DBotScores of indicators
+        - Critical assets
+        - Email authenticity
+        - Current incident severity
+      id: 2d2b427f-15a5-4cfb-82bf-0d35654aa5d6
+      iscommand: false
+      name: Calculate Severity - Generic v2
+      playbookId: Calculate Severity - Generic v2
+      type: playbook
+      version: -1
+    taskid: 2d2b427f-15a5-4cfb-82bf-0d35654aa5d6
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 310,
+          "y": 3670
+        }
+      }
+  "17":
+    continueonerrortype: ""
+    id: "17"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "36"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      headers:
+        complex:
+          accessor: Headers
+          root: Email
+          transformers:
+          - operator: uniq
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks the authenticity of an email based on the email's SPF, DMARC,
+        and DKIM.
+      id: 77619b5f-6dab-4094-8835-c991f60153eb
+      iscommand: false
+      name: Authenticate email
+      script: CheckEmailAuthenticity
+      type: regular
+      version: -1
+    taskid: 77619b5f-6dab-4094-8835-c991f60153eb
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -250,
+          "y": 2530
+        }
+      }
+  "18":
+    continueonerrortype: ""
+    id: "18"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "16"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      emailauthenticitycheck:
+        complex:
+          root: UpdatedEmailAuthenticity
+          transformers:
+          - args:
+              limit: {}
+              replaceWith:
+                value:
+                  simple: Undetermined
+              toReplace:
+                value:
+                  simple: undetermined
+            operator: replace
+          - args:
+              limit: {}
+              replaceWith:
+                value:
+                  simple: Pass
+              toReplace:
+                value:
+                  simple: pass
+            operator: replace
+          - args:
+              limit: {}
+              replaceWith:
+                value:
+                  simple: Fail
+              toReplace:
+                value:
+                  simple: fail
+            operator: replace
+          - args:
+              limit: {}
+              replaceWith:
+                value:
+                  simple: Suspicious
+              toReplace:
+                value:
+                  simple: suspicious
+            operator: replace
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Change the properties of an incident
+      id: 646388fd-6bab-4cbf-8ed4-341813af8f7f
+      iscommand: true
+      name: Save authenticity check result to incident field
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 646388fd-6bab-4cbf-8ed4-341813af8f7f
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -220,
+          "y": 3540
+        }
+      }
+  "19":
+    continueonerrortype: ""
+    id: "19"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "20"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      onCall:
+        complex:
+          root: inputs.OnCall
+      roles:
+        complex:
+          root: inputs.Role
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |
+        Assign the incident to an analyst based on the analyst's organizational role.
+      id: 907bb1e8-839e-403a-8de5-7f0db41434f2
+      iscommand: false
+      name: Assign to analyst
+      script: AssignAnalystToIncident
+      type: regular
+      version: -1
+    taskid: 907bb1e8-839e-403a-8de5-7f0db41434f2
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 540,
+          "y": 3860
+        }
+      }
+  "20":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: severity
+                root: incident
+          operator: greaterThanOrEqual
+          right:
+            value:
+              simple: "2"
+      label: Malicious
+    continueonerrortype: ""
+    id: "20"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "21"
+      Malicious:
+      - "22"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Determines if the email is malicious based on the calculated severity.
+      id: 2b5a295e-53e9-40a1-849d-0e44ba37bd30
+      iscommand: false
+      name: Is the email malicious?
+      type: condition
+      version: -1
+    taskid: 2b5a295e-53e9-40a1-849d-0e44ba37bd30
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 540,
+          "y": 4030
+        }
+      }
+  "21":
+    continueonerrortype: ""
+    id: "21"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "23"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 9b69065f-fd7b-44bf-81b0-6061d67fd901
+      iscommand: false
+      name: Undetermined
+      type: title
+      version: -1
+    taskid: 9b69065f-fd7b-44bf-81b0-6061d67fd901
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 130,
+          "y": 4250
+        }
+      }
+  "22":
+    continueonerrortype: ""
+    id: "22"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "25"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: ee97ce07-73b3-46c6-8e52-952f2533e775
+      iscommand: false
+      name: Email is Malicious
+      type: title
+      version: -1
+    taskid: ee97ce07-73b3-46c6-8e52-952f2533e775
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 910,
+          "y": 4250
+        }
+      }
+  "23":
+    continueonerrortype: ""
+    id: "23"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "24"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Review the incident to determine if the email that the user reported
+        is malicious.
+      id: c71b3432-1ca7-41a0-8633-52ae0518029d
+      iscommand: false
+      name: Manually review the incident
+      type: regular
+      version: -1
+    taskid: c71b3432-1ca7-41a0-8633-52ae0518029d
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 130,
+          "y": 4380
+        }
+      }
+  "24":
+    continueonerrortype: ""
+    id: "24"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "No":
+      - "43"
+      "YES":
+      - "25"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Is the email that the user reported malicious?
+      id: f5639230-5f9b-4a3b-8507-3a5423bc7bf1
+      iscommand: false
+      name: Is the email malicious?
+      type: condition
+      version: -1
+    taskid: f5639230-5f9b-4a3b-8507-3a5423bc7bf1
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 130,
+          "y": 4540
+        }
+      }
+  "25":
+    continueonerrortype: ""
+    id: "25"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "35"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: d7db20ce-b62d-43fd-83ad-dfbd14859802
+      iscommand: false
+      name: Remeditation
+      type: title
+      version: -1
+    taskid: d7db20ce-b62d-43fd-83ad-dfbd14859802
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 710,
+          "y": 4710
+        }
+      }
+  "27":
+    continueonerrortype: ""
+    id: "27"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "28"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: be601c32-73ea-4a28-86d4-85663a4247b7
+      iscommand: false
+      name: User Enrichment
+      type: title
+      version: -1
+    taskid: be601c32-73ea-4a28-86d4-85663a4247b7
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 1930,
+          "y": 545
+        }
+      }
+  "28":
+    continueonerrortype: ""
+    id: "28"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "29"
+      - "30"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      key:
+        simple: ReporterAddress
+      value:
+        complex:
+          accessor: apdmessagefrom
+          root: incident
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Store the email address of the user that reported the incident.
+      id: 40a3f4f0-ce09-4c72-830c-91f137385aec
+      iscommand: false
+      name: Store the email address of the reporting user
+      script: Set
+      type: regular
+      version: -1
+    taskid: 40a3f4f0-ce09-4c72-830c-91f137385aec
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1930,
+          "y": 700
+        }
+      }
+  "29":
+    continueonerrortype: ""
+    id: "29"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "19"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      Domain:
+        complex:
+          accessor: apdmessagefromdomain
+          root: incident
+          transformers:
+          - operator: uniq
+      Email:
+        complex:
+          root: ReporterAddress
+          transformers:
+          - operator: uniq
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Enrich email addresses.
+        - Get information from Active Directory for internal addresses
+        - Get the domain-squatting reputation for external addresses
+      id: 3ffb71b8-3c99-4cac-8502-26c94b0a495e
+      iscommand: false
+      name: Email Address Enrichment - Generic v2.1
+      playbookId: Email Address Enrichment - Generic v2.1
+      type: playbook
+      version: -1
+    taskid: 3ffb71b8-3c99-4cac-8502-26c94b0a495e
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 1740,
+          "y": 1020
+        }
+      }
+  "30":
+    continueonerrortype: ""
+    id: "30"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "19"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      reporteremailaddress:
+        complex:
+          root: ReporterAddress
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Saves the email address of the reporter of the email, in an incident
+        field.
+      id: dcd1ed14-bccb-463f-8592-11358f8b3592
+      iscommand: true
+      name: Save reporter email address in field
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: dcd1ed14-bccb-463f-8592-11358f8b3592
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 2240,
+          "y": 1020
+        }
+      }
+  "32":
+    continueonerrortype: ""
+    id: "32"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "43"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      auto_remediation:
+        complex:
+          root: inputs.AutoRemeditaion
+      id:
+        complex:
+          root: inputs.APD Internal Message ID
+      remediate_action:
+        complex:
+          root: inputs.RemediateAction
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Remediates a given message id.
+      id: a01dd461-cdb2-432b-8803-9c3a4abf1c56
+      iscommand: false
+      name: Remediate Message - Agari Phishing Defense
+      playbookId: Remediate Message - Agari Phishing Defense
+      type: playbook
+      version: -1
+    taskid: a01dd461-cdb2-432b-8803-9c3a4abf1c56
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 940,
+          "y": 5150
+        }
+      }
+  "33":
+    conditions:
+    - condition:
+      - - ignorecase: true
+          left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.UserEnrichmentEnable
+          operator: isEqualString
+          right:
+            value:
+              simple: "True"
+      label: "yes"
+    continueonerrortype: ""
+    id: "33"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "43"
+      "yes":
+      - "27"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Is User Enrichment (based on input) Enable?
+      id: 9e7b01a9-e32b-4077-8323-a1929a6009ac
+      iscommand: false
+      name: Is User Enrichment enable?
+      type: condition
+      version: -1
+    taskid: 9e7b01a9-e32b-4077-8323-a1929a6009ac
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1930,
+          "y": 290
+        }
+      }
+  "34":
+    continueonerrortype: ""
+    id: "34"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      Message Id:
+        complex:
+          root: inputs.APD Global Message ID
+      User Id:
+        complex:
+          root: inputs.User Id
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Retrieve Email Data from one of the Integrations of Gmail, Mail
+        Listener v2, EWS O365, Microsoft Graph Mail.
+      id: daedbaeb-7dd3-4e54-8e9c-461ba8399843
+      iscommand: false
+      name: Retrieve Email Data - Agari Phishing Defense
+      playbookId: Retrieve Email Data - Agari Phishing Defense
+      type: playbook
+      version: -1
+    taskid: daedbaeb-7dd3-4e54-8e9c-461ba8399843
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 10,
+          "y": 355
+        }
+      }
+  "35":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.APD Internal Message ID
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "35"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "43"
+      "yes":
+      - "32"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check if APD Internal Message ID is present or not.
+      id: f0792a4c-fbdd-43a3-8bfd-6ad30f743964
+      iscommand: false
+      name: Is APD Internal Message ID not empty?
+      type: condition
+      version: -1
+    taskid: f0792a4c-fbdd-43a3-8bfd-6ad30f743964
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 830,
+          "y": 4850
+        }
+      }
+  "36":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: apdmessagetrustscore
+                root: incident
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "36"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "41"
+      "yes":
+      - "37"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Is APD Message Trust Score not empty?
+      id: 3b8c10b9-6fdc-42e0-8468-63d40db17cd7
+      iscommand: false
+      name: Is APD Message Trust Score not empty?
+      type: condition
+      version: -1
+    taskid: 3b8c10b9-6fdc-42e0-8468-63d40db17cd7
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -250,
+          "y": 2690
+        }
+      }
+  "37":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: apdmessagetrustscore
+                root: incident
+          operator: lessThanOrEqual
+          right:
+            value:
+              simple: "1"
+      label: Untrusted
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: apdmessagetrustscore
+                root: incident
+          operator: greaterThan
+          right:
+            value:
+              simple: "1"
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: apdmessagetrustscore
+                root: incident
+          operator: lessThanOrEqual
+          right:
+            value:
+              simple: "5"
+      label: Suspicious
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: apdmessagetrustscore
+                root: incident
+          operator: greaterThan
+          right:
+            value:
+              simple: "5"
+      label: Trusted
+    continueonerrortype: ""
+    id: "37"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      Suspicious:
+      - "39"
+      Trusted:
+      - "40"
+      Untrusted:
+      - "38"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Is APD Message Trust Score Untrusted, Suspicious or Trusted?
+      id: 6a69cc6b-1897-4df8-8725-16f0c977b17b
+      iscommand: false
+      name: Is APD Message Trust Score Untrusted, Suspicious or Trusted?
+      type: condition
+      version: -1
+    taskid: 6a69cc6b-1897-4df8-8725-16f0c977b17b
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -360,
+          "y": 2860
+        }
+      }
+  "38":
+    continueonerrortype: ""
+    id: "38"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "18"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      append:
+        simple: "false"
+      key:
+        simple: UpdatedEmailAuthenticity
+      value:
+        simple: Fail
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set Email Authenticity variable to Fail
+      id: b97cc4a9-0146-4244-8623-a72513356ab7
+      iscommand: false
+      name: Set Email Authenticity variable to Fail
+      script: Set
+      type: regular
+      version: -1
+    taskid: b97cc4a9-0146-4244-8623-a72513356ab7
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -1220,
+          "y": 3070
+        }
+      }
+  "39":
+    continueonerrortype: ""
+    id: "39"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "18"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      append:
+        simple: "false"
+      key:
+        simple: UpdatedEmailAuthenticity
+      value:
+        simple: Suspicious
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set Email Authenticity variable to Suspicious
+      id: 373eac64-8385-45ac-84e5-eae2469d6473
+      iscommand: false
+      name: Set Email Authenticity variable to Suspicious
+      script: Set
+      type: regular
+      version: -1
+    taskid: 373eac64-8385-45ac-84e5-eae2469d6473
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -810,
+          "y": 3070
+        }
+      }
+  "40":
+    continueonerrortype: ""
+    id: "40"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "18"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      key:
+        simple: UpdatedEmailAuthenticity
+      value:
+        simple: Pass
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set Email Authenticity variable to Pass
+      id: 1698da71-7789-4be3-8cef-3c35726738cf
+      iscommand: false
+      name: Set Email Authenticity variable to Pass
+      script: Set
+      type: regular
+      version: -1
+    taskid: 1698da71-7789-4be3-8cef-3c35726738cf
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -360,
+          "y": 3070
+        }
+      }
+  "41":
+    continueonerrortype: ""
+    id: "41"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "18"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      key:
+        simple: UpdatedEmailAuthenticity
+      value:
+        complex:
+          accessor: AuthenticityCheck
+          root: Email
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set Email Authenticity variable to value generated by Authenticate
+        Email
+      id: b94f0aa8-6d36-49a1-8a25-79e57d6cfbe3
+      iscommand: false
+      name: Set Email Authenticity variable to value generated by Authenticate Email
+      script: Set
+      type: regular
+      version: -1
+    taskid: b94f0aa8-6d36-49a1-8a25-79e57d6cfbe3
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 80,
+          "y": 2860
+        }
+      }
+  "42":
+    continueonerrortype: ""
+    id: "42"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "13"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      Domain:
+        complex:
+          accessor: Name
+          root: Domain
+          transformers:
+          - operator: uniq
+      Email:
+        complex:
+          accessor: Email.Address
+          root: Account
+          transformers:
+          - operator: uniq
+      Hostname:
+        complex:
+          accessor: Hostname
+          root: Endpoint
+          transformers:
+          - operator: uniq
+      IP:
+        complex:
+          accessor: Address
+          root: IP
+          transformers:
+          - operator: uniq
+      MD5:
+        complex:
+          accessor: MD5
+          root: File
+          transformers:
+          - operator: uniq
+      ResolveIP:
+        complex:
+          root: inputs.ResolveIP
+      SHA1:
+        complex:
+          accessor: SHA1
+          root: File
+          transformers:
+          - operator: uniq
+      SHA256:
+        complex:
+          accessor: SHA256
+          root: File
+          transformers:
+          - operator: uniq
+      URL:
+        complex:
+          accessor: Data
+          root: URL
+          transformers:
+          - operator: uniq
+      Username:
+        complex:
+          accessor: Username
+          root: Account
+          transformers:
+          - operator: uniq
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 600ba820-7d2f-4553-8fba-c8aa06f9e299
+      iscommand: false
+      name: Entity Enrichment - Phishing v2
+      playbookId: Entity Enrichment - Phishing v2
+      type: playbook
+      version: -1
+    taskid: 600ba820-7d2f-4553-8fba-c8aa06f9e299
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": -470,
+          "y": 1390
+        }
+      }
+  "43":
+    continueonerrortype: ""
+    id: "43"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.close.inv
+      id: ec94a6b6-fb48-49ce-81ed-380ff00e4213
+      iscommand: true
+      name: Close Investigation
+      script: Builtin|||closeInvestigation
+      type: regular
+      version: -1
+    taskid: ec94a6b6-fb48-49ce-81ed-380ff00e4213
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1470,
+          "y": 5460
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "1_43_#default#": 0.16,
+      "20_22_Malicious": 0.77
+    },
+    "paper": {
+      "dimensions": {
+        "height": 5725,
+        "width": 3840,
+        "x": -1220,
+        "y": 0
+      }
+    }
+  }
