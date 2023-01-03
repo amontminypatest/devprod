@@ -1,0 +1,1795 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.1.3
+    packID: AgariPhishingDefense
+    packName: Agari Phishing Defense
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: Retrieve Email Data from one of the Integrations of Gmail, Mail Listener
+  v2, EWS O365, Microsoft Graph Mail.
+id: Retrieve Email Data - Agari Phishing Defense
+inputs:
+- description: Message Id of email.
+  key: Message Id
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: User Id of user.
+  key: User Id
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: Retrieve Email Data - Agari Phishing Defense
+outputs:
+- contextPath: EmailData
+  description: From field, Html Text of body, Headers, Text of body, Subject of email.
+  type: unknown
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "40"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: c37feb4b-118c-4cff-8e3d-51f16e73ec7c
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: c37feb4b-118c-4cff-8e3d-51f16e73ec7c
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": -460,
+          "y": -160
+        }
+      }
+  "1":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: brand
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: EWSO365
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.state
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: active
+                root: modules
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "43"
+      "yes":
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Is EWS O365 integration enabled?
+      id: cb4b2378-e24a-4aaa-8d6c-da60ec4e9d21
+      iscommand: false
+      name: Is EWS O365 integration enabled?
+      type: condition
+      version: -1
+    taskid: cb4b2378-e24a-4aaa-8d6c-da60ec4e9d21
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 230
+        }
+      }
+  "2":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: brand
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: Mail Listener v2
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.state
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: active
+                root: modules
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "42"
+      "yes":
+      - "5"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Is Mail Listener v2 integration enabled?
+      id: 94a17f13-22f4-4443-8309-4c5d64b9cefa
+      iscommand: false
+      name: Is Mail Listener v2 integration enabled?
+      type: condition
+      version: -1
+    taskid: 94a17f13-22f4-4443-8309-4c5d64b9cefa
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 0,
+          "y": 230
+        }
+      }
+  "3":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "22"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      message-id:
+        complex:
+          root: inputs.Message Id
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Searches for items in the specified mailbox. Specific permissions
+        are needed for this operation to search in a target mailbox other than the
+        default.
+      id: d0d023f4-0791-4049-8b43-1c8653c43836
+      iscommand: true
+      name: Search from EWS mailbox
+      script: '|||ews-search-mailbox'
+      type: regular
+      version: -1
+    taskid: d0d023f4-0791-4049-8b43-1c8653c43836
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 410
+        }
+      }
+  "4":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "8"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      item-id:
+        complex:
+          accessor: itemId
+          root: EWS.Items
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Retrieves items by item ID and uploads its content as an EML file.
+      id: 5678ac2a-b897-4328-88f5-9d8d2d8c196b
+      iscommand: true
+      name: Get items from EWS as eml
+      script: '|||ews-get-items-as-eml'
+      type: regular
+      version: -1
+    taskid: 5678ac2a-b897-4328-88f5-9d8d2d8c196b
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 750
+        }
+      }
+  "5":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "21"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      message-id:
+        complex:
+          root: inputs.Message Id
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Retrieves an email by email ID.
+      id: e4ab756d-5205-45c5-8b69-c9e331a89d9c
+      iscommand: true
+      name: Get email from Mail listener
+      script: '|||mail-listener-get-email'
+      type: regular
+      version: -1
+    taskid: e4ab756d-5205-45c5-8b69-c9e331a89d9c
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -10,
+          "y": 410
+        }
+      }
+  "6":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      message-id:
+        complex:
+          root: inputs.Message Id
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Fetches an email by message ID and returns the information in an
+        eml file format.
+      id: 391277a8-a1cc-443a-8d65-59f46d9e8159
+      iscommand: true
+      name: Get email from Mail listener as eml
+      script: '|||mail-listener-get-email-as-eml'
+      type: regular
+      version: -1
+    taskid: 391277a8-a1cc-443a-8d65-59f46d9e8159
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -10,
+          "y": 750
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "36"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      append:
+        simple: "false"
+      key:
+        simple: EmailData.From
+      value:
+        complex:
+          accessor: from
+          root: MailListener.Email
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: 3cfae6f3-dd93-4205-8890-79a684e04893
+      iscommand: false
+      name: Set Mail Listener Data (From)
+      script: Set
+      type: regular
+      version: -1
+    taskid: 3cfae6f3-dd93-4205-8890-79a684e04893
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -10,
+          "y": 915
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "33"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      append:
+        simple: "false"
+      key:
+        simple: EmailData.From
+      value:
+        complex:
+          accessor: sender
+          root: EWS.Items
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: 7f11620e-3d3b-4d87-8d86-35fd2a4493a2
+      iscommand: false
+      name: Set EWS Data (From)
+      script: Set
+      type: regular
+      version: -1
+    taskid: 7f11620e-3d3b-4d87-8d86-35fd2a4493a2
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 915
+        }
+      }
+  "9":
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: a15ff916-b586-4ca8-8ecb-132f8d1c4516
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: a15ff916-b586-4ca8-8ecb-132f8d1c4516
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 1850
+        }
+      }
+  "12":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: brand
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: MicrosoftGraphMail
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.state
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: active
+                root: modules
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "9"
+      "yes":
+      - "13"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Is Microsoft Graph Mail Server integration enabled?
+      id: 440ab455-62f3-43ac-8db1-8c716d4ad0eb
+      iscommand: false
+      name: Is Microsoft Graph Mail Server integration enabled?
+      type: condition
+      version: -1
+    taskid: 440ab455-62f3-43ac-8db1-8c716d4ad0eb
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 900,
+          "y": 230
+        }
+      }
+  "13":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "23"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      message_id:
+        complex:
+          root: inputs.Message Id
+      user_id:
+        complex:
+          root: inputs.User Id
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Returns the properties of an email.
+      id: 7f24313c-58dd-4f79-8097-55413d09cbd2
+      iscommand: true
+      name: Get email from msgraph
+      script: '|||msgraph-mail-get-email'
+      type: regular
+      version: -1
+    taskid: 7f24313c-58dd-4f79-8097-55413d09cbd2
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 900,
+          "y": 410
+        }
+      }
+  "14":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "14"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "18"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      message_id:
+        complex:
+          root: inputs.Message Id
+      user_id:
+        complex:
+          root: inputs.User Id
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Retrieves an email message by message ID and uploads the content
+        as an EML file.
+      id: 375dce31-d067-4876-8dc2-2fd64b69d19d
+      iscommand: true
+      name: Get email from msgraph as eml
+      script: '|||msgraph-mail-get-email-as-eml'
+      type: regular
+      version: -1
+    taskid: 375dce31-d067-4876-8dc2-2fd64b69d19d
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 900,
+          "y": 750
+        }
+      }
+  "15":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: brand
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: Gmail
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.state
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: active
+                root: modules
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "15"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "41"
+      "yes":
+      - "16"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Is Gmail integration enabled?
+      id: deb4447f-26ff-4796-81d4-9e395e28572d
+      iscommand: false
+      name: Is Gmail integration enabled?
+      type: condition
+      version: -1
+    taskid: deb4447f-26ff-4796-81d4-9e395e28572d
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -460,
+          "y": 230
+        }
+      }
+  "16":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "16"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "20"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      message-id:
+        complex:
+          root: inputs.Message Id
+      user-id:
+        complex:
+          root: inputs.User Id
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Retrieves the Gmail message sent to a specified user.
+      id: 5a3a70cd-eda6-4fdc-8519-a285d09ca7d2
+      iscommand: true
+      name: Get email from gmail
+      script: '|||gmail-get-mail'
+      type: regular
+      version: -1
+    taskid: 5a3a70cd-eda6-4fdc-8519-a285d09ca7d2
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -460,
+          "y": 410
+        }
+      }
+  "17":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "17"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "19"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      message-id:
+        complex:
+          root: inputs.Message Id
+      user-id:
+        complex:
+          root: inputs.User Id
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Retrieves attachments from a sent Gmail message.
+      id: ac831220-e0f5-43e7-88cf-d22e539c66e7
+      iscommand: true
+      name: Get attachments from gmail
+      script: '|||gmail-get-attachments'
+      type: regular
+      version: -1
+    taskid: ac831220-e0f5-43e7-88cf-d22e539c66e7
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -460,
+          "y": 750
+        }
+      }
+  "18":
+    continueonerrortype: ""
+    id: "18"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "35"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      append:
+        simple: "false"
+      key:
+        simple: EmailData.From
+      value:
+        complex:
+          accessor: Address
+          root: MSGraphMail.From
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: f3b3c22e-1b98-41ee-80be-ebbbeca4daaf
+      iscommand: false
+      name: Set Microsoft Graph Mail Data (From)
+      script: Set
+      type: regular
+      version: -1
+    taskid: f3b3c22e-1b98-41ee-80be-ebbbeca4daaf
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 900,
+          "y": 915
+        }
+      }
+  "19":
+    continueonerrortype: ""
+    id: "19"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "38"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      append:
+        simple: "false"
+      key:
+        simple: EmailData.From
+      value:
+        complex:
+          accessor: From
+          root: Email
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: f14e9fb4-5d9a-4581-81e9-ecfd6eb8cfef
+      iscommand: false
+      name: Set Gmail Data (From)
+      script: Set
+      type: regular
+      version: -1
+    taskid: f14e9fb4-5d9a-4581-81e9-ecfd6eb8cfef
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -460,
+          "y": 915
+        }
+      }
+  "20":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: From
+                root: Gmail
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "20"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "41"
+      "yes":
+      - "17"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Is Gmail Data available based on from field?
+      id: d2602b8c-a89f-4824-8afd-63d463d76a04
+      iscommand: false
+      name: Is Gmail Data available?
+      type: condition
+      version: -1
+    taskid: d2602b8c-a89f-4824-8afd-63d463d76a04
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -460,
+          "y": 560
+        }
+      }
+  "21":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: from
+                root: MailListener.Email
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "21"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "42"
+      "yes":
+      - "6"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Is Mail Listener Data available based on from field?
+      id: 01c9fef5-68c0-42a5-8d9d-b89723846baf
+      iscommand: false
+      name: Is Mail Listener Data available?
+      type: condition
+      version: -1
+    taskid: 01c9fef5-68c0-42a5-8d9d-b89723846baf
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -10,
+          "y": 560
+        }
+      }
+  "22":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: sender
+                root: EWS.Items
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "22"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "43"
+      "yes":
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Is EWS O365 Data available based on sender field?
+      id: d209eacd-3753-4a43-80bf-9099961d1972
+      iscommand: false
+      name: Is EWS O365 Data available?
+      type: condition
+      version: -1
+    taskid: d209eacd-3753-4a43-80bf-9099961d1972
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 560
+        }
+      }
+  "23":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: Address
+                root: MSGraphMail.From
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "23"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "9"
+      "yes":
+      - "14"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Is Microsoft Graph Mail Data available based on from address field?
+      id: c0e65760-779f-466a-8276-d7b12d4a319a
+      iscommand: false
+      name: Is Microsoft Graph Mail Data available?
+      type: condition
+      version: -1
+    taskid: c0e65760-779f-466a-8276-d7b12d4a319a
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 900,
+          "y": 570
+        }
+      }
+  "24":
+    continueonerrortype: ""
+    id: "24"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "25"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      append:
+        simple: "false"
+      key:
+        simple: EmailData.HtmlBody
+      value:
+        complex:
+          accessor: Body/HTML
+          root: Email
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: 25c35010-3c33-40a6-8cb8-0d1713940825
+      iscommand: false
+      name: Set Gmail Data (HtmlBody)
+      script: Set
+      type: regular
+      version: -1
+    taskid: 25c35010-3c33-40a6-8cb8-0d1713940825
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -460,
+          "y": 1400
+        }
+      }
+  "25":
+    continueonerrortype: ""
+    id: "25"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      append:
+        simple: "false"
+      key:
+        simple: EmailData.EmailHeaders
+      value:
+        complex:
+          accessor: Headers
+          root: Email
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: 1e184662-ae2c-4a34-8ad6-3b8d7c7b523d
+      iscommand: false
+      name: Set Gmail Data (EmailHeaders)
+      script: Set
+      type: regular
+      version: -1
+    taskid: 1e184662-ae2c-4a34-8ad6-3b8d7c7b523d
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -460,
+          "y": 1560
+        }
+      }
+  "26":
+    continueonerrortype: ""
+    id: "26"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "27"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      append:
+        simple: "false"
+      key:
+        simple: EmailData.HtmlBody
+      value:
+        complex:
+          accessor: HTML
+          root: MailListener.Email
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: 241cd864-df54-4971-8e51-92389ca12439
+      iscommand: false
+      name: Set Mail Listener Data (HtmlBody)
+      script: Set
+      type: regular
+      version: -1
+    taskid: 241cd864-df54-4971-8e51-92389ca12439
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -10,
+          "y": 1400
+        }
+      }
+  "27":
+    continueonerrortype: ""
+    id: "27"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      append:
+        simple: "false"
+      key:
+        simple: EmailData.EmailHeaders
+      value:
+        complex:
+          accessor: headers
+          root: MailListener.Email
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: d80bde90-056d-4762-8d22-bce873d57228
+      iscommand: false
+      name: Set Mail Listener Data (EmailHeaders)
+      script: Set
+      type: regular
+      version: -1
+    taskid: d80bde90-056d-4762-8d22-bce873d57228
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -10,
+          "y": 1560
+        }
+      }
+  "28":
+    continueonerrortype: ""
+    id: "28"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "29"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      append:
+        simple: "false"
+      key:
+        simple: EmailData.HtmlBody
+      value:
+        complex:
+          accessor: body
+          root: EWS.Items
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: c64697a2-3778-4bb9-8001-ecde1a80efe6
+      iscommand: false
+      name: Set EWS Data (HtmlBody)
+      script: Set
+      type: regular
+      version: -1
+    taskid: c64697a2-3778-4bb9-8001-ecde1a80efe6
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 1400
+        }
+      }
+  "29":
+    continueonerrortype: ""
+    id: "29"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      append:
+        simple: "false"
+      key:
+        simple: EmailData.EmailHeaders
+      value:
+        complex:
+          accessor: headers
+          root: EWS.Items
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: aaf4ca3d-7151-439a-88cc-5ec457b9edda
+      iscommand: false
+      name: Set EWS Data (EmailHeaders)
+      script: Set
+      type: regular
+      version: -1
+    taskid: aaf4ca3d-7151-439a-88cc-5ec457b9edda
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 1560
+        }
+      }
+  "30":
+    continueonerrortype: ""
+    id: "30"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "31"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      append:
+        simple: "false"
+      key:
+        simple: EmailData.HtmlBody
+      value:
+        complex:
+          accessor: Body
+          root: MSGraphMail
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: 6e63aa02-6611-475f-81a0-815b780ada0a
+      iscommand: false
+      name: Set Microsoft Graph Mail Data (HtmlBody)
+      script: Set
+      type: regular
+      version: -1
+    taskid: 6e63aa02-6611-475f-81a0-815b780ada0a
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 900,
+          "y": 1400
+        }
+      }
+  "31":
+    continueonerrortype: ""
+    id: "31"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      append:
+        simple: "false"
+      key:
+        simple: EmailData.EmailHeaders
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: aee3fb6d-04f1-42b4-8906-77d43a228c49
+      iscommand: false
+      name: Set Microsoft Graph Mail Data (EmailHeaders)
+      script: Set
+      type: regular
+      version: -1
+    taskid: aee3fb6d-04f1-42b4-8906-77d43a228c49
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 900,
+          "y": 1570
+        }
+      }
+  "32":
+    continueonerrortype: ""
+    id: "32"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "28"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      append:
+        simple: "false"
+      key:
+        simple: EmailData.TextBody
+      value:
+        complex:
+          accessor: textBody
+          root: EWS.Items
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: a0dd3e6e-0ef3-4cc1-8520-c20f7e1d3f8b
+      iscommand: false
+      name: Set EWS Data (TextBody)
+      script: Set
+      type: regular
+      version: -1
+    taskid: a0dd3e6e-0ef3-4cc1-8520-c20f7e1d3f8b
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 1240
+        }
+      }
+  "33":
+    continueonerrortype: ""
+    id: "33"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "32"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      append:
+        simple: "false"
+      key:
+        simple: EmailData.Subject
+      value:
+        complex:
+          accessor: subject
+          root: EWS.Items
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: 3beafc37-4304-4eee-83aa-4e6156594b0b
+      iscommand: false
+      name: Set EWS Data (Subject)
+      script: Set
+      type: regular
+      version: -1
+    taskid: 3beafc37-4304-4eee-83aa-4e6156594b0b
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 1080
+        }
+      }
+  "34":
+    continueonerrortype: ""
+    id: "34"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "30"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      append:
+        simple: "false"
+      key:
+        simple: EmailData.TextBody
+      value:
+        complex:
+          accessor: Body
+          root: MSGraphMail
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: df422282-b2ec-49b3-8eba-25e121b8f085
+      iscommand: false
+      name: Set Microsoft Graph Mail Data (TextBody)
+      script: Set
+      type: regular
+      version: -1
+    taskid: df422282-b2ec-49b3-8eba-25e121b8f085
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 900,
+          "y": 1240
+        }
+      }
+  "35":
+    continueonerrortype: ""
+    id: "35"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "34"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      append:
+        simple: "false"
+      key:
+        simple: EmailData.Subject
+      value:
+        complex:
+          accessor: Subject
+          root: MSGraphMail
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: d4778b61-4f31-408b-8222-18313159f7b3
+      iscommand: false
+      name: Set Microsoft Graph Mail Data (Subject)
+      script: Set
+      type: regular
+      version: -1
+    taskid: d4778b61-4f31-408b-8222-18313159f7b3
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 900,
+          "y": 1080
+        }
+      }
+  "36":
+    continueonerrortype: ""
+    id: "36"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "37"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      append:
+        simple: "false"
+      key:
+        simple: EmailData.Subject
+      value:
+        complex:
+          accessor: subject
+          root: MailListener.Email
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: 1cc73ff9-2b84-4dc2-8a3e-7d614d4878f9
+      iscommand: false
+      name: Set Mail Listener Data (Subject)
+      script: Set
+      type: regular
+      version: -1
+    taskid: 1cc73ff9-2b84-4dc2-8a3e-7d614d4878f9
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -10,
+          "y": 1080
+        }
+      }
+  "37":
+    continueonerrortype: ""
+    id: "37"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "26"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      append:
+        simple: "false"
+      key:
+        simple: EmailData.TextBody
+      value:
+        complex:
+          accessor: text
+          root: MailListener.Email
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: c6650a1d-4aaf-47f8-8e63-4b9b4eaffe65
+      iscommand: false
+      name: Set Mail Listener Data (TextBody)
+      script: Set
+      type: regular
+      version: -1
+    taskid: c6650a1d-4aaf-47f8-8e63-4b9b4eaffe65
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -10,
+          "y": 1240
+        }
+      }
+  "38":
+    continueonerrortype: ""
+    id: "38"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "39"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      append:
+        simple: "false"
+      key:
+        simple: EmailData.Subject
+      value:
+        complex:
+          accessor: Subject
+          root: Gmail
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: 79cb26cb-94eb-4dae-8f93-00a922fc3e76
+      iscommand: false
+      name: Set Gmail Data (Subject)
+      script: Set
+      type: regular
+      version: -1
+    taskid: 79cb26cb-94eb-4dae-8f93-00a922fc3e76
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -460,
+          "y": 1080
+        }
+      }
+  "39":
+    continueonerrortype: ""
+    id: "39"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "24"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      append:
+        simple: "false"
+      key:
+        simple: EmailData.TextBody
+      value:
+        complex:
+          accessor: Body/Text
+          root: Email
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: a5e1ae41-d48a-46c4-8fe4-0618ff26b6af
+      iscommand: false
+      name: Set Gmail Data (TextBody)
+      script: Set
+      type: regular
+      version: -1
+    taskid: a5e1ae41-d48a-46c4-8fe4-0618ff26b6af
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -460,
+          "y": 1240
+        }
+      }
+  "40":
+    continueonerrortype: ""
+    id: "40"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "15"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: ee86a3fc-ea34-4b5e-83a5-84b005807c5f
+      iscommand: false
+      name: Gmail Integration
+      type: title
+      version: -1
+    taskid: ee86a3fc-ea34-4b5e-83a5-84b005807c5f
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -460,
+          "y": 45
+        }
+      }
+  "41":
+    continueonerrortype: ""
+    id: "41"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 7fc768d2-5227-41d9-8264-72fe3a196255
+      iscommand: false
+      name: Execute Mail Listener v2 Integration if Gmail is disabled or its data
+        is unavailable
+      type: title
+      version: -1
+    taskid: 7fc768d2-5227-41d9-8264-72fe3a196255
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 0,
+          "y": 85
+        }
+      }
+  "42":
+    continueonerrortype: ""
+    id: "42"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 781ede60-cfa7-4f9b-881d-6ede4dbbbaeb
+      iscommand: false
+      name: Execute EWS O365 Integration if Email Listener v2 is disabled or its data
+        is unavailable
+      type: title
+      version: -1
+    taskid: 781ede60-cfa7-4f9b-881d-6ede4dbbbaeb
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 85
+        }
+      }
+  "43":
+    continueonerrortype: ""
+    id: "43"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "12"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 374e5923-1275-445f-86e1-4220c5488fd4
+      iscommand: false
+      name: Execute Microsoft Graph Mail Integration if EWSO365 is disabled or its
+        data is unavailable
+      type: title
+      version: -1
+    taskid: 374e5923-1275-445f-86e1-4220c5488fd4
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 900,
+          "y": 85
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 2075,
+        "width": 1740,
+        "x": -460,
+        "y": -160
+      }
+    }
+  }
