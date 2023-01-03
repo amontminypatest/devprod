@@ -1,0 +1,179 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Analytics \u0026 SIEM"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"playbook"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Analytics \u0026 SIEM",
+				"commands": [
+					{
+						"description": "Initializes the flow search based on specified arguments. Must provide a start time, time range, or start time and end time.",
+						"name": "cisco-stealthwatch-query-flows-initialize"
+					},
+					{
+						"description": "Checks the flow search status.",
+						"name": "cisco-stealthwatch-query-flows-status"
+					},
+					{
+						"description": "Retrieves the flow search results. Use this command after the search job completes.",
+						"name": "cisco-stealthwatch-query-flows-results"
+					},
+					{
+						"description": "Lists the host groups (called tags in the API).",
+						"name": "cisco-stealthwatch-list-tags"
+					},
+					{
+						"description": "Gets a single host group (called tag in the API).",
+						"name": "cisco-stealthwatch-get-tag"
+					},
+					{
+						"description": "Lists all domains if no domain is specified or gets a specified domain (called tenant(s) in the API).",
+						"name": "cisco-stealthwatch-list-tenants"
+					},
+					{
+						"description": "Gets the hourly traffic summary of the byte count for a single host group (called tenant in the API).",
+						"name": "cisco-stealthwatch-get-tag-hourly-traffic-report"
+					},
+					{
+						"description": "Gets the top alarming host groups (called tags on the API) for a specific domain (called tenant in the API).",
+						"name": "cisco-stealthwatch-get-top-alarming-tags"
+					},
+					{
+						"description": "Initializes the list of security events for a domain (called tenant on the API).",
+						"name": "cisco-stealthwatch-list-security-events-initialize"
+					},
+					{
+						"description": "Lists the security events status.",
+						"name": "cisco-stealthwatch-list-security-events-status"
+					},
+					{
+						"description": "Lists the security events results. Use this command after the search job completes.",
+						"name": "cisco-stealthwatch-list-security-events-results"
+					}
+				],
+				"description": "Scalable visibility and security analytics.",
+				"id": "",
+				"name": "Cisco Secure Network Analytics (Stealthwatch)"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": [
+			{
+				"description": "This playbook blocks domains using Cisco Stealthwatch.\nThe playbook checks whether the Cisco Stealthwatch integration is enabled, whether the Domain input has been provided and if so, blocks the domain.",
+				"name": "Block Domain - Cisco Stealthwatch"
+			},
+			{
+				"description": "This playbook lists security events and returns the results to the context.",
+				"name": "List Cisco Stealthwatch Security Events"
+			},
+			{
+				"description": "This playbook runs a query on Cisco Stealthwatch flows and return its results to the context.",
+				"name": "Query Cisco Stealthwatch Flows"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2021-03-17T22:39:15Z",
+	"currentVersion": "1.0.8",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.45",
+			"name": "Base"
+		},
+		"CommonPlaybooks": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "2.3.23",
+			"name": "Common Playbooks"
+		},
+		"Stealthwatch_Cloud": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.0.10",
+			"name": "Cisco Secure Cloud Analytics (Stealthwatch Cloud)"
+		}
+	},
+	"deprecated": false,
+	"description": "Cisco Secure Network Analytics (Stealthwatch) provides scalable visibility and security analytics.",
+	"disabledMonthly": false,
+	"downloads": 572,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.5.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "CiscoStealthwatch",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/CiscoStealthwatch/CiscoStealthwatch_image.png",
+			"name": "Cisco Secure Network Analytics (Stealthwatch)"
+		},
+		{
+			"imagePath": "content/packs/Stealthwatch_Cloud/StealthwatchCloud_image.png",
+			"name": "Cisco Secure Cloud Analytics (Stealthwatch Cloud)"
+		}
+	],
+	"itemVersion": "1.0.8",
+	"keywords": [],
+	"legacy": true,
+	"name": "Cisco Secure Network Analytics (Stealthwatch)",
+	"packID": "CiscoStealthwatch",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "Today, companies have large networks with lots of devices stretching further than ever.\nFinding the latest threat is like looking for a needle in a haystack. Stealwatch analyzes your company's billions of network sessions, and provides analytics for your query flows and security events to enable you to determine when something looks suspicious and respond to any network threats.\n​\n## What does this pack do\n​\n- Lists security events and returns the results to the context.\n- Runs queries on Cisco Stealthwatch flows and return its results to the context.",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.5.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-12-21T12:04:16Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4258430",
+	"videos": []
+}
