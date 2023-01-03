@@ -1,0 +1,145 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: 7af70a31-8fee-433a-834f-95c85d52c4f5
+inputs: []
+name: Alex Scratchpad
+outputs: []
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: fb85cf1f-8400-4113-84c8-5cea912550eb
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: fb85cf1f-8400-4113-84c8-5cea912550eb
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      hoursBack:
+        simple: "100000"
+      ignoreClosedIncidents:
+        simple: "no"
+      similarIncidentFields:
+        simple: sourceBrand
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Finds similar incidents by common incident keys, labels, custom fields or context keys.
+        It's highly recommended to use incident keys if possible (e.g., "type" for the same incident type).
+        For best performance, it's recommended to avoid using context keys if possible (for example, if the value also appears in a label key, use label).
+
+        This automation runs using the default Limited User role, unless you explicitly change the permissions.
+        For more information, see the section about permissions here:
+        https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html
+      id: 15dc4d69-107c-46d6-8f6c-32996433c292
+      iscommand: false
+      name: Untitled Task
+      script: FindSimilarIncidents
+      type: regular
+      version: -1
+    taskid: 15dc4d69-107c-46d6-8f6c-32996433c292
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 520,
+          "y": 400
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      outputFormat:
+        simple: json
+      query:
+        simple: sourceBrand:${incident.sourceBrand}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Gets a list of incident objects and the associated incident outputs that
+        match the specified query and filters. The results are returned in a structured data file.
+
+        This automation runs using the default Limited User role, unless you explicitly change the permissions.
+        For more information, see the section about permissions here:
+        https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-5/cortex-xsoar-admin/playbooks/automations.html
+      id: d73c9078-a237-4f29-82ef-6e1395bc1810
+      iscommand: false
+      name: Untitled Task
+      script: GetIncidentsByQuery
+      type: regular
+      version: -1
+    taskid: d73c9078-a237-4f29-82ef-6e1395bc1810
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 490,
+          "y": 670
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 715,
+        "width": 450,
+        "x": 450,
+        "y": 50
+      }
+    }
+  }
