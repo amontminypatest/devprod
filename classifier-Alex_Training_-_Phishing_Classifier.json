@@ -1,0 +1,39 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "",
+	"feed": false,
+	"fromServerVersion": "",
+	"id": "54bc4167-854a-4236-8195-b48ce8e994ef",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "",
+	"keyTypeMap": {
+		"clicks blocked": "Alex Training - Phishing URL Clicked",
+		"clicks permitted": "Alex Training - Phishing URL Clicked",
+		"messages blocked": "Alex Training - Phishing Email Alert",
+		"messages delivered": "Alex Training - Phishing Email Alert"
+	},
+	"locked": false,
+	"logicalVersion": 1,
+	"mapping": null,
+	"name": "Alex Training - Phishing Classifier",
+	"nameRaw": "Alex Training - Phishing Classifier",
+	"packID": "",
+	"packName": "",
+	"propagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": false,
+	"toServerVersion": "",
+	"transformer": {
+		"simple": "type"
+	},
+	"type": "classification",
+	"unclassifiedCases": null,
+	"version": -1
+}
