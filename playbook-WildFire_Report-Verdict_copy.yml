@@ -1,0 +1,310 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: cad56256-1f96-4406-8d1a-4de20dbbbfc2
+inputs:
+- description: ""
+  key: URL
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: Pineapple.com
+name: WildFire Report-Verdict_copy
+outputs: []
+sourceplaybookid: 542c23b8-584b-48be-8c1f-60b3dca2dc0e
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: e3f14e43-9acd-4cd1-8404-5d3c7cc33450
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: e3f14e43-9acd-4cd1-8404-5d3c7cc33450
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 65
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      key:
+        simple: Wildfire
+      stringify:
+        simple: "false"
+      value:
+        simple: "{\"Report\" : [\n\t{\n\t\t\"URL\" : \"Pineapple.com\",\n\t\t\"detection_reseason\"
+          : {\n\t\t\t\"verdict\" : \"bengin\"\n\t\t}\n\t}\n],\n\"Verdicts\" : [\n\t{\n\t\t\"URL\"
+          : \"DarknessMyOldFriend.com\",\n\t\t\"Verdict\" : \"Suspicious\"\n\t}\n]\n}"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: fd549ce5-f4ae-49a6-8d01-3403a2518788
+      iscommand: false
+      name: Set Context Data
+      script: Set
+      type: regular
+      version: -1
+    taskid: fd549ce5-f4ae-49a6-8d01-3403a2518788
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 400
+        }
+      }
+  "3":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      append:
+        simple: "true"
+      key:
+        simple: WildFire_Verdict
+      value:
+        complex:
+          accessor: detection_reseason.verdict
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: Wildfire.Report.URL
+              operator: isEqualString
+              right:
+                iscontext: true
+                value:
+                  simple: inputs.URL
+          root: Wildfire.Report
+          transformers:
+          - args:
+              applyIfEmpty: {}
+              defaultValue:
+                value:
+                  simple: None
+            operator: SetIfEmpty
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: 5a44df0e-99c9-4f69-8d96-b7c4d6480757
+      iscommand: false
+      name: Set Results
+      script: Set
+      type: regular
+      version: -1
+    taskid: 5a44df0e-99c9-4f69-8d96-b7c4d6480757
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 575
+        }
+      }
+  "5":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      append:
+        simple: "true"
+      key:
+        simple: WildFire_Verdict
+      value:
+        complex:
+          accessor: Verdict
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: Wildfire.Verdicts.URL
+              operator: isEqualString
+              right:
+                iscontext: true
+                value:
+                  simple: inputs.URL
+          root: Wildfire.Verdicts
+          transformers:
+          - args:
+              applyIfEmpty: {}
+              defaultValue:
+                value:
+                  simple: None
+            operator: SetIfEmpty
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: 241f4dfd-289f-4e6e-8d41-9afc970bf4f4
+      iscommand: false
+      name: Set Results
+      script: Set
+      type: regular
+      version: -1
+    taskid: 241f4dfd-289f-4e6e-8d41-9afc970bf4f4
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 575
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      key:
+        simple: WildFire_Logs
+      value:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: WildFire_Verdict
+              operator: isNotEqualString
+              right:
+                value:
+                  simple: None
+          root: WildFire_Verdict
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: d7ba23be-b758-43af-8e4e-a2b16bff1f1f
+      iscommand: false
+      name: Set Results
+      script: Set
+      type: regular
+      version: -1
+    taskid: d7ba23be-b758-43af-8e4e-a2b16bff1f1f
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 750
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      all:
+        simple: "yes"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Delete field from context.
+
+        This automation runs using the default Limited User role, unless you explicitly change the permissions.
+        For more information, see the section about permissions here:
+        https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html
+      id: 86d71e2f-2722-4ed7-8ac6-9cca588eb614
+      iscommand: false
+      name: Delete Context
+      script: DeleteContext
+      type: regular
+      version: -1
+    taskid: 86d71e2f-2722-4ed7-8ac6-9cca588eb614
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 225
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 780,
+        "width": 810,
+        "x": 50,
+        "y": 65
+      }
+    }
+  }
