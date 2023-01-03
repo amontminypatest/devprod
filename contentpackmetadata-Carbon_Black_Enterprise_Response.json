@@ -1,0 +1,484 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Endpoint"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"automation",
+		"incidentfield",
+		"incidenttype",
+		"playbook",
+		"classifier",
+		"layoutscontainer"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "This automation translates an endpoints hostname/IP to the Carbon Black sensor ID.\nIt then opens a session to the endpoint to download the given file paths and closes the session.",
+				"name": "CBLiveGetFile_V2",
+				"tags": [
+					"carbon-black",
+					"endpoint"
+				]
+			},
+			{
+				"description": "Display all watchlists and their details, queries, etc.",
+				"name": "CBWatchlists",
+				"tags": [
+					"carbon-black"
+				]
+			},
+			{
+				"description": "Returns all events associated with a process query",
+				"name": "CBEvents",
+				"tags": [
+					"carbon-black",
+					"endpoint",
+					"enhancement"
+				]
+			},
+			{
+				"description": "List Carbon Black sessions",
+				"name": "CBSessions",
+				"tags": [
+					"carbon-black",
+					"endpoint"
+				]
+			},
+			{
+				"description": "List Carbon Black sensors",
+				"name": "CBSensors",
+				"tags": [
+					"carbon-black",
+					"endpoint"
+				]
+			},
+			{
+				"description": "Get the list of Alerts from Carbon Black Enterprise Response. Supports the same arguments as the cb-alerts command.",
+				"name": "CBAlerts",
+				"tags": [
+					"carbon-black"
+				]
+			},
+			{
+				"description": "Search Carbon Black for connection to specified IP addresses.",
+				"name": "CBFindIP",
+				"tags": [
+					"carbon-black",
+					"endpoint",
+					"enhancement"
+				]
+			},
+			{
+				"description": "Deprecated. Use CBLiveGetFile_V2 instead. Use Carbon black Response Live session to retrieve a file from an endpoint. Endpoint needs to have a CbResponse sensor deployed.",
+				"name": "CBLiveGetFile",
+				"tags": [
+					"carbon-black",
+					"endpoint"
+				]
+			},
+			{
+				"description": "Deprecated. Use CBLiveGetFile_V2 instead. Live.",
+				"name": "CBLiveFetchFiles",
+				"tags": [
+					"carbon-black",
+					"endpoint"
+				]
+			}
+		],
+		"classifier": [
+			{
+				"description": "Maps Carbon Black EDR's alert fields",
+				"id": "",
+				"name": "Carbon Black EDR Mapper"
+			},
+			{
+				"description": "Classifies Carbon Black EDR's alerts",
+				"id": "",
+				"name": "Carbon Black EDR Classifier"
+			}
+		],
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": [
+			{
+				"description": "",
+				"name": "Carbon Black EDR Watchlist Id",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Carbon Black EDR Segment ID",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Carbon Black EDR IOC Value",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Carbon Black EDR Watchlist Name",
+				"type": "shortText"
+			}
+		],
+		"incidenttype": [
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "Carbon Black EDR",
+				"playbook": "Carbon Black EDR - Enrich Process",
+				"weeks": 0
+			}
+		],
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Endpoint",
+				"commands": [
+					{
+						"description": "Retrieve alerts from Carbon Black Response.",
+						"name": "cb-alert"
+					},
+					{
+						"description": "Query for binaries based on given parameters",
+						"name": "cb-binary"
+					},
+					{
+						"description": "Deprecated. Use the cb-binary-download command instead.",
+						"name": "cb-binary-get"
+					},
+					{
+						"description": "Blocking hash",
+						"name": "cb-block-hash"
+					},
+					{
+						"description": "Returns a list of hashes on block list, with each list entry describing one hash on block list.",
+						"name": "cb-get-hash-blacklist"
+					},
+					{
+						"description": "Gets basic process information for segment (segment_id) of process (process_id)",
+						"name": "cb-get-process"
+					},
+					{
+						"description": "Query processes based on given parameters",
+						"name": "cb-get-processes"
+					},
+					{
+						"description": "List the CarbonBlack sensors",
+						"name": "cb-list-sensors"
+					},
+					{
+						"description": "Retrieve all process events for a given process segmented by segment ID",
+						"name": "cb-process-events"
+					},
+					{
+						"description": "Isolate the endpoint from the network",
+						"name": "cb-quarantine-device"
+					},
+					{
+						"description": "Display information about the given sensor",
+						"name": "cb-sensor-info"
+					},
+					{
+						"description": "Unblocking hash",
+						"name": "cb-unblock-hash"
+					},
+					{
+						"description": "Unquarantine the endpoint",
+						"name": "cb-unquarantine-device"
+					},
+					{
+						"description": "Display the CarbonBlack version",
+						"name": "cb-version"
+					},
+					{
+						"description": "Delete a watchlist in Carbon black Response.",
+						"name": "cb-watchlist-del"
+					},
+					{
+						"description": "Retrieve info for a watchlist in Carbon black Response.",
+						"name": "cb-watchlist-get"
+					},
+					{
+						"description": "Create a new watchlist in Carbon black Response.",
+						"name": "cb-watchlist-new"
+					},
+					{
+						"description": "Modify a watchlist in Carbon black Response.",
+						"name": "cb-watchlist-set"
+					},
+					{
+						"description": "Alert update and resolution",
+						"name": "cb-alert-update"
+					},
+					{
+						"description": "Retrieve watchlist in Carbon black Response.",
+						"name": "cb-watchlist"
+					},
+					{
+						"description": "Retrieve a binary from CarbonBlack based on hash. Returns a .zip file containing the requested file and it's metadata.",
+						"name": "cb-binary-download"
+					}
+				],
+				"description": "Deprecated. Use VMware Carbon Black EDR v2 instead.",
+				"id": "",
+				"name": "VMware Carbon Black EDR (Deprecated)"
+			},
+			{
+				"category": "Endpoint",
+				"commands": [
+					{
+						"description": "Process search",
+						"name": "cb-edr-processes-search"
+					},
+					{
+						"description": "Gets basic process information for segment  of process.",
+						"name": "cb-edr-process-get"
+					},
+					{
+						"description": "Gets segment data for a given process.",
+						"name": "cb-edr-process-segments-get"
+					},
+					{
+						"description": "Download a zip archive including a sensor installer for Windows, Mac OS X or Linux.",
+						"name": "cb-edr-sensor-installer-download"
+					},
+					{
+						"description": "Gets the events for the process with CB process id (process_id) and segment id (segment_id).",
+						"name": "cb-edr-process-events-list"
+					},
+					{
+						"description": "Unquarantine the endpoint",
+						"name": "cb-edr-unquarantine-device"
+					},
+					{
+						"description": "Isolate the endpoint from the network",
+						"name": "cb-edr-quarantine-device"
+					},
+					{
+						"description": "List the CarbonBlack sensors",
+						"name": "cb-edr-sensors-list"
+					},
+					{
+						"description": "Delete a Watchlist that is specified using ID.",
+						"name": "cb-edr-watchlist-delete"
+					},
+					{
+						"description": "Updates a Watchlist that is specified using ID.",
+						"name": "cb-edr-watchlist-update"
+					},
+					{
+						"description": "Updates a Watchlist action that is specified using ID.",
+						"name": "cb-edr-watchlist-update-action"
+					},
+					{
+						"description": "Creates a new Watchlist within EDR,",
+						"name": "cb-edr-watchlist-create"
+					},
+					{
+						"description": "Retrieve watchlist in Carbon black Response.",
+						"name": "cb-edr-watchlists-list"
+					},
+					{
+						"description": "Prevent execution of a specified md5 hash",
+						"name": "cb-edr-binary-ban"
+					},
+					{
+						"description": "Returns a list of banned hashes",
+						"name": "cb-edr-binary-bans-list"
+					},
+					{
+						"description": "Alerts update and resolution.\nUpdating Alerts requires an API key with Global Administrator privileges.",
+						"name": "cb-edr-alert-update"
+					},
+					{
+						"description": "Retrieve alerts from Carbon Black Response.",
+						"name": "cb-edr-alert-search"
+					},
+					{
+						"description": "Returns the metadata for the binary with the provided md5",
+						"name": "cb-edr-binary-summary"
+					},
+					{
+						"description": "Download the binary with this md5 hash.",
+						"name": "cb-edr-binary-download"
+					},
+					{
+						"description": "Binary search",
+						"name": "cb-edr-binary-search"
+					},
+					{
+						"description": "List the CarbonBlack sensors",
+						"name": "endpoint"
+					}
+				],
+				"description": "VMware Carbon Black EDR (formerly known as Carbon Black Response)",
+				"id": "",
+				"name": "VMware Carbon Black EDR v2"
+			}
+		],
+		"layoutscontainer": [
+			{
+				"description": "",
+				"name": "Carbon Black EDR Incidents"
+			}
+		],
+		"list": null,
+		"playbook": [
+			{
+				"description": "Carbon Black Response - isolates an endpoint for a given hostname.",
+				"name": "Block Endpoint - Carbon Black Response V2"
+			},
+			{
+				"description": "Returns to the war-room a file sample correlating to MD5 hashes in the input using Carbon Black Enterprise Response integration",
+				"name": "Get File Sample By Hash - Carbon Black Enterprise Response"
+			},
+			{
+				"description": "Returns a file sample to the war-room from a path on an endpoint using Carbon Black Enterprise Response",
+				"name": "Get File Sample From Path - Carbon Black Enterprise Response"
+			},
+			{
+				"description": "This playbook unisolates sensors according to the sensor ID that is provided in the playbook input.",
+				"name": "Carbon Black Response - Unisolate Endpoint"
+			},
+			{
+				"description": "Hunt for malicious indicators using Carbon Black",
+				"name": "Search Endpoints By Hash - Carbon Black Response V2"
+			},
+			{
+				"description": "Test Playbook for Carbon Black EDR",
+				"name": "Carbon Black EDR - Enrich Process"
+			},
+			{
+				"description": "Carbon Black Response - isolate an endpoint, given a hostname.",
+				"name": "Block Endpoint - Carbon Black Response"
+			},
+			{
+				"description": "This playbook receives an MD5 hash and adds it to the block list in Carbon Black Enterprise Response. Files with that MD5 hash are blocked from execution on the managed endpoints.\n\nIf the integration is disabled at the time of running, or if the hash is already on the block list, no action is taken on the MD5.",
+				"name": "Block File - Carbon Black Response"
+			},
+			{
+				"description": "This playbook retrieves a binary file by its MD5 hash from the Carbon Black telemetry data.",
+				"name": "Get the binary file from Carbon Black by its MD5 hash"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-09-23T17:41:26Z",
+	"currentVersion": "2.1.25",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.39",
+			"name": "Base"
+		},
+		"CarbonBlackCommonFields": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.0.0",
+			"name": "Carbon Black Common Fields"
+		},
+		"Carbon_Black_Enterprise_Live_Response": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.1.4",
+			"name": "Carbon Black Enterprise Live Response"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.10.7",
+			"name": "Common Scripts"
+		},
+		"CommonTypes": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "3.3.30",
+			"name": "Common Types"
+		},
+		"Phishing": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "3.3.10",
+			"name": "Phishing"
+		}
+	},
+	"deprecated": false,
+	"description": "Query and respond with Carbon Black endpoint detection and response.",
+	"disabledMonthly": false,
+	"downloads": 5164,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "Carbon_Black_Enterprise_Response",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/Carbon_Black_Enterprise_Response/carbonblack-v2_image.png",
+			"name": "VMware Carbon Black EDR (Deprecated)"
+		},
+		{
+			"imagePath": "content/packs/Carbon_Black_Enterprise_Response/VMwareCarbonBlackEDRv2_image.png",
+			"name": "VMware Carbon Black EDR v2"
+		},
+		{
+			"imagePath": "content/packs/Carbon_Black_Enterprise_Live_Response/carbonblackliveresponse_image.png",
+			"name": "VMware Carbon Black EDR (Live Response API)"
+		}
+	],
+	"itemVersion": "2.1.25",
+	"keywords": [],
+	"legacy": true,
+	"name": "Carbon Black Enterprise Response",
+	"packID": "Carbon_Black_Enterprise_Response",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "This response and threat hunting pack provides you with endpoint data enabling you to investigate and analyze potential threats in real time. \n\n\n## What does this pack do?\n- Hunts for malicious indicators.\n- Investigates and analyzes potential malware and threats.\n- Remediates/removes unauthorized, malicious, or unwanted processes.\n- Gets alerts about suspected processes running on an endpoint.\n- Investigates processes and related files with potential malware or threats.\n\nThis pack includes several automations and playbooks to help with the malware investigations.\n",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-11-16T11:24:23Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4098099",
+	"videos": []
+}
