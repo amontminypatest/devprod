@@ -1,0 +1,212 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Network Security"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Network Security",
+				"commands": [
+					{
+						"description": "Fetches a site's allow list, which resides on the Signal Sciences' platform.",
+						"name": "sigsci-get-whitelist"
+					},
+					{
+						"description": "Fetches a site's block list, which resides on the Signal Sciences' platform.",
+						"name": "sigsci-get-blacklist"
+					},
+					{
+						"description": "Adds an IP address to a site's allow list, which resides on the Signal Sciences' platform.",
+						"name": "sigsci-whitelist-add-ip"
+					},
+					{
+						"description": "Adds an IP to a site's block list, which resides on the Signal Sciences' platform.",
+						"name": "sigsci-blacklist-add-ip"
+					},
+					{
+						"description": "Removes an IP address from a site's allow list, which resides on the Signal Sciences' platform.",
+						"name": "sigsci-whitelist-remove-ip"
+					},
+					{
+						"description": "Removes an IP from a site's block list, which resides on the Signal Sciences' platform.",
+						"name": "sigsci-blacklist-remove-ip"
+					},
+					{
+						"description": "Returns all site names from the Signal Sciences platform.",
+						"name": "sigsci-get-sites"
+					},
+					{
+						"description": "Creates a new list for a given site on the Signal Sciences platform.",
+						"name": "sigsci-create-site-list"
+					},
+					{
+						"description": "Returns all the data about a site list.",
+						"name": "sigsci-get-site-list"
+					},
+					{
+						"description": "Deletes a site list in Signal Sciences.",
+						"name": "sigsci-delete-site-list"
+					},
+					{
+						"description": "Updates a site list in Signal Sciences.",
+						"name": "sigsci-update-site-list"
+					},
+					{
+						"description": "Adds a custom alert to a site in Signal Sciences.",
+						"name": "sigsci-add-alert"
+					},
+					{
+						"description": "Retrieves data for an alert.",
+						"name": "sigsci-get-alert"
+					},
+					{
+						"description": "Deletes an alert from a given site in Signal Sciences.",
+						"name": "sigsci-delete-alert"
+					},
+					{
+						"description": "Updates the attributes of a given alert.",
+						"name": "sigsci-update-alert"
+					},
+					{
+						"description": "Retrieves all alerts for given a site.",
+						"name": "sigsci-get-all-alerts"
+					},
+					{
+						"description": "Retrieves all site lists for a given site.",
+						"name": "sigsci-get-all-site-lists"
+					},
+					{
+						"description": "Creates a new corp list.",
+						"name": "sigsci-create-corp-list"
+					},
+					{
+						"description": "Retrieves all data about a given corp list.",
+						"name": "sigsci-get-corp-list"
+					},
+					{
+						"description": "Deletes a given corp list.",
+						"name": "sigsci-delete-corp-list"
+					},
+					{
+						"description": "Updates (add or delete) entries for a given corp list.",
+						"name": "sigsci-update-corp-list"
+					},
+					{
+						"description": "Retrieves data about all lists for the given corp.",
+						"name": "sigsci-get-all-corp-lists"
+					},
+					{
+						"description": "Fetches events from Signal Sciences.",
+						"name": "sigsci-get-events"
+					},
+					{
+						"description": "Retrieves an event by the event ID.",
+						"name": "sigsci-get-event-by-id"
+					},
+					{
+						"description": "Expires a given event.",
+						"name": "sigsci-expire-event"
+					},
+					{
+						"description": "Retrieves requests from a given site according to a search query.",
+						"name": "sigsci-get-requests"
+					},
+					{
+						"description": "Retrieves a request by request ID.",
+						"name": "sigsci-get-request-by-id"
+					}
+				],
+				"description": "Protect your web application using Signal Sciences.",
+				"id": "",
+				"name": "Signal Sciences WAF"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-11-09T18:50:38Z",
+	"currentVersion": "1.0.13",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.39",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Protect your web application using Signal Sciences.",
+	"disabledMonthly": false,
+	"downloads": 1378,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "SignalSciences",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/SignalSciences/SignalSciencesWAF_image.png",
+			"name": "Signal Sciences WAF"
+		}
+	],
+	"itemVersion": "1.0.13",
+	"keywords": [],
+	"legacy": true,
+	"name": "Signal Sciences WAF",
+	"packID": "SignalSciences",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [
+		"Data Source"
+	],
+	"toServerVersion": "",
+	"updated": "2022-12-19T23:55:42Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4098099",
+	"videos": []
+}
