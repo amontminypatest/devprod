@@ -1,0 +1,157 @@
+{
+	"author": "Group-IB",
+	"authorImage": "content/packs/Polygon/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Forensics \u0026 Malware Analysis"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"playbook"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Forensics \u0026 Malware Analysis",
+				"commands": [
+					{
+						"description": "Upload file for analysis",
+						"name": "polygon-upload-file"
+					},
+					{
+						"description": "Upload URL for analysis",
+						"name": "polygon-upload-url"
+					},
+					{
+						"description": "Get THF Polygon analysis info",
+						"name": "polygon-analysis-info"
+					},
+					{
+						"description": "Export an archive with THF Polygon report to War Room",
+						"name": "polygon-export-report"
+					},
+					{
+						"description": "The command allows you to download a network activity dump in case the file/link is malicious.",
+						"name": "polygon-export-pcap"
+					},
+					{
+						"description": "The command allows you to download a screen activity video in case the file/link is malicious.",
+						"name": "polygon-export-video"
+					},
+					{
+						"description": "Check file reputation",
+						"name": "file"
+					}
+				],
+				"description": "THF Polygon is a Malware Detonation \u0026 Research platform designed for deep dynamic analysis and enhanced indicators extraction. THF Polygon analyzes submitted files and urls and extracts deep IOCs that appear when malicious code is triggered and executed. Polygon could be used either for application-level tasks (like smtp-based mail filtering) and analytical purposes (files/urls analysis for verdict, report and indicators).",
+				"id": "",
+				"name": "Group-IB THF Polygon (Partner Contribution)"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"playbook": [
+			{
+				"description": "Detonate URL using Group-IB THF Polygon integration.",
+				"name": "Detonate URL - Group-IB TDS Polygon"
+			},
+			{
+				"description": "Detonate file using Group-IB THF Polygon integration. This playbook returns relevant reports to the War Room and file reputations to the context data. The detonation supports the following file types: 7z, ace, ar, arj, bat, bz2, cab, chm, cmd, com, cpgz, cpl, csv, dat, doc, docm, docx, dot, dotm, dotx, eml, exe, gz, gzip, hta, htm, html, iqy, iso, jar, js, jse, lnk, lz, lzma, lzo,  lzh, mcl, mht, msg, msi, msp, odp, ods, odt, ots, ott, pdf, pif, potm, potx, pps, ppsm, ppsx, ppt, pptm, pptx, ps1, pub, py, pyc, r*, rar, reg, rtf, scr, settingcontent-ms, stc, svg, sxc, sxw, tar, taz,  .tb2, .tbz, .tbz2, tgz, tlz, txz, tzo, txt, url, uue, vbe, vbs, wsf, xar, xls, xlsb, xlsm, xlsx, xml, xz, z*, zip.",
+				"name": "Detonate File - Group-IB TDS Polygon"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2020-09-23T17:46:36Z",
+	"currentVersion": "1.0.8",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.39",
+			"name": "Base"
+		},
+		"CommonPlaybooks": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "2.3.13",
+			"name": "Common Playbooks"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.10.7",
+			"name": "Common Scripts"
+		}
+	},
+	"deprecated": false,
+	"description": "Analyze your files and URLs with Polygon playbooks and extract deep IOCs that appear when malicious code is triggered and executed.",
+	"disabledMonthly": false,
+	"downloads": 1965,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByPartner",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "Polygon",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/Polygon/Group-IBTDSPolygon_image.png",
+			"name": "Group-IB THF Polygon"
+		}
+	],
+	"itemVersion": "1.0.8",
+	"keywords": [
+		"sandbox"
+	],
+	"legacy": true,
+	"name": "Polygon",
+	"packID": "Polygon",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "Nowadays every system can be attacked by adrversaries and it can start, for example, with a malicious url or file in simple e-mail to your employee. \n\nThis can be solved with Polygon Pack that represents our product THF Polygon. \nIt is a Malware Detonation \u0026 Research platform designed for deep dynamic analysis and enhanced indicators extraction. \nPolygon could be used either for application-level tasks (like smtp-based mail filtering) and analytical purposes (files/urls analysis for verdict, report and indicators).\n\n### What does this pack do?\n* Detonate URLs.\n* Detonate files.\n",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "partner",
+	"supportDetails": {
+		"email": "thf@group-ib.com",
+		"url": "https://thfwiki.group-ib.tech/about/summary/"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-08-09T16:19:12Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4098099",
+	"videos": []
+}
