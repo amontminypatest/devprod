@@ -1,0 +1,550 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Network Security"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"incidentfield",
+		"incidenttype",
+		"classifier",
+		"layoutscontainer"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": [
+			{
+				"description": "",
+				"id": "fff43e29-36aa-41a4-82e4-20bc8f9e5a00",
+				"name": "F5 Silverline Classifer"
+			},
+			{
+				"description": "",
+				"id": "5d3f7d5a-ebfb-4dbe-83c6-d7e3b6220e00",
+				"name": "F5 Silverline mapper"
+			}
+		],
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": [
+			{
+				"description": "",
+				"name": "F5 Silverline Sub Violations",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Action Reason ",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Translated Dest Port",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline HTTP Strings Detected",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Detected Usernames",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Threat identifier",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Data",
+				"type": "longText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Route Domain",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline DOS Baseline TPS",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline support ID",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Violation Timestamp",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Translated Dest IP",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Context Name",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Attack Type",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Client Port",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Translated Source IP",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": " F5 Silverline Alert Generated Timestamp",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Message Type",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Translated Vlan",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline IRule Log Level",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline IRule Version",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Mitigate Threshold",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Translated Route Domain",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Proxy ID",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Security Severity",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline IRule Name",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline SA Translation Type",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline IP Intelligence Policy Name",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Backend Server Port",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Request Side",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Geo Location Source IP",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline IP Intelligence Event",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Request Status",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Client IP",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Translated Source Port",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Raw Message",
+				"type": "longText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Virtual Server Port",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline DOS Attack Latency",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Flow ID",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline TMM Unit",
+				"type": "number"
+			},
+			{
+				"description": "",
+				"name": "F5 Silveline Security Policy Name",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Service ID",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Violation Security Support ID",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Staged Signature IDs",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Staged Signature Names",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline HTTP Method",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Response Code",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Violations Types",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline SA Translation Pool",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Virtual Server IP",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Attack Signature Name",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline DOS Attack TPS",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline SNAT IP",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline DOS Baseline Latency",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Security Policy update timestamp",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline HTTP Class Name",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline SNAT Port",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline X-Forwarded",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Backend Server IP",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline IRule Log Type",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Web Application Name",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Message Originator Source IP ",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Alert Type",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Message Number",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Violations Details",
+				"type": "longText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Action",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Attack Signature ID",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline DOS Detection Threshold",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Targeted URI",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Translated IP Protocol",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline Virtual Server Name",
+				"type": "longText"
+			}
+		],
+		"incidenttype": [
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "F5 Silverline Threat Intelligence Events",
+				"playbook": "",
+				"weeks": 0
+			},
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "F5 Silverline iRule Events",
+				"playbook": "",
+				"weeks": 0
+			},
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "F5 Silverline L7 DDoS Events",
+				"playbook": "",
+				"weeks": 0
+			},
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "F5 Silverline WAF Events",
+				"playbook": "",
+				"weeks": 0
+			}
+		],
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Network Security",
+				"commands": [
+					{
+						"description": "Gets a dynamic list of threatening IP addresses by the given list type.",
+						"name": "f5-silverline-ip-objects-list"
+					},
+					{
+						"description": "Adds a new particular threatening IP address object by its IP address.",
+						"name": "f5-silverline-ip-object-add"
+					},
+					{
+						"description": "Delete an existing particular threatening IP address object by its object ID or by its IP address. If both id and ip are given, delete operation will be done by the given object_id.",
+						"name": "f5-silverline-ip-object-delete"
+					}
+				],
+				"description": "F5 Silverline Threat Intelligence is a cloud-based service incorporating external IP reputation and reducing threat-based communications. By identifying IP addresses and security categories associated with malicious activity, this managed service integrates dynamic lists of threatening IP addresses with the Silverline cloud-based platform, adding context-based security to policy decisions.",
+				"id": "F5Silverline",
+				"name": "F5 Silverline"
+			}
+		],
+		"layoutscontainer": [
+			{
+				"description": "",
+				"name": "F5 Silverline Threat Intelligence Events Layout"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline L7 DDoS Events Layout"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline iRule Events Layout"
+			},
+			{
+				"description": "",
+				"name": "F5 Silverline WAF Events Layout"
+			}
+		],
+		"list": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2021-06-14T23:13:04Z",
+	"currentVersion": "1.0.21",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.51",
+			"name": "Base"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.10.34",
+			"name": "Common Scripts"
+		},
+		"CommonTypes": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "3.3.40",
+			"name": "Common Types"
+		}
+	},
+	"deprecated": false,
+	"description": "An integration with F5 Silverline to retrieve alerts and read/update IP lists.",
+	"disabledMonthly": false,
+	"downloads": 591,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "6.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "F5Silverline",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/F5Silverline/F5Silverline_image.png",
+			"name": "F5 Silverline"
+		}
+	],
+	"itemVersion": "1.0.21",
+	"keywords": [],
+	"legacy": true,
+	"name": "F5 Silverline",
+	"packID": "F5Silverline",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "Use this content pack to retrieve alerts from F5 Silverline and read/update IP lists.\n\n## Main use cases:\n* Retrieve the list of alerts from the F5 Silverline portal so response processes can be built.\n* Read or update the IP lists from the F5 Silverline portal so denylists and allowlists can be updated based on the customized workflows.\n \n## What does this pack do?\nThe integration in this pack enables you to:\n* Get a dynamic list of threatening IP addresses by the given list type (allowlist or denylist).\n* Add a new particular threatening IP address object by its IP address.\n* Delete an exising particular threatening IP address object by its object ID.\n\nThe F5 Silverline API does not support fetching incidents.\nConfigure the Syslog instance with your log receiver details to retreive the alerts\n   * Click \"Fetches incidents\".\n   * Set the Classifier to \"F5 Silverline Classifier\". \n   * Set the Mapper to \"F5 Silverline Mapper\".\n   * IP address - specify the IP address of your log receiver host.\n   * Port - specify the port of your log receiver host.\n   * Protocol - choose TCP or UDP.\n   * Format - specify to 'Auto'.\n",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "6.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2023-01-02T10:36:29Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4314916",
+	"videos": []
+}
