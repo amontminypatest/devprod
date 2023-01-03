@@ -1,0 +1,454 @@
+{
+	"author": "Agari",
+	"authorImage": "content/packs/AgariPhishingDefense/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"incidentfield",
+		"incidenttype",
+		"dashboard",
+		"playbook",
+		"classifier",
+		"layoutscontainer"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": [
+			{
+				"description": "Classifies Agari Phishing Defense alerts as Phishing Alerts incident type.",
+				"id": "",
+				"name": "Agari Phishing Defense - Phishing Alerts - Classifier"
+			},
+			{
+				"description": "Classifies Agari Phishing Defense Incidents.",
+				"id": "",
+				"name": "Agari Phishing Defense - Classifier"
+			},
+			{
+				"description": "Maps incoming Agari Phishing Defense incident fields.",
+				"id": "",
+				"name": "Agari Phishing Defense - Mapper"
+			}
+		],
+		"dashboard": [
+			{
+				"name": "Agari Phishing Defense"
+			}
+		],
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": [
+			{
+				"description": "",
+				"name": "APD Message Authentication Results",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "APD Message PTR Name",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "APD Policy Event ID",
+				"type": "number"
+			},
+			{
+				"description": "",
+				"name": "APD Internal Message ID",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "APD Summary",
+				"type": "boolean"
+			},
+			{
+				"description": "",
+				"name": "APD Policy Action",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "APD Message Authenticity Score",
+				"type": "number"
+			},
+			{
+				"description": "",
+				"name": "APD Message DKIM D Tag",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "APD Alert Definition Name",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "APD Message Subject",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "APD Global Message ID",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "APD Created At",
+				"type": "date"
+			},
+			{
+				"description": "",
+				"name": "APD Enforcement Action",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "APD Message Mail From",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "APD Message Reply To",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "APD Message From Domain",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "APD Message To",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "APD Message Domain Reputation",
+				"type": "number"
+			},
+			{
+				"description": "",
+				"name": "APD Message Trust Score",
+				"type": "number"
+			},
+			{
+				"description": "",
+				"name": "APD Message Reputation",
+				"type": "number"
+			},
+			{
+				"description": "",
+				"name": "APD Attack Types",
+				"type": "grid"
+			},
+			{
+				"description": "",
+				"name": "APD Admin Recipients",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "APD Notified Original Recipients",
+				"type": "boolean"
+			},
+			{
+				"description": "",
+				"name": "APD Updated At",
+				"type": "date"
+			},
+			{
+				"description": "",
+				"name": "APD Message Sender IP Address",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "APD Message Date",
+				"type": "date"
+			},
+			{
+				"description": "",
+				"name": "APD Message From",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "APD Policy Enabled",
+				"type": "boolean"
+			},
+			{
+				"description": "",
+				"name": "APD Message Risk Reason",
+				"type": "shortText"
+			}
+		],
+		"incidenttype": [
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "Agari Phishing Defense Policy Event",
+				"playbook": "Agari Message Remediation - Agari Phishing Defense",
+				"weeks": 0
+			}
+		],
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Retrieves a list of policy events.",
+						"name": "apd-list-policy-events"
+					},
+					{
+						"description": "Retrieves a list of messages.",
+						"name": "apd-list-message-data"
+					},
+					{
+						"description": "Remediate suspected message.",
+						"name": "apd-remediate-message"
+					}
+				],
+				"description": "Agari Phishing Defense stops phishing, BEC, and other identity deception attacks that trick employees into harming your business.",
+				"id": "",
+				"name": "Agari Phishing Defense (Partner Contribution)"
+			}
+		],
+		"layoutscontainer": [
+			{
+				"description": "Agari Phishing Defense Policy Event Layout",
+				"name": "Agari Phishing Defense Policy Event"
+			}
+		],
+		"list": null,
+		"playbook": [
+			{
+				"description": "Retrieve Email Data from one of the Integrations of Gmail, Mail Listener v2, EWS O365, Microsoft Graph Mail.",
+				"name": "Retrieve Email Data - Agari Phishing Defense"
+			},
+			{
+				"description": "Remediates a given message id.",
+				"name": "Remediate Message - Agari Phishing Defense"
+			},
+			{
+				"description": "Investigates Agari policy events by obtaining the original message and attachments from the existing email integrations and remediates in Agari.",
+				"name": "Agari Message Remediation - Agari Phishing Defense"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null
+	},
+	"created": "2021-01-21T00:02:50Z",
+	"currentVersion": "1.1.3",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.45",
+			"name": "Base"
+		},
+		"CommonPlaybooks": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "2.3.21",
+			"name": "Common Playbooks"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.10.25",
+			"name": "Common Scripts"
+		},
+		"CommonTypes": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "3.3.37",
+			"name": "Common Types"
+		},
+		"EWS": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "2.0.2",
+			"name": "EWS"
+		},
+		"Gmail": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.2.6",
+			"name": "Gmail"
+		},
+		"GmailSingleUser": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.3.2",
+			"name": "Gmail Single User"
+		},
+		"MailListener": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.0.23",
+			"name": "Mail Listener"
+		},
+		"MicrosoftGraphListener": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.2.6",
+			"name": "Microsoft Graph Mail Single User"
+		},
+		"MicrosoftGraphMail": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.3.9",
+			"name": "Microsoft Graph Mail"
+		},
+		"Phishing": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "3.3.10",
+			"name": "Phishing"
+		},
+		"PhishingAlerts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.0.0",
+			"name": "PhishingAlerts"
+		}
+	},
+	"deprecated": false,
+	"description": "Use the Agari Phishing Defense integration to retrieve Policy Events as Incidents, retrieve messages and remediate suspected messages.",
+	"disabledMonthly": false,
+	"downloads": 844,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByPartner",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "AgariPhishingDefense",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/AgariPhishingDefense/AgariPhishingDefense_image.png",
+			"name": "Agari Phishing Defense"
+		},
+		{
+			"imagePath": "content/packs/EWS/EWS_image.png",
+			"name": "EWS (Deprecated)"
+		},
+		{
+			"imagePath": "content/packs/EWS/EWSExtensionOnlinePowershellv2_image.png",
+			"name": "EWS Extension Online Powershell v2"
+		},
+		{
+			"imagePath": "content/packs/EWS/EWSO365_image.png",
+			"name": "EWS O365"
+		},
+		{
+			"imagePath": "content/packs/EWS/EWSv2_image.png",
+			"name": "EWS v2"
+		},
+		{
+			"imagePath": "content/packs/EWS/EwsExtension_image.png",
+			"name": "O365 - EWS - Extension"
+		},
+		{
+			"imagePath": "content/packs/EWS/EWSExtensionOnlinePowershellv2_image.png",
+			"name": "O365 - EWS - Extension Online Powershell v2"
+		},
+		{
+			"imagePath": "content/packs/EWS/SecurityAndCompliance_image.png",
+			"name": "O365 - Security And Compliance - Content Search"
+		},
+		{
+			"imagePath": "content/packs/EWS/SecurityAndCompliance_image.png",
+			"name": "O365 - Security And Compliance - Content Search (beta)"
+		},
+		{
+			"imagePath": "content/packs/EWS/SecurityAndComplianceV2_image.png",
+			"name": "O365 - Security And Compliance - Content Search v2"
+		},
+		{
+			"imagePath": "content/packs/MicrosoftGraphMail/MicrosoftGraphMail_image.png",
+			"name": "O365 Outlook Mail (Using Graph API)"
+		},
+		{
+			"imagePath": "content/packs/MicrosoftGraphListener/MicrosoftGraphMailSingleUser_image.png",
+			"name": "Microsoft Graph Mail Single User"
+		},
+		{
+			"imagePath": "content/packs/Gmail/Gmail_image.png",
+			"name": "Gmail"
+		},
+		{
+			"imagePath": "content/packs/MailListener/MailListenerv2_image.png",
+			"name": "Mail Listener v2"
+		},
+		{
+			"imagePath": "content/packs/GmailSingleUser/GmailSingleUser_image.png",
+			"name": "Gmail Single User"
+		}
+	],
+	"itemVersion": "1.1.3",
+	"keywords": [
+		"phishing",
+		"defense",
+		"message",
+		"policy"
+	],
+	"legacy": true,
+	"name": "Agari Phishing Defense",
+	"packID": "AgariPhishingDefense",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "Agari Phishing Defense (APD) stops phishing, BEC, and other identity deception attacks that trick employees into harming your business. APD prevents threats from reaching employee inboxes by scoring every message flowing into and within the organization to defend against these low-volume, highly-targeted identity deception-based attacks.\r\n\r\nThis Agari Phishing Defense content pack contains an APD integration that provides customers with a granular level of visibility into email threats and the ability to orchestrate protection processes and safeguard infrastructure from within Cortex XSOAR. The Agari Phishing Defense playbook enables gathering policy events and associated messages from APD, enriching data using Cortex XSOAR built-in sub-playbooks, and performing remediation.\r\n         \r\n##### What does this pack do?\r\n- The playbooks included in this pack help you by providing a consolidated view of all security incidents that saves time and keeps your email security in check.\r\n- Imports policy events and corresponding message metadata from Agari Phishing Defense.\r\n- Does email enrichment (IP, domain, URL, attachment, email address, etc.)\r\n- Does email authenticity check\r\n- Does remediation if malicious\r\n \r\n_For more information, visit (https://www.agari.com/email-security-blog/integration-cortex-xsoar/)_\r\n",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "partner",
+	"supportDetails": {
+		"email": "support@agari.com",
+		"url": "https://www.agari.com/support/"
+	},
+	"tags": [
+		"Partner Spotlight"
+	],
+	"toServerVersion": "",
+	"updated": "2022-12-16T00:10:49Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "4227458",
+	"videos": []
+}
