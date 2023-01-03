@@ -1,0 +1,33 @@
+comment: Changes the text in a short text field to UPPERCASE when the field is changed.
+commonfields:
+  id: 77c39b4d-e40e-4154-8a68-88610e4cdcee
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.8.6.13358
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: FieldChangeYell
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |-
+  new = demisto.args().get("new")
+  field = demisto.args().get("cliName")
+  demisto.results(demisto.executeCommand("setIncident", {field:new.upper()}))
+scripttarget: 0
+subtype: python3
+tags:
+- training
+- field-change-triggered
+type: python
