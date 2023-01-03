@@ -1,0 +1,98 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "Maps Carbon Black EDR's alert fields",
+	"feed": false,
+	"fromServerVersion": "6.0.0",
+	"id": "Carbon Black EDR Mapper",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "2.1.25",
+	"keyTypeMap": null,
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": {
+		"Carbon Black EDR": {
+			"dontMapEventToLabels": true,
+			"internalMapping": {
+				"Carbon Black EDR IOC Value": {
+					"simple": "ioc_value"
+				},
+				"Carbon Black EDR Segment ID": {
+					"simple": "segment_id"
+				},
+				"Carbon Black EDR Unique ID": {
+					"simple": "unique_id"
+				},
+				"Carbon Black EDR Watchlist Id": {
+					"simple": "watchlist_id"
+				},
+				"Carbon Black EDR Watchlist Name": {
+					"simple": "watchlist_name"
+				},
+				"Device External IP": {
+					"simple": "interface_ip"
+				},
+				"Device Id": {
+					"simple": "sensor_id"
+				},
+				"Device Name": {
+					"simple": "hostname"
+				},
+				"Event Descriptions": {
+					"simple": "description"
+				},
+				"Event Type": {
+					"simple": "alert_type"
+				},
+				"Incident Link": {
+					"simple": "link"
+				},
+				"Log Source": {
+					"simple": "feed_name"
+				},
+				"MD5": {
+					"simple": "md5"
+				},
+				"OS": {
+					"simple": "os_type"
+				},
+				"PID": {
+					"simple": "process_id"
+				},
+				"Process Name": {
+					"simple": "process_name"
+				},
+				"Process Path": {
+					"simple": "process_path"
+				},
+				"Resource Type": {
+					"simple": "ioc_type"
+				},
+				"Username": {
+					"simple": "username"
+				},
+				"severity": {
+					"simple": "alert_severity"
+				}
+			}
+		}
+	},
+	"name": "Carbon Black EDR Mapper",
+	"nameRaw": "Carbon Black EDR Mapper",
+	"packID": "Carbon_Black_Enterprise_Response",
+	"packName": "Carbon Black Enterprise Response",
+	"packPropagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {},
+	"type": "mapping-incoming",
+	"unclassifiedCases": null,
+	"version": -1
+}
