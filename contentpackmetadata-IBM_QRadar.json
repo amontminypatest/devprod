@@ -741,7 +741,7 @@
 		"wizard": null
 	},
 	"created": "2020-07-26T10:34:45Z",
-	"currentVersion": "2.4.1",
+	"currentVersion": "2.4.2",
 	"definitionId": "",
 	"dependencies": {
 		"AccessInvestigation": {
@@ -776,7 +776,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.10.34",
+			"minVersion": "1.10.37",
 			"name": "Common Scripts"
 		},
 		"CommonTypes": {
@@ -797,7 +797,7 @@
 	"deprecated": false,
 	"description": "Fetch offenses as incidents and search QRadar",
 	"disabledMonthly": false,
-	"downloads": 15859,
+	"downloads": 15965,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -834,7 +834,7 @@
 			"name": "Palo Alto Networks Cortex XDR - Investigation and Response"
 		}
 	],
-	"itemVersion": "2.4.1",
+	"itemVersion": "2.4.2",
 	"keywords": [],
 	"legacy": true,
 	"name": "IBM QRadar",
@@ -862,9 +862,9 @@
 		"TIM"
 	],
 	"toServerVersion": "",
-	"updated": "2022-12-28T11:44:59Z",
+	"updated": "2023-01-04T23:46:16Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4314430",
+	"versionInfo": "4331864",
 	"videos": []
 }
