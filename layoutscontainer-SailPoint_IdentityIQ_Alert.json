@@ -402,7 +402,7 @@
 	"id": "SailPoint IdentityIQ Alert",
 	"indicatorsDetails": null,
 	"indicatorsQuickView": null,
-	"itemVersion": "1.0.7",
+	"itemVersion": "1.0.8",
 	"locked": false,
 	"mobile": null,
 	"name": "SailPoint IdentityIQ Alert",
