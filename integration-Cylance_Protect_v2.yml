@@ -7,50 +7,64 @@ configuration:
   display: Server URL
   name: server
   required: true
+  section: Connect
   type: 0
 - display: Application ID
   name: app_id
   required: true
+  section: Connect
   type: 0
 - display: Application Secret
   name: app_secret
   required: true
+  section: Connect
   type: 4
 - display: Tenant API Key
   name: tid
   required: true
+  section: Connect
   type: 4
-- display: Use system proxy settings
+- advanced: true
+  display: Use system proxy settings
   name: proxy
   required: false
+  section: Connect
   type: 8
-- display: Trust any certificate (not secure)
+- advanced: true
+  display: Trust any certificate (not secure)
   name: unsecure
   required: false
+  section: Connect
   type: 8
 - display: Fetch incidents
   name: isFetch
   required: false
+  section: Collect
   type: 8
 - display: Incident type
   name: incidentType
   required: false
+  section: Connect
   type: 13
-- defaultvalue: "-59"
+- advanced: true
+  defaultvalue: "-59"
   display: File Threshold
   name: file_threshold
   required: false
+  section: Connect
   type: 0
-- defaultvalue: "1"
+- advanced: true
+  defaultvalue: "1"
   display: Incidents Fetch Interval
   name: incidentFetchInterval
   required: false
+  section: Collect
   type: 19
 contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.1.6
+    itemVersion: 1.1.7
     packID: Cylance_Protect
     packName: Cylance Protect
     packPropagationLabels:
@@ -1003,7 +1017,7 @@ script:
     - contextPath: InstaQuery.List
       description: The list of InstaQuery
       type: string
-  dockerimage: demisto/pyjwt3:1.0.0.40917
+  dockerimage: demisto/pyjwt3:1.0.0.43045
   isfetch: true
   runonce: false
   script: |
