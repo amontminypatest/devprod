@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.5.0
-    itemVersion: 2.3.23
+    itemVersion: 2.3.24
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -12,7 +12,8 @@ contentitemexportablefields:
     toServerVersion: ""
 description: 'This playbook searches for a specific hash in the supported sandboxes.
   If the hash is known, the playbook provides a detailed analysis of the sandbox report.
-  Currently, supported sandboxes are Falcon X, Wildfire and Joe Sandbox. '
+  Currently, supported sandboxes are Falcon Intelligence Sandbox, Wildfire and Joe
+  Sandbox. '
 id: Search For Hash In Sandbox - Generic
 inputs:
 - description: The SHA256 hash to search for.
@@ -35,7 +36,7 @@ outputs:
   description: The results of the Wildfire report.
   type: string
 - contextPath: csfalconx.resource.sandbox
-  description: The results of the Falcon X report.
+  description: The results of the Falcon Intelligence Sandbox report.
   type: string
 starttaskid: "0"
 system: true
@@ -83,6 +84,8 @@ tasks:
       - "6"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: CrowdStrike Falcon X
@@ -120,6 +123,8 @@ tasks:
       - "5"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: WildFire-v2
@@ -295,7 +300,7 @@ tasks:
     evidencedata:
       customfields: {}
       description:
-        simple: FalconX sandbox report
+        simple: Falcon Intelligence Sandbox report
     id: "13"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -734,6 +739,8 @@ tasks:
       - "27"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: JoeSecurityV2
