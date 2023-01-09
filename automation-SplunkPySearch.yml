@@ -15,7 +15,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.5.0
-    itemVersion: 3.0.1
+    itemVersion: 3.0.2
     packID: SplunkPy
     packName: Splunk
     packPropagationLabels:
