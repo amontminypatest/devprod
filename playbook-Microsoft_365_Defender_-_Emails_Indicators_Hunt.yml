@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.2.0
-    itemVersion: 4.4.5
+    itemVersion: 4.4.6
     packID: Microsoft365Defender
     packName: Microsoft 365 Defender
     packPropagationLabels:
@@ -172,6 +172,8 @@ tasks:
       - "13"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: Microsoft 365 Defender
