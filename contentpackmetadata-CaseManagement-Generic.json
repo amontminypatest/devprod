@@ -151,7 +151,7 @@
 		"wizard": null
 	},
 	"created": "2020-09-22T13:57:25Z",
-	"currentVersion": "1.4.0",
+	"currentVersion": "1.4.1",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
@@ -172,7 +172,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.10.34",
+			"minVersion": "1.10.37",
 			"name": "Common Scripts"
 		},
 		"CommonTypes": {
@@ -186,7 +186,7 @@
 	"deprecated": false,
 	"description": "Case Management - Beta\n\nBuilt by the Cortex Customer Success Team to provide quick deployment of Case Management with XSOAR",
 	"disabledMonthly": false,
-	"downloads": 3116,
+	"downloads": 3230,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -195,7 +195,7 @@
 	"id": "CaseManagement-Generic",
 	"installMessage": "",
 	"integrations": [],
-	"itemVersion": "1.4.0",
+	"itemVersion": "1.4.1",
 	"keywords": [
 		"Case Management",
 		"SIEM"
@@ -223,15 +223,15 @@
 		"url": ""
 	},
 	"tags": [
-		"Use Case",
-		"Getting Started"
+		"Getting Started",
+		"Use Case"
 	],
 	"toServerVersion": "",
-	"updated": "2022-12-31T23:37:57Z",
+	"updated": "2023-01-05T00:06:58Z",
 	"useCases": [
 		"Case Management"
 	],
 	"version": -1,
-	"versionInfo": "4314430",
+	"versionInfo": "4331864",
 	"videos": []
 }
