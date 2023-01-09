@@ -21,7 +21,7 @@
 	"fromServerVersion": "6.2.0",
 	"id": "number-of-used-commands",
 	"isPredefined": true,
-	"itemVersion": "1.2.10",
+	"itemVersion": "1.2.11",
 	"name": "Commands executed",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
