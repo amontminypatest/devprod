@@ -477,7 +477,7 @@
 								"name": "Palo_Alto_Networks_WildFire"
 							},
 							{
-								"display_name": "CrowdStrike FalconX",
+								"display_name": "CrowdStrike Falcon Intelligence Sandbox",
 								"name": "CrowdStrikeFalconX"
 							},
 							{
@@ -655,14 +655,14 @@
 		]
 	},
 	"created": "2020-07-26T19:55:56Z",
-	"currentVersion": "3.3.11",
+	"currentVersion": "3.3.12",
 	"definitionId": "",
 	"dependencies": {
 		"Active_Directory_Query": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.6.0",
+			"minVersion": "1.6.1",
 			"name": "Active Directory Query"
 		},
 		"AgariPhishingDefense": {
@@ -711,14 +711,14 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.10.34",
+			"minVersion": "1.10.39",
 			"name": "Common Scripts"
 		},
 		"CommonTypes": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "3.3.40",
+			"minVersion": "3.3.42",
 			"name": "Common Types"
 		},
 		"CortexXDR": {
@@ -739,8 +739,8 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.2.15",
-			"name": "CrowdStrike FalconX"
+			"minVersion": "1.2.17",
+			"name": "CrowdStrike Falcon Intelligence Sandbox"
 		},
 		"CuckooSandbox": {
 			"author": "Cortex XSOAR",
@@ -760,21 +760,21 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.1.6",
+			"minVersion": "1.1.7",
 			"name": "Cylance Protect"
 		},
 		"DemistoRESTAPI": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.3.6",
+			"minVersion": "1.3.11",
 			"name": "Cortex REST API"
 		},
 		"EWS": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "2.0.5",
+			"minVersion": "2.0.7",
 			"name": "EWS"
 		},
 		"EWSMailSender": {
@@ -795,7 +795,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.1.6",
+			"minVersion": "1.1.9",
 			"name": "Filters And Transformers"
 		},
 		"FireEyeEX": {
@@ -830,7 +830,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.2.6",
+			"minVersion": "1.3.0",
 			"name": "Gmail"
 		},
 		"GmailSingleUser": {
@@ -886,14 +886,14 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.3.1",
+			"minVersion": "1.3.3",
 			"name": "Microsoft Graph Mail Single User"
 		},
 		"MicrosoftGraphMail": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.4.0",
+			"minVersion": "1.4.1",
 			"name": "Microsoft Graph Mail"
 		},
 		"Mimecast": {
@@ -914,14 +914,14 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.15.8",
+			"minVersion": "1.16.0",
 			"name": "PAN-OS by Palo Alto Networks"
 		},
 		"Palo_Alto_Networks_WildFire": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "2.1.8",
+			"minVersion": "2.1.9",
 			"name": "WildFire by Palo Alto Networks"
 		},
 		"PhishTank": {
@@ -984,14 +984,14 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.0.8",
+			"minVersion": "1.0.9",
 			"name": "Symantec Messaging Gateway"
 		},
 		"ThreatGrid": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.2.18",
+			"minVersion": "1.2.19",
 			"name": "Cisco Secure Malware Analytics"
 		},
 		"TrendMicroApex": {
@@ -1040,14 +1040,14 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.2.12",
+			"minVersion": "1.2.13",
 			"name": "Rasterize"
 		}
 	},
 	"deprecated": false,
 	"description": "Phishing emails still hooking your end users? This Content Pack can drastically reduce the time your security team spends on phishing alerts.",
 	"disabledMonthly": false,
-	"downloads": 34034,
+	"downloads": 34622,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "6.0.0",
 	"general": [
@@ -1128,7 +1128,7 @@
 			"name": "FireEye Email Security"
 		}
 	],
-	"itemVersion": "3.3.11",
+	"itemVersion": "3.3.12",
 	"keywords": [],
 	"legacy": true,
 	"name": "Phishing",
@@ -1153,16 +1153,16 @@
 		"url": "https://www.paloaltonetworks.com/cortex"
 	},
 	"tags": [
-		"Getting Started",
-		"Use Case"
+		"Use Case",
+		"Getting Started"
 	],
 	"toServerVersion": "",
-	"updated": "2022-12-29T22:49:19Z",
+	"updated": "2023-01-09T15:25:32Z",
 	"useCases": [
 		"Phishing"
 	],
 	"version": -1,
-	"versionInfo": "4301148",
+	"versionInfo": "4358537",
 	"videos": [
 		"https://www.youtube.com/watch?v=SY-3L348PoY"
 	]
