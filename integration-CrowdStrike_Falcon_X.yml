@@ -38,7 +38,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.2.15
+    itemVersion: 1.2.16
     packID: CrowdStrikeFalconX
     packName: CrowdStrike FalconX
     packPropagationLabels:
@@ -1790,7 +1790,7 @@ script:
       name: accept_encoding
     description: Downloads IOC packs, PCAP files, and other analysis artifacts.
     name: cs-fx-download-ioc
-  dockerimage: demisto/python3:3.10.9.42008
+  dockerimage: demisto/python3:3.10.9.42476
   runonce: false
   script: |
     register_module_line('CrowdStrike Falcon X', 'start', __line__())
@@ -2885,7 +2885,8 @@ script:
         response: Optional[dict] = None
         try:
             response = client.download_ioc(id, name, accept_encoding)
-            if response.get('File'):  # In case the returned response is a file, output the file to the war room.
+            # In case the returned response is a file, output the file to the war room.
+            if isinstance(response, dict) and response.get('File'):
                 return response
             else:
                 return CommandResults(
