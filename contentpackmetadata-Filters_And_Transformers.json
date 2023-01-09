@@ -13,6 +13,23 @@
 	"contentItems": {
 		"automation": [
 			{
+				"description": "Checks the given datetime has occured after the provided relative time.",
+				"name": "AfterRelativeDate",
+				"tags": [
+					"date",
+					"filter",
+					"Condition"
+				]
+			},
+			{
+				"description": "checks if left side is in range of right side (from,to anotation)\ne.g. - InRange left=4right=1,8 will return true.",
+				"name": "InRange",
+				"tags": [
+					"filter",
+					"number"
+				]
+			},
+			{
 				"description": "Each entry in an array is merged into the existing array if the keyed-value matches.",
 				"name": "MergeDictArray",
 				"tags": [
@@ -22,12 +39,41 @@
 				]
 			},
 			{
+				"description": "Check if number of availble addresses in IPv4 or IPv6 CIDR is greater than given number.",
+				"name": "GreaterCidrNumAddresses",
+				"tags": [
+					"filter"
+				]
+			},
+			{
 				"description": "Remove empty items, entries or nodes from the array.",
 				"name": "RemoveEmpty",
 				"tags": [
 					"transformer",
 					"entirelist",
 					"general"
+				]
+			},
+			{
+				"description": "Checks whether a substring or an array of substrings is within a string array(each item will be checked). Supports single strings as well. For example, for substrings ['a','b','c'] in a string 'a' the script will return true.\n",
+				"name": "StringContainsArray",
+				"tags": [
+					"filter",
+					"string"
+				]
+			},
+			{
+				"description": "Check if number of availble addresses in IPv4 CIDR is lower than given number.",
+				"name": "LowerCidrNumAddresses",
+				"tags": [
+					"filter"
+				]
+			},
+			{
+				"description": "Checks whether a given domain is a subdomain of one of the listed domains.",
+				"name": "CheckIfSubdomain",
+				"tags": [
+					"filter"
 				]
 			},
 			{
@@ -57,6 +103,13 @@
 				]
 			},
 			{
+				"description": "A filter that determines whether an IPv4 address is in the private RFC-1918 address space (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16).  For more information, see https://en.wikipedia.org/wiki/Private_network",
+				"name": "IsRFC1918Address",
+				"tags": [
+					"filter"
+				]
+			},
+			{
 				"description": "Format patterns matched with regex. If the regex does not match any pattern, the original value is returned.\n\nExample 1:\n value: user=john\n regex: user=(.*)\n output_format: name=\\1\n -\u003e output value: name=john\n\nExample 2:\n value: xxx=yyy\n regex: user=(.*)\n output_format: name=\\1\n -\u003e output value: xxx=yyy",
 				"name": "RegexReplace",
 				"tags": [
@@ -82,6 +135,13 @@
 				]
 			},
 			{
+				"description": "Checks whether a given CIDR prefix is bigger than the defined maximum prefix.",
+				"name": "CIDRBiggerThanPrefix",
+				"tags": [
+					"filter"
+				]
+			},
+			{
 				"description": "Extract the strings matched to the patterns by doing backslash substitution on the template string.\nThis transformer allow to input multiple regex patterns and multiple match targets, and those can be given in the input value and the argument parameters.",
 				"name": "RegexExpand",
 				"tags": [
@@ -103,6 +163,20 @@
 				"name": "ExtractEmailTransformer",
 				"tags": [
 					"transformer"
+				]
+			},
+			{
+				"description": "Checks whether an IPv4 address is not contained in one or more comma-delimited CIDR ranges.",
+				"name": "IsNotInCidrRanges",
+				"tags": [
+					"filter"
+				]
+			},
+			{
+				"description": "Determines whether an IPv4 address is contained in at least one of the comma-delimited CIDR ranges. Multiple IPv4 addresses can be passed comma-delimited and each will be tested.",
+				"name": "IsInCidrRanges",
+				"tags": [
+					"filter"
 				]
 			},
 			{
@@ -138,7 +212,7 @@
 		"wizard": null
 	},
 	"created": "2022-01-04T22:18:23Z",
-	"currentVersion": "1.1.7",
+	"currentVersion": "1.1.9",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
@@ -152,9 +226,9 @@
 	"deprecated": false,
 	"description": "Frequently used filters and transformers pack.",
 	"disabledMonthly": false,
-	"downloads": 9163,
+	"downloads": 9525,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
-	"fromServerVersion": "6.0.0",
+	"fromServerVersion": "5.0.0",
 	"general": [
 		"generalFieldCertified",
 		"generalFieldByCortexXSOAR",
@@ -164,7 +238,7 @@
 	"id": "FiltersAndTransformers",
 	"installMessage": "",
 	"integrations": [],
-	"itemVersion": "1.1.7",
+	"itemVersion": "1.1.9",
 	"keywords": [],
 	"legacy": true,
 	"name": "Filters And Transformers",
@@ -181,20 +255,22 @@
 	"rawUseCases": null,
 	"searchRank": 10,
 	"serverMaxVersion": "",
-	"serverMinVersion": "6.0.0",
+	"serverMinVersion": "5.0.0",
 	"support": "xsoar",
 	"supportDetails": {
 		"email": "",
 		"url": "https://www.paloaltonetworks.com/cortex"
 	},
 	"tags": [
+		"Trending",
 		"Transformer",
+		"Filter",
 		"Core"
 	],
 	"toServerVersion": "",
-	"updated": "2023-01-01T10:43:45Z",
+	"updated": "2023-01-04T22:54:23Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4314430",
+	"versionInfo": "4331864",
 	"videos": []
 }
