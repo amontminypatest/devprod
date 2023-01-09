@@ -10,7 +10,7 @@
 	"incidentSamples": null,
 	"indicatorSamples": null,
 	"instanceIds": null,
-	"itemVersion": "1.0.7",
+	"itemVersion": "1.0.8",
 	"keyTypeMap": {
 		"PAN XSOAR": "SailPoint IdentityIQ Alert"
 	},
