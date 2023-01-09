@@ -6,7 +6,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.0.0
-    itemVersion: 2.4.1
+    itemVersion: 2.4.2
     packID: QRadar
     packName: IBM QRadar
     packPropagationLabels:
