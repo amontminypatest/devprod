@@ -8,7 +8,14 @@ configuration:
   name: server
   required: true
   type: 0
+- display: ""
+  displaypassword: API Key
+  hiddenusername: true
+  name: credentials
+  required: false
+  type: 9
 - display: API Key
+  hidden: true
   name: token
   required: false
   type: 4
@@ -24,7 +31,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.5.0
-    itemVersion: 2.1.8
+    itemVersion: 2.1.9
     packID: Palo_Alto_Networks_WildFire
     packName: WildFire by Palo Alto Networks
     packPropagationLabels:
@@ -56,14 +63,15 @@ script:
       required: true
     description: Retrieves results for a file hash using WildFire.
     name: internal-wildfire-get-report
-  dockerimage: demisto/python3:3.10.4.28442
+  dockerimage: demisto/python3:3.10.9.42476
   runonce: false
   script: |
     register_module_line('WildFire-Reports', 'start', __line__())
+    import urllib3
 
 
     # Disable insecure warnings
-    requests.packages.urllib3.disable_warnings()
+    urllib3.disable_warnings()
 
     ''' CLIENT CLASS '''
 
@@ -155,7 +163,7 @@ script:
             base_url = base_url[:-1]
         if base_url and not base_url.endswith('/publicapi'):
             base_url += '/publicapi'
-        token = params.get('token')
+        token = params.get('credentials', {}).get('password') or params.get('token')
         if not token:
             token = demisto.getLicenseCustomField("WildFire-Reports.token")
         if not token:
