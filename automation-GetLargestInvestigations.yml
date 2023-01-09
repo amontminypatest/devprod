@@ -33,7 +33,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.0.0
-    itemVersion: 1.2.10
+    itemVersion: 1.2.11
     packID: CommonWidgets
     packName: Common Widgets
     packPropagationLabels:
