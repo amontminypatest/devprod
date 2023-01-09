@@ -60,28 +60,28 @@
 		"wizard": null
 	},
 	"created": "2020-11-09T18:44:34Z",
-	"currentVersion": "1.3.0",
+	"currentVersion": "1.3.1",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.32",
+			"minVersion": "1.31.51",
 			"name": "Base"
 		},
 		"CommonWidgets": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
-			"mandatory": true,
-			"minVersion": "1.2.9",
+			"mandatory": false,
+			"minVersion": "1.2.11",
 			"name": "Common Widgets"
 		}
 	},
 	"deprecated": false,
 	"description": "Frequently used dashboards pack.",
 	"disabledMonthly": false,
-	"downloads": 7945,
+	"downloads": 8534,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -93,7 +93,7 @@
 	"id": "CommonDashboards",
 	"installMessage": "",
 	"integrations": [],
-	"itemVersion": "1.3.0",
+	"itemVersion": "1.3.1",
 	"keywords": [],
 	"legacy": true,
 	"name": "Common Dashboards",
@@ -118,9 +118,9 @@
 	},
 	"tags": [],
 	"toServerVersion": "",
-	"updated": "2022-11-06T10:57:04Z",
+	"updated": "2023-01-04T23:42:02Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4031293",
+	"versionInfo": "4331864",
 	"videos": []
 }
