@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.5.0
-    itemVersion: 2.3.23
+    itemVersion: 2.3.24
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -203,6 +203,8 @@ tasks:
       - "9"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: FireEye Email Security
@@ -241,6 +243,8 @@ tasks:
       - "10"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: MimecastV2
