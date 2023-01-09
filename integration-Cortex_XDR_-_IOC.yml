@@ -7,13 +7,27 @@ configuration:
   name: url
   required: true
   type: 0
+- display: ""
+  displaypassword: API Key ID
+  hiddenusername: true
+  name: apikey_id_creds
+  required: false
+  type: 9
+- display: ""
+  displaypassword: API Key
+  hiddenusername: true
+  name: apikey_creds
+  required: false
+  type: 9
 - display: API Key ID
+  hidden: true
   name: apikey_id
-  required: true
+  required: false
   type: 4
 - display: API Key
+  hidden: true
   name: apikey
-  required: true
+  required: false
   type: 4
 - defaultvalue: "true"
   display: Fetch indicators
@@ -145,7 +159,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 4.9.14
+    itemVersion: 4.9.16
     packID: CortexXDR
     packName: Cortex XDR by Palo Alto Networks
     packPropagationLabels:
@@ -224,7 +238,7 @@ script:
       required: true
     description: Disables IOCs in the XDR server.
     name: xdr-iocs-disable
-  dockerimage: demisto/python3:3.10.8.36650
+  dockerimage: demisto/python3:3.10.9.42476
   feed: true
   runonce: false
   script: |
@@ -333,8 +347,8 @@ script:
 
 
     def get_headers(params: Dict) -> Dict:
-        api_key: str = str(params.get('apikey'))
-        api_key_id: str = str(params.get('apikey_id'))
+        api_key: str = params.get('apikey_creds', {}).get('password', '') or str(params.get('apikey'))
+        api_key_id: str = params.get('apikey_id_creds', {}).get('password', '') or str(params.get('apikey_id'))
         nonce: str = "".join([secrets.choice(string.ascii_letters + string.digits) for _ in range(64)])
         timestamp: str = str(int(datetime.now(timezone.utc).timestamp()) * 1000)
         auth_key = "%s%s%s" % (api_key, nonce, timestamp)
