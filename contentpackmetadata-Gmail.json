@@ -45,7 +45,7 @@
 						"name": "gmail-delete-user"
 					},
 					{
-						"description": "Lists all tokens associated with a specified user. applications.",
+						"description": "Lists all tokens associated with a specified user.",
 						"name": "gmail-get-tokens-for-user"
 					},
 					{
@@ -65,11 +65,11 @@
 						"name": "gmail-get-mail"
 					},
 					{
-						"description": "Searches for Gmail records of a specified Google user.",
+						"description": "Searches for Gmail records for a specific Google user.",
 						"name": "gmail-search"
 					},
 					{
-						"description": "Searches the Gmail records for all Google users.",
+						"description": "Searches the Gmail records for all Google users. (For more than 2500 accounts, use with the `Search all mailboxes - Gmail with polling` playbook)",
 						"name": "gmail-search-all-mailboxes"
 					},
 					{
@@ -105,11 +105,11 @@
 						"name": "gmail-add-delete-filter"
 					},
 					{
-						"description": "Add a new filter.",
+						"description": "Adds a new filter.",
 						"name": "gmail-add-filter"
 					},
 					{
-						"description": "List all filters in a user's mailbox.",
+						"description": "Lists all filters in a user's mailbox.",
 						"name": "gmail-list-filters"
 					},
 					{
@@ -117,7 +117,7 @@
 						"name": "gmail-remove-filter"
 					},
 					{
-						"description": "Hide a user's contact information, such as email address, profile information in the Global Directory.",
+						"description": "Hides a user's contact information in the Global Directory, for example email address and profile information.",
 						"name": "gmail-hide-user-in-directory"
 					},
 					{
@@ -145,11 +145,11 @@
 						"name": "reply-mail"
 					},
 					{
-						"description": "Removes a delegate from the mailbox, without sending any verification email. The delegate user must be a member of the same G Suite organization as the delegator user using their primary email address, and not an email alias.",
+						"description": "Removes a delegate from the mailbox without sending any verification email. The delegate user must be a member of the same G Suite organization as the delegator user using their primary email address, and not an email alias.",
 						"name": "gmail-remove-delegated-mailbox"
 					},
 					{
-						"description": "Get details of a specific role.",
+						"description": "Gets details of a specific role.",
 						"name": "gmail-get-role"
 					},
 					{
@@ -186,12 +186,20 @@
 		"list": null,
 		"playbook": [
 			{
+				"description": "This playbook searches Gmail records for all Google users, designed for large companies with over 2500 Google users.",
+				"name": "Search all mailboxes - Gmail with polling"
+			},
+			{
 				"description": "This playbook searches Gmail to identify and delete emails with similar attributes to the malicious email.",
 				"name": "Search And Delete Emails - Gmail"
 			},
 			{
 				"description": "This v2 playbook uses the reporter's email headers to retrieve the original email. This decreases the number of tasks to retrieve the original email. \nUse this playbook to retrieve the original email using the Gmail integration, including headers and attachments.\nNote: You must have the necessary Google Apps Domain-Wide Delegation of Authority permissions in your Gmail service to execute global search.\n",
 				"name": "Get Original Email - Gmail v2"
+			},
+			{
+				"description": "This playbook should only run as a sub-playbook for the Search-all-mailboxes - Gmail playbook, it should not run alone.",
+				"name": "Search in mailboxes Gmail (Loop) with polling"
 			}
 		],
 		"report": null,
@@ -200,7 +208,7 @@
 		"wizard": null
 	},
 	"created": "2020-07-23T16:33:25Z",
-	"currentVersion": "1.2.7",
+	"currentVersion": "1.3.0",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
@@ -214,7 +222,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.10.34",
+			"minVersion": "1.10.39",
 			"name": "Common Scripts"
 		},
 		"Phishing": {
@@ -228,7 +236,7 @@
 	"deprecated": false,
 	"description": "Gmail API and user management (This integration replaces the Gmail functionality in the GoogleApps API and G Suite integration).",
 	"disabledMonthly": false,
-	"downloads": 6824,
+	"downloads": 6964,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -245,7 +253,7 @@
 			"name": "Gmail"
 		}
 	],
-	"itemVersion": "1.2.7",
+	"itemVersion": "1.3.0",
 	"keywords": [],
 	"legacy": true,
 	"name": "Gmail",
@@ -268,13 +276,11 @@
 		"email": "",
 		"url": "https://www.paloaltonetworks.com/cortex"
 	},
-	"tags": [
-		"Data Source"
-	],
+	"tags": [],
 	"toServerVersion": "",
-	"updated": "2023-01-01T11:37:14Z",
+	"updated": "2023-01-09T15:14:10Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4314430",
+	"versionInfo": "4358537",
 	"videos": []
 }
