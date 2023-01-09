@@ -433,7 +433,7 @@
 		"wizard": null
 	},
 	"created": "2020-09-09T12:04:39Z",
-	"currentVersion": "1.15.3",
+	"currentVersion": "1.15.4",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
@@ -454,7 +454,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.10.34",
+			"minVersion": "1.10.39",
 			"name": "Common Scripts"
 		},
 		"CommonTypes": {
@@ -475,14 +475,14 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.1.7",
+			"minVersion": "1.1.9",
 			"name": "Filters And Transformers"
 		},
 		"Jira": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "2.0.21",
+			"minVersion": "2.0.22",
 			"name": "Atlassian Jira"
 		},
 		"Malware": {
@@ -517,7 +517,7 @@
 	"deprecated": false,
 	"description": "Microsoft Defender for Endpoint (previously Microsoft Defender Advanced Threat Protection (ATP)) is a unified platform for preventative protection, post-breach detection, automated investigation, and response.",
 	"disabledMonthly": false,
-	"downloads": 8502,
+	"downloads": 8633,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -556,9 +556,17 @@
 		{
 			"imagePath": "content/packs/FeedMitreAttackv2/MITREATT%26CKv2_image.png",
 			"name": "MITRE ATT\u0026CK Feed v2"
+		},
+		{
+			"imagePath": "content/packs/Jira/jira-v2_image.png",
+			"name": "Atlassian Jira v2"
+		},
+		{
+			"imagePath": "content/packs/WindowsDefenderAdvancedThreatProtection/WindowsDefenderAdvancedThreatProtection_image.png",
+			"name": "Windows Defender Advanced Threat Protection (Deprecated)"
 		}
 	],
-	"itemVersion": "1.15.3",
+	"itemVersion": "1.15.4",
 	"keywords": [],
 	"legacy": true,
 	"name": "Microsoft Defender for Endpoint",
@@ -584,9 +592,9 @@
 	},
 	"tags": [],
 	"toServerVersion": "",
-	"updated": "2023-01-04T22:22:49Z",
+	"updated": "2023-01-09T14:34:58Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4331864",
+	"versionInfo": "4358537",
 	"videos": []
 }
