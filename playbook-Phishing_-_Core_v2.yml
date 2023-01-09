@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.0.0
-    itemVersion: 3.3.11
+    itemVersion: 3.3.12
     packID: Phishing
     packName: Phishing
     packPropagationLabels:
@@ -212,7 +212,7 @@ tasks:
     task:
       brand: ""
       description: Checks whether URLs exist in context, whether the user opted to
-        get screenshots of URLs in the playbook's "GetURLScreenshots" input, and whether
+        get screenshots of URLs in the playbook's *GetURLScreenshots* input, and whether
         the Rasterize integration is enabled.
       id: 7035c9c1-4160-4192-8824-aa88c65b6f24
       iscommand: false
