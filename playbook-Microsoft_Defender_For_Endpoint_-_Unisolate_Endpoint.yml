@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.2.0
-    itemVersion: 1.15.1
+    itemVersion: 1.15.3
     packID: MicrosoftDefenderAdvancedThreatProtection
     packName: Microsoft Defender for Endpoint
     packPropagationLabels:
