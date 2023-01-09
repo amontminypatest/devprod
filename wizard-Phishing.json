@@ -6,7 +6,7 @@
 	"disabled": false,
 	"fromServerVersion": "6.9.0",
 	"id": "Phishing",
-	"itemVersion": "3.3.11",
+	"itemVersion": "3.3.12",
 	"locked": false,
 	"name": "Phishing",
 	"packID": "Phishing",
@@ -107,10 +107,10 @@
 			},
 			{
 				"action": {
-					"existing": "Configure 'CrowdStrike Falcon X' to enable file detonation to improve investigation.",
-					"new": "Configure 'CrowdStrike Falcon X' to enable file detonation to improve investigation."
+					"existing": "Configure 'CrowdStrike Falcon Intelligence Sandbox' to enable file detonation to improve investigation.",
+					"new": "Configure 'CrowdStrike Falcon Intelligence Sandbox' to enable file detonation to improve investigation."
 				},
-				"description": "Configure 'CrowdStrike Falcon X' to enable file detonation to improve investigation.",
+				"description": "Configure 'CrowdStrike Falcon Intelligence Sandbox' to enable file detonation to improve investigation.",
 				"name": "CrowdStrike Falcon X"
 			},
 			{
