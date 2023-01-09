@@ -22,15 +22,22 @@ configuration:
   name: credentials
   required: false
   type: 9
+- display: Certificate Thumbprint
+  displaypassword: Private Key
+  name: creds_certificate
+  required: false
+  type: 9
 - additionalinfo: Used for certificate authentication. As appears in the "Certificates
     & secrets" page of the app.
   display: Certificate Thumbprint
+  hidden: true
   name: certificate_thumbprint
   required: false
   type: 4
 - additionalinfo: Used for certificate authentication. The private key of the registered
     certificate.
   display: Private Key
+  hidden: true
   name: private_key
   required: false
   type: 14
@@ -158,7 +165,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.15.3
+    itemVersion: 1.15.4
     packID: MicrosoftDefenderAdvancedThreatProtection
     packName: Microsoft Defender for Endpoint
     packPropagationLabels:
@@ -11324,8 +11331,8 @@ script:
         use_ssl: bool = not params.get('insecure', False)
         proxy: bool = params.get('proxy', False)
         self_deployed: bool = params.get('self_deployed', False)
-        certificate_thumbprint = params.get('certificate_thumbprint')
-        private_key = params.get('private_key')
+        certificate_thumbprint = params.get('creds_certificate', {}).get('identifier') or params.get('certificate_thumbprint')
+        private_key = params.get('creds_certificate', {}).get('password') or params.get('private_key')
         alert_severities_to_fetch = params.get('fetch_severity')
         alert_status_to_fetch = params.get('fetch_status')
         alert_time_to_fetch = params.get('first_fetch_timestamp', '3 days')
