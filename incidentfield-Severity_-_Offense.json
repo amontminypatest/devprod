@@ -23,7 +23,7 @@
 	"hidden": false,
 	"id": "incident_severityoffense",
 	"isReadOnly": false,
-	"itemVersion": "2.4.1",
+	"itemVersion": "2.4.2",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Severity - Offense",
