@@ -145,7 +145,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 2.4.1
+    itemVersion: 2.4.2
     packID: QRadar
     packName: IBM QRadar
     packPropagationLabels:
@@ -2866,7 +2866,7 @@ script:
     - contextPath: QRadar.deploy.status
       description: The deployment status (INITIALIZING, IN_PROGRESS, COMPLETE).
       type: String
-  dockerimage: demisto/python3:3.10.9.40422
+  dockerimage: demisto/python3:3.10.9.42476
   isFetchSamples: true
   ismappable: true
   isremotesyncin: true
@@ -6321,7 +6321,7 @@ script:
 
         if mirror_options == MIRROR_OFFENSE_AND_EVENTS:
             if (num_events := context_data.get(MIRRORED_OFFENSES_FETCHED_CTX_KEY, {}).get(offense_id)) and \
-                    int(num_events) > (events_limit := params.get('events_limit', DEFAULT_EVENTS_LIMIT)):
+                    int(num_events) > (events_limit := int(params.get('events_limit', DEFAULT_EVENTS_LIMIT))):
                 print_debug_msg(f'Events were already fetched {num_events} for offense {offense_id}, '
                                 f'and are more than the events limit, {events_limit}. '
                                 f'Not fetching events again.')
