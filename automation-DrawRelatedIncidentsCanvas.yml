@@ -36,7 +36,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.1.0
-    itemVersion: 1.31.51
+    itemVersion: 1.31.53
     packID: Base
     packName: Base
     packPropagationLabels:
@@ -44,7 +44,7 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/sklearn:1.0.0.17983
+dockerimage: demisto/sklearn:1.0.0.43324
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
