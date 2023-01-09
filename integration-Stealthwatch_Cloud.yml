@@ -38,7 +38,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.0.10
+    itemVersion: 1.0.11
     packID: Stealthwatch_Cloud
     packName: Cisco Secure Cloud Analytics (Stealthwatch Cloud)
     packPropagationLabels:
@@ -341,7 +341,7 @@ script:
     - contextPath: Stealthwatch.Session.connected_device_is_external
       description: Is the connected device external
       type: boolean
-  dockerimage: demisto/python3:3.10.6.33415
+  dockerimage: demisto/python3:3.10.9.42476
   isfetch: true
   runonce: false
   script: |
@@ -354,9 +354,9 @@ script:
     import os
     from datetime import datetime, timedelta
     import collections
+    import urllib3
 
-    # disable insecure warnings
-    requests.packages.urllib3.disable_warnings()
+    urllib3.disable_warnings()
 
     ''' GLOBAL VARS '''
     SERVER = demisto.params().get('serverURL', '').strip('/')
