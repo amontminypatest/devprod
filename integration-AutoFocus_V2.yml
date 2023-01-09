@@ -3,10 +3,17 @@ commonfields:
   id: AutoFocus V2
   version: -1
 configuration:
+- display: ""
+  displaypassword: API Key
+  hiddenusername: true
+  name: credentials
+  required: false
+  type: 9
 - additionalinfo: TIM customers that upgraded to version 6.2 or above, can have this
     value pre-configured in their main account so no additional input is needed. To
     use this feature, upgrade your license so it includes the license key.
   display: API Key
+  hidden: true
   name: api_key
   required: false
   type: 4
@@ -51,7 +58,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.0.33
+    itemVersion: 2.0.34
     packID: AutoFocus
     packName: AutoFocus by Palo Alto Networks
     packPropagationLabels:
@@ -1218,7 +1225,7 @@ script:
     - contextPath: Domain.Name
       description: The domain name.
       type: String
-  dockerimage: demisto/python3:3.10.9.40422
+  dockerimage: demisto/python3:3.10.9.42476
   runonce: false
   script: |
     register_module_line('AutoFocus V2', 'start', __line__())
@@ -1240,7 +1247,7 @@ script:
     ''' GLOBALS/PARAMS '''
     PARAMS = demisto.params()
 
-    API_KEY = AutoFocusKeyRetriever(PARAMS.get('api_key')).key
+    API_KEY = AutoFocusKeyRetriever(PARAMS.get('credentials', {}).get('password') or PARAMS.get('api_key')).key
 
     # Remove trailing slash to prevent wrong URL path to service
     SERVER = 'https://autofocus.paloaltonetworks.com'
