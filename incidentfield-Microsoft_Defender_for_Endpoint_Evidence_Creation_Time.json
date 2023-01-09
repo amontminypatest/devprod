@@ -23,7 +23,7 @@
 	"hidden": false,
 	"id": "incident_microsoftdefenderforendpointevidencecreationtime",
 	"isReadOnly": false,
-	"itemVersion": "1.15.3",
+	"itemVersion": "1.15.4",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Microsoft Defender for Endpoint Evidence Creation Time",
