@@ -895,7 +895,7 @@
 	"id": "Cortex XDR Incident",
 	"indicatorsDetails": null,
 	"indicatorsQuickView": null,
-	"itemVersion": "4.9.14",
+	"itemVersion": "4.9.16",
 	"locked": false,
 	"mobile": null,
 	"name": "Cortex XDR Incident",
