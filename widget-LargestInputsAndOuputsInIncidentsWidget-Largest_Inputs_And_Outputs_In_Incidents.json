@@ -20,7 +20,7 @@
 	"fromServerVersion": "6.0.0",
 	"id": "LargestInputsAndOuputsInIncidentsWidget",
 	"isPredefined": true,
-	"itemVersion": "1.2.10",
+	"itemVersion": "1.2.11",
 	"name": "Largest Inputs And Outputs In Incidents",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
