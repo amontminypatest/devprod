@@ -23,7 +23,7 @@
 	"hidden": false,
 	"id": "incident_offenseinactive",
 	"isReadOnly": false,
-	"itemVersion": "2.4.2",
+	"itemVersion": "2.4.3",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Offense Inactive",
