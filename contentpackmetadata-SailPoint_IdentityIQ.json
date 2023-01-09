@@ -20,13 +20,13 @@
 		"classifier": [
 			{
 				"description": "",
-				"id": "",
-				"name": "SailPoint IdentityIQ Alert Classifier"
+				"id": "SailPoint IdentityIQ Alert Mapper",
+				"name": "SailPoint IdentityIQ Alert Mapper"
 			},
 			{
 				"description": "",
-				"id": "",
-				"name": "SailPoint IdentityIQ Alert Mapper"
+				"id": "SailPoint IdentityIQ Alert Classifier",
+				"name": "SailPoint IdentityIQ Alert Classifier"
 			}
 		],
 		"dashboard": null,
@@ -39,8 +39,13 @@
 				"type": "shortText"
 			},
 			{
-				"description": "SailPoint IdentityIQ Alert Target Display Name",
-				"name": "SailPoint IdentityIQ Alert Target Display Name",
+				"description": "SailPoint IdentityIQ Alert Target Id",
+				"name": "SailPoint IdentityIQ Alert Target Id",
+				"type": "shortText"
+			},
+			{
+				"description": "SailPoint IdentityIQ Alert Display Name",
+				"name": "SailPoint IdentityIQ Alert Display Name",
 				"type": "shortText"
 			},
 			{
@@ -49,13 +54,8 @@
 				"type": "shortText"
 			},
 			{
-				"description": "SailPoint IdentityIQ Alert Target Id",
-				"name": "SailPoint IdentityIQ Alert Target Id",
-				"type": "shortText"
-			},
-			{
-				"description": "SailPoint IdentityIQ Alert Display Name",
-				"name": "SailPoint IdentityIQ Alert Display Name",
+				"description": "SailPoint IdentityIQ Alert Target Display Name",
+				"name": "SailPoint IdentityIQ Alert Target Display Name",
 				"type": "shortText"
 			}
 		],
@@ -124,7 +124,7 @@
 					}
 				],
 				"description": "SailPoint IdentityIQ context pack enables XSOAR customers to utilize the deep, enriched contextual data in the SailPoint predictive identity platform to better drive identity-aware security practices.",
-				"id": "",
+				"id": "SailPointIdentityIQ",
 				"name": "SailPoint IdentityIQ (Partner Contribution)"
 			}
 		],
@@ -147,28 +147,28 @@
 		"wizard": null
 	},
 	"created": "2021-02-07T22:54:34Z",
-	"currentVersion": "1.0.7",
+	"currentVersion": "1.0.8",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.39",
+			"minVersion": "1.31.51",
 			"name": "Base"
 		},
 		"CommonScripts": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.10.7",
+			"minVersion": "1.10.37",
 			"name": "Common Scripts"
 		}
 	},
 	"deprecated": false,
 	"description": "SailPoint IdentityIQ context pack enables XSOAR customers to utilize the deep, enriched contextual data in the SailPoint predictive identity platform to better drive identity-aware security practices.",
 	"disabledMonthly": false,
-	"downloads": 604,
+	"downloads": 643,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "6.0.0",
 	"general": [
@@ -185,7 +185,7 @@
 			"name": "SailPoint IdentityIQ"
 		}
 	],
-	"itemVersion": "1.0.7",
+	"itemVersion": "1.0.8",
 	"keywords": [
 		"SailPoint",
 		"Identity",
@@ -216,7 +216,7 @@
 	"rawKeywords": null,
 	"rawTags": null,
 	"rawUseCases": null,
-	"readme": "# SailPoint IdentityIQ\n\n## Overview\nDigital transformation has opened up opportunities for greater agility and growth in today’s modern enterprises. But it’s also introducing challenges. Digital transformation has introduced an explosion of cloud, applications, data, and users to manage. Being able to effectively control ‘who can have access to what’ is key and if not done properly can lead to potential risk to your business.\n\nTo address this potential risk, organizations are embracing the power and ease of SailPoint Predictive Identity. This innovative identity platform takes the complexity out of identity; making it intuitive for IT staff to configure and manage and enabling business users with the access they need to get their work done. \n\nThe SailPoint IdentityIQ context pack enables XSOAR customers to utilize the deep, enriched contextual data and governance capabilities of the SailPoint Predictive Identity Platform to better drive identity-aware security practices.\n\nThe playbook included with this integration is designed to provide a very simple example of a governance action that can be applied to a simple triggering event.\n\n### Requirements\nThis content pack is compatibility with SailPoint IdentityIQ 8.1 or higher.\n\n### Playbooks\n* SailPoint IdentityIQ Disable User Account Access\n\n#### SailPoint IdentityIQ Disable User Account Access\n\nThis playbook helps perform the following actions:\n* Retrieves Identity contextual data from the SailPoint platform, including identity risk score.\n* Determines if the retrieved risk score exceeds a set threshold of 500.\n* If the threshold is breached, the playbook fetches all accounts associated with the Identity that are represented in IdentityIQ.\n* For each account, a provisioning request is made to disable that users access.\n\n![SailPoint IdentityIQ Disable User Account Access Playbook](https://storage.googleapis.com/marketplace-dist/content/packs/SailPointIdentityIQ/readme_images/SailPoint_IdentityIQ_Disable_User_Account_Access.png)\n\n#### IdentityIQ Screenshots\n\n1) Identity in IdentityIQ has SailPoint risk score higher than 500.\n![Identity with High Risk Score](https://storage.googleapis.com/marketplace-dist/content/packs/SailPointIdentityIQ/readme_images/High_Risk_User.png)\n\n2) Identity has active 'Active Directory' account.\n![Active Account Associated with User](https://storage.googleapis.com/marketplace-dist/content/packs/SailPointIdentityIQ/readme_images/IdentityIQ_Accounts_Active.png)\n\n3) As a result of playbook execution, provisioning request submitted and completed to de-activate Active Directory account.\n![Provisioning Request from Web Services (XSOAR)](https://storage.googleapis.com/marketplace-dist/content/packs/SailPointIdentityIQ/readme_images/IdentityIQ_Provisioning_Success.png)\n\n4) Identity now has inactive Active Directory account.\n![Inactive Account Associated with User](https://storage.googleapis.com/marketplace-dist/content/packs/SailPointIdentityIQ/readme_images/IdentityIQ_Accounts_Inactive.png)",
+	"readme": "# SailPoint IdentityIQ\n\n## Overview\nDigital transformation has opened up opportunities for greater agility and growth in today’s modern enterprises. But it’s also introducing challenges. Digital transformation has introduced an explosion of cloud, applications, data, and users to manage. Being able to effectively control ‘who can have access to what’ is key and if not done properly can lead to potential risk to your business.\n\nTo address this potential risk, organizations are embracing the power and ease of SailPoint Predictive Identity. This innovative identity platform takes the complexity out of identity; making it intuitive for IT staff to configure and manage and enabling business users with the access they need to get their work done. \n\nThe SailPoint IdentityIQ context pack enables XSOAR customers to utilize the deep, enriched contextual data and governance capabilities of the SailPoint Predictive Identity Platform to better drive identity-aware security practices.\n\nThe playbook included with this integration is designed to provide a very simple example of a governance action that can be applied to a simple triggering event.\n\n### Requirements\nThis content pack is compatibility with SailPoint IdentityIQ 8.1 or higher.\n\n### Playbooks\n* SailPoint IdentityIQ Disable User Account Access\n\n#### SailPoint IdentityIQ Disable User Account Access\n\nThis playbook helps perform the following actions:\n* Retrieves Identity contextual data from the SailPoint platform, including identity risk score.\n* Determines if the retrieved risk score exceeds a set threshold of 500.\n* If the threshold is breached, the playbook fetches all accounts associated with the Identity that are represented in IdentityIQ.\n* For each account, a provisioning request is made to disable that users access.\n\n![SailPoint IdentityIQ Disable User Account Access Playbook](https://github.com/demisto/content/raw/2e4e0056580ea5de30f55dcbe2ccacaadf01b74e/Packs/SailPointIdentityIQ/doc_files/SailPoint_IdentityIQ_Disable_User_Account_Access.png)\n\n#### IdentityIQ Screenshots\n\n1) Identity in IdentityIQ has SailPoint risk score higher than 500.\n![Identity with High Risk Score](https://github.com/demisto/content/raw/2e4e0056580ea5de30f55dcbe2ccacaadf01b74e/Packs/SailPointIdentityIQ/doc_files/High_Risk_User.png)\n\n2) Identity has active 'Active Directory' account.\n![Active Account Associated with User](https://github.com/demisto/content/raw/2e4e0056580ea5de30f55dcbe2ccacaadf01b74e/Packs/SailPointIdentityIQ/doc_files/IdentityIQ_Accounts_Active.png)\n\n3) As a result of playbook execution, provisioning request submitted and completed to de-activate Active Directory account.\n![Provisioning Request from Web Services (XSOAR)](https://github.com/demisto/content/raw/2e4e0056580ea5de30f55dcbe2ccacaadf01b74e/Packs/SailPointIdentityIQ/doc_files/IdentityIQ_Provisioning_Success.png)\n\n4) Identity now has inactive Active Directory account.\n![Inactive Account Associated with User](https://github.com/demisto/content/raw/2e4e0056580ea5de30f55dcbe2ccacaadf01b74e/Packs/SailPointIdentityIQ/doc_files/IdentityIQ_Accounts_Inactive.png)",
 	"searchRank": 10,
 	"serverMaxVersion": "",
 	"serverMinVersion": "6.0.0",
@@ -226,13 +226,12 @@
 		"url": "https://support.sailpoint.com/hc/en-us/requests/new"
 	},
 	"tags": [
-		"Partner Spotlight",
-		"Data Source"
+		"Partner Spotlight"
 	],
 	"toServerVersion": "",
-	"updated": "2022-12-19T23:56:15Z",
+	"updated": "2023-01-05T00:09:29Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4098099",
+	"versionInfo": "4331864",
 	"videos": []
 }
