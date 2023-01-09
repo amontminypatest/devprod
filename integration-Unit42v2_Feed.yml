@@ -3,9 +3,16 @@ commonfields:
   id: Unit42v2 Feed
   version: -1
 configuration:
+- display: ""
+  displaypassword: API Key
+  hiddenusername: true
+  name: credentials
+  required: false
+  type: 9
 - display: API Key
+  hidden: true
   name: api_key
-  required: true
+  required: false
   type: 4
 - defaultvalue: "true"
   display: Fetch indicators
@@ -95,7 +102,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 1.0.19
+    itemVersion: 1.0.20
     packID: FeedUnit42v2
     packName: Unit 42 ATOMs Feed
     packPropagationLabels:
@@ -128,7 +135,7 @@ script:
       - attack-pattern
     description: Retrieves a limited number of the indicators.
     name: unit42-get-indicators
-  dockerimage: demisto/taxii2:1.0.0.42305
+  dockerimage: demisto/taxii2:1.0.0.42974
   feed: true
   runonce: false
   script: |
@@ -835,7 +842,7 @@ script:
         """
         params = demisto.params()
         args = demisto.args()
-        api_key = str(params.get('api_key', ''))
+        api_key = params.get('credentials', {}).get('password') or str(params.get('api_key', ''))
         verify = not params.get('insecure', False)
         feed_tags = argToList(params.get('feedTags'))
         tlp_color = params.get('tlp_color')
