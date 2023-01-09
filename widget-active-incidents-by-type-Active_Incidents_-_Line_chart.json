@@ -20,7 +20,7 @@
 	"fromServerVersion": "5.0.0",
 	"id": "active-incidents-by-type",
 	"isPredefined": true,
-	"itemVersion": "1.2.10",
+	"itemVersion": "1.2.11",
 	"name": "Active Incidents - Line chart",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
@@ -30,7 +30,7 @@
 	"params": {
 		"groupBy": [
 			"occurred(d)",
-			"type"
+			"rawType"
 		]
 	},
 	"propagationLabels": [],
