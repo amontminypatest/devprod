@@ -122,7 +122,7 @@
 					}
 				],
 				"description": "Manage Endpoints using Cylance protect",
-				"id": "",
+				"id": "Cylance Protect v2",
 				"name": "Cylance Protect v2"
 			}
 		],
@@ -130,12 +130,12 @@
 		"list": null,
 		"playbook": [
 			{
-				"description": "Enriches endpoints using the Cylance Protect v2 integration.",
-				"name": "Endpoint Enrichment - Cylance Protect v2"
-			},
-			{
 				"description": "Deprecated. Use \"Get File Sample By Hash - Cylance Protect v2\" playbook instead.",
 				"name": "Get File Sample By Hash - Cylance Protect"
+			},
+			{
+				"description": "Enriches endpoints using the Cylance Protect v2 integration.",
+				"name": "Endpoint Enrichment - Cylance Protect v2"
 			},
 			{
 				"description": "This playbook returns a file sample to the War Room given the file's SHA256 hash, using Cylance Protect v2 integration.",
@@ -152,28 +152,28 @@
 		"wizard": null
 	},
 	"created": "2020-09-23T17:35:06Z",
-	"currentVersion": "1.1.6",
+	"currentVersion": "1.1.7",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.45",
+			"minVersion": "1.31.51",
 			"name": "Base"
 		},
 		"CommonScripts": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.10.27",
+			"minVersion": "1.10.39",
 			"name": "Common Scripts"
 		}
 	},
 	"deprecated": false,
 	"description": "Manage Endpoints using Cylance protect",
 	"disabledMonthly": false,
-	"downloads": 3163,
+	"downloads": 3290,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -190,7 +190,7 @@
 			"name": "Cylance Protect v2"
 		}
 	],
-	"itemVersion": "1.1.6",
+	"itemVersion": "1.1.7",
 	"keywords": [],
 	"legacy": true,
 	"name": "Cylance Protect",
@@ -214,13 +214,11 @@
 		"email": "",
 		"url": "https://www.paloaltonetworks.com/cortex"
 	},
-	"tags": [
-		"Data Source"
-	],
+	"tags": [],
 	"toServerVersion": "",
-	"updated": "2022-12-21T11:51:34Z",
+	"updated": "2023-01-09T15:24:56Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4258430",
+	"versionInfo": "4358537",
 	"videos": []
 }
