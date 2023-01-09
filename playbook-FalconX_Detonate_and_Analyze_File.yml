@@ -2,16 +2,16 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.5.0
-    itemVersion: 1.2.16
+    itemVersion: 1.2.17
     packID: CrowdStrikeFalconX
-    packName: CrowdStrike FalconX
+    packName: CrowdStrike Falcon Intelligence Sandbox
     packPropagationLabels:
     - all
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-description: This playbook uploads, detonates, and analyzes files for the Falcon X
-  sandbox.
+description: This playbook uploads, detonates, and analyzes files for the Falcon Intelligence
+  Sandbox.
 id: FalconX Detonate and Analyze File
 inputs:
 - description: The details of the file to detonate.
@@ -94,10 +94,10 @@ outputs:
 - contextPath: csfalconx.resource.file_name
   description: 'The name of the uploaded file. '
 - contextPath: csfalconx.resource.sandbox
-  description: The Falcon X findings.
+  description: The Falcon Intelligence Sandbox findings.
   type: unknown
 - contextPath: csfalconx.resource.intel
-  description: The Falcon X intelligence results.
+  description: The Falcon Intelligence Sandbox intelligence results.
   type: unknown
 starttaskid: "0"
 system: true
@@ -148,7 +148,7 @@ tasks:
     - brandInstances
     scriptarguments:
       brandname:
-        simple: CrowdStrike Falcon X
+        simple: CrowdStrike Falcon Intelligence Sandbox
     separatecontext: false
     skipunavailable: false
     task:
@@ -328,7 +328,7 @@ tasks:
     evidencedata:
       customfields: {}
       description:
-        simple: FalconX sandbox report
+        simple: Falcon Intelligence Sandbox report
     id: "8"
     ignoreworker: false
     isautoswitchedtoquietmode: false
