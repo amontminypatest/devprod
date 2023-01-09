@@ -83,7 +83,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.1.19
+    itemVersion: 1.1.20
     packID: AWS-IAM
     packName: AWS - IAM
     packPropagationLabels:
@@ -1598,7 +1598,7 @@ script:
       description: Specifies whether the user is required to set a new password on
         next sign-in.
       type: Boolean
-  dockerimage: demisto/boto3py3:1.0.0.41082
+  dockerimage: demisto/boto3py3:1.0.0.43484
   runonce: false
   script: |
     register_module_line('AWS - IAM', 'start', __line__())
