@@ -158,7 +158,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.15.1
+    itemVersion: 1.15.3
     packID: MicrosoftDefenderAdvancedThreatProtection
     packName: Microsoft Defender for Endpoint
     packPropagationLabels:
@@ -5907,7 +5907,7 @@ script:
       description: Troubleshooting information.
       type: String
     polling: true
-  dockerimage: demisto/crypto:1.0.0.42155
+  dockerimage: demisto/crypto:1.0.0.42817
   isfetch: true
   runonce: false
   script: |
