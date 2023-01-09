@@ -8,7 +8,7 @@
 	"hideSearch": false,
 	"id": "Incidents Overview",
 	"isCommon": true,
-	"itemVersion": "1.4.0",
+	"itemVersion": "1.4.1",
 	"layout": [
 		{
 			"forceRange": false,
@@ -99,7 +99,7 @@
 				"packName": "",
 				"params": {
 					"groupBy": [
-						"type"
+						"rawType"
 					],
 					"tableColumns": [
 						{
@@ -929,7 +929,7 @@
 				"packName": "",
 				"params": {
 					"groupBy": [
-						"closeReason"
+						"rawCloseReason"
 					],
 					"tableColumns": [
 						{
