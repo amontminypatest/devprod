@@ -19,6 +19,13 @@
 	"contentItems": {
 		"automation": [
 			{
+				"description": "Automation to display identity objects from Splunk.",
+				"name": "SplunkShowIdentity",
+				"tags": [
+					"dynamic-section"
+				]
+			},
+			{
 				"description": "Deprecated. No available replacement. Run a query through Splunk and format the results as a table.",
 				"name": "SplunkPySearch",
 				"tags": [
@@ -27,8 +34,8 @@
 				]
 			},
 			{
-				"description": "Automation to display identity objects from Splunk.",
-				"name": "SplunkShowIdentity",
+				"description": "Automation to display drilldown search results from Splunk.",
+				"name": "SplunkShowDrilldown",
 				"tags": [
 					"dynamic-section"
 				]
@@ -39,26 +46,9 @@
 				"tags": [
 					"dynamic-section"
 				]
-			},
-			{
-				"description": "Automation to display drilldown search results from Splunk.",
-				"name": "SplunkShowDrilldown",
-				"tags": [
-					"dynamic-section"
-				]
 			}
 		],
 		"classifier": [
-			{
-				"description": "Maps Splunk ES incoming fields.",
-				"id": "Splunk - Notable Generic Incoming Mapper",
-				"name": "Splunk - Notable Generic Incoming Mapper"
-			},
-			{
-				"description": "Maps Splunk ES outgoing fields.",
-				"id": "Splunk - Notable Generic Outgoing Mapper",
-				"name": "Splunk - Notable Generic Outgoing Mapper"
-			},
 			{
 				"description": "Maps Splunk logs fields.",
 				"id": "SplunkPy-mapper",
@@ -68,6 +58,16 @@
 				"description": "Classifies Splunk events.",
 				"id": "SplunkPy",
 				"name": "Splunk - Classifier"
+			},
+			{
+				"description": "Maps Splunk ES outgoing fields.",
+				"id": "Splunk - Notable Generic Outgoing Mapper",
+				"name": "Splunk - Notable Generic Outgoing Mapper"
+			},
+			{
+				"description": "Maps Splunk ES incoming fields.",
+				"id": "Splunk - Notable Generic Incoming Mapper",
+				"name": "Splunk - Notable Generic Incoming Mapper"
 			}
 		],
 		"dashboard": null,
@@ -75,8 +75,8 @@
 		"generictype": null,
 		"incidentfield": [
 			{
-				"description": "Indicates whether the drilldown enrichment was successful.",
-				"name": "Successful Drilldown Enrichment",
+				"description": "Indicates whether the asset enrichment was successful.",
+				"name": "Successful Asset Enrichment",
 				"type": "shortText"
 			},
 			{
@@ -85,19 +85,14 @@
 				"type": "singleSelect"
 			},
 			{
-				"description": "The urgency of the notable.",
-				"name": "Notable Urgency",
-				"type": "singleSelect"
-			},
-			{
-				"description": "Indicates whether the asset enrichment was successful.",
-				"name": "Successful Asset Enrichment",
-				"type": "shortText"
-			},
-			{
-				"description": "The owner of the notable.",
-				"name": "Notable Owner",
+				"description": "The reviewer of the notable.",
+				"name": "Splunk Notable Reviewer",
 				"type": "user"
+			},
+			{
+				"description": "The result of the drilldown search.",
+				"name": "Notable Drilldown",
+				"type": "markdown"
 			},
 			{
 				"description": "Indicates whether the identity  enrichment was successful.",
@@ -105,19 +100,24 @@
 				"type": "shortText"
 			},
 			{
-				"description": "The reviewer of the notable.",
-				"name": "Splunk Notable Reviewer",
-				"type": "user"
-			},
-			{
 				"description": "The ID of the notable",
 				"name": "Notable - ID",
 				"type": "shortText"
 			},
 			{
-				"description": "The result of the drilldown search.",
-				"name": "Notable Drilldown",
-				"type": "markdown"
+				"description": "Indicates whether the drilldown enrichment was successful.",
+				"name": "Successful Drilldown Enrichment",
+				"type": "shortText"
+			},
+			{
+				"description": "The urgency of the notable.",
+				"name": "Notable Urgency",
+				"type": "singleSelect"
+			},
+			{
+				"description": "The owner of the notable.",
+				"name": "Notable Owner",
+				"type": "user"
 			}
 		],
 		"incidenttype": [
@@ -256,7 +256,7 @@
 		"wizard": null
 	},
 	"created": "2020-07-26T10:33:08Z",
-	"currentVersion": "3.0.1",
+	"currentVersion": "3.0.2",
 	"definitionId": "",
 	"dependencies": {
 		"AccessInvestigation": {
@@ -284,14 +284,14 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.10.34",
+			"minVersion": "1.10.39",
 			"name": "Common Scripts"
 		},
 		"CommonTypes": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "3.3.39",
+			"minVersion": "3.3.42",
 			"name": "Common Types"
 		},
 		"Identity": {
@@ -312,7 +312,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "3.3.10",
+			"minVersion": "3.3.12",
 			"name": "Phishing"
 		},
 		"PhishingAlerts": {
@@ -326,7 +326,7 @@
 	"deprecated": false,
 	"description": "Run queries on Splunk servers.",
 	"disabledMonthly": false,
-	"downloads": 18447,
+	"downloads": 18848,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -343,7 +343,7 @@
 			"name": "SplunkPy"
 		}
 	],
-	"itemVersion": "3.0.1",
+	"itemVersion": "3.0.2",
 	"keywords": [],
 	"legacy": true,
 	"name": "Splunk",
@@ -367,13 +367,11 @@
 		"email": "",
 		"url": "https://www.paloaltonetworks.com/cortex"
 	},
-	"tags": [
-		"Data Source"
-	],
+	"tags": [],
 	"toServerVersion": "",
-	"updated": "2022-12-29T00:06:03Z",
+	"updated": "2023-01-09T15:33:24Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4295766",
+	"versionInfo": "4358537",
 	"videos": []
 }
