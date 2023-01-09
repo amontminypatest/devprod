@@ -46,16 +46,16 @@
 		"list": null,
 		"playbook": [
 			{
-				"description": "This playbook compares the domain creation time against a provided time value such as one month ago. The period can be configured within the playbook inputs MinimumAgeOfDomainMonths or MinimumAgeOfDomainHours. The playbook calculates the timestamp for the relevant period and compares it to the domain creation time value provided by Whois. The domains are outputted accordingly if they were created before or after the compared time, respectively.",
-				"name": "TIM - Process Domain Age With Whois"
-			},
-			{
 				"description": "This playbook compares the domain registrant against the Cortex XSOAR list of approved registrants provided in the inputs. A registrant is the company or entity that owns the domain.",
 				"name": "TIM - Process Domain Registrant With Whois"
 			},
 			{
 				"description": "This playbook uses several sub playbooks to process and tag indicators based on the results of the Whois tool.",
 				"name": "TIM - Process Domains With Whois"
+			},
+			{
+				"description": "This playbook compares the domain creation time against a provided time value such as one month ago. The period can be configured within the playbook inputs MinimumAgeOfDomainMonths or MinimumAgeOfDomainHours. The playbook calculates the timestamp for the relevant period and compares it to the domain creation time value provided by Whois. The domains are outputted accordingly if they were created before or after the compared time, respectively.",
+				"name": "TIM - Process Domain Age With Whois"
 			}
 		],
 		"report": null,
@@ -64,7 +64,7 @@
 		"wizard": null
 	},
 	"created": "2020-07-26T20:02:55Z",
-	"currentVersion": "1.4.5",
+	"currentVersion": "1.4.6",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
@@ -78,7 +78,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.10.34",
+			"minVersion": "1.10.39",
 			"name": "Common Scripts"
 		},
 		"DomainTools": {
@@ -99,7 +99,7 @@
 	"deprecated": false,
 	"description": "This Content Pack helps you run Whois commands as playbook tasks or real-time actions within Cortex XSOAR to obtain valuable domain metadata.",
 	"disabledMonthly": false,
-	"downloads": 14552,
+	"downloads": 14875,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -114,17 +114,9 @@
 		{
 			"imagePath": "content/packs/Whois/Whois_image.png",
 			"name": "Whois"
-		},
-		{
-			"imagePath": "content/packs/JsonWhoIs/JsonWhoIs_image.png",
-			"name": "JsonWhoIs"
-		},
-		{
-			"imagePath": "content/packs/DomainTools/DomainTools_image.png",
-			"name": "DomainTools"
 		}
 	],
-	"itemVersion": "1.4.5",
+	"itemVersion": "1.4.6",
 	"keywords": [],
 	"legacy": true,
 	"name": "Whois",
@@ -149,13 +141,13 @@
 		"url": "https://www.paloaltonetworks.com/cortex"
 	},
 	"tags": [
-		"Getting Started",
-		"TIM"
+		"TIM",
+		"Getting Started"
 	],
 	"toServerVersion": "",
-	"updated": "2023-01-02T11:31:36Z",
+	"updated": "2023-01-05T22:46:16Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4314916",
+	"versionInfo": "4339327",
 	"videos": []
 }
