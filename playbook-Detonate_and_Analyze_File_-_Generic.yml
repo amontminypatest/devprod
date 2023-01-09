@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.5.0
-    itemVersion: 2.3.23
+    itemVersion: 2.3.24
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -11,7 +11,7 @@ contentitemexportablefields:
     propagationLabels: []
     toServerVersion: ""
 description: 'This playbook uploads, detonates, and analyzes files for supported sandboxes.
-  Currently supported sandboxes are Falcon X and Wildfire. '
+  Currently supported sandboxes are Falcon Intelligence Sandbox and Wildfire. '
 id: Detonate and Analyze File - Generic
 inputs:
 - description: The details of the file to search for.
@@ -31,10 +31,10 @@ outputs:
   description: The name of the uploaded file.
   type: string
 - contextPath: csfalconx.resource.sandbox
-  description: The Falcon X findings.
+  description: The Falcon Intelligence Sandbox findings.
   type: string
 - contextPath: csfalconx.resource.intel
-  description: The Falcon X intelligence results.
+  description: The Falcon Intelligence Sandbox intelligence results.
   type: string
 - contextPath: WildFire.Report
   description: The Wildfire findings.
@@ -216,6 +216,8 @@ tasks:
       - "1"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: CrowdStrike Falcon X
@@ -298,6 +300,8 @@ tasks:
       - "2"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: WildFire-v2
@@ -440,6 +444,8 @@ tasks:
       - "20"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: JoeSecurityV2
