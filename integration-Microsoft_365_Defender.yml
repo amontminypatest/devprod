@@ -104,7 +104,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 4.4.5
+    itemVersion: 4.4.6
     packID: Microsoft365Defender
     packName: Microsoft 365 Defender
     packPropagationLabels:
@@ -390,7 +390,7 @@ script:
       type: string
     - contextPath: Microsoft365Defender.Incident.alerts
       description: List of alerts relevant for the incidents.
-  dockerimage: demisto/crypto:1.0.0.40696
+  dockerimage: demisto/crypto:1.0.0.42817
   isfetch: true
   runonce: false
   script: |
