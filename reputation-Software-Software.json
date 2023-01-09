@@ -14,7 +14,7 @@
 	"formatScript": "",
 	"fromServerVersion": "6.5.0",
 	"id": "Software",
-	"itemVersion": "3.3.41",
+	"itemVersion": "3.3.42",
 	"layout": "Software",
 	"legacyNames": null,
 	"locked": false,
@@ -66,6 +66,7 @@
 	"packPropagationLabels": [
 		"all"
 	],
+	"propagationLabels": [],
 	"regex": "",
 	"reputationCommand": "",
 	"reputationScriptName": "",
