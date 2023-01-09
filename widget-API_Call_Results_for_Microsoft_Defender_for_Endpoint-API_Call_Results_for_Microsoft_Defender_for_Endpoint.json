@@ -20,7 +20,7 @@
 	"fromServerVersion": "6.8.0",
 	"id": "API Call Results for Microsoft Defender for Endpoint",
 	"isPredefined": true,
-	"itemVersion": "1.15.1",
+	"itemVersion": "1.15.3",
 	"name": "API Call Results for Microsoft Defender for Endpoint",
 	"packID": "MicrosoftDefenderAdvancedThreatProtection",
 	"packName": "Microsoft Defender for Endpoint",
