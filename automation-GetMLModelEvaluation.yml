@@ -30,7 +30,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.31.51
+    itemVersion: 1.31.53
     packID: Base
     packName: Base
     packPropagationLabels:
