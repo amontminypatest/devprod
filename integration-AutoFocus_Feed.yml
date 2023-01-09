@@ -15,10 +15,17 @@ configuration:
   - Samples Feed
   required: true
   type: 16
+- display: ""
+  displaypassword: API Key
+  hiddenusername: true
+  name: credentials
+  required: false
+  type: 9
 - additionalinfo: TIM customers that upgraded to version 6.2 or above, can have this
     value pre-configured in their main account so no additional input is needed. To
     use this feature, upgrade your license so it includes the license key.
   display: API Key
+  hidden: true
   name: api_key
   required: false
   type: 4
@@ -123,7 +130,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 2.0.33
+    itemVersion: 2.0.34
     packID: AutoFocus
     packName: AutoFocus by Palo Alto Networks
     packPropagationLabels:
@@ -159,7 +166,7 @@ script:
       name: offset
     description: Gets the indicators from AutoFocus.
     name: autofocus-get-indicators
-  dockerimage: demisto/python3:3.10.9.40422
+  dockerimage: demisto/python3:3.10.9.42476
   feed: true
   runonce: false
   script: |
@@ -681,7 +688,7 @@ script:
             'autofocus-get-indicators': get_indicators_command
         }
         try:
-            auto_focus_key_retriever = AutoFocusKeyRetriever(params.get('api_key'))
+            auto_focus_key_retriever = AutoFocusKeyRetriever(params.get('credentials', {}).get('password') or params.get('api_key'))
             client = Client(api_key=auto_focus_key_retriever.key,
                             insecure=params.get('insecure'),
                             proxy=params.get('proxy'),
