@@ -7,6 +7,7 @@ configuration:
   display: Server URL
   name: url
   required: true
+  section: Connect
   type: 0
 - additionalinfo: See the Help tab.
   display: ""
@@ -14,6 +15,7 @@ configuration:
   hiddenusername: true
   name: creds_auth_id
   required: false
+  section: Connect
   type: 9
 - additionalinfo: See the Help tab.
   display: ""
@@ -21,18 +23,21 @@ configuration:
   hiddenusername: true
   name: creds_tenant_id
   required: false
+  section: Connect
   type: 9
 - additionalinfo: See the Help tab.
   display: ""
   displaypassword: Key or Client Secret
   name: credentials
   required: false
+  section: Connect
   type: 9
 - additionalinfo: Used for certificate authentication. As appears in the "Certificates
     & secrets" page of the app.
   display: Certificate Thumbprint
   name: certificate_thumbprint
   required: false
+  section: Connect
   type: 4
 - additionalinfo: Used for certificate authentication. The private key of the registered
     certificate.
@@ -40,100 +45,129 @@ configuration:
   hiddenusername: true
   name: private_key
   required: false
+  section: Connect
   type: 14
 - display: Fetch incidents
   name: isFetch
   required: false
+  section: Collect
   type: 8
 - additionalinfo: For example, "example@demisto.com"
   display: Email address from which to fetch incidents
   name: mailbox_to_fetch
   required: false
+  section: Collect
   type: 0
 - additionalinfo: Supports folder ID and sub-folders, for example Inbox/Phishing.
   defaultvalue: Inbox
   display: Name of the folder or sub-folder from which to fetch incidents
   name: folder_to_fetch
   required: false
+  section: Collect
   type: 0
 - additionalinfo: <number> <time unit>, for example 12 hours, 7 days.
   defaultvalue: 15 minutes
   display: First fetch timestamp
   name: first_fetch
   required: false
+  section: Collect
   type: 0
 - additionalinfo: The timeout of the HTTP requests sent to Microsoft Graph API (in
     seconds).
+  advanced: true
   defaultvalue: "10"
   display: HTTP Timeout
   name: timeout
   required: false
+  section: Connect
   type: 0
 - defaultvalue: "50"
   display: Maximum number of emails to pull per fetch
   name: fetch_limit
   required: false
+  section: Collect
   type: 0
-- display: Trust any certificate (not secure)
+- advanced: true
+  display: Trust any certificate (not secure)
   name: insecure
   required: false
+  section: Connect
   type: 8
-- display: Use system proxy settings
+- advanced: true
+  display: Use system proxy settings
   name: proxy
   required: false
+  section: Connect
   type: 8
-- display: Use a self deployed Azure application
+- advanced: true
+  display: Use a self deployed Azure application
   name: self_deployed
   required: false
+  section: Connect
   type: 8
 - display: Incident type
   name: incidentType
   required: false
+  section: Connect
   type: 13
 - display: ID or Client ID - see Detailed Instructions (?)
   hidden: true
   name: _auth_id
   required: false
+  section: Connect
   type: 0
 - display: Token or Tenant ID - see Detailed Instructions (?)
   hidden: true
   name: _tenant_id
   required: false
+  section: Connect
   type: 0
-- display: Key or Client Secret (Deprecated)
+- advanced: true
+  display: Key or Client Secret (Deprecated)
   hidden: true
   name: enc_key
   required: false
+  section: Connect
   type: 4
-- display: ID or Client ID - see Detailed Instructions (?) (Deprecated)
+- advanced: true
+  display: ID or Client ID - see Detailed Instructions (?) (Deprecated)
   hidden: true
   name: auth_id
   required: false
+  section: Connect
   type: 4
-- display: Token or Tenant ID - see Detailed Instructions (?) (Deprecated)
+- advanced: true
+  display: Token or Tenant ID - see Detailed Instructions (?) (Deprecated)
   hidden: true
   name: tenant_id
   required: false
+  section: Connect
   type: 4
 - additionalinfo: If not active, only a preview of the email will be fetched.
+  advanced: true
   defaultvalue: "false"
   display: Display full email body
   name: display_full_email_body
   required: false
+  section: Collect
   type: 8
 - additionalinfo: Relevant only if fetch incidents is active.
+  advanced: true
   defaultvalue: "false"
   display: Mark fetched emails as read
   name: mark_fetched_read
   required: false
+  section: Collect
   type: 8
 - additionalinfo: Use this parameter to determine how long backward to look in the
     search for incidents that were created before the last run time and did not match
     the query when they were created.
+  advanced: true
   defaultvalue: "0"
   display: 'Advanced: Time in minutes to look back when fetching emails'
   name: look_back
   required: false
+  section: Collect
   type: 0
 - defaultvalue: "1"
   display: Incidents Fetch Interval
@@ -144,7 +178,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.4.0
+    itemVersion: 1.4.1
     packID: MicrosoftGraphMail
     packName: Microsoft Graph Mail
     packPropagationLabels:
@@ -1098,7 +1132,7 @@ script:
       required: true
     description: Update the status of an email to read / unread.
     name: msgraph-mail-update-email-status
-  dockerimage: demisto/crypto:1.0.0.40696
+  dockerimage: demisto/crypto:1.0.0.42817
   isfetch: true
   runonce: false
   script: |
