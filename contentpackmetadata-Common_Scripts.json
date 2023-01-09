@@ -167,13 +167,6 @@
 				]
 			},
 			{
-				"description": "Check if number of availble addresses in IPv4 CIDR is lower than given number.",
-				"name": "LowerCidrNumAddresses",
-				"tags": [
-					"filter"
-				]
-			},
-			{
 				"description": "Returns the product of two lists, joined by a separator, as a list of strings.",
 				"name": "ProductJoin",
 				"tags": [
@@ -329,13 +322,6 @@
 				]
 			},
 			{
-				"description": "Checks whether an IPv4 address is not contained in one or more comma-delimited CIDR ranges.",
-				"name": "IsNotInCidrRanges",
-				"tags": [
-					"filter"
-				]
-			},
-			{
 				"description": "Converting time in Ticks to readable time. Ticks are used to represent time by some vendors, most commonly by Microsoft. ",
 				"name": "ticksToTime",
 				"tags": [
@@ -361,13 +347,6 @@
 					"transformer",
 					"string",
 					"Utility"
-				]
-			},
-			{
-				"description": "Checks whether a given CIDR prefix is bigger than the defined maximum prefix.",
-				"name": "CIDRBiggerThanPrefix",
-				"tags": [
-					"filter"
 				]
 			},
 			{
@@ -544,13 +523,6 @@
 				]
 			},
 			{
-				"description": "Checks whether a given domain is a subdomain of one of the listed domains.",
-				"name": "CheckIfSubdomain",
-				"tags": [
-					"filter"
-				]
-			},
-			{
 				"description": "Parse a given JSON string \"value\" to a representative object. Example: '{\"a\": \"value\"}' =\u003e {\"a\": \"value\"}.",
 				"name": "ParseJSON",
 				"tags": [
@@ -563,13 +535,6 @@
 				"name": "GeneratePassword",
 				"tags": [
 					"Utility"
-				]
-			},
-			{
-				"description": "Check if number of availble addresses in IPv4 or IPv6 CIDR is greater than given number.",
-				"name": "GreaterCidrNumAddresses",
-				"tags": [
-					"filter"
 				]
 			},
 			{
@@ -748,6 +713,13 @@
 				"name": "MaliciousRatioReputation",
 				"tags": [
 					"reputation"
+				]
+			},
+			{
+				"description": "Convert country name to country code or country code to country name.\nOnly one of 'country_code' or 'country_name' can be provided.\nExample:\nInput: { \"country_code\": \"US\" }\nOutput: { \"United States\" }\nAnother Example:\nInput: { \"country_name\": \"United States\" }\nOutput: { \"US\" }",
+				"name": "ConvertCountryCodeCountryName",
+				"tags": [
+					"transformer"
 				]
 			},
 			{
@@ -1052,14 +1024,6 @@
 				]
 			},
 			{
-				"description": "Checks whether a substring or an array of substrings is within a string array(each item will be checked). Supports single strings as well. For example, for substrings ['a','b','c'] in a string 'a' the script will return true.\n",
-				"name": "StringContainsArray",
-				"tags": [
-					"filter",
-					"string"
-				]
-			},
-			{
 				"description": "A script to generate investigation summary report in an automated way\nCan be used in post-processing flow as well.",
 				"name": "GenerateInvestigationSummaryReport",
 				"tags": [
@@ -1110,13 +1074,6 @@
 				"name": "PrintContext",
 				"tags": [
 					"Utility"
-				]
-			},
-			{
-				"description": "Determines whether an IPv4 address is contained in at least one of the comma-delimited CIDR ranges. Multiple IPv4 addresses can be passed comma-delimited and each will be tested.",
-				"name": "IsInCidrRanges",
-				"tags": [
-					"filter"
 				]
 			},
 			{
@@ -1325,14 +1282,6 @@
 				"name": "StringLength",
 				"tags": [
 					"Utility"
-				]
-			},
-			{
-				"description": "checks if left side is in range of right side (from,to anotation)\ne.g. - InRange left=4right=1,8 will return true.",
-				"name": "InRange",
-				"tags": [
-					"filter",
-					"number"
 				]
 			},
 			{
@@ -1623,13 +1572,6 @@
 				]
 			},
 			{
-				"description": "A filter that determines whether an IPv4 address is in the private RFC-1918 address space (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16).  For more information, see https://en.wikipedia.org/wiki/Private_network",
-				"name": "IsRFC1918Address",
-				"tags": [
-					"filter"
-				]
-			},
-			{
 				"description": "Pings an IP or url address, to verify it's up",
 				"name": "Ping",
 				"tags": [
@@ -1788,15 +1730,6 @@
 				]
 			},
 			{
-				"description": "Checks the given datetime has occured after the provided relative time.",
-				"name": "AfterRelativeDate",
-				"tags": [
-					"date",
-					"filter",
-					"Condition"
-				]
-			},
-			{
 				"description": "Deprecated. Use the UnzipFile script instead. UnPack a file using fileName or entryID to specify a file. Files unpacked will be pushed to the war room and names will be pushed to the context.\nsupported types are:\n7z (.7z), ACE (.ace), ALZIP (.alz), AR (.a), ARC (.arc), ARJ (.arj), BZIP2 (.bz2), CAB (.cab), compress (.Z), CPIO (.cpio), DEB (.deb), DMS (.dms), GZIP (.gz), LRZIP (.lrz), LZH (.lha, .lzh), LZIP (.lz), LZMA (.lzma), LZOP (.lzo), RPM (.rpm), RAR (.rar), RZIP (.rz), TAR (.tar), XZ (.xz), ZIP (.zip, .jar) and ZOO (.zoo)",
 				"name": "UnPackFile",
 				"tags": [
@@ -1933,21 +1866,21 @@
 		"wizard": null
 	},
 	"created": "2020-07-27T09:01:37Z",
-	"currentVersion": "1.10.34",
+	"currentVersion": "1.10.39",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.50",
+			"minVersion": "1.31.51",
 			"name": "Base"
 		},
 		"DemistoRESTAPI": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.3.6",
+			"minVersion": "1.3.11",
 			"name": "Cortex REST API"
 		},
 		"EWSMailSender": {
@@ -1961,14 +1894,14 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.3.9",
+			"minVersion": "1.3.10",
 			"name": "Elasticsearch"
 		},
 		"Gmail": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.2.6",
+			"minVersion": "1.2.7",
 			"name": "Gmail"
 		},
 		"GmailSingleUser": {
@@ -1989,49 +1922,28 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.3.1",
+			"minVersion": "1.3.3",
 			"name": "Microsoft Graph Mail Single User"
 		},
 		"MicrosoftGraphMail": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.4.0",
+			"minVersion": "1.4.1",
 			"name": "Microsoft Graph Mail"
-		},
-		"ProtectWise": {
-			"author": "Cortex XSOAR",
-			"certification": "certified",
-			"mandatory": false,
-			"minVersion": "1.0.6",
-			"name": "ProtectWise"
 		},
 		"RemoteAccess": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.0.10",
+			"minVersion": "1.0.11",
 			"name": "Remote Access"
-		},
-		"Shodan": {
-			"author": "Cortex XSOAR",
-			"certification": "certified",
-			"mandatory": false,
-			"minVersion": "1.1.5",
-			"name": "Shodan"
-		},
-		"SumoLogic": {
-			"author": "Cortex XSOAR",
-			"certification": "certified",
-			"mandatory": false,
-			"minVersion": "1.1.1",
-			"name": "Sumo Logic"
 		}
 	},
 	"deprecated": false,
 	"description": "Frequently used scripts pack.",
 	"disabledMonthly": false,
-	"downloads": 87208,
+	"downloads": 87974,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -2048,27 +1960,27 @@
 			"name": "Demisto REST API"
 		},
 		{
+			"imagePath": "content/packs/Slack/SlackIAM_image.png",
+			"name": "Slack IAM"
+		},
+		{
+			"imagePath": "content/packs/Slack/SlackV2_image.png",
+			"name": "Slack v2"
+		},
+		{
+			"imagePath": "content/packs/Slack/SlackV3_image.png",
+			"name": "Slack v3"
+		},
+		{
 			"imagePath": "content/packs/Elasticsearch/Elasticsearchv2_image.png",
 			"name": "Elasticsearch v2"
 		},
 		{
-			"imagePath": "content/packs/Shodan/Shodan_v2_image.png",
-			"name": "Shodan v2"
-		},
-		{
 			"imagePath": "content/packs/RemoteAccess/RemoteAccessv2_image.png",
 			"name": "RemoteAccess v2"
-		},
-		{
-			"imagePath": "content/packs/ProtectWise/ProtectWise_image.png",
-			"name": "ProtectWise"
-		},
-		{
-			"imagePath": "content/packs/SumoLogic/SumoLogic_image.png",
-			"name": "SumoLogic"
 		}
 	],
-	"itemVersion": "1.10.34",
+	"itemVersion": "1.10.39",
 	"keywords": [],
 	"legacy": true,
 	"name": "Common Scripts",
@@ -2093,13 +2005,12 @@
 	},
 	"tags": [
 		"Transformer",
-		"Filter",
 		"Core"
 	],
 	"toServerVersion": "",
-	"updated": "2022-12-28T00:54:37Z",
+	"updated": "2023-01-05T12:00:00Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4290509",
+	"versionInfo": "4335398",
 	"videos": []
 }
