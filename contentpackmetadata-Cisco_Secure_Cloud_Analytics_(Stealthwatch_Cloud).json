@@ -57,7 +57,7 @@
 					}
 				],
 				"description": "Protect your cloud assets and private network",
-				"id": "",
+				"id": "Stealthwatch Cloud",
 				"name": "Cisco Secure Cloud Analytics (Stealthwatch Cloud)"
 			}
 		],
@@ -70,21 +70,21 @@
 		"wizard": null
 	},
 	"created": "2020-06-30T20:30:47Z",
-	"currentVersion": "1.0.10",
+	"currentVersion": "1.0.11",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.39",
+			"minVersion": "1.31.51",
 			"name": "Base"
 		}
 	},
 	"deprecated": false,
 	"description": "Protect your cloud assets and private network",
 	"disabledMonthly": false,
-	"downloads": 1302,
+	"downloads": 1337,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -101,7 +101,7 @@
 			"name": "Cisco Secure Cloud Analytics (Stealthwatch Cloud)"
 		}
 	],
-	"itemVersion": "1.0.10",
+	"itemVersion": "1.0.11",
 	"keywords": [],
 	"legacy": true,
 	"name": "Cisco Secure Cloud Analytics (Stealthwatch Cloud)",
@@ -124,11 +124,13 @@
 		"email": "",
 		"url": "https://www.paloaltonetworks.com/cortex"
 	},
-	"tags": [],
+	"tags": [
+		"Data Source"
+	],
 	"toServerVersion": "",
-	"updated": "2022-09-10T23:16:20Z",
+	"updated": "2023-01-03T23:45:00Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4098099",
+	"versionInfo": "4324731",
 	"videos": []
 }
