@@ -21,7 +21,7 @@
 	"hidden": false,
 	"id": "incident_detectionsla",
 	"isReadOnly": true,
-	"itemVersion": "3.3.41",
+	"itemVersion": "3.3.42",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Detection SLA",
