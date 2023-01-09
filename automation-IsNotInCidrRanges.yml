@@ -15,9 +15,9 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.10.34
-    packID: CommonScripts
-    packName: Common Scripts
+    itemVersion: 1.1.9
+    packID: FiltersAndTransformers
+    packName: Filters And Transformers
     packPropagationLabels:
     - all
     prevname: ""
