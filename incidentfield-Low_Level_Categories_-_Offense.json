@@ -23,7 +23,7 @@
 	"hidden": false,
 	"id": "incident_lowlevelcategoriesoffense",
 	"isReadOnly": false,
-	"itemVersion": "2.4.1",
+	"itemVersion": "2.4.2",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Low Level Categories - Offense",
