@@ -20,7 +20,7 @@
 	"fromServerVersion": "5.0.0",
 	"id": "mttr-by-type-occurred",
 	"isPredefined": true,
-	"itemVersion": "1.2.10",
+	"itemVersion": "1.2.11",
 	"name": "MTTR Occurred by Type",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
@@ -29,7 +29,7 @@
 	],
 	"params": {
 		"groupBy": [
-			"type"
+			"rawType"
 		],
 		"keys": [
 			"avg|(closed - occurred) / 3600"
