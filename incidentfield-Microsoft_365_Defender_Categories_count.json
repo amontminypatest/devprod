@@ -184,7 +184,7 @@
 	"hidden": false,
 	"id": "incident_microsoft365defendercategoriescount",
 	"isReadOnly": false,
-	"itemVersion": "4.4.5",
+	"itemVersion": "4.4.6",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Microsoft 365 Defender Categories count",
