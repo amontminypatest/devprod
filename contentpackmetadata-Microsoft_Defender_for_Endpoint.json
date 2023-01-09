@@ -433,7 +433,7 @@
 		"wizard": null
 	},
 	"created": "2020-09-09T12:04:39Z",
-	"currentVersion": "1.15.1",
+	"currentVersion": "1.15.3",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
@@ -471,6 +471,13 @@
 			"minVersion": "1.1.5",
 			"name": "MITRE ATT\u0026CK"
 		},
+		"FiltersAndTransformers": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.1.7",
+			"name": "Filters And Transformers"
+		},
 		"Jira": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
@@ -496,7 +503,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "2.5.4",
+			"minVersion": "2.5.5",
 			"name": "ServiceNow"
 		},
 		"WindowsDefenderAdvancedThreatProtection": {
@@ -510,7 +517,7 @@
 	"deprecated": false,
 	"description": "Microsoft Defender for Endpoint (previously Microsoft Defender Advanced Threat Protection (ATP)) is a unified platform for preventative protection, post-breach detection, automated investigation, and response.",
 	"disabledMonthly": false,
-	"downloads": 8423,
+	"downloads": 8502,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -549,17 +556,9 @@
 		{
 			"imagePath": "content/packs/FeedMitreAttackv2/MITREATT%26CKv2_image.png",
 			"name": "MITRE ATT\u0026CK Feed v2"
-		},
-		{
-			"imagePath": "content/packs/Jira/jira-v2_image.png",
-			"name": "Atlassian Jira v2"
-		},
-		{
-			"imagePath": "content/packs/WindowsDefenderAdvancedThreatProtection/WindowsDefenderAdvancedThreatProtection_image.png",
-			"name": "Windows Defender Advanced Threat Protection (Deprecated)"
 		}
 	],
-	"itemVersion": "1.15.1",
+	"itemVersion": "1.15.3",
 	"keywords": [],
 	"legacy": true,
 	"name": "Microsoft Defender for Endpoint",
@@ -574,7 +573,7 @@
 	"rawKeywords": null,
 	"rawTags": null,
 	"rawUseCases": null,
-	"readme": "Use Microsoft Defender for Endpoint (previously Microsoft Defender Advanced Threat Protection (ATP)) to deliver industry-leading endpoint security for Windows, macOS, Linux, Android, iOS, and network devices. It helps to rapidly stop attacks, scale your security resources, and evolve your defenses. Microsoft Defender for Endpoint is an enterprise endpoint security platform designed to help enterprise networks prevent, detect, investigate, and respond to advanced threats.\n\n## Integration capabilities:\nMicrosoft Defender for Endpoint allows you to perform preventative protection, post-breach detection, automated investigation, and response.\nMicrosoft Defender for Endpoint delivers continuous asset visibility, intelligent risk-based assessments, and built-in remediation tools to help your security and IT teams prioritize and address critical vulnerabilities and misconfigurations across your organization.\n\n## What does this pack do?\n- Receives alerts from Microsoft Defender for Endpoint as XSOAR incidents\n- Enriches IOCs from XSOAR to Microsoft Defender for Endpoint and vice versa\n- Allows remediation actions for connected endpoints\n- Provides investigation capabilities on connected assets\n- Allows asset visibility, status, and health (vulnerability assessment) \n\n## Content Pack components\n- The Microsoft Defender for Endpoint integration imports events as XSOAR incidents.\n- The Microsoft Defender Advanced Threat Protection Get Machine Action Status playbook uses generic polling to get machine action information (relevant for Cortex XSOAR v6.2 and earlier).\n- The Microsoft Defender for Endpoint - Isolate Endpoint playbook accepts an endpoint ID, IP address, or hostname and isolates it using the Microsoft Defender for Endpoint integration (relevant for Cortex XSOAR v6.2 and earlier).\n- The Microsoft Defender for Endpoint - Unisolate Endpoint playbook accepts an endpoint ID, IP address, or hostname and unisolates it using the Microsoft Defender for Endpoint integration (relevant for Cortex XSOAR v6.2 and earlier).\n\n## Authentication\nFor more details about the authentication used for components in this content pack, see [Microsoft Integrations - Authentication](https://xsoar.pan.dev/docs/reference/articles/microsoft-integrations---authentication).\n\n## Licence information\nAvailable for E3, E5, and standalone licenses.\n",
+	"readme": "Use Microsoft Defender for Endpoint (previously Microsoft Defender Advanced Threat Protection (ATP)) to deliver industry-leading endpoint security for Windows, macOS, Linux, Android, iOS, and network devices. It helps to rapidly stop attacks, scale your security resources, and evolve your defenses. Microsoft Defender for Endpoint is an enterprise endpoint security platform designed to help enterprise networks prevent, detect, investigate, and respond to advanced threats.\r\n\r\n## Integration capabilities:\r\nMicrosoft Defender for Endpoint allows you to perform preventative protection, post-breach detection, automated investigation, and response.\r\nMicrosoft Defender for Endpoint delivers continuous asset visibility, intelligent risk-based assessments, and built-in remediation tools to help your security and IT teams prioritize and address critical vulnerabilities and misconfigurations across your organization.\r\n\r\n## What does this pack do?\r\n- Receives alerts from Microsoft Defender for Endpoint as XSOAR incidents\r\n- Enriches IOCs from XSOAR to Microsoft Defender for Endpoint and vice versa\r\n- Allows remediation actions for connected endpoints\r\n- Provides investigation capabilities on connected assets\r\n- Allows asset visibility, status, and health (vulnerability assessment) \r\n\r\n## Content Pack components\r\n- The Microsoft Defender for Endpoint integration imports events as XSOAR incidents.\r\n- The Microsoft Defender Advanced Threat Protection Get Machine Action Status playbook uses generic polling to get machine action information (relevant for Cortex XSOAR v6.2 and earlier).\r\n- The Microsoft Defender for Endpoint - Isolate Endpoint playbook accepts an endpoint ID, IP address, or hostname and isolates it using the Microsoft Defender for Endpoint integration (relevant for Cortex XSOAR v6.2 and earlier).\r\n- The Microsoft Defender for Endpoint - Unisolate Endpoint playbook accepts an endpoint ID, IP address, or hostname and unisolates it using the Microsoft Defender for Endpoint integration (relevant for Cortex XSOAR v6.2 and earlier).\r\n\r\n## Authentication\r\nFor more details about the authentication used for components in this content pack, see [Microsoft Integrations - Authentication](https://xsoar.pan.dev/docs/reference/articles/microsoft-integrations---authentication).\r\n\r\n## Licence information\r\nAvailable for E3, E5, and standalone licenses.\r\n",
 	"searchRank": 10,
 	"serverMaxVersion": "",
 	"serverMinVersion": "5.0.0",
@@ -583,13 +582,11 @@
 		"email": "",
 		"url": "https://www.paloaltonetworks.com/cortex"
 	},
-	"tags": [
-		"Data Source"
-	],
+	"tags": [],
 	"toServerVersion": "",
-	"updated": "2023-01-03T10:20:41Z",
+	"updated": "2023-01-04T22:22:49Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4321146",
+	"versionInfo": "4331864",
 	"videos": []
 }
