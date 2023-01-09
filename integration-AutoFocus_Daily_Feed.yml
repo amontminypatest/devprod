@@ -106,7 +106,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 2.0.33
+    itemVersion: 2.0.34
     packID: AutoFocus
     packName: AutoFocus by Palo Alto Networks
     packPropagationLabels:
