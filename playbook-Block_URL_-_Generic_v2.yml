@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.5.0
-    itemVersion: 2.3.23
+    itemVersion: 2.3.24
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -567,6 +567,8 @@ tasks:
       - "23"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: CheckPointFirewall_v2
@@ -745,6 +747,8 @@ tasks:
       - "24"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: sophos_firewall
@@ -992,6 +996,8 @@ tasks:
       - "35"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: Forcepoint
@@ -1183,6 +1189,8 @@ tasks:
       - "41"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: Netcraft
