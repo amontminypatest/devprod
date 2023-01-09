@@ -20,7 +20,7 @@
 	"fromServerVersion": "5.0.0",
 	"id": "sla-by-incident-type",
 	"isPredefined": true,
-	"itemVersion": "1.2.10",
+	"itemVersion": "1.2.11",
 	"name": "SLA by Incident Type",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
@@ -29,7 +29,7 @@
 	],
 	"params": {
 		"groupBy": [
-			"type",
+			"rawType",
 			"dbotDueDate"
 		]
 	},
