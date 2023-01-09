@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.5.0
-    itemVersion: 2.3.23
+    itemVersion: 2.3.24
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -556,6 +556,8 @@ tasks:
       - "33"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: '*Okta*'
@@ -594,6 +596,8 @@ tasks:
       - "35"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: SailPointIdentityIQ
@@ -632,6 +636,8 @@ tasks:
       - "33"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: AWS - IAM
@@ -670,6 +676,8 @@ tasks:
       - "34"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: PingOne
@@ -708,6 +716,8 @@ tasks:
       - "33"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: ClarizenIAM
@@ -746,6 +756,8 @@ tasks:
       - "33"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: Envoy IAM
@@ -784,6 +796,8 @@ tasks:
       - "33"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: ExceedLMS IAM
@@ -927,6 +941,8 @@ tasks:
       - "16"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: Panorama
@@ -965,6 +981,8 @@ tasks:
       - "48"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: Active Directory Query v2
