@@ -20,7 +20,7 @@
 	"fromServerVersion": "5.0.0",
 	"id": "incidents-assigned-by-user",
 	"isPredefined": true,
-	"itemVersion": "1.2.10",
+	"itemVersion": "1.2.11",
 	"name": "Active Incidents Assigned by User",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
