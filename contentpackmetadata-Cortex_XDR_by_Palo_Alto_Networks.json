@@ -997,7 +997,7 @@
 		"wizard": null
 	},
 	"created": "2020-07-26T19:57:43Z",
-	"currentVersion": "4.9.14",
+	"currentVersion": "4.9.16",
 	"definitionId": "",
 	"dependencies": {
 		"AWS-IAM": {
@@ -1011,7 +1011,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.6.0",
+			"minVersion": "1.6.1",
 			"name": "Active Directory Query"
 		},
 		"AutoFocus": {
@@ -1025,7 +1025,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.51",
+			"minVersion": "1.31.53",
 			"name": "Base"
 		},
 		"CommonPlaybooks": {
@@ -1039,14 +1039,14 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.10.34",
+			"minVersion": "1.10.39",
 			"name": "Common Scripts"
 		},
 		"CommonTypes": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "3.3.41",
+			"minVersion": "3.3.42",
 			"name": "Common Types"
 		},
 		"FeedMitreAttackv2": {
@@ -1055,6 +1055,13 @@
 			"mandatory": true,
 			"minVersion": "1.1.5",
 			"name": "MITRE ATT\u0026CK"
+		},
+		"FiltersAndTransformers": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.1.9",
+			"name": "Filters And Transformers"
 		},
 		"Identity": {
 			"author": "Cortex XSOAR",
@@ -1067,7 +1074,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "2.0.21",
+			"minVersion": "2.0.22",
 			"name": "Atlassian Jira"
 		},
 		"MalwareInvestigationAndResponse": {
@@ -1088,21 +1095,21 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "2.5.4",
+			"minVersion": "2.5.5",
 			"name": "ServiceNow"
 		},
 		"Whois": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.4.4",
+			"minVersion": "1.4.6",
 			"name": "Whois"
 		}
 	},
 	"deprecated": false,
 	"description": "Automates Cortex XDR incident response, and includes custom Cortex XDR incident views and layouts to aid analyst investigations.",
 	"disabledMonthly": false,
-	"downloads": 23240,
+	"downloads": 23457,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -1195,7 +1202,7 @@
 			"name": "AWS - Identity and Access Management"
 		}
 	],
-	"itemVersion": "4.9.14",
+	"itemVersion": "4.9.16",
 	"keywords": [
 		"adaptive cyber protection",
 		"apt"
@@ -1213,7 +1220,7 @@
 	"rawKeywords": null,
 	"rawTags": null,
 	"rawUseCases": null,
-	"readme": "[Cortex XDR](https://www.paloaltonetworks.com/cortex/cortex-xdr) is a detection and response app that natively integrates network, endpoint, and cloud data to stop sophisticated attacks. Responding and managing these attacks requires security teams to reconcile data from multiple sources. Valuable time is lost shuttling between screens and executing repeatable tasks while an attack continues to manifest. \n\nThis Cortex XDR content pack contains the **Palo Alto Networks Cortex XDR - Investigation and Response** integration that enables direct execution of Cortex XDR actions within Cortex XSOAR. The **Cortex XDR Incident Handling v3** playbook enables bidirectional incident updates between Cortex XDR and Cortex XSOAR. \n\n## What does this pack do?\nThe playbooks included in this pack help you save time and keep your incidents in sync. They also help automate repetitive tasks associated with Cortex XDR incidents:\n\n- Syncs and updates Cortex XDR incidents.\n- Triggers a sub-playbook to handle each alert by type.\n- Extracts and enriches all relevant indicators from the source alert.\n- Hunts for related IOCs.\n- Calculates the severity of the incident.\n- Interacts with the analyst to choose a remediation path or close the incident as a false positive based on the gathered information and incident severity.\n- Remediates the incident by blocking malicious indicators and isolating infected endpoints.\n\nAs part of this pack, you will also get out-of-the-box Cortex XDR incident type views, with incident fields and a full layout to facilitate analyst investigation. All of these are easily customizable to suit the needs of your organization.\n\n_For more information, visit our [Cortex XSOAR Developer Docs](https://xsoar.pan.dev/docs/reference/packs/palo-alto-networks-cortex-xdr---investigation-and-response)_\n\n![Cortex XDR incident handling v3](https://storage.googleapis.com/marketplace-dist/content/packs/CortexXDR/readme_images/Cortex_XDR_incident_handling_v3.png)\n",
+	"readme": "[Cortex XDR](https://www.paloaltonetworks.com/cortex/cortex-xdr) is a detection and response app that natively integrates network, endpoint, and cloud data to stop sophisticated attacks. Responding and managing these attacks requires security teams to reconcile data from multiple sources. Valuable time is lost shuttling between screens and executing repeatable tasks while an attack continues to manifest. \n\nThis Cortex XDR content pack contains the **Palo Alto Networks Cortex XDR - Investigation and Response** integration that enables direct execution of Cortex XDR actions within Cortex XSOAR. The **Cortex XDR Incident Handling v3** playbook enables bidirectional incident updates between Cortex XDR and Cortex XSOAR. \n\n## What does this pack do?\nThe playbooks included in this pack help you save time and keep your incidents in sync. They also help automate repetitive tasks associated with Cortex XDR incidents:\n\n- Syncs and updates Cortex XDR incidents.\n- Triggers a sub-playbook to handle each alert by type.\n- Extracts and enriches all relevant indicators from the source alert.\n- Hunts for related IOCs.\n- Calculates the severity of the incident.\n- Interacts with the analyst to choose a remediation path or close the incident as a false positive based on the gathered information and incident severity.\n- Remediates the incident by blocking malicious indicators and isolating infected endpoints.\n\nAs part of this pack, you will also get out-of-the-box Cortex XDR incident type views, with incident fields and a full layout to facilitate analyst investigation. All of these are easily customizable to suit the needs of your organization.\n\n_For more information, visit our [Cortex XSOAR Developer Docs](https://xsoar.pan.dev/docs/reference/packs/palo-alto-networks-cortex-xdr---investigation-and-response)_\n\n![Cortex XDR incident handling v3](https://raw.githubusercontent.com/demisto/content/master/Packs/CortexXDR/doc_files/Cortex_XDR_incident_handling_v3.png)\n",
 	"searchRank": 10,
 	"serverMaxVersion": "",
 	"serverMinVersion": "5.0.0",
@@ -1224,16 +1231,16 @@
 	},
 	"tags": [
 		"Use Case",
-		"TIM",
-		"Palo Alto Networks Products"
+		"Palo Alto Networks Products",
+		"TIM"
 	],
 	"toServerVersion": "",
-	"updated": "2022-12-29T00:04:03Z",
+	"updated": "2023-01-09T15:48:08Z",
 	"useCases": [
 		"Malware"
 	],
 	"version": -1,
-	"versionInfo": "4314430",
+	"versionInfo": "4358537",
 	"videos": [
 		"https://www.youtube.com/watch?v=ium2969zgn8"
 	]
