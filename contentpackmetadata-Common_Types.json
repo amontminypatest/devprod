@@ -3264,7 +3264,7 @@
 		"wizard": null
 	},
 	"created": "2020-07-26T20:01:30Z",
-	"currentVersion": "3.3.41",
+	"currentVersion": "3.3.42",
 	"definitionId": "",
 	"dependencies": {
 		"AWS-GuardDuty": {
@@ -3334,7 +3334,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.10.34",
+			"minVersion": "1.10.39",
 			"name": "Common Scripts"
 		},
 		"Compliance": {
@@ -3355,7 +3355,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.10.0",
+			"minVersion": "1.10.1",
 			"name": "CrowdStrike Falcon"
 		},
 		"EmployeeOffboarding": {
@@ -3460,14 +3460,14 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "2.1.10",
+			"minVersion": "2.1.12",
 			"name": "Microsoft Defender for Cloud Apps"
 		},
 		"MicrosoftDefenderAdvancedThreatProtection": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.15.1",
+			"minVersion": "1.15.4",
 			"name": "Microsoft Defender for Endpoint"
 		},
 		"NutanixHypervisor": {
@@ -3509,7 +3509,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "2.0.18",
+			"minVersion": "2.0.20",
 			"name": "Prisma Cloud by Palo Alto Networks"
 		},
 		"PrismaSaasSecurity": {
@@ -3523,7 +3523,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "2.4.1",
+			"minVersion": "2.4.2",
 			"name": "IBM QRadar"
 		},
 		"Respond": {
@@ -3600,7 +3600,7 @@
 	"deprecated": false,
 	"description": "This Content Pack will get you up and running in no-time and provide you with the most commonly used incident \u0026 indicator fields and types.",
 	"disabledMonthly": false,
-	"downloads": 62639,
+	"downloads": 63304,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -3701,16 +3701,16 @@
 			"name": "AWS - GuardDuty"
 		},
 		{
-			"imagePath": "content/packs/ExtraHop/ExtraHopv2_image.png",
-			"name": "ExtraHop Reveal(x) v2"
-		},
-		{
 			"imagePath": "content/packs/TaniumThreatResponse/TaniumThreatResponse_image.png",
 			"name": "Tanium Threat Response"
 		},
 		{
 			"imagePath": "content/packs/TaniumThreatResponse/TaniumThreatResponsev2_image.png",
 			"name": "Tanium Threat Response v2"
+		},
+		{
+			"imagePath": "content/packs/ExtraHop/ExtraHopv2_image.png",
+			"name": "ExtraHop Reveal(x) v2"
 		},
 		{
 			"imagePath": "content/packs/FireEyeNX/FireEyeNX_image.png",
@@ -3821,7 +3821,7 @@
 			"name": "Skyhigh Security"
 		}
 	],
-	"itemVersion": "3.3.41",
+	"itemVersion": "3.3.42",
 	"keywords": [],
 	"legacy": true,
 	"name": "Common Types",
@@ -3849,9 +3849,9 @@
 		"Partner Spotlight"
 	],
 	"toServerVersion": "",
-	"updated": "2023-01-02T10:40:43Z",
+	"updated": "2023-01-09T15:08:15Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4314916",
+	"versionInfo": "4358537",
 	"videos": []
 }
