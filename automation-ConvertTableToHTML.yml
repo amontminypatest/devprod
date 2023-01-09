@@ -3,6 +3,9 @@ args:
   description: The table to convert to HTML
   isArray: true
   name: table
+- defaultValue: HTMLTable
+  description: 'The context key for the converted HTML table (default is: HTMLTable).'
+  name: context_key
 - description: The optional title for the table
   name: title
 - description: The headers for the HTML table.
@@ -16,7 +19,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.10.34
+    itemVersion: 1.10.39
     packID: CommonScripts
     packName: Common Scripts
     packPropagationLabels:
@@ -35,15 +38,15 @@ pswd: ""
 runas: DBotWeakRole
 runonce: false
 script: |
-  if (args.headers) {
-      headers = args.headers.split(",");
-  } else {
-      headers = []
-  }
+  headers = args.headers ? args.headers.split(",") : [];
   if (args.table) {
-      return {Type: entryTypes.note, Contents: '', ContentsFormat: formats.text,
+      ec = {};
+      ec[args.context_key || 'HTMLTable'] = tableToHTML(args.title, args.table, headers);
+      return {
+          Type: entryTypes.note, Contents: '', ContentsFormat: formats.text,
           HumanReadable: tableToMarkdown(args.title, args.table, headers),
-          EntryContext: {HTMLTable: tableToHTML(args.title, args.table, headers)}};
+          EntryContext: ec
+      };
   }
   return 'Data does not exist';
 scripttarget: 0
