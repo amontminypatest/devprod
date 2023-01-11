@@ -232,13 +232,13 @@
 		"wizard": null
 	},
 	"created": "2020-08-02T11:28:20Z",
-	"currentVersion": "1.31.53",
+	"currentVersion": "1.31.54",
 	"definitionId": "",
 	"dependencies": {},
 	"deprecated": false,
 	"description": "The base pack for Cortex XSOAR.",
 	"disabledMonthly": false,
-	"downloads": 91653,
+	"downloads": 91675,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "6.0.0",
 	"general": [
@@ -250,7 +250,7 @@
 	"id": "Base",
 	"installMessage": "",
 	"integrations": [],
-	"itemVersion": "1.31.53",
+	"itemVersion": "1.31.54",
 	"keywords": [
 		"base",
 		"common"
@@ -280,9 +280,9 @@
 		"Core"
 	],
 	"toServerVersion": "",
-	"updated": "2023-01-09T15:39:03Z",
+	"updated": "2023-01-11T11:26:25Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4358537",
+	"versionInfo": "4372591",
 	"videos": []
 }
