@@ -3,24 +3,45 @@ commonfields:
   id: SlackV2
   version: -1
 configuration:
+- display: ""
+  displaypassword: Slack API access token
+  hiddenusername: true
+  name: cred_access_token
+  required: false
+  type: 9
+- display: ""
+  displaypassword: Slack API bot token
+  hiddenusername: true
+  name: cred_bot_token
+  required: false
+  type: 9
 - display: Slack API access token
+  hidden: true
   name: access_token
-  required: true
+  required: false
+  section: Connect
   type: 4
 - display: Slack API bot token
+  hidden: true
   name: bot_token
-  required: true
+  required: false
+  section: Connect
   type: 4
-- display: Dedicated Slack channel to receive notifications
+- advanced: true
+  display: Dedicated Slack channel to receive notifications
   name: incidentNotificationChannel
   required: false
+  section: Connect
   type: 0
-- defaultvalue: "true"
+- advanced: true
+  defaultvalue: "true"
   display: Send notifications about incidents to the dedicated channel
   name: notify_incidents
   required: false
+  section: Connect
   type: 8
-- defaultvalue: Low
+- advanced: true
+  defaultvalue: Low
   display: Minimum incident severity to send messages to slack by
   name: min_severity
   options:
@@ -30,63 +51,85 @@ configuration:
   - High
   - Critical
   required: false
+  section: Collect
   type: 15
 - defaultvalue: Unclassified
   display: Type of incidents created in Slack
   name: incidentType
   required: false
+  section: Connect
   type: 13
-- display: Allow external users to create incidents via DM
+- advanced: true
+  display: Allow external users to create incidents via DM
   name: allow_incidents
   required: false
+  section: Collect
   type: 8
-- display: Use system proxy settings
+- advanced: true
+  display: Use system proxy settings
   name: proxy
   required: false
+  section: Connect
   type: 8
-- display: Trust any certificate (not secure)
+- advanced: true
+  display: Trust any certificate (not secure)
   name: unsecure
   required: false
+  section: Connect
   type: 8
-- defaultvalue: "true"
+- advanced: true
+  defaultvalue: "true"
   display: Long running instance. Required for investigation mirroring and direct
     messages.
   hidden: true
   name: longRunning
   required: false
+  section: Connect
   type: 8
-- display: Bot display name in Slack (Cortex XSOAR by default)
+- advanced: true
+  display: Bot display name in Slack (Cortex XSOAR by default)
   name: bot_name
   required: false
+  section: Connect
   type: 0
-- display: Bot icon in Slack - Image URL (Cortex XSOAR icon by default)
+- advanced: true
+  display: Bot icon in Slack - Image URL (Cortex XSOAR icon by default)
   name: bot_icon
   required: false
+  section: Connect
   type: 0
-- defaultvalue: "60"
+- advanced: true
+  defaultvalue: "60"
   display: Maximum time to wait for a rate limiting call in seconds
   name: max_limit_time
   required: false
+  section: Connect
   type: 0
-- defaultvalue: "200"
+- advanced: true
+  defaultvalue: "200"
   display: Number of objects to return in each paginated call
   name: paginated_count
   required: false
+  section: Collect
   type: 0
-- display: Proxy URL to use in Slack API calls
+- advanced: true
+  display: Proxy URL to use in Slack API calls
   name: proxy_url
   required: false
+  section: Connect
   type: 0
 - additionalinfo: Only supported in Demisto V6.1 and above.
+  advanced: true
   display: Comma separated list of tags To filter the messages sent from demisto.
   name: filtered_tags
   required: false
+  section: Collect
   type: 0
 contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 3.1.15
+    itemVersion: 3.1.18
     packID: Slack
     packName: Slack
     packPropagationLabels:
@@ -94,14 +137,18 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-description: Send messages and notifications to your Slack team.
-detaileddescription: |2-
-   To allow us access to Slack, the Cortex XSOAR app has to be added to the relevant workspace. Do so by clicking on the following [link](https://oproxy.demisto.ninja/slack).
+deprecated: true
+description: Deprecated. Use SlackV3 instead.
+detaileddescription: |-
+  ### Slack (Deprecated)
+  ***Deprecated. Use the Slack v3 integration instead.***
+
+  To allow us access to Slack, the Cortex XSOAR app has to be added to the relevant workspace. Do so by clicking on the following [link](https://oproxy.demisto.ninja/slack).
    After adding the Cortex XSOAR app, you will get an Access Token and Bot Token, which should be inserted in the integration instance configuration's corresponding fields.
 
   ---
   [View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/slack-v2)
-display: Slack v2
+display: Slack v2 (Deprecated)
 image: data:image/png;base64,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
 name: SlackV2
 script:
@@ -192,6 +239,7 @@ script:
       predefined:
       - "true"
       - "false"
+    deprecated: true
     description: Mirrors the investigation between Slack and the Demisto War Room.
     name: mirror-investigation
   - arguments:
@@ -219,6 +267,7 @@ script:
       name: threadID
     - description: A JSON string of Slack blocks to send in the message.
       name: blocks
+    deprecated: true
     description: Sends a message to a user, group, or channel.
     name: send-notification
     outputs:
@@ -258,6 +307,7 @@ script:
     - description: The name of the channel to archive. If not provided, the mirrored
         investigation channel is archived (if the channel exists).
       name: channel
+    deprecated: true
     description: Archives a Slack channel.
     name: close-channel
   - arguments:
@@ -278,6 +328,7 @@ script:
       name: threadID
     - description: A comment to add to the file.
       name: comment
+    deprecated: true
     description: Sends a file to a user, channel, or group. If not specified, the
       file is sent to the mirrored investigation channel (if the channel exists).
     name: slack-send-file
@@ -289,6 +340,7 @@ script:
       description: The topic for the channel.
       name: topic
       required: true
+    deprecated: true
     description: Sets the topic for a channel.
     name: slack-set-channel-topic
   - arguments:
@@ -306,6 +358,7 @@ script:
     - description: 'A CSV list of user names or email addresses to invite to the channel.
         For example: "user1, user2...".'
       name: users
+    deprecated: true
     description: Creates a channel in Slack.
     name: slack-create-channel
   - arguments:
@@ -318,6 +371,7 @@ script:
         of the channel is not specified, the name of the mirrored investigation channel
         is used (if the channel exists).
       name: channel
+    deprecated: true
     description: Invites users to join a channel.
     name: slack-invite-to-channel
   - arguments:
@@ -330,6 +384,7 @@ script:
         name of the channel is not specified, the mirrored investigation channel is
         used (if the channel exists).
       name: channel
+    deprecated: true
     description: Removes users from the specified channel.
     name: slack-kick-from-channel
   - arguments:
@@ -341,6 +396,7 @@ script:
         not specified, the mirrored investigation channel is used (if the channel
         exists).
       name: channel
+    deprecated: true
     description: Renames a channel in Slack.
     name: slack-rename-channel
   - arguments:
@@ -348,6 +404,7 @@ script:
       description: The Slack user (username or email).
       name: user
       required: true
+    deprecated: true
     description: Get details about a specified user.
     name: slack-get-user-details
     outputs:
@@ -400,6 +457,7 @@ script:
     - defaultValue: "20"
       description: The maximum number of channels to return
       name: limit
+    deprecated: true
     description: Returns a list of channels matching criteria
     name: slack-filter-channels
     outputs:
@@ -424,7 +482,7 @@ script:
     - contextPath: Slack.Channel.IsPrivate
       description: Is the channel a private channel?
       type: Boolean
-  dockerimage: demisto/slack:1.0.0.36135
+  dockerimage: demisto/slack:1.0.0.42956
   longRunning: true
   runonce: false
   script: |
@@ -1339,7 +1397,8 @@ script:
         Starts a Slack RTM client and checks for mirrored incidents.
         """
         executor = concurrent.futures.ThreadPoolExecutor(max_workers=1)
-        loop = asyncio.get_running_loop()
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
         loop.run_in_executor(executor, long_running_loop)
         await slack_loop()
 
@@ -2490,13 +2549,14 @@ script:
             SSL_CONTEXT = None
 
         if command_name != 'long-running-execution':
-            loop = asyncio.get_event_loop()
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
             if not loop._default_executor:  # type: ignore[attr-defined]
                 demisto.info(f'setting _default_executor on loop: {loop} id: {id(loop)}')
                 loop.set_default_executor(concurrent.futures.ThreadPoolExecutor(max_workers=4))
 
-        BOT_TOKEN = demisto.params().get('bot_token', '')
-        ACCESS_TOKEN = demisto.params().get('access_token', '')
+        BOT_TOKEN = demisto.params().get('cred_bot_token', {}).get('password') or demisto.params().get('bot_token', '')
+        ACCESS_TOKEN = demisto.params().get('cred_access_token', {}).get('password') or demisto.params().get('access_token', '')
         PROXIES = handle_proxy()
         proxy_url = demisto.params().get('proxy_url')
         PROXY_URL = proxy_url or PROXIES.get('http')  # aiohttp only supports http proxy
