@@ -251,14 +251,6 @@
 				]
 			},
 			{
-				"description": "Whether value is within a date range.",
-				"name": "BetweenDates",
-				"tags": [
-					"transformer",
-					"date"
-				]
-			},
-			{
 				"description": "Will encode an input using Base64 format.",
 				"name": "Base64Encode",
 				"tags": [
@@ -270,15 +262,6 @@
 				"name": "PublishEntriesToContext",
 				"tags": [
 					"Utility"
-				]
-			},
-			{
-				"description": "Return all items from the list where their given 'field' attribute is equal to 'equalTo' argument\n\nE.g. !WhereFieldEquals with the following arguments:\n - value=[{ \"name\": \"192.1,0.82\", \"type\": \"IP\" }, { \"name\": \"myFile.txt\", \"type\": \"File\" }, { \"name\": \"172.0.0.2\", \"type\": \"IP\" }]\n - field='type'\n - equalTo='IP'\n - getField='name' \n\nWill return all items names where field 'type' equals 'IP' - ['192.1,0.82', '172.0.0.2']",
-				"name": "WhereFieldEquals",
-				"tags": [
-					"transformer",
-					"general",
-					"entirelist"
 				]
 			},
 			{
@@ -665,13 +648,6 @@
 				"tags": []
 			},
 			{
-				"description": "Convert all chosen values but exceptions.",
-				"name": "ConvertAllExcept",
-				"tags": [
-					"transformer"
-				]
-			},
-			{
 				"description": "Sends a HTTP request with advanced capabilities",
 				"name": "HttpV2",
 				"tags": [
@@ -688,14 +664,6 @@
 				"name": "ShowScheduledEntries",
 				"tags": [
 					"Utility"
-				]
-			},
-			{
-				"description": "Converts a single string to an array of that string.",
-				"name": "ConvertToSingleElementArray",
-				"tags": [
-					"transformer",
-					"entirelist"
 				]
 			},
 			{
@@ -789,14 +757,6 @@
 				]
 			},
 			{
-				"description": "This is a thin wrapper around the `dateutil.parser.parse` function. It will parse a string containing a date/time stamp and return it in ISO 8601 format.",
-				"name": "DateStringToISOFormat",
-				"tags": [
-					"transformer",
-					"date"
-				]
-			},
-			{
 				"description": "This script allows disabling a specified user using one or more of the following integrations: SailPointIdentityIQ, ActiveDirectoryQuery, Okta, MicrosoftGraphUser, and IAM.",
 				"name": "DisableUserWrapper",
 				"tags": [
@@ -837,6 +797,13 @@
 				]
 			},
 			{
+				"description": "DNS lookup utility to provide 'A' and 'PTR' record ",
+				"name": "Dig",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
 				"description": "Returns a dict of all incident fields that exist in the system.",
 				"name": "IncidentFields",
 				"tags": []
@@ -859,13 +826,6 @@
 				"name": "RepopulateFiles",
 				"tags": [
 					"Utility"
-				]
-			},
-			{
-				"description": "Encodes a URL string by replacing special characters in the string using the %xx escape. For example: https://example.com converts to https:%2F%2Fexample.com.",
-				"name": "URLEncode",
-				"tags": [
-					"transformer"
 				]
 			},
 			{
@@ -945,14 +905,6 @@
 				"tags": []
 			},
 			{
-				"description": "Checks whether the given value is within the specified time (hour) range.",
-				"name": "BetweenHours",
-				"tags": [
-					"transformer",
-					"date"
-				]
-			},
-			{
 				"description": "Used to extract indicators from Word files (DOC, DOCX).\nThe script does not extract data from macros (e.g., embedded code).\n\nThis automation runs using the default Limited User role, unless you explicitly change the permissions.\nFor more information, see the section about permissions here:\nhttps://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html",
 				"name": "ExtractIndicatorsFromWordFile",
 				"tags": [
@@ -982,13 +934,6 @@
 				"name": "FormatURL",
 				"tags": [
 					"indicator-format"
-				]
-			},
-			{
-				"description": "Converts\nhttps:%2F%2Fexample.com\ninto\nhttps://example.com",
-				"name": "URLDecode",
-				"tags": [
-					"transformer"
 				]
 			},
 			{
@@ -1057,14 +1002,6 @@
 				"name": "IsInternalHostName",
 				"tags": [
 					"Utility"
-				]
-			},
-			{
-				"description": "Cut a string by delimiter and return specific fields.\nExample\n=================\ninput: \"A-B-C-D-E\"\ndelimiter: \"-\"\nfields: \"1,5\"\n\nreturn: \"A-E\"\n",
-				"name": "Cut",
-				"tags": [
-					"transformer",
-					"string"
 				]
 			},
 			{
@@ -1161,14 +1098,6 @@
 				"tags": [
 					"field-change-triggered",
 					"example"
-				]
-			},
-			{
-				"description": "Converts UNIX Epoch time stamp to a simplified extended ISO format string. Use it to convert time stamp to Demisto date field\n\ne.g. 1525006939 will return '2018-04-29T13:02:19.000Z'",
-				"name": "TimeStampToDate",
-				"tags": [
-					"transformer",
-					"date"
 				]
 			},
 			{
@@ -1384,14 +1313,6 @@
 				]
 			},
 			{
-				"description": "This automation allows the usage of DT scripts within playbooks transformers",
-				"name": "DT",
-				"tags": [
-					"transformer",
-					"general"
-				]
-			},
-			{
 				"description": "List the redirects for a given URL",
 				"name": "HTTPListRedirects",
 				"tags": [
@@ -1457,15 +1378,6 @@
 					"transformer",
 					"string",
 					"number"
-				]
-			},
-			{
-				"description": "Decodes an input in Base64 format.",
-				"name": "Base64Decode",
-				"tags": [
-					"Utility",
-					"transformer",
-					"string"
 				]
 			},
 			{
@@ -1623,13 +1535,6 @@
 					"transformer",
 					"general",
 					"entirelist"
-				]
-			},
-			{
-				"description": "Convert object keys to match table keys.\nUse when mapping object/collection to table (grid) field.\n(Array of objects/collections is also supported).\nExample:\nInput: { \"Engine\": \"val1\", \"Max Results\": 13892378, \"Key_With^Special   (characters)\": true }\nOutput: { \"engine\": \"val1\", \"maxresults\": 13892378, \"keywithspecialcharacters\": true }",
-				"name": "ConvertKeysToTableFieldFormat",
-				"tags": [
-					"transformer"
 				]
 			},
 			{
@@ -1797,15 +1702,6 @@
 				"tags": []
 			},
 			{
-				"description": "Sums a List\ne.g. [\"25\", \"10\", \"25\"] =\u003e  \"60\"\n\nThis is an example for number transformer.\n ",
-				"name": "SumList",
-				"tags": [
-					"transformer",
-					"number",
-					"entirelist"
-				]
-			},
-			{
 				"description": "Extract a string from an existing string.",
 				"name": "ExtractInbetween",
 				"tags": [
@@ -1866,28 +1762,28 @@
 		"wizard": null
 	},
 	"created": "2020-07-27T09:01:37Z",
-	"currentVersion": "1.10.41",
+	"currentVersion": "1.10.46",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.53",
+			"minVersion": "1.31.54",
 			"name": "Base"
 		},
 		"DemistoRESTAPI": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.3.11",
+			"minVersion": "1.3.12",
 			"name": "Cortex REST API"
 		},
 		"EWSMailSender": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.1.15",
+			"minVersion": "1.1.16",
 			"name": "EWS Mail Sender"
 		},
 		"Elasticsearch": {
@@ -1901,7 +1797,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.1.5",
+			"minVersion": "1.1.6",
 			"name": "MITRE ATT\u0026CK"
 		},
 		"Gmail": {
@@ -1915,7 +1811,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.3.3",
+			"minVersion": "1.3.4",
 			"name": "Gmail Single User"
 		},
 		"MailSenderNew": {
@@ -1929,7 +1825,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.3.3",
+			"minVersion": "1.3.4",
 			"name": "Microsoft Graph Mail Single User"
 		},
 		"MicrosoftGraphMail": {
@@ -1957,7 +1853,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.1.5",
+			"minVersion": "1.1.6",
 			"name": "Shodan"
 		},
 		"SumoLogic": {
@@ -1971,7 +1867,7 @@
 	"deprecated": false,
 	"description": "Frequently used scripts pack.",
 	"disabledMonthly": false,
-	"downloads": 88442,
+	"downloads": 88485,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -2028,7 +1924,7 @@
 			"name": "Google Maps"
 		}
 	],
-	"itemVersion": "1.10.41",
+	"itemVersion": "1.10.46",
 	"keywords": [],
 	"legacy": true,
 	"name": "Common Scripts",
@@ -2052,13 +1948,13 @@
 		"url": "https://www.paloaltonetworks.com/cortex"
 	},
 	"tags": [
-		"Transformer",
-		"Core"
+		"Core",
+		"Transformer"
 	],
 	"toServerVersion": "",
-	"updated": "2023-01-09T15:55:46Z",
+	"updated": "2023-01-11T11:42:17Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4358537",
+	"versionInfo": "4372591",
 	"videos": []
 }
