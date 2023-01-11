@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.5.0
-    itemVersion: 1.2.17
+    itemVersion: 1.2.18
     packID: CrowdStrikeFalconX
     packName: CrowdStrike Falcon Intelligence Sandbox
     packPropagationLabels:
@@ -153,10 +153,11 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: Returns 'yes' if the Falcon X integration is available.
+      description: Returns 'yes' if the Falcon Intelligence Sandbox integration is
+        available.
       id: 20d4c83c-1366-4524-82a4-42a305852e17
       iscommand: false
-      name: Is CrowdStrike Falcon X enabled?
+      name: Is CrowdStrike Falcon Intelligence Sandbox enabled?
       script: IsIntegrationAvailable
       type: condition
       version: -1
@@ -354,7 +355,7 @@ tasks:
       description: Submits a sample SHA256 hash for sandbox analysis.
       id: d840af25-45ab-4b77-8eef-be41022df556
       iscommand: true
-      name: CrowdStrike Falcon X upload and detonate
+      name: CrowdStrike Falcon Intelligence Sandbox upload and detonate
       script: '|||cs-fx-submit-uploaded-file'
       type: regular
       version: -1
