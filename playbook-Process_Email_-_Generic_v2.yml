@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.0.0
-    itemVersion: 3.3.12
+    itemVersion: 3.3.13
     packID: Phishing
     packName: Phishing
     packPropagationLabels:
@@ -2460,7 +2460,7 @@ tasks:
           root: File
           transformers:
           - operator: uniq
-      incidentID:
+      incID:
         complex:
           accessor: id
           root: incident
