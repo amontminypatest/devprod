@@ -10,7 +10,7 @@
 	"incidentSamples": null,
 	"indicatorSamples": null,
 	"instanceIds": null,
-	"itemVersion": "1.2.14",
+	"itemVersion": "1.2.15",
 	"keyTypeMap": {
 		"Hello World Alert": "Hello World Alert"
 	},
