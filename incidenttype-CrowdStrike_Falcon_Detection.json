@@ -17,7 +17,7 @@
 	"hours": 0,
 	"hoursR": 0,
 	"id": "CrowdStrike Falcon Detection",
-	"itemVersion": "1.10.1",
+	"itemVersion": "1.10.2",
 	"layout": "",
 	"locked": false,
 	"name": "CrowdStrike Falcon Detection",
