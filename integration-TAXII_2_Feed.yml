@@ -143,13 +143,20 @@ configuration:
   - vulnerability
   required: false
   type: 16
+- display: Certificate File as Text
+  displaypassword: Key File as Text
+  name: creds_certificate
+  required: false
+  type: 9
 - additionalinfo: Add a certificate file as text to connect to the TAXII server
   display: Certificate File as Text
+  hidden: true
   name: certificate
   required: false
   type: 12
 - additionalinfo: Add a key file as text to connect to the TAXII server
   display: Key File as Text
+  hidden: true
   name: key
   required: false
   type: 4
@@ -197,7 +204,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 1.1.18
+    itemVersion: 1.1.19
     packID: FeedTAXII
     packName: TAXII Feed
     packPropagationLabels:
@@ -501,8 +508,8 @@ script:
         is_incremental_feed = params.get('feedIncremental') or False
         limit = try_parse_integer(params.get("limit") or -1)
         limit_per_request = try_parse_integer(params.get("limit_per_request"))
-        certificate = params.get('certificate', None)
-        key = params.get('key', None)
+        certificate = params.get('creds_certificate', {}).get('identifier') or params.get('certificate', None)
+        key = params.get('creds_certificate', {}).get('password') or params.get('key', None)
         objects_to_fetch = argToList(params.get('objects_to_fetch') or objects_types)
         default_api_root = params.get('default_api_root')
 
