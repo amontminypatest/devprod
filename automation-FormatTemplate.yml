@@ -39,7 +39,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.5.0
-    itemVersion: 1.1.9
+    itemVersion: 1.2.2
     packID: FiltersAndTransformers
     packName: Filters And Transformers
     packPropagationLabels:
