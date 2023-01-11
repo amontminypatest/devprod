@@ -8,9 +8,16 @@ configuration:
   name: url
   required: true
   type: 0
+- display: ""
+  displaypassword: API Key
+  hiddenusername: true
+  name: credentials
+  required: false
+  type: 9
 - display: API Key
+  hidden: true
   name: apikey
-  required: true
+  required: false
   type: 4
 - display: Trust any certificate (not secure)
   name: insecure
@@ -84,7 +91,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.0.4
+    itemVersion: 2.0.5
     packID: ProofpointThreatResponse
     packName: Proofpoint Threat Response
     packPropagationLabels:
@@ -775,7 +782,7 @@ script:
     - contextPath: ProofPointTRAP.Quarantine
       description: Results of the email quarantine operation.
       type: String
-  dockerimage: demisto/python3:3.10.8.39276
+  dockerimage: demisto/python3:3.10.9.42476
   isfetch: true
   runonce: false
   script: |
@@ -797,7 +804,7 @@ script:
     BASE_URL = demisto.params().get('url')
     if BASE_URL and BASE_URL[-1] != '/':
         BASE_URL += '/'
-    API_KEY = demisto.params().get('apikey')
+    API_KEY = demisto.params().get('credentials', {}).get('password') or demisto.params().get('apikey')
     VERIFY_CERTIFICATE = not demisto.params().get('insecure')
     # How many time before the first fetch to retrieve incidents
     FIRST_FETCH, _ = parse_date_range(demisto.params().get('first_fetch', '12 hours') or '12 hours',
