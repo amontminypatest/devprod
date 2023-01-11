@@ -1,0 +1,956 @@
+category: Data Enrichment & Threat Intelligence
+commonfields:
+  id: ThreatConnect Feed
+  version: -1
+configuration:
+- defaultvalue: https://api.threatconnect.com
+  display: Base URL
+  name: tc_api_path
+  required: true
+  type: 1
+- additionalinfo: The API ID key
+  display: Access ID
+  displaypassword: Secret key
+  name: api_credentials
+  required: true
+  type: 9
+- additionalinfo: API - Access ID
+  display: Access ID
+  hidden: true
+  name: api_access_id
+  required: false
+  type: 4
+- additionalinfo: API - Secret key
+  display: Secret key
+  hidden: true
+  name: api_secret_key
+  required: false
+  type: 4
+- additionalinfo: The number of indicators to get per fetch.
+  defaultvalue: "2000"
+  display: Indicators to get per fetch
+  name: fetch_limit
+  required: false
+  type: 0
+- additionalinfo: A comma-separated list of tags to filter by.
+  display: Tags to filter results by
+  name: tags
+  required: false
+  type: 0
+- additionalinfo: A comma-separated list of owners to fetch indicators from.
+  display: Owners
+  name: owners
+  required: false
+  type: 0
+- additionalinfo: Incremental feeds pull only new or modified indicators that have
+    been sent from the integration. The determination if the indicator is new or modified
+    happens on the 3rd-party vendor's side, so only indicators that are new or modified
+    are sent to Cortex XSOAR. Therefore, all indicators coming from these feeds are
+    labeled new or modified.
+  defaultvalue: "true"
+  display: Incremental feed
+  hidden: true
+  name: feedIncremental
+  required: false
+  type: 8
+- defaultvalue: "true"
+  display: Fetch indicators
+  name: feed
+  required: false
+  type: 8
+- additionalinfo: Indicators from this integration instance will be marked with this
+    reputation.
+  defaultvalue: None
+  display: Indicator Reputation
+  hidden: true
+  name: feedReputation
+  options:
+  - None
+  - Good
+  - Suspicious
+  - Bad
+  required: false
+  type: 18
+- additionalinfo: Reliability of the source providing the intelligence data.
+  defaultvalue: F - Reliability cannot be judged
+  display: Source Reliability
+  name: feedReliability
+  options:
+  - A - Completely reliable
+  - B - Usually reliable
+  - C - Fairly reliable
+  - D - Not usually reliable
+  - E - Unreliable
+  - F - Reliability cannot be judged
+  required: true
+  type: 15
+- additionalinfo: The Traffic Light Protocol (TLP) designation to apply to indicators
+    fetched from the feed.
+  display: Traffic Light Protocol Color
+  name: tlp_color
+  options:
+  - RED
+  - AMBER
+  - GREEN
+  - WHITE
+  required: false
+  type: 15
+- additionalinfo: Fetch specific ThreatConnect indicator types. Default value is "All".
+  defaultvalue: All
+  display: Indicator types
+  name: indicator_type
+  options:
+  - All
+  - EmailAddress
+  - File
+  - Host
+  - URL
+  - ASN
+  - CIDR
+  - EmailSubject
+  - Hashtag
+  - Mutex
+  - Registry Key
+  - User Agent
+  - Address
+  required: false
+  type: 16
+- additionalinfo: Fetch specific ThreatConnect group types. Default value is "All".
+  defaultvalue: All
+  display: Group types
+  name: group_type
+  options:
+  - All
+  - Attack Pattern
+  - Campaign
+  - Course of Action
+  - Intrusion Set
+  - Malware Report
+  - Tool
+  - Vulnerability
+  required: false
+  type: 16
+- additionalinfo: Fetch active only indicators when true. Default is "True".
+  defaultvalue: "true"
+  display: Active Indicators Only
+  name: indicator_active
+  required: false
+  type: 8
+- additionalinfo: Fetch related indicators. Default is "False".
+  defaultvalue: "false"
+  display: Create Relationships
+  name: createRelationships
+  required: false
+  type: 8
+- additionalinfo: Filter results using ThreatConnect Query Language (TQL). For more
+    information, see the ThreatConnect documentation https://training.threatconnect.com/learn/article/using-threatconnect-query-language-tql-kb-article
+  display: Indicator Query
+  name: indicator_query
+  required: false
+  type: 12
+- additionalinfo: |
+    Minimal confidence value to fetch indicators by (an integer between 0 to 100). Note: this parameter is not relevant for groups.
+  defaultvalue: "0"
+  display: Confidence Threshold
+  name: confidence
+  required: false
+  type: 0
+- additionalinfo: |
+    Minimal threat assess score value to fetch indicators by (an integer between 0 to 1000). Note: this parameter is not relevant for groups.
+  defaultvalue: "0"
+  display: Threat Assess Score Threshold
+  name: threat_assess_score
+  required: false
+  type: 0
+- display: ""
+  name: feedExpirationPolicy
+  options:
+  - never
+  - interval
+  - indicatorType
+  - suddenDeath
+  required: false
+  type: 17
+- display: ""
+  name: feedExpirationInterval
+  required: false
+  type: 1
+- defaultvalue: "240"
+  display: Feed Fetch Interval
+  name: feedFetchInterval
+  required: false
+  type: 19
+- display: Trust any certificate (not secure)
+  name: insecure
+  required: false
+  type: 8
+- additionalinfo: When selected, the exclusion list is ignored for indicators from
+    this feed. This means that if an indicator from this feed is on the exclusion
+    list, the indicator might still be added to the system.
+  display: Bypass exclusion list
+  name: feedBypassExclusionList
+  required: false
+  type: 8
+- additionalinfo: Supports CSV values.
+  display: Tags
+  hidden: true
+  name: feedTags
+  required: false
+  type: 0
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.5.0
+    itemVersion: 2.1.2
+    packID: FeedThreatConnect
+    packName: ThreatConnect Feed
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: This integration fetches indicators from ThreatConnect.
+detaileddescription: "## ThreatConnect Feed\nThis integration fetches indicators from
+  ThreatConnect, which you can filter by indicator owner.\n\n### Generate Credentials\n\n1.
+  Hover on the **Settings** icon and from the drop-down menu select **Org Settings**.\n\n2.
+  From the **Membership** tab, click the **Create API User**.\n\n3. Enter values for
+  the following fields in the form.\n    - First Name\n    - Last Name\n    - Organization
+  Role\n    - Include in Observations and False Positives\n    \n4. Record and save
+  the Secret Key. You will not be able to access the Secret Key after you close this
+  window.\n\n5. Click the **SAVE** button.\n\nFor more information, see [Create an
+  API User section in the ThreatConnect documentation](https://training.threatconnect.com/learn/article/creating-user-accounts-kb-article).\n\n\n
+  \   \n\n\n---\n[View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/threat-connect-feed)"
+display: ThreatConnect Feed
+image: data:image/png;base64,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
+name: ThreatConnect Feed
+script:
+  commands:
+  - arguments:
+    - description: |
+        Comma-separated list of owners to fetch indicators from. (If
+        not specified will retrieve only indicators owned by the account. If you supply this argument, it overwrites the "Owners" parameter.)
+      name: owners
+    - defaultValue: "50"
+      description: The maximum number of indicators to retrieve.
+      name: limit
+    - defaultValue: "0"
+      description: The index of the first indicator to fetch.
+      name: offset
+      predefined:
+      - ""
+    - description: Filter results using ThreatConnect Query Language (TQL), will override
+        all other arguments. For more information, see the ThreatConnect documentation
+        https://training.threatconnect.com/learn/article/using-threatconnect-query-language-tql-kb-article
+      name: tql_query
+    - auto: PREDEFINED
+      description: Comma-separated list that will allow filtering of the retrieved
+        indicators.
+      name: indicator_type
+      predefined:
+      - All
+      - EmailAddress
+      - File
+      - Host
+      - URL
+      - ASN
+      - CIDR
+      - Mutex
+      - Registry Key
+      - Address
+    - auto: PREDEFINED
+      defaultValue: "true"
+      description: If true, fetches only active indicators.
+      name: active_indicators
+      predefined:
+      - "true"
+      - "false"
+    - description: This will fetch indicators with confidence of “greater than” the
+        (integer) input.
+      name: confidence
+    - description: An integer that will determine the threshold (an integer between
+        0 to 1000).
+      name: threat_assess_score
+    description: Gets indicators from ThreatConnect.
+    name: tc-get-indicators
+  - arguments: []
+    description: Gets available indicators owners.
+    name: tc-get-owners
+  dockerimage: demisto/python3:3.10.9.40422
+  feed: true
+  runonce: false
+  script: |
+    register_module_line('ThreatConnect Feed', 'start', __line__())
+    ###########
+    # IMPORTS #
+    ###########
+    # STD packages
+    import hashlib
+    import hmac
+    from contextlib import contextmanager
+    from enum import Enum
+    from math import ceil
+    from typing import Tuple
+
+    # Local packages
+
+
+    #########
+    # Notes #
+    #########
+    """
+    Development info:
+    *** Error in demisto docker loop, when importing tcex module a print occurred therefor it's handled with context manager to suppress prints.
+        - ThreatConnect SDK - https://docs.threatconnect.com/en/latest/python/python_sdk.html  (Don't use deprecated one).
+        - More filters details - https://docs.threatconnect.com/en/latest/tcex/module_threat_intelligence.html#get-indicators-by-filter
+        - REST API - https://docs.threatconnect.com/en/latest/rest_api/rest_api.html
+    """  # noqa W291
+
+    ####################
+    # GLOBAL CONSTANTS #
+    ####################
+    INTEGRATION_NAME = 'ThreatConnect Feed'
+    INTEGRATION_COMMAND_NAME = 'tc'
+    INTEGRATION_CONTEXT_NAME = 'ThreatConnect'
+    COMMAND_OUTPUT = Tuple[str, Union[Dict[str, Any], List[Any]], Union[Dict[str, Any], List[Any]]]
+    INDICATOR_MAPPING_NAMES = {
+        'Address': FeedIndicatorType.IP,
+        'CIDR': FeedIndicatorType.CIDR,
+        'EmailAddress': FeedIndicatorType.Email,
+        'File': FeedIndicatorType.File,
+        'Host': FeedIndicatorType.Host,
+        'Mutex': FeedIndicatorType.MUTEX,
+        'Registry Key': FeedIndicatorType.Registry,
+        'URL': FeedIndicatorType.URL,
+        'Attack Pattern': ThreatIntel.ObjectsNames.ATTACK_PATTERN,
+        'Campaign': ThreatIntel.ObjectsNames.CAMPAIGN,
+        'Course of Action': ThreatIntel.ObjectsNames.COURSE_OF_ACTION,
+        'Intrusion Set': ThreatIntel.ObjectsNames.INTRUSION_SET,
+        'Malware': ThreatIntel.ObjectsNames.MALWARE,
+        'Report': ThreatIntel.ObjectsNames.REPORT,
+        'Tool': ThreatIntel.ObjectsNames.TOOL,
+        'Vulnerability': FeedIndicatorType.CVE,
+        'ASN': FeedIndicatorType.AS,
+    }
+
+    TC_INDICATOR_TO_XSOAR_INDICATOR = {
+        # indicator_type: {Raw Field: XSOAR Indicator Field}
+        'IP': {'dateAdded': 'firstseenbysource',
+               'lastModified': 'updateddate',
+               'threatAssessRating': 'verdict',
+               'threatAssessConfidence': 'confidence',
+               'description': 'description',
+               'summary': 'shortdescription',
+               'ip': 'address'},
+        'CIDR': {'dateAdded': 'firstseenbysource',
+                 'lastModified': 'updateddate',
+                 'threatAssessRating': 'verdict',
+                 'threatAssessConfidence': 'confidence',
+                 'summary': 'name',
+                 'threatAssessScore': 'sourceoriginalseverity'},
+        'Email': {'dateAdded': 'firstseenbysource',
+                  'lastModified': 'updateddate',
+                  'threatAssessRating': 'verdict',
+                  'threatAssessConfidence': 'confidence',
+                  'description': 'description',
+                  'summary': 'name',
+                  'address': 'emailaddress'},
+        'File': {'dateAdded': 'firstseenbysource',
+                 'lastModified': 'updateddate',
+                 'threatAssessConfidence': 'confidence',
+                 'threatAssessRating': 'verdict',
+                 'description': 'description',
+                 'summary': 'name',
+                 'sha256': 'sha256'},
+        'Host': {'dateAdded': 'firstseenbysource',
+                 'lastModified': 'updateddate',
+                 'threatAssessRating': 'verdict',
+                 'threatAssessConfidence': 'confidence',
+                 'description': 'description',
+                 'summary': 'name',
+                 'hostname': 'hostname'},
+        'Mutex': {'dateAdded': 'firstseenbysource',
+                  'threatAssessRating': 'verdict',
+                  'description': 'description',
+                  'threatAssessConfidence': 'confidence',
+                  'summary': 'name'},
+        'Registry Key': {'dateAdded': 'firstseenbysource',
+                         'lastModified': 'updateddate',
+                         'threatAssessRating': 'verdict',
+                         'threatAssessConfidence': 'confidence',
+                         'description': 'description',
+                         'summary': 'name',
+                         'Key Name': 'keyvalue.name',
+                         'Value Name': 'keyvalue.data',
+                         'Key Type': 'keyvalue.type'},
+        'URL': {'dateAdded': 'firstseenbysource',
+                'lastModified': 'updateddate',
+                'threatAssessRating': 'verdict',
+                'threatAssessConfidence': 'confidence',
+                'description': 'description',
+                'summary': 'name',
+                'text': 'address'},
+        'ASN': {'dateAdded': 'firstseenbysource',
+                'lastModified': 'updateddate',
+                'threatAssessRating': 'verdict',
+                'description': 'description',
+                'threatAssessConfidence': 'confidence',
+                'AS Number': 'value',
+                'summary': 'name'},
+        'Attack Pattern': {'dateAdded': 'firstseenbysource',
+                           'lastModified': 'updateddate',
+                           'description': 'description',
+                           'name': 'name'},
+        'Campaign': {'dateAdded': 'firstseenbysource',
+                     'lastModified': 'updateddate',
+                     'name': 'name'},
+        'Course of Action': {'dateAdded': 'firstseenbysource',
+                             'lastModified': 'updateddate',
+                             'name': 'name'},
+        'Intrusion Set': {'dateAdded': 'firstseenbysource',
+                          'lastModified': 'updateddate',
+                          'name': 'name'},
+        'Malware': {'dateAdded': 'firstseenbysource',
+                    'lastModified': 'updateddate',
+                    'name': 'name'},
+        'Report': {'dateAdded': 'firstseenbysource',
+                   'lastModified': 'updateddate',
+                   'name': 'name',
+                   'publishDate': 'published'},
+        'Tool': {'dateAdded': 'firstseenbysource',
+                 'lastModified': 'updateddate',
+                 'name': 'name'},
+        'CVE': {'dateAdded': 'firstseenbysource',
+                'lastModified': 'updateddate',
+                'name': 'name',
+                'publishDate': 'published'}
+    }
+
+    INDICATOR_TYPES = ['EmailAddress',
+                       'File',
+                       'Host',
+                       'URL',
+                       'ASN',
+                       'CIDR',
+                       'Email Subject',
+                       'Hashtag',
+                       'Mutex',
+                       'Registry Key',
+                       'User Agent',
+                       'Address'
+                       ]
+    INDICATOR_GROUPS = ['Attack Pattern',
+                        'Campaign',
+                        'Course of Action',
+                        'Intrusion Set',
+                        'Malware',
+                        'Report',
+                        'Tool',
+                        'Vulnerability'
+                        ]
+
+
+    #########
+    # Utils #
+    #########
+
+
+    @contextmanager
+    def suppress_stdout():
+        """Disable stdout in beginning and enable it in exit"""
+        original_stdout = sys.stdout
+        sys.stdout = open(os.devnull, 'w')
+        yield
+        sys.stdout.close()
+        sys.stdout = original_stdout
+
+
+    def set_fields_query(params: dict, endpoint: str) -> str:
+        """Creating fields query to add information to the API response"""
+        fields_str = '&fields=tags'
+        if endpoint == 'indicators':
+            fields_str += '&fields=threatAssess'
+        if argToBoolean(params.get('createRelationships')):
+            fields_str += '&fields=associatedGroups&fields=associatedIndicators'
+
+        return fields_str
+
+
+    def create_types_query(params: dict, endpoint: str) -> str:
+        """Creating TypeName query to fetch different types of indicators"""
+        group_types = argToList(params.get('group_type'))
+        indicator_types = argToList(params.get('indicator_type'))
+        types = []
+
+        if not group_types and not indicator_types:
+            raise DemistoException('No indicator type or group type were chosen, please choose at least one.')
+        if endpoint == 'indicators':
+            if 'All' in indicator_types:
+                return ''
+            else:
+                types.extend(indicator_types)
+        else:
+            if 'All' in group_types:
+                types.extend(INDICATOR_GROUPS)
+            else:
+                types.extend(group_types)
+
+        query = 'typeName IN ("' + '","'.join(types) + '")'
+
+        return query
+
+
+    def calculate_dbot_score(threat_assess_score: Optional[Union[int, str]] = None) -> int:
+        """ Calculate dbot score by ThreatConnect assess score (0-1000) to range of 0-3:
+            1. feed dev docs:https://xsoar.pan.dev/docs/integrations/feeds
+            2. For more info - https://training.threatconnect.com/learn/article/threatassess-and-cal-kb-article
+
+        Args:
+            threat_assess_score: score between 0-1000.
+
+        Returns:
+            int: Calculated DbotScore (range 0-3).
+        """
+        score = 0
+        if isinstance(threat_assess_score, int):
+            score = ceil(threat_assess_score / (1000 / 3))
+
+        return score
+
+
+    def parse_indicator(indicator: Dict[str, str]) -> Dict[str, Any]:
+        """ Parsing indicator by indicators demisto convension.
+        Args:
+            indicator: Indicator as raw response.
+        Returns:
+            dict: Parsed indicator.
+        """
+        indicator_type = INDICATOR_MAPPING_NAMES.get(indicator.get('type', ''))
+        indicator_value = indicator.get('summary') or indicator.get('name')
+        fields = create_indicator_fields(indicator, indicator_type)
+        relationships = create_indicator_relationships(fields, indicator_type, indicator_value)  # type: ignore
+        indicator_obj = {
+            "value": indicator_value,
+            "type": indicator_type,
+            "rawJSON": indicator,
+            "score": calculate_dbot_score(indicator.get("threatAssessScore", '')),
+            "fields": fields,
+            "relationships": relationships
+        }
+
+        return indicator_obj
+
+
+    def create_indicator_fields(indicator, indicator_type):
+        """Creating an indicator fields from a raw indicator"""
+        params = demisto.params()
+        indicator_fields_mapping = TC_INDICATOR_TO_XSOAR_INDICATOR[indicator_type]
+        fields: dict = {}
+
+        for indicator_key, xsoar_indicator_key in indicator_fields_mapping.items():
+            fields[xsoar_indicator_key] = indicator.get(indicator_key, '')
+
+        raw_tags = indicator.get('tags', {}).get('data', [])
+        tags = [tag.get('name', '') for tag in raw_tags]
+        fields['tags'] = tags
+
+        fields['reportedby'] = [name for name in [indicator.get('ownerName', ''), indicator.get('source', '')] if name]
+
+        fields['feedrelatedindicators'] = indicator.get("associatedIndicators", {}).get('data') or []
+        fields['feedrelatedindicators'].extend(indicator.get("associatedGroups", {}).get('data') or [])
+
+        if 'description' not in fields:
+            fields['description'] = indicator.get('attributes', {}).get('description', '')
+        if indicator_type == 'Course of Action':
+            fields['action'] = indicator.get('attributes', {}).get('action', '')
+        if indicator_type == 'Registry Key':
+            fields['namefield'] = indicator.get('Key Name', '')
+
+        tlp_color = params.get('tlp_color', '')
+        if tlp_color:
+            fields['trafficlightprotocol'] = tlp_color  # type: ignore
+
+        remove_nulls_from_dictionary(fields)
+
+        return fields
+
+
+    def create_indicator_relationships(indicator: dict, indicator_type: str, indicator_value: str):
+        relationships_list = []
+        if argToBoolean(demisto.getParam('createRelationships')):
+            demisto.debug('Creating relationships')
+            b_entities = indicator.get('feedrelatedindicators', [])
+            for entity_b in b_entities:
+                entity_b_value = entity_b.get('summary') or entity_b.get('name')
+                entity_b_type = entity_b.get('type')
+                relationships_list.extend(
+                    create_relationships(indicator_value, indicator_type, entity_b_value, entity_b_type))
+
+        return relationships_list
+
+
+    def create_relationships(entity_a: str, entity_a_type: str, entity_b: str, entity_b_type: str):
+        """
+        Create a list of entityRelationship object from the api result
+        """
+        relationships_list = []
+
+        if entity_b and entity_b_type:
+            relationship_entity = EntityRelationship(entity_a=entity_a, entity_a_type=entity_a_type,
+                                                     name=EntityRelationship.Relationships.RELATED_TO,
+                                                     entity_b=entity_b, entity_b_type=entity_b_type,
+                                                     source_reliability=demisto.getParam('feedReliability'),
+                                                     brand=INTEGRATION_NAME)
+            relationships_list.append(relationship_entity.to_indicator())
+            demisto.debug(f'Created relationsip between {entity_a} and {entity_b}')
+        else:
+            demisto.debug(
+                f"WARNING: Relationships will not be created to entity A {entity_a}"
+                f" with relationship name {EntityRelationship.Relationships.RELATED_TO}")
+        return relationships_list
+
+
+    ##########
+    # Client #
+    ##########
+
+    class Method(str, Enum):
+        """
+        A list that represent the types of http request available
+        """
+        GET = 'GET'
+        POST = 'POST'
+        PUT = 'PUT'
+        HEAD = 'HEAD'
+        PATCH = 'PATCH'
+        DELETE = 'DELETE'
+
+
+    class Client(BaseClient):
+        def __init__(self, api_id: str, api_secret: str, base_url: str, verify: bool = False, proxy: bool = False):
+            super().__init__(base_url=base_url, proxy=proxy, verify=verify)
+            self.api_id = api_id
+            self.api_secret = api_secret
+
+        def make_request(self, method: Method, url_suffix: str, payload: dict = {}, params: dict = {},
+                         parse_json=True, get_next=False, full_url=None):  # pragma: no cover  # noqa
+            if not full_url and not url_suffix:
+                # if no url is stated, there is no need to make a request
+                return [], None, ''
+            headers = self.create_header(url_suffix, full_url, method)
+            response = self._http_request(method=method, url_suffix=url_suffix, data=payload, resp_type='json',
+                                          params=params, headers=headers, full_url=full_url)
+
+            if get_next:
+                return response.get('data'), response.get('status'), response.get('next')
+            if parse_json:
+                return response.get('data'), response.get('status')
+            return response
+
+        def create_header(self, url_suffix: str, full_url: str, method: Method) -> dict:
+            timestamp = round(time.time())
+            if full_url:
+                url_suffix = full_url.replace(demisto.getParam('tc_api_path').rstrip('/'), '')
+            to_sign = f'{url_suffix}:{method}:{timestamp}'
+            api_hash = base64.b64encode(
+                hmac.new(self.api_secret.encode('utf8'), to_sign.encode('utf8'), hashlib.sha256).digest()).decode()
+            return {'Authorization': f'TC {self.api_id}:{api_hash}', 'Timestamp': str(timestamp),
+                    'Content-Type': 'application/json'}
+
+
+    ######################
+    # COMMANDS FUNCTIONS #
+    ######################
+
+    def create_or_query(param_name: str, delimiter_str: str) -> str:
+        if not delimiter_str:
+            return ''
+        arr = delimiter_str.split(',')
+        query = ''
+        for item in arr:
+            query += f'{param_name}="{item}" OR '
+        return query[:len(query) - 3]
+
+
+    def module_test_command(client: Client, args):  # pragma: no cover # noqa
+        """ Test module - Get 4 indicators from ThreatConnect.
+        Args:
+            client: ThreatConnect client.
+        Returns:
+            str: Human readable - 'ok' if succeed.
+            dict: Operation entry context - Empty.
+            dict: Operation raw response - Empty.
+        """
+        url = '/api/v3/groups?resultLimit=2'
+        try:
+            response, status = client.make_request(Method.GET, url)
+            if status == 'Success':
+                return "ok", {}, {}
+            else:
+                return_error('Error from the API: ' + response.get('message',
+                                                                   'An error has occurred, if it persist, please contact your '
+                                                                   'local help desk'))
+        except Exception as e:
+            exception_text = str(e).lower()
+            if 'resource not found' in exception_text:
+                return "ok", {}, {}
+            else:
+                return_error(str(e))
+
+
+    def fetch_indicators_command(client: Client, params: dict, last_run: dict) -> Tuple[
+        List[Dict[str, Any]], List[Dict[str, Any]]]:  # noqa  # pragma: no cover
+        """ Fetch indicators from ThreatConnect
+
+        Args:
+            client: ThreatConnect client.
+
+        Returns:
+            list: indicator to populate in demisto server.
+        """
+        indicators_url = build_url_with_query_params(params, 'indicators', last_run)
+        groups_url = build_url_with_query_params(params, 'groups', last_run)
+
+        indicators = []
+        groups = []
+        indicators_next_link = ''
+        groups_next_link = ''
+        try:
+            while True:
+                if indicators_next_link or groups_next_link:
+                    if indicators_next_link:
+                        demisto.debug('Indicators Next Link: ' + indicators_next_link)
+                        response, _, indicators_next_link = client.make_request(Method.GET,
+                                                                                url_suffix='',
+                                                                                get_next=True,
+                                                                                full_url=indicators_next_link)
+                        indicators.extend(response)
+                    if groups_next_link:
+                        demisto.debug('Groups Next Link: ' + groups_next_link)
+                        response, _, groups_next_link = client.make_request(Method.GET,
+                                                                            url_suffix='',
+                                                                            get_next=True,
+                                                                            full_url=groups_next_link)
+                        groups.extend(response)
+                elif indicators_url or groups_url:
+                    demisto.debug('Indicators URL: ' + indicators_url)
+                    indicators_response, _, indicators_next_link = client.make_request(Method.GET, indicators_url,
+                                                                                       get_next=True)
+                    indicators.extend(indicators_response)
+                    indicators_url = ''
+
+                    demisto.debug('Groups URL: ' + groups_url)
+                    groups_response, _, groups_next_link = client.make_request(Method.GET, groups_url, get_next=True)
+                    groups.extend(groups_response)
+                    groups_url = ''
+
+                # Limit the number of results to not get an error from the API
+                if ((len(indicators) + len(groups)) > int(demisto.params().get('fetch_limit', '2000'))) or (
+                        not indicators_next_link and not groups_next_link):
+                    break
+        except Exception as e:
+            demisto.error(
+                f'Got an error in the fetch loop. Returning {len(groups)} groups + {len(indicators)} indicators. error: {str(e)}')
+
+        return indicators, groups
+
+
+    def build_url_with_query_params(params: dict, endpoint: str, last_run: dict):
+        """Setting the url for the request for each endpoint"""
+        if not should_send_request(params, endpoint):
+            return ''
+
+        last_run_date = last_run.get(endpoint, {}).get('from_date', '')
+        demisto.debug('last run get: ' + str(last_run_date))
+        from_date = ''
+        if last_run_date:
+            from_date = f'AND (dateAdded > "{last_run_date}") '
+
+        fields = set_fields_query(params, endpoint)
+        tql = params.get('indicator_query')
+        if not tql:
+            tql = set_tql_query(from_date, params, endpoint)
+
+        if tql:
+            tql = urllib.parse.quote(tql.encode('utf8'))  # type: ignore
+            tql = f'?tql={tql}'
+        else:
+            tql = ''
+        url = f'/api/v3/{endpoint}{tql}{fields}&resultStart=0&resultLimit=100&sorting=dateAdded%20ASC'
+        if '?' not in url:
+            # replacing only the first occurrence of & if ? is not present in url
+            url = url.replace('&', '?', 1)  # type: ignore
+
+        return url
+
+
+    def should_send_request(params: dict, endpoint: str):
+        """Checking if the user has indicated any indicator/group types to fetch from the API"""
+        if endpoint == 'indicators':
+            if not argToList(params.get('indicator_type')):
+                return False
+        else:
+            if not argToList(params.get('group_type')):
+                return False
+
+        return True
+
+
+    def set_tql_query(from_date: str, params: dict, endpoint: str) -> str:
+        """Creating tql query to add information to the API response"""
+        owners = f'AND ({create_or_query("ownerName", params.get("owners"))}) '  # type: ignore
+        tags = f'AND ({create_or_query("tag", params.get("tags"))}) '  # type: ignore
+        status = f'AND ({create_or_query("status", params.get("status"))}) '  # type: ignore
+
+        confidence = ''
+        active_only = ''
+        threat_score = ''
+        if endpoint == 'indicators':
+            active_only = 'AND indicatorActive EQ True ' if argToBoolean(params.get("indicator_active")) else ''
+            confidence = f'AND confidence GT {params.get("confidence")} ' if int(params.get("confidence")) != 0 else ''  # type: ignore # noqa
+            threat_score = f'AND threatAssessScore GT {params.get("threat_assess_score")} ' \
+                if int(params.get("threat_assess_score")) != 0 else ''  # type: ignore
+
+        type_name_query = create_types_query(params, endpoint)
+        type_names = f'AND {type_name_query}' if type_name_query else ''
+
+        tql = f'{owners if owners != "AND () " else ""}' \
+              f'{tags if tags != "AND () " else ""}' \
+              f'{from_date if from_date != "AND () " else ""}' \
+              f'{status if status != "AND () " else ""}' + active_only + confidence + threat_score + type_names
+
+        tql = tql.replace('AND ', '', 1)
+        return tql
+
+
+    def get_updated_last_run(indicators: list, groups: list, previous_run: dict) -> dict:
+        """Setting the Last Run structure"""
+
+        next_run = {}
+        if indicators:
+            next_run['indicators'] = {'from_date': indicators[-1].get('dateAdded')}
+        else:
+            next_run['indicators'] = previous_run.get('indicators', {})
+        if groups:
+            next_run['groups'] = {'from_date': groups[-1].get('dateAdded')}
+        else:
+            next_run['groups'] = previous_run.get('groups', {})
+
+        demisto.debug('The new last_run is: ' + str(next_run))
+        return next_run
+
+
+    def get_indicators_command(client: Client, args: dict) -> dict:  # type: ignore # pragma: no cover
+        """ Get indicator from ThreatConnect, Able to change limit and offset by command arguments.
+        Args:
+            client: ThreatConnect client.
+            args: The arguments from XSOAR.
+        Returns:
+            str: Human readable.
+            dict: Operation entry context.
+            dict: Operation raw response.
+        """
+        limit = args.get('limit', '50')
+        offset = args.get('offset', '0')
+
+        tql = args.get('tql_query', '')
+        if not tql:
+            owners = f'AND ({create_or_query("ownerName", args.get("owners"))}) ' if args.get("owners") else ''  # type: ignore # noqa
+            active_only = f'AND indicatorActive EQ {args.get("active_indicators")} ' \
+                if argToBoolean(args.get("active_indicators")) else ''
+            confidence = f'AND confidence GT {args.get("confidence")} ' if args.get("confidence") else ''
+            threat_score = f'AND threatAssessScore GT {args.get("threat_assess_score")} ' if args.get(
+                "threat_assess_score") else ''
+
+            types = argToList(args.get("indicator_type"))
+            query = ''
+            if types and 'All' not in types:
+                query = 'AND typeName IN ("' + '","'.join(types) + '")'
+
+            tql = active_only + confidence + threat_score + confidence + owners + query
+            tql = tql.replace('AND ', '', 1)
+
+        if tql:
+            tql = urllib.parse.quote(tql.encode('utf8'))  # type: ignore
+            tql = f'?tql={tql}'
+
+        url = f'/api/v3/indicators{tql}&resultStart={offset}&resultLimit={limit}&fields=threatAssess'
+        if '?' not in url:
+            # replacing only the first occurrence of & if ? is not present in url
+            url = url.replace('&', '?', 1)  # type: ignore
+
+        demisto.debug("URL: " + url)
+        response, status = client.make_request(Method.GET, url)
+        if status == 'Success':
+            t = [parse_indicator(indicator) for indicator in response]
+            readable_output: str = tableToMarkdown(name=f"{INTEGRATION_NAME} - Indicators",
+                                                   t=t, removeNull=True)  # type: ignore # noqa
+
+            return readable_output, {}, list(response)  # type: ignore
+
+
+    def get_owners_command(client: Client, args: dict) -> COMMAND_OUTPUT:  # pragma: no cover
+        """ Get availble indicators owners from ThreatConnect - Help configure ThreatConnect Feed integraiton.
+        Args:
+            client: ThreatConnect client.
+            args: The arguments from XSOAR.
+        Returns:
+            str: Human readable.
+            dict: Operation entry context.
+            dict: Operation raw response.
+        """
+        url = '/api/v3/security/owners?resultLimit=500'
+        response, status = client.make_request(Method.GET, url)
+
+        readable_output: str = tableToMarkdown(name=f"{INTEGRATION_NAME} - Owners",
+                                               t=list(response))
+
+        return readable_output, {}, list(response)
+
+
+    def main():  # pragma: no cover # noqa
+        insecure = not demisto.getParam('insecure')
+        proxy = not demisto.getParam('proxy')
+        credentials = demisto.params().get('api_credentials', {})
+        access_id = credentials.get('identifier') or demisto.params().get('api_access_id')
+        secret_key = credentials.get('password') or demisto.params().get('api_secret_key')
+        params = demisto.params()
+        args = demisto.args()
+        last_run = demisto.getLastRun()
+        client = Client(access_id, secret_key,
+                        demisto.getParam('tc_api_path'), verify=insecure, proxy=proxy)
+        command = demisto.command()
+        demisto.debug(f'Command being called is {command}')
+        commands = {
+            'test-module': module_test_command,
+            f'{INTEGRATION_COMMAND_NAME}-get-indicators': get_indicators_command,
+            f'{INTEGRATION_COMMAND_NAME}-get-owners': get_owners_command
+        }
+        try:
+            if demisto.command() == 'fetch-indicators':
+                indicators, groups = fetch_indicators_command(client, params, last_run)
+                next_run = get_updated_last_run(indicators, groups, last_run)
+                demisto.setLastRun(next_run)
+
+                indicators = [parse_indicator(indicator) for indicator in indicators]
+                demisto.debug(f'The number of new indicators: {len(indicators)}')
+                groups = [parse_indicator(group) for group in groups]
+                demisto.debug(f'The number of new groups: {len(groups)}')
+
+                merged_list = groups + indicators
+                for b in batch(merged_list, batch_size=2000):
+                    demisto.createIndicators(b)
+
+            else:
+                readable_output, outputs, raw_response = commands[command](client, args)
+                return_outputs(readable_output, outputs, raw_response)
+        except Exception as e:
+            return_error(f'Integration {INTEGRATION_NAME} Failed to execute {command} command. Error: {str(e)}')
+
+
+    if __name__ in ('__main__', '__builtin__', 'builtins'):
+        main()
+
+    register_module_line('ThreatConnect Feed', 'end', __line__())
+  subtype: python3
+  type: python
+system: true
