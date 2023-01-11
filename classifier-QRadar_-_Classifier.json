@@ -10,7 +10,7 @@
 	"incidentSamples": null,
 	"indicatorSamples": null,
 	"instanceIds": null,
-	"itemVersion": "2.4.3",
+	"itemVersion": "2.4.5",
 	"keyTypeMap": {
 		"SIM User Authentication": "Access",
 		"User Login Failure": "Access"
