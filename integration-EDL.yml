@@ -4,18 +4,23 @@ commonfields:
   version: -1
 configuration:
 - additionalinfo: Enabling this prevents automatic list refresh.
+  advanced: true
   display: Update list on demand only
   name: on_demand
   required: false
+  section: Connect
   type: 8
 - additionalinfo: The query to run to update the indicators list. To view expected
     results, run the following command from the Cortex XSOAR CLI `!findIndicators
     query=<your query>`
+  advanced: true
   display: Indicator Query
   name: indicators_query
   required: false
+  section: Collect
   type: 0
 - additionalinfo: The format of the exported list.
+  advanced: true
   defaultvalue: PAN-OS (text)
   display: Outbound Format
   name: format
@@ -26,28 +31,34 @@ configuration:
   - McAfee Web Gateway
   - Symantec ProxySG
   required: false
+  section: Collect
   type: 15
 - additionalinfo: For use with JSON and CSV formats - select specific XSOAR fields
     to export (comma separated list). If given the value 'all' - all XSOAR fields
     are exported (in large quantities this can cause a performance issue). If left
     empty - only value and type are exported.
+  advanced: true
   display: Exported Fields
   name: fields_filter
   required: false
+  section: Collect
   type: 0
 - additionalinfo: Maximum number of items in the list.
   defaultvalue: "2500"
   display: List Size
   name: edl_size
   required: true
+  section: Collect
   type: 0
 - additionalinfo: How often to refresh the list (e.g., less than 1 minute, 5 minutes,
     12 hours, 7 days, 3 months, 1 year). For performance reasons, we do not recommend
     setting this value at less than 1 minute.
+  advanced: true
   defaultvalue: 5 minutes
   display: Refresh Rate
   name: cache_refresh_rate
   required: false
+  section: Collect
   type: 0
 - additionalinfo: Runs the service on this port from within Cortex XSOAR. Requires
     a unique port for each long-running integration instance. Do not use the same
@@ -55,62 +66,81 @@ configuration:
   display: Listen Port
   name: longRunningPort
   required: true
+  section: Connect
   type: 0
 - additionalinfo: For use with HTTPS - the certificate that the service should use.
+  advanced: true
   display: Certificate (Required for HTTPS)
   name: certificate
   required: false
+  section: Connect
   type: 12
 - additionalinfo: For use with HTTPS - the private key that the service should use.
+  advanced: true
   display: Private Key (Required for HTTPS)
   name: key
   required: false
+  section: Connect
   type: 14
 - additionalinfo: Uses basic authentication for accessing the list. If empty, no authentication
     is enforced.
   display: Username
   name: credentials
   required: false
+  section: Connect
   type: 9
 - additionalinfo: If selected, the comment "# Empty list" is added to an empty list.
+  advanced: true
   defaultvalue: "true"
   display: Add comment to empty list
   name: add_comment_if_empty
   required: false
+  section: Collect
   type: 8
 - additionalinfo: If selected, ports in URLs are removed. For example, 'www.example.com:9999/path'
     becomes 'www.example.com/path'.
+  advanced: true
   defaultvalue: "true"
   display: Strip ports from URLs
   name: url_port_stripping
   required: false
+  section: Collect
   type: 8
 - additionalinfo: If selected, strips the protocol from URLs (http/https).
+  advanced: true
   defaultvalue: "true"
   display: Strip protocols from URLs
   name: url_protocol_stripping
   required: false
+  section: Collect
   type: 8
 - additionalinfo: If selected, URLs are truncated to no more than 254 characters.
+  advanced: true
   defaultvalue: "false"
   display: Truncate URL length
   name: url_truncate
   required: false
+  section: Collect
   type: 8
 - additionalinfo: For use with PAN-OS (text) format - String to add to beginning of
     published list. Supports newline characters (\n).
+  advanced: true
   display: Prepend string to list
   name: prepend_string
   required: false
+  section: Collect
   type: 12
 - additionalinfo: For use with PAN-OS (text) format - String to add to end of published
     list. Supports newline characters (\n).
+  advanced: true
   display: Append string to list
   name: append_string
   required: false
+  section: Collect
   type: 12
 - additionalinfo: For use with PAN-OS (text) format - collapse method for IPs (none,
     range, CIDR).
+  advanced: true
   defaultvalue: Don't Collapse
   display: IP Collapsing
   name: collapse_ips
@@ -119,29 +149,37 @@ configuration:
   - To CIDRS
   - To Ranges
   required: false
+  section: Collect
   type: 15
 - additionalinfo: CIDRs with a lower network prefix bits number are not included.
     For example - if the number is 8, then 0.0.0.0/2 is excluded from the list.
+  advanced: true
   defaultvalue: "8"
   display: Maximum CIDR network prefix bits size
   name: maximum_cidr_size
   required: false
+  section: Collect
   type: 0
 - additionalinfo: Option to remove top level domainGlobs from the list. For example
     - *.com.
+  advanced: true
   defaultvalue: "false"
   display: Exclude top level domainGlobs
   name: no_wildcard_tld
   required: false
+  section: Collect
   type: 8
 - additionalinfo: For use with PAN-OS (text) format - if selected, any URL entry that
     is not compliant with PAN-OS URL format is dropped instead of rewritten.
+  advanced: true
   display: 'PAN-OS: drop invalid URL entries'
   name: drop_invalids
   required: false
+  section: Collect
   type: 8
 - additionalinfo: For use with McAfee Web Gateway format - set the indicator list
     type.
+  advanced: true
   defaultvalue: string
   display: 'McAfee Gateway: Indicator List Type'
   name: mwg_type
@@ -155,66 +193,84 @@ configuration:
   - number
   - regex
   required: false
+  section: Collect
   type: 15
 - additionalinfo: For use with Symantec ProxySG format - set the default category
     for the output.
+  advanced: true
   defaultvalue: bc_category
   display: 'Symantec ProxySG: Default Category'
   name: category_default
   required: false
+  section: Collect
   type: 0
 - additionalinfo: For use with Symantec ProxySG format - set the categories that should
     be listed in the output (comma separated list). If not set, lists all existing
     categories.
+  advanced: true
   display: 'Symantec ProxySG: Listed Categories'
   name: category_attribute
   required: false
+  section: Collect
   type: 0
 - additionalinfo: If selected, CSV format appears in a textual webpage instead of
     initiating a file download.
+  advanced: true
   display: Show CSV format as Text
   name: csv_text
   required: false
+  section: Collect
   type: 8
 - additionalinfo: Internal page size used when querying Cortex XSOAR for the indicators.
+  advanced: true
   defaultvalue: "2000"
   display: XSOAR Indicator Page Size
   name: page_size
   required: false
+  section: Collect
   type: 0
 - defaultvalue: "true"
   display: Long Running Instance
   hidden: true
   name: longRunning
   required: false
+  section: Connect
   type: 8
 - additionalinfo: 'NGINX global directives to be passed on the command line using
     the -g option. Each directive should end with `;`. For example: `worker_processes
     4; timer_resolution 100ms;`. Advanced configuration to be used only if instructed
     by Cortex XSOAR Support.'
+  advanced: true
   display: NGINX Global Directives
   name: nginx_global_directives
   required: false
+  section: Connect
   type: 0
 - additionalinfo: NGINX server configuration to be used instead of the default NGINX_SERVER_CONF
     used in the integration code. Advanced configuration to be used only if instructed
     by Cortex XSOAR Support.
+  advanced: true
   display: NGINX Server Conf
   name: nginx_server_conf
   required: false
+  section: Connect
   type: 12
 - additionalinfo: NGNIX read timeout in seconds.
+  advanced: true
   display: NGINX Read Timeout
   name: timeout
   required: false
+  section: Connect
   type: 0
 - additionalinfo: 'When enabled, the integration queries the server using full queries
     (overwrites the "Exported Fields" parameter). Advanced configuration to be used
     only if instructed by Cortex XSOAR Support, or you have encountered log errors
     in the form of: msgpack: invalid code.'
+  advanced: true
   display: 'Advanced: Use Legacy Queries'
   name: use_legacy_query
   required: false
+  section: Collect
   type: 8
 - display: Incident type
   name: incidentType
@@ -224,7 +280,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 3.1.15
+    itemVersion: 3.1.16
     packID: EDL
     packName: Generic Export Indicators Service
     packPropagationLabels:
@@ -475,7 +531,7 @@ script:
       - "True"
     description: Updates values stored in the List (only available On-Demand).
     name: export-indicators-list-update
-  dockerimage: demisto/flask-nginx:1.0.0.40912
+  dockerimage: demisto/flask-nginx:1.0.0.43509
   longRunning: true
   longRunningPort: true
   runonce: false
