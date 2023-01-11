@@ -78,7 +78,7 @@
 		"list": null,
 		"playbook": [
 			{
-				"description": "Detonates a File using CrowdStrike Falcon Intelligence Sandbox sandbox.\nAccepted file formats:\nPortable executables: .exe, .scr, .pif, .dll, .com, .cpl, etc.\nOffice documents: .doc, .docx, .ppt, .pps, .pptx, .ppsx, .xls, .xlsx, .rtf, .pub\nPDF\nAPK\nExecutable JAR\nWindows script component: .sct\nWindows shortcut: .lnk\nWindows help: .chm\nHTML application: .hta\nWindows script file: .wsf\nJavascript: .js\nVisual Basic: .vbs, .vbe\nShockwave Flash: .swf\nPerl: .pl\nPowershell: .ps1, .psd1, .psm1\nScalable vector graphics: .svg\nPython: .py\nLinux ELF executables\nEmail files: MIME RFC 822 .eml, Outlook .msg.",
+				"description": "Detonates a File using CrowdStrike Falcon Intelligence Sandbox.\nAccepted file formats:\nPortable executables: .exe, .scr, .pif, .dll, .com, .cpl, etc.\nOffice documents: .doc, .docx, .ppt, .pps, .pptx, .ppsx, .xls, .xlsx, .rtf, .pub\nPDF\nAPK\nExecutable JAR\nWindows script component: .sct\nWindows shortcut: .lnk\nWindows help: .chm\nHTML application: .hta\nWindows script file: .wsf\nJavascript: .js\nVisual Basic: .vbs, .vbe\nShockwave Flash: .swf\nPerl: .pl\nPowershell: .ps1, .psd1, .psm1\nScalable vector graphics: .svg\nPython: .py\nLinux ELF executables\nEmail files: MIME RFC 822 .eml, Outlook .msg.",
 				"name": "Detonate File - CrowdStrike Falcon Intelligence Sandbox"
 			},
 			{
@@ -86,7 +86,7 @@
 				"name": "FalconX Detonate and Analyze File"
 			},
 			{
-				"description": "Detonate one or more files using the CrowdStrike Falcon Sandbox integration. This playbook returns relevant reports to the War Room and file reputations to the context data.",
+				"description": "Detonate one or more files using the CrowdStrike Falcon Intelligence Sandbox integration. This playbook returns relevant reports to the War Room and file reputations to the context data.",
 				"name": "Detonate URL - CrowdStrike Falcon Intelligence Sandbox"
 			}
 		],
@@ -96,35 +96,35 @@
 		"wizard": null
 	},
 	"created": "2020-08-19T08:01:58Z",
-	"currentVersion": "1.2.17",
+	"currentVersion": "1.2.18",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.51",
+			"minVersion": "1.31.54",
 			"name": "Base"
 		},
 		"CommonPlaybooks": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "2.3.23",
+			"minVersion": "2.3.24",
 			"name": "Common Playbooks"
 		},
 		"CommonScripts": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.10.39",
+			"minVersion": "1.10.44",
 			"name": "Common Scripts"
 		}
 	},
 	"deprecated": false,
 	"description": "Fully automated malware analysis",
 	"disabledMonthly": false,
-	"downloads": 4215,
+	"downloads": 4216,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -141,7 +141,7 @@
 			"name": "CrowdStrike Falcon Intelligence Sandbox"
 		}
 	],
-	"itemVersion": "1.2.17",
+	"itemVersion": "1.2.18",
 	"keywords": [],
 	"legacy": true,
 	"name": "CrowdStrike Falcon Intelligence Sandbox",
@@ -156,7 +156,7 @@
 	"rawKeywords": null,
 	"rawTags": null,
 	"rawUseCases": null,
-	"readme": "CrowdStrike Falcon Intelligence Sandbox is an automated threat intelligence service built on the Falcon platform.\n\nIt provides rich content and actionable information to malware analysts and security teams to aid in their malware evaluation. It gives context around the behavior of malicious files and outlines the risk assessment providing related samples. Having this research at your fingertips can aid in the larger investigation.\n\nUnderstanding malware behavior can help you identify and address potential areas of weakness to stay ahead of potential attacks. \n\n## What does this pack do?\n- Automatically analyze malware found on endpoints.\n- Determine if there are related samples from other malware search engines.\n- Enrich results with customized threat intelligence.\n- Provide security teams with custom indicators of compromise (IOCs).\n- Show not only what happened on the endpoint, but also details behind the attack.\n\n\n## Playbooks\nThis pack includes the following built-in playbooks:\n- **Detonate File - CrowdStrike Falcon Intelligence Sandbox**: Detonate a file using CrowdStrike Falcon Intelligence Sandbox.\n- **Detonate URL - CrowdStrike Falcon Intelligence Sandbox**: Detonate one or more files using the CrowdStrike Falcon Sandbox integration. This playbook returns relevant reports to the War Room and file reputations to the context data.\n",
+	"readme": "CrowdStrike Falcon Intelligence Sandbox is an automated threat intelligence service built on the Falcon platform.\n\nIt provides rich content and actionable information to malware analysts and security teams to aid in their malware evaluation. It gives context around the behavior of malicious files and outlines the risk assessment providing related samples. Having this research at your fingertips can aid in the larger investigation.\n\nUnderstanding malware behavior can help you identify and address potential areas of weakness to stay ahead of potential attacks. \n\n## What does this pack do?\n- Automatically analyze malware found on endpoints.\n- Determine if there are related samples from other malware search engines.\n- Enrich results with customized threat intelligence.\n- Provide security teams with custom indicators of compromise (IOCs).\n- Show not only what happened on the endpoint, but also details behind the attack.\n\n\n## Playbooks\nThis pack includes the following built-in playbooks:\n- **Detonate File - CrowdStrike Falcon Intelligence Sandbox**: Detonate a file using CrowdStrike Falcon Intelligence Sandbox.\n- **Detonate URL - CrowdStrike Falcon Intelligence Sandbox**: Detonate one or more files using the CrowdStrike Falcon Intelligence Sandbox integration. This playbook returns relevant reports to the War Room and file reputations to the context data.\n",
 	"searchRank": 10,
 	"serverMaxVersion": "",
 	"serverMinVersion": "5.0.0",
@@ -167,9 +167,9 @@
 	},
 	"tags": [],
 	"toServerVersion": "",
-	"updated": "2023-01-09T15:15:53Z",
+	"updated": "2023-01-11T11:03:14Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4358537",
+	"versionInfo": "4372591",
 	"videos": []
 }
