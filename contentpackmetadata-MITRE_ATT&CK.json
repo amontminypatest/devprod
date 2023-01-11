@@ -56,7 +56,7 @@
 					}
 				],
 				"description": "Use the MITRE ATT\u0026CK® feed to fetch MITRE’s Adversarial Tactics, Techniques, and Common Knowledge (ATT\u0026CK®) content. MITRE ATT\u0026CK is a globally-accessible knowledge base of adversary tactics and techniques based on real-world observations. The ATT\u0026CK knowledge base is used as a foundation for the development of specific threat models and methodologies in the private sector, in government, and in the cybersecurity product and service community.",
-				"id": "",
+				"id": "MITRE ATT\u0026CK v2",
 				"name": "MITRE ATT\u0026CK"
 			}
 		],
@@ -74,35 +74,28 @@
 		"wizard": null
 	},
 	"created": "2021-05-27T10:56:30Z",
-	"currentVersion": "1.1.5",
+	"currentVersion": "1.1.6",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.43",
+			"minVersion": "1.31.54",
 			"name": "Base"
 		},
 		"CommonScripts": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.10.22",
+			"minVersion": "1.10.44",
 			"name": "Common Scripts"
-		},
-		"CommonTypes": {
-			"author": "Cortex XSOAR",
-			"certification": "certified",
-			"mandatory": true,
-			"minVersion": "3.3.37",
-			"name": "Common Types"
 		}
 	},
 	"deprecated": false,
 	"description": "Fetches indicators from MITRE ATT\u0026CK.",
 	"disabledMonthly": false,
-	"downloads": 10813,
+	"downloads": 11942,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -119,7 +112,7 @@
 			"name": "MITRE ATT\u0026CK"
 		}
 	],
-	"itemVersion": "1.1.5",
+	"itemVersion": "1.1.6",
 	"keywords": [
 		"MITRE",
 		"Feed",
@@ -148,13 +141,13 @@
 		"url": "https://www.paloaltonetworks.com/cortex"
 	},
 	"tags": [
-		"Threat Intelligence Management",
-		"TIM"
+		"TIM",
+		"Threat Intelligence Management"
 	],
 	"toServerVersion": "",
-	"updated": "2022-12-11T23:44:18Z",
+	"updated": "2023-01-11T11:10:23Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4197844",
+	"versionInfo": "4372591",
 	"videos": []
 }
