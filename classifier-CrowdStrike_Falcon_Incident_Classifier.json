@@ -10,7 +10,7 @@
 	"incidentSamples": null,
 	"indicatorSamples": null,
 	"instanceIds": null,
-	"itemVersion": "1.10.1",
+	"itemVersion": "1.10.2",
 	"keyTypeMap": {
 		"detection": "CrowdStrike Falcon Detection",
 		"incident": "CrowdStrike Falcon Incident"
