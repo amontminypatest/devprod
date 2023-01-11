@@ -433,49 +433,49 @@
 		"wizard": null
 	},
 	"created": "2020-09-09T12:04:39Z",
-	"currentVersion": "1.15.4",
+	"currentVersion": "1.15.5",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.51",
+			"minVersion": "1.31.54",
 			"name": "Base"
 		},
 		"CommonPlaybooks": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "2.3.23",
+			"minVersion": "2.3.24",
 			"name": "Common Playbooks"
 		},
 		"CommonScripts": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.10.39",
+			"minVersion": "1.10.44",
 			"name": "Common Scripts"
 		},
 		"CommonTypes": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "3.3.41",
+			"minVersion": "3.3.42",
 			"name": "Common Types"
 		},
 		"FeedMitreAttackv2": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.1.5",
+			"minVersion": "1.1.6",
 			"name": "MITRE ATT\u0026CK"
 		},
 		"FiltersAndTransformers": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.1.9",
+			"minVersion": "1.2.1",
 			"name": "Filters And Transformers"
 		},
 		"Jira": {
@@ -517,7 +517,7 @@
 	"deprecated": false,
 	"description": "Microsoft Defender for Endpoint (previously Microsoft Defender Advanced Threat Protection (ATP)) is a unified platform for preventative protection, post-breach detection, automated investigation, and response.",
 	"disabledMonthly": false,
-	"downloads": 8633,
+	"downloads": 8639,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -566,7 +566,7 @@
 			"name": "Windows Defender Advanced Threat Protection (Deprecated)"
 		}
 	],
-	"itemVersion": "1.15.4",
+	"itemVersion": "1.15.5",
 	"keywords": [],
 	"legacy": true,
 	"name": "Microsoft Defender for Endpoint",
@@ -592,9 +592,9 @@
 	},
 	"tags": [],
 	"toServerVersion": "",
-	"updated": "2023-01-09T14:34:58Z",
+	"updated": "2023-01-11T10:25:40Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4358537",
+	"versionInfo": "4372591",
 	"videos": []
 }
