@@ -7,45 +7,57 @@ configuration:
   display: Exchange URL or Server IP address
   name: ewsServer
   required: true
+  section: Connect
   type: 0
 - display: 'Authentication: Email address (for Office 365) or DOMAIN\USERNAME (e.g.
     DEMISTO.INT\admin)'
   name: credentials
   required: true
+  section: Connect
   type: 9
 - defaultvalue: "2013"
   display: Server Version (2007, 2010, 2010_SP2, 2013, or 2016)
   name: defaultServerVersion
   required: true
+  section: Connect
   type: 0
 - defaultvalue: Basic
   display: Authentication Type (NTLM, Basic, or Digest). For Office 365 use Basic.
   name: authType
   required: true
+  section: Connect
   type: 0
-- display: Trust any certificate (not secure)
+- advanced: true
+  display: Trust any certificate (not secure)
   name: insecure
   required: false
+  section: Connect
   type: 8
-- defaultvalue: "false"
+- advanced: true
+  defaultvalue: "false"
   display: Use system proxy settings
   name: proxy
   required: false
+  section: Connect
   type: 8
-- defaultvalue: "false"
+- advanced: true
+  defaultvalue: "false"
   display: Has impersonation rights
   name: impersonation
   required: false
+  section: Connect
   type: 8
-- display: Sender Mailbox
+- advanced: true
+  display: Sender Mailbox
   name: mailbox
   required: false
+  section: Connect
   type: 0
 contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.1.15
+    itemVersion: 1.1.16
     packID: EWSMailSender
     packName: EWS Mail Sender
     packPropagationLabels:
@@ -134,7 +146,7 @@ script:
       name: attachCIDs
     description: Replies to an email using EWS.
     name: reply-mail
-  dockerimage: demisto/py3ews:1.0.0.36628
+  dockerimage: demisto/py3ews:1.0.0.43044
   runonce: false
   script: |
     register_module_line('EWS Mail Sender', 'start', __line__())
