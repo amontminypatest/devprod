@@ -28,7 +28,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 1.0.7
+    itemVersion: 1.0.8
     packID: HatchingTriage
     packName: Hatching Triage
     packPropagationLabels:
@@ -124,10 +124,25 @@ script:
     - description: Select what profile to run the sample with. Requires the user to
         be registered with a company
       name: profiles
-    - description: Data to submit for analysis. For URLs give the URL. For files,
-        give the entry-id of the file
+    - description: Data to submit for analysis. For URLs and fetch, give the URL.
+        For files, give the entry-id of the file
       name: data
       required: true
+    - description: A password that may be used to decrypt the provided file, usually
+        an archive
+      name: password
+    - description: The timeout in seconds of the behavioral analysis
+      name: timeout
+    - auto: PREDEFINED
+      description: The type of network routing to use
+      name: network
+      predefined:
+      - internet
+      - drop
+      - tor
+      - sim200
+      - sim404
+      - nxdomain
     description: Submits a file or url for analysis
     name: triage-submit-sample
     outputs:
@@ -188,8 +203,9 @@ script:
       description: Target of the task, e.g. filename for file submissions
       type: String
   - arguments:
-    - description: Sample's unique identifier, can be found using the query samples
-        command
+    - description: One or more comma-separated unique sample identifiers. These can
+        be found using the query samples command.
+      isArray: true
       name: sample_id
       required: true
     description: Gets a summary report of the sample id provided
@@ -540,6 +556,9 @@ script:
       - drop
       - internet
       - proxy
+      - tor
+      - sim200
+      - sim404
     description: Create a new profile
     name: triage-create-profile
     outputs:
@@ -624,7 +643,7 @@ script:
       is overwritten, so it is important that the submitted profile has all fields,
       with the exception of the ID
     name: triage-delete-profile
-  dockerimage: demisto/python3:3.10.8.36650
+  dockerimage: demisto/python3:3.10.9.42476
   runonce: false
   script: |
     register_module_line('Hatching Triage', 'start', __line__())
@@ -692,7 +711,21 @@ script:
 
 
     def submit_sample(client: Client, **args) -> CommandResults:
-        data = {"kind": args.get("kind"), "interactive": False}
+        data = {
+            "kind": args.get("kind"),
+            "interactive": argToBoolean(args.get("interactive", False))
+        }
+
+        if args.get("password"):
+            data["password"] = args["password"]
+
+        if args.get("timeout"):
+            data.setdefault("defaults", {})["timeout"] = arg_to_number(
+                args["timeout"]
+            )
+
+        if args.get("network"):
+            data.setdefault("defaults", {})["network"] = args["network"]
 
         if args.get("profiles", []):
             profiles_data = []
@@ -716,8 +749,8 @@ script:
                 )
         else:
             raise IncorrectUsageError(
-                f'Type of sample needs to be selected, either "file" or "url", '
-                f'the selected type was: {data["kind"]}'
+                f'Type of submission needs to be selected, either "file", "url", '
+                f'or fetch. The selected type was: {data["kind"]}'
             )
 
         return CommandResults(
@@ -735,12 +768,21 @@ script:
 
 
     def get_sample_summary(client: Client, **args) -> CommandResults:
-        sample_id = args.get("sample_id")
-        r = client._http_request("GET", f"samples/{sample_id}/summary")
+        outputs = []
+        for sample_id in argToList(args.get("sample_id", "")):
+            try:
+                res = client._http_request(
+                    "GET", f"samples/{sample_id}/summary", ok_codes=(200,)
+                )
+            except DemistoException as e:
+                e.message += f" - Sample ID: {sample_id}"
+                raise
+
+            outputs.append(res)
 
         return CommandResults(
             outputs_prefix="Triage.sample-summaries", outputs_key_field="sample",
-            outputs=r
+            outputs=outputs
         )
 
 
@@ -773,7 +815,7 @@ script:
 
     def get_static_report(client: Client, **args) -> CommandResults:
         """
-        Get's the static analysis report from a given sample
+        Gets the static analysis report for a given sample id
         """
         sample_id = args.get("sample_id")
 
