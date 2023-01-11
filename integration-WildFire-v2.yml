@@ -7,16 +7,19 @@ configuration:
   display: Server base URL (e.g., https://192.168.0.1/publicapi)
   name: server
   required: true
+  section: Connect
   type: 0
 - display: ""
   displaypassword: API Key
   hiddenusername: true
   name: credentials
   required: false
+  section: Connect
   type: 9
 - additionalinfo: Source of WildFire API Key - other = NGFW, WildFire API - pcc =
     Prisma Cloud Compute - prismaaccessapi = Prisma Access - xsoartim = XSOAR TIM
     API Key
+  advanced: true
   defaultvalue: other
   display: API Key Type
   name: credentials_source
@@ -26,6 +29,7 @@ configuration:
   - xsoartim
   - other
   required: false
+  section: Connect
   type: 15
 - additionalinfo: Reliability of the source providing the intelligence data.
   defaultvalue: B - Usually reliable
@@ -40,35 +44,46 @@ configuration:
   - E - Unreliable
   - F - Reliability cannot be judged
   required: true
+  section: Collect
   type: 15
-- display: Trust any certificate (not secure)
+- advanced: true
+  display: Trust any certificate (not secure)
   name: insecure
   required: false
+  section: Connect
   type: 8
-- display: Use system proxy settings
+- advanced: true
+  display: Use system proxy settings
   name: proxy
   required: false
+  section: Connect
   type: 8
-- display: Return warning entry for unsupported file types
+- advanced: true
+  display: Return warning entry for unsupported file types
   name: suppress_file_type_error
   required: false
+  section: Collect
   type: 8
-- display: API Key (Deprecated)
+- advanced: true
+  display: API Key (Deprecated)
   hidden: true
   name: token
   required: false
+  section: Connect
   type: 4
 - additionalinfo: Create relationships between indicators as part of enrichment.
+  advanced: true
   defaultvalue: "true"
   display: Create relationships
   name: create_relationships
   required: false
+  section: Collect
   type: 8
 contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.1.9
+    itemVersion: 2.1.10
     packID: Palo_Alto_Networks_WildFire
     packName: WildFire by Palo Alto Networks
     packPropagationLabels:
@@ -1290,7 +1305,7 @@ script:
     - contextPath: InfoFile.Type
       description: The web artifacts file type.
       type: string
-  dockerimage: demisto/python3:3.10.8.37753
+  dockerimage: demisto/python3:3.10.9.42476
   runonce: false
   script: |
     register_module_line('WildFire-v2', 'start', __line__())
