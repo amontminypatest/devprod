@@ -10,7 +10,7 @@
 	"incidentSamples": null,
 	"indicatorSamples": null,
 	"instanceIds": null,
-	"itemVersion": "4.9.16",
+	"itemVersion": "4.9.19",
 	"keyTypeMap": {
 		"PortScan": "Cortex XDR Port Scan",
 		"XDR Incident": "Cortex XDR Incident"
