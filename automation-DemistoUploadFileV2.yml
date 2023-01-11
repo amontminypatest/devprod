@@ -21,8 +21,7 @@ args:
   predefined:
   - war room entry
   - incident attachment
-comment: Copies a file from this incident to the specified incident. The file is recorded
-  as an entry in the specified incident’s War Room.
+comment: Deprecated. Use UploadFileV2 instead.
 commonfields:
   id: DemistoUploadFileV2
   version: -1
@@ -30,7 +29,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.3.11
+    itemVersion: 1.3.12
     packID: DemistoRESTAPI
     packName: Cortex REST API
     packPropagationLabels:
@@ -41,6 +40,7 @@ contentitemexportablefields:
 dependson:
   must:
   - demisto-api-multipart
+deprecated: true
 dockerimage: demisto/python3:3.10.6.33415
 enabled: true
 engineinfo: {}
