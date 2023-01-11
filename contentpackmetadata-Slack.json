@@ -212,9 +212,9 @@
 						"name": "slack-filter-channels"
 					}
 				],
-				"description": "Send messages and notifications to your Slack team.",
+				"description": "Deprecated. Use SlackV3 instead.",
 				"id": "SlackV2",
-				"name": "Slack v2"
+				"name": "Slack v2 (Deprecated)"
 			}
 		],
 		"layoutscontainer": null,
@@ -231,7 +231,7 @@
 		"wizard": null
 	},
 	"created": "2020-08-13T11:42:23Z",
-	"currentVersion": "3.1.15",
+	"currentVersion": "3.1.18",
 	"definitionId": "",
 	"dependencies": {
 		"Active_Directory_Query": {
@@ -245,7 +245,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.53",
+			"minVersion": "1.31.54",
 			"name": "Base"
 		},
 		"CommonTypes": {
@@ -273,7 +273,7 @@
 	"deprecated": false,
 	"description": "Interact with Slack API - collect logs, send messages and notifications to your Slack team.",
 	"disabledMonthly": false,
-	"downloads": 10300,
+	"downloads": 10303,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -291,7 +291,7 @@
 		},
 		{
 			"imagePath": "content/packs/Slack/SlackV2_image.png",
-			"name": "Slack v2"
+			"name": "Slack v2 (Deprecated)"
 		},
 		{
 			"imagePath": "content/packs/Slack/SlackV3_image.png",
@@ -302,7 +302,7 @@
 			"name": "Active Directory Query v2"
 		}
 	],
-	"itemVersion": "3.1.15",
+	"itemVersion": "3.1.18",
 	"keywords": [
 		"Slack"
 	],
@@ -330,10 +330,10 @@
 	},
 	"tags": [],
 	"toServerVersion": "",
-	"updated": "2023-01-09T16:41:39Z",
+	"updated": "2023-01-11T12:26:06Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4358537",
+	"versionInfo": "4372591",
 	"videos": [
 		"https://www.youtube.com/watch?v=rt3lvsI_0-4"
 	]
