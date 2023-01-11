@@ -39,10 +39,42 @@
 				]
 			},
 			{
+				"description": "Whether value is within a date range.",
+				"name": "BetweenDates",
+				"tags": [
+					"transformer",
+					"date"
+				]
+			},
+			{
+				"description": "Return all items from the list where their given 'field' attribute is equal to 'equalTo' argument\n\nE.g. !WhereFieldEquals with the following arguments:\n - value=[{ \"name\": \"192.1,0.82\", \"type\": \"IP\" }, { \"name\": \"myFile.txt\", \"type\": \"File\" }, { \"name\": \"172.0.0.2\", \"type\": \"IP\" }]\n - field='type'\n - equalTo='IP'\n - getField='name' \n\nWill return all items names where field 'type' equals 'IP' - ['192.1,0.82', '172.0.0.2']",
+				"name": "WhereFieldEquals",
+				"tags": [
+					"transformer",
+					"general",
+					"entirelist"
+				]
+			},
+			{
 				"description": "Check if number of availble addresses in IPv4 or IPv6 CIDR is greater than given number.",
 				"name": "GreaterCidrNumAddresses",
 				"tags": [
 					"filter"
+				]
+			},
+			{
+				"description": "Convert all chosen values but exceptions.",
+				"name": "ConvertAllExcept",
+				"tags": [
+					"transformer"
+				]
+			},
+			{
+				"description": "Converts a single string to an array of that string.",
+				"name": "ConvertToSingleElementArray",
+				"tags": [
+					"transformer",
+					"entirelist"
 				]
 			},
 			{
@@ -55,6 +87,21 @@
 				]
 			},
 			{
+				"description": "This is a thin wrapper around the `dateutil.parser.parse` function. It will parse a string containing a date/time stamp and return it in ISO 8601 format.",
+				"name": "DateStringToISOFormat",
+				"tags": [
+					"transformer",
+					"date"
+				]
+			},
+			{
+				"description": "Encodes a URL string by replacing special characters in the string using the %xx escape. For example: https://example.com converts to https:%2F%2Fexample.com.",
+				"name": "URLEncode",
+				"tags": [
+					"transformer"
+				]
+			},
+			{
 				"description": "Checks whether a substring or an array of substrings is within a string array(each item will be checked). Supports single strings as well. For example, for substrings ['a','b','c'] in a string 'a' the script will return true.\n",
 				"name": "StringContainsArray",
 				"tags": [
@@ -63,10 +110,25 @@
 				]
 			},
 			{
+				"description": "Checks whether the given value is within the specified time (hour) range.",
+				"name": "BetweenHours",
+				"tags": [
+					"transformer",
+					"date"
+				]
+			},
+			{
 				"description": "Check if number of availble addresses in IPv4 CIDR is lower than given number.",
 				"name": "LowerCidrNumAddresses",
 				"tags": [
 					"filter"
+				]
+			},
+			{
+				"description": "Converts\nhttps:%2F%2Fexample.com\ninto\nhttps://example.com",
+				"name": "URLDecode",
+				"tags": [
+					"transformer"
 				]
 			},
 			{
@@ -94,6 +156,14 @@
 				]
 			},
 			{
+				"description": "Cut a string by delimiter and return specific fields.\nExample\n=================\ninput: \"A-B-C-D-E\"\ndelimiter: \"-\"\nfields: \"1,5\"\n\nreturn: \"A-E\"\n",
+				"name": "Cut",
+				"tags": [
+					"transformer",
+					"string"
+				]
+			},
+			{
 				"description": "Append item(s) to the end of the list if they are not empty.",
 				"name": "AppendIfNotEmpty",
 				"tags": [
@@ -110,11 +180,27 @@
 				]
 			},
 			{
+				"description": "Converts UNIX Epoch time stamp to a simplified extended ISO format string. Use it to convert time stamp to Demisto date field\n\ne.g. 1525006939 will return '2018-04-29T13:02:19.000Z'",
+				"name": "TimeStampToDate",
+				"tags": [
+					"transformer",
+					"date"
+				]
+			},
+			{
 				"description": "Format patterns matched with regex. If the regex does not match any pattern, the original value is returned.\n\nExample 1:\n value: user=john\n regex: user=(.*)\n output_format: name=\\1\n -\u003e output value: name=john\n\nExample 2:\n value: xxx=yyy\n regex: user=(.*)\n output_format: name=\\1\n -\u003e output value: xxx=yyy",
 				"name": "RegexReplace",
 				"tags": [
 					"transformer",
 					"string"
+				]
+			},
+			{
+				"description": "This automation allows the usage of DT scripts within playbooks transformers",
+				"name": "DT",
+				"tags": [
+					"transformer",
+					"general"
 				]
 			},
 			{
@@ -159,6 +245,15 @@
 				]
 			},
 			{
+				"description": "Decodes an input in Base64 format.",
+				"name": "Base64Decode",
+				"tags": [
+					"Utility",
+					"transformer",
+					"string"
+				]
+			},
+			{
 				"description": "Extracts email addresses from the given value.",
 				"name": "ExtractEmailTransformer",
 				"tags": [
@@ -170,6 +265,13 @@
 				"name": "IsNotInCidrRanges",
 				"tags": [
 					"filter"
+				]
+			},
+			{
+				"description": "Convert object keys to match table keys.\nUse when mapping object/collection to table (grid) field.\n(Array of objects/collections is also supported).\nExample:\nInput: { \"Engine\": \"val1\", \"Max Results\": 13892378, \"Key_With^Special   (characters)\": true }\nOutput: { \"engine\": \"val1\", \"maxresults\": 13892378, \"keywithspecialcharacters\": true }",
+				"name": "ConvertKeysToTableFieldFormat",
+				"tags": [
+					"transformer"
 				]
 			},
 			{
@@ -193,6 +295,15 @@
 				"tags": [
 					"transformer"
 				]
+			},
+			{
+				"description": "Sums a List\ne.g. [\"25\", \"10\", \"25\"] =\u003e  \"60\"\n\nThis is an example for number transformer.\n ",
+				"name": "SumList",
+				"tags": [
+					"transformer",
+					"number",
+					"entirelist"
+				]
 			}
 		],
 		"classifier": null,
@@ -212,21 +323,21 @@
 		"wizard": null
 	},
 	"created": "2022-01-04T22:18:23Z",
-	"currentVersion": "1.1.9",
+	"currentVersion": "1.2.2",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.51",
+			"minVersion": "1.31.54",
 			"name": "Base"
 		}
 	},
 	"deprecated": false,
 	"description": "Frequently used filters and transformers pack.",
 	"disabledMonthly": false,
-	"downloads": 9525,
+	"downloads": 9988,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -238,7 +349,7 @@
 	"id": "FiltersAndTransformers",
 	"installMessage": "",
 	"integrations": [],
-	"itemVersion": "1.1.9",
+	"itemVersion": "1.2.2",
 	"keywords": [],
 	"legacy": true,
 	"name": "Filters And Transformers",
@@ -262,15 +373,14 @@
 		"url": "https://www.paloaltonetworks.com/cortex"
 	},
 	"tags": [
-		"Trending",
+		"Core",
 		"Transformer",
-		"Filter",
-		"Core"
+		"Filter"
 	],
 	"toServerVersion": "",
-	"updated": "2023-01-04T22:54:23Z",
+	"updated": "2023-01-11T10:57:46Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4331864",
+	"versionInfo": "4372591",
 	"videos": []
 }
