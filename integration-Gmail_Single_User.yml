@@ -13,15 +13,22 @@ configuration:
   name: send_as
   required: false
   type: 0
+- display: Client ID
+  displaypassword: Client Secret
+  name: credentials
+  required: false
+  type: 9
 - additionalinfo: Required. Not relevant for deprecated GSuite Apps setup - see Help
     section
   display: Client ID
+  hidden: true
   name: client_id
   required: false
   type: 0
 - additionalinfo: Required. Not relevant for deprecated GSuite Apps setup - see Help
     section
   display: Client Secret
+  hidden: true
   name: client_secret
   required: false
   type: 4
@@ -32,8 +39,16 @@ configuration:
   name: redirect_uri
   required: false
   type: 0
+- display: ""
+  displaypassword: Auth Code (run the !gmail-auth-link command to start the auth flow
+    - see Help section)
+  hiddenusername: true
+  name: auth_code_creds
+  required: false
+  type: 9
 - display: Auth Code (run the !gmail-auth-link command to start the auth flow - see
     Help section)
+  hidden: true
   name: code
   required: false
   type: 4
@@ -78,7 +93,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.3.3
+    itemVersion: 1.3.4
     packID: GmailSingleUser
     packName: Gmail Single User
     packPropagationLabels:
@@ -323,7 +338,7 @@ script:
       required: true
     description: Retrieves attachments from a sent Gmail message.
     name: gmail-get-attachments
-  dockerimage: demisto/google-api-py3:1.0.0.41312
+  dockerimage: demisto/google-api-py3:1.0.0.43438
   isfetch: true
   runonce: false
   script: |
@@ -366,12 +381,12 @@ script:
     DISABLE_SSL = params.get('insecure', False)
     FETCH_TIME = params.get('fetch_time', '1 days')
     MAX_FETCH = int(params.get('fetch_limit') or 50)
-    AUTH_CODE = params.get('code')
+    AUTH_CODE = params.get('auth_code_creds', {}).get('password') or params.get('code')
     AUTH_CODE_UNQUOTE_PREFIX = 'code='
 
     OOB_CLIENT_ID = "391797357217-pa6jda1554dbmlt3hbji2bivphl0j616.apps.googleusercontent.com"  # guardrails-disable-line
-    CLIENT_ID = params.get('client_id') or OOB_CLIENT_ID
-    CLIENT_SECRET = params.get('client_secret')
+    CLIENT_ID = params.get('credentials', {}).get('identifier') or params.get('client_id') or OOB_CLIENT_ID
+    CLIENT_SECRET = params.get('credentials', {}).get('password') or params.get('client_secret')
     REDIRECT_URI = params.get('redirect_uri')
     TOKEN_URL = "https://www.googleapis.com/oauth2/v4/token"
     TOKEN_FORM_HEADERS = {
