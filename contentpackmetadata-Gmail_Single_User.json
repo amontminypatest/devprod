@@ -16,12 +16,12 @@
 		"classifier": [
 			{
 				"description": "Maps incoming Gmail phishing email messages fields.",
-				"id": "",
+				"id": "Gmail Single User-mapper",
 				"name": "Gmail Single User - Incoming Mapper"
 			},
 			{
 				"description": "Classifies Gmail phishing email messages.",
-				"id": "",
+				"id": "Gmail Single User",
 				"name": "Gmail Single User - Classifier"
 			}
 		],
@@ -57,7 +57,7 @@
 					}
 				],
 				"description": "Gmail API using OAuth 2.0.",
-				"id": "",
+				"id": "Gmail Single User",
 				"name": "Gmail Single User"
 			}
 		],
@@ -70,28 +70,28 @@
 		"wizard": null
 	},
 	"created": "2021-01-16T17:38:33Z",
-	"currentVersion": "1.3.3",
+	"currentVersion": "1.3.4",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.45",
+			"minVersion": "1.31.54",
 			"name": "Base"
 		},
 		"Phishing": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "3.3.10",
+			"minVersion": "3.3.13",
 			"name": "Phishing"
 		}
 	},
 	"deprecated": false,
 	"description": "Gmail API using OAuth 2.0.",
 	"disabledMonthly": false,
-	"downloads": 5969,
+	"downloads": 6152,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -108,7 +108,7 @@
 			"name": "Gmail Single User"
 		}
 	],
-	"itemVersion": "1.3.3",
+	"itemVersion": "1.3.4",
 	"keywords": [],
 	"legacy": true,
 	"name": "Gmail Single User",
@@ -132,13 +132,11 @@
 		"email": "",
 		"url": "https://www.paloaltonetworks.com/cortex"
 	},
-	"tags": [
-		"Data Source"
-	],
+	"tags": [],
 	"toServerVersion": "",
-	"updated": "2022-12-21T12:17:48Z",
+	"updated": "2023-01-11T12:12:12Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4258430",
+	"versionInfo": "4372591",
 	"videos": []
 }
