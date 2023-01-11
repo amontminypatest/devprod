@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.2.17
+    itemVersion: 1.2.18
     packID: CrowdStrikeFalconX
     packName: CrowdStrike Falcon Intelligence Sandbox
     packPropagationLabels:
@@ -11,7 +11,7 @@ contentitemexportablefields:
     propagationLabels: []
     toServerVersion: ""
 description: |-
-  Detonates a File using CrowdStrike Falcon Intelligence Sandbox sandbox.
+  Detonates a File using CrowdStrike Falcon Intelligence Sandbox.
   Accepted file formats:
   Portable executables: .exe, .scr, .pif, .dll, .com, .cpl, etc.
   Office documents: .doc, .docx, .ppt, .pps, .pptx, .ppsx, .xls, .xlsx, .rtf, .pub
@@ -266,7 +266,7 @@ tasks:
       description: Get a full version of a sandbox report.
       id: c7c659db-15a7-4c9b-8f3d-72713eefe5f1
       iscommand: true
-      name: CrowdStrike Falcon X Get Report
+      name: CrowdStrike Falcon Intelligence Sandbox Get Report
       script: CrowdStrike Falcon X|||cs-fx-get-full-report
       type: regular
       version: -1
@@ -353,10 +353,10 @@ tasks:
     task:
       brand: ""
       description: |
-        Verify that there is a valid instance of CrowdStrike Falcon X enabled.
+        Verify that there is a valid instance of CrowdStrike Falcon Intelligence Sandbox enabled.
       id: ee402758-5d33-4edd-89fb-816dee6233c5
       iscommand: false
-      name: Is CrowdStrike Falcon X enabled?
+      name: Is CrowdStrike Falcon Intelligence Sandbox enabled?
       type: condition
       version: -1
     taskid: ee402758-5d33-4edd-89fb-816dee6233c5
@@ -602,7 +602,7 @@ tasks:
       description: Upload a file for sandbox analysis.
       id: 33e04243-7824-4475-8ea1-5c2366c22fd6
       iscommand: true
-      name: CrowdStrike Falcon X Upload File to Sandbox
+      name: CrowdStrike Falcon Intelligence Sandbox Upload File to Sandbox
       script: CrowdStrike Falcon X|||cs-fx-upload-file
       type: regular
       version: -1
