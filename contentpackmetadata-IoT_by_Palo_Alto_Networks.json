@@ -25,18 +25,18 @@
 				]
 			},
 			{
+				"description": "IoT RACI model script",
+				"name": "iot-security-get-raci",
+				"tags": [
+					"iot"
+				]
+			},
+			{
 				"description": "IoT vulnerability post processing script to resolve the vulnerability incident in IoT security portal using API",
 				"name": "iot-security-vuln-post-processing",
 				"tags": [
 					"iot",
 					"post-processing"
-				]
-			},
-			{
-				"description": "IoT RACI model script",
-				"name": "iot-security-get-raci",
-				"tags": [
-					"iot"
 				]
 			},
 			{
@@ -53,11 +53,6 @@
 		"generictype": null,
 		"incidentfield": [
 			{
-				"description": "The url to Palo Alto Networks IoT incident",
-				"name": "IoT Incident URL",
-				"type": "url"
-			},
-			{
 				"description": "The ServiceNow record system ID",
 				"name": "ServiceNow Record ID",
 				"type": "shortText"
@@ -66,6 +61,11 @@
 				"description": "The name of the ServiceNow Table",
 				"name": "ServiceNow Table Name",
 				"type": "shortText"
+			},
+			{
+				"description": "The url to Palo Alto Networks IoT incident",
+				"name": "IoT Incident URL",
+				"type": "url"
 			}
 		],
 		"incidenttype": [
@@ -121,7 +121,7 @@
 					}
 				],
 				"description": "This is the Palo Alto Networks IoT integration (previously Zingbox).",
-				"id": "",
+				"id": "Palo Alto Networks IoT",
 				"name": "Palo Alto Networks IoT"
 			}
 		],
@@ -129,12 +129,12 @@
 		"list": null,
 		"playbook": [
 			{
-				"description": "This playbook should be used in a recurring Job to check the ServiceNow ticket status for the Palo Alto Networks IoT (previously Zingbox) alerts or vulnerabilties.",
-				"name": "PANW IoT ServiceNow Tickets Check"
-			},
-			{
 				"description": "This playbook creates a ServiceNow ticket after the incident is enriched by Palo Alto Networks IoT security portal (previously Zingbox Cloud).",
 				"name": "PANW IoT Incident Handling with ServiceNow"
+			},
+			{
+				"description": "This playbook should be used in a recurring Job to check the ServiceNow ticket status for the Palo Alto Networks IoT (previously Zingbox) alerts or vulnerabilties.",
+				"name": "PANW IoT ServiceNow Tickets Check"
 			}
 		],
 		"report": null,
@@ -143,35 +143,35 @@
 		"wizard": null
 	},
 	"created": "2020-11-09T18:49:01Z",
-	"currentVersion": "1.0.16",
+	"currentVersion": "1.0.17",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.39",
+			"minVersion": "1.31.54",
 			"name": "Base"
 		},
 		"CommonScripts": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.10.7",
+			"minVersion": "1.10.46",
 			"name": "Common Scripts"
 		},
 		"ServiceNow": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "2.4.1",
+			"minVersion": "2.5.5",
 			"name": "ServiceNow"
 		}
 	},
 	"deprecated": false,
 	"description": "Palo Alto Networks IoT",
 	"disabledMonthly": false,
-	"downloads": 4453,
+	"downloads": 4640,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -204,7 +204,7 @@
 			"name": "ServiceNow v2"
 		}
 	],
-	"itemVersion": "1.0.16",
+	"itemVersion": "1.0.17",
 	"keywords": [],
 	"legacy": true,
 	"name": "IoT by Palo Alto Networks",
@@ -232,9 +232,9 @@
 		"Palo Alto Networks Products"
 	],
 	"toServerVersion": "",
-	"updated": "2022-10-23T13:23:12Z",
+	"updated": "2023-01-11T12:22:13Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4098099",
+	"versionInfo": "4372591",
 	"videos": []
 }
