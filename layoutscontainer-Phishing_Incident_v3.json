@@ -814,7 +814,7 @@
 	"id": "Phishing Incident v3",
 	"indicatorsDetails": null,
 	"indicatorsQuickView": null,
-	"itemVersion": "3.3.12",
+	"itemVersion": "3.3.13",
 	"locked": false,
 	"mobile": {
 		"sections": [
