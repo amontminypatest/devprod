@@ -21,7 +21,7 @@
 	"hidden": false,
 	"id": "indicator_stixttptitle",
 	"isReadOnly": false,
-	"itemVersion": "1.1.18",
+	"itemVersion": "1.1.19",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "STIX TTP Title",
