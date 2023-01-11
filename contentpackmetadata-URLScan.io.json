@@ -81,21 +81,21 @@
 		"wizard": null
 	},
 	"created": "2020-07-23T16:36:24Z",
-	"currentVersion": "1.2.5",
+	"currentVersion": "1.2.6",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.51",
+			"minVersion": "1.31.54",
 			"name": "Base"
 		}
 	},
 	"deprecated": false,
 	"description": "urlscan.io Web Threat Intelligence",
 	"disabledMonthly": false,
-	"downloads": 18008,
+	"downloads": 18351,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -112,7 +112,7 @@
 			"name": "urlscan.io"
 		}
 	],
-	"itemVersion": "1.2.5",
+	"itemVersion": "1.2.6",
 	"keywords": [
 		"phishing",
 		"web",
@@ -144,9 +144,9 @@
 		"Partner Spotlight"
 	],
 	"toServerVersion": "",
-	"updated": "2022-12-28T12:10:11Z",
+	"updated": "2023-01-11T10:23:02Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4314430",
+	"versionInfo": "4372591",
 	"videos": []
 }
