@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.2.17
+    itemVersion: 1.2.18
     packID: CrowdStrikeFalconX
     packName: CrowdStrike Falcon Intelligence Sandbox
     packPropagationLabels:
@@ -10,9 +10,9 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-description: Detonate one or more files using the CrowdStrike Falcon Sandbox integration.
-  This playbook returns relevant reports to the War Room and file reputations to the
-  context data.
+description: Detonate one or more files using the CrowdStrike Falcon Intelligence
+  Sandbox integration. This playbook returns relevant reports to the War Room and
+  file reputations to the context data.
 id: Detonate URL - CrowdStrike Falcon Intelligence Sandbox
 inputs:
 - description: URL to detonate.
@@ -170,7 +170,7 @@ tasks:
         Verify that there is a valid instance of CrowdStrike enabled.
       id: fc1f205f-4605-402d-805d-57b7d4b4cef7
       iscommand: false
-      name: Is CrowdStrike Falcon X enabled?
+      name: Is CrowdStrike Falcon Intelligence Sandbox enabled?
       type: condition
       version: -1
     taskid: fc1f205f-4605-402d-805d-57b7d4b4cef7
@@ -232,7 +232,7 @@ tasks:
       description: Get a full version of a sandbox report.
       id: 9ab16bf8-de8e-4201-8561-992345b51280
       iscommand: true
-      name: CrowdStrike Falcon X Get Report
+      name: CrowdStrike Falcon Intelligence Sandbox Get Report
       script: CrowdStrike Falcon X|||cs-fx-get-full-report
       type: regular
       version: -1
@@ -270,7 +270,7 @@ tasks:
       description: Submit a URL or FTP for sandbox analysis.
       id: 251b7acf-b9ad-4122-8968-788528be9bc1
       iscommand: true
-      name: CrowdStrike Falcon X Submit URL
+      name: CrowdStrike Falcon Intelligence Sandbox Submit URL
       script: '|||cs-fx-submit-url'
       type: regular
       version: -1
