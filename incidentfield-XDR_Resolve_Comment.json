@@ -24,7 +24,7 @@
 	"hidden": false,
 	"id": "incident_xdrresolvecomment",
 	"isReadOnly": false,
-	"itemVersion": "4.9.16",
+	"itemVersion": "4.9.19",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "XDR Resolve Comment",
