@@ -13,7 +13,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.3.11
+    itemVersion: 1.3.12
     packID: DemistoRESTAPI
     packName: Cortex REST API
     packPropagationLabels:
