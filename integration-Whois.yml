@@ -3,21 +3,27 @@ commonfields:
   id: Whois
   version: -1
 configuration:
-- display: Return Errors
+- advanced: true
+  display: Return Errors
   name: with_error
   required: false
+  section: Connect
   type: 8
 - additionalinfo: Supports socks4/socks5/http connect proxies (e.g. socks5h://host:1080).
     Will effect all commands except for the `ip` command.
+  advanced: true
   display: Proxy URL
   name: proxy_url
   required: false
+  section: Connect
   type: 0
 - additionalinfo: Effect the `ip` command and the other commands only if the Proxy
     URL is not set.
+  advanced: true
   display: Use system proxy settings
   name: proxy
   required: false
+  section: Connect
   type: 8
 - additionalinfo: Reliability of the source providing the intelligence data.
   defaultvalue: B - Usually reliable
@@ -32,12 +38,13 @@ configuration:
   - E - Unreliable
   - F - Reliability cannot be judged
   required: true
+  section: Collect
   type: 15
 contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.4.6
+    itemVersion: 1.4.7
     packID: Whois
     packName: Whois
     packPropagationLabels:
