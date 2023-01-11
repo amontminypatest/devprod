@@ -3,60 +3,84 @@ commonfields:
   id: Slack IAM
   version: -1
 configuration:
+- display: ""
+  displaypassword: Access Token
+  hiddenusername: true
+  name: credentials
+  required: false
+  type: 9
 - display: Access Token
+  hidden: true
   name: access_token
-  required: true
+  required: false
+  section: Connect
   type: 4
-- display: Trust any certificate (not secure)
+- advanced: true
+  display: Trust any certificate (not secure)
   name: insecure
   required: false
+  section: Connect
   type: 8
-- display: Use system proxy settings
+- advanced: true
+  display: Use system proxy settings
   name: proxy
   required: false
+  section: Connect
   type: 8
 - additionalinfo: If set to false, iam-create-user command will be skipped, and user
     will not be created.
+  advanced: true
   defaultvalue: "true"
   display: Allow creating users
   name: create_user_enabled
   required: false
+  section: Collect
   type: 8
-- defaultvalue: "true"
+- advanced: true
+  defaultvalue: "true"
   display: Allow updating users
   name: update_user_enabled
   required: false
+  section: Collect
   type: 8
-- defaultvalue: "true"
+- advanced: true
+  defaultvalue: "true"
   display: Allow enabling users
   name: enable_user_enabled
   required: false
+  section: Collect
   type: 8
-- defaultvalue: "true"
+- advanced: true
+  defaultvalue: "true"
   display: Allow disabling users
   name: disable_user_enabled
   required: false
+  section: Collect
   type: 8
-- defaultvalue: "true"
+- advanced: true
+  defaultvalue: "true"
   display: Automatically create user if not found in update command
   name: create_if_not_exists
   required: false
+  section: Collect
   type: 8
 - defaultvalue: User Profile - SCIM (Incoming)
   display: Incoming Mapper
   name: mapper_in
   required: true
+  section: Connect
   type: 0
 - defaultvalue: User Profile - SCIM (Outgoing)
   display: Outgoing Mapper
   name: mapper_out
   required: true
+  section: Connect
   type: 0
 contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.0.0
-    itemVersion: 3.1.15
+    itemVersion: 3.1.18
     packID: Slack
     packName: Slack
     packPropagationLabels:
@@ -373,7 +397,7 @@ script:
     - contextPath: UpdateGroup.errorMessage
       description: Reason why the API failed.
       type: String
-  dockerimage: demisto/python3:3.10.5.31797
+  dockerimage: demisto/python3:3.10.9.42476
   ismappable: true
   isremotesyncout: true
   runonce: false
@@ -382,9 +406,10 @@ script:
 
 
     import traceback
+    import urllib3
 
     # Disable insecure warnings
-    requests.packages.urllib3.disable_warnings()
+    urllib3.disable_warnings()
 
     ''' GLOBALS '''
     INPUT_SCIM_EXTENSION_KEY = "urn:scim:schemas:extension:custom:1.0:user"
@@ -865,7 +890,7 @@ script:
 
         verify_certificate = not params.get('insecure', False)
         proxy = params.get('proxy', False)
-        access_token = params.get('access_token')
+        access_token = params.get('credentials', {}).get('password') or params.get('access_token')
 
         mapper_in = params.get('mapper_in')
         mapper_out = params.get('mapper_out')
