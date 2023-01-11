@@ -29,12 +29,12 @@
 		"classifier": [
 			{
 				"description": "Maps incoming Hello World alert fields.",
-				"id": "",
+				"id": "HelloWorld-mapper",
 				"name": "Hello World - Incoming Mapper"
 			},
 			{
 				"description": "Classifies Hello World alerts.",
-				"id": "",
+				"id": "HelloWorld",
 				"name": "Hello World - Classification"
 			}
 		],
@@ -79,7 +79,7 @@
 					}
 				],
 				"description": "This is the Feed Hello World integration for getting started with your feed integration.",
-				"id": "",
+				"id": "HelloWorld Feed",
 				"name": "HelloWorld Feed (Community Contribution)"
 			},
 			{
@@ -123,7 +123,7 @@
 					}
 				],
 				"description": "This is the Hello World integration for getting started.",
-				"id": "",
+				"id": "HelloWorld",
 				"name": "HelloWorld (Community Contribution)"
 			}
 		],
@@ -150,42 +150,35 @@
 		"wizard": null
 	},
 	"created": "2020-09-23T17:36:09Z",
-	"currentVersion": "1.2.14",
+	"currentVersion": "1.2.15",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.32",
+			"minVersion": "1.31.54",
 			"name": "Base"
 		},
 		"CommonPlaybooks": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "2.3.9",
+			"minVersion": "2.3.24",
 			"name": "Common Playbooks"
 		},
 		"CommonScripts": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.10.6",
+			"minVersion": "1.10.44",
 			"name": "Common Scripts"
-		},
-		"CommonTypes": {
-			"author": "Cortex XSOAR",
-			"certification": "certified",
-			"mandatory": true,
-			"minVersion": "3.3.27",
-			"name": "Common Types"
 		}
 	},
 	"deprecated": false,
 	"description": "This is the Hello World integration for getting started.",
 	"disabledMonthly": false,
-	"downloads": 10430,
+	"downloads": 10754,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -204,7 +197,7 @@
 			"name": "HelloWorld Feed"
 		}
 	],
-	"itemVersion": "1.2.14",
+	"itemVersion": "1.2.15",
 	"keywords": [],
 	"legacy": true,
 	"name": "HelloWorld",
@@ -233,9 +226,9 @@
 		"Getting Started"
 	],
 	"toServerVersion": "",
-	"updated": "2022-11-08T13:19:32Z",
+	"updated": "2023-01-11T10:38:44Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4031293",
+	"versionInfo": "4372591",
 	"videos": []
 }
