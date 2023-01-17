@@ -127,7 +127,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 4.9.19
+    itemVersion: 4.10.0
     packID: CortexXDR
     packName: Cortex XDR by Palo Alto Networks
     packPropagationLabels:
@@ -3391,16 +3391,71 @@ script:
     description: Adds a tag to specified endpoint_ids
     name: xdr-endpoint-tag-add
   - arguments:
-    - description: List of endpoint IDs. Supports comma separated list.
+    - description: List of endpoint IDs. Supports comma-separated list.
       isArray: true
       name: endpoint_ids
       required: true
-    - description: Tag to remove from specified endpoint_ids
+    - description: Tag to remove from specified endpoint_ids.
       name: tag
       required: true
     description: Removes a tag from specified endpoint_ids.
     name: xdr-endpoint-tag-remove
-  dockerimage: demisto/python3:3.10.9.42476
+  - arguments: []
+    description: Provides information about the tenant.
+    name: xdr-get-tenant-info
+    outputs:
+    - contextPath: PaloAltoNetworksXDR.TenantInformation.pro_per_endpoint_expiration
+      description: Expiration time pro per endpoint.
+      type: Date
+    - contextPath: PaloAltoNetworksXDR.TenantInformation.purchased_pro_per_endpoint.agents
+      description: Number of endpoints agent purchased.
+      type: Number
+    - contextPath: PaloAltoNetworksXDR.TenantInformation.data_enabled_pro_per_endpoint
+      description: Enabled data per pro endpoint.
+      type: Number
+    - contextPath: PaloAltoNetworksXDR.TenantInformation.prevent_expiration
+      description: Number of prevent expirations.
+      type: Number
+    - contextPath: PaloAltoNetworksXDR.TenantInformation.purchased_prevent
+      description: Number of purchased prevents.
+      type: Number
+    - contextPath: PaloAltoNetworksXDR.TenantInformation.installed_prevent
+      description: Number of installed prevents.
+      type: Number
+    - contextPath: PaloAltoNetworksXDR.TenantInformation.pro_tb_expiration
+      description: pro_tb license expiration time.
+      type: Date
+    - contextPath: PaloAltoNetworksXDR.TenantInformation.purchased_pro_tb.tb
+      description: Number of pro_tbs purchased.
+      type: Number
+    - contextPath: PaloAltoNetworksXDR.TenantInformation.installed_pro_tb
+      description: Number of pro_tbs installed.
+      type: Number
+    - contextPath: PaloAltoNetworksXDR.TenantInformation.compute_unit_expiration
+      description: Compute unit expiration time.
+      type: Date
+    - contextPath: PaloAltoNetworksXDR.TenantInformation.purchased_compute_unit
+      description: Number of compute units purchased.
+      type: Number
+    - contextPath: PaloAltoNetworksXDR.TenantInformation.compute_unit_is_trial
+      description: Whether the compute unit is a trial.
+      type: Boolean
+    - contextPath: PaloAltoNetworksXDR.TenantInformation.host_insights_expiration
+      description: Host iInsight expiration time.
+      type: Date
+    - contextPath: PaloAltoNetworksXDR.TenantInformation.enabled_host_insights
+      description: Number of host insights enabled.
+      type: Number
+    - contextPath: PaloAltoNetworksXDR.TenantInformation.purchased_host_insights
+      description: Number of purchased host insights.
+      type: Number
+    - contextPath: PaloAltoNetworksXDR.TenantInformation.forensics_expiration
+      description: Forensic expiration time.
+      type: Date
+    - contextPath: PaloAltoNetworksXDR.TenantInformation.purchased_forensics
+      description: Number of forensics purchased.
+      type: Number
+  dockerimage: demisto/python3:3.10.9.44472
   isfetch: true
   ismappable: true
   isremotesyncin: true
@@ -7311,6 +7366,28 @@ script:
 
             return reply.get('reply')
 
+        def get_tenant_info(self):
+            reply = self._http_request(
+                method='POST',
+                url_suffix='/system/get_tenant_info/',
+                json_data={'request_data': {}},
+                timeout=self.timeout
+            )
+            return reply.get('reply', {})
+
+
+    def get_tenant_info_command(client: Client):
+        tenant_info = client.get_tenant_info()
+        readable_output = tableToMarkdown(
+            'Tenant Information', tenant_info, headerTransform=pascalToSpace, removeNull=True, is_auto_json_transform=True
+        )
+        return CommandResults(
+            readable_output=readable_output,
+            outputs_prefix=f'{INTEGRATION_CONTEXT_BRAND}.TenantInformation',
+            outputs=tenant_info,
+            raw_response=tenant_info
+        )
+
 
     def get_incidents_command(client, args):
         """
@@ -8410,7 +8487,8 @@ script:
                 return_results(add_tag_to_endpoints_command(client, args))
             elif command == 'xdr-endpoint-tag-remove':
                 return_results(remove_tag_from_endpoints_command(client, args))
-
+            elif command == 'xdr-get-tenant-info':
+                return_results(get_tenant_info_command(client))
         except Exception as err:
             return_error(str(err))
 
