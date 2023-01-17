@@ -9,12 +9,19 @@ configuration:
   required: true
   type: 0
 - display: Username
+  displaypassword: API Key
+  name: credentials
+  required: false
+  type: 9
+- display: Username
+  hidden: true
   name: username
-  required: true
+  required: false
   type: 0
 - display: API Key
+  hidden: true
   name: apikey
-  required: true
+  required: false
   type: 4
 - defaultvalue: high
   display: Threshold of the indicator.
@@ -53,7 +60,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.0.22
+    itemVersion: 2.0.24
     packID: Anomali_ThreatStream
     packName: Anomali ThreatStream
     packPropagationLabels:
@@ -1323,7 +1330,7 @@ script:
     - contextPath: URL.Tags
       description: (List) Tags of the URL.
       type: Unknown
-  dockerimage: demisto/py3-tools:0.0.1.26536
+  dockerimage: demisto/py3-tools:1.0.0.43697
   runonce: false
   script: |
     register_module_line('Anomali ThreatStream v2', 'start', __line__())
@@ -1335,10 +1342,11 @@ script:
 
     import json
     import requests
+    import urllib3
     from requests.exceptions import MissingSchema, ConnectionError
 
     # Disable insecure warnings
-    requests.packages.urllib3.disable_warnings()
+    urllib3.disable_warnings()
 
     ''' GLOBALS/PARAMS '''
 
@@ -2355,8 +2363,8 @@ script:
 
         params = demisto.params()
 
-        user_name = params.get('username')
-        api_key = params.get('apikey')
+        user_name = params.get('credentials', {}).get('identifier', '') or params.get('username', '')
+        api_key = params.get('credentials', {}).get('password', '') or params.get('apikey', '')
         server_url = params.get('url', '').strip('/')
 
         CREDENTIALS['username'] = user_name
