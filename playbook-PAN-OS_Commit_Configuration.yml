@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.16.0
+    itemVersion: 1.16.2
     packID: PAN-OS
     packName: PAN-OS by Palo Alto Networks
     packPropagationLabels:
@@ -13,7 +13,12 @@ contentitemexportablefields:
 description: Commit the PAN-OS Panorama or Firewall configuration.\nIf specified as
   Panorama, it also pushes the Policies to the specified Device Group in the instance.
 id: PAN-OS Commit Configuration
-inputs: []
+inputs:
+- description: ""
+  key: device-group
+  playbookInputQuery: null
+  required: false
+  value: {}
 name: PAN-OS Commit Configuration
 outputs:
 - contextPath: Panorama.Commit.Warnings
@@ -255,19 +260,22 @@ tasks:
       - "11"
     note: false
     quietmode: 0
+    scriptarguments:
+      device-group:
+        simple: ${inputs.device-group}
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
       description: Push rules from Palo Alto Panorama to the Palo Alto configured
         device group.
-      id: 358f0fa5-163a-4c92-8f77-7f743207c155
+      id: 73cbf069-2f98-42f8-8ed2-7780618b954c
       iscommand: true
       name: Push rules to the Panorama device group
       script: '|||pan-os-push-to-device-group'
       type: regular
       version: -1
-    taskid: 358f0fa5-163a-4c92-8f77-7f743207c155
+    taskid: 73cbf069-2f98-42f8-8ed2-7780618b954c
     timertriggers: []
     type: regular
     view: |-
