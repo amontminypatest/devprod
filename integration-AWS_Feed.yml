@@ -155,7 +155,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 1.1.23
+    itemVersion: 1.1.24
     packID: FeedAWS
     packName: AWS Feed
     packPropagationLabels:
@@ -178,7 +178,7 @@ script:
       name: limit
     description: Fetches indicators from the feed.
     name: aws-get-indicators
-  dockerimage: demisto/py3-tools:1.0.0.40638
+  dockerimage: demisto/py3-tools:1.0.0.43697
   feed: true
   runonce: false
   script: |
