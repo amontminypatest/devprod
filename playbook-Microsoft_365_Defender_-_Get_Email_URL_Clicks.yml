@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.5.0
-    itemVersion: 4.4.6
+    itemVersion: 4.4.9
     packID: Microsoft365Defender
     packName: Microsoft 365 Defender
     packPropagationLabels:
@@ -39,13 +39,13 @@ inputs:
   playbookInputQuery: null
   required: false
   value: {}
-- description: The time limit in seconds for the HTTP request to run. Default is 120.
+- description: The time limit in seconds for the HTTP request to run. Default is 180.
   key: Timeout
   playbookInputQuery: null
   required: false
   value:
     simple: "120"
-- description: Number of previous days to search. Default is 7.
+- description: Number of days past to search. Default is 7.
   key: SearchTimeframe
   playbookInputQuery: null
   required: false
@@ -58,6 +58,12 @@ inputs:
   required: false
   value:
     simple: "50"
+- description: The mailbox of the listening integration. In case it is provided, the
+    emails found in it will be ignored.
+  key: ListenerMailbox
+  playbookInputQuery: null
+  required: false
+  value: {}
 name: Microsoft 365 Defender - Get Email URL Clicks
 outputs:
 - contextPath: Microsoft365Defender.RetrievedEmails.UrlCount
@@ -95,8 +101,8 @@ outputs:
   type: string
 - contextPath: Microsoft365Defender.RetrievedEmails.BulkComplaintLevel
   description: Threshold assigned to emails from bulk mailers. A high bulk complain
-    level (BCL) means the email is more likely to generate complaints, and therefore
-    more likely to be spam.
+    level (BCL) means the email is more likely to generate complaints, and thus more
+    likely to be spam.
   type: string
 - contextPath: Microsoft365Defender.RetrievedEmails.Subject
   description: Subject of the email.
@@ -274,7 +280,7 @@ tasks:
       {
         "position": {
           "x": 50,
-          "y": 1400
+          "y": 1320
         }
       }
   "4":
@@ -409,12 +415,13 @@ tasks:
         complex:
           root: inputs.ResultsLimit
       query:
-        simple: let _start = now(-${inputs.SearchTimeframe}d); UrlClickEvents | where
-          Url has_any ("${URLDomainParsed}") | join EmailEvents on NetworkMessageId
-          | project-away AdditionalFields, EmailActionPolicy, UserLevelPolicy, EmailActionPolicyGuid,
+        simple: let _start = now(-${inputs.SearchTimeframe}d); EmailEvents | where
+          Timestamp >= _start | where RecipientEmailAddress != "${inputs.ListenerMailbox}"
+          | join UrlClickEvents on NetworkMessageId | where Url has_any ("${URLDomainParsed}")
+          |  project-away AdditionalFields, EmailActionPolicy, UserLevelPolicy, EmailActionPolicyGuid,
           OrgLevelPolicy, UserLevelAction, EmailClusterId, ReportId, ReportId1, OrgLevelAction,
           SenderObjectId, NetworkMessageId1, DetectionMethods1, ThreatTypes1 |  project-rename
-          ClickTimestamp = Timestamp
+          ClickTimestamp = Timestamp1
       timeout:
         simple: ${inputs.Timeout}
     separatecontext: false
@@ -424,13 +431,13 @@ tasks:
       description: 'Advanced hunting is a threat-hunting tool that uses specially
         constructed queries to examine the past 30 days of event data in Microsoft
         365 Defender. Details on how to write queries: https://docs.microsoft.com/en-us/microsoft-365/security/defender/advanced-hunting-query-language?view=o365-worldwide.'
-      id: 2fe347b2-5fa4-4e41-827a-599a46e19889
+      id: f147d341-bb0e-4af5-8504-3b725e484f47
       iscommand: true
       name: Retrieve emails data (URLDomain)
       script: Microsoft 365 Defender|||microsoft-365-defender-advanced-hunting
       type: regular
       version: -1
-    taskid: 2fe347b2-5fa4-4e41-827a-599a46e19889
+    taskid: f147d341-bb0e-4af5-8504-3b725e484f47
     timertriggers: []
     type: regular
     view: |-
@@ -456,12 +463,14 @@ tasks:
         complex:
           root: inputs.ResultsLimit
       query:
-        simple: let _start = now(-${inputs.SearchTimeframe}d); UrlClickEvents | where
-          NetworkMessageId has_any ("${MessageIDParsed}") | join EmailEvents on NetworkMessageId
+        simple: let _start = now(-${inputs.SearchTimeframe}d); EmailEvents | where
+          Timestamp >= _start | where (InternetMessageId in ("${MessageIDParsed}")
+          or NetworkMessageId in ("${MessageIDParsed}")) | join UrlClickEvents on
+          NetworkMessageId | where RecipientEmailAddress != "${inputs.ListenerMailbox}"
           | project-away AdditionalFields, EmailActionPolicy, UserLevelPolicy, EmailActionPolicyGuid,
           OrgLevelPolicy, UserLevelAction, EmailClusterId, ReportId, ReportId1, OrgLevelAction,
           SenderObjectId, NetworkMessageId1, DetectionMethods1, ThreatTypes1 |  project-rename
-          ClickTimestamp = Timestamp
+          ClickTimestamp = Timestamp1
       timeout:
         simple: ${inputs.Timeout}
     separatecontext: false
@@ -471,13 +480,13 @@ tasks:
       description: 'Advanced hunting is a threat-hunting tool that uses specially
         constructed queries to examine the past 30 days of event data in Microsoft
         365 Defender. Details on how to write queries: https://docs.microsoft.com/en-us/microsoft-365/security/defender/advanced-hunting-query-language?view=o365-worldwide.'
-      id: 0f75ba46-cd23-44fc-81d7-8da85b5308b4
+      id: 09df3e7d-c6e7-40b2-8fe7-30834d9ee2d7
       iscommand: true
       name: Retrieve emails data (MessageID)
       script: Microsoft 365 Defender|||microsoft-365-defender-advanced-hunting
       type: regular
       version: -1
-    taskid: 0f75ba46-cd23-44fc-81d7-8da85b5308b4
+    taskid: 09df3e7d-c6e7-40b2-8fe7-30834d9ee2d7
     timertriggers: []
     type: regular
     view: |-
@@ -584,13 +593,14 @@ tasks:
         complex:
           root: inputs.ResultsLimit
       query:
-        simple: let _start = now(-${inputs.SearchTimeframe}d); EmailEvents | join
-          UrlClickEvents on NetworkMessageId | where (InternetMessageId in ("${MessageIDParsed}")
-          or NetworkMessageId in ("${MessageIDParsed}")) and Url has_any ("${URLDomainParsed}")  |
-          project-away AdditionalFields, EmailActionPolicy, UserLevelPolicy, EmailActionPolicyGuid,
-          OrgLevelPolicy, UserLevelAction, EmailClusterId, ReportId, ReportId1, OrgLevelAction,
-          SenderObjectId, NetworkMessageId1, DetectionMethods1, ThreatTypes1 | project-rename
-          ClickTimestamp = Timestamp1
+        simple: let _start = now(-${inputs.SearchTimeframe}d); EmailEvents | where
+          Timestamp >= _start | where RecipientEmailAddress != "${inputs.ListenerMailbox}"
+          | join UrlClickEvents on NetworkMessageId | where (InternetMessageId in
+          ("${MessageIDParsed}") or NetworkMessageId in ("${MessageIDParsed}")) and
+          Url has_any ("${URLDomainParsed}")  | project-away AdditionalFields, EmailActionPolicy,
+          UserLevelPolicy, EmailActionPolicyGuid, OrgLevelPolicy, UserLevelAction,
+          EmailClusterId, ReportId, ReportId1, OrgLevelAction, SenderObjectId, NetworkMessageId1,
+          DetectionMethods1, ThreatTypes1 | project-rename ClickTimestamp = Timestamp1
       timeout:
         simple: ${inputs.Timeout}
     separatecontext: false
@@ -600,13 +610,13 @@ tasks:
       description: 'Advanced hunting is a threat-hunting tool that uses specially
         constructed queries to examine the past 30 days of event data in Microsoft
         365 Defender. Details on how to write queries: https://docs.microsoft.com/en-us/microsoft-365/security/defender/advanced-hunting-query-language?view=o365-worldwide.'
-      id: 50989b26-0ab3-43e2-8e60-b2d2acde08df
+      id: 91425086-ae2b-4662-84a5-71ce6f06c20a
       iscommand: true
       name: Retrieve emails data (MessageID and URLDomain)
       script: Microsoft 365 Defender|||microsoft-365-defender-advanced-hunting
       type: regular
       version: -1
-    taskid: 50989b26-0ab3-43e2-8e60-b2d2acde08df
+    taskid: 91425086-ae2b-4662-84a5-71ce6f06c20a
     timertriggers: []
     type: regular
     view: |-
@@ -644,20 +654,20 @@ tasks:
         This automation runs using the default Limited User role, unless you explicitly change the permissions.
         For more information, see the section about permissions here:
         https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-9/cortex-xsoar-admin/playbooks/automations.html
-      id: 3ef9e7b1-1337-4516-80fd-dbe09192a65c
+      id: 8fabf2a2-8171-4794-85ca-d42d4f78b7eb
       iscommand: false
       name: Set RetrievedEmails field
       script: SetAndHandleEmpty
       type: regular
       version: -1
-    taskid: 3ef9e7b1-1337-4516-80fd-dbe09192a65c
+    taskid: 8fabf2a2-8171-4794-85ca-d42d4f78b7eb
     timertriggers: []
     type: regular
     view: |-
       {
         "position": {
           "x": 790,
-          "y": 1170
+          "y": 1100
         }
       }
 version: -1
@@ -670,7 +680,7 @@ view: |-
     },
     "paper": {
       "dimensions": {
-        "height": 1485,
+        "height": 1405,
         "width": 1540,
         "x": 50,
         "y": -20
