@@ -50,28 +50,28 @@
 		"wizard": null
 	},
 	"created": "2020-11-09T18:49:14Z",
-	"currentVersion": "1.0.26",
+	"currentVersion": "1.0.27",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.51",
+			"minVersion": "1.31.54",
 			"name": "Base"
 		},
 		"CommonTypes": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "3.3.41",
+			"minVersion": "3.3.43",
 			"name": "Common Types"
 		}
 	},
 	"deprecated": false,
 	"description": "Listen to a mailbox, enable incident triggering via e-mail",
 	"disabledMonthly": false,
-	"downloads": 6242,
+	"downloads": 6556,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -88,7 +88,7 @@
 			"name": "Mail Listener v2"
 		}
 	],
-	"itemVersion": "1.0.26",
+	"itemVersion": "1.0.27",
 	"keywords": [],
 	"legacy": true,
 	"name": "Mail Listener",
@@ -103,7 +103,7 @@
 	"rawKeywords": null,
 	"rawTags": null,
 	"rawUseCases": null,
-	"readme": "## Overview\r\n---\r\n\r\nUse the MailListener Content Pack to listen to a mailbox and trigger incidents. The MailListener Content Pack contains the Mail Listener v2 Integration. You can customize multiple integration instances according to your needs. Each instance can be customized to work with a different email address and according to different rules. For example, you can define the integration instance to fetch emails from specific sender addresses and for specific periods of time. You can also define whether to delete the emails once they are processed and whether to include the raw body in the incident. For more details on how to configure instances of the integration, see the [Mail Listener v2 Integration](https://xsoar.pan.dev/docs/reference/integrations/mail-listener-v2).\r\n",
+	"readme": "## Overview\n---\n\nUse the MailListener Content Pack to listen to a mailbox and trigger incidents. The MailListener Content Pack contains the Mail Listener v2 Integration. You can customize multiple integration instances according to your needs. Each instance can be customized to work with a different email address and according to different rules. For example, you can define the integration instance to fetch emails from specific sender addresses and for specific periods of time. You can also define whether to delete the emails once they are processed and whether to include the raw body in the incident. For more details on how to configure instances of the integration, see the [Mail Listener v2 Integration](https://xsoar.pan.dev/docs/reference/integrations/mail-listener-v2).\n",
 	"searchRank": 10,
 	"serverMaxVersion": "",
 	"serverMinVersion": "5.0.0",
@@ -112,13 +112,11 @@
 		"email": "",
 		"url": "https://www.paloaltonetworks.com/cortex"
 	},
-	"tags": [
-		"Data Source"
-	],
+	"tags": [],
 	"toServerVersion": "",
-	"updated": "2023-01-02T11:34:15Z",
+	"updated": "2023-01-16T00:01:26Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4314916",
+	"versionInfo": "4410080",
 	"videos": []
 }
