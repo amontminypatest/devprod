@@ -23,7 +23,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.0.9
+    itemVersion: 1.0.10
     packID: Symantec_Messaging_Gateway
     packName: Symantec Messaging Gateway
     packPropagationLabels:
@@ -128,7 +128,7 @@ script:
   - arguments: []
     description: Returns a list of all blocked IP addresses.
     name: smg-get-blocked-ips
-  dockerimage: demisto/bs4-py3:1.0.0.42802
+  dockerimage: demisto/bs4-py3:1.0.0.44745
   runonce: false
   script: |
     register_module_line('Symantec Messaging Gateway', 'start', __line__())
