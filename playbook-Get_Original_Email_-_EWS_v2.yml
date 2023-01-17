@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.0.0
-    itemVersion: 2.0.7
+    itemVersion: 2.0.8
     packID: EWS
     packName: EWS
     packPropagationLabels:
@@ -193,8 +193,6 @@ tasks:
       message-id:
         complex:
           root: inputs.MessageID
-      selected-fields:
-        simple: message_id
       target-mailbox:
         complex:
           root: inputs.TargetMailbox
@@ -228,8 +226,29 @@ tasks:
             value:
               complex:
                 accessor: itemId
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: EWS.Items.messageId
+                    operator: isEqualString
+                    right:
+                      iscontext: true
+                      value:
+                        simple: inputs.MessageID
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: EWS.Items.receivedBy
+                    operator: isEqualString
+                    right:
+                      iscontext: true
+                      value:
+                        simple: inputs.TargetMailbox
                 root: EWS.Items
           operator: isNotEmpty
+          right:
+            value: {}
       label: "yes"
     continueonerrortype: ""
     id: "5"
@@ -249,12 +268,12 @@ tasks:
       brand: ""
       description: Verifies that an email object with a message ID matching the InReplyTo
         ID of the forwarded email was found.
-      id: 2c433705-840b-4ad0-8214-ed8db8588d35
+      id: 7a0d7b60-0b5b-4cc1-8ef3-95a769dcdbb0
       iscommand: false
       name: Was a matching email found?
       type: condition
       version: -1
-    taskid: 2c433705-840b-4ad0-8214-ed8db8588d35
+    taskid: 7a0d7b60-0b5b-4cc1-8ef3-95a769dcdbb0
     timertriggers: []
     type: condition
     view: |-
@@ -279,6 +298,25 @@ tasks:
       item-id:
         complex:
           accessor: itemId
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: EWS.Items.messageId
+              operator: isEqualString
+              right:
+                iscontext: true
+                value:
+                  simple: inputs.MessageID
+          - - left:
+                iscontext: true
+                value:
+                  simple: EWS.Items.receivedBy
+              operator: isEqualString
+              right:
+                iscontext: true
+                value:
+                  simple: inputs.TargetMailbox
           root: EWS.Items
       target-mailbox:
         complex:
@@ -289,13 +327,13 @@ tasks:
       brand: ""
       description: Retrieves an item by item ID and uploads its content as an EML
         file.
-      id: eaaa6c31-f4f3-4c0e-8b72-e5bb226c3c5b
+      id: 141999a9-21f8-4f70-81f2-8ee680dd17a6
       iscommand: true
       name: Get original email as eml
       script: '|||ews-get-items-as-eml'
       type: regular
       version: -1
-    taskid: eaaa6c31-f4f3-4c0e-8b72-e5bb226c3c5b
+    taskid: 141999a9-21f8-4f70-81f2-8ee680dd17a6
     timertriggers: []
     type: regular
     view: |-
