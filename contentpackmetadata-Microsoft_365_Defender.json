@@ -299,42 +299,49 @@
 		"wizard": null
 	},
 	"created": "2021-05-25T22:44:54Z",
-	"currentVersion": "4.4.6",
+	"currentVersion": "4.4.9",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.51",
+			"minVersion": "1.31.54",
 			"name": "Base"
 		},
 		"CommonScripts": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.10.34",
+			"minVersion": "1.11.5",
 			"name": "Common Scripts"
 		},
 		"CommonTypes": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "3.3.41",
+			"minVersion": "3.3.43",
 			"name": "Common Types"
 		},
 		"EWS": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "2.0.7",
+			"minVersion": "2.0.8",
 			"name": "EWS"
+		},
+		"FiltersAndTransformers": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.2.5",
+			"name": "Filters And Transformers"
 		}
 	},
 	"deprecated": false,
 	"description": "Microsoft 365 Defender is a unified pre- and post-breach enterprise defense suite that natively coordinates detection, prevention, investigation, and response across endpoints, identities, email, and applications to provide integrated protection against sophisticated attacks.",
 	"disabledMonthly": false,
-	"downloads": 4476,
+	"downloads": 4809,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.5.0",
 	"general": [
@@ -359,7 +366,7 @@
 			"name": "O365 Defender SafeLinks - Single User"
 		}
 	],
-	"itemVersion": "4.4.6",
+	"itemVersion": "4.4.9",
 	"keywords": [],
 	"legacy": true,
 	"name": "Microsoft 365 Defender",
@@ -374,7 +381,7 @@
 	"rawKeywords": null,
 	"rawTags": null,
 	"rawUseCases": null,
-	"readme": "With the Microsoft 365 Defender content pack, you can determine how a threat entered your environment and what part of your organization is affected. \r\n\r\n\r\n## What does this pack do?\r\n- Get the most recent incidents that is a collection of correlated alerts and associated data.\r\n- Enables you to hunt for both known and potential threats.\r\n\r\n## License information\r\nAvailable for Office 365 E5, Microsoft 365 E5, and standalone licenses.\r\n",
+	"readme": "With the Microsoft 365 Defender content pack, you can determine how a threat entered your environment and what part of your organization is affected. \n\n\n## What does this pack do?\n- Get the most recent incidents that is a collection of correlated alerts and associated data.\n- Enables you to hunt for both known and potential threats.\n\n## License information\nAvailable for Office 365 E5, Microsoft 365 E5, and standalone licenses.\n",
 	"searchRank": 10,
 	"serverMaxVersion": "",
 	"serverMinVersion": "5.5.0",
@@ -387,9 +394,9 @@
 		"Transformer"
 	],
 	"toServerVersion": "",
-	"updated": "2023-01-04T23:15:30Z",
+	"updated": "2023-01-15T22:35:58Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4331864",
+	"versionInfo": "4410080",
 	"videos": []
 }
