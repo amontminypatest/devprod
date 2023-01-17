@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.5.0
-    itemVersion: 2.3.24
+    itemVersion: 2.3.26
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -93,10 +93,11 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: Returns 'yes' if the CrowdStrike Falcon X integration is available.
+      description: Returns 'yes' if the CrowdStrike Falcon Intelligence Sandbox integration
+        is available.
       id: ee043234-3d7b-4195-8ca7-1cbde477e677
       iscommand: false
-      name: Is FalconX enabled?
+      name: Is Falcon Intelligence Sandbox enabled?
       script: IsIntegrationAvailable
       type: condition
       version: -1
@@ -211,7 +212,7 @@ tasks:
       description: Finds sandbox reports by providing an FQL filter and paging details.
       id: f1fa61ce-3ee3-4918-86af-e6d66a3c6b24
       iscommand: true
-      name: Search for hash in FalconX
+      name: Search for hash in Falcon Intelligence Sandbox
       script: '|||cs-fx-find-reports'
       type: regular
       version: -1
@@ -323,10 +324,10 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: Gets a full report from the Falcon X sandbox.
+      description: Gets a full report from the Falcon Intelligence Sandbox.
       id: 0cc08ef9-5225-44a8-8221-553bb90807b1
       iscommand: true
-      name: Get full report from FalconX
+      name: Get full report from Falcon Intelligence Sandbox
       script: '|||cs-fx-get-full-report'
       type: regular
       version: -1
