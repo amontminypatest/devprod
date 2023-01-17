@@ -23,7 +23,7 @@
 	"hidden": false,
 	"id": "incident_gdprnotifyauthorities",
 	"isReadOnly": true,
-	"itemVersion": "1.0.11",
+	"itemVersion": "1.11.6",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "GDPR Notify Authorities",
@@ -31,8 +31,8 @@
 	"openEnded": false,
 	"orgType": "timer",
 	"ownerOnly": false,
-	"packID": "Compliance",
-	"packName": "Compliance",
+	"packID": "CommonScripts",
+	"packName": "Common Scripts",
 	"packPropagationLabels": [
 		"all"
 	],
