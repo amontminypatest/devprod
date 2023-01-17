@@ -86,28 +86,28 @@
 		"wizard": null
 	},
 	"created": "2020-12-08T23:39:34Z",
-	"currentVersion": "1.1.25",
+	"currentVersion": "1.1.26",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.51",
+			"minVersion": "1.31.54",
 			"name": "Base"
 		},
 		"CommonTypes": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "3.3.40",
+			"minVersion": "3.3.43",
 			"name": "Common Types"
 		}
 	},
 	"deprecated": false,
 	"description": "This Content Pack enables you to add a reputation for cryptocurrency addresses.",
 	"disabledMonthly": false,
-	"downloads": 6262,
+	"downloads": 6613,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -124,7 +124,7 @@
 			"name": "Cryptocurrency"
 		}
 	],
-	"itemVersion": "1.1.25",
+	"itemVersion": "1.1.26",
 	"keywords": [],
 	"legacy": true,
 	"name": "Cryptocurrency",
@@ -151,9 +151,9 @@
 		"Getting Started"
 	],
 	"toServerVersion": "",
-	"updated": "2022-12-28T22:34:00Z",
+	"updated": "2023-01-15T22:19:52Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4314430",
+	"versionInfo": "4410080",
 	"videos": []
 }
