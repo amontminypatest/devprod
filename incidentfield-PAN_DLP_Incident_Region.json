@@ -24,7 +24,7 @@
 	"hidden": false,
 	"id": "incident_pandlpincidentregion",
 	"isReadOnly": false,
-	"itemVersion": "1.2.1",
+	"itemVersion": "1.2.2",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "PAN DLP Incident Region",
