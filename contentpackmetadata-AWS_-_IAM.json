@@ -244,21 +244,21 @@
 		"wizard": null
 	},
 	"created": "2020-09-23T17:51:48Z",
-	"currentVersion": "1.1.20",
+	"currentVersion": "1.1.21",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.53",
+			"minVersion": "1.31.54",
 			"name": "Base"
 		}
 	},
 	"deprecated": false,
 	"description": "Amazon Web Services Identity and Access Management (IAM)",
 	"disabledMonthly": false,
-	"downloads": 6400,
+	"downloads": 6722,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -275,7 +275,7 @@
 			"name": "AWS - Identity and Access Management"
 		}
 	],
-	"itemVersion": "1.1.20",
+	"itemVersion": "1.1.21",
 	"keywords": [],
 	"legacy": true,
 	"name": "AWS - IAM",
@@ -300,9 +300,9 @@
 	},
 	"tags": [],
 	"toServerVersion": "",
-	"updated": "2023-01-09T16:34:31Z",
+	"updated": "2023-01-15T22:46:58Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4358537",
+	"versionInfo": "4410080",
 	"videos": []
 }
