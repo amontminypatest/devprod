@@ -73,7 +73,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.0.0
-    itemVersion: 2.0.22
+    itemVersion: 2.0.24
     packID: Anomali_ThreatStream
     packName: Anomali ThreatStream
     packPropagationLabels:
@@ -4028,7 +4028,7 @@ script:
     - contextPath: ThreatStream.Intelligence.severity
       description: The severity of the intelligence.
       type: String
-  dockerimage: demisto/py3-tools:1.0.0.41748
+  dockerimage: demisto/py3-tools:1.0.0.43697
   runonce: false
   script: |
     register_module_line('Anomali ThreatStream v3', 'start', __line__())
