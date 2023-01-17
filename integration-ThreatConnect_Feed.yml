@@ -59,10 +59,9 @@ configuration:
   required: false
   type: 8
 - additionalinfo: Indicators from this integration instance will be marked with this
-    reputation.
-  defaultvalue: None
+    reputation
+  defaultvalue: Bad
   display: Indicator Reputation
-  hidden: true
   name: feedReputation
   options:
   - None
@@ -201,7 +200,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 2.1.2
+    itemVersion: 2.1.3
     packID: FeedThreatConnect
     packName: ThreatConnect Feed
     packPropagationLabels:
@@ -275,7 +274,7 @@ script:
   - arguments: []
     description: Gets available indicators owners.
     name: tc-get-owners
-  dockerimage: demisto/python3:3.10.9.40422
+  dockerimage: demisto/python3:3.10.9.42476
   feed: true
   runonce: false
   script: |
