@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.5.0
-    itemVersion: 2.3.24
+    itemVersion: 2.3.26
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -123,7 +123,7 @@ tasks:
       description: Env ID - return to transformer.
       id: 2d74acbf-eb10-4ede-8880-21e9afb7325a
       iscommand: false
-      name: FalconX Detonate and Analyze File
+      name: Falcon Intelligence Sandbox Detonate and Analyze File
       playbookId: FalconX Detonate and Analyze File
       type: playbook
       version: -1
@@ -225,10 +225,11 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: Returns 'yes' if the Falcon X integration is available.
+      description: Returns 'yes' if the Falcon Intelligence Sandbox integration is
+        available.
       id: 1e2efc1c-d878-46c7-835f-ea5c802dd878
       iscommand: false
-      name: Is FalconX enabled?
+      name: Is Falcon Intelligence Sandbox enabled?
       script: IsIntegrationAvailable
       type: condition
       version: -1
