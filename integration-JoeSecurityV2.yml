@@ -45,7 +45,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.8.0
-    itemVersion: 1.1.4
+    itemVersion: 1.1.5
     packID: JoeSecurity
     packName: Joe Security
     packPropagationLabels:
@@ -1295,7 +1295,7 @@ script:
       description: The time.
       type: Date
     polling: true
-  dockerimage: demisto/joe-security:1.0.0.42210
+  dockerimage: demisto/joe-security:1.0.0.44820
   runonce: false
   script: |
     register_module_line('JoeSecurityV2', 'start', __line__())
