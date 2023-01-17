@@ -17,12 +17,12 @@
 		"classifier": [
 			{
 				"description": "Classifies AWS IOCs.",
-				"id": "",
+				"id": "AWS Feed Classifier",
 				"name": "AWS Feed - Classifier"
 			},
 			{
 				"description": "Maps incoming AWS indicator fields.",
-				"id": "",
+				"id": "AWS Feed Mapper",
 				"name": "AWS Feed - Incoming Mapper"
 			}
 		],
@@ -42,7 +42,7 @@
 					}
 				],
 				"description": "Use the AWS feed integration to fetch indicators from the feed.",
-				"id": "",
+				"id": "AWS Feed",
 				"name": "AWS Feed"
 			}
 		],
@@ -60,28 +60,28 @@
 		"wizard": null
 	},
 	"created": "2020-07-26T10:30:48Z",
-	"currentVersion": "1.1.23",
+	"currentVersion": "1.1.24",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.45",
+			"minVersion": "1.31.54",
 			"name": "Base"
 		},
 		"CommonTypes": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
-			"mandatory": true,
-			"minVersion": "3.3.38",
+			"mandatory": false,
+			"minVersion": "3.3.43",
 			"name": "Common Types"
 		}
 	},
 	"deprecated": false,
 	"description": "Indicators feed from AWS",
 	"disabledMonthly": false,
-	"downloads": 3090,
+	"downloads": 3232,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.5.0",
 	"general": [
@@ -98,7 +98,7 @@
 			"name": "AWS Feed"
 		}
 	],
-	"itemVersion": "1.1.23",
+	"itemVersion": "1.1.24",
 	"keywords": [
 		"AWS",
 		"Feed"
@@ -125,14 +125,14 @@
 		"url": "https://www.paloaltonetworks.com/cortex"
 	},
 	"tags": [
-		"Getting Started",
+		"TIM",
 		"Threat Intelligence Management",
-		"TIM"
+		"Getting Started"
 	],
 	"toServerVersion": "",
-	"updated": "2022-12-22T11:14:05Z",
+	"updated": "2023-01-12T23:30:35Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4265201",
+	"versionInfo": "4410080",
 	"videos": []
 }
