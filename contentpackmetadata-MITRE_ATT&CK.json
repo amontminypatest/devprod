@@ -74,7 +74,7 @@
 		"wizard": null
 	},
 	"created": "2021-05-27T10:56:30Z",
-	"currentVersion": "1.1.6",
+	"currentVersion": "1.1.9",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
@@ -88,14 +88,14 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.10.44",
+			"minVersion": "1.11.5",
 			"name": "Common Scripts"
 		}
 	},
 	"deprecated": false,
 	"description": "Fetches indicators from MITRE ATT\u0026CK.",
 	"disabledMonthly": false,
-	"downloads": 11942,
+	"downloads": 13211,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -112,7 +112,7 @@
 			"name": "MITRE ATT\u0026CK"
 		}
 	],
-	"itemVersion": "1.1.6",
+	"itemVersion": "1.1.9",
 	"keywords": [
 		"MITRE",
 		"Feed",
@@ -141,13 +141,13 @@
 		"url": "https://www.paloaltonetworks.com/cortex"
 	},
 	"tags": [
-		"TIM",
-		"Threat Intelligence Management"
+		"Threat Intelligence Management",
+		"TIM"
 	],
 	"toServerVersion": "",
-	"updated": "2023-01-11T11:10:23Z",
+	"updated": "2023-01-16T23:48:28Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4372591",
+	"versionInfo": "4410080",
 	"videos": []
 }
