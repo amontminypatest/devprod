@@ -23,7 +23,7 @@
 	"hidden": false,
 	"id": "incident_helloworldtype",
 	"isReadOnly": false,
-	"itemVersion": "1.2.15",
+	"itemVersion": "1.2.16",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Hello World Type",
