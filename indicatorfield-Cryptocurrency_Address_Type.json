@@ -23,7 +23,7 @@
 	"hidden": false,
 	"id": "indicator_cryptocurrencyaddresstype",
 	"isReadOnly": false,
-	"itemVersion": "1.1.25",
+	"itemVersion": "1.1.26",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Cryptocurrency Address Type",
