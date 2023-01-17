@@ -138,7 +138,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 1.1.19
+    itemVersion: 1.1.20
     packID: FeedTAXII
     packName: TAXII Feed
     packPropagationLabels:
