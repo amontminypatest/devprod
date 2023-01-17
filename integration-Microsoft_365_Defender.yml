@@ -8,6 +8,7 @@ configuration:
   display: Application ID
   name: _app_id
   required: false
+  section: Connect
   type: 0
 - additionalinfo: |-
     The United States: api-us.security.microsoft.com
@@ -17,94 +18,130 @@ configuration:
   display: Endpoint URI
   name: base_url
   required: true
+  section: Connect
   type: 0
 - additionalinfo: Use a self-deployed Azure application and authenticate using the
     Client Credentials flow.
   display: Use Client Credentials Authorization Flow
   name: client_credentials
   required: false
+  section: Connect
   type: 8
 - display: Tenant ID (for Client Credentials mode)
   name: _tenant_id
   required: false
+  section: Connect
   type: 0
 - display: Client Secret (for Client Credentials mode)
   hiddenusername: true
   name: credentials
   required: false
+  section: Connect
   type: 9
 - additionalinfo: Used for certificate authentication. As appears in the "Certificates
     & secrets" page of the app.
+  advanced: true
   display: Certificate Thumbprint
+  displaypassword: Private Key
+  name: creds_certificate
+  required: false
+  section: Connect
+  type: 9
+- additionalinfo: Used for certificate authentication. As appears in the "Certificates
+    & secrets" page of the app.
+  advanced: true
+  display: Certificate Thumbprint
+  hidden: true
   name: certificate_thumbprint
   required: false
+  section: Connect
   type: 4
 - additionalinfo: Used for certificate authentication. The private key of the registered
     certificate.
+  advanced: true
   display: Private Key
   name: private_key
   required: false
+  section: Connect
   type: 14
 - defaultvalue: 12 hours
   display: First fetch timestamp (<number> <time unit>, e.g., 12 hours, 7 days)
   name: first_fetch
   required: false
+  section: Collect
   type: 0
 - additionalinfo: The time limit in seconds for fetch incidents to run. Leave this
     empty to cancel the timeout limit.
+  advanced: true
   defaultvalue: "30"
   display: Fetch incidents timeout
   name: fetch_timeout
   required: false
+  section: Collect
   type: 0
 - additionalinfo: Due to API limitations, the maximum is 100.
   defaultvalue: "10"
   display: Number of incidents for each fetch.
   name: max_fetch
   required: false
+  section: Collect
   type: 0
 - defaultvalue: Microsoft 365 Defender Incident
   display: Incident type
   name: incidentType
   required: false
+  section: Connect
   type: 13
 - display: Fetch incidents
   name: isFetch
   required: false
+  section: Collect
   type: 8
-- display: Trust any certificate (not secure)
+- advanced: true
+  display: Trust any certificate (not secure)
   name: insecure
   required: false
+  section: Connect
   type: 8
-- display: Use system proxy settings
+- advanced: true
+  display: Use system proxy settings
   name: proxy
   required: false
+  section: Connect
   type: 8
-- display: Application ID (Deprecated)
+- advanced: true
+  display: Application ID (Deprecated)
   hidden: true
   name: app_id
   required: false
+  section: Connect
   type: 4
-- display: Tenant ID (for Client Credentials mode) (Deprecated)
+- advanced: true
+  display: Tenant ID (for Client Credentials mode) (Deprecated)
   hidden: true
   name: tenant_id
   required: false
+  section: Connect
   type: 4
-- display: Client Secret (for Client Credentials mode) (Deprecated)
+- advanced: true
+  display: Client Secret (for Client Credentials mode) (Deprecated)
   hidden: true
   name: enc_key
   required: false
+  section: Connect
   type: 4
-- defaultvalue: "1"
+- advanced: true
+  defaultvalue: "1"
   display: Incidents Fetch Interval
   name: incidentFetchInterval
   required: false
+  section: Connect
   type: 19
 contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 4.4.6
+    itemVersion: 4.4.9
     packID: Microsoft365Defender
     packName: Microsoft 365 Defender
     packPropagationLabels:
@@ -1006,8 +1043,10 @@ script:
         tenant_id = params.get('tenant_id') or params.get('_tenant_id')
         client_credentials = params.get('client_credentials', False)
         enc_key = params.get('enc_key') or (params.get('credentials') or {}).get('password')
-        certificate_thumbprint = params.get('certificate_thumbprint')
-        private_key = params.get('private_key')
+        certificate_thumbprint = params.get('creds_certificate', {}).get('identifier', '') or \
+            params.get('certificate_thumbprint', '')
+
+        private_key = params.get('creds_certificate', {}).get('password', '') or params.get('private_key', '')
 
         first_fetch_time = params.get('first_fetch', '3 days').strip()
         fetch_limit = arg_to_number(params.get('max_fetch', 10))
