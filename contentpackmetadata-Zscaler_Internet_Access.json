@@ -130,7 +130,7 @@
 					}
 				],
 				"description": "Zscaler is a cloud security solution built for performance and flexible scalability. This integration enables you to manage URL and IP address allow lists and block lists, manage and update categories, get Sandbox reports, and manually log in, log out, and activate changes in a Zscaler session.",
-				"id": "",
+				"id": "Zscaler",
 				"name": "Zscaler Internet Access"
 			}
 		],
@@ -148,21 +148,21 @@
 		"wizard": null
 	},
 	"created": "2020-07-15T10:54:12Z",
-	"currentVersion": "1.3.5",
+	"currentVersion": "1.3.7",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.39",
+			"minVersion": "1.31.54",
 			"name": "Base"
 		}
 	},
 	"deprecated": false,
 	"description": "Zscaler is a cloud security solution built for performance and flexible scalability.",
 	"disabledMonthly": false,
-	"downloads": 5735,
+	"downloads": 6134,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -179,7 +179,7 @@
 			"name": "Zscaler Internet Access"
 		}
 	],
-	"itemVersion": "1.3.5",
+	"itemVersion": "1.3.7",
 	"keywords": [],
 	"legacy": true,
 	"name": "Zscaler Internet Access",
@@ -204,9 +204,9 @@
 	},
 	"tags": [],
 	"toServerVersion": "",
-	"updated": "2022-11-29T00:42:58Z",
+	"updated": "2023-01-16T23:47:41Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4116031",
+	"versionInfo": "4410080",
 	"videos": []
 }
