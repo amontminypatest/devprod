@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.3.24
+    itemVersion: 2.3.26
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -1405,7 +1405,7 @@ tasks:
     task:
       brand: ""
       description: |-
-        Detonates a File using CrowdStrike Falcon X sandbox.
+        Detonates a File using CrowdStrike Falcon Intelligence Sandbox sandbox.
         Accepted file formats:
         Portable executables: .exe, .scr, .pif, .dll, .com, .cpl, etc.
         Office documents: .doc, .docx, .ppt, .pps, .pptx, .ppsx, .xls, .xlsx, .rtf, .pub
@@ -1428,8 +1428,8 @@ tasks:
         Email files: MIME RFC 822 .eml, Outlook .msg.
       id: eacb2317-3f4c-4677-81ea-2870527bab0d
       iscommand: false
-      name: Detonate File - CrowdStrike Falcon X
-      playbookId: Detonate File - CrowdStrike Falcon X
+      name: Detonate File - CrowdStrike Falcon Intelligence Sandbox
+      playbookId: Detonate File - CrowdStrike Falcon Intelligence Sandbox
       type: playbook
       version: -1
     taskid: eacb2317-3f4c-4677-81ea-2870527bab0d
