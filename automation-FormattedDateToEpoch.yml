@@ -5,7 +5,7 @@ args:
 - description: Python 'strptime' formatter string
   name: formatter
 comment: 'Converts a custom-formatted timestamp to UNIX epoch time. Use it to convert
-  custom time stamps to a Demisto date field. If you pass formatter argument, we will
+  custom time stamps to a XSOAR date field. If you pass formatter argument, we will
   use it to transform. If not, we will use dateparser.parse for transforming. For
   more info, see: https://docs.python.org/3.7/library/datetime.html#strftime-and-strptime-behavior'
 commonfields:
@@ -15,15 +15,15 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.10.46
-    packID: CommonScripts
-    packName: Common Scripts
+    itemVersion: 1.2.5
+    packID: FiltersAndTransformers
+    packName: Filters And Transformers
     packPropagationLabels:
     - all
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/python3:3.9.8.24399
+dockerimage: demisto/python3:3.10.9.42476
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
