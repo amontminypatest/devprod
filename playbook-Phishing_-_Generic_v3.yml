@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.1.0
-    itemVersion: 3.3.13
+    itemVersion: 3.4.1
     packID: Phishing
     packName: Phishing
     packPropagationLabels:
@@ -172,6 +172,44 @@ inputs:
   required: false
   value:
     simple: Inner file
+- description: Whether to enter the "Email Indicators Hunting" branch in the playbook.
+    Under this branch, sub-playbooks would be triggered in order to hunt malicious
+    indicators found in other emails and optionally, automatically create new incidents
+    for each found email (configurable through next playbook inputs). Default is "True".
+  key: HuntEmailIndicators
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "True"
+- description: When "True", the "Phishing - Handle Microsoft 365 Defender Results"
+    sub-playbook will open new phishing incidents for each email that contains one
+    of the malicious indicators. Default is "False".
+  key: EmailHuntingCreateNewIncidents
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "False"
+- description: |-
+    The mailbox which is being used to fetch phishing incidents. This mailbox would be excluded in the "Phishing - Indicators Hunting" playbook.
+    In case the value of this input is empty, the value of the "Email To" incident field will be automatically used as the listener mailbox.
+  key: ListenerMailbox
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: The name of the instance to be used when executing the "send-mail"
+    command in the playbook. In case it will be empty, all available instances will
+    be used (default).
+  key: SendMailInstance
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: |-
+    This input will be used as the "original_authentication_header" argument in the "CheckEmailAuthenticity" script under the "Authenticate email" task.
+    The header that holds the original Authentication-Results header value. This can be used when an intermediate server changes the original email and holds the original header value in a different header. Note - Use this only if you trust the server creating this header.
+  key: OriginalAuthenticationHeader
+  playbookInputQuery: null
+  required: false
+  value: {}
 name: Phishing - Generic v3
 outputs: []
 starttaskid: "0"
@@ -235,20 +273,20 @@ tasks:
       brand: ""
       description: Assigns the incident to an analyst based on the analyst's organizational
         role.
-      id: 966a0acc-76d0-4f32-88fc-7ca1f6890e48
+      id: c2c89771-779e-4684-8d06-36481ab03848
       iscommand: false
       name: Assign to analyst
       script: AssignAnalystToIncident
       type: regular
       version: -1
-    taskid: 966a0acc-76d0-4f32-88fc-7ca1f6890e48
+    taskid: c2c89771-779e-4684-8d06-36481ab03848
     timertriggers: []
     type: regular
     view: |-
       {
         "position": {
           "x": -260,
-          "y": 2560
+          "y": 2710
         }
       }
   "7":
@@ -280,7 +318,7 @@ tasks:
       {
         "position": {
           "x": -770,
-          "y": 3055
+          "y": 3215
         }
       }
   "8":
@@ -312,8 +350,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": -897.5,
-          "y": 5180
+          "x": -567.5,
+          "y": 5430
         }
       }
   "11":
@@ -374,25 +412,27 @@ tasks:
         complex:
           accessor: reporteremailaddress
           root: incident
+      using:
+        simple: ${inputs.SendMailInstance}
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
       description: |
         Sends an auto-response to the user reporting the incident that the incident was received and is being handled.
-      id: ceab27b0-e839-491d-8133-2b1b237d52a1
+      id: ad3de6f3-b823-4cb4-8246-ded32b1417e0
       iscommand: true
       name: Acknowledge incident was received
       script: '|||send-mail'
       type: regular
       version: -1
-    taskid: ceab27b0-e839-491d-8133-2b1b237d52a1
+    taskid: ad3de6f3-b823-4cb4-8246-ded32b1417e0
     timertriggers: []
     type: regular
     view: |-
       {
         "position": {
-          "x": 940,
+          "x": 770,
           "y": 630
         }
       }
@@ -406,7 +446,7 @@ tasks:
           operator: greaterThanOrEqual
           right:
             value:
-              simple: "2"
+              simple: "3"
       label: Malicious
     continueonerrortype: ""
     id: "15"
@@ -425,19 +465,19 @@ tasks:
     task:
       brand: ""
       description: Determines if the email is malicious based on the calculated severity.
-      id: 60b666be-c139-417e-8287-7d76fafd2b80
+      id: 41bf9e09-118d-48c9-819a-ac9fa66faee0
       iscommand: false
       name: Is the email malicious?
       type: condition
       version: -1
-    taskid: 60b666be-c139-417e-8287-7d76fafd2b80
+    taskid: 41bf9e09-118d-48c9-819a-ac9fa66faee0
     timertriggers: []
     type: condition
     view: |-
       {
         "position": {
           "x": -260,
-          "y": 2735
+          "y": 2895
         }
       }
   "16":
@@ -467,6 +507,8 @@ tasks:
         complex:
           accessor: reporteremailaddress
           root: incident
+      using:
+        simple: ${inputs.SendMailInstance}
     separatecontext: false
     skipunavailable: false
     task:
@@ -487,8 +529,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": -1230,
-          "y": 3610
+          "x": -907.5,
+          "y": 4010
         }
       }
   "18":
@@ -517,7 +559,7 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 940,
+          "x": 770,
           "y": 300
         }
       }
@@ -685,7 +727,7 @@ tasks:
       {
         "position": {
           "x": 352.5,
-          "y": 3850
+          "y": 4010
         }
       }
   "28":
@@ -780,7 +822,7 @@ tasks:
       {
         "position": {
           "x": 352.5,
-          "y": 4805
+          "y": 4975
         }
       }
   "29":
@@ -806,8 +848,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": -897.5,
-          "y": 5365
+          "x": -567.5,
+          "y": 5615
         }
       }
   "30":
@@ -837,7 +879,7 @@ tasks:
       {
         "position": {
           "x": 162.5,
-          "y": 2910
+          "y": 3070
         }
       }
   "31":
@@ -867,7 +909,7 @@ tasks:
       {
         "position": {
           "x": -770,
-          "y": 2910
+          "y": 3070
         }
       }
   "33":
@@ -900,7 +942,7 @@ tasks:
       {
         "position": {
           "x": -770,
-          "y": 3220
+          "y": 3380
         }
       }
   "34":
@@ -934,7 +976,7 @@ tasks:
       {
         "position": {
           "x": -250,
-          "y": 4180
+          "y": 4350
         }
       }
   "36":
@@ -980,7 +1022,7 @@ tasks:
       {
         "position": {
           "x": 352.5,
-          "y": 4180
+          "y": 4350
         }
       }
   "37":
@@ -1033,7 +1075,7 @@ tasks:
       {
         "position": {
           "x": 950,
-          "y": 4180
+          "y": 4350
         }
       }
   "39":
@@ -1045,6 +1087,7 @@ tasks:
     nexttasks:
       '#none#':
       - "161"
+      - "212"
     note: false
     quietmode: 0
     separatecontext: false
@@ -1097,7 +1140,7 @@ tasks:
       {
         "position": {
           "x": 670,
-          "y": 5040
+          "y": 5210
         }
       }
   "52":
@@ -1178,7 +1221,7 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 940,
+          "x": 770,
           "y": 450
         }
       }
@@ -1240,6 +1283,7 @@ tasks:
       - "80"
       - "131"
       - "154"
+      - "170"
     note: false
     quietmode: 0
     separatecontext: false
@@ -1258,7 +1302,7 @@ tasks:
       {
         "position": {
           "x": -260,
-          "y": 1480
+          "y": 1500
         }
       }
   "79":
@@ -1311,8 +1355,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 390,
-          "y": 1765
+          "x": -260,
+          "y": 1865
         }
       }
   "80":
@@ -1341,8 +1385,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 390,
-          "y": 1620
+          "x": -260,
+          "y": 1730
         }
       }
   "82":
@@ -1364,6 +1408,9 @@ tasks:
           root: Email
           transformers:
           - operator: uniq
+      original_authentication_header:
+        complex:
+          root: inputs.OriginalAuthenticationHeader
     separatecontext: false
     skipunavailable: false
     task:
@@ -1382,8 +1429,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 392.5,
-          "y": 1950
+          "x": -260,
+          "y": 2090
         }
       }
   "83":
@@ -1457,8 +1504,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 392.5,
-          "y": 2145
+          "x": -260,
+          "y": 2265
         }
       }
   "84":
@@ -1489,7 +1536,7 @@ tasks:
       {
         "position": {
           "x": -260,
-          "y": 2350
+          "y": 2540
         }
       }
   "85":
@@ -1529,7 +1576,7 @@ tasks:
     view: |-
       {
         "position": {
-          "x": -260,
+          "x": -250,
           "y": 80
         }
       }
@@ -1559,7 +1606,7 @@ tasks:
     view: |-
       {
         "position": {
-          "x": -1522.5,
+          "x": -1262.5,
           "y": 600
         }
       }
@@ -1793,7 +1840,7 @@ tasks:
       {
         "position": {
           "x": 950,
-          "y": 4765
+          "y": 4935
         }
       }
   "92":
@@ -1927,7 +1974,7 @@ tasks:
       {
         "position": {
           "x": 950,
-          "y": 4040
+          "y": 4210
         }
       }
   "98":
@@ -1957,7 +2004,7 @@ tasks:
       {
         "position": {
           "x": 352.5,
-          "y": 4040
+          "y": 4210
         }
       }
   "99":
@@ -1987,7 +2034,7 @@ tasks:
       {
         "position": {
           "x": -250,
-          "y": 4040
+          "y": 4210
         }
       }
   "101":
@@ -2016,8 +2063,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": -260,
-          "y": 1620
+          "x": -910,
+          "y": 1730
         }
       }
   "126":
@@ -2061,8 +2108,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": -260,
-          "y": 1755
+          "x": -910,
+          "y": 1865
         }
       }
   "131":
@@ -2091,8 +2138,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": -907.5,
-          "y": 1620
+          "x": -1557.5,
+          "y": 1730
         }
       }
   "132":
@@ -2135,8 +2182,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": -907.5,
-          "y": 1755
+          "x": -1557.5,
+          "y": 1865
         }
       }
   "133":
@@ -2181,8 +2228,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": -907.5,
-          "y": 1950
+          "x": -1557.5,
+          "y": 2080
         }
       }
   "135":
@@ -2299,6 +2346,8 @@ tasks:
         complex:
           accessor: reporteremailaddress
           root: incident
+      using:
+        simple: ${inputs.SendMailInstance}
     separatecontext: false
     skipunavailable: false
     task:
@@ -2320,7 +2369,7 @@ tasks:
       {
         "position": {
           "x": 110,
-          "y": 3620
+          "y": 3780
         }
       }
   "149":
@@ -2383,7 +2432,7 @@ tasks:
       {
         "position": {
           "x": 352.5,
-          "y": 3410
+          "y": 3570
         }
       }
   "150":
@@ -2411,6 +2460,8 @@ tasks:
         complex:
           accessor: reporteremailaddress
           root: incident
+      using:
+        simple: ${inputs.SendMailInstance}
     separatecontext: false
     skipunavailable: false
     task:
@@ -2432,7 +2483,7 @@ tasks:
       {
         "position": {
           "x": 580,
-          "y": 3620
+          "y": 3780
         }
       }
   "151":
@@ -2477,8 +2528,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": -897.5,
-          "y": 3410
+          "x": -770,
+          "y": 3665
         }
       }
   "152":
@@ -2522,7 +2573,7 @@ tasks:
       {
         "position": {
           "x": 352.5,
-          "y": 4480
+          "y": 4650
         }
       }
   "153":
@@ -2560,6 +2611,8 @@ tasks:
                         simple: "2"
                 root: DBotScore
           operator: isNotEmpty
+          right:
+            value: {}
       label: "yes"
     continueonerrortype: ""
     id: "153"
@@ -2579,19 +2632,19 @@ tasks:
       brand: ""
       description: Checks whether the attacker tried to squat another domain involved
         in this incident.
-      id: 583cd134-825c-4228-81cc-9379b2f1e7b5
+      id: 54c0f37b-b540-413b-8d1d-ff2f3c44e100
       iscommand: false
       name: Did domain-squatting occur?
       type: condition
       version: -1
-    taskid: 583cd134-825c-4228-81cc-9379b2f1e7b5
+    taskid: 54c0f37b-b540-413b-8d1d-ff2f3c44e100
     timertriggers: []
     type: condition
     view: |-
       {
         "position": {
-          "x": 960,
-          "y": 1755
+          "x": 310,
+          "y": 1865
         }
       }
   "154":
@@ -2620,8 +2673,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 960,
-          "y": 1620
+          "x": 310,
+          "y": 1730
         }
       }
   "155":
@@ -2703,8 +2756,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 950,
-          "y": 1950
+          "x": 310,
+          "y": 2090
         }
       }
   "157":
@@ -2794,7 +2847,7 @@ tasks:
     view: |-
       {
         "position": {
-          "x": -1522.5,
+          "x": -1262.5,
           "y": 795
         }
       }
@@ -2820,6 +2873,11 @@ tasks:
           right:
             value:
               simple: Manual
+        - left:
+            iscontext: true
+            value:
+              simple: incident.sourceBrand
+          operator: isEmpty
       label: No - Manual
     - condition:
       - - left:
@@ -2852,19 +2910,19 @@ tasks:
       description: Checks whether the email address of the phishing email reporter
         was specified on incident creation, so that an acknowledgement email can be
         sent to them.
-      id: 65e85686-e340-4a14-8cb7-798186f3e3eb
+      id: de1d06a0-e330-4fcc-8583-40f697e2342f
       iscommand: false
       name: Was the reporter of the phishing email specified?
       type: condition
       version: -1
-    taskid: 65e85686-e340-4a14-8cb7-798186f3e3eb
+    taskid: de1d06a0-e330-4fcc-8583-40f697e2342f
     timertriggers: []
     type: condition
     view: |-
       {
         "position": {
           "x": -497.5,
-          "y": -210
+          "y": -190
         }
       }
   "162":
@@ -2946,31 +3004,317 @@ tasks:
           "y": 975
         }
       }
+  "170":
+    continueonerrortype: ""
+    id: "170"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "179"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: b52489d5-597e-468b-8ba5-3f3277ff2890
+      iscommand: false
+      name: Email Indicators Hunting
+      type: title
+      version: -1
+    taskid: b52489d5-597e-468b-8ba5-3f3277ff2890
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 860,
+          "y": 1730
+        }
+      }
+  "179":
+    conditions:
+    - condition:
+      - - ignorecase: true
+          left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.HuntEmailIndicators
+          operator: isEqualString
+          right:
+            value:
+              simple: "True"
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: Indicator
+                filters:
+                - - ignorecase: true
+                    left:
+                      iscontext: true
+                      value:
+                        simple: DBotScore.Type
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: url
+                  - ignorecase: true
+                    left:
+                      iscontext: true
+                      value:
+                        simple: DBotScore.Type
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: ip
+                  - ignorecase: true
+                    left:
+                      iscontext: true
+                      value:
+                        simple: DBotScore.Type
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: domain
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: DBotScore.Score
+                    operator: greaterThanOrEqual
+                    right:
+                      value:
+                        simple: "3"
+                root: DBotScore
+          operator: isNotEmpty
+        - left:
+            iscontext: true
+            value:
+              complex:
+                filters:
+                - - ignorecase: true
+                    left:
+                      iscontext: true
+                      value:
+                        simple: DBotScore.Type
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: file
+                  - ignorecase: true
+                    left:
+                      iscontext: true
+                      value:
+                        simple: DBotScore.Type
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: hash
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: DBotScore.Score
+                    operator: greaterThanOrEqual
+                    right:
+                      value:
+                        simple: "3"
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: DBotScore.Indicator
+                    operator: stringHasLength
+                    right:
+                      value:
+                        simple: "64"
+                root: DBotScore.Indicator
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "179"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "84"
+      "yes":
+      - "211"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: ca0d4a0f-2c78-49de-8792-63b4eb33720b
+      iscommand: false
+      name: Hunt email indicators?
+      type: condition
+      version: -1
+    taskid: ca0d4a0f-2c78-49de-8792-63b4eb33720b
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 860,
+          "y": 1865
+        }
+      }
+  "211":
+    continueonerrortype: ""
+    id: "211"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "84"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      DBotScore:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: DBotScore.Score
+              operator: greaterThanOrEqual
+              right:
+                value:
+                  simple: "3"
+          root: DBotScore
+      EmailHuntingCreateNewIncidents:
+        complex:
+          root: inputs.EmailHuntingCreateNewIncidents
+      ListenerMailbox:
+        complex:
+          root: ListenerMailbox
+    separatecontext: true
+    skipunavailable: true
+    task:
+      brand: ""
+      description: |
+        Hunt indicators related to phishing with available integrations and handle the results. Handling the results will include setting relevant incident fields which will be displayed in the layout and optionally, opening new incidents according to the findings.
+        Current integration in this playbook:
+        - Microsoft 365 Defender (using "Advanced Hunting")
+
+        Note that this playbook should be used as a sub-playbook inside a phishing incident and not as a main playbook.
+      id: b48c1fe5-04a9-45a5-8065-ba32f45a9697
+      iscommand: false
+      name: Phishing - Indicators Hunting
+      playbookId: Phishing - Indicators Hunting
+      type: playbook
+      version: -1
+    taskid: b48c1fe5-04a9-45a5-8065-ba32f45a9697
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 860,
+          "y": 2090
+        }
+      }
+  "212":
+    continueonerrortype: ""
+    id: "212"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "11"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      key:
+        simple: ListenerMailbox
+      value:
+        complex:
+          root: .
+          transformers:
+          - args:
+              condition:
+                value:
+                  simple: lhs!=rhs
+              else:
+                iscontext: true
+                value:
+                  simple: incident.emailto
+              equals: {}
+              lhs:
+                iscontext: true
+                value:
+                  simple: inputs.ListenerMailbox
+              options: {}
+              rhs: {}
+              then:
+                iscontext: true
+                value:
+                  simple: inputs.ListenerMailbox
+            operator: If-Then-Else
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: In order to exclude the listener mailbox from hunting actions,
+        it is needed to save it (before it changes) in a dedicated field.
+      id: fb5399de-7b6d-4c38-8d94-81f79246c46c
+      iscommand: false
+      name: Set Listener Mailbox
+      script: SetAndHandleEmpty
+      type: regular
+      version: -1
+    taskid: fb5399de-7b6d-4c38-8d94-81f79246c46c
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -757.5,
+          "y": -15
+        }
+      }
 version: -1
 view: |-
   {
     "linkLabelsPosition": {
+      "132_133_yes": 0.55,
+      "132_84_#default#": 0.13,
       "137_135_yes": 0.54,
       "137_52_#default#": 0.16,
       "149_148_yes - phishing": 0.66,
       "149_27_#default#": 0.21,
       "151_8_#default#": 0.11,
       "152_43_#default#": 0.17,
-      "153_84_#default#": 0.18,
+      "153_155_yes": 0.44,
+      "153_84_#default#": 0.1,
       "15_31_#default#": 0.6,
       "162_163_yes": 0.41,
       "162_52_#default#": 0.22,
+      "179_211_yes": 0.5,
+      "179_84_#default#": 0.1,
       "33_149_yes": 0.18,
       "36_43_#default#": 0.2,
       "37_43_#default#": 0.12,
       "37_91_yes": 0.57,
-      "79_84_#default#": 0.21
+      "79_82_yes": 0.46,
+      "79_84_#default#": 0.17
     },
     "paper": {
       "dimensions": {
-        "height": 5940,
-        "width": 2862.5,
-        "x": -1522.5,
+        "height": 6190,
+        "width": 2887.5,
+        "x": -1557.5,
         "y": -510
       }
     }
