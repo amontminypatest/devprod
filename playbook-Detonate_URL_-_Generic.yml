@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.3.24
+    itemVersion: 2.3.26
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -869,8 +869,8 @@ tasks:
         integration.'''
       id: 07706e7e-800f-408e-8dfa-184841b701f4
       iscommand: false
-      name: Detonate URL - CrowdStrike Falcon X
-      playbookId: Detonate URL - CrowdStrike Falcon X
+      name: Detonate URL - CrowdStrike Falcon Intelligence Sandbox
+      playbookId: Detonate URL - CrowdStrike Falcon Intelligence Sandbox
       type: playbook
       version: -1
     taskid: 07706e7e-800f-408e-8dfa-184841b701f4
