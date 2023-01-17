@@ -165,35 +165,35 @@
 		"wizard": null
 	},
 	"created": "2020-11-09T18:46:26Z",
-	"currentVersion": "1.1.4",
+	"currentVersion": "1.1.5",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.51",
+			"minVersion": "1.31.54",
 			"name": "Base"
 		},
 		"CommonPlaybooks": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "2.3.23",
+			"minVersion": "2.3.26",
 			"name": "Common Playbooks"
 		},
 		"CommonScripts": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.10.34",
+			"minVersion": "1.11.5",
 			"name": "Common Scripts"
 		}
 	},
 	"deprecated": false,
 	"description": "Sandbox Cloud",
 	"disabledMonthly": false,
-	"downloads": 2572,
+	"downloads": 2663,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -214,7 +214,7 @@
 			"name": "Joe Security v2"
 		}
 	],
-	"itemVersion": "1.1.4",
+	"itemVersion": "1.1.5",
 	"keywords": [],
 	"legacy": true,
 	"name": "Joe Security",
@@ -239,9 +239,9 @@
 	},
 	"tags": [],
 	"toServerVersion": "",
-	"updated": "2022-12-28T13:15:36Z",
+	"updated": "2023-01-17T11:23:28Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4314430",
+	"versionInfo": "4410080",
 	"videos": []
 }
