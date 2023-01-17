@@ -6,33 +6,44 @@ configuration:
 - display: Bot ID
   name: bot_id
   required: true
+  section: Connect
   type: 0
 - display: Bot Password
   name: bot_password
   required: true
+  section: Connect
   type: 4
-- display: Tenant ID
+- advanced: true
+  display: Tenant ID
   name: tenant_id
   required: false
+  section: Connect
   type: 0
 - display: Default team
   name: team
   required: true
+  section: Connect
   type: 0
 - defaultvalue: General
   display: Notifications channel
   name: incident_notifications_channel
   required: true
+  section: Connect
   type: 0
-- display: Certificate (Required for HTTPS)
+- advanced: true
+  display: Certificate (Required for HTTPS)
   name: certificate
   required: false
+  section: Connect
   type: 12
-- display: Private Key (Required for HTTPS)
+- advanced: true
+  display: Private Key (Required for HTTPS)
   name: key
   required: false
+  section: Connect
   type: 14
-- defaultvalue: Low
+- advanced: true
+  defaultvalue: Low
   display: Minimum incident severity to send notifications to Teams by
   name: min_incident_severity
   options:
@@ -43,44 +54,58 @@ configuration:
   - High
   - Critical
   required: false
+  section: Collect
   type: 15
 - additionalinfo: Whether to disable automatic notifications to the configured notifications
     channel.
+  advanced: true
   defaultvalue: "false"
   display: Disable Automatic Notifications
   name: auto_notifications
   required: false
+  section: Connect
   type: 8
-- display: Allow external users to create incidents via direct message
+- advanced: true
+  display: Allow external users to create incidents via direct message
   name: allow_external_incidents_creation
   required: false
+  section: Collect
   type: 8
-- display: Trust any certificate (not secure)
+- advanced: true
+  display: Trust any certificate (not secure)
   name: insecure
   required: false
+  section: Connect
   type: 8
-- display: Use system proxy settings
+- advanced: true
+  display: Use system proxy settings
   name: proxy
   required: false
+  section: Connect
   type: 8
-- display: Long running instance
+- advanced: true
+  display: Long running instance
   name: longRunning
   required: false
+  section: Connect
   type: 8
-- display: Listen port, e.g. 7000 (Required for investigation mirroring and direct
+- advanced: true
+  display: Listen port, e.g. 7000 (Required for investigation mirroring and direct
     messages)
   name: longRunningPort
   required: false
+  section: Connect
   type: 0
 - display: Incident type
   name: incidentType
   required: false
+  section: Connect
   type: 13
 contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.2.10
+    itemVersion: 1.2.11
     packID: MicrosoftTeams
     packName: Microsoft Teams
     packPropagationLabels:
