@@ -1,8 +1,8 @@
 contentitemexportablefields:
   contentitemfields:
     definitionid: ""
-    fromServerVersion: 5.5.0
-    itemVersion: 2.3.24
+    fromServerVersion: 6.8.0
+    itemVersion: 2.3.26
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -18,11 +18,6 @@ id: Isolate Endpoint - Generic V2
 inputs:
 - description: The host name of the endpoint to isolate.
   key: Endpoint_hostname
-  playbookInputQuery: null
-  required: false
-  value: {}
-- description: Hosts that were detected as infected during the manual hunting.
-  key: ManualHunting.DetectedHosts
   playbookInputQuery: null
   required: false
   value: {}
@@ -90,6 +85,9 @@ outputs:
 - contextPath: MicrosoftATP.IncorrectIPs
   description: Incorrect device IPs entered.
   type: string
+- contextPath: Core.Isolation.endpoint_id
+  description: The ID of the isolated endpoint.
+  type: string
 starttaskid: "0"
 system: true
 tasks:
@@ -107,6 +105,7 @@ tasks:
       - "10"
       - "11"
       - "12"
+      - "13"
     note: false
     quietmode: 0
     separatecontext: false
@@ -172,7 +171,8 @@ tasks:
     quietmode: 0
     scriptarguments:
       Hostname:
-        simple: ${inputs.Endpoint_hostname}
+        complex:
+          root: inputs.Endpoint_hostname
     separatecontext: true
     skipunavailable: true
     task:
@@ -212,11 +212,14 @@ tasks:
     quietmode: 0
     scriptarguments:
       endpoint_id:
-        simple: ${inputs.Endpoint_id}
+        complex:
+          root: inputs.Endpoint_id
       hostname:
-        simple: ${inputs.Endpoint_hostname}
+        complex:
+          root: inputs.Endpoint_hostname
       ip_list:
-        simple: ${inputs.Endpoint_ip}
+        complex:
+          root: inputs.Endpoint_ip
     separatecontext: true
     skipunavailable: true
     task:
@@ -257,7 +260,8 @@ tasks:
     quietmode: 0
     scriptarguments:
       Device_id:
-        simple: ${inputs.Endpoint_id}
+        complex:
+          root: inputs.Endpoint_id
     separatecontext: true
     skipunavailable: true
     task:
@@ -298,9 +302,11 @@ tasks:
     quietmode: 0
     scriptarguments:
       Endpoint_id:
-        simple: ${inputs.Endpoint_id}
+        complex:
+          root: inputs.Endpoint_id
       Hostname:
-        simple: ${inputs.Endpoint_hostname}
+        complex:
+          root: inputs.Endpoint_hostname
     separatecontext: true
     skipunavailable: true
     task:
@@ -341,9 +347,11 @@ tasks:
     quietmode: 0
     scriptarguments:
       Hostname:
-        simple: ${inputs.Endpoint_hostname}
+        complex:
+          root: inputs.Endpoint_hostname
       Sensor_id:
-        simple: ${inputs.Endpoint_id}
+        complex:
+          root: inputs.Endpoint_id
     separatecontext: true
     skipunavailable: true
     task:
@@ -383,11 +391,14 @@ tasks:
     quietmode: 0
     scriptarguments:
       Device_IP:
-        simple: ${inputs.Endpoint_ip}
+        complex:
+          root: inputs.Endpoint_ip
       Device_id:
-        simple: ${inputs.Endpoint_id}
+        complex:
+          root: inputs.Endpoint_id
       Hostname:
-        simple: ${inputs.Endpoint_hostname}
+        complex:
+          root: inputs.Endpoint_hostname
     separatecontext: true
     skipunavailable: true
     task:
@@ -408,6 +419,42 @@ tasks:
           "y": 195
         }
       }
+  "13":
+    continueonerrortype: ""
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      endpoint_id:
+        complex:
+          root: inputs.Endpoint_id
+    separatecontext: false
+    skipunavailable: true
+    task:
+      brand: ""
+      description: Isolates the specified endpoint.
+      id: 6288e7cc-1f1c-4132-834c-02efaf383aee
+      iscommand: true
+      name: Core - Isolate Endpoint
+      script: '|||core-isolate-endpoint'
+      type: regular
+      version: -1
+    taskid: 6288e7cc-1f1c-4132-834c-02efaf383aee
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -380,
+          "y": 195
+        }
+      }
 version: -1
 view: |-
   {
@@ -415,8 +462,8 @@ view: |-
     "paper": {
       "dimensions": {
         "height": 385,
-        "width": 2530,
-        "x": 50,
+        "width": 2960,
+        "x": -380,
         "y": 50
       }
     }
