@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.1.4
+    itemVersion: 1.1.5
     packID: JoeSecurity
     packName: Joe Security
     packPropagationLabels:
@@ -126,7 +126,6 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: Start
       id: b04c121d-294e-4dd0-8148-d9fe0f44be04
       iscommand: false
       name: ""
@@ -295,7 +294,6 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: Done
       id: 7e59cb60-98d6-49a0-8c7f-522c1247ee73
       iscommand: false
       name: Done
