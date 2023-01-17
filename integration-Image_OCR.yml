@@ -3,16 +3,18 @@ commonfields:
   id: Image OCR
   version: -1
 configuration:
-- display: A CSV of language codes of the language to use for OCR (leave empty to
+- advanced: true
+  display: A CSV of language codes of the language to use for OCR (leave empty to
     use defaults).
   name: langs
   required: false
+  section: Connect
   type: 0
 contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.1.7
+    itemVersion: 1.1.8
     packID: ImageOCR
     packName: Image OCR
     packPropagationLabels:
