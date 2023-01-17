@@ -33,7 +33,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.1.4
+    itemVersion: 1.1.5
     packID: JoeSecurity
     packName: Joe Security
     packPropagationLabels:
