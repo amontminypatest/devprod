@@ -187,7 +187,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.16.0
+    itemVersion: 1.16.2
     packID: PAN-OS
     packName: PAN-OS by Palo Alto Networks
     packPropagationLabels:
@@ -9367,7 +9367,7 @@ script:
       name: device-group
     description: Deletes an application-group
     name: pan-os-delete-application-group
-  dockerimage: demisto/pan-os-python:1.0.0.42910
+  dockerimage: demisto/pan-os-python:1.0.0.44853
   isfetch: true
   runonce: false
   script: |
@@ -9376,6 +9376,7 @@ script:
     from dataclasses import dataclass, fields
     from types import SimpleNamespace
     import enum
+    import html
 
 
 
@@ -9403,7 +9404,7 @@ script:
     import re
     import requests
     import urllib3
-    from urllib.parse import urlparse
+    from urllib.parse import urlparse, quote
 
     # disable insecure warnings
     urllib3.disable_warnings()
@@ -12158,8 +12159,11 @@ script:
 
         merged_items = list((set(items)).union(set(custom_url_category_items)))
 
+        # escape URLs with HTML escaping
+        sites = [html.escape(site) for site in merged_items]
+
         result, custom_url_category_output = panorama_edit_custom_url_category(custom_url_category_name, type_,
-                                                                               merged_items, description)
+                                                                               sites, description)
         return_results({
             'Type': entryTypes['note'],
             'ContentsFormat': formats['json'],
@@ -12191,8 +12195,12 @@ script:
             raise Exception('Custom url category does not contain sites or categories.')
 
         subtracted_items = [item for item in custom_url_category_items if item not in items]
+
+        # escape URLs with HTML escaping
+        sites = [html.escape(site) for site in subtracted_items]
+
         result, custom_url_category_output = panorama_edit_custom_url_category(custom_url_category_name, type_,
-                                                                               subtracted_items, description)
+                                                                               sites, description)
         return_results({
             'Type': entryTypes['note'],
             'ContentsFormat': formats['json'],
