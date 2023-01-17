@@ -8,7 +8,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.0.0
+    itemVersion: 2.1.0
     packID: Cybereason
     packName: Cybereason
     packPropagationLabels:
@@ -16,7 +16,7 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/python3:3.10.8.37233
+dockerimage: demisto/python3:3.10.9.42476
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
