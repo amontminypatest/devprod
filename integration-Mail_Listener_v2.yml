@@ -6,74 +6,98 @@ configuration:
 - display: Mail Server Hostname / IP address
   name: MailServerURL
   required: true
+  section: Connect
   type: 0
 - defaultvalue: "143"
   display: IMAP Port
   name: port
   required: true
+  section: Connect
   type: 0
 - display: Username
   name: credentials
   required: true
+  section: Connect
   type: 9
 - defaultvalue: INBOX
   display: Incoming mail folder
   name: folder
   required: true
+  section: Connect
   type: 0
 - display: Fetch incidents
   name: isFetch
   required: false
+  section: Collect
   type: 8
 - display: Incident type
   name: incidentType
   required: false
+  section: Connect
   type: 13
-- display: Fetch mails from these senders addresses only (eg. admin@demo.com,test@demo.com)
+- advanced: true
+  display: Fetch mails from these senders addresses only (eg. admin@demo.com,test@demo.com)
   name: permittedFromAdd
   required: false
+  section: Collect
   type: 0
-- display: Fetch mails from these domains only (eg. demo.com, test.com)
+- advanced: true
+  display: Fetch mails from these domains only (eg. demo.com, test.com)
   name: permittedFromDomain
   required: false
+  section: Collect
   type: 0
 - additionalinfo: Whether to query search with headers when filtering by sender's
     email address.
+  advanced: true
   defaultvalue: "false"
   display: Query search with headers
   name: with_headers
   required: false
+  section: Collect
   type: 8
 - defaultvalue: 1 hour
   display: First fetch time
   name: first_fetch
   required: false
+  section: Collect
   type: 0
 - defaultvalue: "50"
   display: The maximum number of incidents to fetch each time
   name: limit
   required: false
+  section: Collect
   type: 0
-- display: Delete processed emails
+- advanced: true
+  display: Delete processed emails
   name: delete_processed
   required: false
+  section: Collect
   type: 8
-- display: Include raw body in incidents
+- advanced: true
+  display: Include raw body in incidents
   name: Include_raw_body
   required: false
+  section: Collect
   type: 8
-- display: Save the email .eml file
+- advanced: true
+  display: Save the email .eml file
   name: save_file
   required: false
+  section: Collect
   type: 8
-- defaultvalue: "true"
+- advanced: true
+  defaultvalue: "true"
   display: Use TLS for connection (defaults to True)
   name: TLS_connection
   required: false
+  section: Connect
   type: 8
-- display: Trust any certificate (not secure)
+- advanced: true
+  display: Trust any certificate (not secure)
   name: insecure
   required: false
+  section: Connect
   type: 8
 - defaultvalue: "1"
   display: Incidents Fetch Interval
@@ -84,7 +108,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.0.26
+    itemVersion: 1.0.27
     packID: MailListener
     packName: Mail Listener
     packPropagationLabels:
@@ -172,7 +196,7 @@ script:
     description: Fetches an email by message ID and returns the information in an
       eml file format.
     name: mail-listener-get-email-as-eml
-  dockerimage: demisto/py3-tools:1.0.0.42928
+  dockerimage: demisto/py3-tools:1.0.0.43697
   isfetch: true
   runonce: false
   script: |
