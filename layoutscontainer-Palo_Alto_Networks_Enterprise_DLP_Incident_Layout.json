@@ -401,7 +401,7 @@
 	"id": "Palo Alto Networks Enterprise DLP Incident Layout",
 	"indicatorsDetails": null,
 	"indicatorsQuickView": null,
-	"itemVersion": "1.2.1",
+	"itemVersion": "1.2.2",
 	"locked": false,
 	"mobile": null,
 	"name": "Palo Alto Networks Enterprise DLP Incident Layout",
