@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 1.1.20
+    itemVersion: 1.1.21
     packID: AWS-IAM
     packName: AWS - IAM
     packPropagationLabels:
