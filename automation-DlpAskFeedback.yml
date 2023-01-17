@@ -49,7 +49,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 1.2.1
+    itemVersion: 1.2.2
     packID: Palo_Alto_Networks_Enterprise_DLP
     packName: Enterprise DLP by Palo Alto Networks
     packPropagationLabels:
