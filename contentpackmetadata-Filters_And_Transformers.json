@@ -13,12 +13,29 @@
 	"contentItems": {
 		"automation": [
 			{
+				"description": "Returns the last element of an array. If the value passed is not an array, it returns the original value that was passed.",
+				"name": "LastArrayElement",
+				"tags": [
+					"general",
+					"transformer",
+					"entirelist"
+				]
+			},
+			{
 				"description": "Checks the given datetime has occured after the provided relative time.",
 				"name": "AfterRelativeDate",
 				"tags": [
 					"date",
 					"filter",
 					"Condition"
+				]
+			},
+			{
+				"description": "Transformer that returns a filtered list of IPv4 addresses, based on whether they do not match a comma-separated list of IPv4 ranges.  Useful for filtering out internal IP address space.",
+				"name": "IPv4Blacklist",
+				"tags": [
+					"transformer",
+					"entirelist"
 				]
 			},
 			{
@@ -32,6 +49,15 @@
 			{
 				"description": "Each entry in an array is merged into the existing array if the keyed-value matches.",
 				"name": "MergeDictArray",
+				"tags": [
+					"transformer",
+					"general",
+					"entirelist"
+				]
+			},
+			{
+				"description": "Returns the product of two lists, joined by a separator, as a list of strings.",
+				"name": "ProductJoin",
 				"tags": [
 					"transformer",
 					"general",
@@ -56,10 +82,52 @@
 				]
 			},
 			{
+				"description": "Extraction of all matches from a specified regular expression pattern from a provided string.  Returns an array of results.  This differs from RegexGroups in several ways:\n\n* It returns all matches of the specified pattern, not just specific groups.  This is useful for extracting things using a pattern where the content of the source string is indeterminate, such as extracting all email addresses.\n* Some \"convenience\" arguments have been added to enhance usability: multi-line, ignore_case, period_matches_newline\n* Added a new argument, \"error_if_no_match\".  The script will not ordinarily throw an error if a match is not found but if not using as a transformer within a playbook, it may, in certain limited circumstances, be desirable to throw an error if the expression doesn't match.\n* It uses the 'regex'  library, which supports more some more advanced regex functionality than the standard 're' library.  For more info, see https://pypi.org/project/regex/.",
+				"name": "RegexExtractAll",
+				"tags": [
+					"transformer",
+					"string"
+				]
+			},
+			{
 				"description": "Check if number of availble addresses in IPv4 or IPv6 CIDR is greater than given number.",
 				"name": "GreaterCidrNumAddresses",
 				"tags": [
 					"filter"
+				]
+			},
+			{
+				"description": "Parse a given JSON string \"value\" to a representative object. Example: '{\"a\": \"value\"}' =\u003e {\"a\": \"value\"}.",
+				"name": "ParseJSON",
+				"tags": [
+					"transformer",
+					"string"
+				]
+			},
+			{
+				"description": "Returns the first element of an array.  If the value passed is not an array, it returns the original value that was passed.",
+				"name": "FirstArrayElement",
+				"tags": [
+					"general",
+					"transformer",
+					"entirelist"
+				]
+			},
+			{
+				"description": "Transformer that returns a filtered list of IPv4 addresses, based on whether they match a comma-separated list of IPv4 ranges.  Useful for filtering in internal IP address space.",
+				"name": "IPv4Whitelist",
+				"tags": [
+					"transformer",
+					"entirelist"
+				]
+			},
+			{
+				"description": "Checks an object for an empty value and returns a pre-set default value.",
+				"name": "SetIfEmpty",
+				"tags": [
+					"transformer",
+					"general",
+					"entirelist"
 				]
 			},
 			{
@@ -87,6 +155,21 @@
 				]
 			},
 			{
+				"description": "A transformer for simple if-then-else logic.",
+				"name": "If-Then-Else",
+				"tags": [
+					"transformer",
+					"general"
+				]
+			},
+			{
+				"description": "Converts string to array. \nFor example: `http://example.com/?score:1,4,time:55` will be transformed to `[\"http://example.com/?score:1,4,time:55\"]`.",
+				"name": "StringToArray",
+				"tags": [
+					"transformer"
+				]
+			},
+			{
 				"description": "This is a thin wrapper around the `dateutil.parser.parse` function. It will parse a string containing a date/time stamp and return it in ISO 8601 format.",
 				"name": "DateStringToISOFormat",
 				"tags": [
@@ -99,6 +182,15 @@
 				"name": "URLEncode",
 				"tags": [
 					"transformer"
+				]
+			},
+			{
+				"description": "Gets specified indexes of a list.",
+				"name": "GetRange",
+				"tags": [
+					"transformer",
+					"general",
+					"entirelist"
 				]
 			},
 			{
@@ -188,8 +280,24 @@
 				]
 			},
 			{
+				"description": "Removed selected fields from the JSON object.",
+				"name": "IgnoreFieldsFromJson",
+				"tags": [
+					"transformer",
+					"General"
+				]
+			},
+			{
 				"description": "Format patterns matched with regex. If the regex does not match any pattern, the original value is returned.\n\nExample 1:\n value: user=john\n regex: user=(.*)\n output_format: name=\\1\n -\u003e output value: name=john\n\nExample 2:\n value: xxx=yyy\n regex: user=(.*)\n output_format: name=\\1\n -\u003e output value: xxx=yyy",
 				"name": "RegexReplace",
+				"tags": [
+					"transformer",
+					"string"
+				]
+			},
+			{
+				"description": "Strip set of characters from prefix and/or suffix\ne.g. StripChar value=~!!~www.mydomain.com~!~!~  chars=!~ will return www.mydomain.com",
+				"name": "StripChars",
 				"tags": [
 					"transformer",
 					"string"
@@ -210,6 +318,23 @@
 					"transformer",
 					"general",
 					"string"
+				]
+			},
+			{
+				"description": "Return the single element in case the array has only 1 element in it, otherwise return the whole array",
+				"name": "JoinIfSingleElementOnly",
+				"tags": [
+					"entirelist",
+					"transformer",
+					"general"
+				]
+			},
+			{
+				"description": "Converts a custom-formatted timestamp to UNIX epoch time. Use it to convert custom time stamps to a XSOAR date field. If you pass formatter argument, we will use it to transform. If not, we will use dateparser.parse for transforming. For more info, see: https://docs.python.org/3.7/library/datetime.html#strftime-and-strptime-behavior",
+				"name": "FormattedDateToEpoch",
+				"tags": [
+					"transformer",
+					"date"
 				]
 			},
 			{
@@ -245,6 +370,15 @@
 				]
 			},
 			{
+				"description": "Adds zeros (0) to the beginning of the string, until the string reaches the specified length.",
+				"name": "PadZeros",
+				"tags": [
+					"transformer",
+					"string",
+					"number"
+				]
+			},
+			{
 				"description": "Decodes an input in Base64 format.",
 				"name": "Base64Decode",
 				"tags": [
@@ -261,10 +395,51 @@
 				]
 			},
 			{
+				"description": "This script converts the input value into another value using two lists. The input value is searched in the first list (input_values). \nIf it exists, the value from the second list (mapped_values) at the same index is retutrned. If there is no match, the original value is returned.\nIf the original input is a dictionary, then the script will look for a \"stringified\" version of the key/:/value pair in the input_values and then map the result in the output_values into the original \"value\".\n\nExample 1:\n\ninput_values = \"1,2,3,4\"\nmapper_values = \"4,3,2,1\"\nvalue = 3\n\nOutput would be \"2\"\n\nExample 2:\n\ninput_values =\"firstkey: datahere,secondkey: datathere\"\nmapper_values = \"datathere,datahere\"\nvalue(dict)= {\n                                \"firstkey\": \"datahere\"\n                          }\n\nOutput would be:\n                          {\n                                \"firstkey\": \"datathere\"\n                           }\n\nThe reason for matching the key AND value pair in a dictionary is to allow the mappig of values that have a specific key name. In most cases, dictionaries will continan key-value pairs in which the values are the same. You might want to change the value of KeyA, but not the value of KeyB. This method gives control over which key is changed.\n\nWhen the input is a dict, str , int, or list, the output is ALWAYS returned as a string.",
+				"name": "MapValuesTransformer",
+				"tags": [
+					"transformer",
+					"string"
+				]
+			},
+			{
+				"description": "Performs a JMESPath search on an input JSON format, when using a transformer.",
+				"name": "jmespath",
+				"tags": [
+					"transformer",
+					"general"
+				]
+			},
+			{
 				"description": "Checks whether an IPv4 address is not contained in one or more comma-delimited CIDR ranges.",
 				"name": "IsNotInCidrRanges",
 				"tags": [
 					"filter"
+				]
+			},
+			{
+				"description": "The script receives a list of fields and a context key base path. For example, Key=Test.result List=username,user and will get all of the values from Test.result.username and Test.result.user.\nThe Get field of the task must have the value ${.=[]}.",
+				"name": "GetValuesOfMultipleFields",
+				"tags": [
+					"transformer"
+				]
+			},
+			{
+				"description": "Accepts an array of domains as an allow list, and a list of email addresses. The script then filters out any email address whose domain is not in the allow list.  The filtered list will be returned as an array.",
+				"name": "EmailDomainWhitelist",
+				"tags": [
+					"transformer",
+					"general",
+					"entirelist"
+				]
+			},
+			{
+				"description": "Accepts an array of domains as a block list, and a list of email addresses. The script then filters out any email address whose domain is in the block list.  The filtered list will be returned as an array.",
+				"name": "EmailDomainBlacklist",
+				"tags": [
+					"transformer",
+					"general",
+					"entirelist"
 				]
 			},
 			{
@@ -282,11 +457,36 @@
 				]
 			},
 			{
+				"description": "Takes a date or time input and adds or subtracts a determined amount of time. Returns a string in date or time in ISO Format.",
+				"name": "ModifyDateTime",
+				"tags": [
+					"transformer",
+					"date"
+				]
+			},
+			{
+				"description": "Accepts a json object and returns a markdown.",
+				"name": "JsonToTable",
+				"tags": [
+					"transformer",
+					"entirelist",
+					"general"
+				]
+			},
+			{
 				"description": "Build text from a template that can include DT expressions.",
 				"name": "FormatTemplate",
 				"tags": [
 					"transformer",
 					"general"
+				]
+			},
+			{
+				"description": "Extraction of elements which are contained in all the subgroups of the match to the pattern.\nFor example, extracting from the string \"The quick brown fox\" the object `{\"article\":\"The\",\"noun\":quick\"}`\n(See arguments descriptions for more details) ",
+				"name": "RegexGroups",
+				"tags": [
+					"transformer",
+					"string"
 				]
 			},
 			{
@@ -297,12 +497,30 @@
 				]
 			},
 			{
+				"description": "Reverse a list\ne.g. [\"Mars\", \"Jupiter\", \"Saturn\"] =\u003e  [\"Saturn\", \"Jupiter\", \"Mars\"]\n\nThis is an example for entire-list transformer - it operates the argument as a list  (note the \"entirelist\" tag)\n ",
+				"name": "ReverseList",
+				"tags": [
+					"general",
+					"entirelist",
+					"transformer"
+				]
+			},
+			{
 				"description": "Sums a List\ne.g. [\"25\", \"10\", \"25\"] =\u003e  \"60\"\n\nThis is an example for number transformer.\n ",
 				"name": "SumList",
 				"tags": [
 					"transformer",
 					"number",
 					"entirelist"
+				]
+			},
+			{
+				"description": "Extract a string from an existing string.",
+				"name": "ExtractInbetween",
+				"tags": [
+					"transformer",
+					"string",
+					"Utility"
 				]
 			}
 		],
@@ -323,7 +541,7 @@
 		"wizard": null
 	},
 	"created": "2022-01-04T22:18:23Z",
-	"currentVersion": "1.2.2",
+	"currentVersion": "1.2.5",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
@@ -337,7 +555,7 @@
 	"deprecated": false,
 	"description": "Frequently used filters and transformers pack.",
 	"disabledMonthly": false,
-	"downloads": 9988,
+	"downloads": 11400,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -349,7 +567,7 @@
 	"id": "FiltersAndTransformers",
 	"installMessage": "",
 	"integrations": [],
-	"itemVersion": "1.2.2",
+	"itemVersion": "1.2.5",
 	"keywords": [],
 	"legacy": true,
 	"name": "Filters And Transformers",
@@ -373,14 +591,14 @@
 		"url": "https://www.paloaltonetworks.com/cortex"
 	},
 	"tags": [
-		"Core",
+		"Filter",
 		"Transformer",
-		"Filter"
+		"Core"
 	],
 	"toServerVersion": "",
-	"updated": "2023-01-11T10:57:46Z",
+	"updated": "2023-01-12T22:52:29Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4372591",
+	"versionInfo": "4410080",
 	"videos": []
 }
