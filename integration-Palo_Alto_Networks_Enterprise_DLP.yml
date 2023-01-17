@@ -53,7 +53,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.2.1
+    itemVersion: 1.2.2
     packID: Palo_Alto_Networks_Enterprise_DLP
     packName: Enterprise DLP by Palo Alto Networks
     packPropagationLabels:
@@ -169,7 +169,7 @@ script:
     description: Resets the fetch incidents last run value, which resets the fetch
       to its initial fetch state.
     name: pan-dlp-reset-last-run
-  dockerimage: demisto/python3:3.10.4.30607
+  dockerimage: demisto/python3:3.10.9.42476
   isFetchSamples: true
   longRunning: true
   runonce: false
@@ -332,7 +332,8 @@ script:
             if res.status_code != 204:
                 try:
                     result_json = res.json()
-                except json.decoder.JSONDecodeError:
+                # when installing simplejson the type of exception is requests.exceptions.JSONDecodeError
+                except (json.decoder.JSONDecodeError, requests.exceptions.JSONDecodeError):
                     result_json = {}
 
             return result_json, res.status_code
@@ -365,7 +366,8 @@ script:
             if res.status_code != 204:
                 try:
                     result_json = res.json()
-                except json.decoder.JSONDecodeError:
+                # when installing simplejson the type of exception is requests.exceptions.JSONDecodeError
+                except (json.decoder.JSONDecodeError, requests.exceptions.JSONDecodeError):
                     result_json = {}
 
             return result_json, res.status_code
