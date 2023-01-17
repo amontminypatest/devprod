@@ -17,7 +17,7 @@
 	"hours": 0,
 	"hoursR": 0,
 	"id": "Data Loss Prevention",
-	"itemVersion": "1.2.1",
+	"itemVersion": "1.2.2",
 	"layout": "Palo Alto Networks Enterprise DLP Incident Layout",
 	"locked": false,
 	"name": "Data Loss Prevention",
