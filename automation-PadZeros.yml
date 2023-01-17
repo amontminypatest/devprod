@@ -17,15 +17,15 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.10.46
-    packID: CommonScripts
-    packName: Common Scripts
+    itemVersion: 1.2.5
+    packID: FiltersAndTransformers
+    packName: Filters And Transformers
     packPropagationLabels:
     - all
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/python3:3.9.7.24076
+dockerimage: demisto/python3:3.10.9.42476
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
@@ -46,7 +46,6 @@ script: |
 
       s: str = str(args.get('value'))
       length: int = int(args.get('length', 0))
-
       demisto.results(s.zfill(length))
 
 
