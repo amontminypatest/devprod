@@ -169,7 +169,7 @@
 					}
 				],
 				"description": "Endpoint detection and response to manage and query malops, connections and processes.",
-				"id": "",
+				"id": "Cybereason",
 				"name": "Cybereason (Partner Contribution)"
 			}
 		],
@@ -177,8 +177,12 @@
 		"list": null,
 		"playbook": [
 			{
-				"description": "This playbook aborts a file download operation which is in progress based on the Malop ID and username provided.",
-				"name": "Cybereason - Download Close File"
+				"description": "This playbook accepts an MD5 hash and blocks the file using the Cybereason integration.",
+				"name": "Block File - Cybereason"
+			},
+			{
+				"description": "This playbook downloads a file from Cybereason platform, based on the Malop ID and username provided.",
+				"name": "Cybereason - Download File"
 			},
 			{
 				"description": "This playbook unisolates a machine based on the hostname provided.",
@@ -193,12 +197,8 @@
 				"name": "Isolate Endpoint - Cybereason"
 			},
 			{
-				"description": "This playbook downloads a file from Cybereason platform, based on the Malop ID and username provided.",
-				"name": "Cybereason - Download File"
-			},
-			{
-				"description": "This playbook accepts an MD5 hash and blocks the file using the Cybereason integration.",
-				"name": "Block File - Cybereason"
+				"description": "This playbook aborts a file download operation which is in progress based on the Malop ID and username provided.",
+				"name": "Cybereason - Download Close File"
 			}
 		],
 		"report": null,
@@ -207,28 +207,28 @@
 		"wizard": null
 	},
 	"created": "2020-06-30T20:23:49Z",
-	"currentVersion": "2.0.0",
+	"currentVersion": "2.1.0",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.39",
+			"minVersion": "1.31.54",
 			"name": "Base"
 		},
 		"CommonScripts": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.10.7",
+			"minVersion": "1.11.6",
 			"name": "Common Scripts"
 		}
 	},
 	"deprecated": false,
 	"description": "Endpoint detection and response to manage and query malops, connections and processes.",
 	"disabledMonthly": false,
-	"downloads": 3500,
+	"downloads": 3667,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -245,7 +245,7 @@
 			"name": "Cybereason"
 		}
 	],
-	"itemVersion": "2.0.0",
+	"itemVersion": "2.1.0",
 	"keywords": [],
 	"legacy": true,
 	"name": "Cybereason",
@@ -271,9 +271,9 @@
 	},
 	"tags": [],
 	"toServerVersion": "",
-	"updated": "2022-11-09T11:39:25Z",
+	"updated": "2023-01-13T00:03:27Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4098099",
+	"versionInfo": "4410080",
 	"videos": []
 }
