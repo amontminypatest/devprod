@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.0.0
-    itemVersion: 1.4.1
+    itemVersion: 1.4.3
     packID: MicrosoftGraphMail
     packName: Microsoft Graph Mail
     packPropagationLabels:
@@ -184,6 +184,7 @@ tasks:
             iscontext: true
             value:
               complex:
+                accessor: InternetMessageID
                 filters:
                 - - left:
                       iscontext: true
@@ -194,8 +195,19 @@ tasks:
                       iscontext: true
                       value:
                         simple: inputs.MessageID
-                root: MSGraphMail.InternetMessageID
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: MSGraphMail.UserID
+                    operator: isEqualString
+                    right:
+                      iscontext: true
+                      value:
+                        simple: inputs.UserID
+                root: MSGraphMail
           operator: isNotEmpty
+          right:
+            value: {}
       label: "Yes"
     continueonerrortype: ""
     id: "12"
@@ -215,12 +227,12 @@ tasks:
       brand: ""
       description: Verifies that an email object with a message ID that matches the
         InReplyTo ID of the forwarded email was found.
-      id: b22d3fc0-5801-4c61-8b57-87dfc491682e
+      id: 2775b599-4846-4049-8c4e-1e2e660f27c5
       iscommand: false
       name: Was a matching email found?
       type: condition
       version: -1
-    taskid: b22d3fc0-5801-4c61-8b57-87dfc491682e
+    taskid: 2775b599-4846-4049-8c4e-1e2e660f27c5
     timertriggers: []
     type: condition
     view: |-
@@ -256,6 +268,15 @@ tasks:
                 iscontext: true
                 value:
                   simple: inputs.MessageID
+          - - left:
+                iscontext: true
+                value:
+                  simple: MSGraphMail.UserID
+              operator: isEqualString
+              right:
+                iscontext: true
+                value:
+                  simple: inputs.UserID
           root: MSGraphMail
           transformers:
           - args:
@@ -273,13 +294,13 @@ tasks:
       brand: MicrosoftGraphMail
       description: Retrieves an email message by message ID and uploads the content
         as an EML file.
-      id: dc114491-63e0-4dfa-84ef-6f6b7f204670
+      id: e2653b70-6db7-4385-8281-0c31a7b5c91c
       iscommand: true
       name: Get original email
       script: MicrosoftGraphMail|||msgraph-mail-get-email-as-eml
       type: regular
       version: -1
-    taskid: dc114491-63e0-4dfa-84ef-6f6b7f204670
+    taskid: e2653b70-6db7-4385-8281-0c31a7b5c91c
     timertriggers: []
     type: regular
     view: |-
