@@ -46,21 +46,21 @@
 		"wizard": null
 	},
 	"created": "2020-08-30T18:24:13Z",
-	"currentVersion": "2.1.2",
+	"currentVersion": "2.1.3",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.51",
+			"minVersion": "1.31.54",
 			"name": "Base"
 		}
 	},
 	"deprecated": false,
 	"description": "ThreatConnect indicators feed for Cortex XSOAR TIM.",
 	"disabledMonthly": false,
-	"downloads": 928,
+	"downloads": 985,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.5.0",
 	"general": [
@@ -77,7 +77,7 @@
 			"name": "ThreatConnect Feed"
 		}
 	],
-	"itemVersion": "2.1.2",
+	"itemVersion": "2.1.3",
 	"keywords": [],
 	"legacy": true,
 	"name": "ThreatConnect Feed",
@@ -102,13 +102,13 @@
 		"url": "https://www.paloaltonetworks.com/cortex"
 	},
 	"tags": [
-		"TIM",
-		"Threat Intelligence Management"
+		"Threat Intelligence Management",
+		"TIM"
 	],
 	"toServerVersion": "",
-	"updated": "2022-12-22T00:02:27Z",
+	"updated": "2023-01-12T22:44:00Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4314430",
+	"versionInfo": "4410080",
 	"videos": []
 }
