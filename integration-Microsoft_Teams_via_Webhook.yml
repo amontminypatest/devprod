@@ -7,12 +7,13 @@ configuration:
   display: Microsoft Webhook URL
   name: webhookurl
   required: true
+  section: Connect
   type: 0
 contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.2.0
-    itemVersion: 1.2.10
+    itemVersion: 1.2.11
     packID: MicrosoftTeams
     packName: Microsoft Teams
     packPropagationLabels:
@@ -61,7 +62,7 @@ script:
       name: team_webhook
     description: Send a message to Microsoft Teams via Incoming Webhook
     name: ms-teams-message
-  dockerimage: demisto/python3:3.10.7.33922
+  dockerimage: demisto/python3:3.10.9.42476
   runonce: false
   script: |
     register_module_line('Microsoft Teams via Webhook', 'start', __line__())
