@@ -106,7 +106,7 @@
 					}
 				],
 				"description": "Use Anomali ThreatStream to query and submit threats.",
-				"id": "",
+				"id": "Anomali ThreatStream v3",
 				"name": "Anomali ThreatStream v3"
 			},
 			{
@@ -138,7 +138,7 @@
 					}
 				],
 				"description": "Deprecated. Use Anomali ThreatStream v3 instead. Use Anomali ThreatStream to query and submit threats",
-				"id": "",
+				"id": "Anomali ThreatStream",
 				"name": "Anomali ThreatStream (Deprecated)"
 			},
 			{
@@ -222,7 +222,7 @@
 					}
 				],
 				"description": "Use Anomali ThreatStream to query and submit threats.",
-				"id": "",
+				"id": "Anomali ThreatStream v2",
 				"name": "Anomali ThreatStream v2"
 			}
 		],
@@ -244,35 +244,35 @@
 		"wizard": null
 	},
 	"created": "2020-06-30T20:29:34Z",
-	"currentVersion": "2.0.22",
+	"currentVersion": "2.0.24",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.45",
+			"minVersion": "1.31.54",
 			"name": "Base"
 		},
 		"CommonPlaybooks": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "2.3.23",
+			"minVersion": "2.3.26",
 			"name": "Common Playbooks"
 		},
 		"CommonScripts": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.10.30",
+			"minVersion": "1.11.6",
 			"name": "Common Scripts"
 		}
 	},
 	"deprecated": false,
 	"description": "Use Anomali ThreatStream to query and submit threats.",
 	"disabledMonthly": false,
-	"downloads": 4635,
+	"downloads": 4837,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -297,7 +297,7 @@
 			"name": "Anomali ThreatStream v3"
 		}
 	],
-	"itemVersion": "2.0.22",
+	"itemVersion": "2.0.24",
 	"keywords": [],
 	"legacy": true,
 	"name": "Anomali ThreatStream",
@@ -312,7 +312,7 @@
 	"rawKeywords": null,
 	"rawTags": null,
 	"rawUseCases": null,
-	"readme": " Anomali ThreatStream collects global threat data, providing you with the insights you need to determine if an event is a security threat.\r\n \r\n\r\n## What does this pack do?\r\n- Checks the reputation of a given URL, IP address, domain name, hash of a file, or email address.\r\n- Returns enrichment data for a domain or IP address for available indicators (observables).\r\n- Imports indicators (observables) into ThreatStream.\r\n- Returns an HTML file with a description of the threat model.\r\n- Returns a list of indicators associated with the specified model.\r\n- Submits a file or URL to the ThreatStream-hosted sandbox for detonation.\r\n- Returns a report of a file or URL submitted to the sandbox.\r\n- Returns filtered indicators or intelligence from ThreatStream.\r\n- Adds tags to intelligence to filter for related entities.\r\n- Creates or updates a threat model with the specified parameters.\r\n\r\n\r\nThis content pack includes 2 playbooks that:\r\n- Detonates one or more files. It returns relevant reports to the War Room and file reputations to the context data.\r\n- Detonates one or more URLs. It returns relevant reports to the War Room and URL reputations to the context data.\r\n",
+	"readme": " Anomali ThreatStream collects global threat data, providing you with the insights you need to determine if an event is a security threat.\n \n\n## What does this pack do?\n- Checks the reputation of a given URL, IP address, domain name, hash of a file, or email address.\n- Returns enrichment data for a domain or IP address for available indicators (observables).\n- Imports indicators (observables) into ThreatStream.\n- Returns an HTML file with a description of the threat model.\n- Returns a list of indicators associated with the specified model.\n- Submits a file or URL to the ThreatStream-hosted sandbox for detonation.\n- Returns a report of a file or URL submitted to the sandbox.\n- Returns filtered indicators or intelligence from ThreatStream.\n- Adds tags to intelligence to filter for related entities.\n- Creates or updates a threat model with the specified parameters.\n\n\nThis content pack includes 2 playbooks that:\n- Detonates one or more files. It returns relevant reports to the War Room and file reputations to the context data.\n- Detonates one or more URLs. It returns relevant reports to the War Room and URL reputations to the context data.\n",
 	"searchRank": 10,
 	"serverMaxVersion": "",
 	"serverMinVersion": "5.0.0",
@@ -323,9 +323,9 @@
 	},
 	"tags": [],
 	"toServerVersion": "",
-	"updated": "2022-12-26T00:02:25Z",
+	"updated": "2023-01-12T23:51:30Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4280857",
+	"versionInfo": "4410080",
 	"videos": []
 }
