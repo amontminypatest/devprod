@@ -10,7 +10,7 @@
 	"incidentSamples": null,
 	"indicatorSamples": null,
 	"instanceIds": null,
-	"itemVersion": "2.0.7",
+	"itemVersion": "2.0.8",
 	"keyTypeMap": {
 		"High": "Phishing",
 		"Low": "Phishing",
