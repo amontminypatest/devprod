@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 1.0.9
+    itemVersion: 1.0.10
     packID: Symantec_Messaging_Gateway
     packName: Symantec Messaging Gateway
     packPropagationLabels:
