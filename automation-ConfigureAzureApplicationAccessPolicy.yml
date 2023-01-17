@@ -20,7 +20,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 1.2.10
+    itemVersion: 1.2.11
     packID: MicrosoftTeams
     packName: Microsoft Teams
     packPropagationLabels:
