@@ -79,7 +79,7 @@
 		"wizard": null
 	},
 	"created": "2020-07-05T13:09:56Z",
-	"currentVersion": "1.1.19",
+	"currentVersion": "1.1.20",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
@@ -93,7 +93,7 @@
 	"deprecated": false,
 	"description": "Ingest indicator feeds from TAXII 1 and TAXII 2 servers.",
 	"disabledMonthly": false,
-	"downloads": 14827,
+	"downloads": 15498,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.5.0",
 	"general": [
@@ -114,7 +114,7 @@
 			"name": "TAXII Feed"
 		}
 	],
-	"itemVersion": "1.1.19",
+	"itemVersion": "1.1.20",
 	"keywords": [],
 	"legacy": true,
 	"name": "TAXII Feed",
@@ -141,9 +141,9 @@
 		"TIM"
 	],
 	"toServerVersion": "",
-	"updated": "2023-01-11T10:41:13Z",
+	"updated": "2023-01-12T22:36:18Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4372591",
+	"versionInfo": "4410080",
 	"videos": []
 }
