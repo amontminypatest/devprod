@@ -24,7 +24,7 @@
 						"h": 2,
 						"hideItemTitleOnlyOne": true,
 						"hideName": false,
-						"i": "swtuqptgvs-1vduzkpmlh-swtuqptgvs-1vduzkpmlh-swtuqptgvs-57f33cc0-97ee-11e9-b8bd-0b00be54d2d3",
+						"i": "swtuqptgvs-field-changed-swtuqptgvs-1vduzkpmlh-swtuqptgvs-1vduzkpmlh-swtuqptgvs-57f33cc0-97ee-11e9-b8bd-0b00be54d2d3",
 						"isVisible": true,
 						"items": [
 							{
@@ -54,7 +54,7 @@
 						"h": 4,
 						"hideItemTitleOnlyOne": true,
 						"hideName": false,
-						"i": "swtuqptgvs-1vduzkpmlh-swtuqptgvs-1vduzkpmlh-swtuqptgvs-5a552190-97ee-11e9-b8bd-0b00be54d2d3",
+						"i": "swtuqptgvs-field-changed-swtuqptgvs-1vduzkpmlh-swtuqptgvs-1vduzkpmlh-swtuqptgvs-5a552190-97ee-11e9-b8bd-0b00be54d2d3",
 						"isVisible": true,
 						"items": [
 							{
@@ -80,7 +80,7 @@
 						"displayType": "ROW",
 						"h": 3,
 						"hideName": false,
-						"i": "swtuqptgvs-1vduzkpmlh-swtuqptgvs-1vduzkpmlh-swtuqptgvs-d431b9b0-97ee-11e9-b8bd-0b00be54d2d3",
+						"i": "swtuqptgvs-field-changed-swtuqptgvs-1vduzkpmlh-swtuqptgvs-1vduzkpmlh-swtuqptgvs-d431b9b0-97ee-11e9-b8bd-0b00be54d2d3",
 						"isVisible": true,
 						"items": [
 							{
@@ -163,10 +163,19 @@
 							},
 							{
 								"endCol": 2,
+								"fieldId": "emailbcc",
+								"height": 22,
+								"id": "2bd969b0-879c-11ed-b4ee-6db51deb2f6e",
+								"index": 8,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
 								"fieldId": "attachmentcount",
 								"height": 22,
 								"id": "86ae8b10-a901-11ec-8585-0dac7af6e9b0",
-								"index": 8,
+								"index": 9,
 								"sectionItemType": "field",
 								"startCol": 0
 							},
@@ -175,7 +184,7 @@
 								"fieldId": "emailrecipientscount",
 								"height": 22,
 								"id": "77a63970-6279-11ec-8fa2-217b8b611613",
-								"index": 9,
+								"index": 10,
 								"sectionItemType": "field",
 								"startCol": 0
 							}
@@ -193,7 +202,7 @@
 						"displayType": "ROW",
 						"h": 4,
 						"hideName": false,
-						"i": "swtuqptgvs-1vduzkpmlh-swtuqptgvs-1vduzkpmlh-swtuqptgvs-067d4900-98b4-11e9-97d7-ed26ef9e46c8",
+						"i": "swtuqptgvs-field-changed-swtuqptgvs-1vduzkpmlh-swtuqptgvs-1vduzkpmlh-swtuqptgvs-067d4900-98b4-11e9-97d7-ed26ef9e46c8",
 						"isVisible": true,
 						"items": [],
 						"maxW": 3,
@@ -223,7 +232,7 @@
 						"displayType": "ROW",
 						"h": 5,
 						"hideName": false,
-						"i": "swtuqptgvs-1vduzkpmlh-swtuqptgvs-1vduzkpmlh-swtuqptgvs-cc557320-98b7-11e9-b34a-852d068f44fe",
+						"i": "swtuqptgvs-field-changed-swtuqptgvs-1vduzkpmlh-swtuqptgvs-1vduzkpmlh-swtuqptgvs-cc557320-98b7-11e9-b34a-852d068f44fe",
 						"isVisible": true,
 						"items": [],
 						"maxW": 3,
@@ -243,7 +252,7 @@
 						"displayType": "ROW",
 						"h": 3,
 						"hideName": false,
-						"i": "swtuqptgvs-1vduzkpmlh-swtuqptgvs-1vduzkpmlh-swtuqptgvs-0e149ea0-9d8e-11e9-a715-f7bbe72c84a2",
+						"i": "swtuqptgvs-field-changed-swtuqptgvs-1vduzkpmlh-swtuqptgvs-1vduzkpmlh-swtuqptgvs-0e149ea0-9d8e-11e9-a715-f7bbe72c84a2",
 						"isVisible": true,
 						"items": [],
 						"maxW": 3,
@@ -266,7 +275,7 @@
 					{
 						"h": 3,
 						"hideName": false,
-						"i": "swtuqptgvs-1vduzkpmlh-swtuqptgvs-1vduzkpmlh-swtuqptgvs-b5924880-df88-11e9-9d3d-b355b2831118",
+						"i": "swtuqptgvs-field-changed-swtuqptgvs-1vduzkpmlh-swtuqptgvs-1vduzkpmlh-swtuqptgvs-b5924880-df88-11e9-9d3d-b355b2831118",
 						"items": [],
 						"maxW": 3,
 						"minH": 1,
@@ -288,7 +297,7 @@
 						"description": "",
 						"h": 1,
 						"hideName": true,
-						"i": "swtuqptgvs-1vduzkpmlh-swtuqptgvs-1vduzkpmlh-swtuqptgvs-044bccb0-befa-11eb-b351-7bcfe92e5e24",
+						"i": "swtuqptgvs-field-changed-swtuqptgvs-1vduzkpmlh-swtuqptgvs-1vduzkpmlh-swtuqptgvs-044bccb0-befa-11eb-b351-7bcfe92e5e24",
 						"items": [],
 						"maxW": 3,
 						"minH": 1,
@@ -304,7 +313,7 @@
 					},
 					{
 						"h": 2,
-						"i": "swtuqptgvs-1vduzkpmlh-e78cf650-a8fd-11ec-927e-2bbbcff3899b",
+						"i": "swtuqptgvs-field-changed-swtuqptgvs-1vduzkpmlh-e78cf650-a8fd-11ec-927e-2bbbcff3899b",
 						"items": [],
 						"maxW": 3,
 						"minH": 1,
@@ -320,7 +329,7 @@
 						"displayType": "ROW",
 						"h": 2,
 						"hideName": false,
-						"i": "swtuqptgvs-1vduzkpmlh-93d51e60-a8fe-11ec-927e-2bbbcff3899b",
+						"i": "swtuqptgvs-field-changed-swtuqptgvs-1vduzkpmlh-93d51e60-a8fe-11ec-927e-2bbbcff3899b",
 						"items": [
 							{
 								"endCol": 2,
@@ -406,7 +415,7 @@
 						"displayType": "ROW",
 						"h": 2,
 						"hideName": false,
-						"i": "swtuqptgvs-68df82f0-a902-11ec-8585-0dac7af6e9b0",
+						"i": "swtuqptgvs-field-changed-swtuqptgvs-68df82f0-a902-11ec-8585-0dac7af6e9b0",
 						"items": [
 							{
 								"endCol": 2,
@@ -435,6 +444,67 @@
 						"w": 1,
 						"x": 2,
 						"y": 10
+					},
+					{
+						"columns": [
+							{
+								"displayed": true,
+								"isDefault": true,
+								"key": "id",
+								"width": 109
+							},
+							{
+								"displayed": true,
+								"isDefault": true,
+								"key": "name",
+								"width": 336
+							},
+							{
+								"displayed": true,
+								"isDefault": true,
+								"key": "type",
+								"width": 200
+							},
+							{
+								"displayed": true,
+								"isDefault": true,
+								"key": "status",
+								"width": 100
+							},
+							{
+								"displayed": true,
+								"key": "Reported Email To",
+								"width": 200
+							},
+							{
+								"displayed": true,
+								"key": "Reported Email From",
+								"width": 200
+							},
+							{
+								"displayed": true,
+								"key": "Reported Email Message ID",
+								"width": 368
+							},
+							{
+								"displayed": true,
+								"isDefault": true,
+								"key": "closeNotes",
+								"width": 300
+							}
+						],
+						"h": 2,
+						"i": "swtuqptgvs-field-changed-swtuqptgvs-8f724f40-6b37-11ed-b7c0-2904efd8f7fb",
+						"items": [],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Linked Incidents",
+						"static": false,
+						"type": "linkedIncidents",
+						"w": 3,
+						"x": 0,
+						"y": 16
 					}
 				],
 				"type": "custom"
@@ -580,7 +650,7 @@
 						"static": false,
 						"w": 1,
 						"x": 0,
-						"y": 5
+						"y": 8
 					},
 					{
 						"description": "The category of the email. In case of a phishing email, also shows the phishing sub-type.",
@@ -641,7 +711,7 @@
 						"static": false,
 						"w": 2,
 						"x": 0,
-						"y": 8
+						"y": 11
 					},
 					{
 						"displayType": "ROW",
@@ -689,12 +759,12 @@
 						"type": "invTimeline",
 						"w": 1,
 						"x": 1,
-						"y": 5
+						"y": 8
 					},
 					{
 						"description": "In case a macro code was found in any of the attachments, the source code will appear here.",
 						"displayType": "CARD",
-						"h": 5,
+						"h": 8,
 						"hideName": false,
 						"i": "swtuqptgvs-2b388350-4a26-11ed-9b10-cf167480534f",
 						"items": [
@@ -716,6 +786,59 @@
 						"w": 1,
 						"x": 2,
 						"y": 8
+					},
+					{
+						"description": "In case there were URLs in the email with a score of 3 or above which the user clicked for the email investigated in this incident, they will appear in the **Clicked URLs** table. **Total Malicious URLs Clicks** represents the number of clicks in all emails (other emails as well) associated with any of the malicious URLs found in this email. **Malicious URL Viewed** will be **True** if the click was allowed or the user clicked through, in case it was blocked.",
+						"displayType": "CARD",
+						"h": 3,
+						"hideName": false,
+						"i": "swtuqptgvs-791f4a20-5d1a-11ed-936b-2d907795e2cc",
+						"items": [
+							{
+								"endCol": 1,
+								"fieldId": "maliciousurlclicked",
+								"height": 53,
+								"id": "c0b24f80-8b4c-11ed-8d12-ef934cb7154e",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 4,
+								"fieldId": "clickedurls",
+								"height": 106,
+								"id": "e4f91d60-8b4c-11ed-8d12-ef934cb7154e",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "maliciousurlviewed",
+								"height": 53,
+								"id": "e9800930-8c09-11ed-bd41-2b7339c8983d",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 1
+							},
+							{
+								"endCol": 3,
+								"fieldId": "totalmaliciousurlsclicks",
+								"height": 53,
+								"id": "409da7d0-8b4d-11ed-8d12-ef934cb7154e",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 2
+							}
+						],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Malicious Clicked URLs information",
+						"static": false,
+						"w": 2,
+						"x": 0,
+						"y": 5
 					}
 				],
 				"type": "custom"
@@ -814,7 +937,7 @@
 	"id": "Phishing Incident v3",
 	"indicatorsDetails": null,
 	"indicatorsQuickView": null,
-	"itemVersion": "3.3.13",
+	"itemVersion": "3.4.1",
 	"locked": false,
 	"mobile": {
 		"sections": [
