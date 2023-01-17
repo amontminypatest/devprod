@@ -28,6 +28,10 @@
 				"name": "Isolate Endpoint - Generic V2"
 			},
 			{
+				"description": "This playbook searches for failed logon on a specific user by querying logs from different sources.\n\nSupported Integrations:\n-Splunk\n-QRadar\n-Azure Log Analytics",
+				"name": "SIEM - Search for Failed logins"
+			},
+			{
 				"description": "This playbook blocks malicious Domains using all integrations that are enabled.\n\nSupported integrations for this playbook:\n* Zscaler\n* Symantec Messaging Gateway\n* FireEye EX\n* Trend Micro Apex One\n* Proofpoint Threat Response",
 				"name": "Block Domain - Generic"
 			},
@@ -140,6 +144,10 @@
 				"name": "Get host forensics - Generic"
 			},
 			{
+				"description": "This playbook performs an investigation on a specific user, using queries and logs from SIEM, Identity management systems, XDR, and firewalls.\n\nSupported Integrations:\n-Okta\n-Splunk\n-QRadar\n-Azure Log Analytics\n-PAN-OS\n-XDR By Palo Alto Networks",
+				"name": "User Investigation - Generic"
+			},
+			{
 				"description": "Enrich accounts using one or more integrations.\nSupported integrations:\n- Active Directory",
 				"name": "Account Enrichment - Generic v2.1"
 			},
@@ -198,6 +206,10 @@
 			{
 				"description": "This playbook blocks malicious usernames using all integrations that you have enabled.\n\nSupported integrations for this playbook:\n* Active Directory\n* PAN-OS - This requires PAN-OS 9.1 or higher.\n* SailPoint\n* PingOne\n* AWS IAM\n* Clarizen IAM\n* Envoy IAM\n* ExceedLMS IAM\n* Okta",
 				"name": "Block Account - Generic v2"
+			},
+			{
+				"description": "This playbook isolates a given endpoint using various endpoint product integrations.\nMake sure to provide valid playbook inputs for the integration you are using.",
+				"name": "Isolate Endpoint - Generic V2"
 			},
 			{
 				"description": "This playbook provides response playbooks for:\n- AWS\n- Azure\n- GCP\n\nThe response actions available are:\n- Terminate/Shut down/Power off an instance\n- Delete/Disable a user\n- Delete/Revoke/Disable credentials\n- Block indicators",
@@ -334,7 +346,7 @@
 		"wizard": null
 	},
 	"created": "2020-08-17T11:42:31Z",
-	"currentVersion": "2.3.24",
+	"currentVersion": "2.3.26",
 	"definitionId": "",
 	"dependencies": {
 		"ANYRUN": {
@@ -362,7 +374,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.1.19",
+			"minVersion": "1.1.21",
 			"name": "AWS - IAM"
 		},
 		"Active_Directory_Query": {
@@ -390,7 +402,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "2.0.22",
+			"minVersion": "2.0.24",
 			"name": "Anomali ThreatStream"
 		},
 		"Azure-Enrichment-Remediation": {
@@ -400,11 +412,18 @@
 			"minVersion": "1.0.0",
 			"name": "Azure Enrichment and Remediation"
 		},
+		"AzureLogAnalytics": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.1.5",
+			"name": "Azure Log Analytics"
+		},
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.53",
+			"minVersion": "1.31.54",
 			"name": "Base"
 		},
 		"CarbonBlackProtect": {
@@ -474,28 +493,28 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.10.41",
+			"minVersion": "1.11.6",
 			"name": "Common Scripts"
 		},
 		"CommonTypes": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "3.3.42",
+			"minVersion": "3.3.43",
 			"name": "Common Types"
 		},
 		"CortexXDR": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "4.9.16",
+			"minVersion": "4.10.0",
 			"name": "Cortex XDR by Palo Alto Networks"
 		},
 		"CrowdStrikeFalcon": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.10.1",
+			"minVersion": "1.10.2",
 			"name": "CrowdStrike Falcon"
 		},
 		"CrowdStrikeFalconSandbox": {
@@ -509,7 +528,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.2.17",
+			"minVersion": "1.2.18",
 			"name": "CrowdStrike Falcon Intelligence Sandbox"
 		},
 		"CuckooSandbox": {
@@ -523,7 +542,7 @@
 			"author": "Cybereason",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "2.0.0",
+			"minVersion": "2.1.0",
 			"name": "Cybereason"
 		},
 		"Cylance_Protect": {
@@ -533,25 +552,18 @@
 			"minVersion": "1.1.7",
 			"name": "Cylance Protect"
 		},
-		"D2": {
-			"author": "Cortex XSOAR",
-			"certification": "certified",
-			"mandatory": false,
-			"minVersion": "1.0.7",
-			"name": "D2 (Deprecated)"
-		},
 		"EDL": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "3.1.15",
+			"minVersion": "3.1.16",
 			"name": "Generic Export Indicators Service"
 		},
 		"EWS": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "2.0.7",
+			"minVersion": "2.0.8",
 			"name": "EWS"
 		},
 		"ExtraHop": {
@@ -572,14 +584,14 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.1.5",
+			"minVersion": "1.1.9",
 			"name": "MITRE ATT\u0026CK"
 		},
 		"FiltersAndTransformers": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.1.9",
+			"minVersion": "1.2.5",
 			"name": "Filters And Transformers"
 		},
 		"FireEyeEX": {
@@ -628,7 +640,7 @@
 			"author": "Hatching",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.0.7",
+			"minVersion": "1.0.8",
 			"name": "Hatching Triage"
 		},
 		"IllusiveNetworks": {
@@ -642,14 +654,14 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.1.7",
+			"minVersion": "1.1.8",
 			"name": "Image OCR"
 		},
 		"JoeSecurity": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.1.4",
+			"minVersion": "1.1.5",
 			"name": "Joe Security"
 		},
 		"Kenna": {
@@ -684,21 +696,21 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "4.4.6",
+			"minVersion": "4.4.9",
 			"name": "Microsoft 365 Defender"
 		},
 		"MicrosoftDefenderAdvancedThreatProtection": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.15.4",
+			"minVersion": "1.15.6",
 			"name": "Microsoft Defender for Endpoint"
 		},
 		"MicrosoftGraphUser": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.5.6",
+			"minVersion": "1.5.7",
 			"name": "Microsoft Graph User"
 		},
 		"Mimecast": {
@@ -726,7 +738,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.16.0",
+			"minVersion": "1.16.2",
 			"name": "PAN-OS by Palo Alto Networks"
 		},
 		"PANWComprehensiveInvestigation": {
@@ -736,25 +748,18 @@
 			"minVersion": "1.3.12",
 			"name": "Comprehensive Investigation by Palo Alto Networks"
 		},
-		"PaloAltoNetworks_PAN_OS_EDL_Management": {
-			"author": "Cortex XSOAR",
-			"certification": "certified",
-			"mandatory": false,
-			"minVersion": "1.1.5",
-			"name": "Palo Alto Networks PAN-OS EDL Management (Deprecated)"
-		},
 		"Palo_Alto_Networks_WildFire": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "2.1.9",
+			"minVersion": "2.1.12",
 			"name": "WildFire by Palo Alto Networks"
 		},
 		"Phishing": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "3.3.12",
+			"minVersion": "3.4.1",
 			"name": "Phishing"
 		},
 		"PingIdentity": {
@@ -782,14 +787,14 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "2.0.4",
+			"minVersion": "2.0.6",
 			"name": "Proofpoint Threat Response"
 		},
 		"QRadar": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "2.4.3",
+			"minVersion": "2.4.5",
 			"name": "IBM QRadar"
 		},
 		"Rapid7_Nexpose": {
@@ -845,7 +850,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "3.0.2",
+			"minVersion": "3.0.3",
 			"name": "Splunk"
 		},
 		"Stealthwatch_Cloud": {
@@ -859,7 +864,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.0.9",
+			"minVersion": "1.0.10",
 			"name": "Symantec Messaging Gateway"
 		},
 		"ThreatGrid": {
@@ -929,7 +934,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.3.5",
+			"minVersion": "1.3.7",
 			"name": "Zscaler Internet Access"
 		},
 		"epo": {
@@ -957,7 +962,7 @@
 	"deprecated": false,
 	"description": "Frequently used playbooks pack.",
 	"disabledMonthly": false,
-	"downloads": 48484,
+	"downloads": 49522,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -1070,6 +1075,14 @@
 			"name": "SplunkPy"
 		},
 		{
+			"imagePath": "content/packs/Palo_Alto_Networks_WildFire/WildFire-Reports_image.png",
+			"name": "Palo Alto Networks WildFire Reports"
+		},
+		{
+			"imagePath": "content/packs/Palo_Alto_Networks_WildFire/WildFire-v2_image.png",
+			"name": "Palo Alto Networks WildFire v2"
+		},
+		{
 			"imagePath": "content/packs/QRadar/QRadar_image.png",
 			"name": "IBM QRadar (Deprecated)"
 		},
@@ -1080,14 +1093,6 @@
 		{
 			"imagePath": "content/packs/QRadar/QRadarv3_image.png",
 			"name": "IBM QRadar v3"
-		},
-		{
-			"imagePath": "content/packs/Palo_Alto_Networks_WildFire/WildFire-Reports_image.png",
-			"name": "Palo Alto Networks WildFire Reports"
-		},
-		{
-			"imagePath": "content/packs/Palo_Alto_Networks_WildFire/WildFire-v2_image.png",
-			"name": "Palo Alto Networks WildFire v2"
 		},
 		{
 			"imagePath": "content/packs/EDL/EDL_image.png",
@@ -1107,7 +1112,7 @@
 		},
 		{
 			"imagePath": "content/packs/Slack/SlackV2_image.png",
-			"name": "Slack v2"
+			"name": "Slack v2 (Deprecated)"
 		},
 		{
 			"imagePath": "content/packs/Slack/SlackV3_image.png",
@@ -1122,16 +1127,16 @@
 			"name": "Image OCR"
 		},
 		{
+			"imagePath": "content/packs/Gmail/Gmail_image.png",
+			"name": "Gmail"
+		},
+		{
 			"imagePath": "content/packs/XForceExchange/XFE_image.png",
 			"name": "IBM X-Force Exchange (Deprecated)"
 		},
 		{
 			"imagePath": "content/packs/XForceExchange/XFE_v2_image.png",
 			"name": "IBM X-Force Exchange v2"
-		},
-		{
-			"imagePath": "content/packs/Gmail/Gmail_image.png",
-			"name": "Gmail"
 		},
 		{
 			"imagePath": "content/packs/AWS-IAM/AWS-IAM_image.png",
@@ -1178,6 +1183,10 @@
 			"name": "VMware Carbon Black EDR v2"
 		},
 		{
+			"imagePath": "content/packs/MicrosoftGraphUser/MicrosoftGraphUser_image.png",
+			"name": "Azure Active Directory Users"
+		},
+		{
 			"imagePath": "content/packs/Anomali_ThreatStream/AnomaliThreatStream_image.png",
 			"name": "Anomali ThreatStream (Deprecated)"
 		},
@@ -1190,18 +1199,6 @@
 			"name": "Anomali ThreatStream v3"
 		},
 		{
-			"imagePath": "content/packs/CheckpointFirewall/CheckPoint_image.png",
-			"name": "Check Point Firewall (Deprecated)"
-		},
-		{
-			"imagePath": "content/packs/CheckpointFirewall/CheckPointFirewall_v2_image.png",
-			"name": "CheckPoint Firewall v2"
-		},
-		{
-			"imagePath": "content/packs/MicrosoftGraphUser/MicrosoftGraphUser_image.png",
-			"name": "Azure Active Directory Users"
-		},
-		{
 			"imagePath": "content/packs/Microsoft365Defender/Microsoft365Defender_image.png",
 			"name": "Microsoft 365 Defender"
 		},
@@ -1212,6 +1209,14 @@
 		{
 			"imagePath": "content/packs/Microsoft365Defender/O365DefenderSafeLinks-SingleUser_image.png",
 			"name": "O365 Defender SafeLinks - Single User"
+		},
+		{
+			"imagePath": "content/packs/CheckpointFirewall/CheckPoint_image.png",
+			"name": "Check Point Firewall (Deprecated)"
+		},
+		{
+			"imagePath": "content/packs/CheckpointFirewall/CheckPointFirewall_v2_image.png",
+			"name": "CheckPoint Firewall v2"
 		},
 		{
 			"imagePath": "content/packs/CrowdStrikeFalconX/CrowdStrikeFalconX_image.png",
@@ -1242,12 +1247,12 @@
 			"name": "Cybereason"
 		},
 		{
-			"imagePath": "content/packs/McAfee_Advanced_Threat_Defense/McAfeeAdvancedThreatDefense_image.png",
-			"name": "McAfee Advanced Threat Defense"
-		},
-		{
 			"imagePath": "content/packs/Cylance_Protect/CylanceProtectv2_image.png",
 			"name": "Cylance Protect v2"
+		},
+		{
+			"imagePath": "content/packs/McAfee_Advanced_Threat_Defense/McAfeeAdvancedThreatDefense_image.png",
+			"name": "McAfee Advanced Threat Defense"
 		},
 		{
 			"imagePath": "content/packs/ThreatGrid/CiscoSecureMalwareAnalytics_image.png",
@@ -1258,16 +1263,16 @@
 			"name": "Cisco Threat Grid"
 		},
 		{
-			"imagePath": "content/packs/Cisco-umbrella/CiscoUmbrellaInvestigate_image.png",
-			"name": "Cisco Umbrella Investigate"
+			"imagePath": "content/packs/ProofpointThreatResponse/ProofpointThreatResponse_image.png",
+			"name": "Proofpoint Threat Response (Beta)"
 		},
 		{
 			"imagePath": "content/packs/Rapid7_Nexpose/Rapid7Nexpose_image.png",
 			"name": "Rapid7 InsightVM"
 		},
 		{
-			"imagePath": "content/packs/ProofpointThreatResponse/ProofpointThreatResponse_image.png",
-			"name": "Proofpoint Threat Response (Beta)"
+			"imagePath": "content/packs/Cisco-umbrella/CiscoUmbrellaInvestigate_image.png",
+			"name": "Cisco Umbrella Investigate"
 		},
 		{
 			"imagePath": "content/packs/FortiGate/FortiGate_image.png",
@@ -1302,14 +1307,6 @@
 			"name": "McAfee Threat Intelligence Exchange v2"
 		},
 		{
-			"imagePath": "content/packs/CrowdStrikeFalconSandbox/VxStream_image.png",
-			"name": "CrowdStrike Falcon Sandbox (Deprecated)"
-		},
-		{
-			"imagePath": "content/packs/CrowdStrikeFalconSandbox/CrowdStrikeFalconSandboxV2_image.png",
-			"name": "CrowdStrike Falcon Sandbox v2 (Hybrid-Analysis)"
-		},
-		{
 			"imagePath": "content/packs/ProofpointServerProtection/ProofpointServerProtection_image.png",
 			"name": "Proofpoint Protection Server (Deprecated)"
 		},
@@ -1326,6 +1323,14 @@
 			"name": "Threat Crowd v2 (Deprecated)"
 		},
 		{
+			"imagePath": "content/packs/CrowdStrikeFalconSandbox/VxStream_image.png",
+			"name": "CrowdStrike Falcon Sandbox (Deprecated)"
+		},
+		{
+			"imagePath": "content/packs/CrowdStrikeFalconSandbox/CrowdStrikeFalconSandboxV2_image.png",
+			"name": "CrowdStrike Falcon Sandbox v2 (Hybrid-Analysis)"
+		},
+		{
 			"imagePath": "content/packs/CuckooSandbox/CuckooSandbox_image.png",
 			"name": "Cuckoo Sandbox"
 		},
@@ -1340,6 +1345,10 @@
 		{
 			"imagePath": "content/packs/Carbon_Black_Enterprise_Live_Response/carbonblackliveresponse_image.png",
 			"name": "VMware Carbon Black EDR (Live Response API)"
+		},
+		{
+			"imagePath": "content/packs/AzureLogAnalytics/AzureLogAnalytics_image.png",
+			"name": "Azure Log Analytics"
 		},
 		{
 			"imagePath": "content/packs/Kenna/Kennav2_image.png",
@@ -1366,12 +1375,12 @@
 			"name": "FireEye (AX Series)"
 		},
 		{
-			"imagePath": "content/packs/Polygon/Group-IBTDSPolygon_image.png",
-			"name": "Group-IB THF Polygon"
-		},
-		{
 			"imagePath": "content/packs/Mimecast/MimecastV2_image.png",
 			"name": "Mimecast v2"
+		},
+		{
+			"imagePath": "content/packs/Polygon/Group-IBTDSPolygon_image.png",
+			"name": "Group-IB THF Polygon"
 		},
 		{
 			"imagePath": "content/packs/Salesforce/Salesforce_image.png",
@@ -1402,12 +1411,8 @@
 			"name": "Symantec Messaging Gateway"
 		},
 		{
-			"imagePath": "content/packs/Netcraft/Netcraft_image.png",
-			"name": "Netcraft"
-		},
-		{
-			"imagePath": "content/packs/SignalSciences/SignalSciencesWAF_image.png",
-			"name": "Signal Sciences WAF"
+			"imagePath": "content/packs/HatchingTriage/HatchingTriage_image.png",
+			"name": "Hatching Triage"
 		},
 		{
 			"imagePath": "content/packs/Zoom/Zoom_image.png",
@@ -1418,16 +1423,20 @@
 			"name": "Zoom_IAM"
 		},
 		{
+			"imagePath": "content/packs/Netcraft/Netcraft_image.png",
+			"name": "Netcraft"
+		},
+		{
+			"imagePath": "content/packs/SignalSciences/SignalSciencesWAF_image.png",
+			"name": "Signal Sciences WAF"
+		},
+		{
 			"imagePath": "content/packs/RiskSense/RiskSense_image.png",
 			"name": "RiskSense"
 		},
 		{
 			"imagePath": "content/packs/Stealthwatch_Cloud/StealthwatchCloud_image.png",
 			"name": "Cisco Secure Cloud Analytics (Stealthwatch Cloud)"
-		},
-		{
-			"imagePath": "content/packs/HatchingTriage/HatchingTriage_image.png",
-			"name": "Hatching Triage"
 		},
 		{
 			"imagePath": "content/packs/ARIAPacketIntelligence/ARIAPacketIntelligence_image.png",
@@ -1502,12 +1511,12 @@
 			"name": "Salesforce Fusion IAM"
 		},
 		{
-			"imagePath": "content/packs/PingIdentity/PingOne_image.png",
-			"name": "PingOne"
-		},
-		{
 			"imagePath": "content/packs/ExceedLMS/ExceedLMSIAM_image.png",
 			"name": "ExceedLMS IAM"
+		},
+		{
+			"imagePath": "content/packs/PingIdentity/PingOne_image.png",
+			"name": "PingOne"
 		},
 		{
 			"imagePath": "content/packs/Envoy/EnvoyIAM_image.png",
@@ -1522,7 +1531,7 @@
 			"name": "SecneurX Analysis"
 		}
 	],
-	"itemVersion": "2.3.24",
+	"itemVersion": "2.3.26",
 	"keywords": [],
 	"legacy": true,
 	"name": "Common Playbooks",
@@ -1547,9 +1556,9 @@
 	},
 	"tags": [],
 	"toServerVersion": "",
-	"updated": "2023-01-09T16:32:28Z",
+	"updated": "2023-01-15T23:03:35Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4358537",
+	"versionInfo": "4410080",
 	"videos": []
 }
