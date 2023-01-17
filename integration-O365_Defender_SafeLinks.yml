@@ -8,21 +8,24 @@ configuration:
   displaypassword: Password - Used to generate the certificate
   name: certificate
   required: true
+  section: Connect
   type: 9
 - additionalinfo: The organization used in app-only authentication.
   display: Organization
   name: organization
   required: true
+  section: Connect
   type: 0
 - display: The application ID from the Azure portal
   name: app_id
   required: true
+  section: Connect
   type: 0
 contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.0.0
-    itemVersion: 4.4.6
+    itemVersion: 4.4.9
     packID: Microsoft365Defender
     packName: Microsoft 365 Defender
     packPropagationLabels:
@@ -996,7 +999,7 @@ script:
     - contextPath: O365Defender.SafeLinks.AggregateReport.ReportId
       description: The report id, unique for every run
       type: Number
-  dockerimage: demisto/pwsh-exchange:1.0.0.22307
+  dockerimage: demisto/pwsh-exchange:1.0.0.34118
   runonce: false
   script: |-
     Import-Module ExchangeOnlineManagement
