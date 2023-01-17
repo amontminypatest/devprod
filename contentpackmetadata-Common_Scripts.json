@@ -8,18 +8,15 @@
 	],
 	"certification": "certified",
 	"contentItemTypes": [
-		"automation"
+		"automation",
+		"incidentfield"
 	],
 	"contentItems": {
 		"automation": [
 			{
-				"description": "Returns the last element of an array. If the value passed is not an array, it returns the original value that was passed.",
-				"name": "LastArrayElement",
-				"tags": [
-					"general",
-					"transformer",
-					"entirelist"
-				]
+				"description": "Get the Server URL.",
+				"name": "GetServerURL",
+				"tags": []
 			},
 			{
 				"description": "Verify that the address is a valid IPv6 address.",
@@ -37,14 +34,6 @@
 				"description": "Removing the password protection from a PDF file and adding a new file entry with the unlocked PDF.",
 				"name": "PDFUnlocker",
 				"tags": []
-			},
-			{
-				"description": "Transformer that returns a filtered list of IPv4 addresses, based on whether they do not match a comma-separated list of IPv4 ranges.  Useful for filtering out internal IP address space.",
-				"name": "IPv4Blacklist",
-				"tags": [
-					"transformer",
-					"entirelist"
-				]
 			},
 			{
 				"description": "Sets a custom incident field with current date",
@@ -210,6 +199,15 @@
 				"tags": []
 			},
 			{
+				"description": "Creating a hash of a given input, support sha1, sha256, sha512, md5 and blake. Wrapper for https://docs.python.org/3/library/hashlib.html.\n",
+				"name": "CreateHash",
+				"tags": [
+					"transformer",
+					"Utilities",
+					"hash"
+				]
+			},
+			{
 				"description": "Convert a JSON War Room output via EntryID to a CSV file.",
 				"name": "JSONtoCSV",
 				"tags": []
@@ -220,21 +218,17 @@
 				"tags": []
 			},
 			{
-				"description": "Returns the product of two lists, joined by a separator, as a list of strings.",
-				"name": "ProductJoin",
-				"tags": [
-					"transformer",
-					"general",
-					"entirelist"
-				]
-			},
-			{
 				"description": "Deprecated. Use the UnzipFile script instead. UnPack a file using fileName or entryID to specify a file. Files unpacked will be pushed to the war room and names will be pushed to the context.\nsupported types are:\n7z (.7z), ACE (.ace), ALZIP (.alz), AR (.a), ARC (.arc), ARJ (.arj), BZIP2 (.bz2), CAB (.cab), compress (.Z), CPIO (.cpio), DEB (.deb), DMS (.dms), GZIP (.gz), LRZIP (.lrz), LZH (.lha, .lzh), LZIP (.lz), LZMA (.lzma), LZOP (.lzo), RPM (.rpm), RAR (.rar), RZIP (.rz), TAR (.tar), XZ (.xz), ZIP (.zip, .jar) and ZOO (.zoo)",
 				"name": "UnPackFile",
 				"tags": [
 					"Utility",
 					"file"
 				]
+			},
+			{
+				"description": "Returns integration instances configured in Cortex XSOAR. You can filter by instance status and/or brand name (vendor).",
+				"name": "GetInstances",
+				"tags": []
 			},
 			{
 				"description": "Find the top malicious ratio indicators.\nMalicious ratio is defined by the ratio between the number of \"bad\" incidents divided by the number of total number of incidents that the indicators appears in.",
@@ -422,14 +416,6 @@
 				]
 			},
 			{
-				"description": "Extraction of all matches from a specified regular expression pattern from a provided string.  Returns an array of results.  This differs from RegexGroups in several ways:\n\n* It returns all matches of the specified pattern, not just specific groups.  This is useful for extracting things using a pattern where the content of the source string is indeterminate, such as extracting all email addresses.\n* Some \"convenience\" arguments have been added to enhance usability: multi-line, ignore_case, period_matches_newline\n* Added a new argument, \"error_if_no_match\".  The script will not ordinarily throw an error if a match is not found but if not using as a transformer within a playbook, it may, in certain limited circumstances, be desirable to throw an error if the expression doesn't match.\n* It uses the 'regex'  library, which supports more some more advanced regex functionality than the standard 're' library.  For more info, see https://pypi.org/project/regex/.",
-				"name": "RegexExtractAll",
-				"tags": [
-					"transformer",
-					"string"
-				]
-			},
-			{
 				"description": "Checks if the investigation found any malicious indicators (file, URL, IP address, domain, or email). Returns \"yes\" if at least one malicious indicator is found.",
 				"name": "IsMaliciousIndicatorFound",
 				"tags": [
@@ -457,14 +443,6 @@
 				"tags": []
 			},
 			{
-				"description": "Parse a given JSON string \"value\" to a representative object. Example: '{\"a\": \"value\"}' =\u003e {\"a\": \"value\"}.",
-				"name": "ParseJSON",
-				"tags": [
-					"transformer",
-					"string"
-				]
-			},
-			{
 				"description": "Return the Demisto server version.",
 				"name": "DemistoVersion",
 				"tags": []
@@ -473,15 +451,6 @@
 				"description": "Returns DNS details for a domain",
 				"name": "GetDomainDNSDetails",
 				"tags": []
-			},
-			{
-				"description": "Returns the first element of an array.  If the value passed is not an array, it returns the original value that was passed.",
-				"name": "FirstArrayElement",
-				"tags": [
-					"general",
-					"transformer",
-					"entirelist"
-				]
 			},
 			{
 				"description": "Checks if the Docker container running this script has been hardened according to the recommended settings at: https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-9/cortex-xsoar-admin/docker/docker-hardening-guide.html",
@@ -494,23 +463,6 @@
 				"description": "Searches for string in context and returns context path, returns null if not found.",
 				"name": "ContextGetPathForString",
 				"tags": []
-			},
-			{
-				"description": "Transformer that returns a filtered list of IPv4 addresses, based on whether they match a comma-separated list of IPv4 ranges.  Useful for filtering in internal IP address space.",
-				"name": "IPv4Whitelist",
-				"tags": [
-					"transformer",
-					"entirelist"
-				]
-			},
-			{
-				"description": "Checks an object for an empty value and returns a pre-set default value.",
-				"name": "SetIfEmpty",
-				"tags": [
-					"transformer",
-					"general",
-					"entirelist"
-				]
 			},
 			{
 				"description": "Checks if the email address is part of the internal domains",
@@ -681,14 +633,6 @@
 				]
 			},
 			{
-				"description": "A transformer for simple if-then-else logic.",
-				"name": "If-Then-Else",
-				"tags": [
-					"transformer",
-					"general"
-				]
-			},
-			{
 				"description": "Prints a raw representation of a string or object, visualising things likes tabs and newlines.  For instance, '\\n' will be displayed instead of a newline character, or a Windows CR will be displayed as '\\r\\n'.  This is useful for debugging issues where things aren't behaving as expected, such as when parsing a string with a regular expression.",
 				"name": "PrintRaw",
 				"tags": []
@@ -712,13 +656,6 @@
 				"name": "GetEntries",
 				"tags": [
 					"Utility"
-				]
-			},
-			{
-				"description": "Converts string to array. \nFor example: `http://example.com/?score:1,4,time:55` will be transformed to `[\"http://example.com/?score:1,4,time:55\"]`.",
-				"name": "StringToArray",
-				"tags": [
-					"transformer"
 				]
 			},
 			{
@@ -836,12 +773,10 @@
 				]
 			},
 			{
-				"description": "Gets specified indexes of a list.",
-				"name": "GetRange",
+				"description": "Recursively un-escapes JSON data if escaped JSON is found",
+				"name": "JsonUnescape",
 				"tags": [
-					"transformer",
-					"general",
-					"entirelist"
+					"transformer"
 				]
 			},
 			{
@@ -934,6 +869,14 @@
 				"name": "FormatURL",
 				"tags": [
 					"indicator-format"
+				]
+			},
+			{
+				"description": "Takes UTC and converts it to the specified timezone. Format must match the UTC date's format and output will be the same format. Can use in conjunction with ConvertDateToString",
+				"name": "ConvertTimezoneFromUTC",
+				"tags": [
+					"transformer",
+					"date"
 				]
 			},
 			{
@@ -1175,14 +1118,6 @@
 				]
 			},
 			{
-				"description": "Removed selected fields from the JSON object.",
-				"name": "IgnoreFieldsFromJson",
-				"tags": [
-					"transformer",
-					"General"
-				]
-			},
-			{
 				"description": "Expose the incident owner into IncidentOwner context key",
 				"name": "ExposeIncidentOwner",
 				"tags": [
@@ -1298,18 +1233,17 @@
 				]
 			},
 			{
-				"description": "Strip set of characters from prefix and/or suffix\ne.g. StripChar value=~!!~www.mydomain.com~!~!~  chars=!~ will return www.mydomain.com",
-				"name": "StripChars",
-				"tags": [
-					"transformer",
-					"string"
-				]
-			},
-			{
 				"description": "Converts a date from a different timezone to UTC timezone.",
 				"name": "ConvertDatetoUTC",
 				"tags": [
 					"Utility"
+				]
+			},
+			{
+				"description": "",
+				"name": "BreachConfirmationHTML",
+				"tags": [
+					"dynamic-section"
 				]
 			},
 			{
@@ -1336,23 +1270,6 @@
 				]
 			},
 			{
-				"description": "Return the single element in case the array has only 1 element in it, otherwise return the whole array",
-				"name": "JoinIfSingleElementOnly",
-				"tags": [
-					"entirelist",
-					"transformer",
-					"general"
-				]
-			},
-			{
-				"description": "Converts a custom-formatted timestamp to UNIX epoch time. Use it to convert custom time stamps to a Demisto date field. If you pass formatter argument, we will use it to transform. If not, we will use dateparser.parse for transforming. For more info, see: https://docs.python.org/3.7/library/datetime.html#strftime-and-strptime-behavior",
-				"name": "FormattedDateToEpoch",
-				"tags": [
-					"transformer",
-					"date"
-				]
-			},
-			{
 				"description": "Extract regular text from the given HTML",
 				"name": "TextFromHTML",
 				"tags": [
@@ -1372,12 +1289,11 @@
 				]
 			},
 			{
-				"description": "Adds zeros (0) to the beginning of the string, until the string reaches the specified length.",
-				"name": "PadZeros",
+				"description": "Converts a simple Array into a textual comma separated string",
+				"name": "ArrayToCSV",
 				"tags": [
 					"transformer",
-					"string",
-					"number"
+					"general"
 				]
 			},
 			{
@@ -1416,26 +1332,15 @@
 				"tags": []
 			},
 			{
+				"description": "This script calculates the CVSS Base Score, Temporal Score, and Environmental Score using either the CVSS 3.0 or CVSS 3.1 calculator according to https://www.first.org/cvss/ calculation documentation.",
+				"name": "CVSSCalculator",
+				"tags": []
+			},
+			{
 				"description": "A context script for hash entities",
 				"name": "FileReputation",
 				"tags": [
 					"enhancement"
-				]
-			},
-			{
-				"description": "This script converts the input value into another value using two lists. The input value is searched in the first list (input_values). \nIf it exists, the value from the second list (mapped_values) at the same index is retutrned. If there is no match, the original value is returned.\nIf the original input is a dictionary, then the script will look for a \"stringified\" version of the key/:/value pair in the input_values and then map the result in the output_values into the original \"value\".\n\nExample 1:\n\ninput_values = \"1,2,3,4\"\nmapper_values = \"4,3,2,1\"\nvalue = 3\n\nOutput would be \"2\"\n\nExample 2:\n\ninput_values =\"firstkey: datahere,secondkey: datathere\"\nmapper_values = \"datathere,datahere\"\nvalue(dict)= {\n                                \"firstkey\": \"datahere\"\n                          }\n\nOutput would be:\n                          {\n                                \"firstkey\": \"datathere\"\n                           }\n\nThe reason for matching the key AND value pair in a dictionary is to allow the mappig of values that have a specific key name. In most cases, dictionaries will continan key-value pairs in which the values are the same. You might want to change the value of KeyA, but not the value of KeyB. This method gives control over which key is changed.\n\nWhen the input is a dict, str , int, or list, the output is ALWAYS returned as a string.",
-				"name": "MapValuesTransformer",
-				"tags": [
-					"transformer",
-					"string"
-				]
-			},
-			{
-				"description": "Performs a JMESPath search on an input JSON format, when using a transformer.",
-				"name": "jmespath",
-				"tags": [
-					"transformer",
-					"general"
 				]
 			},
 			{
@@ -1498,20 +1403,9 @@
 				]
 			},
 			{
-				"description": "The script receives a list of fields and a context key base path. For example, Key=demisto.result List=username,user and will get all of the values from demisto.result.username and demisto.result.user.\nThe Get field of the task must have the value ${.=[]}.",
-				"name": "GetValuesOfMultipleFields",
-				"tags": [
-					"transformer"
-				]
-			},
-			{
-				"description": "Accepts an array of domains as an allow list, and a list of email addresses. The script then filters out any email address whose domain is not in the allow list.  The filtered list will be returned as an array.",
-				"name": "EmailDomainWhitelist",
-				"tags": [
-					"transformer",
-					"general",
-					"entirelist"
-				]
+				"description": "Exports context data to a Microsoft Excel Open XML Spreadsheet (XLSX) file.",
+				"name": "ExportToXLSX",
+				"tags": []
 			},
 			{
 				"description": "Converts a file from one format to a different format by using the convert-to function of Libre Office. For a list of supported input/output formats see:  https://wiki.openoffice.org/wiki/Framework/Article/Filter/FilterList_OOo_3_0",
@@ -1529,13 +1423,9 @@
 				]
 			},
 			{
-				"description": "Accepts an array of domains as a block list, and a list of email addresses. The script then filters out any email address whose domain is in the block list.  The filtered list will be returned as an array.",
-				"name": "EmailDomainBlacklist",
-				"tags": [
-					"transformer",
-					"general",
-					"entirelist"
-				]
+				"description": "Given a list of objects and a key found in each of those objects, return a unique list of values associated with that key. Returns error if the objects provided do not contain the key of interest. ",
+				"name": "DeduplicateValuesbyKey",
+				"tags": []
 			},
 			{
 				"description": "Use this script to avoid DB version errors when simultaneously running multiple linked incidents.",
@@ -1576,31 +1466,21 @@
 				]
 			},
 			{
+				"description": "Returns a string with all matches of a regex pattern groups replaced by a replacement.",
+				"name": "ReplaceMatchGroup",
+				"tags": [
+					"transformer"
+				]
+			},
+			{
 				"description": "Checks whether a port was open on given host.",
 				"name": "PortListenCheck",
 				"tags": []
 			},
 			{
-				"description": "Takes a date or time input and adds or subtracts a determined amount of time. Returns a string in date or time in ISO Format.",
-				"name": "ModifyDateTime",
-				"tags": [
-					"transformer",
-					"date"
-				]
-			},
-			{
 				"description": "This script searches for a value in a context path.",
 				"name": "ContextContains",
 				"tags": []
-			},
-			{
-				"description": "Accepts a json object and returns a markdown.",
-				"name": "JsonToTable",
-				"tags": [
-					"transformer",
-					"entirelist",
-					"general"
-				]
 			},
 			{
 				"description": "Executes a test for all integration instances available and returns detailed information about succeeded and failed integration instances.",
@@ -1627,14 +1507,6 @@
 				"name": "MatchRegex",
 				"tags": [
 					"Utility"
-				]
-			},
-			{
-				"description": "Extraction of elements which are contained in all the subgroups of the match to the pattern.\nFor example, extracting from the string \"The quick brown fox\" the object `{\"article\":\"The\",\"noun\":quick\"}`\n(See arguments descriptions for more details) ",
-				"name": "RegexGroups",
-				"tags": [
-					"transformer",
-					"string"
 				]
 			},
 			{
@@ -1674,15 +1546,6 @@
 				]
 			},
 			{
-				"description": "Reverse a list\ne.g. [\"Mars\", \"Jupiter\", \"Saturn\"] =\u003e  [\"Saturn\", \"Jupiter\", \"Mars\"]\n\nThis is an example for entire-list transformer - it operates the argument as a list  (note the \"entirelist\" tag)\n ",
-				"name": "ReverseList",
-				"tags": [
-					"general",
-					"entirelist",
-					"transformer"
-				]
-			},
-			{
 				"description": "Converts XML string to JSON format",
 				"name": "ConvertXmlToJson",
 				"tags": [
@@ -1700,15 +1563,6 @@
 				"description": "Creates a Grid table from items or key-value pairs.",
 				"name": "SetGridField",
 				"tags": []
-			},
-			{
-				"description": "Extract a string from an existing string.",
-				"name": "ExtractInbetween",
-				"tags": [
-					"transformer",
-					"string",
-					"Utility"
-				]
 			},
 			{
 				"description": "The automation takes Excel file (entryID) as an input and parses its content to the war room and context",
@@ -1731,6 +1585,11 @@
 				]
 			},
 			{
+				"description": "Generate an as built document, as HTML, based on the running XSOAR instance. Requires an instance of the Demisto API integration configured.",
+				"name": "GenerateAsBuilt",
+				"tags": []
+			},
+			{
 				"description": "Deprecated. Use FileCreateAndUploadV2 instead. Will create a file (using the given data input or entry ID) and upload it to current investigation war room.\n",
 				"name": "FileCreateAndUpload",
 				"tags": [
@@ -1749,7 +1608,268 @@
 		"dashboard": null,
 		"genericfield": null,
 		"generictype": null,
-		"incidentfield": null,
+		"incidentfield": [
+			{
+				"description": "",
+				"name": "Resident Notification Option",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "State where the breach took place",
+				"type": "singleSelect"
+			},
+			{
+				"description": "",
+				"name": "Individuals Notification",
+				"type": "singleSelect"
+			},
+			{
+				"description": "",
+				"name": "Attorney General Notification",
+				"type": "singleSelect"
+			},
+			{
+				"description": "",
+				"name": "E-mail Address",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Contact Telephone number",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Company Country",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Postal Code",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Sector of Affected Party",
+				"type": "shortText"
+			},
+			{
+				"description": "Is unique biometric data breached",
+				"name": "Unique biometric data breached",
+				"type": "shortText"
+			},
+			{
+				"description": "\"‘main establishment’ means: as regards a controller with establishments in more than one Member State, the place of its central administration in the Union, unless the decisions on the purposes and means of the processing of personal data are taken in another establishment of the controller in the Union and the latter establishment has the power to have such decisions implemented, in which case the establishment having taken such decisions is to be considered to be the main establishment; as regards a processor with establishments in more than one Member State, the place of its central administration in the Union, or, if the processor has no central administration in the Union, the establishment of the processor in the Union where the main processing activities in the context of the activities of an establishment of the processor take place to the extent that the processor is subject to specific obligations under this Regulation;\" - GDPR Art. 4",
+				"name": "Country where business has its main establishment",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Residents Email Address",
+				"type": "grid"
+			},
+			{
+				"description": "Is unique identification number breached",
+				"name": "Unique identification number breached",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Malicious Cause (If the cause is a malicious attack)",
+				"type": "multiSelect"
+			},
+			{
+				"description": "",
+				"name": "Approximate number of affected data subjects",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "DPO E-mail Address",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Secretary Notification",
+				"type": "singleSelect"
+			},
+			{
+				"description": "Is the DPO confirm the breach",
+				"name": "Breach Confirmation",
+				"type": "singleSelect"
+			},
+			{
+				"description": "",
+				"name": "Consumer Reporting Agencies Notification",
+				"type": "singleSelect"
+			},
+			{
+				"description": "",
+				"name": "Contact Address",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Company City",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Possible Cause of the Breach",
+				"type": "multiSelect"
+			},
+			{
+				"description": "",
+				"name": "Contact Name",
+				"type": "shortText"
+			},
+			{
+				"description": "\"In the case of a personal data breach, the controller shall without undue delay and, where feasible, not later than 72 hours after having become aware of it, notify the personal data breach to the supervisory authority competent in accordance with Article 55, unless the personal data breach is unlikely to result in a risk to the rights and freedoms of natural persons.\" - GDPR Art. 33",
+				"name": "GDPR Notify Authorities",
+				"type": "timer"
+			},
+			{
+				"description": "Is health insurance breached",
+				"name": "Health insurance breached",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "PII Data Type",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Data Encryption Status",
+				"type": "multiSelect"
+			},
+			{
+				"description": "",
+				"name": "Telephone no.",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Where is data hosted",
+				"type": "multiSelect"
+			},
+			{
+				"description": "",
+				"name": "Company Address",
+				"type": "shortText"
+			},
+			{
+				"description": "\" (d) describe the measures taken or proposed to be taken by the controller to address the personal data breach, including, where appropriate, measures to mitigate its possible adverse effects.\" - GDPR Art. 33",
+				"name": "Measures to Mitigate",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Date/time of the breach",
+				"type": "date"
+			},
+			{
+				"description": "Is other PII data breached",
+				"name": "Other PII data breached",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Size - number of employees",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "DPO Notification",
+				"type": "singleSelect"
+			},
+			{
+				"description": "",
+				"name": "Company Name",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Company has Insurance for the Breach",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Affected Individuals Contact Information",
+				"type": "grid"
+			},
+			{
+				"description": "\"A data protection impact assessment (...) shall in particular be required in the case of: (a) a systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person; (b) processing on a large scale of special categories of data referred to in Article 9(1), or of personal data relating to criminal convictions and offences referred to in Article 10; or (c) a systematic monitoring of a publicly accessible area on a large scale. - GDPR Art. 35",
+				"name": "Likely Impact",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Management Notification",
+				"type": "singleSelect"
+			},
+			{
+				"description": "",
+				"name": "State CISO Notification",
+				"type": "singleSelect"
+			},
+			{
+				"description": "Is financial information breached",
+				"name": "Financial information breached",
+				"type": "shortText"
+			},
+			{
+				"description": "\"‘personal data’ means any information relating to an identified or identifiable natural person (‘data subject’); an identifiable natural person is one who can be identified, directly or indirectly, in particular by reference to an identifier such as a name, an identification number, location data, an online identifier or to one or more factors specific to the physical, physiological, genetic, mental, economic, cultural or social identity of that natural person;\" - GDPR Art. 4",
+				"name": "Affected data",
+				"type": "multiSelect"
+			},
+			{
+				"description": "",
+				"name": "Contact Email address",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Country where the breach took place",
+				"type": "shortText"
+			},
+			{
+				"description": "The status of the media notification",
+				"name": "Media Notification",
+				"type": "singleSelect"
+			},
+			{
+				"description": "",
+				"name": "Company Postal Code",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Size - turnover",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Affected Data Type",
+				"type": "shortText"
+			},
+			{
+				"description": "Is Medical Information breached",
+				"name": "Medical Information breached",
+				"type": "shortText"
+			},
+			{
+				"description": "Is account information breached",
+				"name": "Account information breached",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Is the Data Subject to DPIA",
+				"type": "shortText"
+			}
+		],
 		"incidenttype": null,
 		"indicatorfield": null,
 		"integration": null,
@@ -1762,7 +1882,7 @@
 		"wizard": null
 	},
 	"created": "2020-07-27T09:01:37Z",
-	"currentVersion": "1.10.46",
+	"currentVersion": "1.11.6",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
@@ -1772,11 +1892,25 @@
 			"minVersion": "1.31.54",
 			"name": "Base"
 		},
+		"BreachNotification-US": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.0.7",
+			"name": "US - Breach Notification"
+		},
+		"BruteForce": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.2.2",
+			"name": "Brute Force"
+		},
 		"DemistoRESTAPI": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.3.12",
+			"minVersion": "1.3.14",
 			"name": "Cortex REST API"
 		},
 		"EWSMailSender": {
@@ -1790,15 +1924,22 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.3.10",
+			"minVersion": "1.3.11",
 			"name": "Elasticsearch"
 		},
 		"FeedMitreAttackv2": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.1.6",
+			"minVersion": "1.1.9",
 			"name": "MITRE ATT\u0026CK"
+		},
+		"GDPR": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.0.7",
+			"name": "GDPR"
 		},
 		"Gmail": {
 			"author": "Cortex XSOAR",
@@ -1811,8 +1952,15 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.3.4",
+			"minVersion": "1.3.5",
 			"name": "Gmail Single User"
+		},
+		"HIPAA-BreachNotification": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.0.7",
+			"name": "HIPAA - Breach Notification"
 		},
 		"MailSenderNew": {
 			"author": "Cortex XSOAR",
@@ -1825,14 +1973,14 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.3.4",
+			"minVersion": "1.3.5",
 			"name": "Microsoft Graph Mail Single User"
 		},
 		"MicrosoftGraphMail": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.4.1",
+			"minVersion": "1.4.3",
 			"name": "Microsoft Graph Mail"
 		},
 		"ProtectWise": {
@@ -1846,7 +1994,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.0.11",
+			"minVersion": "1.0.12",
 			"name": "Remote Access"
 		},
 		"Shodan": {
@@ -1867,7 +2015,7 @@
 	"deprecated": false,
 	"description": "Frequently used scripts pack.",
 	"disabledMonthly": false,
-	"downloads": 88485,
+	"downloads": 90401,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -1893,7 +2041,7 @@
 		},
 		{
 			"imagePath": "content/packs/Slack/SlackV2_image.png",
-			"name": "Slack v2"
+			"name": "Slack v2 (Deprecated)"
 		},
 		{
 			"imagePath": "content/packs/Slack/SlackV3_image.png",
@@ -1924,7 +2072,7 @@
 			"name": "Google Maps"
 		}
 	],
-	"itemVersion": "1.10.46",
+	"itemVersion": "1.11.6",
 	"keywords": [],
 	"legacy": true,
 	"name": "Common Scripts",
@@ -1948,13 +2096,13 @@
 		"url": "https://www.paloaltonetworks.com/cortex"
 	},
 	"tags": [
-		"Core",
-		"Transformer"
+		"Transformer",
+		"Core"
 	],
 	"toServerVersion": "",
-	"updated": "2023-01-11T11:42:17Z",
+	"updated": "2023-01-17T11:54:05Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4372591",
+	"versionInfo": "4410080",
 	"videos": []
 }
