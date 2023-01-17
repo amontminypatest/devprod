@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.8.0
-    itemVersion: 1.1.4
+    itemVersion: 1.1.5
     packID: JoeSecurity
     packName: Joe Security
     packPropagationLabels:
@@ -363,7 +363,7 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: Detonates a file using ANYRUN
+      description: Detonates a file using JoeSecurity.
       id: d8a91f9c-40f6-48f2-8dd2-1c7e59b6abdb
       iscommand: false
       name: ""
@@ -390,7 +390,6 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: Detonates a file using ANYRUN
       id: 93fac7de-168e-4b60-8172-1d0d8cc46702
       iscommand: false
       name: Done
