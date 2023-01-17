@@ -27,7 +27,7 @@
 		"classifier": [
 			{
 				"description": "A mapper that maps raw DLP incident fields into Cortex XSOAR incident fields",
-				"id": "",
+				"id": "Data Loss Prevention",
 				"name": "Data Loss Prevention"
 			}
 		],
@@ -35,36 +35,6 @@
 		"genericfield": null,
 		"generictype": null,
 		"incidentfield": [
-			{
-				"description": "",
-				"name": "PAN DLP Report ID",
-				"type": "shortText"
-			},
-			{
-				"description": "",
-				"name": "PAN DLP Previous Feedback",
-				"type": "shortText"
-			},
-			{
-				"description": "",
-				"name": "PAN DLP Incident Region",
-				"type": "shortText"
-			},
-			{
-				"description": "",
-				"name": "PAN DLP Incident ID",
-				"type": "shortText"
-			},
-			{
-				"description": "",
-				"name": "PAN DLP Data Profile Name",
-				"type": "shortText"
-			},
-			{
-				"description": "",
-				"name": "PAN DLP Tenant ID",
-				"type": "shortText"
-			},
 			{
 				"description": "",
 				"name": "PAN DLP Channel",
@@ -77,7 +47,37 @@
 			},
 			{
 				"description": "",
+				"name": "PAN DLP Report ID",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "PAN DLP Incident ID",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "PAN DLP Incident Region",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "PAN DLP Data Profile Name",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "PAN DLP Previous Feedback",
+				"type": "shortText"
+			},
+			{
+				"description": "",
 				"name": "PAN DLP Action",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "PAN DLP Tenant ID",
 				"type": "shortText"
 			}
 		],
@@ -118,7 +118,7 @@
 					}
 				],
 				"description": "Palo Alto Networks Enterprise DLP discovers and protects company data across every data channel and repository. Integrated Enterprise DLP enables data protection and compliance everywhere without complexity.",
-				"id": "",
+				"id": "Palo Alto Networks Enterprise DLP",
 				"name": "Palo Alto Networks Enterprise DLP"
 			}
 		],
@@ -141,49 +141,49 @@
 		"wizard": null
 	},
 	"created": "2020-11-20T05:50:33Z",
-	"currentVersion": "1.2.1",
+	"currentVersion": "1.2.2",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.40",
+			"minVersion": "1.31.54",
 			"name": "Base"
 		},
 		"CommonScripts": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.10.16",
+			"minVersion": "1.11.6",
 			"name": "Common Scripts"
 		},
 		"CommonTypes": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
-			"mandatory": true,
-			"minVersion": "3.3.34",
+			"mandatory": false,
+			"minVersion": "3.3.43",
 			"name": "Common Types"
 		},
 		"MicrosoftTeams": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.2.5",
+			"minVersion": "1.2.11",
 			"name": "Microsoft Teams"
 		},
 		"Slack": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "3.1.13",
+			"minVersion": "3.1.18",
 			"name": "Slack"
 		}
 	},
 	"deprecated": false,
 	"description": "Palo Alto Networks Enterprise DLP Integration",
 	"disabledMonthly": false,
-	"downloads": 658,
+	"downloads": 684,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -204,7 +204,7 @@
 		},
 		{
 			"imagePath": "content/packs/Slack/SlackV2_image.png",
-			"name": "Slack v2"
+			"name": "Slack v2 (Deprecated)"
 		},
 		{
 			"imagePath": "content/packs/Slack/SlackV3_image.png",
@@ -223,7 +223,7 @@
 			"name": "Microsoft Teams via Webhook"
 		}
 	],
-	"itemVersion": "1.2.1",
+	"itemVersion": "1.2.2",
 	"keywords": [],
 	"legacy": true,
 	"name": "Enterprise DLP by Palo Alto Networks",
@@ -251,9 +251,9 @@
 		"Palo Alto Networks Products"
 	],
 	"toServerVersion": "",
-	"updated": "2022-10-23T14:20:22Z",
+	"updated": "2023-01-11T23:59:23Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4148222",
+	"versionInfo": "4410080",
 	"videos": []
 }
