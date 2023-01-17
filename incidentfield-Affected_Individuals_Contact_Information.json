@@ -67,7 +67,7 @@
 	"hidden": false,
 	"id": "incident_affectedindividualscontactinformation",
 	"isReadOnly": false,
-	"itemVersion": "1.0.11",
+	"itemVersion": "1.11.6",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Affected Individuals Contact Information",
@@ -75,8 +75,8 @@
 	"openEnded": false,
 	"orgType": "grid",
 	"ownerOnly": false,
-	"packID": "Compliance",
-	"packName": "Compliance",
+	"packID": "CommonScripts",
+	"packName": "Common Scripts",
 	"packPropagationLabels": [
 		"all"
 	],
