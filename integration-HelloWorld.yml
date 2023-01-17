@@ -40,11 +40,13 @@ configuration:
   required: false
   section: Collect
   type: 0
-- display: API Key
-  name: apikey
+- display: ""
+  displaypassword: API Key
+  hiddenusername: true
+  name: credentials
   required: true
   section: Connect
-  type: 4
+  type: 9
 - additionalinfo: Set this to determine the HelloWorld score that will determine if
     an IP is malicious (0-100)
   advanced: true
@@ -119,7 +121,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.2.15
+    itemVersion: 1.2.16
     packID: HelloWorld
     packName: HelloWorld
     packPropagationLabels:
@@ -1923,7 +1925,7 @@ script:
         args = demisto.args()
         command = demisto.command()
 
-        api_key = params.get('apikey')
+        api_key = params.get('credentials', {}).get('password')
 
         # get the service API url
         base_url = urljoin(params.get('url'), '/api/v1')
