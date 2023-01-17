@@ -150,7 +150,7 @@
 		"wizard": null
 	},
 	"created": "2020-09-23T17:36:09Z",
-	"currentVersion": "1.2.15",
+	"currentVersion": "1.2.16",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
@@ -164,21 +164,21 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "2.3.24",
+			"minVersion": "2.3.26",
 			"name": "Common Playbooks"
 		},
 		"CommonScripts": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.10.44",
+			"minVersion": "1.11.5",
 			"name": "Common Scripts"
 		}
 	},
 	"deprecated": false,
 	"description": "This is the Hello World integration for getting started.",
 	"disabledMonthly": false,
-	"downloads": 10754,
+	"downloads": 11361,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -197,7 +197,7 @@
 			"name": "HelloWorld Feed"
 		}
 	],
-	"itemVersion": "1.2.15",
+	"itemVersion": "1.2.16",
 	"keywords": [],
 	"legacy": true,
 	"name": "HelloWorld",
@@ -226,9 +226,9 @@
 		"Getting Started"
 	],
 	"toServerVersion": "",
-	"updated": "2023-01-11T10:38:44Z",
+	"updated": "2023-01-12T22:33:18Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4372591",
+	"versionInfo": "4410080",
 	"videos": []
 }
