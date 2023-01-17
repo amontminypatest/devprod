@@ -10,7 +10,7 @@
 	"incidentSamples": null,
 	"indicatorSamples": null,
 	"instanceIds": null,
-	"itemVersion": "4.9.19",
+	"itemVersion": "4.10.0",
 	"keyTypeMap": {
 		"Malware": "Malware Investigation and Response",
 		"PortScan": "Cortex XDR Port Scan",
@@ -18,7 +18,7 @@
 		"XDR Incident": "Cortex XDR Incident"
 	},
 	"locked": false,
-	"logicalVersion": 1,
+	"logicalVersion": 0,
 	"mapping": null,
 	"name": "Cortex XDR Incident Handler - Classifier",
 	"nameRaw": "Cortex XDR Incident Handler - Classifier",
