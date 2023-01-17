@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.0.0
-    itemVersion: 3.3.13
+    itemVersion: 3.4.1
     packID: Phishing
     packName: Phishing
     packPropagationLabels:
@@ -2475,7 +2475,7 @@ tasks:
       id: d92b905f-b6f6-408c-896b-6910ed0f9251
       iscommand: false
       name: Set incident attachments
-      script: DemistoUploadFileV2
+      script: UploadFile
       type: regular
       version: -1
     taskid: d92b905f-b6f6-408c-896b-6910ed0f9251
