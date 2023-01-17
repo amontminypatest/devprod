@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.8.0
-    itemVersion: 1.1.13
+    itemVersion: 1.1.14
     packID: TIM_Processing
     packName: TIM - Indicator Auto-Processing
     packPropagationLabels:
@@ -144,6 +144,7 @@ tasks:
       - "12"
     note: false
     quietmode: 0
+    reputationcalc: 1
     scriptarguments:
       key:
         simple: RelatedFiles
@@ -195,6 +196,7 @@ tasks:
       - "12"
     note: false
     quietmode: 0
+    reputationcalc: 1
     scriptarguments:
       key:
         simple: RelatedIPs
@@ -246,6 +248,7 @@ tasks:
       - "12"
     note: false
     quietmode: 0
+    reputationcalc: 1
     scriptarguments:
       key:
         simple: RelatedDomains
@@ -297,6 +300,7 @@ tasks:
       - "12"
     note: false
     quietmode: 0
+    reputationcalc: 1
     scriptarguments:
       key:
         simple: RelatedURLs
@@ -563,6 +567,7 @@ tasks:
       - "2"
     note: false
     quietmode: 0
+    reputationcalc: 1
     scriptarguments:
       entities:
         complex:
@@ -608,6 +613,7 @@ tasks:
       - "19"
     note: false
     quietmode: 0
+    reputationcalc: 1
     scriptarguments:
       entities:
         complex:
@@ -892,6 +898,7 @@ tasks:
       - "18"
     note: false
     quietmode: 0
+    reputationcalc: 1
     scriptarguments:
       key:
         simple: RelatedAttackPatterns
