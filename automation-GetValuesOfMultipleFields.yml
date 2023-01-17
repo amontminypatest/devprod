@@ -1,5 +1,5 @@
 args:
-- description: The base context path under which to find the fields. For example Demisto.Results.
+- description: The base context path under which to find the fields. For example Test.Results.
   name: key
   required: true
 - description: The list of fields to retrieve from context. The list can contain comma
@@ -10,7 +10,7 @@ args:
 - description: The value to set in context for the key.
   name: value
 comment: |-
-  The script receives a list of fields and a context key base path. For example, Key=demisto.result List=username,user and will get all of the values from demisto.result.username and demisto.result.user.
+  The script receives a list of fields and a context key base path. For example, Key=Test.result List=username,user and will get all of the values from Test.result.username and Test.result.user.
   The Get field of the task must have the value ${.=[]}.
 commonfields:
   id: GetValuesOfMultipleFields
@@ -19,15 +19,15 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.10.46
-    packID: CommonScripts
-    packName: Common Scripts
+    itemVersion: 1.2.5
+    packID: FiltersAndTransformers
+    packName: Filters And Transformers
     packPropagationLabels:
     - all
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/python3:3.9.8.24399
+dockerimage: demisto/python3:3.10.9.42476
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
