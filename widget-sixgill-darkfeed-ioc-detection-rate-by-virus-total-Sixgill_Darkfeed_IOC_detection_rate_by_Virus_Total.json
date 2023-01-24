@@ -20,7 +20,7 @@
 	"fromServerVersion": "5.0.0",
 	"id": "sixgill-darkfeed-ioc-detection-rate-by-virus-total",
 	"isPredefined": true,
-	"itemVersion": "2.0.13",
+	"itemVersion": "2.0.14",
 	"name": "Sixgill Darkfeed IOC detection rate by Virus Total",
 	"packID": "Sixgill-Darkfeed",
 	"packName": "Sixgill Darkfeed - Annual Subscription",
