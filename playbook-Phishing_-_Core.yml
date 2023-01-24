@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 3.4.1
+    itemVersion: 3.5.1
     packID: Phishing
     packName: Phishing
     packPropagationLabels:
@@ -10,13 +10,8 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-description: |-
-  Provides a basic response to phishing incidents. Playbook features:
-  - Calculates reputation for all indicators
-  - Extracts indicators from email attachments
-  - Calculates severity for the incident based on indicator reputation
-  - Updates reporting user about investigation status
-  - Allows manual remediation of the incident
+deprecated: true
+description: Deprecated. Use Phishing - Core v2 instead.
 id: Phishing - Core
 inputs:
 - description: Whether the user wants the Rasterize integration to produce images
