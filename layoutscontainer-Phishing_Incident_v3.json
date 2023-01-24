@@ -932,12 +932,12 @@
 			}
 		]
 	},
-	"fromServerVersion": "",
+	"fromServerVersion": "6.1.0",
 	"group": "incident",
 	"id": "Phishing Incident v3",
 	"indicatorsDetails": null,
 	"indicatorsQuickView": null,
-	"itemVersion": "3.4.1",
+	"itemVersion": "3.5.1",
 	"locked": false,
 	"mobile": {
 		"sections": [
@@ -1247,6 +1247,6 @@
 	},
 	"quickViewV2": null,
 	"system": true,
-	"toServerVersion": "",
+	"toServerVersion": "99.99.99",
 	"version": -1
 }
