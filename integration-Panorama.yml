@@ -187,7 +187,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.16.2
+    itemVersion: 1.16.4
     packID: PAN-OS
     packName: PAN-OS by Palo Alto Networks
     packPropagationLabels:
@@ -3813,9 +3813,21 @@ script:
       name: reporttype
     - description: The report name.
       name: reportname
-    - defaultValue: keygen,config,commit,op,report,log,import,export,user-id,version
+    - auto: PREDEFINED
+      defaultValue: config
       description: The request type, for example export, import, log, config.
       name: type
+      predefined:
+      - keygen
+      - config
+      - commit
+      - op
+      - report
+      - log
+      - import
+      - export
+      - user-id
+      - version
     - description: The time the PCAP was received on the firewall. Used for threat
         PCAPs.
       name: search-time
@@ -9367,7 +9379,7 @@ script:
       name: device-group
     description: Deletes an application-group
     name: pan-os-delete-application-group
-  dockerimage: demisto/pan-os-python:1.0.0.44853
+  dockerimage: demisto/pan-os-python:1.0.0.45072
   isfetch: true
   runonce: false
   script: |
@@ -10545,7 +10557,8 @@ script:
                     'push_job_id': job_id,
                     'polling': argToBoolean(args.get('polling', False)),
                     'interval_in_seconds': arg_to_number(args.get('interval_in_seconds', 10)),
-                    'description': description
+                    'description': description,
+                    'device-group': DEVICE_GROUP
                 }
 
             return PollResult(
