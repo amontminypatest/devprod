@@ -744,12 +744,12 @@
 		]
 	},
 	"edit": null,
-	"fromServerVersion": "",
+	"fromServerVersion": "6.0.0",
 	"group": "incident",
 	"id": "ServiceNow Ticket",
 	"indicatorsDetails": null,
 	"indicatorsQuickView": null,
-	"itemVersion": "2.5.5",
+	"itemVersion": "2.5.6",
 	"locked": false,
 	"mobile": null,
 	"name": "ServiceNow Ticket",
@@ -762,6 +762,6 @@
 	"quickView": null,
 	"quickViewV2": null,
 	"system": true,
-	"toServerVersion": "",
+	"toServerVersion": "99.99.99",
 	"version": -1
 }
