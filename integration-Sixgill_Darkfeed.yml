@@ -107,7 +107,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 2.0.13
+    itemVersion: 2.0.14
     packID: Sixgill-Darkfeed
     packName: Sixgill Darkfeed - Annual Subscription
     packPropagationLabels:
@@ -143,7 +143,7 @@ script:
     description: Fetching Sixgill DarkFeed indicators
     execution: true
     name: sixgill-get-indicators
-  dockerimage: demisto/sixgill:1.0.0.40823
+  dockerimage: demisto/sixgill:1.0.0.44895
   feed: true
   runonce: false
   script: |
