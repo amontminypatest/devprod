@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.5.0
-    itemVersion: 2.3.26
+    itemVersion: 2.3.28
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -144,6 +144,9 @@ outputs:
 - contextPath: Splunk.Result
   description: The results of the Splunk search. The results are a JSON array, in
     which each item is a Splunk event.
+- contextPath: NumOfFailedLogon
+  description: Number of failed login.
+  type: unknown
 quiet: true
 starttaskid: "0"
 system: true
@@ -879,7 +882,7 @@ tasks:
       wait: 1
     nexttasks:
       '#none#':
-      - "28"
+      - "79"
     note: false
     quietmode: 2
     scriptarguments:
@@ -1017,7 +1020,7 @@ tasks:
       wait: 1
     nexttasks:
       '#none#':
-      - "28"
+      - "78"
     note: false
     quietmode: 2
     scriptarguments:
@@ -1077,6 +1080,136 @@ tasks:
         "position": {
           "x": 1060,
           "y": 800
+        }
+      }
+  "78":
+    continueonerrortype: ""
+    id: "78"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "80"
+    note: false
+    quietmode: 2
+    scriptarguments:
+      ignore-outputs:
+        simple: "false"
+      key:
+        simple: NumOfOktaFailedLog
+      value:
+        complex:
+          root: NumOfOktaFailedLogon
+          transformers:
+          - operator: count
+    separatecontext: false
+    skipunavailable: true
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: 96dac5c1-f748-42a0-8ef0-f1e22445bbf0
+      iscommand: false
+      name: Count failed logon from Okta
+      script: Set
+      type: regular
+      version: -1
+    taskid: 96dac5c1-f748-42a0-8ef0-f1e22445bbf0
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -160,
+          "y": 730
+        }
+      }
+  "79":
+    continueonerrortype: ""
+    id: "79"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "80"
+    note: false
+    quietmode: 2
+    scriptarguments:
+      ignore-outputs:
+        simple: "false"
+      key:
+        simple: NumOfSiemFailedLog
+      value:
+        complex:
+          root: NumOfSiemFailedLogon
+          transformers:
+          - operator: count
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: bceb9f6a-3759-4b7b-85aa-3754e7abdcc8
+      iscommand: false
+      name: Count failed logon from SIEM
+      script: Set
+      type: regular
+      version: -1
+    taskid: bceb9f6a-3759-4b7b-85aa-3754e7abdcc8
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 370,
+          "y": 730
+        }
+      }
+  "80":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "80"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "28"
+    note: false
+    quietmode: 2
+    scriptarguments:
+      action:
+        simple: +
+      contextKey:
+        simple: NumOfFailedLogon
+      lh:
+        complex:
+          root: NumOfSiemFailedLog
+      rh:
+        complex:
+          root: NumOfOktaFailedLog
+    separatecontext: false
+    skipunavailable: true
+    task:
+      brand: ""
+      description: |
+        Script will run the provided mathematical action on 2 provided values and produce a result.
+        The result can be stored on the context using the contextKey argument
+      id: 35e3cd03-5cd8-4543-8f4e-061497adb9db
+      iscommand: false
+      name: Number Of Failed Logon
+      script: MathUtil
+      type: regular
+      version: -1
+    taskid: 35e3cd03-5cd8-4543-8f4e-061497adb9db
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 100,
+          "y": 940
         }
       }
 version: -1
