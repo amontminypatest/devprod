@@ -23,7 +23,7 @@
 	"hidden": false,
 	"id": "incident_fireeyehxagentcontainmentstate",
 	"isReadOnly": false,
-	"itemVersion": "2.2.11",
+	"itemVersion": "2.3.0",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "FireEye HX Agent Containment State",
