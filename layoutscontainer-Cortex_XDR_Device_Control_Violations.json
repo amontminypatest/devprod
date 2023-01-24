@@ -301,12 +301,12 @@
 		]
 	},
 	"edit": null,
-	"fromServerVersion": "",
+	"fromServerVersion": "6.0.0",
 	"group": "incident",
 	"id": "Cortex XDR Device Control Violations",
 	"indicatorsDetails": null,
 	"indicatorsQuickView": null,
-	"itemVersion": "4.10.0",
+	"itemVersion": "4.10.3",
 	"locked": false,
 	"mobile": null,
 	"name": "Cortex XDR Device Control Violations",
@@ -319,6 +319,6 @@
 	"quickView": null,
 	"quickViewV2": null,
 	"system": true,
-	"toServerVersion": "",
+	"toServerVersion": "99.99.99",
 	"version": -1
 }
