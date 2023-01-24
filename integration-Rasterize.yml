@@ -45,7 +45,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.2.13
+    itemVersion: 1.2.14
     packID: rasterize
     packName: Rasterize
     packPropagationLabels:
@@ -372,7 +372,7 @@ script:
     - contextPath: InfoFile.Type
       description: The type of the image/pdf file
       type: string
-  dockerimage: demisto/chromium:1.0.0.42726
+  dockerimage: demisto/chromium:1.0.0.44669
   runonce: false
   script: |
     register_module_line('Rasterize', 'start', __line__())
