@@ -19,15 +19,15 @@
 	"contentItems": {
 		"automation": [
 			{
-				"description": "count the categories of alerts in given incident",
-				"name": "MS365DefenderCountIncidentCategories",
+				"description": "comment",
+				"name": "MS365DefenderUserListToTable",
 				"tags": [
 					"transformer"
 				]
 			},
 			{
-				"description": "comment",
-				"name": "MS365DefenderUserListToTable",
+				"description": "count the categories of alerts in given incident",
+				"name": "MS365DefenderCountIncidentCategories",
 				"tags": [
 					"transformer"
 				]
@@ -46,6 +46,36 @@
 		"incidentfield": [
 			{
 				"description": "",
+				"name": "Microsoft 365 Defender First activity",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Microsoft 365 Defender Categories count",
+				"type": "grid"
+			},
+			{
+				"description": "",
+				"name": "Microsoft 365 Defender Display Name",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Microsoft 365 Defender A",
+				"type": "grid"
+			},
+			{
+				"description": "",
+				"name": "Microsoft 365 Defender Classification",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Microsoft 365 Defender Devices",
+				"type": "grid"
+			},
+			{
+				"description": "",
 				"name": "Microsoft 365 Defender Status",
 				"type": "shortText"
 			},
@@ -56,38 +86,8 @@
 			},
 			{
 				"description": "",
-				"name": "Microsoft 365 Defender Display Name",
-				"type": "shortText"
-			},
-			{
-				"description": "",
-				"name": "Microsoft 365 Defender First activity",
-				"type": "shortText"
-			},
-			{
-				"description": "",
-				"name": "Microsoft 365 Defender Last activity",
-				"type": "shortText"
-			},
-			{
-				"description": "",
-				"name": "Microsoft 365 Defender Devices",
-				"type": "grid"
-			},
-			{
-				"description": "",
-				"name": "Microsoft 365 Defender A",
-				"type": "grid"
-			},
-			{
-				"description": "",
-				"name": "impacted entities",
-				"type": "shortText"
-			},
-			{
-				"description": "",
-				"name": "Microsoft 365 Defender Categories count",
-				"type": "grid"
+				"name": "Microsoft 365 Defender Tags",
+				"type": "tagsSelect"
 			},
 			{
 				"description": "",
@@ -96,12 +96,12 @@
 			},
 			{
 				"description": "",
-				"name": "Microsoft 365 Defender Active",
+				"name": "impacted entities",
 				"type": "shortText"
 			},
 			{
 				"description": "",
-				"name": "Microsoft 365 Defender Classification",
+				"name": "Microsoft 365 Defender Active",
 				"type": "shortText"
 			},
 			{
@@ -111,8 +111,8 @@
 			},
 			{
 				"description": "",
-				"name": "Microsoft 365 Defender Tags",
-				"type": "tagsSelect"
+				"name": "Microsoft 365 Defender Last activity",
+				"type": "shortText"
 			}
 		],
 		"incidenttype": [
@@ -127,6 +127,50 @@
 		],
 		"indicatorfield": null,
 		"integration": [
+			{
+				"category": "Utilities",
+				"commands": [
+					{
+						"description": "List the Safe Links policies in your cloud-based organization.",
+						"name": "o365-defender-safelinks-policy-list"
+					},
+					{
+						"description": "Create a new Safe Links policy.",
+						"name": "o365-defender-safelinks-policy-create"
+					},
+					{
+						"description": "Update a Safe Links policy.",
+						"name": "o365-defender-safelinks-policy-update"
+					},
+					{
+						"description": "Remove a Safe Links policy.",
+						"name": "o365-defender-safelinks-policy-remove"
+					},
+					{
+						"description": "List Safe Links rules in your cloud-based organization.",
+						"name": "o365-defender-safelinks-rule-list"
+					},
+					{
+						"description": "Create a Safe Links rule in your cloud-based organization.",
+						"name": "o365-defender-safelinks-rule-create"
+					},
+					{
+						"description": "Update a given Safe Links rule.",
+						"name": "o365-defender-safelinks-rule-update"
+					},
+					{
+						"description": "Get detailed information about Safe Links results for the last 7 days. Yesterday is the most recent date that you can specify.",
+						"name": "o365-defender-safelinks-detailed-report-get"
+					},
+					{
+						"description": "general information about Safe Links results for the last 90 days. Yesterday is the most recent date that you can specify.",
+						"name": "o365-defender-safelinks-aggregate-report-get"
+					}
+				],
+				"description": "Provides URL scanning and rewriting of inbound email messages in mail flow, and time-of-click verification of URLs and links in email messages and other locations.",
+				"id": "O365 Defender SafeLinks",
+				"name": "O365 Defender SafeLinks"
+			},
 			{
 				"category": "Utilities",
 				"commands": [
@@ -226,50 +270,6 @@
 				"description": "Microsoft 365 Defender is a unified pre- and post-breach enterprise defense suite that natively coordinates detection, prevention, investigation, and response across endpoints, identities, email, and applications to provide integrated protection against sophisticated attacks.",
 				"id": "Microsoft 365 Defender",
 				"name": "Microsoft 365 Defender"
-			},
-			{
-				"category": "Utilities",
-				"commands": [
-					{
-						"description": "List the Safe Links policies in your cloud-based organization.",
-						"name": "o365-defender-safelinks-policy-list"
-					},
-					{
-						"description": "Create a new Safe Links policy.",
-						"name": "o365-defender-safelinks-policy-create"
-					},
-					{
-						"description": "Update a Safe Links policy.",
-						"name": "o365-defender-safelinks-policy-update"
-					},
-					{
-						"description": "Remove a Safe Links policy.",
-						"name": "o365-defender-safelinks-policy-remove"
-					},
-					{
-						"description": "List Safe Links rules in your cloud-based organization.",
-						"name": "o365-defender-safelinks-rule-list"
-					},
-					{
-						"description": "Create a Safe Links rule in your cloud-based organization.",
-						"name": "o365-defender-safelinks-rule-create"
-					},
-					{
-						"description": "Update a given Safe Links rule.",
-						"name": "o365-defender-safelinks-rule-update"
-					},
-					{
-						"description": "Get detailed information about Safe Links results for the last 7 days. Yesterday is the most recent date that you can specify.",
-						"name": "o365-defender-safelinks-detailed-report-get"
-					},
-					{
-						"description": "general information about Safe Links results for the last 90 days. Yesterday is the most recent date that you can specify.",
-						"name": "o365-defender-safelinks-aggregate-report-get"
-					}
-				],
-				"description": "Provides URL scanning and rewriting of inbound email messages in mail flow, and time-of-click verification of URLs and links in email messages and other locations.",
-				"id": "O365 Defender SafeLinks",
-				"name": "O365 Defender SafeLinks"
 			}
 		],
 		"layoutscontainer": [
@@ -281,16 +281,16 @@
 		"list": null,
 		"playbook": [
 			{
-				"description": "This playbook retrieves email data based on the \"URLDomain\", \"SHA256\" and \"IPAddress\" inputs.\nSHA256 - Emails with attachments matching the \"SHA256\" input are retrieved.\nURLDomain - If the \"URLDomain\" value is found as a substring of URL(s) in the body of the email, the email is retrieved.\nIPAddress - Emails with \"SenderIPv4\"/SenderIPv6\" or URLs (in the body) matching the \"IPAddress\" input are retrieved.",
-				"name": "Microsoft 365 Defender - Emails Indicators Hunt"
-			},
-			{
 				"description": "This playbook retrieves email data based on the `URLDomain` and `MessageID` inputs. It uses the Microsoft 365 Defender's Advanced Hunting to search only for URL click events based on the playbook inputs and enriches it with the full email data.\n\n**URLDomain** - If the “URLDomain” value is found as a substring of the URL(s) in the body of the email, the email is retrieved.\n\n**MessageID** - The message ID of the email from which the URL was clicked. Note that this can be either of the following 2 values:\n- The value of the header \"Message-ID\".\n- The internal ID of the message within Microsoft's products (e.g., NetworkMessageId).\n\nCan be a single MessageID or an array of MessageIDs to search.",
 				"name": "Microsoft 365 Defender - Get Email URL Clicks"
 			},
 			{
 				"description": "This playbook retrieves email data based on the `URLDomain`, `SHA256`, `IPAddress`. and `MessageID` inputs. The output is a unified object with all of the retrieved emails based on the following sub-playbooks outputs:\n\n- **Microsoft 365 Defender - Get Email URL clicks**:\n        Retrieves data based on URL click events.\n\n\n- **Microsoft 365 Defender - Emails Indicators Hunt**:\n        Retrieves data based on several different email events.\n\nRead the playbook's descriptions in order to get the full details.\n",
 				"name": "Microsoft 365 Defender - Threat Hunting Generic"
+			},
+			{
+				"description": "This playbook retrieves email data based on the \"URLDomain\", \"SHA256\" and \"IPAddress\" inputs.\nSHA256 - Emails with attachments matching the \"SHA256\" input are retrieved.\nURLDomain - If the \"URLDomain\" value is found as a substring of URL(s) in the body of the email, the email is retrieved.\nIPAddress - Emails with \"SenderIPv4\"/SenderIPv6\" or URLs (in the body) matching the \"IPAddress\" input are retrieved.",
+				"name": "Microsoft 365 Defender - Emails Indicators Hunt"
 			}
 		],
 		"report": null,
@@ -299,35 +299,35 @@
 		"wizard": null
 	},
 	"created": "2021-05-25T22:44:54Z",
-	"currentVersion": "4.4.9",
+	"currentVersion": "4.4.10",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.54",
+			"minVersion": "1.31.55",
 			"name": "Base"
 		},
 		"CommonScripts": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.11.5",
+			"minVersion": "1.11.10",
 			"name": "Common Scripts"
 		},
 		"CommonTypes": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "3.3.43",
+			"minVersion": "3.3.44",
 			"name": "Common Types"
 		},
 		"EWS": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "2.0.8",
+			"minVersion": "2.0.9",
 			"name": "EWS"
 		},
 		"FiltersAndTransformers": {
@@ -341,7 +341,7 @@
 	"deprecated": false,
 	"description": "Microsoft 365 Defender is a unified pre- and post-breach enterprise defense suite that natively coordinates detection, prevention, investigation, and response across endpoints, identities, email, and applications to provide integrated protection against sophisticated attacks.",
 	"disabledMonthly": false,
-	"downloads": 4809,
+	"downloads": 4914,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.5.0",
 	"general": [
@@ -366,7 +366,7 @@
 			"name": "O365 Defender SafeLinks - Single User"
 		}
 	],
-	"itemVersion": "4.4.9",
+	"itemVersion": "4.4.10",
 	"keywords": [],
 	"legacy": true,
 	"name": "Microsoft 365 Defender",
@@ -394,9 +394,9 @@
 		"Transformer"
 	],
 	"toServerVersion": "",
-	"updated": "2023-01-15T22:35:58Z",
+	"updated": "2023-01-23T12:03:27Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4410080",
+	"versionInfo": "4458364",
 	"videos": []
 }
