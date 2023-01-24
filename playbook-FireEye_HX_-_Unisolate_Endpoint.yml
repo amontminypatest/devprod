@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 2.2.11
+    itemVersion: 2.3.0
     packID: FireEyeHX
     packName: FireEye HX
     packPropagationLabels:
@@ -71,6 +71,8 @@ tasks:
       - "3"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: FireEye HX
