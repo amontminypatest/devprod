@@ -148,21 +148,21 @@
 		"wizard": null
 	},
 	"created": "2020-07-15T10:54:12Z",
-	"currentVersion": "1.3.7",
+	"currentVersion": "1.3.8",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.54",
+			"minVersion": "1.31.55",
 			"name": "Base"
 		}
 	},
 	"deprecated": false,
 	"description": "Zscaler is a cloud security solution built for performance and flexible scalability.",
 	"disabledMonthly": false,
-	"downloads": 6134,
+	"downloads": 6283,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -179,7 +179,7 @@
 			"name": "Zscaler Internet Access"
 		}
 	],
-	"itemVersion": "1.3.7",
+	"itemVersion": "1.3.8",
 	"keywords": [],
 	"legacy": true,
 	"name": "Zscaler Internet Access",
@@ -204,9 +204,9 @@
 	},
 	"tags": [],
 	"toServerVersion": "",
-	"updated": "2023-01-16T23:47:41Z",
+	"updated": "2023-01-22T12:02:55Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4410080",
+	"versionInfo": "4458364",
 	"videos": []
 }
