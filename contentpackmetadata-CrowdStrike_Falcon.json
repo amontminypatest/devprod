@@ -18,11 +18,9 @@
 	"contentItems": {
 		"automation": [
 			{
-				"description": "Load and return the processes file (generated from the cs-falcon-rtr-list-network-stats command) content.",
-				"name": "ReadNetstatFile",
-				"tags": [
-					"dynamic-section"
-				]
+				"description": "Transform a XSOAR indicator into a Crowd Strike Falcon IOC. The output (found at the TransformIndicatorToCSFalconIOC.JsonOutput context path) is a JSON, which represents the indicators in CS Falcon format. This JSON can be used as the input for the *cs-falcon-batch-upload-custom-ioc* command.",
+				"name": "TransformIndicatorToCSFalconIOC",
+				"tags": []
 			},
 			{
 				"description": "Load and return the processes file (generated from the cs-falcon-rtr-list-processes command) content.",
@@ -32,9 +30,11 @@
 				]
 			},
 			{
-				"description": "Transform a XSOAR indicator into a Crowd Strike Falcon IOC. The output (found at the TransformIndicatorToCSFalconIOC.JsonOutput context path) is a JSON, which represents the indicators in CS Falcon format. This JSON can be used as the input for the *cs-falcon-batch-upload-custom-ioc* command.",
-				"name": "TransformIndicatorToCSFalconIOC",
-				"tags": []
+				"description": "Load and return the processes file (generated from the cs-falcon-rtr-list-network-stats command) content.",
+				"name": "ReadNetstatFile",
+				"tags": [
+					"dynamic-section"
+				]
 			}
 		],
 		"classifier": [
@@ -44,14 +44,14 @@
 				"name": "CrowdStrike Falcon Mapper"
 			},
 			{
-				"description": "CrowdStrike Falcon Incident Classifier",
-				"id": "CrowdStrike Falcon",
-				"name": "CrowdStrike Falcon Incident Classifier"
-			},
-			{
 				"description": "CrowdStrike Falcon mirror out mapper.",
 				"id": "CrowdStrike Falcon - Outgoing Mapper",
 				"name": "CrowdStrike Falcon - Outgoing Mapper"
+			},
+			{
+				"description": "CrowdStrike Falcon Incident Classifier",
+				"id": "CrowdStrike Falcon",
+				"name": "CrowdStrike Falcon Incident Classifier"
 			},
 			{
 				"description": "CrowdStrike Falcon Mapper for incidents and detections",
@@ -64,13 +64,13 @@
 		"generictype": null,
 		"incidentfield": [
 			{
-				"description": "Behaviour Objective",
-				"name": "Behaviour Objective",
+				"description": "Behaviour Tactic",
+				"name": "Behaviour Tactic",
 				"type": "shortText"
 			},
 			{
-				"description": "Behaviour Tactic",
-				"name": "Behaviour Tactic",
+				"description": "Behaviour Objective",
+				"name": "Behaviour Objective",
 				"type": "shortText"
 			},
 			{
@@ -368,28 +368,36 @@
 		"list": null,
 		"playbook": [
 			{
-				"description": "This playbook is part of the 'Malware Investigation And Response' pack. For more information, refer to https://xsoar.pan.dev/docs/reference/packs/malware-investigation-and-response.\nThis playbook verifies and sets the policy actions applied by CrowdStrike Falcon.",
-				"name": "CrowdStrike Falcon Malware - Verify Containment Actions"
-			},
-			{
-				"description": "This playbook is part of the 'Malware Investigation And Response' pack. For more information, refer to https://xsoar.pan.dev/docs/reference/packs/malware-investigation-and-response.\nThis playbook retrieves and unzips files from CrowdStrike Falcon and returns a list of the files that were and were not retrieved.",
-				"name": "CrowdStrike Falcon - Retrieve File"
+				"description": "This playbook is part of the 'Malware Investigation And Response' pack. For more information, refer to https://xsoar.pan.dev/docs/reference/packs/malware-investigation-and-response. This playbook searches across the organization for other endpoints associated with a specific SHA256 hash.",
+				"name": "CrowdStrike Falcon - Search Endpoints By Hash"
 			},
 			{
 				"description": " This playbook is part of the 'Malware Investigation And Response' pack. For more information, refer to https://xsoar.pan.dev/docs/reference/packs/malware-investigation-and-response. This playbook handles a CrowdStrike Falcon malware investigation, including:\n - Extracting and displaying MITRE data from the EDR and sandboxes\n - Deduplicating similar incidents\n - Searching for hashes in an alert in a sandbox to provide their relevant information. If the hashes are not found, retrieving them from the endpoint and detonating them in the sandbox.\n - Verifying the actions taken by the EDR\n - Analyzing the command line\n - Searching for relevant hashes in additional hosts in the organization\n - Retrieving data about the host, including process list and network connections\n - Performing containment and mitigation actions as part of handling false/true positives \n - Setting the relevant layouts",
 				"name": "CrowdStrike Falcon Malware - Investigation and Response"
 			},
 			{
-				"description": "This playbook is part of the 'Malware Investigation And Response' pack. For more information, refer to https://xsoar.pan.dev/docs/reference/packs/malware-investigation-and-response.\nThis playbook handles a CrowdStrike incident that was determined\nto be a false positive by the analyst. Actions include unisolating the host, allowing\nthe indicator by the EDR, and tagging it.",
-				"name": "CrowdStrike Falcon - False Positive Incident Handling"
+				"description": "This playbook is part of the 'Malware Investigation And Response' pack. For more information, refer to https://xsoar.pan.dev/docs/reference/packs/malware-investigation-and-response.\nThis playbook enables getting CrowdStrike Falcon detection details based on the CrowdStrike incident ID.",
+				"name": "CrowdStrike Falcon - Get Detections by Incident"
 			},
 			{
-				"description": "This playbook will auto isolate endpoints by the device ID that was provided in the playbook.",
-				"name": "Crowdstrike Falcon - Isolate Endpoint"
+				"description": "This playbook is part of the 'Malware Investigation And Response' pack. For more information, refer to https://xsoar.pan.dev/docs/reference/packs/malware-investigation-and-response.\nThis playbook enables enriching CrowdStrike Falcon incidents by pivoting to their detections as well as mapping all the relevant data to the Cortex XSOAR incident fields.",
+				"name": "CrowdStrike Falcon Malware - Incident Enrichment"
 			},
 			{
-				"description": "This playbook is part of the 'Malware Investigation And Response' pack. For more information, refer to https://xsoar.pan.dev/docs/reference/packs/malware-investigation-and-response. This playbook searches across the organization for other endpoints associated with a specific SHA256 hash.",
-				"name": "CrowdStrike Falcon - Search Endpoints By Hash"
+				"description": "This playbook is part of the 'Malware Investigation And Response' pack. For more information, refer to https://xsoar.pan.dev/docs/reference/packs/malware-investigation-and-response.\nThis playbook handles incident ingestion from a SIEM.\nThe user provides the field for the incident ID or detection ID and the field indicating whether the ingested item is an incident or detection. This playbook enables changing the severity scale in Cortex XSOAR as well as fetching CrowdStrike detections based on the CrowdStrike incident type.",
+				"name": "CrowdStrike Falcon - SIEM ingestion Get Incident Data"
+			},
+			{
+				"description": "This playbook unisolates devices according to the device ID that is provided in the playbook input.",
+				"name": "Crowdstrike Falcon - Unisolate Endpoint"
+			},
+			{
+				"description": "This playbook is part of the 'Malware Investigation And Response' pack. For more information, refer to https://xsoar.pan.dev/docs/reference/packs/malware-investigation-and-response.\nThis playbook verifies and sets the policy actions applied by CrowdStrike Falcon.",
+				"name": "CrowdStrike Falcon Malware - Verify Containment Actions"
+			},
+			{
+				"description": "This playbook is part of the 'Malware Investigation And Response' pack. For more information, refer to https://xsoar.pan.dev/docs/reference/packs/malware-investigation-and-response.\nThis playbook retrieves and unzips files from CrowdStrike Falcon and returns a list of the files that were and were not retrieved.",
+				"name": "CrowdStrike Falcon - Retrieve File"
 			},
 			{
 				"description": "This playbook is part of the 'Malware Investigation And Response' pack. For more information, refer to https://xsoar.pan.dev/docs/reference/packs/malware-investigation-and-response. This playbook handles a CrowdStrike incident that was determined to be a true positive by the analyst. Actions include isolating the host, blocking the indicator by the EDR, and tagging it.",
@@ -400,20 +408,12 @@
 				"name": "CrowdStrike Falcon - Get Endpoint Forensics Data"
 			},
 			{
-				"description": "This playbook is part of the 'Malware Investigation And Response' pack. For more information, refer to https://xsoar.pan.dev/docs/reference/packs/malware-investigation-and-response.\nThis playbook enables enriching CrowdStrike Falcon incidents by pivoting to their detections as well as mapping all the relevant data to the Cortex XSOAR incident fields.",
-				"name": "CrowdStrike Falcon Malware - Incident Enrichment"
+				"description": "This playbook will auto isolate endpoints by the device ID that was provided in the playbook.",
+				"name": "Crowdstrike Falcon - Isolate Endpoint"
 			},
 			{
-				"description": "This playbook is part of the 'Malware Investigation And Response' pack. For more information, refer to https://xsoar.pan.dev/docs/reference/packs/malware-investigation-and-response.\nThis playbook enables getting CrowdStrike Falcon detection details based on the CrowdStrike incident ID.",
-				"name": "CrowdStrike Falcon - Get Detections by Incident"
-			},
-			{
-				"description": "This playbook is part of the 'Malware Investigation And Response' pack. For more information, refer to https://xsoar.pan.dev/docs/reference/packs/malware-investigation-and-response.\nThis playbook handles incident ingestion from a SIEM.\nThe user provides the field for the incident ID or detection ID and the field indicating whether the ingested item is an incident or detection. This playbook enables changing the severity scale in Cortex XSOAR as well as fetching CrowdStrike detections based on the CrowdStrike incident type.",
-				"name": "CrowdStrike Falcon - SIEM ingestion Get Incident Data"
-			},
-			{
-				"description": "This playbook unisolates devices according to the device ID that is provided in the playbook input.",
-				"name": "Crowdstrike Falcon - Unisolate Endpoint"
+				"description": "This playbook is part of the 'Malware Investigation And Response' pack. For more information, refer to https://xsoar.pan.dev/docs/reference/packs/malware-investigation-and-response.\nThis playbook handles a CrowdStrike incident that was determined\nto be a false positive by the analyst. Actions include unisolating the host, allowing\nthe indicator by the EDR, and tagging it.",
+				"name": "CrowdStrike Falcon - False Positive Incident Handling"
 			}
 		],
 		"report": null,
@@ -422,56 +422,56 @@
 		"wizard": null
 	},
 	"created": "2020-09-09T12:16:53Z",
-	"currentVersion": "1.10.2",
+	"currentVersion": "1.10.3",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.54",
+			"minVersion": "1.31.55",
 			"name": "Base"
 		},
 		"CommonPlaybooks": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "2.3.24",
+			"minVersion": "2.3.28",
 			"name": "Common Playbooks"
 		},
 		"CommonScripts": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.10.46",
+			"minVersion": "1.11.10",
 			"name": "Common Scripts"
 		},
 		"CommonTypes": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "3.3.42",
+			"minVersion": "3.3.44",
 			"name": "Common Types"
 		},
 		"FeedMitreAttackv2": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.1.6",
+			"minVersion": "1.1.9",
 			"name": "MITRE ATT\u0026CK"
 		},
 		"FiltersAndTransformers": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.2.2",
+			"minVersion": "1.2.5",
 			"name": "Filters And Transformers"
 		},
 		"Jira": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "2.0.22",
+			"minVersion": "2.0.23",
 			"name": "Atlassian Jira"
 		},
 		"Malware": {
@@ -492,14 +492,14 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "2.5.5",
+			"minVersion": "2.5.6",
 			"name": "ServiceNow"
 		}
 	},
 	"deprecated": false,
 	"description": "The CrowdStrike Falcon OAuth 2 API (formerly the Falcon Firehose API), enables fetching and resolving detections, searching devices, getting behaviors by ID, containing hosts, and lifting host containment.",
 	"disabledMonthly": false,
-	"downloads": 11162,
+	"downloads": 11498,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -544,7 +544,7 @@
 			"name": "Atlassian Jira v2"
 		}
 	],
-	"itemVersion": "1.10.2",
+	"itemVersion": "1.10.3",
 	"keywords": [],
 	"legacy": true,
 	"name": "CrowdStrike Falcon",
@@ -559,7 +559,7 @@
 	"rawKeywords": null,
 	"rawTags": null,
 	"rawUseCases": null,
-	"readme": "Endpoint security is at the frontline to protect against malicious cybersecurity threats. It represents one of the first places organizations look to secure their enterprise networks.  \r\nAs the volume and sophistication of cybersecurity threats have increased, so has the need for more advanced endpoint security solutions.  \r\nCrowdStrike Falcon is one of the leaders in the Endpoint Protection Platform (EPP) market, and the CrowdStrike Falcon content pack provides a holistic solution for protecting enterprise endpoints and servers from malicious attacks that can seriously impact your organization.  \r\nThis pack is designed to quickly detect, analyze, block, and contain malicious attacks in progress. It also gives administrators visibility into advanced threats to speed detection and remediation response times.  \r\n  \r\n## What Does This Pack Do?\r\n- Mirrors incidents between Cortex XSOAR incidents and CrowdStrike Falcon incidents or detections\r\n- Provides real-time response features\r\n- Assesses vulnerability\r\n- Contains endpoints (isolation/unisolation)\r\n- Removes duplicate incidents\r\n- Eliminates false positive incidents\r\n- Enriches incidents\r\n\r\n## Before You Start\r\nMake sure you have the following content packs:\r\n- Base\r\n- Common Scripts\r\n- Common Types\r\n\r\n## Pack Configurations  \r\nTo get up and running with this pack, you must get an API client ID and secret from CrowdStrike support: support@crowdstrike.com.\r\n",
+	"readme": "Endpoint security is at the frontline to protect against malicious cybersecurity threats. It represents one of the first places organizations look to secure their enterprise networks.  \nAs the volume and sophistication of cybersecurity threats have increased, so has the need for more advanced endpoint security solutions.  \nCrowdStrike Falcon is one of the leaders in the Endpoint Protection Platform (EPP) market, and the CrowdStrike Falcon content pack provides a holistic solution for protecting enterprise endpoints and servers from malicious attacks that can seriously impact your organization.  \nThis pack is designed to quickly detect, analyze, block, and contain malicious attacks in progress. It also gives administrators visibility into advanced threats to speed detection and remediation response times.  \n  \n## What Does This Pack Do?\n- Mirrors incidents between Cortex XSOAR incidents and CrowdStrike Falcon incidents or detections\n- Provides real-time response features\n- Assesses vulnerability\n- Contains endpoints (isolation/unisolation)\n- Removes duplicate incidents\n- Eliminates false positive incidents\n- Enriches incidents\n\n## Before You Start\nMake sure you have the following content packs:\n- Base\n- Common Scripts\n- Common Types\n\n## Pack Configurations  \nTo get up and running with this pack, you must get an API client ID and secret from CrowdStrike support: support@crowdstrike.com.\n",
 	"searchRank": 10,
 	"serverMaxVersion": "",
 	"serverMinVersion": "5.0.0",
@@ -570,9 +570,9 @@
 	},
 	"tags": [],
 	"toServerVersion": "",
-	"updated": "2023-01-11T12:27:39Z",
+	"updated": "2023-01-23T11:50:30Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4372591",
+	"versionInfo": "4458364",
 	"videos": []
 }
