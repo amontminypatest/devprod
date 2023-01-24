@@ -18,13 +18,13 @@
 	"contentItems": {
 		"automation": [
 			{
-				"description": "Deprecated. Use the ***SixgillSearchIndicators*** script instead.",
-				"name": "SearchIndicators",
+				"description": "Search for Indicators",
+				"name": "SixgillSearchIndicators",
 				"tags": []
 			},
 			{
-				"description": "Search for Indicators",
-				"name": "SixgillSearchIndicators",
+				"description": "Deprecated. Use the ***SixgillSearchIndicators*** script instead.",
+				"name": "SearchIndicators",
 				"tags": []
 			}
 		],
@@ -40,58 +40,8 @@
 		"incidenttype": null,
 		"indicatorfield": [
 			{
-				"description": "Virus Total URL",
-				"name": "Sixgill Virus Total URL",
-				"type": "url"
-			},
-			{
-				"description": "Title of post in Sixgill portal",
-				"name": "Sixgill Post Title",
-				"type": "shortText"
-			},
-			{
-				"description": "Subfeed ID",
-				"name": "Sixgill Feed ID",
-				"type": "shortText"
-			},
-			{
 				"description": "Description of IOC",
 				"name": "Sixgill Description",
-				"type": "shortText"
-			},
-			{
-				"description": "Virus Total Detection Rate",
-				"name": "Sixgill Virus Total Detection Rate",
-				"type": "shortText"
-			},
-			{
-				"description": "Mitre ATT\u0026CK Tactic",
-				"name": "Sixgill Mitre ATT\u0026CK Tactic",
-				"type": "shortText"
-			},
-			{
-				"description": "Source of post in Sixgill portal",
-				"name": "Sixgill Source",
-				"type": "shortText"
-			},
-			{
-				"description": "Mitre ATT\u0026CK Technique",
-				"name": "Sixgill Mitre ATT\u0026CK Technique",
-				"type": "shortText"
-			},
-			{
-				"description": "Language of original post in Sixgill portal",
-				"name": "Sixgill Language",
-				"type": "shortText"
-			},
-			{
-				"description": "Unique ID of IOC",
-				"name": "Sixgill Indicator ID",
-				"type": "shortText"
-			},
-			{
-				"description": "Subfeed name",
-				"name": "Sixgill Feed Name",
 				"type": "shortText"
 			},
 			{
@@ -100,8 +50,58 @@
 				"type": "url"
 			},
 			{
+				"description": "Mitre ATT\u0026CK Tactic",
+				"name": "Sixgill Mitre ATT\u0026CK Tactic",
+				"type": "shortText"
+			},
+			{
+				"description": "Unique ID of IOC",
+				"name": "Sixgill Indicator ID",
+				"type": "shortText"
+			},
+			{
+				"description": "Language of original post in Sixgill portal",
+				"name": "Sixgill Language",
+				"type": "shortText"
+			},
+			{
+				"description": "Subfeed name",
+				"name": "Sixgill Feed Name",
+				"type": "shortText"
+			},
+			{
+				"description": "Subfeed ID",
+				"name": "Sixgill Feed ID",
+				"type": "shortText"
+			},
+			{
+				"description": "Virus Total URL",
+				"name": "Sixgill Virus Total URL",
+				"type": "url"
+			},
+			{
 				"description": "Actor of original post on dark web",
 				"name": "Sixgill Actor",
+				"type": "shortText"
+			},
+			{
+				"description": "Title of post in Sixgill portal",
+				"name": "Sixgill Post Title",
+				"type": "shortText"
+			},
+			{
+				"description": "Source of post in Sixgill portal",
+				"name": "Sixgill Source",
+				"type": "shortText"
+			},
+			{
+				"description": "Virus Total Detection Rate",
+				"name": "Sixgill Virus Total Detection Rate",
+				"type": "shortText"
+			},
+			{
+				"description": "Mitre ATT\u0026CK Technique",
+				"name": "Sixgill Mitre ATT\u0026CK Technique",
 				"type": "shortText"
 			}
 		],
@@ -142,18 +142,6 @@
 				"category": "Data Enrichment \u0026 Threat Intelligence",
 				"commands": [
 					{
-						"description": "Fetching Sixgill DarkFeed indicators",
-						"name": "sixgill-get-indicators"
-					}
-				],
-				"description": "Leverage the power of Sixgill to supercharge Cortex XSOAR with real-time Threat Intelligence indicators. Get IOCs such as domains, URLs, hashes, and IP addresses straight into the XSOAR platform.",
-				"id": "Sixgill_Darkfeed",
-				"name": "Sixgill DarkFeed Threat Intelligence (Partner Contribution)"
-			},
-			{
-				"category": "Data Enrichment \u0026 Threat Intelligence",
-				"commands": [
-					{
 						"description": "Fetching Sixgill DVE Feed indicators",
 						"name": "cybersixgill-get-indicators"
 					}
@@ -161,18 +149,30 @@
 				"description": "Deprecated. Use Cybersixgill DVE Feed Threat Intelligence v2 from the Cybersixgill-DVE pack instead.",
 				"id": "Sixgill_DVE_Feed",
 				"name": "Cybersixgill DVE Feed Threat Intelligence (Deprecated) (Partner Contribution)"
+			},
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Fetching Sixgill DarkFeed indicators",
+						"name": "sixgill-get-indicators"
+					}
+				],
+				"description": "Leverage the power of Sixgill to supercharge Cortex XSOAR with real-time Threat Intelligence indicators. Get IOCs such as domains, URLs, hashes, and IP addresses straight into the XSOAR platform.",
+				"id": "Sixgill_Darkfeed",
+				"name": "Sixgill DarkFeed Threat Intelligence (Partner Contribution)"
 			}
 		],
 		"layoutscontainer": null,
 		"list": null,
 		"playbook": [
 			{
-				"description": "Download malicious files from a Darkfeed IOC, detonate them in automated sandboxes, and extract and block any additional indicators and files.",
-				"name": "Darkfeed IOC detonation and proactive blocking"
-			},
-			{
 				"description": "Set this playbook as an automated job in order to automatically download malware from new Darkfeed IOCs and run them through the \"Darkfeed IOC detonation and proactive blocking\" playbook",
 				"name": "Darkfeed - malware download from feed"
+			},
+			{
+				"description": "Download malicious files from a Darkfeed IOC, detonate them in automated sandboxes, and extract and block any additional indicators and files.",
+				"name": "Darkfeed IOC detonation and proactive blocking"
 			},
 			{
 				"description": "Automatically discover and enrich indicators with the same actor and source as the triggering IOC. Search for and isolate any compromised endpoints and proactively block IOCs from entering your network.",
@@ -183,13 +183,19 @@
 		"reputation": null,
 		"widget": [
 			{
-				"name": "Sixgill Darkfeed - Top 10 Threat Actors"
+				"name": "Sixgill Darkfeed - Collected IOCs"
+			},
+			{
+				"name": "Sixgill Darkfeed IOC detection rate by Virus Total"
+			},
+			{
+				"name": "Sixgill Darkfeed - Mitre ATT\u0026CK Tactics"
 			},
 			{
 				"name": "Sixgill Darkfeed - Subfeed Composition"
 			},
 			{
-				"name": "Sixgill Darkfeed - Collected IOCs"
+				"name": "Sixgill Mitre ATT\u0026CK Techniques"
 			},
 			{
 				"name": "Sixgill Darkfeed - Threads from the Underground"
@@ -198,47 +204,41 @@
 				"name": "Sixgill Darkfeed Indicators by Type"
 			},
 			{
-				"name": "Sixgill Mitre ATT\u0026CK Techniques"
-			},
-			{
-				"name": "Sixgill Darkfeed IOC detection rate by Virus Total"
-			},
-			{
-				"name": "Sixgill Darkfeed - Mitre ATT\u0026CK Tactics"
+				"name": "Sixgill Darkfeed - Top 10 Threat Actors"
 			}
 		],
 		"wizard": null
 	},
 	"created": "2020-07-23T16:33:44Z",
-	"currentVersion": "2.0.13",
+	"currentVersion": "2.0.14",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.51",
+			"minVersion": "1.31.55",
 			"name": "Base"
 		},
 		"CommonPlaybooks": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "2.3.23",
+			"minVersion": "2.3.28",
 			"name": "Common Playbooks"
 		},
 		"CommonScripts": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.10.34",
+			"minVersion": "1.11.10",
 			"name": "Common Scripts"
 		},
 		"CommonTypes": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "3.3.40",
+			"minVersion": "3.3.44",
 			"name": "Common Types"
 		},
 		"VirusTotal": {
@@ -252,7 +252,7 @@
 	"deprecated": false,
 	"description": "This edition of Sixgill Darkfeed is intended for customers who have a direct annual subscription to Sixgill Darkfeed.\n\nGet contextual and actionable insights to proactively block underground threats in real-time with the most comprehensive, automated stream of IOCs \n\nFor organizations who are currently Darkfeed customers.",
 	"disabledMonthly": false,
-	"downloads": 5651,
+	"downloads": 6132,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -297,7 +297,7 @@
 			"name": "VirusTotal Retrohunt Feed"
 		}
 	],
-	"itemVersion": "2.0.13",
+	"itemVersion": "2.0.14",
 	"keywords": [
 		"sixgill",
 		"darkfeed",
@@ -358,9 +358,9 @@
 		"TIM"
 	],
 	"toServerVersion": "",
-	"updated": "2023-01-01T22:50:43Z",
+	"updated": "2023-01-23T11:46:00Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4312864",
+	"versionInfo": "4458364",
 	"videos": []
 }
