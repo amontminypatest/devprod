@@ -19,8 +19,17 @@
 	"contentItems": {
 		"automation": [
 			{
-				"description": "This script is used to wrap the generic update-record command in ServiceNow.\nYou can add fields that you want to update the record with as script arguments or in the\ncode and work with the records easily.",
-				"name": "ServiceNowUpdateIncident",
+				"description": "populates the value of the ServiceNow Ticket State field and display it in a layout widget.\n",
+				"name": "ServiceNowIncidentStatus",
+				"tags": [
+					"dynamic-section",
+					"python",
+					"servicenow v2"
+				]
+			},
+			{
+				"description": "This script is used to wrap the generic create-record command in ServiceNow.\nYou can add fields that you want to create the record with as script arguments or in the\ncode and work with the records easily.",
+				"name": "ServiceNowCreateIncident",
 				"tags": [
 					"servicenow",
 					"servicenow v2"
@@ -35,38 +44,24 @@
 				]
 			},
 			{
-				"description": "This script is used to wrap the generic create-record command in ServiceNow.\nYou can add fields that you want to create the record with as script arguments or in the\ncode and work with the records easily.",
-				"name": "ServiceNowCreateIncident",
+				"description": "This script is used to wrap the generic update-record command in ServiceNow.\nYou can add fields that you want to update the record with as script arguments or in the\ncode and work with the records easily.",
+				"name": "ServiceNowUpdateIncident",
 				"tags": [
 					"servicenow",
-					"servicenow v2"
-				]
-			},
-			{
-				"description": "populates the value of the ServiceNow Ticket State field and display it in a layout widget.\n",
-				"name": "ServiceNowIncidentStatus",
-				"tags": [
-					"dynamic-section",
-					"python",
 					"servicenow v2"
 				]
 			}
 		],
 		"classifier": [
 			{
+				"description": "Maps outgoing ServiceNow incident Fields.",
+				"id": "ServiceNow-outgoing-mapper",
+				"name": "ServiceNow - Outgoing Mapper"
+			},
+			{
 				"description": "Maps a User Profile data to a ServiceNow user data.",
 				"id": "User Profile - ServiceNow (Outgoing)",
 				"name": "User Profile - ServiceNow (Outgoing)"
-			},
-			{
-				"description": "Maps incoming ServiceNow incidents fields.",
-				"id": "ServiceNow-incoming-mapper",
-				"name": "ServiceNow - Incoming Mapper"
-			},
-			{
-				"description": "Maps outgoing ServiceNow incidents fields for ServiceNow create ticket and mirror playbook",
-				"id": "c650b1a2-8f36-4f97-8bea-2dc4eb478ef7",
-				"name": "ServiceNow Create Ticket - Outgoing Mapper"
 			},
 			{
 				"description": "Classifies ServiceNow tickets.",
@@ -74,9 +69,9 @@
 				"name": "ServiceNow Classifier"
 			},
 			{
-				"description": "Maps incoming ServiceNow incidents fields for ServiceNow create ticket and mirror playbook",
-				"id": "ce3458a0-89ee-4db2-8e13-6a74e5db029b",
-				"name": "ServiceNow Create Ticket - Incoming Mapper"
+				"description": "Maps incoming ServiceNow incidents fields.",
+				"id": "ServiceNow-incoming-mapper",
+				"name": "ServiceNow - Incoming Mapper"
 			},
 			{
 				"description": "Maps a ServiceNow user data to a User Profile data.",
@@ -84,9 +79,14 @@
 				"name": "User Profile - ServiceNow (Incoming)"
 			},
 			{
-				"description": "Maps outgoing ServiceNow incident Fields.",
-				"id": "ServiceNow-outgoing-mapper",
-				"name": "ServiceNow - Outgoing Mapper"
+				"description": "Maps outgoing ServiceNow incidents fields for ServiceNow create ticket and mirror playbook",
+				"id": "c650b1a2-8f36-4f97-8bea-2dc4eb478ef7",
+				"name": "ServiceNow Create Ticket - Outgoing Mapper"
+			},
+			{
+				"description": "Maps incoming ServiceNow incidents fields for ServiceNow create ticket and mirror playbook",
+				"id": "ce3458a0-89ee-4db2-8e13-6a74e5db029b",
+				"name": "ServiceNow Create Ticket - Incoming Mapper"
 			}
 		],
 		"dashboard": null,
@@ -94,43 +94,8 @@
 		"generictype": null,
 		"incidentfield": [
 			{
-				"description": "The ticket resolved time",
-				"name": "ServiceNow Resolved Time",
-				"type": "date"
-			},
-			{
-				"description": "ServiceNow ticket Business Impact",
-				"name": "ServiceNow Business Impact",
-				"type": "singleSelect"
-			},
-			{
-				"description": "",
-				"name": "ServiceNow Attack Vector",
-				"type": "shortText"
-			},
-			{
-				"description": "ServiceNow Severity",
-				"name": "ServiceNow Severity",
-				"type": "singleSelect"
-			},
-			{
-				"description": "The SIR ticket state",
-				"name": "ServiceNow SIR State",
-				"type": "singleSelect"
-			},
-			{
-				"description": "ServiceNow ticket Impact",
-				"name": "ServiceNow Impact",
-				"type": "singleSelect"
-			},
-			{
-				"description": "ServiceNow Due Date",
-				"name": "ServiceNow Due Date",
-				"type": "date"
-			},
-			{
-				"description": "ServiceNow Assignment Group",
-				"name": "ServiceNow Assignment Group",
+				"description": "ServiceNow Caller who opened the ticket.",
+				"name": "ServiceNow Caller",
 				"type": "shortText"
 			},
 			{
@@ -139,29 +104,14 @@
 				"type": "longText"
 			},
 			{
-				"description": "ServiceNow Resolution Notes",
-				"name": "ServiceNow Resolution Notes",
-				"type": "shortText"
-			},
-			{
-				"description": "ServiceNow Caller who opened the ticket.",
-				"name": "ServiceNow Caller ID",
-				"type": "shortText"
-			},
-			{
-				"description": "ServiceNow Escalation",
-				"name": "ServiceNow Escalation",
-				"type": "shortText"
-			},
-			{
-				"description": "ServiceNow ticket urgency.",
-				"name": "ServiceNow Urgency",
-				"type": "singleSelect"
-			},
-			{
 				"description": "",
-				"name": "ServiceNow Notify",
-				"type": "singleSelect"
+				"name": "ServiceNow Ticket ID",
+				"type": "shortText"
+			},
+			{
+				"description": "ServiceNow Due Date",
+				"name": "ServiceNow Due Date",
+				"type": "date"
 			},
 			{
 				"description": "ServiceNow SIR Category",
@@ -169,38 +119,18 @@
 				"type": "singleSelect"
 			},
 			{
-				"description": "Resolution Code Of ServiceNow Ticket",
-				"name": "ServiceNow Resolution Code",
-				"type": "shortText"
-			},
-			{
-				"description": "The ticket opened date",
-				"name": "ServiceNow Opened Date",
-				"type": "date"
-			},
-			{
-				"description": "The ticket state",
-				"name": "ServiceNow State",
+				"description": "ServiceNow ticket urgency.",
+				"name": "ServiceNow Urgency",
 				"type": "singleSelect"
 			},
 			{
-				"description": "Ticket assignee",
-				"name": "ServiceNow Assigned To",
-				"type": "shortText"
+				"description": "ServiceNow Severity",
+				"name": "ServiceNow Severity",
+				"type": "singleSelect"
 			},
 			{
-				"description": "ServiceNow Caller who opened the ticket.",
-				"name": "ServiceNow Caller",
-				"type": "shortText"
-			},
-			{
-				"description": "",
-				"name": "ServiceNow Ticket ID",
-				"type": "shortText"
-			},
-			{
-				"description": "ServiceNow Category",
-				"name": "ServiceNow Category",
+				"description": "ServiceNow Ticket Priority",
+				"name": "ServiceNow Priority",
 				"type": "singleSelect"
 			},
 			{
@@ -209,18 +139,88 @@
 				"type": "date"
 			},
 			{
+				"description": "The ticket opened date",
+				"name": "ServiceNow Opened Date",
+				"type": "date"
+			},
+			{
+				"description": "The SIR ticket state",
+				"name": "ServiceNow SIR State",
+				"type": "singleSelect"
+			},
+			{
+				"description": "",
+				"name": "ServiceNow Notify",
+				"type": "singleSelect"
+			},
+			{
+				"description": "ServiceNow Caller who opened the ticket.",
+				"name": "ServiceNow Caller ID",
+				"type": "shortText"
+			},
+			{
+				"description": "ServiceNow Assignment Group",
+				"name": "ServiceNow Assignment Group",
+				"type": "shortText"
+			},
+			{
+				"description": "ServiceNow ticket Impact",
+				"name": "ServiceNow Impact",
+				"type": "singleSelect"
+			},
+			{
+				"description": "ServiceNow ticket Business Impact",
+				"name": "ServiceNow Business Impact",
+				"type": "singleSelect"
+			},
+			{
+				"description": "ServiceNow Resolution Notes",
+				"name": "ServiceNow Resolution Notes",
+				"type": "shortText"
+			},
+			{
 				"description": "ServiceNow Ticket Number",
 				"name": "ServiceNow Ticket Number",
 				"type": "shortText"
 			},
 			{
-				"description": "ServiceNow Ticket Priority",
-				"name": "ServiceNow Priority",
+				"description": "ServiceNow Escalation",
+				"name": "ServiceNow Escalation",
+				"type": "shortText"
+			},
+			{
+				"description": "Resolution Code Of ServiceNow Ticket",
+				"name": "ServiceNow Resolution Code",
+				"type": "shortText"
+			},
+			{
+				"description": "ServiceNow Category",
+				"name": "ServiceNow Category",
 				"type": "singleSelect"
+			},
+			{
+				"description": "The ticket resolved time",
+				"name": "ServiceNow Resolved Time",
+				"type": "date"
 			},
 			{
 				"description": "User who closed ServiceNow Incident",
 				"name": "ServiceNow Closed By",
+				"type": "shortText"
+			},
+			{
+				"description": "The ticket state",
+				"name": "ServiceNow State",
+				"type": "singleSelect"
+			},
+			{
+				"description": "",
+				"name": "ServiceNow Attack Vector",
+				"type": "shortText"
+			},
+			{
+				"description": "Ticket assignee",
+				"name": "ServiceNow Assigned To",
 				"type": "shortText"
 			}
 		],
@@ -237,7 +237,7 @@
 				"closureScript": "",
 				"days": 0,
 				"hours": 0,
-				"name": "ServiceNow SIR Incident",
+				"name": "ServiceNow Ticket",
 				"playbook": "",
 				"weeks": 0
 			},
@@ -245,13 +245,81 @@
 				"closureScript": "",
 				"days": 0,
 				"hours": 0,
-				"name": "ServiceNow Ticket",
+				"name": "ServiceNow SIR Incident",
 				"playbook": "",
 				"weeks": 0
 			}
 		],
 		"indicatorfield": null,
 		"integration": [
+			{
+				"category": "IT Services",
+				"commands": [
+					{
+						"description": "Query records for a CMDB class.",
+						"name": "servicenow-cmdb-records-list"
+					},
+					{
+						"description": "Query attributes and relationship information for a specific record.",
+						"name": "servicenow-cmdb-record-get-by-id"
+					},
+					{
+						"description": "Create a record with associated relations and attributes.",
+						"name": "servicenow-cmdb-record-create"
+					},
+					{
+						"description": "Update a record with the given attributes.",
+						"name": "servicenow-cmdb-record-update"
+					},
+					{
+						"description": "Add a new relation to an existing record.",
+						"name": "servicenow-cmdb-record-add-relations"
+					},
+					{
+						"description": "Delete a relation of an existing record.",
+						"name": "servicenow-cmdb-record-delete-relations"
+					},
+					{
+						"description": "This function should be used once before running any command when using OAuth authorization.",
+						"name": "servicenow-cmdb-oauth-login"
+					},
+					{
+						"description": "Test the instance configuration when using OAuth authorization.",
+						"name": "servicenow-cmdb-oauth-test"
+					}
+				],
+				"description": "ServiceNow CMDB is a service‑centric foundation that proactively analyzes service‑impacting changes, identifies issues, and eliminates outages.",
+				"id": "ServiceNow CMDB",
+				"name": "ServiceNow CMDB"
+			},
+			{
+				"category": "Identity and Access Management",
+				"commands": [
+					{
+						"description": "Creates a user in ServiceNow.",
+						"name": "iam-create-user"
+					},
+					{
+						"description": "Updates an existing user with the data passed in the user-profile argument.",
+						"name": "iam-update-user"
+					},
+					{
+						"description": "Retrieves a single user resource.",
+						"name": "iam-get-user"
+					},
+					{
+						"description": "Disable an active user.",
+						"name": "iam-disable-user"
+					},
+					{
+						"description": "Retrieves a User Profile schema, which holds all of the user fields within the application. Used for outgoing-mapping through the Get Schema option.",
+						"name": "get-mapping-fields"
+					}
+				],
+				"description": "Integrate with ServiceNow's services to execute CRUD operations for employee lifecycle processes.",
+				"id": "ServiceNow IAM",
+				"name": "ServiceNow IAM"
+			},
 			{
 				"category": "Case Management",
 				"commands": [
@@ -383,46 +451,6 @@
 				"description": "Deprecated. Use the ServiceNow v2 integration instead.",
 				"id": "ServiceNow",
 				"name": "ServiceNow (Deprecated)"
-			},
-			{
-				"category": "IT Services",
-				"commands": [
-					{
-						"description": "Query records for a CMDB class.",
-						"name": "servicenow-cmdb-records-list"
-					},
-					{
-						"description": "Query attributes and relationship information for a specific record.",
-						"name": "servicenow-cmdb-record-get-by-id"
-					},
-					{
-						"description": "Create a record with associated relations and attributes.",
-						"name": "servicenow-cmdb-record-create"
-					},
-					{
-						"description": "Update a record with the given attributes.",
-						"name": "servicenow-cmdb-record-update"
-					},
-					{
-						"description": "Add a new relation to an existing record.",
-						"name": "servicenow-cmdb-record-add-relations"
-					},
-					{
-						"description": "Delete a relation of an existing record.",
-						"name": "servicenow-cmdb-record-delete-relations"
-					},
-					{
-						"description": "This function should be used once before running any command when using OAuth authorization.",
-						"name": "servicenow-cmdb-oauth-login"
-					},
-					{
-						"description": "Test the instance configuration when using OAuth authorization.",
-						"name": "servicenow-cmdb-oauth-test"
-					}
-				],
-				"description": "ServiceNow CMDB is a service‑centric foundation that proactively analyzes service‑impacting changes, identifies issues, and eliminates outages.",
-				"id": "ServiceNow CMDB",
-				"name": "ServiceNow CMDB"
 			},
 			{
 				"category": "Case Management",
@@ -559,34 +587,6 @@
 				"description": "Use The ServiceNow IT Service Management (ITSM) solution to modernize the way you manage and deliver services to your users.",
 				"id": "ServiceNow v2",
 				"name": "ServiceNow v2"
-			},
-			{
-				"category": "Identity and Access Management",
-				"commands": [
-					{
-						"description": "Creates a user in ServiceNow.",
-						"name": "iam-create-user"
-					},
-					{
-						"description": "Updates an existing user with the data passed in the user-profile argument.",
-						"name": "iam-update-user"
-					},
-					{
-						"description": "Retrieves a single user resource.",
-						"name": "iam-get-user"
-					},
-					{
-						"description": "Disable an active user.",
-						"name": "iam-disable-user"
-					},
-					{
-						"description": "Retrieves a User Profile schema, which holds all of the user fields within the application. Used for outgoing-mapping through the Get Schema option.",
-						"name": "get-mapping-fields"
-					}
-				],
-				"description": "Integrate with ServiceNow's services to execute CRUD operations for employee lifecycle processes.",
-				"id": "ServiceNow IAM",
-				"name": "ServiceNow IAM"
 			}
 		],
 		"layoutscontainer": [
@@ -596,30 +596,30 @@
 			},
 			{
 				"description": "",
-				"name": "ServiceNow SIR Incident"
+				"name": "ServiceNow Ticket"
 			},
 			{
 				"description": "",
-				"name": "ServiceNow Ticket"
+				"name": "ServiceNow SIR Incident"
 			}
 		],
 		"list": null,
 		"playbook": [
 			{
-				"description": "Create ServiceNow Ticket allows you to open new tickets as a task from a parent playbook.\nWhen creating the ticket, you can decide to update based on on the ticket's state, which will wait for the ticket to resolve or close with StatePolling. \nAlternatively, you can select to mirror the ServiceNow ticket and incident fields. To apply either of these options, set the SyncTicket value in the playbook inputs to one of the following options: \n1. StatePolling\n2. Mirror\n3. Leave Blank to use none.",
-				"name": "Create ServiceNow Ticket"
-			},
-			{
 				"description": "Mirror ServiceNow Ticket is designed to serve as a sub-playbook, which enables ticket mirroring with ServiceNow.\nIt enables you to manage ServiceNow tickets in Cortex xSOAR while data is continuously synced between ServiceNow and Cortex xSOAR, including ServiceNow schema, fields, comments, work notes, and attachments.\n\nTo enable OOTB mirroring, use the ServiceNow Create ticket  - common mappers for incoming and outgoing mirroring.\n\nFieldPolling - You can the FieldPolling value to true if you only want to be informed when the ticket is resolved or closed. If FieldPolling is set to true, the FieldPolling Playbook will poll for the state(ServiceNow State field) of the ServiceNow ticket until it marks as either resolved or closed.\n\nIn Addition to the playbook, we recommend that you use the included layout for ServiceNow Ticket, which helps visualize ServiceNow ticket information in Cortex xSOAR.\nYou can add the new layout as a tab to existing layouts using the Edit Layout page.",
 				"name": "Mirror ServiceNow Ticket"
 			},
 			{
-				"description": "Subplaybook for finding CI records in ServiceNow CMDB.\n",
-				"name": "ServiceNow CMDB Search"
+				"description": "Create ServiceNow Ticket allows you to open new tickets as a task from a parent playbook.\nWhen creating the ticket, you can decide to update based on on the ticket's state, which will wait for the ticket to resolve or close with StatePolling. \nAlternatively, you can select to mirror the ServiceNow ticket and incident fields. To apply either of these options, set the SyncTicket value in the playbook inputs to one of the following options: \n1. StatePolling\n2. Mirror\n3. Leave Blank to use none.",
+				"name": "Create ServiceNow Ticket"
 			},
 			{
 				"description": "Use ServiceNow Incident State Polling as a sub-playbook when required to pause the execution of a master playbook until the ServiceNow ticket state is either resolved or closed.\nThis playbook implements polling by continuously running the servicenow-get-ticket command until the state is either resolved or closed.",
 				"name": "ServiceNow Ticket State Polling"
+			},
+			{
+				"description": "Subplaybook for finding CI records in ServiceNow CMDB.\n",
+				"name": "ServiceNow CMDB Search"
 			}
 		],
 		"report": null,
@@ -628,49 +628,56 @@
 		"wizard": null
 	},
 	"created": "2020-07-07T16:56:45Z",
-	"currentVersion": "2.5.5",
+	"currentVersion": "2.5.6",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.51",
+			"minVersion": "1.31.55",
 			"name": "Base"
 		},
 		"CommonPlaybooks": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "2.3.23",
+			"minVersion": "2.3.28",
 			"name": "Common Playbooks"
 		},
 		"CommonScripts": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.10.34",
+			"minVersion": "1.11.11",
 			"name": "Common Scripts"
 		},
 		"CommonTypes": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "3.3.41",
+			"minVersion": "3.3.45",
 			"name": "Common Types"
+		},
+		"FiltersAndTransformers": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.2.5",
+			"name": "Filters And Transformers"
 		},
 		"Phishing": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "3.3.11",
+			"minVersion": "3.5.1",
 			"name": "Phishing"
 		}
 	},
 	"deprecated": false,
 	"description": "Use The ServiceNow IT Service Management (ITSM) solution to modernize the way you manage and deliver services to your users.",
 	"disabledMonthly": false,
-	"downloads": 23536,
+	"downloads": 24462,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -699,7 +706,7 @@
 			"name": "ServiceNow v2"
 		}
 	],
-	"itemVersion": "2.5.5",
+	"itemVersion": "2.5.6",
 	"keywords": [],
 	"legacy": true,
 	"name": "ServiceNow",
@@ -714,7 +721,7 @@
 	"rawKeywords": null,
 	"rawTags": null,
 	"rawUseCases": null,
-	"readme": "Cortex XSOAR interfaces with ServiceNow to help streamline security-related service management and IT operations. \r\n\r\nThe data in ServiceNow tickets can be mirrored to Cortex XSOAR so that you can track the status and information in the task. \r\nYou can also provide comments or attachments in XSOAR which will appear in ServiceNow. \r\n\r\n\r\n# What does this pack do?\r\n\r\n- View, create, update, or delete a ServiceNow ticket directly from the Cortex XSOAR and enrich it with Cortex XSOAR data.\r\n- View, create, update, and delete records from any ServiceNow table.\r\n- Query ServiceNow data with the ServiceNow query syntax.\r\n\r\nAs part of this pack, you will also get 2 out-of-the-box layouts so that you can visualize ServiceNow ticket information in Cortex XSOAR.\r\n\r\n\r\nThe Create ServiceNow Ticket playbook provides an example for how to use the Mirror ServiceNow Ticket playbook to mirror data and ServiceNow Ticket State Polling sub-playbook to track when the ticket closes.\r\n",
+	"readme": "Cortex XSOAR interfaces with ServiceNow to help streamline security-related service management and IT operations. \n\nThe data in ServiceNow tickets can be mirrored to Cortex XSOAR so that you can track the status and information in the task. \nYou can also provide comments or attachments in XSOAR which will appear in ServiceNow. \n\n\n# What does this pack do?\n\n- View, create, update, or delete a ServiceNow ticket directly from the Cortex XSOAR and enrich it with Cortex XSOAR data.\n- View, create, update, and delete records from any ServiceNow table.\n- Query ServiceNow data with the ServiceNow query syntax.\n\nAs part of this pack, you will also get 2 out-of-the-box layouts so that you can visualize ServiceNow ticket information in Cortex XSOAR.\n\n\nThe Create ServiceNow Ticket playbook provides an example for how to use the Mirror ServiceNow Ticket playbook to mirror data and ServiceNow Ticket State Polling sub-playbook to track when the ticket closes.\n",
 	"searchRank": 10,
 	"serverMaxVersion": "",
 	"serverMinVersion": "5.0.0",
@@ -725,9 +732,9 @@
 	},
 	"tags": [],
 	"toServerVersion": "",
-	"updated": "2023-01-03T11:05:43Z",
+	"updated": "2023-01-19T18:09:58Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4321146",
+	"versionInfo": "4458364",
 	"videos": []
 }
