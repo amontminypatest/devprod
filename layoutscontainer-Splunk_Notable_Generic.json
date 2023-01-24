@@ -658,12 +658,12 @@
 		]
 	},
 	"edit": null,
-	"fromServerVersion": "",
+	"fromServerVersion": "6.0.0",
 	"group": "incident",
 	"id": "Splunk Notable Generic",
 	"indicatorsDetails": null,
 	"indicatorsQuickView": null,
-	"itemVersion": "3.0.3",
+	"itemVersion": "3.0.5",
 	"locked": false,
 	"mobile": null,
 	"name": "Splunk Notable Generic",
@@ -676,6 +676,6 @@
 	"quickView": null,
 	"quickViewV2": null,
 	"system": true,
-	"toServerVersion": "",
+	"toServerVersion": "99.99.99",
 	"version": -1
 }
