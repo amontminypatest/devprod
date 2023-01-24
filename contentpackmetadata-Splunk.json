@@ -19,6 +19,13 @@
 	"contentItems": {
 		"automation": [
 			{
+				"description": "Automation to display drilldown search results from Splunk.",
+				"name": "SplunkShowDrilldown",
+				"tags": [
+					"dynamic-section"
+				]
+			},
+			{
 				"description": "Automation to display identity objects from Splunk.",
 				"name": "SplunkShowIdentity",
 				"tags": [
@@ -34,13 +41,6 @@
 				]
 			},
 			{
-				"description": "Automation to display drilldown search results from Splunk.",
-				"name": "SplunkShowDrilldown",
-				"tags": [
-					"dynamic-section"
-				]
-			},
-			{
 				"description": "Automation to display asset objects from Splunk.",
 				"name": "SplunkShowAsset",
 				"tags": [
@@ -50,24 +50,24 @@
 		],
 		"classifier": [
 			{
-				"description": "Maps Splunk logs fields.",
-				"id": "SplunkPy-mapper",
-				"name": "Splunk - Incoming Mapper"
-			},
-			{
 				"description": "Classifies Splunk events.",
 				"id": "SplunkPy",
 				"name": "Splunk - Classifier"
 			},
 			{
-				"description": "Maps Splunk ES outgoing fields.",
-				"id": "Splunk - Notable Generic Outgoing Mapper",
-				"name": "Splunk - Notable Generic Outgoing Mapper"
+				"description": "Maps Splunk logs fields.",
+				"id": "SplunkPy-mapper",
+				"name": "Splunk - Incoming Mapper"
 			},
 			{
 				"description": "Maps Splunk ES incoming fields.",
 				"id": "Splunk - Notable Generic Incoming Mapper",
 				"name": "Splunk - Notable Generic Incoming Mapper"
+			},
+			{
+				"description": "Maps Splunk ES outgoing fields.",
+				"id": "Splunk - Notable Generic Outgoing Mapper",
+				"name": "Splunk - Notable Generic Outgoing Mapper"
 			}
 		],
 		"dashboard": null,
@@ -75,9 +75,9 @@
 		"generictype": null,
 		"incidentfield": [
 			{
-				"description": "Indicates whether the asset enrichment was successful.",
-				"name": "Successful Asset Enrichment",
-				"type": "shortText"
+				"description": "The owner of the notable.",
+				"name": "Notable Owner",
+				"type": "user"
 			},
 			{
 				"description": "The Splunk notable status. Can be one of the following New, In Progress, Pending, Resolved, Closed",
@@ -85,18 +85,8 @@
 				"type": "singleSelect"
 			},
 			{
-				"description": "The reviewer of the notable.",
-				"name": "Splunk Notable Reviewer",
-				"type": "user"
-			},
-			{
-				"description": "The result of the drilldown search.",
-				"name": "Notable Drilldown",
-				"type": "markdown"
-			},
-			{
-				"description": "Indicates whether the identity  enrichment was successful.",
-				"name": "Successful Identity Enrichment",
+				"description": "Indicates whether the drilldown enrichment was successful.",
+				"name": "Successful Drilldown Enrichment",
 				"type": "shortText"
 			},
 			{
@@ -105,8 +95,18 @@
 				"type": "shortText"
 			},
 			{
-				"description": "Indicates whether the drilldown enrichment was successful.",
-				"name": "Successful Drilldown Enrichment",
+				"description": "The reviewer of the notable.",
+				"name": "Splunk Notable Reviewer",
+				"type": "user"
+			},
+			{
+				"description": "Indicates whether the asset enrichment was successful.",
+				"name": "Successful Asset Enrichment",
+				"type": "shortText"
+			},
+			{
+				"description": "Indicates whether the identity  enrichment was successful.",
+				"name": "Successful Identity Enrichment",
 				"type": "shortText"
 			},
 			{
@@ -115,9 +115,9 @@
 				"type": "singleSelect"
 			},
 			{
-				"description": "The owner of the notable.",
-				"name": "Notable Owner",
-				"type": "user"
+				"description": "The result of the drilldown search.",
+				"name": "Notable Drilldown",
+				"type": "markdown"
 			}
 		],
 		"incidenttype": [
@@ -140,7 +140,7 @@
 						"name": "splunk-results"
 					},
 					{
-						"description": "Searches Splunk for events.",
+						"description": "Searches Splunk for events. For human readable output, the table command is supported in the query argument. For example, `query=\" * | table field1 field2 field3\"` will generate a table with field1, field2, and field3 as headers.",
 						"name": "splunk-search"
 					},
 					{
@@ -256,7 +256,7 @@
 		"wizard": null
 	},
 	"created": "2020-07-26T10:33:08Z",
-	"currentVersion": "3.0.3",
+	"currentVersion": "3.0.5",
 	"definitionId": "",
 	"dependencies": {
 		"AccessInvestigation": {
@@ -277,21 +277,21 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.54",
+			"minVersion": "1.31.55",
 			"name": "Base"
 		},
 		"CommonScripts": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.11.5",
+			"minVersion": "1.11.10",
 			"name": "Common Scripts"
 		},
 		"CommonTypes": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "3.3.43",
+			"minVersion": "3.3.45",
 			"name": "Common Types"
 		},
 		"FiltersAndTransformers": {
@@ -319,7 +319,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "3.4.1",
+			"minVersion": "3.5.1",
 			"name": "Phishing"
 		},
 		"PhishingAlerts": {
@@ -333,7 +333,7 @@
 	"deprecated": false,
 	"description": "Run queries on Splunk servers.",
 	"disabledMonthly": false,
-	"downloads": 19354,
+	"downloads": 19753,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -350,7 +350,7 @@
 			"name": "SplunkPy"
 		}
 	],
-	"itemVersion": "3.0.3",
+	"itemVersion": "3.0.5",
 	"keywords": [],
 	"legacy": true,
 	"name": "Splunk",
@@ -376,9 +376,9 @@
 	},
 	"tags": [],
 	"toServerVersion": "",
-	"updated": "2023-01-16T11:57:06Z",
+	"updated": "2023-01-23T23:42:45Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4410080",
+	"versionInfo": "4458364",
 	"videos": []
 }
