@@ -17,7 +17,7 @@
 	"hours": 0,
 	"hoursR": 0,
 	"id": "Chronicle User Alert",
-	"itemVersion": "2.1.2",
+	"itemVersion": "2.1.3",
 	"layout": "Chronicle User Alert Incident",
 	"locked": false,
 	"name": "Chronicle User Alert",
