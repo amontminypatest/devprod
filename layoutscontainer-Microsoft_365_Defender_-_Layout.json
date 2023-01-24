@@ -673,12 +673,12 @@
 		]
 	},
 	"edit": null,
-	"fromServerVersion": "",
+	"fromServerVersion": "6.0.0",
 	"group": "incident",
 	"id": "Microsoft 365 Defender - Layout",
 	"indicatorsDetails": null,
 	"indicatorsQuickView": null,
-	"itemVersion": "4.4.9",
+	"itemVersion": "4.4.10",
 	"locked": false,
 	"mobile": null,
 	"name": "Microsoft 365 Defender - Layout",
@@ -691,6 +691,6 @@
 	"quickView": null,
 	"quickViewV2": null,
 	"system": true,
-	"toServerVersion": "",
+	"toServerVersion": "99.99.99",
 	"version": -1
 }
