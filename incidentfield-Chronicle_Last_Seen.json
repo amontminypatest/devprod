@@ -24,7 +24,7 @@
 	"hidden": false,
 	"id": "incident_chroniclelastseen",
 	"isReadOnly": false,
-	"itemVersion": "2.1.2",
+	"itemVersion": "2.1.3",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Chronicle Last Seen",
