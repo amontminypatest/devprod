@@ -28,7 +28,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.11.6
+    itemVersion: 1.11.11
     packID: CommonScripts
     packName: Common Scripts
     packPropagationLabels:
@@ -36,7 +36,7 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/unzip:1.0.0.23423
+dockerimage: demisto/unzip:1.0.0.44723
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
@@ -199,7 +199,7 @@ script: |
       stdout, stderr = process.communicate()
       stdout = str(stdout)
       if stderr:
-          return_error(str(stderr))
+          demisto.info(str(stderr))
       if "Errors" in stdout:
           return_error(f"Couldn't extract the file {file_name}.")
       return stdout
