@@ -20,7 +20,7 @@
 	"fromServerVersion": "5.0.0",
 	"id": "running-playbooks",
 	"isPredefined": true,
-	"itemVersion": "1.2.11",
+	"itemVersion": "1.2.12",
 	"name": "Running playbooks",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
