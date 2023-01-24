@@ -57,7 +57,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.1.16
+    itemVersion: 1.1.17
     packID: EWSMailSender
     packName: EWS Mail Sender
     packPropagationLabels:
@@ -146,7 +146,7 @@ script:
       name: attachCIDs
     description: Replies to an email using EWS.
     name: reply-mail
-  dockerimage: demisto/py3ews:1.0.0.43044
+  dockerimage: demisto/py3ews:1.0.0.45234
   runonce: false
   script: |
     register_module_line('EWS Mail Sender', 'start', __line__())
