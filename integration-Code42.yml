@@ -55,7 +55,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 3.0.1
+    itemVersion: 3.0.2
     packID: Code42
     packName: Code42
     packPropagationLabels:
@@ -774,7 +774,7 @@ script:
     - contextPath: Code42.UpdatedUserRiskProfiles.Success
       description: If the risk profile update was successful.
       type: boolean
-  dockerimage: demisto/py42:1.0.0.40798
+  dockerimage: demisto/py42:1.0.0.44867
   isfetch: true
   runonce: false
   script: |
