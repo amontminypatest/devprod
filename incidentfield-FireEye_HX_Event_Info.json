@@ -23,7 +23,7 @@
 	"hidden": false,
 	"id": "incident_fireeyehxeventinfo",
 	"isReadOnly": false,
-	"itemVersion": "2.2.11",
+	"itemVersion": "2.3.0",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "FireEye HX Event Info",
