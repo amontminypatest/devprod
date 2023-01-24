@@ -80,7 +80,7 @@
 			}
 		]
 	},
-	"fromServerVersion": "",
+	"fromServerVersion": "6.5.0",
 	"group": "indicator",
 	"id": "Location",
 	"indicatorsDetails": {
@@ -565,7 +565,7 @@
 			}
 		]
 	},
-	"itemVersion": "3.3.43",
+	"itemVersion": "3.3.45",
 	"locked": false,
 	"mobile": null,
 	"name": "Location",
@@ -578,6 +578,6 @@
 	"quickView": null,
 	"quickViewV2": null,
 	"system": true,
-	"toServerVersion": "",
+	"toServerVersion": "99.99.99",
 	"version": -1
 }
