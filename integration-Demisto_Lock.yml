@@ -3,25 +3,29 @@ commonfields:
   id: Demisto Lock
   version: -1
 configuration:
-- defaultvalue: "600"
+- advanced: true
+  defaultvalue: "600"
   display: Default timeout (seconds) for wait on locks to be released
   name: timeout
   required: true
+  section: Connect
   type: 0
 - additionalinfo: Whether to sync the integration cache with the database (Available
     from Cortex XSOAR 6.2.0).
+  advanced: true
   defaultvalue: "false"
   display: Sync integration cache
   name: sync
   required: false
+  section: Connect
   type: 8
 contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.0.4
+    itemVersion: 1.0.5
     packID: DemistoLocking
-    packName: Demisto Lock
+    packName: Cortex Lock
     packPropagationLabels:
     - all
     prevname: ""
