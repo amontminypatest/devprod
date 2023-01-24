@@ -132,7 +132,7 @@
 	"itemVersion": "1.0.4",
 	"keywords": [],
 	"legacy": true,
-	"name": "Demisto Lock",
+	"name": "Cortex Lock",
 	"packID": "DemistoLocking",
 	"packName": "",
 	"premium": false,
