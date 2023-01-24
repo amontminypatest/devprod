@@ -19,13 +19,13 @@
 		"classifier": [
 			{
 				"description": "",
-				"id": "",
-				"name": "FireEye HX - Incoming Mapper"
+				"id": "FireEye HX Alert",
+				"name": "FireEye HX Alert"
 			},
 			{
 				"description": "",
-				"id": "",
-				"name": "FireEye HX Alert"
+				"id": "FireEye HX - Incoming Mapper",
+				"name": "FireEye HX - Incoming Mapper"
 			}
 		],
 		"dashboard": null,
@@ -208,7 +208,7 @@
 					}
 				],
 				"description": "FireEye Endpoint Security is an integrated solution that detects and protects endpoints against known and unknown threats. This integration provides access to information about endpoints, acquisitions, alerts, indicators, and containment. You can extract critical data and effectively operate the security operations automated playbook.",
-				"id": "",
+				"id": "FireEyeHX v2",
 				"name": "FireEye Endpoint Security (HX) v2"
 			},
 			{
@@ -292,7 +292,7 @@
 					}
 				],
 				"description": "Deprecated. Use FireEyeHX v2 instead.",
-				"id": "",
+				"id": "FireEye HX",
 				"name": "FireEye HX (Deprecated)"
 			}
 		],
@@ -300,8 +300,24 @@
 		"list": null,
 		"playbook": [
 			{
+				"description": "This playbook queries FireEye Endpoint Security (HX) for traffic indicators, including IP addresses, URLs, domains, and ports.\n\nNote that multiple search values should be separated by commas only (without spaces or any special characters).",
+				"name": "FireEye HX - Traffic Indicators Hunting"
+			},
+			{
+				"description": "This playbook queries FireEye Endpoint Security (HX) for file indicators, including MD5 hashes, SHA256 hashes, SHA1 hashes, file names, file paths, and file types.\n\nNote that multiple search values should be separated by commas only (without spaces or any special characters).",
+				"name": "FireEye HX - File Indicators Hunting"
+			},
+			{
+				"description": "This playbook queries FireEye Endpoint Security (HX) for execution flow indicators, including processes name, registry keys, registry values, and applications.\n\nNote that multiple search values should be separated by commas only (without spaces or any special characters).",
+				"name": "FireEye HX - Execution Flow Indicators Hunting"
+			},
+			{
 				"description": "This playbook unisolates endpoints according to the hostname/endpoint ID that is provided by the playbook input.",
 				"name": "FireEye HX - Unisolate Endpoint"
+			},
+			{
+				"description": "This playbook facilitates threat hunting and detection of IOCs within FireEye Endpoint Security (HX) utilizing three sub-playbooks. The sub-playbooks query FireEye HX for different indicators including files, traffic, and execution flow indicators.\n\nNote that multiple search values should be separated by commas only (without spaces or any special characters).\n\nSupported IOCs for this playbook:\n- MD5\n- SHA1\n- SHA256\n- IP Address\n- URLDomain\n- Registry Value\n- Registry Key\n- File Name\n- Process Name\n- Port Number\n- File Path\n- FileType",
+				"name": "FireEye HX - Indicators Hunting"
 			},
 			{
 				"description": "This playbook will auto isolate endpoints by the endpoint ID that was provided in the playbook.",
@@ -314,28 +330,28 @@
 		"wizard": null
 	},
 	"created": "2020-06-30T20:31:21Z",
-	"currentVersion": "2.2.11",
+	"currentVersion": "2.3.0",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.50",
+			"minVersion": "1.31.55",
 			"name": "Base"
 		},
 		"CommonScripts": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.10.33",
+			"minVersion": "1.11.10",
 			"name": "Common Scripts"
 		},
 		"CommonTypes": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
-			"mandatory": true,
-			"minVersion": "3.3.39",
+			"mandatory": false,
+			"minVersion": "3.3.45",
 			"name": "Common Types"
 		},
 		"FireEyeCommonFields": {
@@ -347,9 +363,9 @@
 		}
 	},
 	"deprecated": false,
-	"description": "FireEye Endpoint Security is an integrated solution that detects and protects endpoint against known and unknown threats. The FireEye HX Demisto integration provides access to information about endpoints, acquisitions, alerts, indicators, and containment. Customers can extract critical data and effectively operate security operations automated playbooks.",
+	"description": "FireEye Endpoint Security is an integrated solution that detects and protects endpoints against known and unknown threats. The FireEye HX Cortex XSOAR integration provides access to information about endpoints, acquisitions, alerts, indicators, and containment. Customers can extract critical data and effectively operate the security operations automated playbooks.",
 	"disabledMonthly": false,
-	"downloads": 3602,
+	"downloads": 3754,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -370,7 +386,7 @@
 			"name": "FireEye HX (Deprecated)"
 		}
 	],
-	"itemVersion": "2.2.11",
+	"itemVersion": "2.3.0",
 	"keywords": [],
 	"legacy": true,
 	"name": "FireEye HX",
@@ -393,13 +409,11 @@
 		"email": "",
 		"url": "https://www.paloaltonetworks.com/cortex"
 	},
-	"tags": [
-		"Data Source"
-	],
+	"tags": [],
 	"toServerVersion": "",
-	"updated": "2022-12-28T00:19:35Z",
+	"updated": "2023-01-17T23:27:04Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4290509",
+	"versionInfo": "4458364",
 	"videos": []
 }
