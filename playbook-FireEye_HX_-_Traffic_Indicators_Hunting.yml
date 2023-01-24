@@ -1,0 +1,1320 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.5.0
+    itemVersion: 2.3.0
+    packID: FireEyeHX
+    packName: FireEye HX
+    packPropagationLabels:
+    - all
+    prevname: ""
+    propagationLabels: []
+    toServerVersion: ""
+description: |-
+  This playbook queries FireEye Endpoint Security (HX) for traffic indicators, including IP addresses, URLs, domains, and ports.
+
+  Note that multiple search values should be separated by commas only (without spaces or any special characters).
+id: FireEye HX - Traffic Indicators Hunting
+inputs:
+- description: |-
+    A single or multiple IP address to search for within FireEye HX logs. Used for both source and destination IP addresses.
+
+    Separate multiple search values by commas only (without spaces or any special characters).
+  key: IPAddress
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: |-
+    A single or multiple port numbers to search for within FireEye HX logs. Used for both remote and local ports.
+
+    Separate multiple search values by commas only (without spaces or any special characters).
+  key: PortNumber
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: |-
+    Single or multiple URLs and/or domains to search for within FireEye HX logs.
+    By default, the 'contains' clause is used.
+
+    Separate multiple search values by commas only (without spaces or any special characters).
+  key: URLDomain
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: The name of host set to be searched.
+  key: hostSetName
+  playbookInputQuery: null
+  required: true
+  value: {}
+- description: "The interval in seconds between each poll. Default is 60.\t"
+  key: interval_in_seconds
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: Limits the results count (once the limit is reached, the search is
+    stopped).
+  key: limit
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: |-
+    Whether a search is exhaustive or quick.
+    Possible values are: yes, no. Default is yes.
+  key: exhaustive
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "no"
+name: FireEye HX - Traffic Indicators Hunting
+outputs:
+- contextPath: FireEyeHX.HuntingResults
+  description: Email message objects and fields that were retrieved from FireEye HX.
+  type: string
+- contextPath: FireEyeHX.HuntingResults.Timestamp - Event
+  description: The timestamp of the event.
+  type: number
+- contextPath: FireEyeHX.HuntingResults.Timestamp - Accessed
+  description: The last accessed time.
+  type: number
+- contextPath: FireEyeHX.HuntingResults.Timestamp - Modified
+  description: The time when the entry was last modified.
+  type: number
+- contextPath: FireEyeHX.HuntingResults.File Name
+  description: The name of the file.
+  type: string
+- contextPath: FireEyeHX.HuntingResults.File Full Path
+  description: The full path of the file.
+  type: string
+- contextPath: FireEyeHX.HuntingResults.DNS Hostname
+  description: The name of the DNS host.
+  type: string
+- contextPath: FireEyeHX.HuntingResults.URL
+  description: The event URL.
+  type: string
+- contextPath: FireEyeHX.HuntingResults.Username
+  description: The event username.
+  type: string
+- contextPath: FireEyeHX.HuntingResults.File MD5 Hash
+  description: The MD5 hash of the file.
+  type: string
+- contextPath: FireEyeHX.HuntingResults.Port
+  description: The Port.
+  type: number
+- contextPath: FireEyeHX.HuntingResults.Process ID
+  description: The ID of the process.
+  type: string
+- contextPath: FireEyeHX.HuntingResults.Local IP Address
+  description: The local IP Address.
+  type: string
+- contextPath: FireEyeHX.HuntingResults.Local Port
+  description: The local Port.
+  type: number
+- contextPath: FireEyeHX.HuntingResults.Remote Port
+  description: The remote port.
+  type: number
+- contextPath: FireEyeHX.HuntingResults.IP Address
+  description: The IP address.
+  type: string
+- contextPath: FireEyeHX.HuntingResults.Process Name
+  description: The process name.
+  type: string
+- contextPath: FireEyeHX.HuntingResults.type
+  description: The type of the event.
+  type: string
+- contextPath: FireEyeHX.HuntingResults.id
+  description: The ID of the result.
+  type: string
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "56"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: a52d8420-7a8c-4987-866d-15dd05511bae
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: a52d8420-7a8c-4987-866d-15dd05511bae
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 2540,
+          "y": -360
+        }
+      }
+  "10":
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "109"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 2e21d65b-c4a7-4678-80d7-2618bccf6c95
+      iscommand: false
+      name: IP Address Indicators
+      type: title
+      version: -1
+    taskid: 2e21d65b-c4a7-4678-80d7-2618bccf6c95
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 2230,
+          "y": -40
+        }
+      }
+  "31":
+    continueonerrortype: ""
+    id: "31"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: c9a4d741-cb13-4350-8973-b2514b1058e9
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: c9a4d741-cb13-4350-8973-b2514b1058e9
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 2540,
+          "y": 910
+        }
+      }
+  "40":
+    continueonerrortype: ""
+    id: "40"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "114"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 05f96357-68af-40c2-8c96-f9b3b20b2d9c
+      iscommand: false
+      name: Port Number Indicators
+      type: title
+      version: -1
+    taskid: 05f96357-68af-40c2-8c96-f9b3b20b2d9c
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 2850,
+          "y": -40
+        }
+      }
+  "56":
+    continueonerrortype: ""
+    id: "56"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "31"
+      "yes":
+      - "10"
+      - "40"
+      - "155"
+    note: false
+    quietmode: 0
+    results:
+    - brandInstances
+    scriptarguments:
+      brandname:
+        simple: FireEye Endpoint Security (HX) v2
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Returns 'yes' if integration brand is available. Otherwise returns
+        'no'
+      id: c36c151b-a433-42e8-8764-5e7b1900e84a
+      iscommand: false
+      name: Is FireEye HX enabled?
+      script: IsIntegrationAvailable
+      type: condition
+      version: -1
+    taskid: c36c151b-a433-42e8-8764-5e7b1900e84a
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 2540,
+          "y": -210
+        }
+      }
+  "109":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.IPAddress
+          operator: isNotEmpty
+          right:
+            value: {}
+      label: "yes"
+    continueonerrortype: ""
+    id: "109"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "136"
+      "yes":
+      - "110"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |
+        Checks whether any IP addresses are available for threat hunting.
+      id: bd582b7c-36fe-406a-80d1-01bff294509d
+      iscommand: false
+      name: Any IP addresses to hunt for?
+      type: condition
+      version: -1
+    taskid: bd582b7c-36fe-406a-80d1-01bff294509d
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 2230,
+          "y": 90
+        }
+      }
+  "110":
+    continueonerrortype: ""
+    id: "110"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "164"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      exhaustive:
+        simple: "no"
+      fieldSearchName:
+        simple: Remote IP Address
+      fieldSearchOperator:
+        simple: equals
+      fieldSearchValue:
+        complex:
+          root: inputs.IPAddress
+          transformers:
+          - args:
+              delimiter:
+                value:
+                  simple: ','
+            operator: split
+          - operator: uniq
+      hostSetName:
+        complex:
+          root: inputs.hostSetName
+      interval_in_seconds:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: inputs.interval_in_seconds
+              operator: isNotEmpty
+          root: inputs.interval_in_seconds
+      limit:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: inputs.limits
+              operator: isNotEmpty
+          root: inputs.limits
+      polling:
+        simple: "true"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: FireEyeHX v2
+      description: Searches endpoints to check all hosts or a subset of hosts for
+        a specific file or indicator.
+      id: 26093a84-edbc-4cb9-8b4a-9c7b8d5c3147
+      iscommand: true
+      name: FireEye HX Query - IP Address
+      script: FireEyeHX v2|||fireeye-hx-search
+      type: regular
+      version: -1
+    taskid: 26093a84-edbc-4cb9-8b4a-9c7b8d5c3147
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 2000,
+          "y": 260
+        }
+      }
+  "114":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.PortNumber
+          operator: isNotEmpty
+          right:
+            value: {}
+      label: "yes"
+    continueonerrortype: ""
+    id: "114"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "152"
+      "yes":
+      - "116"
+      - "115"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |
+        Checks whether any ports are available for threat hunting.
+      id: 0eccf098-8801-43f3-8d0c-0c3e664279e1
+      iscommand: false
+      name: Any port numbers to hunt for?
+      type: condition
+      version: -1
+    taskid: 0eccf098-8801-43f3-8d0c-0c3e664279e1
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 2850,
+          "y": 90
+        }
+      }
+  "115":
+    continueonerrortype: ""
+    id: "115"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "165"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      exhaustive:
+        simple: "no"
+      fieldSearchName:
+        simple: Port
+      fieldSearchOperator:
+        simple: equals
+      fieldSearchValue:
+        complex:
+          root: inputs.PortNumber
+          transformers:
+          - args:
+              delimiter:
+                value:
+                  simple: ','
+            operator: split
+          - operator: uniq
+      hostSetName:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: inputs.hostSetName
+              operator: isNotEmpty
+          root: inputs.hostSetName
+      interval_in_seconds:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: inputs.interval_in_seconds
+              operator: isNotEmpty
+          root: inputs.interval_in_seconds
+      limit:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: inputs.limits
+              operator: isNotEmpty
+          root: inputs.limits
+      polling:
+        simple: "true"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: FireEyeHX v2
+      description: Searches endpoints to check all hosts or a subset of hosts for
+        a specific file or indicator.
+      id: 5b68ccf4-ecea-4356-8577-00ccaeca2adb
+      iscommand: true
+      name: FireEye HX Query - Port
+      script: FireEyeHX v2|||fireeye-hx-search
+      type: regular
+      version: -1
+    taskid: 5b68ccf4-ecea-4356-8577-00ccaeca2adb
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 3070,
+          "y": 260
+        }
+      }
+  "116":
+    continueonerrortype: ""
+    id: "116"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "166"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      exhaustive:
+        simple: "no"
+      fieldSearchName:
+        simple: Remote Port
+      fieldSearchOperator:
+        simple: equals
+      fieldSearchValue:
+        complex:
+          root: inputs.PortNumber
+          transformers:
+          - args:
+              delimiter:
+                value:
+                  simple: ','
+            operator: split
+          - operator: uniq
+      hostSetName:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: inputs.hostSetName
+              operator: isNotEmpty
+          root: inputs.hostSetName
+      interval_in_seconds:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: inputs.interval_in_seconds
+              operator: isNotEmpty
+          root: inputs.interval_in_seconds
+      limit:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: inputs.limits
+              operator: isNotEmpty
+          root: inputs.limits
+      polling:
+        simple: "true"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: FireEyeHX v2
+      description: Searches endpoints to check all hosts or a subset of hosts for
+        a specific file or indicator.
+      id: aca40fd6-2e7c-4344-86a1-3cad78b5d833
+      iscommand: true
+      name: FireEye HX Query - Remote Ports
+      script: FireEyeHX v2|||fireeye-hx-search
+      type: regular
+      version: -1
+    taskid: aca40fd6-2e7c-4344-86a1-3cad78b5d833
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 3480,
+          "y": 260
+        }
+      }
+  "136":
+    continueonerrortype: ""
+    id: "136"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "31"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 113578f1-e6ff-4ddd-87d4-e553616c70c6
+      iscommand: false
+      name: IP Address Hunting Done
+      type: title
+      version: -1
+    taskid: 113578f1-e6ff-4ddd-87d4-e553616c70c6
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 2230,
+          "y": 770
+        }
+      }
+  "152":
+    continueonerrortype: ""
+    id: "152"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "31"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 10efe50e-beb9-470e-828b-356b692d9be3
+      iscommand: false
+      name: Port Number Hunting Done
+      type: title
+      version: -1
+    taskid: 10efe50e-beb9-470e-828b-356b692d9be3
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 2850,
+          "y": 770
+        }
+      }
+  "155":
+    continueonerrortype: ""
+    id: "155"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "156"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 061088c6-f302-4f24-8fa8-548ccf1faf19
+      iscommand: false
+      name: URL Domain Indicators
+      type: title
+      version: -1
+    taskid: 061088c6-f302-4f24-8fa8-548ccf1faf19
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 1610,
+          "y": -40
+        }
+      }
+  "156":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.URLDomain
+          operator: isNotEmpty
+          right:
+            value: {}
+      label: "yes"
+    continueonerrortype: ""
+    id: "156"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "159"
+      "yes":
+      - "160"
+      - "158"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |
+        Checks whether any URLs or domains are available for threat hunting.
+      id: ae7aefce-63ed-4cde-87dd-ce508c034e7e
+      iscommand: false
+      name: Any URLs or domains to hunt for?
+      type: condition
+      version: -1
+    taskid: ae7aefce-63ed-4cde-87dd-ce508c034e7e
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1610,
+          "y": 90
+        }
+      }
+  "158":
+    continueonerrortype: ""
+    id: "158"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "162"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      exhaustive:
+        simple: "no"
+      fieldSearchName:
+        simple: File Download Referrer
+      fieldSearchOperator:
+        simple: contains
+      fieldSearchValue:
+        complex:
+          root: inputs.URLDomain
+          transformers:
+          - args:
+              delimiter:
+                value:
+                  simple: ','
+            operator: split
+          - operator: uniq
+      hostSetName:
+        complex:
+          root: inputs.hostSetName
+      interval_in_seconds:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: inputs.interval_in_seconds
+              operator: isNotEmpty
+          root: inputs.interval_in_seconds
+      limit:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: inputs.limits
+              operator: isNotEmpty
+          root: inputs.limits
+      polling:
+        simple: "true"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: FireEyeHX v2
+      description: Searches endpoints to check all hosts or a subset of hosts for
+        a specific file or indicator.
+      id: 0ca5a124-6ea0-4e56-895a-990fe26952d6
+      iscommand: true
+      name: FireEye HX Query - File Download Referrer
+      script: FireEyeHX v2|||fireeye-hx-search
+      type: regular
+      version: -1
+    taskid: 0ca5a124-6ea0-4e56-895a-990fe26952d6
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1380,
+          "y": 260
+        }
+      }
+  "159":
+    continueonerrortype: ""
+    id: "159"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "31"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 5bc6eb14-a66f-484f-84fc-378390d5f7bd
+      iscommand: false
+      name: URL Domain Hunting Done
+      type: title
+      version: -1
+    taskid: 5bc6eb14-a66f-484f-84fc-378390d5f7bd
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 1610,
+          "y": 770
+        }
+      }
+  "160":
+    continueonerrortype: ""
+    id: "160"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "161"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      exhaustive:
+        simple: "no"
+      fieldSearchName:
+        simple: HTTP Header
+      fieldSearchOperator:
+        simple: contains
+      fieldSearchValue:
+        complex:
+          root: inputs.URLDomain
+          transformers:
+          - args:
+              delimiter:
+                value:
+                  simple: ','
+            operator: split
+          - operator: uniq
+      hostSetName:
+        complex:
+          root: inputs.hostSetName
+      interval_in_seconds:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: inputs.interval_in_seconds
+              operator: isNotEmpty
+          root: inputs.interval_in_seconds
+      limit:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: inputs.limits
+              operator: isNotEmpty
+          root: inputs.limits
+      polling:
+        simple: "true"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: FireEyeHX v2
+      description: Searches endpoints to check all hosts or a subset of hosts for
+        a specific file or indicator.
+      id: c77dc555-884e-4662-8932-13c0890e9743
+      iscommand: true
+      name: FireEye HX Query - HTTP Header
+      script: FireEyeHX v2|||fireeye-hx-search
+      type: regular
+      version: -1
+    taskid: c77dc555-884e-4662-8932-13c0890e9743
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 960,
+          "y": 260
+        }
+      }
+  "161":
+    continueonerrortype: ""
+    id: "161"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "163"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      append:
+        simple: "true"
+      key:
+        simple: FireEyeHX.HuntingResults
+      value:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: FireEyeHX.Search.results.id
+              operator: isNotEmpty
+          root: FireEyeHX.Search.results
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Set a value in context under the key you entered. If no value is entered, the script doesn't do anything.
+
+        This automation runs using the default Limited User role, unless you explicitly change the permissions.
+        For more information, see the section about permissions here:
+        https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html
+      id: 33d47e83-438f-4e50-84bb-eba60332f239
+      iscommand: false
+      name: Save Matching Results - HTTP Header
+      script: SetAndHandleEmpty
+      type: regular
+      version: -1
+    taskid: 33d47e83-438f-4e50-84bb-eba60332f239
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 960,
+          "y": 425
+        }
+      }
+  "162":
+    continueonerrortype: ""
+    id: "162"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "163"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      key:
+        simple: HuntingResults2
+      value:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: FireEyeHX.Search.results.id
+              operator: isNotEmpty
+          root: FireEyeHX.Search.results
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Set a value in context under the key you entered. If no value is entered, the script doesn't do anything.
+
+        This automation runs using the default Limited User role, unless you explicitly change the permissions.
+        For more information, see the section about permissions here:
+        https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html
+      id: a139c432-2fc7-491d-8eac-4d57a2519250
+      iscommand: false
+      name: Save Matching Results - File Download Referrer
+      script: SetAndHandleEmpty
+      type: regular
+      version: -1
+    taskid: a139c432-2fc7-491d-8eac-4d57a2519250
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1380,
+          "y": 425
+        }
+      }
+  "163":
+    continueonerrortype: ""
+    id: "163"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "159"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      append:
+        simple: "true"
+      key:
+        simple: FireEyeHX.HuntingResults
+      value:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: HuntingResults2.id
+              operator: notInList
+              right:
+                iscontext: true
+                value:
+                  simple: FireEyeHX.HuntingResults.id
+          root: HuntingResults2
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Set a value in context under the key you entered. If no value is entered, the script doesn't do anything.
+
+        This automation runs using the default Limited User role, unless you explicitly change the permissions.
+        For more information, see the section about permissions here:
+        https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html
+      id: 7b261809-2464-42f4-87fd-9cbda77b517c
+      iscommand: false
+      name: Remove Duplications From Matching Results
+      script: SetAndHandleEmpty
+      type: regular
+      version: -1
+    taskid: 7b261809-2464-42f4-87fd-9cbda77b517c
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1170,
+          "y": 600
+        }
+      }
+  "164":
+    continueonerrortype: ""
+    id: "164"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "136"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      append:
+        simple: "true"
+      key:
+        simple: FireEyeHX.HuntingResults
+      value:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: FireEyeHX.Search.results.IP Address
+              operator: isNotEmpty
+          root: FireEyeHX.Search.results
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Set a value in context under the key you entered. If no value is entered, the script doesn't do anything.
+
+        This automation runs using the default Limited User role, unless you explicitly change the permissions.
+        For more information, see the section about permissions here:
+        https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html
+      id: 1c7be78f-edfd-4711-870a-b6e02eb6ba51
+      iscommand: false
+      name: Save Matching Results - IP Address
+      script: SetAndHandleEmpty
+      type: regular
+      version: -1
+    taskid: 1c7be78f-edfd-4711-870a-b6e02eb6ba51
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 2000,
+          "y": 425
+        }
+      }
+  "165":
+    continueonerrortype: ""
+    id: "165"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "167"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      append:
+        simple: "true"
+      key:
+        simple: FireEyeHX.HuntingResults
+      value:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: FireEyeHX.Search.results.Port
+              operator: isNotEmpty
+            - left:
+                iscontext: true
+                value:
+                  simple: FireEyeHX.Search.results.Remote Port
+              operator: isNotEmpty
+            - left:
+                iscontext: true
+                value:
+                  simple: FireEyeHX.Search.results.Local Port
+              operator: isNotEmpty
+          root: FireEyeHX.Search.results
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Set a value in context under the key you entered. If no value is entered, the script doesn't do anything.
+
+        This automation runs using the default Limited User role, unless you explicitly change the permissions.
+        For more information, see the section about permissions here:
+        https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html
+      id: 6a2ce822-3e8e-48f3-8883-823066316c3e
+      iscommand: false
+      name: Save Matching Results - Port
+      script: SetAndHandleEmpty
+      type: regular
+      version: -1
+    taskid: 6a2ce822-3e8e-48f3-8883-823066316c3e
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 3070,
+          "y": 425
+        }
+      }
+  "166":
+    continueonerrortype: ""
+    id: "166"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "167"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      append:
+        simple: "true"
+      key:
+        simple: HuntingResults3
+      value:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: FireEyeHX.Search.results.Port
+              operator: isNotEmpty
+            - left:
+                iscontext: true
+                value:
+                  simple: FireEyeHX.Search.results.Remote Port
+              operator: isNotEmpty
+            - left:
+                iscontext: true
+                value:
+                  simple: FireEyeHX.Search.results.Local Port
+              operator: isNotEmpty
+          root: FireEyeHX.Search.results
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Set a value in context under the key you entered. If no value is entered, the script doesn't do anything.
+
+        This automation runs using the default Limited User role, unless you explicitly change the permissions.
+        For more information, see the section about permissions here:
+        https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html
+      id: 0178951d-5fc8-4c48-87c9-42f4274eccaa
+      iscommand: false
+      name: Save Matching Results - Remote Ports
+      script: SetAndHandleEmpty
+      type: regular
+      version: -1
+    taskid: 0178951d-5fc8-4c48-87c9-42f4274eccaa
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 3480,
+          "y": 425
+        }
+      }
+  "167":
+    continueonerrortype: ""
+    id: "167"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "152"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      append:
+        simple: "true"
+      key:
+        simple: FireEyeHX.HuntingResults
+      value:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: HuntingResults3.id
+              operator: notInList
+              right:
+                iscontext: true
+                value:
+                  simple: FireEyeHX.HuntingResults.id
+          root: HuntingResults3
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Set a value in context under the key you entered. If no value is entered, the script doesn't do anything.
+
+        This automation runs using the default Limited User role, unless you explicitly change the permissions.
+        For more information, see the section about permissions here:
+        https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html
+      id: fb9ccec6-aa09-48f5-8a76-41fe7671234c
+      iscommand: false
+      name: Remove Duplications From Matching Results
+      script: SetAndHandleEmpty
+      type: regular
+      version: -1
+    taskid: fb9ccec6-aa09-48f5-8a76-41fe7671234c
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 3280,
+          "y": 600
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "109_136_#default#": 0.14,
+      "114_152_#default#": 0.14
+    },
+    "paper": {
+      "dimensions": {
+        "height": 1335,
+        "width": 2900,
+        "x": 960,
+        "y": -360
+      }
+    }
+  }
