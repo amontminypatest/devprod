@@ -23,7 +23,7 @@
 	"hidden": false,
 	"id": "incident_behaviourobjective",
 	"isReadOnly": false,
-	"itemVersion": "1.10.2",
+	"itemVersion": "1.10.3",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Behaviour Objective",
