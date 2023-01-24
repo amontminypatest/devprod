@@ -14,7 +14,7 @@
 	"formatScript": "",
 	"fromServerVersion": "6.2.0",
 	"id": "Threat Actor",
-	"itemVersion": "3.3.43",
+	"itemVersion": "3.3.45",
 	"layout": "STIX Threat Actor",
 	"legacyNames": [
 		"STIX Threat Actor"
