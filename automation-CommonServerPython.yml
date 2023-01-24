@@ -6,7 +6,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.31.54
+    itemVersion: 1.31.55
     packID: Base
     packName: Base
     packPropagationLabels:
@@ -7617,6 +7617,21 @@ script: |
 
 
   # ############################## REGEX FORMATTING end ###############################
+
+
+  def is_filename_valid(filename):
+      """
+      Checking if the file name contains invalid characters.
+
+      :param filename: The file name
+      :type filename: ``str``
+
+      :return: True if valid otherwise False.
+      :rtype: ``bool``
+      """
+      if not re.match(r"^[^~)('\\!*<>:;,?\"*|/]+$", filename):
+          return False
+      return True
 
 
   def underscoreToCamelCase(s, upper_camel=True):
