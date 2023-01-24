@@ -259,12 +259,12 @@
 		]
 	},
 	"edit": null,
-	"fromServerVersion": "",
+	"fromServerVersion": "6.0.0",
 	"group": "incident",
 	"id": "Panorama Threat Coverage Layout",
 	"indicatorsDetails": null,
 	"indicatorsQuickView": null,
-	"itemVersion": "1.16.2",
+	"itemVersion": "1.16.4",
 	"locked": false,
 	"mobile": null,
 	"name": "Panorama Threat Coverage Layout",
@@ -277,6 +277,6 @@
 	"quickView": null,
 	"quickViewV2": null,
 	"system": true,
-	"toServerVersion": "",
+	"toServerVersion": "99.99.99",
 	"version": -1
 }
