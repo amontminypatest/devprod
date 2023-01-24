@@ -85,7 +85,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.6.1
+    itemVersion: 1.6.2
     packID: Active_Directory_Query
     packName: Active Directory Query
     packPropagationLabels:
@@ -863,7 +863,7 @@ script:
     description: Modifies the AD account attribute "Password Never Expire".
     execution: true
     name: ad-modify-password-never-expire
-  dockerimage: demisto/py3-tools:1.0.0.41100
+  dockerimage: demisto/py3-tools:1.0.0.44868
   ismappable: true
   isremotesyncout: true
   runonce: false
