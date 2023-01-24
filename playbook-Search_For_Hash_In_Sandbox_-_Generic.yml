@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.5.0
-    itemVersion: 2.3.26
+    itemVersion: 2.3.28
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -603,6 +603,8 @@ tasks:
     note: false
     quietmode: 0
     scriptarguments:
+      execution-timeout:
+        simple: "900"
       format:
         simple: pdf
       sha256:
@@ -613,13 +615,13 @@ tasks:
       brand: ""
       description: Gets a PDF report of search results for hashes in the WildFire
         sandbox.
-      id: f1e1594d-5b8b-4414-8efb-2682ee0bb1a2
+      id: 046b134b-6704-4d29-8443-af01b62bf60e
       iscommand: true
       name: Get Wildfire PDF report
       script: '|||wildfire-report'
       type: regular
       version: -1
-    taskid: f1e1594d-5b8b-4414-8efb-2682ee0bb1a2
+    taskid: 046b134b-6704-4d29-8443-af01b62bf60e
     timertriggers: []
     type: regular
     view: |-
