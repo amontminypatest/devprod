@@ -49,7 +49,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.0.0
-    itemVersion: 2.2.11
+    itemVersion: 2.3.0
     packID: FireEyeHX
     packName: FireEye HX
     packPropagationLabels:
