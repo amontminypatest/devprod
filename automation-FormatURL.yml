@@ -12,7 +12,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 1.11.6
+    itemVersion: 1.11.11
     packID: CommonScripts
     packName: Common Scripts
     packPropagationLabels:
@@ -20,7 +20,7 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/python3:3.10.9.42476
+dockerimage: demisto/python3:3.10.9.44472
 engineinfo: {}
 mainengineinfo: {}
 name: FormatURL
@@ -685,6 +685,7 @@ script: |
 
           schemas = re.compile("(meow|hxxp)", re.IGNORECASE)
           url = url.replace("[.]", ".")
+          url = url.replace("[:]", ":")
           url = re.sub(schemas, "http", url)
 
           def fix_scheme(match: Match) -> str:
