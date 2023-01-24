@@ -16,7 +16,7 @@
 	"formatScript": "",
 	"fromServerVersion": "5.0.0",
 	"id": "ChronicleAsset",
-	"itemVersion": "2.1.2",
+	"itemVersion": "2.1.3",
 	"layout": "ChronicleAsset Indicator",
 	"legacyNames": null,
 	"locked": false,
