@@ -39,14 +39,14 @@
 		],
 		"classifier": [
 			{
-				"description": "Maps incoming EWS phishing email message fields.",
-				"id": "EWS v2-mapper",
-				"name": "EWS - Incoming Mapper"
-			},
-			{
 				"description": "Classifies EWS phishing email messages.",
 				"id": "EWS v2",
 				"name": "EWS - Classifier"
+			},
+			{
+				"description": "Maps incoming EWS phishing email message fields.",
+				"id": "EWS v2-mapper",
+				"name": "EWS - Incoming Mapper"
 			}
 		],
 		"dashboard": null,
@@ -124,57 +124,113 @@
 				"category": "Messaging",
 				"commands": [
 					{
-						"description": "Starts the OAuth2.0 authorization process.",
-						"name": "ews-auth-start"
+						"description": "Retrieves the actual attachments from an item (email message). To get all attachments for a message, only specify the item-id argument.",
+						"name": "ews-get-attachment"
 					},
 					{
-						"description": "Completes the OAuth2.0 authorization process.",
-						"name": "ews-auth-complete"
+						"description": "Deletes the attachments of an item (email message).",
+						"name": "ews-delete-attachment"
 					},
 					{
-						"description": "Tests the OAuth2.0 authorization process.",
-						"name": "ews-auth-test"
+						"description": "Returns a list of searchable mailboxes. This command requires eDiscovery permissions to the Exchange Server. For more information, see the EWSv2 integration documentation.",
+						"name": "ews-get-searchable-mailboxes"
 					},
 					{
-						"description": "Gets junk rules for the specified mailbox.",
-						"name": "ews-junk-rules-get"
+						"description": "Searches over multiple mailboxes or all Exchange mailboxes. Use either the mailbox-search-scope command or the email-addresses command to search specific mailboxes. This command requires eDiscovery permissions to the Exchange Server. For more information, see the EWS v2 integration documentation.",
+						"name": "ews-search-mailboxes"
 					},
 					{
-						"description": "Sets junk rules for the specified mailbox.",
-						"name": "ews-junk-rules-set"
+						"description": "Move an item to different folder in the mailbox.",
+						"name": "ews-move-item"
 					},
 					{
-						"description": "Sets junk rules in all managed accounts.",
-						"name": "ews-global-junk-rules-set"
+						"description": "Delete items from mailbox.",
+						"name": "ews-delete-items"
 					},
 					{
-						"description": "Searches message data for the last 10 days. If you run this command without any arguments, only data from the last 48 hours is returned.\nIf you enter a start date that is older than 10 days, you will receive an error and the command will return no results.\nThis command returns a maximum of 1,000,000 results, and will timeout on very large queries. If your query returns too many results, consider splitting it up using shorter start_date and end_date intervals.",
-						"name": "ews-message-trace-get"
+						"description": "Searches for items in the specified mailbox. Specific permissions are needed for this operation to search in a target mailbox other than the default.",
+						"name": "ews-search-mailbox"
 					},
 					{
-						"description": "Displays the federation trust configured for the Exchange organization.",
-						"name": "ews-federation-trust-get"
+						"description": "Retrieves contacts for a specified mailbox.",
+						"name": "ews-get-contacts"
 					},
 					{
-						"description": "Retrieves the Exchange organization's federated organization identifier and related details, such as federated domains, organization contact, and status.",
-						"name": "ews-federation-configuration-get"
+						"description": "Retrieves the out-of-office status for a specified mailbox.",
+						"name": "ews-get-out-of-office"
 					},
 					{
-						"description": "Gets the configuration information for the remote domains configured in your organization. This command is available only in the Exchange Online PowerShell V2 module.",
-						"name": "ews-remote-domain-get"
+						"description": "Recovers messages that were soft-deleted.",
+						"name": "ews-recover-messages"
 					},
 					{
-						"description": "Displays the existing user objects in your organization.",
-						"name": "ews-user-list"
+						"description": "Creates a new folder in a specified mailbox.",
+						"name": "ews-create-folder"
 					},
 					{
-						"description": "Retrieves information about the AuditBypassEnabled property value for user accounts (on-premises Exchange and the cloud) and computer accounts (on-premises Exchange only).",
-						"name": "ews-mailbox-audit-bypass-association-list"
+						"description": "Marks an item as junk. This is commonly used to block an email address. For more information, see the Microsoft documentation: https://msdn.microsoft.com/en-us/library/office/dn481311(v=exchg.150).aspx",
+						"name": "ews-mark-item-as-junk"
+					},
+					{
+						"description": "Retrieves information for folders for a specified mailbox. Only folders with read permissions will be returned. Your visual folders on the mailbox, such as \"Inbox\", are under the folder \"Top of Information Store\".",
+						"name": "ews-find-folders"
+					},
+					{
+						"description": "Retrieves items from a specified folder in a mailbox. The items are order by the item created time, most recent is first.",
+						"name": "ews-get-items-from-folder"
+					},
+					{
+						"description": "Retrieves items by item ID.",
+						"name": "ews-get-items"
+					},
+					{
+						"description": "Moves an item from one mailbox to different mailbox.",
+						"name": "ews-move-item-between-mailboxes"
+					},
+					{
+						"description": "Retrieves a single folder.",
+						"name": "ews-get-folder"
+					},
+					{
+						"description": "Starts a compliance search.",
+						"name": "ews-o365-start-compliance-search"
+					},
+					{
+						"description": "Returns the status and results of a compliance search.",
+						"name": "ews-o365-get-compliance-search"
+					},
+					{
+						"description": "Purges the results found in the compliance search.",
+						"name": "ews-o365-purge-compliance-search-results"
+					},
+					{
+						"description": "Removes the compliance search.",
+						"name": "ews-o365-remove-compliance-search"
+					},
+					{
+						"description": "Checks the status of the purge operation on the compliance search.",
+						"name": "ews-o365-get-compliance-search-purge-status"
+					},
+					{
+						"description": "Returns the auto-discovery information. Can be used to manually configure the Exchange Server.",
+						"name": "ews-get-autodiscovery-config"
+					},
+					{
+						"description": "Expands a distribution list to display all members. By default, expands only first layer of the distribution list. If recursive-expansion is \"True\", the command expands nested distribution lists and returns all members.",
+						"name": "ews-expand-group"
+					},
+					{
+						"description": "Marks items as read or unread.",
+						"name": "ews-mark-items-as-read"
+					},
+					{
+						"description": "Retrieves items by item ID and uploads it's content as eml file.",
+						"name": "ews-get-items-as-eml"
 					}
 				],
-				"description": "This integration enables you to manage and interact with Microsoft O365 - Exchange Online from within XSOAR.",
-				"id": "EwsExtension",
-				"name": "O365 - EWS - Extension"
+				"description": "Exchange Web Services and Office 365 (mail)",
+				"id": "EWS v2",
+				"name": "EWS v2"
 			},
 			{
 				"category": "Messaging",
@@ -368,137 +424,73 @@
 				"category": "Messaging",
 				"commands": [
 					{
-						"description": "Retrieves the actual attachments from an item (email message). To get all attachments for a message, only specify the item-id argument.",
-						"name": "ews-get-attachment"
+						"description": "Starts the OAuth2.0 authorization process.",
+						"name": "ews-auth-start"
 					},
 					{
-						"description": "Deletes the attachments of an item (email message).",
-						"name": "ews-delete-attachment"
+						"description": "Completes the OAuth2.0 authorization process.",
+						"name": "ews-auth-complete"
 					},
 					{
-						"description": "Returns a list of searchable mailboxes. This command requires eDiscovery permissions to the Exchange Server. For more information, see the EWSv2 integration documentation.",
-						"name": "ews-get-searchable-mailboxes"
+						"description": "Tests the OAuth2.0 authorization process.",
+						"name": "ews-auth-test"
 					},
 					{
-						"description": "Searches over multiple mailboxes or all Exchange mailboxes. Use either the mailbox-search-scope command or the email-addresses command to search specific mailboxes. This command requires eDiscovery permissions to the Exchange Server. For more information, see the EWS v2 integration documentation.",
-						"name": "ews-search-mailboxes"
+						"description": "Gets junk rules for the specified mailbox.",
+						"name": "ews-junk-rules-get"
 					},
 					{
-						"description": "Move an item to different folder in the mailbox.",
-						"name": "ews-move-item"
+						"description": "Sets junk rules for the specified mailbox.",
+						"name": "ews-junk-rules-set"
 					},
 					{
-						"description": "Delete items from mailbox.",
-						"name": "ews-delete-items"
+						"description": "Sets junk rules in all managed accounts.",
+						"name": "ews-global-junk-rules-set"
 					},
 					{
-						"description": "Searches for items in the specified mailbox. Specific permissions are needed for this operation to search in a target mailbox other than the default.",
-						"name": "ews-search-mailbox"
+						"description": "Searches message data for the last 10 days. If you run this command without any arguments, only data from the last 48 hours is returned.\nIf you enter a start date that is older than 10 days, you will receive an error and the command will return no results.\nThis command returns a maximum of 1,000,000 results, and will timeout on very large queries. If your query returns too many results, consider splitting it up using shorter start_date and end_date intervals.",
+						"name": "ews-message-trace-get"
 					},
 					{
-						"description": "Retrieves contacts for a specified mailbox.",
-						"name": "ews-get-contacts"
+						"description": "Displays the federation trust configured for the Exchange organization.",
+						"name": "ews-federation-trust-get"
 					},
 					{
-						"description": "Retrieves the out-of-office status for a specified mailbox.",
-						"name": "ews-get-out-of-office"
+						"description": "Retrieves the Exchange organization's federated organization identifier and related details, such as federated domains, organization contact, and status.",
+						"name": "ews-federation-configuration-get"
 					},
 					{
-						"description": "Recovers messages that were soft-deleted.",
-						"name": "ews-recover-messages"
+						"description": "Gets the configuration information for the remote domains configured in your organization. This command is available only in the Exchange Online PowerShell V2 module.",
+						"name": "ews-remote-domain-get"
 					},
 					{
-						"description": "Creates a new folder in a specified mailbox.",
-						"name": "ews-create-folder"
+						"description": "Displays the existing user objects in your organization.",
+						"name": "ews-user-list"
 					},
 					{
-						"description": "Marks an item as junk. This is commonly used to block an email address. For more information, see the Microsoft documentation: https://msdn.microsoft.com/en-us/library/office/dn481311(v=exchg.150).aspx",
-						"name": "ews-mark-item-as-junk"
-					},
-					{
-						"description": "Retrieves information for folders for a specified mailbox. Only folders with read permissions will be returned. Your visual folders on the mailbox, such as \"Inbox\", are under the folder \"Top of Information Store\".",
-						"name": "ews-find-folders"
-					},
-					{
-						"description": "Retrieves items from a specified folder in a mailbox. The items are order by the item created time, most recent is first.",
-						"name": "ews-get-items-from-folder"
-					},
-					{
-						"description": "Retrieves items by item ID.",
-						"name": "ews-get-items"
-					},
-					{
-						"description": "Moves an item from one mailbox to different mailbox.",
-						"name": "ews-move-item-between-mailboxes"
-					},
-					{
-						"description": "Retrieves a single folder.",
-						"name": "ews-get-folder"
-					},
-					{
-						"description": "Starts a compliance search.",
-						"name": "ews-o365-start-compliance-search"
-					},
-					{
-						"description": "Returns the status and results of a compliance search.",
-						"name": "ews-o365-get-compliance-search"
-					},
-					{
-						"description": "Purges the results found in the compliance search.",
-						"name": "ews-o365-purge-compliance-search-results"
-					},
-					{
-						"description": "Removes the compliance search.",
-						"name": "ews-o365-remove-compliance-search"
-					},
-					{
-						"description": "Checks the status of the purge operation on the compliance search.",
-						"name": "ews-o365-get-compliance-search-purge-status"
-					},
-					{
-						"description": "Returns the auto-discovery information. Can be used to manually configure the Exchange Server.",
-						"name": "ews-get-autodiscovery-config"
-					},
-					{
-						"description": "Expands a distribution list to display all members. By default, expands only first layer of the distribution list. If recursive-expansion is \"True\", the command expands nested distribution lists and returns all members.",
-						"name": "ews-expand-group"
-					},
-					{
-						"description": "Marks items as read or unread.",
-						"name": "ews-mark-items-as-read"
-					},
-					{
-						"description": "Retrieves items by item ID and uploads it's content as eml file.",
-						"name": "ews-get-items-as-eml"
+						"description": "Retrieves information about the AuditBypassEnabled property value for user accounts (on-premises Exchange and the cloud) and computer accounts (on-premises Exchange only).",
+						"name": "ews-mailbox-audit-bypass-association-list"
 					}
 				],
-				"description": "Exchange Web Services and Office 365 (mail)",
-				"id": "EWS v2",
-				"name": "EWS v2"
+				"description": "This integration enables you to manage and interact with Microsoft O365 - Exchange Online from within XSOAR.",
+				"id": "EwsExtension",
+				"name": "O365 - EWS - Extension"
 			}
 		],
 		"layoutscontainer": null,
 		"list": null,
 		"playbook": [
 			{
-				"description": "This playbook performs the following steps:\n1. Creates a compliance search.\n2. Starts a compliance search.\n3. Waits for the compliance search to complete.\n4. Gets the results of the compliance search.\n5. Gets the preview results, if specified.\n6. Deletes the search results (Hard/Soft).",
-				"name": "O365 - Security And Compliance - Search And Delete"
-			},
-			{
-				"description": "This playbook perform:\n1. Creates a new compliance search action - Preview (Base on created compliance search).\n2. Waits for the preview action to complete.\n3. Retrieves the preview results.",
-				"name": "O365 - Security And Compliance - Search Action - Preview"
-			},
-			{
 				"description": "This playbook performs the following steps:\n1. Creates a new compliance search action Purge - Hard or Soft.\n2. Waits for the compliance search action to complete.\n3. Retrieves the delete search action.",
 				"name": "O365 - Security And Compliance - Search Action - Delete"
 			},
 			{
-				"description": "Get emails from specific folders and pre-process them using EWS.",
-				"name": "Get Mails By Folder Paths"
+				"description": "Run a ComplianceSearch on Office 365 and delete the results.",
+				"name": "Office 365 Search and Delete"
 			},
 			{
-				"description": "This playbook searches EWS to identify and delete emails with similar attributes of a malicious email.",
-				"name": "Search And Delete Emails - EWS"
+				"description": "Get emails from specific folders and pre-process them using EWS.",
+				"name": "Get Mails By Folder Paths"
 			},
 			{
 				"description": "This v2 playbook retrieves the original email in a thread as an EML file (and not an email object as in the previous version) by using the EWS v2 or EWSO365 integration.\nIt also reduces the number of tasks to perform the fetch action.\nNote: You must have the necessary eDiscovery permissions in the EWS integration to execute a global search.",
@@ -509,12 +501,20 @@
 				"name": "O365 - Security And Compliance - Search"
 			},
 			{
+				"description": "This playbook perform:\n1. Creates a new compliance search action - Preview (Base on created compliance search).\n2. Waits for the preview action to complete.\n3. Retrieves the preview results.",
+				"name": "O365 - Security And Compliance - Search Action - Preview"
+			},
+			{
 				"description": "Process an EWS email",
 				"name": "Process Email - EWS"
 			},
 			{
-				"description": "Run a ComplianceSearch on Office 365 and delete the results.",
-				"name": "Office 365 Search and Delete"
+				"description": "This playbook performs the following steps:\n1. Creates a compliance search.\n2. Starts a compliance search.\n3. Waits for the compliance search to complete.\n4. Gets the results of the compliance search.\n5. Gets the preview results, if specified.\n6. Deletes the search results (Hard/Soft).",
+				"name": "O365 - Security And Compliance - Search And Delete"
+			},
+			{
+				"description": "This playbook searches EWS to identify and delete emails with similar attributes of a malicious email.",
+				"name": "Search And Delete Emails - EWS"
 			}
 		],
 		"report": null,
@@ -523,28 +523,28 @@
 		"wizard": null
 	},
 	"created": "2020-07-26T10:37:09Z",
-	"currentVersion": "2.0.8",
+	"currentVersion": "2.0.9",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.54",
+			"minVersion": "1.31.55",
 			"name": "Base"
 		},
 		"CommonPlaybooks": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "2.3.26",
+			"minVersion": "2.3.28",
 			"name": "Common Playbooks"
 		},
 		"CommonScripts": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.11.5",
+			"minVersion": "1.11.10",
 			"name": "Common Scripts"
 		},
 		"FiltersAndTransformers": {
@@ -557,15 +557,15 @@
 		"Phishing": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
-			"mandatory": false,
-			"minVersion": "3.4.0",
+			"mandatory": true,
+			"minVersion": "3.5.1",
 			"name": "Phishing"
 		}
 	},
 	"deprecated": false,
 	"description": "Exchange Web Services and Office 365 (mail)",
 	"disabledMonthly": false,
-	"downloads": 28502,
+	"downloads": 28837,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -602,7 +602,7 @@
 			"name": "O365 - Security And Compliance - Content Search v2"
 		}
 	],
-	"itemVersion": "2.0.8",
+	"itemVersion": "2.0.9",
 	"keywords": [],
 	"legacy": true,
 	"name": "EWS",
@@ -628,9 +628,9 @@
 	},
 	"tags": [],
 	"toServerVersion": "",
-	"updated": "2023-01-11T23:03:49Z",
+	"updated": "2023-01-20T11:22:27Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4410080",
+	"versionInfo": "4458364",
 	"videos": []
 }
