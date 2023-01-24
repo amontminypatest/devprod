@@ -159,7 +159,7 @@
 	"formatScript": "VerifyCIDR",
 	"fromServerVersion": "5.5.0",
 	"id": "CIDR",
-	"itemVersion": "3.3.43",
+	"itemVersion": "3.3.45",
 	"layout": "",
 	"legacyNames": null,
 	"locked": false,
