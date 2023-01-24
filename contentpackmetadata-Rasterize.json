@@ -58,21 +58,21 @@
 		"wizard": null
 	},
 	"created": "2020-06-30T20:27:10Z",
-	"currentVersion": "1.2.13",
+	"currentVersion": "1.2.14",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.51",
+			"minVersion": "1.31.55",
 			"name": "Base"
 		}
 	},
 	"deprecated": false,
 	"description": "Converts URLs, PDF files, and emails to an image file or PDF file.",
 	"disabledMonthly": false,
-	"downloads": 29589,
+	"downloads": 31060,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -89,7 +89,7 @@
 			"name": "Rasterize"
 		}
 	],
-	"itemVersion": "1.2.13",
+	"itemVersion": "1.2.14",
 	"keywords": [],
 	"legacy": true,
 	"name": "Rasterize",
@@ -104,7 +104,7 @@
 	"rawKeywords": null,
 	"rawTags": null,
 	"rawUseCases": null,
-	"readme": "During incident investigation you can enhance the investigation with screenshots of URLS or with emails and other PDF files.  \r\n**Note:**  \r\nThis content pack is installed by default when Cortex XSOAR is initially deployed.  \r\n\r\n## What Does This Pack Do?  \r\nConverts URLs, PDF files, and emails to an image file or a PDF file.\r\n",
+	"readme": "During incident investigation you can enhance the investigation with screenshots of URLS or with emails and other PDF files.  \n**Note:**  \nThis content pack is installed by default when Cortex XSOAR is initially deployed.  \n\n## What Does This Pack Do?  \nConverts URLs, PDF files, and emails to an image file or a PDF file.\n",
 	"searchRank": 10,
 	"serverMaxVersion": "",
 	"serverMinVersion": "5.0.0",
@@ -115,9 +115,9 @@
 	},
 	"tags": [],
 	"toServerVersion": "",
-	"updated": "2023-01-03T10:37:59Z",
+	"updated": "2023-01-22T10:58:12Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4321146",
+	"versionInfo": "4458364",
 	"videos": []
 }
