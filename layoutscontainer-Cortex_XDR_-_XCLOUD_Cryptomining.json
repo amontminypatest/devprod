@@ -629,12 +629,12 @@
 		]
 	},
 	"edit": null,
-	"fromServerVersion": "",
+	"fromServerVersion": "6.5.0",
 	"group": "incident",
 	"id": "Cortex XDR - XCLOUD Cryptomining",
 	"indicatorsDetails": null,
 	"indicatorsQuickView": null,
-	"itemVersion": "4.10.0",
+	"itemVersion": "4.10.3",
 	"locked": false,
 	"mobile": null,
 	"name": "Cortex XDR - XCLOUD Cryptomining",
@@ -1494,6 +1494,6 @@
 	},
 	"quickViewV2": null,
 	"system": true,
-	"toServerVersion": "",
+	"toServerVersion": "99.99.99",
 	"version": -1
 }
