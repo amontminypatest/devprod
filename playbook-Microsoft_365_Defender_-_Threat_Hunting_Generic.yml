@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.5.0
-    itemVersion: 4.4.9
+    itemVersion: 4.4.10
     packID: Microsoft365Defender
     packName: Microsoft 365 Defender
     packPropagationLabels:
