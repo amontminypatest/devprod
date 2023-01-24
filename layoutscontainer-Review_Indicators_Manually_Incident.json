@@ -419,12 +419,12 @@
 		]
 	},
 	"edit": null,
-	"fromServerVersion": "",
+	"fromServerVersion": "6.0.0",
 	"group": "incident",
 	"id": "Review Indicators Manually",
 	"indicatorsDetails": null,
 	"indicatorsQuickView": null,
-	"itemVersion": "1.1.14",
+	"itemVersion": "1.1.15",
 	"locked": false,
 	"mobile": null,
 	"name": "Review Indicators Manually Incident",
@@ -437,6 +437,6 @@
 	"quickView": null,
 	"quickViewV2": null,
 	"system": true,
-	"toServerVersion": "",
+	"toServerVersion": "99.99.99",
 	"version": -1
 }
