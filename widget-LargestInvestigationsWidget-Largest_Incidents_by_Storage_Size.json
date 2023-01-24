@@ -20,7 +20,7 @@
 	"fromServerVersion": "6.0.0",
 	"id": "LargestInvestigationsWidget",
 	"isPredefined": true,
-	"itemVersion": "1.2.11",
+	"itemVersion": "1.2.12",
 	"name": "Largest Incidents by Storage Size",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
