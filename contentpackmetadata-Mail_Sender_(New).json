@@ -29,7 +29,7 @@
 					}
 				],
 				"description": "Send emails implemented in Python with embedded image support",
-				"id": "",
+				"id": "Mail Sender (New)",
 				"name": "Mail Sender (New)"
 			}
 		],
@@ -42,21 +42,21 @@
 		"wizard": null
 	},
 	"created": "2020-07-23T13:15:24Z",
-	"currentVersion": "1.0.6",
+	"currentVersion": "1.0.7",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.39",
+			"minVersion": "1.31.55",
 			"name": "Base"
 		}
 	},
 	"deprecated": false,
 	"description": "Send emails implemented in Python with embedded image support",
 	"disabledMonthly": false,
-	"downloads": 6075,
+	"downloads": 6240,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -73,7 +73,7 @@
 			"name": "Mail Sender (New)"
 		}
 	],
-	"itemVersion": "1.0.6",
+	"itemVersion": "1.0.7",
 	"keywords": [],
 	"legacy": true,
 	"name": "Mail Sender (New)",
@@ -98,9 +98,9 @@
 	},
 	"tags": [],
 	"toServerVersion": "",
-	"updated": "2022-11-08T13:20:41Z",
+	"updated": "2023-01-23T11:55:39Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4098099",
+	"versionInfo": "4458364",
 	"videos": []
 }
