@@ -52,7 +52,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 2.0.13
+    itemVersion: 2.0.14
     packID: Sixgill-Darkfeed
     packName: Sixgill Darkfeed - Annual Subscription
     packPropagationLabels:
