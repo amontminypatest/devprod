@@ -19,14 +19,14 @@
 		"automation": null,
 		"classifier": [
 			{
-				"description": "Maps Code42 Alert fields to Incident",
-				"id": "",
-				"name": "Code42 - Mapping"
+				"description": "Classifies fetched Code42 alerts as XSOAR Incidents.",
+				"id": "Code42 - Classifier",
+				"name": "Code42 - Classifier"
 			},
 			{
-				"description": "Classifies fetched Code42 alerts as XSOAR Incidents.",
-				"id": "",
-				"name": "Code42 - Classifier"
+				"description": "Maps Code42 Alert fields to Incident",
+				"id": "Code42 - Mapping",
+				"name": "Code42 - Mapping"
 			}
 		],
 		"dashboard": null,
@@ -35,17 +35,17 @@
 		"incidentfield": [
 			{
 				"description": "",
-				"name": "Code42 SecurityAlert Timestamp",
-				"type": "date"
-			},
-			{
-				"description": "",
-				"name": "Code42 Alert ID",
+				"name": "Code42 Alert Risk Severity Summary",
 				"type": "shortText"
 			},
 			{
 				"description": "",
-				"name": "Code42 Alert Type",
+				"name": "Code42 File Events",
+				"type": "grid"
+			},
+			{
+				"description": "",
+				"name": "Code42 SecurityAlert Description",
 				"type": "shortText"
 			},
 			{
@@ -55,8 +55,18 @@
 			},
 			{
 				"description": "",
-				"name": "Code42 Alert URL",
-				"type": "url"
+				"name": "Code42 SecurityAlert Timestamp",
+				"type": "date"
+			},
+			{
+				"description": "",
+				"name": "Code42 Alert Type",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Code42 Alert ID",
+				"type": "shortText"
 			},
 			{
 				"description": "",
@@ -65,18 +75,8 @@
 			},
 			{
 				"description": "",
-				"name": "Code42 File Events",
-				"type": "grid"
-			},
-			{
-				"description": "",
-				"name": "Code42 Severity",
-				"type": "shortText"
-			},
-			{
-				"description": "",
-				"name": "Code42 SecurityAlert Description",
-				"type": "shortText"
+				"name": "Code42 Alert URL",
+				"type": "url"
 			},
 			{
 				"description": "",
@@ -85,12 +85,12 @@
 			},
 			{
 				"description": "",
-				"name": "Code42 Alert Risk Severity Summary",
+				"name": "Code42 SecurityAlert Name",
 				"type": "shortText"
 			},
 			{
 				"description": "",
-				"name": "Code42 SecurityAlert Name",
+				"name": "Code42 Severity",
 				"type": "shortText"
 			}
 		],
@@ -215,7 +215,7 @@
 					}
 				],
 				"description": "Use the Code42 integration to identify potential data exfiltration from insider threats while speeding investigation and response by providing fast access to file events and metadata across physical and cloud environments.",
-				"id": "",
+				"id": "Code42",
 				"name": "Code42 (Partner Contribution)"
 			}
 		],
@@ -228,12 +228,12 @@
 		"list": null,
 		"playbook": [
 			{
-				"description": "This playbook searches for files via Code42 security events by either MD5 or SHA256 hash. The data is output to the Code42.SecurityData context for use.",
-				"name": "Code42 File Search"
-			},
-			{
 				"description": "The Code42 Exfiltration playbook acts on Code42 Security Alerts, retrieves file event data, and allows security teams to remediate file exfiltration events by revoking access rights to cloud files or containing endpoints.",
 				"name": "Code42 Exfiltration Playbook"
+			},
+			{
+				"description": "This playbook searches for files via Code42 security events by either MD5 or SHA256 hash. The data is output to the Code42.SecurityData context for use.",
+				"name": "Code42 File Search"
 			},
 			{
 				"description": "This playbook downloads a file via Code42 by either MD5 or SHA256 hash.",
@@ -246,56 +246,49 @@
 		"wizard": null
 	},
 	"created": "2020-08-02T09:29:30Z",
-	"currentVersion": "3.0.1",
+	"currentVersion": "3.0.2",
 	"definitionId": "",
 	"dependencies": {
 		"Active_Directory_Query": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.5.9",
+			"minVersion": "1.6.2",
 			"name": "Active Directory Query"
 		},
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.45",
+			"minVersion": "1.31.55",
 			"name": "Base"
-		},
-		"CommonScripts": {
-			"author": "Cortex XSOAR",
-			"certification": "certified",
-			"mandatory": true,
-			"minVersion": "1.10.25",
-			"name": "Common Scripts"
-		},
-		"CommonTypes": {
-			"author": "Cortex XSOAR",
-			"certification": "certified",
-			"mandatory": true,
-			"minVersion": "3.3.37",
-			"name": "Common Types"
 		},
 		"CrowdStrikeFalcon": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.9.15",
+			"minVersion": "1.10.3",
 			"name": "CrowdStrike Falcon"
+		},
+		"FiltersAndTransformers": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.2.5",
+			"name": "Filters And Transformers"
 		},
 		"Jira": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "2.0.20",
+			"minVersion": "2.0.23",
 			"name": "Atlassian Jira"
 		}
 	},
 	"deprecated": false,
 	"description": "The Code42 INCYDR integration accelerates insider threat incident response and remediation procedures for potential data exfiltration across computers, email, cloud and SaaS apps.",
 	"disabledMonthly": false,
-	"downloads": 1545,
+	"downloads": 1675,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -324,7 +317,7 @@
 			"name": "CrowdStrike Falcon"
 		}
 	],
-	"itemVersion": "3.0.1",
+	"itemVersion": "3.0.2",
 	"keywords": [],
 	"legacy": true,
 	"name": "Code42",
@@ -352,9 +345,9 @@
 		"Partner Spotlight"
 	],
 	"toServerVersion": "",
-	"updated": "2022-12-16T00:13:38Z",
+	"updated": "2023-01-23T12:10:07Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4227458",
+	"versionInfo": "4458364",
 	"videos": []
 }
