@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.8.0
-    itemVersion: 1.1.14
+    itemVersion: 1.1.15
     packID: TIM_Processing
     packName: TIM - Indicator Auto-Processing
     packPropagationLabels:
@@ -65,7 +65,7 @@ tasks:
     isoversize: false
     nexttasks:
       '#none#':
-      - "15"
+      - "23"
     note: false
     quietmode: 0
     separatecontext: false
@@ -83,7 +83,7 @@ tasks:
       {
         "position": {
           "x": 440,
-          "y": -650
+          "y": -830
         }
       }
   "2":
@@ -129,8 +129,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 440,
-          "y": -340
+          "x": -430,
+          "y": -350
         }
       }
   "4":
@@ -181,8 +181,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 1090,
-          "y": 1160
+          "x": 220,
+          "y": 1150
         }
       }
   "5":
@@ -233,8 +233,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 650,
-          "y": 1160
+          "x": -220,
+          "y": 1150
         }
       }
   "6":
@@ -285,8 +285,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 220,
-          "y": 1160
+          "x": -650,
+          "y": 1150
         }
       }
   "7":
@@ -337,8 +337,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": -190,
-          "y": 1160
+          "x": -1060,
+          "y": 1150
         }
       }
   "8":
@@ -384,8 +384,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 1090,
-          "y": 985
+          "x": 220,
+          "y": 975
         }
       }
   "9":
@@ -431,8 +431,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": -190,
-          "y": 985
+          "x": -1060,
+          "y": 975
         }
       }
   "10":
@@ -478,8 +478,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 220,
-          "y": 985
+          "x": -650,
+          "y": 975
         }
       }
   "11":
@@ -525,8 +525,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 650,
-          "y": 985
+          "x": -220,
+          "y": 975
         }
       }
   "12":
@@ -552,7 +552,7 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 430,
+          "x": 440,
           "y": 1330
         }
       }
@@ -598,8 +598,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 440,
-          "y": -520
+          "x": -430,
+          "y": -530
         }
       }
   "16":
@@ -644,8 +644,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 210,
-          "y": -10
+          "x": -660,
+          "y": -20
         }
       }
   "17":
@@ -695,8 +695,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 210,
-          "y": -170
+          "x": -660,
+          "y": -180
         }
       }
   "18":
@@ -728,8 +728,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 440,
-          "y": 840
+          "x": -430,
+          "y": 830
         }
       }
   "19":
@@ -775,12 +775,17 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 210,
-          "y": 150
+          "x": -660,
+          "y": 140
         }
       }
   "20":
     continueonerrortype: ""
+    fieldMapping:
+    - incidentfield: Related Report
+      output:
+        complex:
+          root: RelatedReport
     id: "20"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -826,8 +831,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": -20,
-          "y": 330
+          "x": -890,
+          "y": 320
         }
       }
   "21":
@@ -883,8 +888,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 440,
-          "y": 500
+          "x": -430,
+          "y": 490
         }
       }
   "22":
@@ -944,22 +949,69 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 220,
-          "y": 670
+          "x": -650,
+          "y": 660
+        }
+      }
+  "23":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.Indicator
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "23"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "12"
+      "yes":
+      - "15"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check if an input indicator exists.
+      id: 41ea1dab-1062-4835-8f3f-ea99bc964815
+      iscommand: false
+      name: Has Indicator?
+      type: condition
+      version: -1
+    taskid: 41ea1dab-1062-4835-8f3f-ea99bc964815
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 440,
+          "y": -700
         }
       }
 version: -1
 view: |-
   {
     "linkLabelsPosition": {
-      "2_17_yes": 0.9
+      "10_12_#default#": 0.1,
+      "11_12_#default#": 0.15,
+      "19_21_#default#": 0.37,
+      "2_17_yes": 0.9,
+      "8_12_#default#": 0.36,
+      "9_12_#default#": 0.1
     },
     "paper": {
       "dimensions": {
-        "height": 2045,
-        "width": 1660,
-        "x": -190,
-        "y": -650
+        "height": 2225,
+        "width": 1880,
+        "x": -1060,
+        "y": -830
       }
     }
   }
