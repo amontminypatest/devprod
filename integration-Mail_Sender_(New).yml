@@ -48,7 +48,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.0.6
+    itemVersion: 1.0.7
     packID: MailSenderNew
     packName: Mail Sender (New)
     packPropagationLabels:
@@ -137,7 +137,7 @@ script:
       name: raw_message
     description: Send an email
     name: send-mail
-  dockerimage: demisto/python:2.7.18.27799
+  dockerimage: demisto/python:2.7.18.37800
   runonce: false
   script: |
     register_module_line('Mail Sender (New)', 'start', __line__())
