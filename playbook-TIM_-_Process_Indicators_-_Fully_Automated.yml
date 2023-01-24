@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 1.1.14
+    itemVersion: 1.1.15
     packID: TIM_Processing
     packName: TIM - Indicator Auto-Processing
     packPropagationLabels:
