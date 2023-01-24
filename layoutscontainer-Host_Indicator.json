@@ -7,7 +7,7 @@
 	"details": null,
 	"detailsV2": null,
 	"edit": null,
-	"fromServerVersion": "",
+	"fromServerVersion": "6.0.0",
 	"group": "indicator",
 	"id": "hostRep",
 	"indicatorsDetails": {
@@ -881,7 +881,7 @@
 			}
 		]
 	},
-	"itemVersion": "3.3.43",
+	"itemVersion": "3.3.45",
 	"locked": false,
 	"mobile": null,
 	"name": "Host Indicator",
@@ -894,6 +894,6 @@
 	"quickView": null,
 	"quickViewV2": null,
 	"system": true,
-	"toServerVersion": "",
+	"toServerVersion": "99.99.99",
 	"version": -1
 }
