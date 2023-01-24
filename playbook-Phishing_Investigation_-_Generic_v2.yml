@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.0.0
-    itemVersion: 3.4.1
+    itemVersion: 3.5.1
     packID: Phishing
     packName: Phishing
     packPropagationLabels:
@@ -10,10 +10,8 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-description: |-
-  Use this playbook to investigate and remediate a potential phishing incident. The playbook simultaneously engages with the user that triggered the incident, while investigating the incident itself.
-
-  The final remediation tasks are always decided by a human analyst.
+deprecated: true
+description: Deprecated. Use Phishing - Generic v3 instead.
 id: Phishing Investigation - Generic v2
 inputs:
 - description: The default role to assign the incident to.
