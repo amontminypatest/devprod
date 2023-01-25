@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.0.0
-    itemVersion: 1.0.2
+    itemVersion: 1.0.3
     packID: WindowsForensics
     packName: Windows Forensics
     packPropagationLabels:
@@ -227,6 +227,33 @@ tasks:
       - "4"
     note: false
     quietmode: 0
+    scriptarguments:
+      PcapFileEntryID:
+        simple: ${inputs.PcapEntryID}
+      QueryOperator:
+        simple: and
+      RsaDecryptKeyEntryID:
+        complex:
+          accessor: EntryID
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: File.Name
+              operator: inList
+              right:
+                iscontext: true
+                value:
+                  simple: incident.pcapencryptionkey.name
+            - left:
+                iscontext: true
+                value:
+                  simple: File.Extension
+              operator: isEqualString
+              right:
+                value:
+                  simple: key
+          root: File
     separatecontext: true
     skipunavailable: true
     task:
@@ -237,21 +264,21 @@ tasks:
         the PCAP. The values to search are IP addresses, CIDR ranges, and TCP or UDP
         ports or protocols. In the event that more than one input type was specified,
         specify in the QueryOperator input (such as IP addresses and TCP ports) if
-        the PCAP filter query will use an AND or an OR operator between the inputs.
-        Another option is to use advanced filters just like in Wireshark to use refined
-        filters or for objects not specified in other inputs. Additional inputs allow
-        the user to provide the WPA password for decrypting 802.11 (wireless) traffic
+        the PCAP filter query will use an AND or an OR operator between the inputs.  Another
+        option is to use advanced filters just like in Wireshark to use refined filters
+        or for objects not specified in other inputs. Additional inputs allow the
+        user to provide the WPA password for decrypting 802.11 (wireless) traffic
         and adding an RSA certificate to decrypt SSL traffic. To display the results
         within the relevant incident fields, the playbook needs to run in a PCAP Analysis
         incident type. For handling of PCAP files larger than 30 MB, refer to the
         PcapMinerV2 documentation.
-      id: 35ba700b-4f86-4fc8-807f-a31b85e1b88c
+      id: 409db5ba-ecff-46f7-8f20-0348efa7600c
       iscommand: false
       name: PCAP Search
-      playbookId: PCAP Search
+      playbookName: PCAP Search
       type: playbook
       version: -1
-    taskid: 35ba700b-4f86-4fc8-807f-a31b85e1b88c
+    taskid: 409db5ba-ecff-46f7-8f20-0348efa7600c
     timertriggers: []
     type: playbook
     view: |-
