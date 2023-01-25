@@ -113,7 +113,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.5.0
-    itemVersion: 2.0.34
+    itemVersion: 2.0.35
     packID: AutoFocus
     packName: AutoFocus by Palo Alto Networks
     packPropagationLabels:
@@ -148,7 +148,7 @@ script:
       name: limit
     description: Gets indicators from the feed.
     name: autofocus-tags-feed-get-indicators
-  dockerimage: demisto/python3:3.10.5.31928
+  dockerimage: demisto/python3:3.10.9.45313
   feed: true
   runonce: false
   script: |
