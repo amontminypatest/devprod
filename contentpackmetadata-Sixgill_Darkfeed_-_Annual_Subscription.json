@@ -210,7 +210,7 @@
 		"wizard": null
 	},
 	"created": "2020-07-23T16:33:44Z",
-	"currentVersion": "2.0.14",
+	"currentVersion": "2.0.15",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
@@ -231,14 +231,14 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.11.10",
+			"minVersion": "1.11.11",
 			"name": "Common Scripts"
 		},
 		"CommonTypes": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "3.3.44",
+			"minVersion": "3.3.45",
 			"name": "Common Types"
 		},
 		"VirusTotal": {
@@ -252,7 +252,7 @@
 	"deprecated": false,
 	"description": "This edition of Sixgill Darkfeed is intended for customers who have a direct annual subscription to Sixgill Darkfeed.\n\nGet contextual and actionable insights to proactively block underground threats in real-time with the most comprehensive, automated stream of IOCs \n\nFor organizations who are currently Darkfeed customers.",
 	"disabledMonthly": false,
-	"downloads": 6132,
+	"downloads": 6263,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -297,7 +297,7 @@
 			"name": "VirusTotal Retrohunt Feed"
 		}
 	],
-	"itemVersion": "2.0.14",
+	"itemVersion": "2.0.15",
 	"keywords": [
 		"sixgill",
 		"darkfeed",
@@ -358,9 +358,9 @@
 		"TIM"
 	],
 	"toServerVersion": "",
-	"updated": "2023-01-23T11:46:00Z",
+	"updated": "2023-01-24T22:18:29Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4458364",
+	"versionInfo": "4462378",
 	"videos": []
 }
