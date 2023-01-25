@@ -22,7 +22,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.0.0
-    itemVersion: 1.11.11
+    itemVersion: 1.11.12
     packID: CommonScripts
     packName: Common Scripts
     packPropagationLabels:
@@ -30,7 +30,7 @@ contentitemexportablefields:
     prevname: ""
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/python3:3.10.9.44472
+dockerimage: demisto/python3:3.10.9.45313
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
@@ -51,14 +51,12 @@ script: |
       return time_as_datetime
 
 
-  def convert_UTC_Timezone_command(time: datetime, timezone: str, fmt: str) -> CommandResults:
+  def convert_UTC_Timezone_command(time: datetime, timezone: str, fmt: str) -> str:
       desired_timezone = pytz.timezone(timezone)
 
       # convert me to desired timezone
       desired_time = time.astimezone(desired_timezone).strftime(fmt)
-      return CommandResults(
-          readable_output=desired_time
-      )
+      return desired_time
 
 
   def main():     # pragma: no cover
