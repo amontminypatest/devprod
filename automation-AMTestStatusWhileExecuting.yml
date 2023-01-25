@@ -1,0 +1,43 @@
+commonfields:
+  id: e1494349-c68c-4d3b-8028-65b784bfcadb
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.9.44472
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: AMTestStatusWhileExecuting
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |-
+  import time
+
+  i = 1
+  id = demisto.incident().get("id")
+
+  while i < 3:
+      body = {
+          "investigationId": id,
+          "data": f"I have looped {i} times."
+      }
+
+      demisto.executeCommand("demisto-api-post", {"uri":"/entry", "body": body})
+      time.sleep(1)
+      i += 1
+
+  return_results("All Done")
+scripttarget: 0
+subtype: python3
+tags: []
+type: python
