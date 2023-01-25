@@ -9,6 +9,7 @@ configuration:
   required: true
   type: 0
 - display: Username
+  displaypassword: API Key
   name: credentials
   required: true
   type: 9
@@ -73,7 +74,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.0.0
-    itemVersion: 2.0.24
+    itemVersion: 2.0.25
     packID: Anomali_ThreatStream
     packName: Anomali ThreatStream
     packPropagationLabels:
@@ -2693,6 +2694,14 @@ script:
     - description: A comma-separated list of additional details for the indicator.
         This information is displayed in the Tag column of the ThreatStream UI.
       name: detail
+    - auto: PREDEFINED
+      default: true
+      description: If you want to initiate an import job for observables discovered
+        during detonation, set this value to true. Default value is true.
+      name: import_indicators
+      predefined:
+      - "false"
+      - "true"
     description: Submits a file or URL to the ThreatStream-hosted sandbox for detonation.
     name: threatstream-submit-to-sandbox
     outputs:
@@ -4028,7 +4037,7 @@ script:
     - contextPath: ThreatStream.Intelligence.severity
       description: The severity of the intelligence.
       type: String
-  dockerimage: demisto/py3-tools:1.0.0.43697
+  dockerimage: demisto/py3-tools:1.0.0.45904
   runonce: false
   script: |
     register_module_line('Anomali ThreatStream v3', 'start', __line__())
@@ -5212,17 +5221,18 @@ script:
         return file_name
 
 
-    def submit_report(client: Client, submission_type, submission_value, submission_classification="private",
-                      report_platform="WINDOWS7",
+    def submit_report(client: Client, submission_type, submission_value, import_indicators=True,
+                      submission_classification="private", report_platform="WINDOWS7",
                       premium_sandbox="false", detail=None):
         """
             Detonates URL or file that was uploaded to war room to ThreatStream sandbox.
         """
-
+        import_indicators = argToBoolean(import_indicators)
         data = {
             'report_radio-classification': submission_classification,
             'report_radio-platform': report_platform,
             'use_premium_sandbox': premium_sandbox,
+            'import_indicators': import_indicators
         }
         if detail:
             data['detail'] = detail
