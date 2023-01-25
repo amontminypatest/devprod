@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.5.0
-    itemVersion: 1.2.18
+    itemVersion: 1.2.20
     packID: CrowdStrikeFalconX
     packName: CrowdStrike Falcon Intelligence Sandbox
     packPropagationLabels:
