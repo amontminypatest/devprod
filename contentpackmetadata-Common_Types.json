@@ -3304,7 +3304,7 @@
 		"wizard": null
 	},
 	"created": "2020-07-26T20:01:30Z",
-	"currentVersion": "3.3.45",
+	"currentVersion": "3.3.46",
 	"definitionId": "",
 	"dependencies": {
 		"AWS-GuardDuty": {
@@ -3360,7 +3360,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "2.1.25",
+			"minVersion": "2.1.26",
 			"name": "Carbon Black Enterprise Response"
 		},
 		"Change_Management": {
@@ -3374,7 +3374,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.11.10",
+			"minVersion": "1.11.12",
 			"name": "Common Scripts"
 		},
 		"CortexXDR": {
@@ -3633,7 +3633,7 @@
 	"deprecated": false,
 	"description": "This Content Pack will get you up and running in no-time and provide you with the most commonly used incident \u0026 indicator fields and types.",
 	"disabledMonthly": false,
-	"downloads": 65235,
+	"downloads": 65516,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -3826,12 +3826,12 @@
 			"name": "Tripwire"
 		},
 		{
-			"imagePath": "content/packs/NutanixHypervisor/NutanixHypervisor_image.png",
-			"name": "Nutanix Hypervisor"
-		},
-		{
 			"imagePath": "content/packs/PrismaSaasSecurity/SaasSecurity_image.png",
 			"name": "SaaS Security"
+		},
+		{
+			"imagePath": "content/packs/NutanixHypervisor/NutanixHypervisor_image.png",
+			"name": "Nutanix Hypervisor"
 		},
 		{
 			"imagePath": "content/packs/FraudWatch/FraudWatch_image.png",
@@ -3854,7 +3854,7 @@
 			"name": "Skyhigh Security"
 		}
 	],
-	"itemVersion": "3.3.45",
+	"itemVersion": "3.3.46",
 	"keywords": [],
 	"legacy": true,
 	"name": "Common Types",
@@ -3882,9 +3882,9 @@
 		"Partner Spotlight"
 	],
 	"toServerVersion": "",
-	"updated": "2023-01-24T10:59:23Z",
+	"updated": "2023-01-25T11:07:41Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4458364",
+	"versionInfo": "4466748",
 	"videos": []
 }
