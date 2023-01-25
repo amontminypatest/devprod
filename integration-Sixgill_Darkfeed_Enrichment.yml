@@ -6,18 +6,24 @@ configuration:
 - display: Sixgill API client ID
   name: client_id
   required: true
+  section: Connect
   type: 0
 - display: Sixgill API client secret
   name: client_secret
   required: true
+  section: Connect
   type: 4
-- display: Trust any certificate (not secure)
+- advanced: true
+  display: Trust any certificate (not secure)
   name: insecure
   required: false
+  section: Connect
   type: 8
-- display: Use system proxy settings
+- advanced: true
+  display: Use system proxy settings
   name: proxy
   required: false
+  section: Connect
   type: 8
 - additionalinfo: Reliability of the source providing the intelligence data.
   defaultvalue: B - Usually reliable
@@ -32,8 +38,10 @@ configuration:
   - E - Unreliable
   - F - Reliability cannot be judged
   required: false
+  section: Collect
   type: 15
-- defaultvalue: indicatorType
+- advanced: true
+  defaultvalue: indicatorType
   display: ""
   name: feedExpirationPolicy
   options:
@@ -42,17 +50,20 @@ configuration:
   - indicatorType
   - suddenDeath
   required: false
+  section: Collect
   type: 17
-- defaultvalue: "20160"
+- advanced: true
+  defaultvalue: "20160"
   display: ""
   name: feedExpirationInterval
   required: false
+  section: Collect
   type: 1
 contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 2.0.14
+    itemVersion: 2.0.15
     packID: Sixgill-Darkfeed
     packName: Sixgill Darkfeed - Annual Subscription
     packPropagationLabels:
@@ -586,10 +597,11 @@ script:
       description: Link to the IOC on Virustotal and an abstraction of the number
         of detections; MITRE ATT&CK tactics and techniques.
       type: Unknown
-  dockerimage: demisto/sixgill:1.0.0.32143
+  dockerimage: demisto/sixgill:1.0.0.44895
   runonce: false
   script: |
     register_module_line('Sixgill_Darkfeed_Enrichment', 'start', __line__())
+    import urllib3
 
 
 
@@ -604,7 +616,7 @@ script:
     from sixgill.sixgill_enrich_client import SixgillEnrichClient
 
     # Disable insecure warnings
-    requests.packages.urllib3.disable_warnings()
+    urllib3.disable_warnings()
 
     hashes: Dict[str, Any] = {}
 
