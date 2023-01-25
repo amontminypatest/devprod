@@ -384,6 +384,7 @@
 						"y": 2
 					}
 				],
+				"showEmptyFields": true,
 				"type": "custom"
 			},
 			{
