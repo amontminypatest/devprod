@@ -64,7 +64,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.1.7
+    itemVersion: 1.1.8
     packID: Cylance_Protect
     packName: Cylance Protect
     packPropagationLabels:
@@ -1017,7 +1017,7 @@ script:
     - contextPath: InstaQuery.List
       description: The list of InstaQuery
       type: string
-  dockerimage: demisto/pyjwt3:1.0.0.43045
+  dockerimage: demisto/pyjwt3:1.0.0.45830
   isfetch: true
   runonce: false
   script: |
