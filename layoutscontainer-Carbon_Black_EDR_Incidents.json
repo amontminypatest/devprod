@@ -1132,12 +1132,12 @@
 			}
 		]
 	},
-	"fromServerVersion": "",
+	"fromServerVersion": "6.0.0",
 	"group": "incident",
 	"id": "Carbon Black EDR Incidents",
 	"indicatorsDetails": null,
 	"indicatorsQuickView": null,
-	"itemVersion": "2.1.25",
+	"itemVersion": "2.1.26",
 	"locked": false,
 	"mobile": null,
 	"name": "Carbon Black EDR Incidents",
@@ -1150,6 +1150,6 @@
 	"quickView": null,
 	"quickViewV2": null,
 	"system": true,
-	"toServerVersion": "",
+	"toServerVersion": "99.99.99",
 	"version": -1
 }
