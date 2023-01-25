@@ -96,18 +96,20 @@ tasks:
           "https://www.google.com,
           123 example@cortex.com,
           192.156.78.1 hello"
+      using:
+        simple: InnerServicesModule
     separatecontext: false
     skipunavailable: false
     task:
       brand: Builtin
       description: Extract all indicators according to server indicators configuration
-      id: 76b2b4aa-5a3a-429f-8c6b-e9268c067061
+      id: 9f53f6df-cb63-497f-89f8-eb4231fa6e21
       iscommand: true
       name: extractIndicators
       script: Builtin|||extractIndicators
       type: regular
       version: -1
-    taskid: 76b2b4aa-5a3a-429f-8c6b-e9268c067061
+    taskid: 9f53f6df-cb63-497f-89f8-eb4231fa6e21
     timertriggers: []
     type: regular
     view: |-
