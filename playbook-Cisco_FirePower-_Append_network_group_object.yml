@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.0.0
-    itemVersion: 1.1.2
+    itemVersion: 1.2.0
     packID: CiscoFirepower
     packName: Cisco Firepower
     packPropagationLabels:
@@ -407,6 +407,8 @@ tasks:
       - "2"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: Cisco Firepower
