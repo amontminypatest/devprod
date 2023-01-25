@@ -24,7 +24,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.0.17
+    itemVersion: 1.0.18
     packID: FortiGate
     packName: FortiGate
     packPropagationLabels:
