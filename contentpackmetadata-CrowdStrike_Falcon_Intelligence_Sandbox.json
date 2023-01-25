@@ -78,16 +78,16 @@
 		"list": null,
 		"playbook": [
 			{
-				"description": "Detonates a File using CrowdStrike Falcon Intelligence Sandbox.\nAccepted file formats:\nPortable executables: .exe, .scr, .pif, .dll, .com, .cpl, etc.\nOffice documents: .doc, .docx, .ppt, .pps, .pptx, .ppsx, .xls, .xlsx, .rtf, .pub\nPDF\nAPK\nExecutable JAR\nWindows script component: .sct\nWindows shortcut: .lnk\nWindows help: .chm\nHTML application: .hta\nWindows script file: .wsf\nJavascript: .js\nVisual Basic: .vbs, .vbe\nShockwave Flash: .swf\nPerl: .pl\nPowershell: .ps1, .psd1, .psm1\nScalable vector graphics: .svg\nPython: .py\nLinux ELF executables\nEmail files: MIME RFC 822 .eml, Outlook .msg.",
-				"name": "Detonate File - CrowdStrike Falcon Intelligence Sandbox"
+				"description": "Detonate one or more files using the CrowdStrike Falcon Intelligence Sandbox integration. This playbook returns relevant reports to the War Room and file reputations to the context data.",
+				"name": "Detonate URL - CrowdStrike Falcon Intelligence Sandbox"
 			},
 			{
 				"description": "This playbook uploads, detonates, and analyzes files for the Falcon Intelligence Sandbox.",
 				"name": "FalconX Detonate and Analyze File"
 			},
 			{
-				"description": "Detonate one or more files using the CrowdStrike Falcon Intelligence Sandbox integration. This playbook returns relevant reports to the War Room and file reputations to the context data.",
-				"name": "Detonate URL - CrowdStrike Falcon Intelligence Sandbox"
+				"description": "Detonates a File using CrowdStrike Falcon Intelligence Sandbox.\nAccepted file formats:\nPortable executables: .exe, .scr, .pif, .dll, .com, .cpl, etc.\nOffice documents: .doc, .docx, .ppt, .pps, .pptx, .ppsx, .xls, .xlsx, .rtf, .pub\nPDF\nAPK\nExecutable JAR\nWindows script component: .sct\nWindows shortcut: .lnk\nWindows help: .chm\nHTML application: .hta\nWindows script file: .wsf\nJavascript: .js\nVisual Basic: .vbs, .vbe\nShockwave Flash: .swf\nPerl: .pl\nPowershell: .ps1, .psd1, .psm1\nScalable vector graphics: .svg\nPython: .py\nLinux ELF executables\nEmail files: MIME RFC 822 .eml, Outlook .msg.",
+				"name": "Detonate File - CrowdStrike Falcon Intelligence Sandbox"
 			}
 		],
 		"report": null,
@@ -96,35 +96,35 @@
 		"wizard": null
 	},
 	"created": "2020-08-19T08:01:58Z",
-	"currentVersion": "1.2.18",
+	"currentVersion": "1.2.20",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.54",
+			"minVersion": "1.31.55",
 			"name": "Base"
 		},
 		"CommonPlaybooks": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "2.3.24",
+			"minVersion": "2.3.28",
 			"name": "Common Playbooks"
 		},
 		"CommonScripts": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.10.44",
+			"minVersion": "1.11.11",
 			"name": "Common Scripts"
 		}
 	},
 	"deprecated": false,
 	"description": "Fully automated malware analysis",
 	"disabledMonthly": false,
-	"downloads": 4216,
+	"downloads": 4453,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -141,7 +141,7 @@
 			"name": "CrowdStrike Falcon Intelligence Sandbox"
 		}
 	],
-	"itemVersion": "1.2.18",
+	"itemVersion": "1.2.20",
 	"keywords": [],
 	"legacy": true,
 	"name": "CrowdStrike Falcon Intelligence Sandbox",
@@ -167,9 +167,9 @@
 	},
 	"tags": [],
 	"toServerVersion": "",
-	"updated": "2023-01-11T11:03:14Z",
+	"updated": "2023-01-24T23:53:14Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4372591",
+	"versionInfo": "4462378",
 	"videos": []
 }
