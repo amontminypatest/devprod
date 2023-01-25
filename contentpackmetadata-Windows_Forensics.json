@@ -16,13 +16,13 @@
 	"contentItems": {
 		"automation": [
 			{
-				"description": "This command uses the Registry Parse automation to extract critical forensics data from a registry file. The essential values are specified by the argument. \n",
-				"name": "RegistryParse",
+				"description": "Receives an ETL file and converts it to a PCAP file.",
+				"name": "Etl2Pcap",
 				"tags": []
 			},
 			{
-				"description": "Receives an ETL file and converts it to a PCAP file.",
-				"name": "Etl2Pcap",
+				"description": "This command uses the Registry Parse automation to extract critical forensics data from a registry file. The essential values are specified by the argument. \n",
+				"name": "RegistryParse",
 				"tags": []
 			}
 		],
@@ -52,36 +52,36 @@
 		"list": null,
 		"playbook": [
 			{
-				"description": "This playbook leverages the Windows built-in PowerShell and WinRM capabilities to connect to a Windows host. It then connectst to the Netsh tool to create an ETL file which is the equivalent of a Wireshark PCAP file by using the PS-Remote integration. After receiving the resultant ETL, XSOAR will be able to convert the ETL to a PCAP file to be parsed and enriched later. Review the Microsoft documentation for how to use ETL filters (https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/jj129382(v=ws.11)#using-filters-to-limit-etl-trace-file-details).",
-				"name": "PS-Remote Get Network Traffic"
+				"description": "This playbook enables gathering forensic data from a host and analyzing the acquired data by using the relevant forensics automations.",
+				"name": "Acquire And Analyze Host Forensics"
 			},
 			{
 				"description": "This playbook allows the user to gather multiple forensic data from a Windows endpoint including network traffic, MFT (Master File Table), and registry export by using the PS Remote automation which enables connecting to a Windows host without the need to install any 3rd-party tools using just native Windows management tools.",
 				"name": "PS-Remote Acquire Host Forensics"
 			},
 			{
-				"description": "This playbook leverages the RegistryParse automation to perform registry analysis and extract forensic artifacts.  The automation includes common registry objects to extract which are useful for analyzing registry, or a user provides registry path to parse.",
-				"name": "Registry Parse Data Analysis"
-			},
-			{
-				"description": "This playbook enables gathering forensic data from a host and analyzing the acquired data by using the relevant forensics automations.",
-				"name": "Acquire And Analyze Host Forensics"
-			},
-			{
-				"description": "This playbook leverages the Windows built-in PowerShell and WinRM capabilities to connect to a Windows host to acquire and export the registry as forensic evidence for further analysis. The capture can be for the entire registry or for a specific hive or path.",
-				"name": "PS-Remote Get Registry"
-			},
-			{
-				"description": "This playbook leverages the Windows built-in PowerShell and WinRM capabilities to connect to a Windows host to acquire and export the MFT (Master File Table) as forensic evidence for further analysis.",
-				"name": "PS-Remote Get MFT"
+				"description": "This playbook leverages the Windows built-in PowerShell and WinRM capabilities to connect to a Windows host to acquire a file as forensic evidence for further analysis.",
+				"name": "PS Remote Get File Sample From Path"
 			},
 			{
 				"description": "This playbook allows the user to analyze forensic evidence acquired from a host, such as registry files and PCAP files.",
 				"name": "Forensics Tools Analysis"
 			},
 			{
-				"description": "This playbook leverages the Windows built-in PowerShell and WinRM capabilities to connect to a Windows host to acquire a file as forensic evidence for further analysis.",
-				"name": "PS Remote Get File Sample From Path"
+				"description": "This playbook leverages the Windows built-in PowerShell and WinRM capabilities to connect to a Windows host to acquire and export the registry as forensic evidence for further analysis. The capture can be for the entire registry or for a specific hive or path.",
+				"name": "PS-Remote Get Registry"
+			},
+			{
+				"description": "This playbook leverages the RegistryParse automation to perform registry analysis and extract forensic artifacts.  The automation includes common registry objects to extract which are useful for analyzing registry, or a user provides registry path to parse.",
+				"name": "Registry Parse Data Analysis"
+			},
+			{
+				"description": "This playbook leverages the Windows built-in PowerShell and WinRM capabilities to connect to a Windows host to acquire and export the MFT (Master File Table) as forensic evidence for further analysis.",
+				"name": "PS-Remote Get MFT"
+			},
+			{
+				"description": "This playbook leverages the Windows built-in PowerShell and WinRM capabilities to connect to a Windows host. It then connectst to the Netsh tool to create an ETL file which is the equivalent of a Wireshark PCAP file by using the PS-Remote integration. After receiving the resultant ETL, XSOAR will be able to convert the ETL to a PCAP file to be parsed and enriched later. Review the Microsoft documentation for how to use ETL filters (https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/jj129382(v=ws.11)#using-filters-to-limit-etl-trace-file-details).",
+				"name": "PS-Remote Get Network Traffic"
 			}
 		],
 		"report": null,
@@ -90,22 +90,29 @@
 		"wizard": null
 	},
 	"created": "2021-06-22T23:23:20Z",
-	"currentVersion": "1.0.2",
+	"currentVersion": "1.0.3",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.39",
+			"minVersion": "1.31.55",
 			"name": "Base"
 		},
 		"CommonScripts": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.10.7",
+			"minVersion": "1.11.11",
 			"name": "Common Scripts"
+		},
+		"FiltersAndTransformers": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.2.5",
+			"name": "Filters And Transformers"
 		},
 		"PcapAnalysis": {
 			"author": "Cortex XSOAR",
@@ -118,14 +125,14 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.0.3",
+			"minVersion": "1.0.4",
 			"name": "Powershell Remoting"
 		}
 	},
 	"deprecated": false,
 	"description": "Acquires forensic data from Windows hosts by leveraging Windows built-in capabilities.",
 	"disabledMonthly": false,
-	"downloads": 391,
+	"downloads": 401,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "6.0.0",
 	"general": [
@@ -142,7 +149,7 @@
 			"name": "PowerShell Remoting (Beta)"
 		}
 	],
-	"itemVersion": "1.0.2",
+	"itemVersion": "1.0.3",
 	"keywords": [
 		"forensics"
 	],
@@ -159,7 +166,7 @@
 	"rawKeywords": null,
 	"rawTags": null,
 	"rawUseCases": null,
-	"readme": "Note: This is a beta pack, which lets you implement and test pre-release software. Since the pack is beta, it might contain bugs. Updates to the pack during the beta phase might include non-backward compatible features. We appreciate your feedback on the quality and usability of the pack to help us identify issues, fix them, and continually improve.\n\nOne of the most common issues when investigating an incident on a Windows host is how to acquire the forensic evidence as quickly as possible as the incident occurs. An analyst may need to login or remotely deploy an agent or applications such as Wireshark or begin copying files from the host. Often the investigation will take place after the malware was already executed and evidence was deleted.\n\n##### What does this pack do?\nThis pack provides an easy, quick, and agentless method to acquire forensic data from Windows hosts by leveraging built-in capabilities within Windows such as Winrm and PowerShell as the infrastructure and multiple other Windows built-in capabilities for creating the evidence.\nThe common use cases we cover in this pack are acquiring a network capture file from a host, acquiring the MFT (Master File Table) and the hosts registry. Once the objects are created, we upload them to XSOAR and analyze them accordingly.\n\nThe pack includes: \n- The ETL2PCAP automation that converts ETL files (Windows native traffic recording format) to PCAP files that can be opened in Wireshark or XSOAR’s PCAP miner tool.\n- The Registry Parse automation which allows you to parse registry hives in order to extract common data or specific data provided by the user.\n- Multiple playbooks for acquiring, parsing, and analyzing data from Windows hosts.\n\nAs part of this pack, you will also get the out-of-the-box forensics incident type and a layout. These are easily customizable to suit the needs of your organization.\n\nFor more information, visit our  [Cortex XSOAR Developer Docs](https://xsoar.pan.dev/docs/reference/playbooks/ps-remote-acquire-host-forensics)\n\n![Acquire And Analyze Host Forensics](https://storage.googleapis.com/marketplace-dist/content/packs/WindowsForensics/readme_images/PS-Remote__Acquire_Host_Forensics.png)\n",
+	"readme": "Note: This is a beta pack, which lets you implement and test pre-release software. Since the pack is beta, it might contain bugs. Updates to the pack during the beta phase might include non-backward compatible features. We appreciate your feedback on the quality and usability of the pack to help us identify issues, fix them, and continually improve.\n\nOne of the most common issues when investigating an incident on a Windows host is how to acquire the forensic evidence as quickly as possible as the incident occurs. An analyst may need to login or remotely deploy an agent or applications such as Wireshark or begin copying files from the host. Often the investigation will take place after the malware was already executed and evidence was deleted.\n\n##### What does this pack do?\nThis pack provides an easy, quick, and agentless method to acquire forensic data from Windows hosts by leveraging built-in capabilities within Windows such as Winrm and PowerShell as the infrastructure and multiple other Windows built-in capabilities for creating the evidence.\nThe common use cases we cover in this pack are acquiring a network capture file from a host, acquiring the MFT (Master File Table) and the hosts registry. Once the objects are created, we upload them to XSOAR and analyze them accordingly.\n\nThe pack includes: \n- The ETL2PCAP automation that converts ETL files (Windows native traffic recording format) to PCAP files that can be opened in Wireshark or XSOAR’s PCAP miner tool.\n- The Registry Parse automation which allows you to parse registry hives in order to extract common data or specific data provided by the user.\n- Multiple playbooks for acquiring, parsing, and analyzing data from Windows hosts.\n\nAs part of this pack, you will also get the out-of-the-box forensics incident type and a layout. These are easily customizable to suit the needs of your organization.\n\nFor more information, visit our  [Cortex XSOAR Developer Docs](https://xsoar.pan.dev/docs/reference/playbooks/ps-remote-acquire-host-forensics)\n\n![Acquire And Analyze Host Forensics](https://raw.githubusercontent.com/demisto/content/e65ec925252a4c1ca8be4e8b27fd04dcb86fcdda/Packs/WindowsForensicsPack/doc_files/PS-Remote__Acquire_Host_Forensics.png)\n",
 	"searchRank": 10,
 	"serverMaxVersion": "",
 	"serverMinVersion": "6.0.0",
@@ -172,9 +179,9 @@
 		"Forensics"
 	],
 	"toServerVersion": "",
-	"updated": "2022-10-26T10:15:11Z",
+	"updated": "2023-01-24T23:32:22Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4098099",
+	"versionInfo": "4462378",
 	"videos": []
 }
