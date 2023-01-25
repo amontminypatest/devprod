@@ -1,0 +1,35 @@
+commonfields:
+  id: 17011d64-9f94-4c59-89be-20a9c9f44d86
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: am/websocket:latest
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: AlexMontminyPrintLicense
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |-
+  import requests
+  import websocket
+
+  demisto.internalHttpRequest('GET', 'https://10.180.190.66/#/settings/license')
+
+  ws = websocket.WebSocket(sslopt={"cert_reqs": ssl.CERT_NONE})
+  ws.connect('wss://10.180.190.66/websocket')
+  return_results(ws.recv())
+scripttarget: 0
+subtype: python3
+tags: []
+type: python
