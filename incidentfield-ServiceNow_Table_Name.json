@@ -21,7 +21,7 @@
 	"hidden": false,
 	"id": "incident_servicenowtablename",
 	"isReadOnly": false,
-	"itemVersion": "1.0.17",
+	"itemVersion": "1.0.18",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "ServiceNow Table Name",
