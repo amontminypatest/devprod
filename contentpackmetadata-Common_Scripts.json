@@ -1882,7 +1882,7 @@
 		"wizard": null
 	},
 	"created": "2020-07-27T09:01:37Z",
-	"currentVersion": "1.11.11",
+	"currentVersion": "1.11.12",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
@@ -2015,7 +2015,7 @@
 	"deprecated": false,
 	"description": "Frequently used scripts pack.",
 	"disabledMonthly": false,
-	"downloads": 91555,
+	"downloads": 91832,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -2076,7 +2076,7 @@
 			"name": "Google Maps"
 		}
 	],
-	"itemVersion": "1.11.11",
+	"itemVersion": "1.11.12",
 	"keywords": [],
 	"legacy": true,
 	"name": "Common Scripts",
@@ -2104,9 +2104,9 @@
 		"Core"
 	],
 	"toServerVersion": "",
-	"updated": "2023-01-19T17:52:32Z",
+	"updated": "2023-01-24T23:55:11Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4458364",
+	"versionInfo": "4462378",
 	"videos": []
 }
