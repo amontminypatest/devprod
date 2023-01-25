@@ -15,15 +15,15 @@
 	"contentItems": {
 		"automation": [
 			{
-				"description": "Deprecated. Use ssh command instead. Connect to a Check Point firewall appliance using SSH and trigger a task to create a configuration backup of the device. The user account being used to access the device must be set to use the SSH shell and not the built-in Check Point CLI. For more information, consult the CheckPoint documentation.",
-				"name": "CheckpointFWCreateBackup",
+				"description": "Deprecated. Use ssh command instead. Connect to a CheckPoint firewall appliance using SSH and retrieve the status for backup tasks. The user account being used to access the device must be set to use the SSH shell and not the built-in CheckPoint CLI. For more information, consult the CheckPoint documentation.",
+				"name": "CheckpointFWBackupStatus",
 				"tags": [
 					"checkpoint"
 				]
 			},
 			{
-				"description": "Deprecated. Use ssh command instead. Connect to a CheckPoint firewall appliance using SSH and retrieve the status for backup tasks. The user account being used to access the device must be set to use the SSH shell and not the built-in CheckPoint CLI. For more information, consult the CheckPoint documentation.",
-				"name": "CheckpointFWBackupStatus",
+				"description": "Deprecated. Use ssh command instead. Connect to a Check Point firewall appliance using SSH and trigger a task to create a configuration backup of the device. The user account being used to access the device must be set to use the SSH shell and not the built-in Check Point CLI. For more information, consult the CheckPoint documentation.",
+				"name": "CheckpointFWCreateBackup",
 				"tags": [
 					"checkpoint"
 				]
@@ -42,42 +42,6 @@
 		"incidenttype": null,
 		"indicatorfield": null,
 		"integration": [
-			{
-				"category": "Network Security",
-				"commands": [
-					{
-						"description": "Show items in an access rulebase configured in Checkpoint FW",
-						"name": "checkpoint-show-access-rule-base"
-					},
-					{
-						"description": "Set attributes of an access rule object configured in Checkpoint FW",
-						"name": "checkpoint-set-rule"
-					},
-					{
-						"description": "Shows status of a checkpoint task by task uuid",
-						"name": "checkpoint-task-status"
-					},
-					{
-						"description": "Show host objects configured in Checkpoint FW",
-						"name": "checkpoint-show-hosts"
-					},
-					{
-						"description": "Block one or more IP addresses using Checkpoint Firewall",
-						"name": "checkpoint-block-ip"
-					},
-					{
-						"description": "Use Check Point's Management API (requires management server R80 or later). Specifying 'command'=\u003cAPI command\u003e is mandatory",
-						"name": "checkpoint"
-					},
-					{
-						"description": "Delete rule from firewall",
-						"name": "checkpoint-delete-rule"
-					}
-				],
-				"description": "Deprecated. Use the Check Point Firewall v2 integration instead. Manage Check Point firewall via API",
-				"id": "",
-				"name": "Check Point Firewall (Deprecated)"
-			},
 			{
 				"category": "IT Services",
 				"commands": [
@@ -275,8 +239,44 @@
 					}
 				],
 				"description": "Use this integration to read information and send commands to the Check Point Firewall server.",
-				"id": "",
+				"id": "CheckPointFirewall_v2",
 				"name": "CheckPoint Firewall v2"
+			},
+			{
+				"category": "Network Security",
+				"commands": [
+					{
+						"description": "Show items in an access rulebase configured in Checkpoint FW",
+						"name": "checkpoint-show-access-rule-base"
+					},
+					{
+						"description": "Set attributes of an access rule object configured in Checkpoint FW",
+						"name": "checkpoint-set-rule"
+					},
+					{
+						"description": "Shows status of a checkpoint task by task uuid",
+						"name": "checkpoint-task-status"
+					},
+					{
+						"description": "Show host objects configured in Checkpoint FW",
+						"name": "checkpoint-show-hosts"
+					},
+					{
+						"description": "Block one or more IP addresses using Checkpoint Firewall",
+						"name": "checkpoint-block-ip"
+					},
+					{
+						"description": "Use Check Point's Management API (requires management server R80 or later). Specifying 'command'=\u003cAPI command\u003e is mandatory",
+						"name": "checkpoint"
+					},
+					{
+						"description": "Delete rule from firewall",
+						"name": "checkpoint-delete-rule"
+					}
+				],
+				"description": "Deprecated. Use the Check Point Firewall v2 integration instead. Manage Check Point firewall via API",
+				"id": "Check Point",
+				"name": "Check Point Firewall (Deprecated)"
 			}
 		],
 		"layoutscontainer": null,
@@ -287,12 +287,12 @@
 				"name": "Checkpoint - Block URL"
 			},
 			{
-				"description": "The playbook receives malicious IP addresses as inputs, checks if the object group exists (if not, the object group is created), and  appends the related IPs to that object. If you have not assigned the appended group to a rule in your firewall policy, you can use `rule_name` and the playbook creates a new rule.",
-				"name": "Checkpoint - Block IP - Append Group"
-			},
-			{
 				"description": "This playbook blocks IP addresses using Custom Block Rules in Check Point Firewall.\nThe playbook receives malicious IP addresses as inputs, creates a custom bi-directional rule to block them, and publishes the configuration.",
 				"name": "Checkpoint - Block IP - Custom Block Rule"
+			},
+			{
+				"description": "The playbook receives malicious IP addresses as inputs, checks if the object group exists (if not, the object group is created), and  appends the related IPs to that object. If you have not assigned the appended group to a rule in your firewall policy, you can use `rule_name` and the playbook creates a new rule.",
+				"name": "Checkpoint - Block IP - Append Group"
 			},
 			{
 				"description": "Publish the Check Point Firewall configuration and install policy on all available gateways.",
@@ -305,42 +305,42 @@
 		"wizard": null
 	},
 	"created": "2020-09-23T17:55:03Z",
-	"currentVersion": "2.3.5",
+	"currentVersion": "2.3.6",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.39",
+			"minVersion": "1.31.55",
 			"name": "Base"
 		},
 		"CommonPlaybooks": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "2.3.18",
+			"minVersion": "2.3.28",
 			"name": "Common Playbooks"
 		},
 		"CommonScripts": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.10.15",
+			"minVersion": "1.11.11",
 			"name": "Common Scripts"
 		},
 		"RemoteAccess": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.0.9",
+			"minVersion": "1.0.12",
 			"name": "Remote Access"
 		}
 	},
 	"deprecated": false,
 	"description": "Manage Check Point firewall via API",
 	"disabledMonthly": false,
-	"downloads": 4495,
+	"downloads": 4765,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -365,7 +365,7 @@
 			"name": "RemoteAccess v2"
 		}
 	],
-	"itemVersion": "2.3.5",
+	"itemVersion": "2.3.6",
 	"keywords": [],
 	"legacy": true,
 	"name": "Check Point Firewall",
@@ -391,9 +391,9 @@
 	},
 	"tags": [],
 	"toServerVersion": "",
-	"updated": "2022-12-01T23:19:31Z",
+	"updated": "2023-01-24T23:09:36Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4137548",
+	"versionInfo": "4462378",
 	"videos": []
 }
