@@ -20,7 +20,7 @@
 	"fromServerVersion": "5.0.0",
 	"id": "sixgill-darkfeed-mitre-attack-tactics",
 	"isPredefined": true,
-	"itemVersion": "2.0.14",
+	"itemVersion": "2.0.15",
 	"name": "Sixgill Darkfeed - Mitre ATT\u0026CK Tactics",
 	"packID": "Sixgill-Darkfeed",
 	"packName": "Sixgill Darkfeed - Annual Subscription",
