@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.0.0
-    itemVersion: 1.0.2
+    itemVersion: 1.0.3
     packID: WindowsForensics
     packName: Windows Forensics
     packPropagationLabels:
@@ -99,6 +99,8 @@ tasks:
       - "4"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: PowerShell Remoting
