@@ -25,11 +25,79 @@
 				"category": "Network Security",
 				"commands": [
 					{
+						"description": "Imports or validates custom Snort 3 intrusion rules within a file. Import arguments: rule_import_mode, rule_group_ids.",
+						"name": "ciscofp-upload-intrusion-rule-file"
+					},
+					{
+						"description": "Retrieves the Snort3 Intrusion rule group. If no ID is specified, it retrieves a list of all Snort3 Intrusion rule groups. Default list size is 50. GET argument: intrusion_rule_id | LIST arguments: sort, filter, expanded_response, limit, page, page_size.",
+						"name": "ciscofp-list-intrusion-rule"
+					},
+					{
+						"description": "Creates or overrides the Snort 3 Intrusion rule group with the specified parameters. Guide to Snort 3 rule writing: https://docs.snort.org/welcome.",
+						"name": "ciscofp-create-intrusion-rule"
+					},
+					{
+						"description": "Modifies the Snort3 Intrusion rule group with the specified ID. You must enter one or both of the following: rule_data | rule_group_ids. The variable that was not entered will remain the same. If merging, rule_group_ids must be entered.",
+						"name": "ciscofp-update-intrusion-rule"
+					},
+					{
+						"description": "Deletes the specified Snort3 rule.",
+						"name": "ciscofp-delete-intrusion-rule"
+					},
+					{
+						"description": "Retrieves the intrusion policy associated with the specified ID. If no ID is specified, retrieves a list of all intrusion policies. Default list size is 50. GET arguments: intrusion_policy_id, include_count | LIST arguments: expanded_response, limit, page, page_size.",
+						"name": "ciscofp-list-intrusion-policy"
+					},
+					{
+						"description": "Creates an intrusion policy with the specified parameters. This command may take a while, you can set the \"execution-timeout\" field if necessary (X \u003e 300).",
+						"name": "ciscofp-create-intrusion-policy"
+					},
+					{
+						"description": "Modifies the intrusion policy associated with the specified ID. This command may take a while, you can set the \"execution-timeout\" field if necessary (X \u003e 300).",
+						"name": "ciscofp-update-intrusion-policy"
+					},
+					{
+						"description": "Deletes the intrusion policy associated with the specified ID.",
+						"name": "ciscofp-delete-intrusion-policy"
+					},
+					{
+						"description": "Retrieves the Snort 3 intrusion rule group. If no ID is specified, retrieves a list of all Snort 3 Intrusion rule groups. The default list size is 50. GET arguments: rule_group_id | LIST arguments: expanded_response, filter, limit, page, page_size.",
+						"name": "ciscofp-list-intrusion-rule-group"
+					},
+					{
+						"description": "Creates or overrides the Snort 3 intrusion rule group with the specified parameters.",
+						"name": "ciscofp-create-intrusion-rule-group"
+					},
+					{
+						"description": "Modifies the Snort 3 intrusion rule group with the specified ID.",
+						"name": "ciscofp-update-intrusion-rule-group"
+					},
+					{
+						"description": "Deletes the specified Snort 3 intrusion rule group.",
+						"name": "ciscofp-delete-intrusion-rule-group"
+					},
+					{
+						"description": "Retrieves the network analysis policy with the specified ID. If no ID is specified, retrieves a list of all network analysis policies. The default list size is 50. GET arguments: network_analysis_policy_id | LIST arguments: expanded_response, limit, page, page_size.",
+						"name": "ciscofp-list-network-analysis-policy"
+					},
+					{
+						"description": "Creates a network analysis policy. This command may take a while, you can set the \"execution-timeout\" field if necessary (X \u003e 300).",
+						"name": "ciscofp-create-network-analysis-policy"
+					},
+					{
+						"description": "Modifies the network analysis policy associated with the specified ID. This command may take a while, you can set the \"execution-timeout\" field if necessary (X \u003e 300).",
+						"name": "ciscofp-update-network-analysis-policy"
+					},
+					{
+						"description": "Deletes the network analysis policy associated with the specified ID.",
+						"name": "ciscofp-delete-network-analysis-policy"
+					},
+					{
 						"description": "Retrieves a list of all security zone objects.",
 						"name": "ciscofp-list-zones"
 					},
 					{
-						"description": "Retrieves list of all port objects.",
+						"description": "Retrieves a list of all port objects.",
 						"name": "ciscofp-list-ports"
 					},
 					{
@@ -37,7 +105,7 @@
 						"name": "ciscofp-list-url-categories"
 					},
 					{
-						"description": "Retrieves the network objects associated with the specified ID. If not supplied, retrieves a list of all network objects.",
+						"description": "Retrieves the network objects associated with the specified ID. If no ID is supplied, retrieves a list of all network objects.",
 						"name": "ciscofp-get-network-object"
 					},
 					{
@@ -49,7 +117,7 @@
 						"name": "ciscofp-update-network-object"
 					},
 					{
-						"description": "Retrieves the groups of network objects and addresses associated with the specified ID. If not supplied, retrieves a list of all network objects.",
+						"description": "Retrieves the groups of network objects and addresses associated with the specified ID. If no ID is supplied, retrieves a list of all network objects.",
 						"name": "ciscofp-get-network-groups-object"
 					},
 					{
@@ -65,7 +133,7 @@
 						"name": "ciscofp-delete-network-groups-objects"
 					},
 					{
-						"description": "Retrieves the groups of host objects associated with the specified ID. If no ID is passed, the input ID retrieves a list of all network objects.",
+						"description": "Retrieves the groups of host objects associated with the specified ID. If no ID is passed, retrieves a list of all network objects.",
 						"name": "ciscofp-get-host-object"
 					},
 					{
@@ -109,11 +177,11 @@
 						"name": "ciscofp-list-ise-security-group-tag"
 					},
 					{
-						"description": "Retrieves a list of all vlantag objects.",
+						"description": "Retrieves a list of all VLAN tag objects.",
 						"name": "ciscofp-list-vlan-tags"
 					},
 					{
-						"description": "Retrieves a list of all vlan group tag objects.",
+						"description": "Retrieves a list of all VLAN group tag objects.",
 						"name": "ciscofp-list-vlan-tags-group"
 					},
 					{
@@ -137,7 +205,7 @@
 						"name": "ciscofp-delete-access-rules"
 					},
 					{
-						"description": "Retrieves a list of all policy assignments to target devices.",
+						"description": "Retrieves the policy assignment associated with the specified ID. If no ID is specified, retrieves a list of all policy assignments to target devices.",
 						"name": "ciscofp-list-policy-assignments"
 					},
 					{
@@ -153,7 +221,7 @@
 						"name": "ciscofp-get-deployable-devices"
 					},
 					{
-						"description": "Retrieves list of all device records.",
+						"description": "Retrieves a list of all device records.",
 						"name": "ciscofp-get-device-records"
 					},
 					{
@@ -165,16 +233,16 @@
 						"name": "ciscofp-get-task-status"
 					},
 					{
-						"description": "Retrieves the groups of url objects and addresses associated with the specified ID. If not supplied, retrieves a list of all url objects.",
+						"description": "Retrieves the groups of URL objects and addresses associated with the specified ID. If not supplied, retrieves a list of all URL objects.",
 						"name": "ciscofp-get-url-groups-object"
 					},
 					{
-						"description": "Updates the ID of a group of url objects.",
+						"description": "Updates the ID of a group of URL objects.",
 						"name": "ciscofp-update-url-groups-objects"
 					}
 				],
 				"description": "Use the Cisco Firepower integration for unified management of firewalls, application control, intrusion prevention, URL filtering, and advanced malware protection.",
-				"id": "",
+				"id": "Cisco Firepower",
 				"name": "Cisco Firepower"
 			}
 		],
@@ -192,28 +260,28 @@
 		"wizard": null
 	},
 	"created": "2020-11-09T18:49:27Z",
-	"currentVersion": "1.1.2",
+	"currentVersion": "1.2.0",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.44",
+			"minVersion": "1.31.55",
 			"name": "Base"
 		},
 		"CommonScripts": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.10.24",
+			"minVersion": "1.11.12",
 			"name": "Common Scripts"
 		}
 	},
 	"deprecated": false,
 	"description": "Use the CiscoFirepower integration for unified management of firewalls, application control",
 	"disabledMonthly": false,
-	"downloads": 1550,
+	"downloads": 1705,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -230,7 +298,7 @@
 			"name": "Cisco Firepower"
 		}
 	],
-	"itemVersion": "1.1.2",
+	"itemVersion": "1.2.0",
 	"keywords": [],
 	"legacy": true,
 	"name": "Cisco Firepower",
@@ -245,7 +313,7 @@
 	"rawKeywords": null,
 	"rawTags": null,
 	"rawUseCases": null,
-	"readme": "##Cisco Firepower Pack\n\nUse the Cisco Firepower integration for unified management of firewalls, application control, intrusion prevention, URL filtering, and advanced malware protection.\n\n**What does this pack do?**\n- List zones, ports, and URL categories.\n- List security group tags, ise security group tags, vlan tags, vlan tags groups, and applications.\n- List, create, and update policy assignments.\n- Get, create, update, and delete network objects.\n- Get, create, update, and delete network group objects.\n- Get, create, update, and delete host objects.\n- Get, create, update, and delete access policies.\n- Get, create, update, and delete access rules.\n- Get deployable devices, device records, and task statuses.\n- Deploy to devices.\n\n\nThis pack contains:\n- An integration with Cisco Firepower.\n- A playbook for appending network objects in Cisco Firepower.\n",
+	"readme": "## Cisco Firepower Pack\n\nUse the Cisco Firepower integration for unified management of firewalls, application control, intrusion prevention, URL filtering, and advanced malware protection.\n\n**What does this pack do?**\n- List zones, ports, and URL categories.\n- List security group tags, ise security group tags, vlan tags, vlan tags groups, and applications.\n- List, create, and update policy assignments.\n- Get, create, update, and delete network objects.\n- Get, create, update, and delete network group objects.\n- Get, create, update, and delete host objects.\n- Get, create, update, and delete access policies.\n- Get, create, update, and delete access rules.\n- Get deployable devices, device records, and task statuses.\n- Deploy to devices.\n\n\nThis pack contains:\n- An integration with Cisco Firepower.\n- A playbook for appending network objects in Cisco Firepower.\n",
 	"searchRank": 10,
 	"serverMaxVersion": "",
 	"serverMinVersion": "5.0.0",
@@ -256,9 +324,9 @@
 	},
 	"tags": [],
 	"toServerVersion": "",
-	"updated": "2022-12-14T23:34:55Z",
+	"updated": "2023-01-25T00:01:20Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4220433",
+	"versionInfo": "4462378",
 	"videos": []
 }
