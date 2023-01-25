@@ -102,7 +102,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 1.0.20
+    itemVersion: 1.0.21
     packID: FeedUnit42v2
     packName: Unit 42 ATOMs Feed
     packPropagationLabels:
@@ -135,7 +135,7 @@ script:
       - attack-pattern
     description: Retrieves a limited number of the indicators.
     name: unit42-get-indicators
-  dockerimage: demisto/taxii2:1.0.0.42974
+  dockerimage: demisto/taxii2:1.0.0.45745
   feed: true
   runonce: false
   script: |
