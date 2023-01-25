@@ -105,7 +105,7 @@
 					}
 				],
 				"description": "Manage FortiGate Firewall",
-				"id": "",
+				"id": "FortiGate",
 				"name": "FortiGate"
 			}
 		],
@@ -118,21 +118,21 @@
 		"wizard": null
 	},
 	"created": "2020-06-30T20:25:07Z",
-	"currentVersion": "1.0.17",
+	"currentVersion": "1.0.18",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.44",
+			"minVersion": "1.31.55",
 			"name": "Base"
 		}
 	},
 	"deprecated": false,
 	"description": "Manage FortiGate Firewall",
 	"disabledMonthly": false,
-	"downloads": 2617,
+	"downloads": 2794,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -149,7 +149,7 @@
 			"name": "FortiGate"
 		}
 	],
-	"itemVersion": "1.0.17",
+	"itemVersion": "1.0.18",
 	"keywords": [],
 	"legacy": true,
 	"name": "FortiGate",
@@ -175,9 +175,9 @@
 	},
 	"tags": [],
 	"toServerVersion": "",
-	"updated": "2022-12-12T23:22:09Z",
+	"updated": "2023-01-24T23:43:25Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4206093",
+	"versionInfo": "4462378",
 	"videos": []
 }
