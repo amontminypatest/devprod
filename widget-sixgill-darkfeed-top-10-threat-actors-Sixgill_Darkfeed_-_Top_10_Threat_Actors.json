@@ -20,7 +20,7 @@
 	"fromServerVersion": "5.0.0",
 	"id": "sixgill-darkfeed-top-10-threat-actors",
 	"isPredefined": true,
-	"itemVersion": "2.0.14",
+	"itemVersion": "2.0.15",
 	"name": "Sixgill Darkfeed - Top 10 Threat Actors",
 	"packID": "Sixgill-Darkfeed",
 	"packName": "Sixgill Darkfeed - Annual Subscription",
