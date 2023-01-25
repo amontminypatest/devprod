@@ -11,7 +11,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.1.25
+    itemVersion: 2.1.26
     packID: Carbon_Black_Enterprise_Response
     packName: Carbon Black Enterprise Response
     packPropagationLabels:
