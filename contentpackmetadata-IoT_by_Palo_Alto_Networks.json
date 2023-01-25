@@ -17,18 +17,18 @@
 	"contentItems": {
 		"automation": [
 			{
+				"description": "Close the XSOAR incident if the IoT ServiceNow ticket was closed. This command should be run in a Job.",
+				"name": "iot-security-check-servicenow",
+				"tags": [
+					"iot"
+				]
+			},
+			{
 				"description": "IoT alert post processing script to resolve the alert in IoT security portal using API",
 				"name": "iot-security-alert-post-processing",
 				"tags": [
 					"iot",
 					"post-processing"
-				]
-			},
-			{
-				"description": "IoT RACI model script",
-				"name": "iot-security-get-raci",
-				"tags": [
-					"iot"
 				]
 			},
 			{
@@ -40,8 +40,8 @@
 				]
 			},
 			{
-				"description": "Close the XSOAR incident if the IoT ServiceNow ticket was closed. This command should be run in a Job.",
-				"name": "iot-security-check-servicenow",
+				"description": "IoT RACI model script",
+				"name": "iot-security-get-raci",
 				"tags": [
 					"iot"
 				]
@@ -58,14 +58,14 @@
 				"type": "shortText"
 			},
 			{
-				"description": "The name of the ServiceNow Table",
-				"name": "ServiceNow Table Name",
-				"type": "shortText"
-			},
-			{
 				"description": "The url to Palo Alto Networks IoT incident",
 				"name": "IoT Incident URL",
 				"type": "url"
+			},
+			{
+				"description": "The name of the ServiceNow Table",
+				"name": "ServiceNow Table Name",
+				"type": "shortText"
 			}
 		],
 		"incidenttype": [
@@ -143,35 +143,35 @@
 		"wizard": null
 	},
 	"created": "2020-11-09T18:49:01Z",
-	"currentVersion": "1.0.17",
+	"currentVersion": "1.0.18",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.54",
+			"minVersion": "1.31.55",
 			"name": "Base"
 		},
 		"CommonScripts": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.10.46",
+			"minVersion": "1.11.11",
 			"name": "Common Scripts"
 		},
 		"ServiceNow": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "2.5.5",
+			"minVersion": "2.5.6",
 			"name": "ServiceNow"
 		}
 	},
 	"deprecated": false,
 	"description": "Palo Alto Networks IoT",
 	"disabledMonthly": false,
-	"downloads": 4640,
+	"downloads": 5025,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -204,7 +204,7 @@
 			"name": "ServiceNow v2"
 		}
 	],
-	"itemVersion": "1.0.17",
+	"itemVersion": "1.0.18",
 	"keywords": [],
 	"legacy": true,
 	"name": "IoT by Palo Alto Networks",
@@ -232,9 +232,9 @@
 		"Palo Alto Networks Products"
 	],
 	"toServerVersion": "",
-	"updated": "2023-01-11T12:22:13Z",
+	"updated": "2023-01-24T22:26:27Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4372591",
+	"versionInfo": "4462378",
 	"videos": []
 }
