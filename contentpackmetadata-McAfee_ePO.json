@@ -103,7 +103,7 @@
 					}
 				],
 				"description": "Deprecated. Use McAfee ePO v2 instead.",
-				"id": "",
+				"id": "epo",
 				"name": "McAfee ePO (Deprecated)"
 			},
 			{
@@ -215,7 +215,7 @@
 					}
 				],
 				"description": "McAfee ePolicy Orchestrator",
-				"id": "",
+				"id": "McAfee ePO v2",
 				"name": "McAfee ePO v2"
 			}
 		],
@@ -227,12 +227,12 @@
 				"name": "McAfee ePO Endpoint Connectivity Diagnostics Playbook v2"
 			},
 			{
-				"description": "Discover endpoints that are not using the latest McAfee AV signatures.",
-				"name": "McAfee ePO Endpoint Compliance Playbook v2"
-			},
-			{
 				"description": "Ensures that ePO servers are updated to the latest McAfee published AV signatures (DAT file version).",
 				"name": "McAfee ePO Repository Compliance Playbook v2"
+			},
+			{
+				"description": "Discover endpoints that are not using the latest McAfee AV signatures.",
+				"name": "McAfee ePO Endpoint Compliance Playbook v2"
 			}
 		],
 		"report": null,
@@ -241,35 +241,35 @@
 		"wizard": null
 	},
 	"created": "2020-11-09T18:41:05Z",
-	"currentVersion": "2.0.13",
+	"currentVersion": "2.0.14",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.41",
+			"minVersion": "1.31.55",
 			"name": "Base"
 		},
 		"CommonScripts": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.10.17",
+			"minVersion": "1.11.12",
 			"name": "Common Scripts"
 		},
 		"ServiceNow": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "2.5.0",
+			"minVersion": "2.5.6",
 			"name": "ServiceNow"
 		}
 	},
 	"deprecated": false,
 	"description": "McAfee ePolicy Orchestrator",
 	"disabledMonthly": false,
-	"downloads": 3850,
+	"downloads": 4139,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -306,7 +306,7 @@
 			"name": "ServiceNow v2"
 		}
 	],
-	"itemVersion": "2.0.13",
+	"itemVersion": "2.0.14",
 	"keywords": [],
 	"legacy": true,
 	"name": "McAfee ePO",
@@ -332,9 +332,9 @@
 	},
 	"tags": [],
 	"toServerVersion": "",
-	"updated": "2022-12-05T01:09:53Z",
+	"updated": "2023-01-25T10:58:51Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "4152557",
+	"versionInfo": "4466748",
 	"videos": []
 }
