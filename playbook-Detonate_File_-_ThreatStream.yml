@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.0.24
+    itemVersion: 2.0.25
     packID: Anomali_ThreatStream
     packName: Anomali ThreatStream
     packPropagationLabels:
