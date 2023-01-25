@@ -1,0 +1,28 @@
+commonfields:
+  id: 8630a31b-437b-477b-8056-90bdfcaced77
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.9.44472
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: AlexMontminyPreProcessTest
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: 'demisto.executeCommand("setIncident", {"type": "Alex Training - Mock Malware"})'
+scripttarget: 0
+subtype: python3
+tags:
+- preProcessing
+type: python
