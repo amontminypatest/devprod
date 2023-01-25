@@ -23,7 +23,7 @@
 	"hidden": false,
 	"id": "incident_carbonblackedrsegmentid",
 	"isReadOnly": false,
-	"itemVersion": "2.1.25",
+	"itemVersion": "2.1.26",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Carbon Black EDR Segment ID",
