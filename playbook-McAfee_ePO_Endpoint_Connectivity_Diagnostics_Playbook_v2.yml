@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.0.13
+    itemVersion: 2.0.14
     packID: epo
     packName: McAfee ePO
     packPropagationLabels:
