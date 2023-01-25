@@ -441,7 +441,7 @@
 	"formatScript": "ExtractDomainAndFQDNFromUrlAndEmail",
 	"fromServerVersion": "5.5.0",
 	"id": "domainRepUnified",
-	"itemVersion": "3.3.45",
+	"itemVersion": "3.3.46",
 	"layout": "domainRepUnified",
 	"legacyNames": null,
 	"locked": false,
@@ -453,7 +453,7 @@
 		"all"
 	],
 	"propagationLabels": [],
-	"regex": "(?i)(?P\u003cscheme\u003e(?:http|ftp|hxxp)s?(?:://|-3A__|%3A%2F%2F))?(?P\u003cdomain\u003e(?:[\\p{L}\\d\\-–_]+(?:\\.|\\[\\.\\]))+[\\p{L}]{2,})",
+	"regex": "(?i)\\b(?P\u003cscheme\u003e(?:http|ftp|hxxp)s?(?:://|-3A__|%3A%2F%2F))?(?P\u003cdomain\u003e(?:[\\p{L}\\d\\-–]+(?:\\.|\\[\\.\\]))+[\\p{L}]{2,})",
 	"reputationCommand": "domain",
 	"reputationScriptName": "",
 	"shouldShareComments": false,
