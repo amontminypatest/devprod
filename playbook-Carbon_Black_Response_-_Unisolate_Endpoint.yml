@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 2.1.25
+    itemVersion: 2.1.26
     packID: Carbon_Black_Enterprise_Response
     packName: Carbon Black Enterprise Response
     packPropagationLabels:
@@ -66,6 +66,8 @@ tasks:
       - "7"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: carbonblack-v2
