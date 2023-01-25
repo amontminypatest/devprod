@@ -17,7 +17,7 @@
 	"hours": 0,
 	"hoursR": 0,
 	"id": "Carbon Black EDR",
-	"itemVersion": "2.1.25",
+	"itemVersion": "2.1.26",
 	"layout": "Carbon Black EDR Incidents",
 	"locked": false,
 	"name": "Carbon Black EDR",
