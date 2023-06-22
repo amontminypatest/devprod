@@ -1,0 +1,48 @@
+args:
+- description: Enter a command separated list of indicators to delete and exclude
+  name: indicatorValues
+- description: Reason for exclusion
+  name: reason
+commonfields:
+  id: 4d65d2f8-4d52-4097-887b-11aefcaab76c
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    prevname: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.10.49934
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: DeleteAndExcludeIndicators
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |-
+  import re
+
+  try:
+      indicatorValues = str(demisto.args().get('indicatorValues'))
+      reason = demisto.args().get('reason','')
+      indicatorQuery = re.sub(',', ' or ', indicatorValues)
+      searchQuery = 'value:(' + indicatorQuery + ')'
+      res = demisto.executeCommand("deleteIndicators", {"query":searchQuery,"doNotWhitelist":"false","reason":reason})
+      resp = res[0]
+      if isError(resp):
+          raise Exception(resp['Contents'])
+      else:
+          demisto.results(resp['Contents'])
+
+  except Exception as ex1:
+      return_error(str(ex1))
+scripttarget: 0
+subtype: python3
+tags: []
+type: python
